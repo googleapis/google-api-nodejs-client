@@ -14,11 +14,7 @@
  * limitations under the License.
  */
 
-/* jshint maxlen: false */
-
-import {
-  createAPIRequest
-} from '../../lib/apirequest';
+import {createAPIRequest} from '../../lib/apirequest';
 
 /**
  * Google Search Console URL Testing Tools API
@@ -35,18 +31,14 @@ import {
  * @variation v1
  * @param {object=} options Options for Searchconsole
  */
-function Searchconsole(options) { // eslint-disable-line
+function Searchconsole(options) {
   const self = this;
   self._options = options || {};
-
   self.urlTestingTools = {
     mobileFriendlyTest: {
-
       /**
        * searchconsole.urlTestingTools.mobileFriendlyTest.run
-       *
        * @desc Runs Mobile-Friendly Test for a given URL.
-       *
        * @alias searchconsole.urlTestingTools.mobileFriendlyTest.run
        * @memberOf! searchconsole(v1)
        *
@@ -56,62 +48,62 @@ function Searchconsole(options) { // eslint-disable-line
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      run: function (params, options, callback) {
+      run: function(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
         options || (options = {});
 
-        const rootUrl = options.rootUrl || 'https://searchconsole.googleapis.com/';
+        const rootUrl =
+            options.rootUrl || 'https://searchconsole.googleapis.com/';
 
         const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/v1/urlTestingTools/mobileFriendlyTest:run').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST'
-          }, options),
+          options: Object.assign(
+              {
+                url: (rootUrl + '/v1/urlTestingTools/mobileFriendlyTest:run')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'POST'
+              },
+              options),
           params: params,
           requiredParams: [],
           pathParams: [],
           context: self
         };
-
         return createAPIRequest(parameters, callback);
       }
+
+
     }
   };
 }
-
 /**
  * @typedef BlockedResource
  * @memberOf! searchconsole(v1)
  * @type object
  * @property {string} url URL of the blocked resource.
  */
-
 /**
  * @typedef Image
  * @memberOf! searchconsole(v1)
  * @type object
-* @property {string} data Image data in format determined by the mime type. Currently, the format
+ * @property {string} data Image data in format determined by the mime type. Currently, the format
 will always be &quot;image/png&quot;, but this might change in the future.
-* @property {string} mimeType The mime-type of the image data.
-*/
-
+ * @property {string} mimeType The mime-type of the image data.
+ */
 /**
  * @typedef MobileFriendlyIssue
  * @memberOf! searchconsole(v1)
  * @type object
  * @property {string} rule Rule violated.
  */
-
 /**
  * @typedef ResourceIssue
  * @memberOf! searchconsole(v1)
  * @type object
  * @property {searchconsole(v1).BlockedResource} blockedResource Describes a blocked resource issue.
  */
-
 /**
  * @typedef RunMobileFriendlyTestRequest
  * @memberOf! searchconsole(v1)
@@ -119,7 +111,6 @@ will always be &quot;image/png&quot;, but this might change in the future.
  * @property {boolean} requestScreenshot Whether or not screenshot is requested. Default is false.
  * @property {string} url URL for inspection.
  */
-
 /**
  * @typedef RunMobileFriendlyTestResponse
  * @memberOf! searchconsole(v1)
@@ -130,7 +121,6 @@ will always be &quot;image/png&quot;, but this might change in the future.
  * @property {searchconsole(v1).Image} screenshot Screenshot of the requested URL.
  * @property {searchconsole(v1).TestStatus} testStatus Final state of the test, can be either complete or an error.
  */
-
 /**
  * @typedef TestStatus
  * @memberOf! searchconsole(v1)
@@ -138,4 +128,5 @@ will always be &quot;image/png&quot;, but this might change in the future.
  * @property {string} details Error details if applicable.
  * @property {string} status Status of the test.
  */
+
 export = Searchconsole;

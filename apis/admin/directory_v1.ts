@@ -14,16 +14,14 @@
  * limitations under the License.
  */
 
-/* jshint maxlen: false */
-
-import {
-  createAPIRequest
-} from '../../lib/apirequest';
+import {createAPIRequest} from '../../lib/apirequest';
 
 /**
  * Admin Directory API
  *
- * The Admin SDK Directory API lets you view and manage enterprise resources such as users and groups, administrative notifications, security features, and more.
+ * The Admin SDK Directory API lets you view and manage enterprise resources
+ * such as users and groups, administrative notifications, security features,
+ * and more.
  *
  * @example
  * const google = require('googleapis');
@@ -35,17 +33,13 @@ import {
  * @variation directory_v1
  * @param {object=} options Options for Admin
  */
-function Admin(options) { // eslint-disable-line
+function Admin(options) {
   const self = this;
   self._options = options || {};
-
   self.asps = {
-
     /**
      * directory.asps.delete
-     *
      * @desc Delete an ASP issued by a user.
-     *
      * @alias directory.asps.delete
      * @memberOf! admin(directory_v1)
      *
@@ -56,7 +50,7 @@ function Admin(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, options, callback) {
+    delete: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -66,35 +60,36 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/users/{userKey}/asps/{codeId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/admin/directory/v1/users/{userKey}/asps/{codeId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
         params: params,
         requiredParams: ['userKey', 'codeId'],
         pathParams: ['codeId', 'userKey'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * directory.asps.get
-     *
-     * @desc Get information about an ASP issued by a user.
-     *
-     * @alias directory.asps.get
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {integer} params.codeId The unique ID of the ASP.
-     * @param {string} params.userKey Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
+    , /**
+       * directory.asps.get
+       * @desc Get information about an ASP issued by a user.
+       * @alias directory.asps.get
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {integer} params.codeId The unique ID of the ASP.
+       * @param {string} params.userKey Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -104,34 +99,35 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/users/{userKey}/asps/{codeId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/admin/directory/v1/users/{userKey}/asps/{codeId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['userKey', 'codeId'],
         pathParams: ['codeId', 'userKey'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * directory.asps.list
-     *
-     * @desc List the ASPs issued by a user.
-     *
-     * @alias directory.asps.list
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.userKey Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
+    , /**
+       * directory.asps.list
+       * @desc List the ASPs issued by a user.
+       * @alias directory.asps.list
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.userKey Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -141,28 +137,27 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/users/{userKey}/asps').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/admin/directory/v1/users/{userKey}/asps')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
-
   self.channels = {
-
     /**
      * admin.channels.stop
-     *
      * @desc Stop watching resources through this channel
-     *
      * @alias admin.channels.stop
      * @memberOf! admin(directory_v1)
      *
@@ -172,7 +167,7 @@ function Admin(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop: function (params, options, callback) {
+    stop: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -182,28 +177,28 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/admin/directory_v1/channels/stop').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/admin/directory/v1/admin/directory_v1/channels/stop')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
-
   self.chromeosdevices = {
-
     /**
      * directory.chromeosdevices.action
-     *
      * @desc Take action on Chrome OS Device
-     *
      * @alias directory.chromeosdevices.action
      * @memberOf! admin(directory_v1)
      *
@@ -215,7 +210,7 @@ function Admin(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    action: function (params, options, callback) {
+    action: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -225,36 +220,38 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/devices/chromeos/{resourceId}/action').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/admin/directory/v1/customer/{customerId}/devices/chromeos/{resourceId}/action')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: ['customerId', 'resourceId'],
         pathParams: ['customerId', 'resourceId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * directory.chromeosdevices.get
-     *
-     * @desc Retrieve Chrome OS Device
-     *
-     * @alias directory.chromeosdevices.get
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.deviceId Immutable ID of Chrome OS Device
-     * @param {string=} params.projection Restrict information returned to a set of selected fields.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
+    , /**
+       * directory.chromeosdevices.get
+       * @desc Retrieve Chrome OS Device
+       * @alias directory.chromeosdevices.get
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customerId Immutable ID of the G Suite account
+       * @param {string} params.deviceId Immutable ID of Chrome OS Device
+       * @param {string=} params.projection Restrict information returned to a set of selected fields.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -264,41 +261,43 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['customerId', 'deviceId'],
         pathParams: ['customerId', 'deviceId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * directory.chromeosdevices.list
-     *
-     * @desc Retrieve all Chrome OS Devices of a customer (paginated)
-     *
-     * @alias directory.chromeosdevices.list
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {integer=} params.maxResults Maximum number of results to return. Default is 100
-     * @param {string=} params.orderBy Column to use for sorting results
-     * @param {string=} params.orgUnitPath Full path of the organizational unit or its ID
-     * @param {string=} params.pageToken Token to specify next page in the list
-     * @param {string=} params.projection Restrict information returned to a set of selected fields.
-     * @param {string=} params.query Search string in the format given at http://support.google.com/chromeos/a/bin/answer.py?hl=en&answer=1698333
-     * @param {string=} params.sortOrder Whether to return results in ascending or descending order. Only of use when orderBy is also used
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
+    , /**
+       * directory.chromeosdevices.list
+       * @desc Retrieve all Chrome OS Devices of a customer (paginated)
+       * @alias directory.chromeosdevices.list
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customerId Immutable ID of the G Suite account
+       * @param {integer=} params.maxResults Maximum number of results to return. Default is 100
+       * @param {string=} params.orderBy Column to use for sorting results
+       * @param {string=} params.orgUnitPath Full path of the organizational unit or its ID
+       * @param {string=} params.pageToken Token to specify next page in the list
+       * @param {string=} params.projection Restrict information returned to a set of selected fields.
+       * @param {string=} params.query Search string in the format given at http://support.google.com/chromeos/a/bin/answer.py?hl=en&answer=1698333
+       * @param {string=} params.sortOrder Whether to return results in ascending or descending order. Only of use when orderBy is also used
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -308,36 +307,38 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/devices/chromeos').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/admin/directory/v1/customer/{customerId}/devices/chromeos')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * directory.chromeosdevices.moveDevicesToOu
-     *
-     * @desc Move or insert multiple Chrome OS Devices to organizational unit
-     *
-     * @alias directory.chromeosdevices.moveDevicesToOu
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.orgUnitPath Full path of the target organizational unit or its ID
-     * @param {admin(directory_v1).ChromeOsMoveDevicesToOu} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    moveDevicesToOu: function (params, options, callback) {
+    , /**
+       * directory.chromeosdevices.moveDevicesToOu
+       * @desc Move or insert multiple Chrome OS Devices to organizational unit
+       * @alias directory.chromeosdevices.moveDevicesToOu
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customerId Immutable ID of the G Suite account
+       * @param {string} params.orgUnitPath Full path of the target organizational unit or its ID
+       * @param {admin(directory_v1).ChromeOsMoveDevicesToOu} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    moveDevicesToOu: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -347,108 +348,113 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/devices/chromeos/moveDevicesToOu').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/admin/directory/v1/customer/{customerId}/devices/chromeos/moveDevicesToOu')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: ['customerId', 'orgUnitPath'],
         pathParams: ['customerId'],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.chromeosdevices.patch
-     *
-     * @desc Update Chrome OS Device. This method supports patch semantics.
-     *
-     * @alias directory.chromeosdevices.patch
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.deviceId Immutable ID of Chrome OS Device
-     * @param {string=} params.projection Restrict information returned to a set of selected fields.
-     * @param {admin(directory_v1).ChromeOsDevice} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PATCH'
-        }, options),
-        params: params,
-        requiredParams: ['customerId', 'deviceId'],
-        pathParams: ['customerId', 'deviceId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.chromeosdevices.update
-     *
-     * @desc Update Chrome OS Device
-     *
-     * @alias directory.chromeosdevices.update
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.deviceId Immutable ID of Chrome OS Device
-     * @param {string=} params.projection Restrict information returned to a set of selected fields.
-     * @param {admin(directory_v1).ChromeOsDevice} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    update: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PUT'
-        }, options),
-        params: params,
-        requiredParams: ['customerId', 'deviceId'],
-        pathParams: ['customerId', 'deviceId'],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
+    , /**
+       * directory.chromeosdevices.patch
+       * @desc Update Chrome OS Device. This method supports patch semantics.
+       * @alias directory.chromeosdevices.patch
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customerId Immutable ID of the G Suite account
+       * @param {string} params.deviceId Immutable ID of Chrome OS Device
+       * @param {string=} params.projection Restrict information returned to a set of selected fields.
+       * @param {admin(directory_v1).ChromeOsDevice} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    patch: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params: params,
+        requiredParams: ['customerId', 'deviceId'],
+        pathParams: ['customerId', 'deviceId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * directory.chromeosdevices.update
+       * @desc Update Chrome OS Device
+       * @alias directory.chromeosdevices.update
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customerId Immutable ID of the G Suite account
+       * @param {string} params.deviceId Immutable ID of Chrome OS Device
+       * @param {string=} params.projection Restrict information returned to a set of selected fields.
+       * @param {admin(directory_v1).ChromeOsDevice} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    update: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
+        params: params,
+        requiredParams: ['customerId', 'deviceId'],
+        pathParams: ['customerId', 'deviceId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
   };
-
   self.customers = {
-
     /**
      * directory.customers.get
-     *
      * @desc Retrieves a customer.
-     *
      * @alias directory.customers.get
      * @memberOf! admin(directory_v1)
      *
@@ -458,7 +464,7 @@ function Admin(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, options, callback) {
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -468,104 +474,103 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customers/{customerKey}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/admin/directory/v1/customers/{customerKey}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['customerKey'],
         pathParams: ['customerKey'],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.customers.patch
-     *
-     * @desc Updates a customer. This method supports patch semantics.
-     *
-     * @alias directory.customers.patch
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerKey Id of the customer to be updated
-     * @param {admin(directory_v1).Customer} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customers/{customerKey}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PATCH'
-        }, options),
-        params: params,
-        requiredParams: ['customerKey'],
-        pathParams: ['customerKey'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.customers.update
-     *
-     * @desc Updates a customer.
-     *
-     * @alias directory.customers.update
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerKey Id of the customer to be updated
-     * @param {admin(directory_v1).Customer} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    update: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customers/{customerKey}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PUT'
-        }, options),
-        params: params,
-        requiredParams: ['customerKey'],
-        pathParams: ['customerKey'],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
+    , /**
+       * directory.customers.patch
+       * @desc Updates a customer. This method supports patch semantics.
+       * @alias directory.customers.patch
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customerKey Id of the customer to be updated
+       * @param {admin(directory_v1).Customer} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    patch: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/admin/directory/v1/customers/{customerKey}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params: params,
+        requiredParams: ['customerKey'],
+        pathParams: ['customerKey'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * directory.customers.update
+       * @desc Updates a customer.
+       * @alias directory.customers.update
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customerKey Id of the customer to be updated
+       * @param {admin(directory_v1).Customer} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    update: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/admin/directory/v1/customers/{customerKey}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
+        params: params,
+        requiredParams: ['customerKey'],
+        pathParams: ['customerKey'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
   };
-
   self.domainAliases = {
-
     /**
      * directory.domainAliases.delete
-     *
      * @desc Deletes a Domain Alias of the customer.
-     *
      * @alias directory.domainAliases.delete
      * @memberOf! admin(directory_v1)
      *
@@ -576,7 +581,7 @@ function Admin(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, options, callback) {
+    delete: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -586,142 +591,147 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customer}/domainaliases/{domainAliasName}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/admin/directory/v1/customer/{customer}/domainaliases/{domainAliasName}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
         params: params,
         requiredParams: ['customer', 'domainAliasName'],
         pathParams: ['customer', 'domainAliasName'],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.domainAliases.get
-     *
-     * @desc Retrieves a domain alias of the customer.
-     *
-     * @alias directory.domainAliases.get
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {string} params.domainAliasName Name of domain alias to be retrieved.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customer}/domainaliases/{domainAliasName}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['customer', 'domainAliasName'],
-        pathParams: ['customer', 'domainAliasName'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.domainAliases.insert
-     *
-     * @desc Inserts a Domain alias of the customer.
-     *
-     * @alias directory.domainAliases.insert
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {admin(directory_v1).DomainAlias} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    insert: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customer}/domainaliases').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['customer'],
-        pathParams: ['customer'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.domainAliases.list
-     *
-     * @desc Lists the domain aliases of the customer.
-     *
-     * @alias directory.domainAliases.list
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {string=} params.parentDomainName Name of the parent domain for which domain aliases are to be fetched.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customer}/domainaliases').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['customer'],
-        pathParams: ['customer'],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
+    , /**
+       * directory.domainAliases.get
+       * @desc Retrieves a domain alias of the customer.
+       * @alias directory.domainAliases.get
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customer Immutable ID of the G Suite account.
+       * @param {string} params.domainAliasName Name of domain alias to be retrieved.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/admin/directory/v1/customer/{customer}/domainaliases/{domainAliasName}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['customer', 'domainAliasName'],
+        pathParams: ['customer', 'domainAliasName'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * directory.domainAliases.insert
+       * @desc Inserts a Domain alias of the customer.
+       * @alias directory.domainAliases.insert
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customer Immutable ID of the G Suite account.
+       * @param {admin(directory_v1).DomainAlias} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    insert: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/admin/directory/v1/customer/{customer}/domainaliases')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * directory.domainAliases.list
+       * @desc Lists the domain aliases of the customer.
+       * @alias directory.domainAliases.list
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customer Immutable ID of the G Suite account.
+       * @param {string=} params.parentDomainName Name of the parent domain for which domain aliases are to be fetched.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/admin/directory/v1/customer/{customer}/domainaliases')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
   };
-
   self.domains = {
-
     /**
      * directory.domains.delete
-     *
      * @desc Deletes a domain of the customer.
-     *
      * @alias directory.domains.delete
      * @memberOf! admin(directory_v1)
      *
@@ -732,7 +742,7 @@ function Admin(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, options, callback) {
+    delete: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -742,141 +752,144 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customer}/domains/{domainName}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/admin/directory/v1/customer/{customer}/domains/{domainName}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
         params: params,
         requiredParams: ['customer', 'domainName'],
         pathParams: ['customer', 'domainName'],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.domains.get
-     *
-     * @desc Retrieves a domain of the customer.
-     *
-     * @alias directory.domains.get
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {string} params.domainName Name of domain to be retrieved
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customer}/domains/{domainName}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['customer', 'domainName'],
-        pathParams: ['customer', 'domainName'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.domains.insert
-     *
-     * @desc Inserts a domain of the customer.
-     *
-     * @alias directory.domains.insert
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {admin(directory_v1).Domains} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    insert: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customer}/domains').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['customer'],
-        pathParams: ['customer'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.domains.list
-     *
-     * @desc Lists the domains of the customer.
-     *
-     * @alias directory.domains.list
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customer}/domains').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['customer'],
-        pathParams: ['customer'],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
+    , /**
+       * directory.domains.get
+       * @desc Retrieves a domain of the customer.
+       * @alias directory.domains.get
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customer Immutable ID of the G Suite account.
+       * @param {string} params.domainName Name of domain to be retrieved
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/admin/directory/v1/customer/{customer}/domains/{domainName}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['customer', 'domainName'],
+        pathParams: ['customer', 'domainName'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * directory.domains.insert
+       * @desc Inserts a domain of the customer.
+       * @alias directory.domains.insert
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customer Immutable ID of the G Suite account.
+       * @param {admin(directory_v1).Domains} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    insert: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/admin/directory/v1/customer/{customer}/domains')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * directory.domains.list
+       * @desc Lists the domains of the customer.
+       * @alias directory.domains.list
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customer Immutable ID of the G Suite account.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/admin/directory/v1/customer/{customer}/domains')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
   };
-
   self.groups = {
-
     /**
      * directory.groups.delete
-     *
      * @desc Delete Group
-     *
      * @alias directory.groups.delete
      * @memberOf! admin(directory_v1)
      *
@@ -886,7 +899,7 @@ function Admin(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, options, callback) {
+    delete: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -896,34 +909,34 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/groups/{groupKey}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/admin/directory/v1/groups/{groupKey}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
         params: params,
         requiredParams: ['groupKey'],
         pathParams: ['groupKey'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * directory.groups.get
-     *
-     * @desc Retrieve Group
-     *
-     * @alias directory.groups.get
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.groupKey Email or immutable ID of the group
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
+    , /**
+       * directory.groups.get
+       * @desc Retrieve Group
+       * @alias directory.groups.get
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.groupKey Email or immutable ID of the group
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -933,34 +946,34 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/groups/{groupKey}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/admin/directory/v1/groups/{groupKey}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['groupKey'],
         pathParams: ['groupKey'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * directory.groups.insert
-     *
-     * @desc Create Group
-     *
-     * @alias directory.groups.insert
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {admin(directory_v1).Group} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    insert: function (params, options, callback) {
+    , /**
+       * directory.groups.insert
+       * @desc Create Group
+       * @alias directory.groups.insert
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {admin(directory_v1).Group} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    insert: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -970,38 +983,38 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/groups').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/admin/directory/v1/groups')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * directory.groups.list
-     *
-     * @desc Retrieve all groups in a domain (paginated)
-     *
-     * @alias directory.groups.list
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object=} params Parameters for request
-     * @param {string=} params.customer Immutable ID of the G Suite account. In case of multi-domain, to fetch all groups for a customer, fill this field instead of domain.
-     * @param {string=} params.domain Name of the domain. Fill this field to get groups from only this domain. To return all groups in a multi-domain fill customer field instead.
-     * @param {integer=} params.maxResults Maximum number of results to return. Default is 200
-     * @param {string=} params.pageToken Token to specify next page in the list
-     * @param {string=} params.userKey Email or immutable ID of the user if only those groups are to be listed, the given user is a member of. If ID, it should match with id of user object
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
+    , /**
+       * directory.groups.list
+       * @desc Retrieve all groups in a domain (paginated)
+       * @alias directory.groups.list
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object=} params Parameters for request
+       * @param {string=} params.customer Immutable ID of the G Suite account. In case of multi-domain, to fetch all groups for a customer, fill this field instead of domain.
+       * @param {string=} params.domain Name of the domain. Fill this field to get groups from only this domain. To return all groups in a multi-domain fill customer field instead.
+       * @param {integer=} params.maxResults Maximum number of results to return. Default is 200
+       * @param {string=} params.pageToken Token to specify next page in the list
+       * @param {string=} params.userKey Email or immutable ID of the user if only those groups are to be listed, the given user is a member of. If ID, it should match with id of user object
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1011,35 +1024,35 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/groups').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/admin/directory/v1/groups')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * directory.groups.patch
-     *
-     * @desc Update Group. This method supports patch semantics.
-     *
-     * @alias directory.groups.patch
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.groupKey Email or immutable ID of the group. If ID, it should match with id of group object
-     * @param {admin(directory_v1).Group} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch: function (params, options, callback) {
+    , /**
+       * directory.groups.patch
+       * @desc Update Group. This method supports patch semantics.
+       * @alias directory.groups.patch
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.groupKey Email or immutable ID of the group. If ID, it should match with id of group object
+       * @param {admin(directory_v1).Group} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    patch: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1049,35 +1062,35 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/groups/{groupKey}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PATCH'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/admin/directory/v1/groups/{groupKey}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
         params: params,
         requiredParams: ['groupKey'],
         pathParams: ['groupKey'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * directory.groups.update
-     *
-     * @desc Update Group
-     *
-     * @alias directory.groups.update
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.groupKey Email or immutable ID of the group. If ID, it should match with id of group object
-     * @param {admin(directory_v1).Group} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    update: function (params, options, callback) {
+    , /**
+       * directory.groups.update
+       * @desc Update Group
+       * @alias directory.groups.update
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.groupKey Email or immutable ID of the group. If ID, it should match with id of group object
+       * @param {admin(directory_v1).Group} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    update: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1087,25 +1100,26 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/groups/{groupKey}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PUT'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/admin/directory/v1/groups/{groupKey}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
         params: params,
         requiredParams: ['groupKey'],
         pathParams: ['groupKey'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
+
+    ,
     aliases: {
-
       /**
        * directory.groups.aliases.delete
-       *
        * @desc Remove a alias for the group
-       *
        * @alias directory.groups.aliases.delete
        * @memberOf! admin(directory_v1)
        *
@@ -1116,7 +1130,7 @@ function Admin(options) { // eslint-disable-line
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, options, callback) {
+      delete: function(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1126,103 +1140,104 @@ function Admin(options) { // eslint-disable-line
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
         const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/admin/directory/v1/groups/{groupKey}/aliases/{alias}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE'
-          }, options),
+          options: Object.assign(
+              {
+                url: (rootUrl +
+                      '/admin/directory/v1/groups/{groupKey}/aliases/{alias}')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'DELETE'
+              },
+              options),
           params: params,
           requiredParams: ['groupKey', 'alias'],
           pathParams: ['alias', 'groupKey'],
           context: self
         };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * directory.groups.aliases.insert
-       *
-       * @desc Add a alias for the group
-       *
-       * @alias directory.groups.aliases.insert
-       * @memberOf! admin(directory_v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.groupKey Email or immutable ID of the group
-       * @param {admin(directory_v1).Alias} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      insert: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/admin/directory/v1/groups/{groupKey}/aliases').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['groupKey'],
-          pathParams: ['groupKey'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * directory.groups.aliases.list
-       *
-       * @desc List all aliases for a group
-       *
-       * @alias directory.groups.aliases.list
-       * @memberOf! admin(directory_v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.groupKey Email or immutable ID of the group
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/admin/directory/v1/groups/{groupKey}/aliases').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['groupKey'],
-          pathParams: ['groupKey'],
-          context: self
-        };
-
         return createAPIRequest(parameters, callback);
       }
+
+      , /**
+         * directory.groups.aliases.insert
+         * @desc Add a alias for the group
+         * @alias directory.groups.aliases.insert
+         * @memberOf! admin(directory_v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.groupKey Email or immutable ID of the group
+         * @param {admin(directory_v1).Alias} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+      insert: function(params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/admin/directory/v1/groups/{groupKey}/aliases')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'POST'
+              },
+              options),
+          params: params,
+          requiredParams: ['groupKey'],
+          pathParams: ['groupKey'],
+          context: self
+        };
+        return createAPIRequest(parameters, callback);
+      }
+
+      , /**
+         * directory.groups.aliases.list
+         * @desc List all aliases for a group
+         * @alias directory.groups.aliases.list
+         * @memberOf! admin(directory_v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.groupKey Email or immutable ID of the group
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+      list: function(params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/admin/directory/v1/groups/{groupKey}/aliases')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params: params,
+          requiredParams: ['groupKey'],
+          pathParams: ['groupKey'],
+          context: self
+        };
+        return createAPIRequest(parameters, callback);
+      }
+
+
     }
   };
-
   self.members = {
-
     /**
      * directory.members.delete
-     *
      * @desc Remove membership.
-     *
      * @alias directory.members.delete
      * @memberOf! admin(directory_v1)
      *
@@ -1233,7 +1248,7 @@ function Admin(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, options, callback) {
+    delete: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1243,260 +1258,266 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/groups/{groupKey}/members/{memberKey}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/admin/directory/v1/groups/{groupKey}/members/{memberKey}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
         params: params,
         requiredParams: ['groupKey', 'memberKey'],
         pathParams: ['groupKey', 'memberKey'],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.members.get
-     *
-     * @desc Retrieve Group Member
-     *
-     * @alias directory.members.get
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.groupKey Email or immutable ID of the group
-     * @param {string} params.memberKey Email or immutable ID of the member
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/groups/{groupKey}/members/{memberKey}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['groupKey', 'memberKey'],
-        pathParams: ['groupKey', 'memberKey'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.members.hasMember
-     *
-     * @desc Checks Membership of an user within a Group
-     *
-     * @alias directory.members.hasMember
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.groupKey Email or immutable Id of the group
-     * @param {string} params.memberKey Email or immutable Id of the member
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    hasMember: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/groups/{groupKey}/hasMember/{memberKey}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['groupKey', 'memberKey'],
-        pathParams: ['groupKey', 'memberKey'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.members.insert
-     *
-     * @desc Add user to the specified group.
-     *
-     * @alias directory.members.insert
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.groupKey Email or immutable ID of the group
-     * @param {admin(directory_v1).Member} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    insert: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/groups/{groupKey}/members').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['groupKey'],
-        pathParams: ['groupKey'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.members.list
-     *
-     * @desc Retrieve all members in a group (paginated)
-     *
-     * @alias directory.members.list
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.groupKey Email or immutable ID of the group
-     * @param {integer=} params.maxResults Maximum number of results to return. Default is 200
-     * @param {string=} params.pageToken Token to specify next page in the list
-     * @param {string=} params.roles Comma separated role values to filter list results on.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/groups/{groupKey}/members').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['groupKey'],
-        pathParams: ['groupKey'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.members.patch
-     *
-     * @desc Update membership of a user in the specified group. This method supports patch semantics.
-     *
-     * @alias directory.members.patch
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.groupKey Email or immutable ID of the group. If ID, it should match with id of group object
-     * @param {string} params.memberKey Email or immutable ID of the user. If ID, it should match with id of member object
-     * @param {admin(directory_v1).Member} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/groups/{groupKey}/members/{memberKey}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PATCH'
-        }, options),
-        params: params,
-        requiredParams: ['groupKey', 'memberKey'],
-        pathParams: ['groupKey', 'memberKey'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.members.update
-     *
-     * @desc Update membership of a user in the specified group.
-     *
-     * @alias directory.members.update
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.groupKey Email or immutable ID of the group. If ID, it should match with id of group object
-     * @param {string} params.memberKey Email or immutable ID of the user. If ID, it should match with id of member object
-     * @param {admin(directory_v1).Member} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    update: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/groups/{groupKey}/members/{memberKey}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PUT'
-        }, options),
-        params: params,
-        requiredParams: ['groupKey', 'memberKey'],
-        pathParams: ['groupKey', 'memberKey'],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
+    , /**
+       * directory.members.get
+       * @desc Retrieve Group Member
+       * @alias directory.members.get
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.groupKey Email or immutable ID of the group
+       * @param {string} params.memberKey Email or immutable ID of the member
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/admin/directory/v1/groups/{groupKey}/members/{memberKey}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['groupKey', 'memberKey'],
+        pathParams: ['groupKey', 'memberKey'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * directory.members.hasMember
+       * @desc Checks Membership of an user within a Group
+       * @alias directory.members.hasMember
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.groupKey Email or immutable Id of the group
+       * @param {string} params.memberKey Email or immutable Id of the member
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    hasMember: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/admin/directory/v1/groups/{groupKey}/hasMember/{memberKey}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['groupKey', 'memberKey'],
+        pathParams: ['groupKey', 'memberKey'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * directory.members.insert
+       * @desc Add user to the specified group.
+       * @alias directory.members.insert
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.groupKey Email or immutable ID of the group
+       * @param {admin(directory_v1).Member} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    insert: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/admin/directory/v1/groups/{groupKey}/members')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: ['groupKey'],
+        pathParams: ['groupKey'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * directory.members.list
+       * @desc Retrieve all members in a group (paginated)
+       * @alias directory.members.list
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.groupKey Email or immutable ID of the group
+       * @param {integer=} params.maxResults Maximum number of results to return. Default is 200
+       * @param {string=} params.pageToken Token to specify next page in the list
+       * @param {string=} params.roles Comma separated role values to filter list results on.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/admin/directory/v1/groups/{groupKey}/members')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['groupKey'],
+        pathParams: ['groupKey'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * directory.members.patch
+       * @desc Update membership of a user in the specified group. This method
+       * supports patch semantics.
+       * @alias directory.members.patch
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.groupKey Email or immutable ID of the group. If ID, it should match with id of group object
+       * @param {string} params.memberKey Email or immutable ID of the user. If ID, it should match with id of member object
+       * @param {admin(directory_v1).Member} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    patch: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/admin/directory/v1/groups/{groupKey}/members/{memberKey}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params: params,
+        requiredParams: ['groupKey', 'memberKey'],
+        pathParams: ['groupKey', 'memberKey'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * directory.members.update
+       * @desc Update membership of a user in the specified group.
+       * @alias directory.members.update
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.groupKey Email or immutable ID of the group. If ID, it should match with id of group object
+       * @param {string} params.memberKey Email or immutable ID of the user. If ID, it should match with id of member object
+       * @param {admin(directory_v1).Member} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    update: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/admin/directory/v1/groups/{groupKey}/members/{memberKey}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
+        params: params,
+        requiredParams: ['groupKey', 'memberKey'],
+        pathParams: ['groupKey', 'memberKey'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
   };
-
   self.mobiledevices = {
-
     /**
      * directory.mobiledevices.action
-     *
      * @desc Take action on Mobile Device
-     *
      * @alias directory.mobiledevices.action
      * @memberOf! admin(directory_v1)
      *
@@ -1508,7 +1529,7 @@ function Admin(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    action: function (params, options, callback) {
+    action: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1518,35 +1539,37 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}/action').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}/action')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: ['customerId', 'resourceId'],
         pathParams: ['customerId', 'resourceId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * directory.mobiledevices.delete
-     *
-     * @desc Delete Mobile Device
-     *
-     * @alias directory.mobiledevices.delete
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.resourceId Immutable ID of Mobile Device
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete: function (params, options, callback) {
+    , /**
+       * directory.mobiledevices.delete
+       * @desc Delete Mobile Device
+       * @alias directory.mobiledevices.delete
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customerId Immutable ID of the G Suite account
+       * @param {string} params.resourceId Immutable ID of Mobile Device
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    delete: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1556,36 +1579,38 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
         params: params,
         requiredParams: ['customerId', 'resourceId'],
         pathParams: ['customerId', 'resourceId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * directory.mobiledevices.get
-     *
-     * @desc Retrieve Mobile Device
-     *
-     * @alias directory.mobiledevices.get
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string=} params.projection Restrict information returned to a set of selected fields.
-     * @param {string} params.resourceId Immutable ID of Mobile Device
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
+    , /**
+       * directory.mobiledevices.get
+       * @desc Retrieve Mobile Device
+       * @alias directory.mobiledevices.get
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customerId Immutable ID of the G Suite account
+       * @param {string=} params.projection Restrict information returned to a set of selected fields.
+       * @param {string} params.resourceId Immutable ID of Mobile Device
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1595,40 +1620,42 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['customerId', 'resourceId'],
         pathParams: ['customerId', 'resourceId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * directory.mobiledevices.list
-     *
-     * @desc Retrieve all Mobile Devices of a customer (paginated)
-     *
-     * @alias directory.mobiledevices.list
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {integer=} params.maxResults Maximum number of results to return. Default is 100
-     * @param {string=} params.orderBy Column to use for sorting results
-     * @param {string=} params.pageToken Token to specify next page in the list
-     * @param {string=} params.projection Restrict information returned to a set of selected fields.
-     * @param {string=} params.query Search string in the format given at http://support.google.com/a/bin/answer.py?hl=en&answer=1408863#search
-     * @param {string=} params.sortOrder Whether to return results in ascending or descending order. Only of use when orderBy is also used
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
+    , /**
+       * directory.mobiledevices.list
+       * @desc Retrieve all Mobile Devices of a customer (paginated)
+       * @alias directory.mobiledevices.list
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customerId Immutable ID of the G Suite account
+       * @param {integer=} params.maxResults Maximum number of results to return. Default is 100
+       * @param {string=} params.orderBy Column to use for sorting results
+       * @param {string=} params.pageToken Token to specify next page in the list
+       * @param {string=} params.projection Restrict information returned to a set of selected fields.
+       * @param {string=} params.query Search string in the format given at http://support.google.com/a/bin/answer.py?hl=en&answer=1408863#search
+       * @param {string=} params.sortOrder Whether to return results in ascending or descending order. Only of use when orderBy is also used
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1638,28 +1665,28 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/devices/mobile').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/admin/directory/v1/customer/{customerId}/devices/mobile')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
-
   self.notifications = {
-
     /**
      * directory.notifications.delete
-     *
      * @desc Deletes a notification
-     *
      * @alias directory.notifications.delete
      * @memberOf! admin(directory_v1)
      *
@@ -1670,7 +1697,7 @@ function Admin(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, options, callback) {
+    delete: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1680,35 +1707,37 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customer}/notifications/{notificationId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/admin/directory/v1/customer/{customer}/notifications/{notificationId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
         params: params,
         requiredParams: ['customer', 'notificationId'],
         pathParams: ['customer', 'notificationId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * directory.notifications.get
-     *
-     * @desc Retrieves a notification.
-     *
-     * @alias directory.notifications.get
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer The unique ID for the customer's G Suite account. The customerId is also returned as part of the Users resource.
-     * @param {string} params.notificationId The unique ID of the notification.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
+    , /**
+       * directory.notifications.get
+       * @desc Retrieves a notification.
+       * @alias directory.notifications.get
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customer The unique ID for the customer's G Suite account. The customerId is also returned as part of the Users resource.
+       * @param {string} params.notificationId The unique ID of the notification.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1718,37 +1747,39 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customer}/notifications/{notificationId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/admin/directory/v1/customer/{customer}/notifications/{notificationId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['customer', 'notificationId'],
         pathParams: ['customer', 'notificationId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * directory.notifications.list
-     *
-     * @desc Retrieves a list of notifications.
-     *
-     * @alias directory.notifications.list
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer The unique ID for the customer's G Suite account.
-     * @param {string=} params.language The ISO 639-1 code of the language notifications are returned in. The default is English (en).
-     * @param {integer=} params.maxResults Maximum number of notifications to return per page. The default is 100.
-     * @param {string=} params.pageToken The token to specify the page of results to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
+    , /**
+       * directory.notifications.list
+       * @desc Retrieves a list of notifications.
+       * @alias directory.notifications.list
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customer The unique ID for the customer's G Suite account.
+       * @param {string=} params.language The ISO 639-1 code of the language notifications are returned in. The default is English (en).
+       * @param {integer=} params.maxResults Maximum number of notifications to return per page. The default is 100.
+       * @param {string=} params.pageToken The token to specify the page of results to retrieve.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1758,106 +1789,110 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customer}/notifications').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/admin/directory/v1/customer/{customer}/notifications')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['customer'],
         pathParams: ['customer'],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.notifications.patch
-     *
-     * @desc Updates a notification. This method supports patch semantics.
-     *
-     * @alias directory.notifications.patch
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer The unique ID for the customer's G Suite account.
-     * @param {string} params.notificationId The unique ID of the notification.
-     * @param {admin(directory_v1).Notification} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customer}/notifications/{notificationId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PATCH'
-        }, options),
-        params: params,
-        requiredParams: ['customer', 'notificationId'],
-        pathParams: ['customer', 'notificationId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.notifications.update
-     *
-     * @desc Updates a notification.
-     *
-     * @alias directory.notifications.update
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer The unique ID for the customer's G Suite account.
-     * @param {string} params.notificationId The unique ID of the notification.
-     * @param {admin(directory_v1).Notification} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    update: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customer}/notifications/{notificationId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PUT'
-        }, options),
-        params: params,
-        requiredParams: ['customer', 'notificationId'],
-        pathParams: ['customer', 'notificationId'],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
+    , /**
+       * directory.notifications.patch
+       * @desc Updates a notification. This method supports patch semantics.
+       * @alias directory.notifications.patch
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customer The unique ID for the customer's G Suite account.
+       * @param {string} params.notificationId The unique ID of the notification.
+       * @param {admin(directory_v1).Notification} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    patch: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/admin/directory/v1/customer/{customer}/notifications/{notificationId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params: params,
+        requiredParams: ['customer', 'notificationId'],
+        pathParams: ['customer', 'notificationId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * directory.notifications.update
+       * @desc Updates a notification.
+       * @alias directory.notifications.update
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customer The unique ID for the customer's G Suite account.
+       * @param {string} params.notificationId The unique ID of the notification.
+       * @param {admin(directory_v1).Notification} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    update: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/admin/directory/v1/customer/{customer}/notifications/{notificationId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
+        params: params,
+        requiredParams: ['customer', 'notificationId'],
+        pathParams: ['customer', 'notificationId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
   };
-
   self.orgunits = {
-
     /**
      * directory.orgunits.delete
-     *
      * @desc Remove organizational unit
-     *
      * @alias directory.orgunits.delete
      * @memberOf! admin(directory_v1)
      *
@@ -1868,7 +1903,7 @@ function Admin(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, options, callback) {
+    delete: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1878,221 +1913,230 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
         params: params,
         requiredParams: ['customerId', 'orgUnitPath'],
         pathParams: ['customerId', 'orgUnitPath'],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.orgunits.get
-     *
-     * @desc Retrieve organizational unit
-     *
-     * @alias directory.orgunits.get
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.orgUnitPath Full path of the organizational unit or its ID
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['customerId', 'orgUnitPath'],
-        pathParams: ['customerId', 'orgUnitPath'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.orgunits.insert
-     *
-     * @desc Add organizational unit
-     *
-     * @alias directory.orgunits.insert
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {admin(directory_v1).OrgUnit} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    insert: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/orgunits').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['customerId'],
-        pathParams: ['customerId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.orgunits.list
-     *
-     * @desc Retrieve all organizational units
-     *
-     * @alias directory.orgunits.list
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string=} params.orgUnitPath the URL-encoded organizational unit's path or its ID
-     * @param {string=} params.type Whether to return all sub-organizations or just immediate children
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/orgunits').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['customerId'],
-        pathParams: ['customerId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.orgunits.patch
-     *
-     * @desc Update organizational unit. This method supports patch semantics.
-     *
-     * @alias directory.orgunits.patch
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.orgUnitPath Full path of the organizational unit or its ID
-     * @param {admin(directory_v1).OrgUnit} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PATCH'
-        }, options),
-        params: params,
-        requiredParams: ['customerId', 'orgUnitPath'],
-        pathParams: ['customerId', 'orgUnitPath'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.orgunits.update
-     *
-     * @desc Update organizational unit
-     *
-     * @alias directory.orgunits.update
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.orgUnitPath Full path of the organizational unit or its ID
-     * @param {admin(directory_v1).OrgUnit} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    update: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PUT'
-        }, options),
-        params: params,
-        requiredParams: ['customerId', 'orgUnitPath'],
-        pathParams: ['customerId', 'orgUnitPath'],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
+    , /**
+       * directory.orgunits.get
+       * @desc Retrieve organizational unit
+       * @alias directory.orgunits.get
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customerId Immutable ID of the G Suite account
+       * @param {string} params.orgUnitPath Full path of the organizational unit or its ID
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['customerId', 'orgUnitPath'],
+        pathParams: ['customerId', 'orgUnitPath'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * directory.orgunits.insert
+       * @desc Add organizational unit
+       * @alias directory.orgunits.insert
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customerId Immutable ID of the G Suite account
+       * @param {admin(directory_v1).OrgUnit} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    insert: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/admin/directory/v1/customer/{customerId}/orgunits')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: ['customerId'],
+        pathParams: ['customerId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * directory.orgunits.list
+       * @desc Retrieve all organizational units
+       * @alias directory.orgunits.list
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customerId Immutable ID of the G Suite account
+       * @param {string=} params.orgUnitPath the URL-encoded organizational unit's path or its ID
+       * @param {string=} params.type Whether to return all sub-organizations or just immediate children
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/admin/directory/v1/customer/{customerId}/orgunits')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['customerId'],
+        pathParams: ['customerId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * directory.orgunits.patch
+       * @desc Update organizational unit. This method supports patch semantics.
+       * @alias directory.orgunits.patch
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customerId Immutable ID of the G Suite account
+       * @param {string} params.orgUnitPath Full path of the organizational unit or its ID
+       * @param {admin(directory_v1).OrgUnit} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    patch: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params: params,
+        requiredParams: ['customerId', 'orgUnitPath'],
+        pathParams: ['customerId', 'orgUnitPath'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * directory.orgunits.update
+       * @desc Update organizational unit
+       * @alias directory.orgunits.update
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customerId Immutable ID of the G Suite account
+       * @param {string} params.orgUnitPath Full path of the organizational unit or its ID
+       * @param {admin(directory_v1).OrgUnit} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    update: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
+        params: params,
+        requiredParams: ['customerId', 'orgUnitPath'],
+        pathParams: ['customerId', 'orgUnitPath'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
   };
-
   self.privileges = {
-
     /**
      * directory.privileges.list
-     *
      * @desc Retrieves a paginated list of all privileges for a customer.
-     *
      * @alias directory.privileges.list
      * @memberOf! admin(directory_v1)
      *
@@ -2102,7 +2146,7 @@ function Admin(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, options, callback) {
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2112,28 +2156,29 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customer}/roles/ALL/privileges').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/admin/directory/v1/customer/{customer}/roles/ALL/privileges')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['customer'],
         pathParams: ['customer'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
-
   self.resolvedAppAccessSettings = {
-
     /**
      * directory.resolvedAppAccessSettings.GetSettings
-     *
      * @desc Retrieves resolved app access settings of the logged in user.
-     *
      * @alias directory.resolvedAppAccessSettings.GetSettings
      * @memberOf! admin(directory_v1)
      *
@@ -2142,7 +2187,7 @@ function Admin(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    GetSettings: function (params, options, callback) {
+    GetSettings: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2152,65 +2197,65 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/resolvedappaccesssettings').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/admin/directory/v1/resolvedappaccesssettings')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.resolvedAppAccessSettings.ListTrustedApps
-     *
-     * @desc Retrieves the list of apps trusted by the admin of the logged in user.
-     *
-     * @alias directory.resolvedAppAccessSettings.ListTrustedApps
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    ListTrustedApps: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/trustedapps').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
-  };
+    , /**
+       * directory.resolvedAppAccessSettings.ListTrustedApps
+       * @desc Retrieves the list of apps trusted by the admin of the logged in
+       * user.
+       * @alias directory.resolvedAppAccessSettings.ListTrustedApps
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object=} params Parameters for request
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    ListTrustedApps: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/admin/directory/v1/trustedapps')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
+  };
   self.resources = {
     calendars: {
-
       /**
        * directory.resources.calendars.delete
-       *
        * @desc Deletes a calendar resource.
-       *
        * @alias directory.resources.calendars.delete
        * @memberOf! admin(directory_v1)
        *
@@ -2221,7 +2266,7 @@ function Admin(options) { // eslint-disable-line
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, options, callback) {
+      delete: function(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -2231,221 +2276,238 @@ function Admin(options) { // eslint-disable-line
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
         const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE'
-          }, options),
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl +
+                     '/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}')
+                        .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'DELETE'
+              },
+              options),
           params: params,
           requiredParams: ['customer', 'calendarResourceId'],
           pathParams: ['calendarResourceId', 'customer'],
           context: self
         };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * directory.resources.calendars.get
-       *
-       * @desc Retrieves a calendar resource.
-       *
-       * @alias directory.resources.calendars.get
-       * @memberOf! admin(directory_v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.calendarResourceId The unique ID of the calendar resource to retrieve.
-       * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['customer', 'calendarResourceId'],
-          pathParams: ['calendarResourceId', 'customer'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * directory.resources.calendars.insert
-       *
-       * @desc Inserts a calendar resource.
-       *
-       * @alias directory.resources.calendars.insert
-       * @memberOf! admin(directory_v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-       * @param {admin(directory_v1).CalendarResource} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      insert: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/admin/directory/v1/customer/{customer}/resources/calendars').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['customer'],
-          pathParams: ['customer'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * directory.resources.calendars.list
-       *
-       * @desc Retrieves a list of calendar resources for an account.
-       *
-       * @alias directory.resources.calendars.list
-       * @memberOf! admin(directory_v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.pageToken Token to specify the next page in the list.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/admin/directory/v1/customer/{customer}/resources/calendars').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['customer'],
-          pathParams: ['customer'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * directory.resources.calendars.patch
-       *
-       * @desc Updates a calendar resource.  This method supports patch semantics, meaning you only need to include the fields you wish to update. Fields that are not present in the request will be preserved. This method supports patch semantics.
-       *
-       * @alias directory.resources.calendars.patch
-       * @memberOf! admin(directory_v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.calendarResourceId The unique ID of the calendar resource to update.
-       * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-       * @param {admin(directory_v1).CalendarResource} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      patch: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH'
-          }, options),
-          params: params,
-          requiredParams: ['customer', 'calendarResourceId'],
-          pathParams: ['calendarResourceId', 'customer'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * directory.resources.calendars.update
-       *
-       * @desc Updates a calendar resource.  This method supports patch semantics, meaning you only need to include the fields you wish to update. Fields that are not present in the request will be preserved.
-       *
-       * @alias directory.resources.calendars.update
-       * @memberOf! admin(directory_v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.calendarResourceId The unique ID of the calendar resource to update.
-       * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-       * @param {admin(directory_v1).CalendarResource} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      update: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PUT'
-          }, options),
-          params: params,
-          requiredParams: ['customer', 'calendarResourceId'],
-          pathParams: ['calendarResourceId', 'customer'],
-          context: self
-        };
-
         return createAPIRequest(parameters, callback);
       }
+
+      , /**
+         * directory.resources.calendars.get
+         * @desc Retrieves a calendar resource.
+         * @alias directory.resources.calendars.get
+         * @memberOf! admin(directory_v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.calendarResourceId The unique ID of the calendar resource to retrieve.
+         * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+      get: function(params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl +
+                     '/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}')
+                        .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params: params,
+          requiredParams: ['customer', 'calendarResourceId'],
+          pathParams: ['calendarResourceId', 'customer'],
+          context: self
+        };
+        return createAPIRequest(parameters, callback);
+      }
+
+      , /**
+         * directory.resources.calendars.insert
+         * @desc Inserts a calendar resource.
+         * @alias directory.resources.calendars.insert
+         * @memberOf! admin(directory_v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+         * @param {admin(directory_v1).CalendarResource} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+      insert: function(params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl +
+                     '/admin/directory/v1/customer/{customer}/resources/calendars')
+                        .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'POST'
+              },
+              options),
+          params: params,
+          requiredParams: ['customer'],
+          pathParams: ['customer'],
+          context: self
+        };
+        return createAPIRequest(parameters, callback);
+      }
+
+      , /**
+         * directory.resources.calendars.list
+         * @desc Retrieves a list of calendar resources for an account.
+         * @alias directory.resources.calendars.list
+         * @memberOf! admin(directory_v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+         * @param {integer=} params.maxResults Maximum number of results to return.
+         * @param {string=} params.pageToken Token to specify the next page in the list.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+      list: function(params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl +
+                     '/admin/directory/v1/customer/{customer}/resources/calendars')
+                        .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params: params,
+          requiredParams: ['customer'],
+          pathParams: ['customer'],
+          context: self
+        };
+        return createAPIRequest(parameters, callback);
+      }
+
+      , /**
+         * directory.resources.calendars.patch
+         * @desc Updates a calendar resource.  This method supports patch
+         * semantics, meaning you only need to include the fields you wish to
+         * update. Fields that are not present in the request will be preserved.
+         * This method supports patch semantics.
+         * @alias directory.resources.calendars.patch
+         * @memberOf! admin(directory_v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.calendarResourceId The unique ID of the calendar resource to update.
+         * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+         * @param {admin(directory_v1).CalendarResource} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+      patch: function(params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl +
+                     '/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}')
+                        .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'PATCH'
+              },
+              options),
+          params: params,
+          requiredParams: ['customer', 'calendarResourceId'],
+          pathParams: ['calendarResourceId', 'customer'],
+          context: self
+        };
+        return createAPIRequest(parameters, callback);
+      }
+
+      , /**
+         * directory.resources.calendars.update
+         * @desc Updates a calendar resource.  This method supports patch
+         * semantics, meaning you only need to include the fields you wish to
+         * update. Fields that are not present in the request will be preserved.
+         * @alias directory.resources.calendars.update
+         * @memberOf! admin(directory_v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.calendarResourceId The unique ID of the calendar resource to update.
+         * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+         * @param {admin(directory_v1).CalendarResource} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+      update: function(params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl +
+                     '/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}')
+                        .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'PUT'
+              },
+              options),
+          params: params,
+          requiredParams: ['customer', 'calendarResourceId'],
+          pathParams: ['calendarResourceId', 'customer'],
+          context: self
+        };
+        return createAPIRequest(parameters, callback);
+      }
+
+
     }
   };
-
   self.roleAssignments = {
-
     /**
      * directory.roleAssignments.delete
-     *
      * @desc Deletes a role assignment.
-     *
      * @alias directory.roleAssignments.delete
      * @memberOf! admin(directory_v1)
      *
@@ -2456,7 +2518,7 @@ function Admin(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, options, callback) {
+    delete: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2466,145 +2528,150 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customer}/roleassignments/{roleAssignmentId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/admin/directory/v1/customer/{customer}/roleassignments/{roleAssignmentId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
         params: params,
         requiredParams: ['customer', 'roleAssignmentId'],
         pathParams: ['customer', 'roleAssignmentId'],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.roleAssignments.get
-     *
-     * @desc Retrieve a role assignment.
-     *
-     * @alias directory.roleAssignments.get
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {string} params.roleAssignmentId Immutable ID of the role assignment.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customer}/roleassignments/{roleAssignmentId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['customer', 'roleAssignmentId'],
-        pathParams: ['customer', 'roleAssignmentId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.roleAssignments.insert
-     *
-     * @desc Creates a role assignment.
-     *
-     * @alias directory.roleAssignments.insert
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {admin(directory_v1).RoleAssignment} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    insert: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customer}/roleassignments').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['customer'],
-        pathParams: ['customer'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.roleAssignments.list
-     *
-     * @desc Retrieves a paginated list of all roleAssignments.
-     *
-     * @alias directory.roleAssignments.list
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Token to specify the next page in the list.
-     * @param {string=} params.roleId Immutable ID of a role. If included in the request, returns only role assignments containing this role ID.
-     * @param {string=} params.userKey The user's primary email address, alias email address, or unique user ID. If included in the request, returns role assignments only for this user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customer}/roleassignments').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['customer'],
-        pathParams: ['customer'],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
+    , /**
+       * directory.roleAssignments.get
+       * @desc Retrieve a role assignment.
+       * @alias directory.roleAssignments.get
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customer Immutable ID of the G Suite account.
+       * @param {string} params.roleAssignmentId Immutable ID of the role assignment.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/admin/directory/v1/customer/{customer}/roleassignments/{roleAssignmentId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['customer', 'roleAssignmentId'],
+        pathParams: ['customer', 'roleAssignmentId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * directory.roleAssignments.insert
+       * @desc Creates a role assignment.
+       * @alias directory.roleAssignments.insert
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customer Immutable ID of the G Suite account.
+       * @param {admin(directory_v1).RoleAssignment} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    insert: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/admin/directory/v1/customer/{customer}/roleassignments')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * directory.roleAssignments.list
+       * @desc Retrieves a paginated list of all roleAssignments.
+       * @alias directory.roleAssignments.list
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customer Immutable ID of the G Suite account.
+       * @param {integer=} params.maxResults Maximum number of results to return.
+       * @param {string=} params.pageToken Token to specify the next page in the list.
+       * @param {string=} params.roleId Immutable ID of a role. If included in the request, returns only role assignments containing this role ID.
+       * @param {string=} params.userKey The user's primary email address, alias email address, or unique user ID. If included in the request, returns role assignments only for this user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/admin/directory/v1/customer/{customer}/roleassignments')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
   };
-
   self.roles = {
-
     /**
      * directory.roles.delete
-     *
      * @desc Deletes a role.
-     *
      * @alias directory.roles.delete
      * @memberOf! admin(directory_v1)
      *
@@ -2615,7 +2682,7 @@ function Admin(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, options, callback) {
+    delete: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2625,221 +2692,224 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customer}/roles/{roleId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/admin/directory/v1/customer/{customer}/roles/{roleId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
         params: params,
         requiredParams: ['customer', 'roleId'],
         pathParams: ['customer', 'roleId'],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.roles.get
-     *
-     * @desc Retrieves a role.
-     *
-     * @alias directory.roles.get
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {string} params.roleId Immutable ID of the role.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customer}/roles/{roleId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['customer', 'roleId'],
-        pathParams: ['customer', 'roleId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.roles.insert
-     *
-     * @desc Creates a role.
-     *
-     * @alias directory.roles.insert
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {admin(directory_v1).Role} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    insert: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customer}/roles').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['customer'],
-        pathParams: ['customer'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.roles.list
-     *
-     * @desc Retrieves a paginated list of all the roles in a domain.
-     *
-     * @alias directory.roles.list
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Token to specify the next page in the list.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customer}/roles').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['customer'],
-        pathParams: ['customer'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.roles.patch
-     *
-     * @desc Updates a role. This method supports patch semantics.
-     *
-     * @alias directory.roles.patch
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {string} params.roleId Immutable ID of the role.
-     * @param {admin(directory_v1).Role} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customer}/roles/{roleId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PATCH'
-        }, options),
-        params: params,
-        requiredParams: ['customer', 'roleId'],
-        pathParams: ['customer', 'roleId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.roles.update
-     *
-     * @desc Updates a role.
-     *
-     * @alias directory.roles.update
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {string} params.roleId Immutable ID of the role.
-     * @param {admin(directory_v1).Role} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    update: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customer}/roles/{roleId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PUT'
-        }, options),
-        params: params,
-        requiredParams: ['customer', 'roleId'],
-        pathParams: ['customer', 'roleId'],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
+    , /**
+       * directory.roles.get
+       * @desc Retrieves a role.
+       * @alias directory.roles.get
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customer Immutable ID of the G Suite account.
+       * @param {string} params.roleId Immutable ID of the role.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/admin/directory/v1/customer/{customer}/roles/{roleId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['customer', 'roleId'],
+        pathParams: ['customer', 'roleId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * directory.roles.insert
+       * @desc Creates a role.
+       * @alias directory.roles.insert
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customer Immutable ID of the G Suite account.
+       * @param {admin(directory_v1).Role} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    insert: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/admin/directory/v1/customer/{customer}/roles')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * directory.roles.list
+       * @desc Retrieves a paginated list of all the roles in a domain.
+       * @alias directory.roles.list
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customer Immutable ID of the G Suite account.
+       * @param {integer=} params.maxResults Maximum number of results to return.
+       * @param {string=} params.pageToken Token to specify the next page in the list.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/admin/directory/v1/customer/{customer}/roles')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * directory.roles.patch
+       * @desc Updates a role. This method supports patch semantics.
+       * @alias directory.roles.patch
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customer Immutable ID of the G Suite account.
+       * @param {string} params.roleId Immutable ID of the role.
+       * @param {admin(directory_v1).Role} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    patch: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/admin/directory/v1/customer/{customer}/roles/{roleId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params: params,
+        requiredParams: ['customer', 'roleId'],
+        pathParams: ['customer', 'roleId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * directory.roles.update
+       * @desc Updates a role.
+       * @alias directory.roles.update
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customer Immutable ID of the G Suite account.
+       * @param {string} params.roleId Immutable ID of the role.
+       * @param {admin(directory_v1).Role} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    update: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/admin/directory/v1/customer/{customer}/roles/{roleId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
+        params: params,
+        requiredParams: ['customer', 'roleId'],
+        pathParams: ['customer', 'roleId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
   };
-
   self.schemas = {
-
     /**
      * directory.schemas.delete
-     *
      * @desc Delete schema
-     *
      * @alias directory.schemas.delete
      * @memberOf! admin(directory_v1)
      *
@@ -2850,7 +2920,7 @@ function Admin(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, options, callback) {
+    delete: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2860,219 +2930,228 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
         params: params,
         requiredParams: ['customerId', 'schemaKey'],
         pathParams: ['customerId', 'schemaKey'],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.schemas.get
-     *
-     * @desc Retrieve schema
-     *
-     * @alias directory.schemas.get
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.schemaKey Name or immutable ID of the schema
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['customerId', 'schemaKey'],
-        pathParams: ['customerId', 'schemaKey'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.schemas.insert
-     *
-     * @desc Create schema.
-     *
-     * @alias directory.schemas.insert
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {admin(directory_v1).Schema} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    insert: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/schemas').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['customerId'],
-        pathParams: ['customerId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.schemas.list
-     *
-     * @desc Retrieve all schemas for a customer
-     *
-     * @alias directory.schemas.list
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/schemas').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['customerId'],
-        pathParams: ['customerId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.schemas.patch
-     *
-     * @desc Update schema. This method supports patch semantics.
-     *
-     * @alias directory.schemas.patch
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.schemaKey Name or immutable ID of the schema.
-     * @param {admin(directory_v1).Schema} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PATCH'
-        }, options),
-        params: params,
-        requiredParams: ['customerId', 'schemaKey'],
-        pathParams: ['customerId', 'schemaKey'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.schemas.update
-     *
-     * @desc Update schema
-     *
-     * @alias directory.schemas.update
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.schemaKey Name or immutable ID of the schema.
-     * @param {admin(directory_v1).Schema} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    update: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PUT'
-        }, options),
-        params: params,
-        requiredParams: ['customerId', 'schemaKey'],
-        pathParams: ['customerId', 'schemaKey'],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
+    , /**
+       * directory.schemas.get
+       * @desc Retrieve schema
+       * @alias directory.schemas.get
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customerId Immutable ID of the G Suite account
+       * @param {string} params.schemaKey Name or immutable ID of the schema
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['customerId', 'schemaKey'],
+        pathParams: ['customerId', 'schemaKey'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * directory.schemas.insert
+       * @desc Create schema.
+       * @alias directory.schemas.insert
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customerId Immutable ID of the G Suite account
+       * @param {admin(directory_v1).Schema} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    insert: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/admin/directory/v1/customer/{customerId}/schemas')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: ['customerId'],
+        pathParams: ['customerId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * directory.schemas.list
+       * @desc Retrieve all schemas for a customer
+       * @alias directory.schemas.list
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customerId Immutable ID of the G Suite account
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/admin/directory/v1/customer/{customerId}/schemas')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['customerId'],
+        pathParams: ['customerId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * directory.schemas.patch
+       * @desc Update schema. This method supports patch semantics.
+       * @alias directory.schemas.patch
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customerId Immutable ID of the G Suite account
+       * @param {string} params.schemaKey Name or immutable ID of the schema.
+       * @param {admin(directory_v1).Schema} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    patch: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params: params,
+        requiredParams: ['customerId', 'schemaKey'],
+        pathParams: ['customerId', 'schemaKey'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * directory.schemas.update
+       * @desc Update schema
+       * @alias directory.schemas.update
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customerId Immutable ID of the G Suite account
+       * @param {string} params.schemaKey Name or immutable ID of the schema.
+       * @param {admin(directory_v1).Schema} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    update: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
+        params: params,
+        requiredParams: ['customerId', 'schemaKey'],
+        pathParams: ['customerId', 'schemaKey'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
   };
-
   self.tokens = {
-
     /**
      * directory.tokens.delete
-     *
      * @desc Delete all access tokens issued by a user for an application.
-     *
      * @alias directory.tokens.delete
      * @memberOf! admin(directory_v1)
      *
@@ -3083,7 +3162,7 @@ function Admin(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, options, callback) {
+    delete: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3093,35 +3172,36 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/users/{userKey}/tokens/{clientId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/admin/directory/v1/users/{userKey}/tokens/{clientId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
         params: params,
         requiredParams: ['userKey', 'clientId'],
         pathParams: ['clientId', 'userKey'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * directory.tokens.get
-     *
-     * @desc Get information about an access token issued by a user.
-     *
-     * @alias directory.tokens.get
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.clientId The Client ID of the application the token is issued to.
-     * @param {string} params.userKey Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
+    , /**
+       * directory.tokens.get
+       * @desc Get information about an access token issued by a user.
+       * @alias directory.tokens.get
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.clientId The Client ID of the application the token is issued to.
+       * @param {string} params.userKey Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3131,34 +3211,36 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/users/{userKey}/tokens/{clientId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/admin/directory/v1/users/{userKey}/tokens/{clientId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['userKey', 'clientId'],
         pathParams: ['clientId', 'userKey'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * directory.tokens.list
-     *
-     * @desc Returns the set of tokens specified user has issued to 3rd party applications.
-     *
-     * @alias directory.tokens.list
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.userKey Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
+    , /**
+       * directory.tokens.list
+       * @desc Returns the set of tokens specified user has issued to 3rd party
+       * applications.
+       * @alias directory.tokens.list
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.userKey Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3168,28 +3250,27 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/users/{userKey}/tokens').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/admin/directory/v1/users/{userKey}/tokens')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
-
   self.users = {
-
     /**
      * directory.users.delete
-     *
      * @desc Delete user
-     *
      * @alias directory.users.delete
      * @memberOf! admin(directory_v1)
      *
@@ -3199,7 +3280,7 @@ function Admin(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, options, callback) {
+    delete: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3209,37 +3290,37 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/users/{userKey}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/admin/directory/v1/users/{userKey}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
         params: params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * directory.users.get
-     *
-     * @desc retrieve user
-     *
-     * @alias directory.users.get
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.customFieldMask Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
-     * @param {string=} params.projection What subset of fields to fetch for this user.
-     * @param {string} params.userKey Email or immutable ID of the user
-     * @param {string=} params.viewType Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
+    , /**
+       * directory.users.get
+       * @desc retrieve user
+       * @alias directory.users.get
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.customFieldMask Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
+       * @param {string=} params.projection What subset of fields to fetch for this user.
+       * @param {string} params.userKey Email or immutable ID of the user
+       * @param {string=} params.viewType Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3249,34 +3330,34 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/users/{userKey}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/admin/directory/v1/users/{userKey}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * directory.users.insert
-     *
-     * @desc create user.
-     *
-     * @alias directory.users.insert
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {admin(directory_v1).User} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    insert: function (params, options, callback) {
+    , /**
+       * directory.users.insert
+       * @desc create user.
+       * @alias directory.users.insert
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {admin(directory_v1).User} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    insert: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3286,45 +3367,46 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/users').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/admin/directory/v1/users')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * directory.users.list
-     *
-     * @desc Retrieve either deleted users or all users in a domain (paginated)
-     *
-     * @alias directory.users.list
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object=} params Parameters for request
-     * @param {string=} params.customFieldMask Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
-     * @param {string=} params.customer Immutable ID of the G Suite account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.
-     * @param {string=} params.domain Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead.
-     * @param {string=} params.event Event on which subscription is intended (if subscribing)
-     * @param {integer=} params.maxResults Maximum number of results to return. Default is 100. Max allowed is 500
-     * @param {string=} params.orderBy Column to use for sorting results
-     * @param {string=} params.pageToken Token to specify next page in the list
-     * @param {string=} params.projection What subset of fields to fetch for this user.
-     * @param {string=} params.query Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/admin-sdk/directory/v1/guides/search-users
-     * @param {string=} params.showDeleted If set to true retrieves the list of deleted users. Default is false
-     * @param {string=} params.sortOrder Whether to return results in ascending or descending order.
-     * @param {string=} params.viewType Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
+    , /**
+       * directory.users.list
+       * @desc Retrieve either deleted users or all users in a domain
+       * (paginated)
+       * @alias directory.users.list
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object=} params Parameters for request
+       * @param {string=} params.customer Immutable ID of the G Suite account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.
+       * @param {string=} params.customFieldMask Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
+       * @param {string=} params.domain Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead.
+       * @param {string=} params.event Event on which subscription is intended (if subscribing)
+       * @param {integer=} params.maxResults Maximum number of results to return. Default is 100. Max allowed is 500
+       * @param {string=} params.orderBy Column to use for sorting results
+       * @param {string=} params.pageToken Token to specify next page in the list
+       * @param {string=} params.projection What subset of fields to fetch for this user.
+       * @param {string=} params.query Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/admin-sdk/directory/v1/guides/search-users
+       * @param {string=} params.showDeleted If set to true retrieves the list of deleted users. Default is false
+       * @param {string=} params.sortOrder Whether to return results in ascending or descending order.
+       * @param {string=} params.viewType Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3334,35 +3416,35 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/users').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/admin/directory/v1/users')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * directory.users.makeAdmin
-     *
-     * @desc change admin status of a user
-     *
-     * @alias directory.users.makeAdmin
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.userKey Email or immutable ID of the user as admin
-     * @param {admin(directory_v1).UserMakeAdmin} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    makeAdmin: function (params, options, callback) {
+    , /**
+       * directory.users.makeAdmin
+       * @desc change admin status of a user
+       * @alias directory.users.makeAdmin
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.userKey Email or immutable ID of the user as admin
+       * @param {admin(directory_v1).UserMakeAdmin} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    makeAdmin: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3372,35 +3454,35 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/users/{userKey}/makeAdmin').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/admin/directory/v1/users/{userKey}/makeAdmin')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * directory.users.patch
-     *
-     * @desc update user. This method supports patch semantics.
-     *
-     * @alias directory.users.patch
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.userKey Email or immutable ID of the user. If ID, it should match with id of user object
-     * @param {admin(directory_v1).User} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch: function (params, options, callback) {
+    , /**
+       * directory.users.patch
+       * @desc update user. This method supports patch semantics.
+       * @alias directory.users.patch
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.userKey Email or immutable ID of the user. If ID, it should match with id of user object
+       * @param {admin(directory_v1).User} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    patch: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3410,35 +3492,35 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/users/{userKey}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PATCH'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/admin/directory/v1/users/{userKey}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
         params: params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * directory.users.undelete
-     *
-     * @desc Undelete a deleted user
-     *
-     * @alias directory.users.undelete
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.userKey The immutable id of the user
-     * @param {admin(directory_v1).UserUndelete} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    undelete: function (params, options, callback) {
+    , /**
+       * directory.users.undelete
+       * @desc Undelete a deleted user
+       * @alias directory.users.undelete
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.userKey The immutable id of the user
+       * @param {admin(directory_v1).UserUndelete} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    undelete: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3448,35 +3530,35 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/users/{userKey}/undelete').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/admin/directory/v1/users/{userKey}/undelete')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * directory.users.update
-     *
-     * @desc update user
-     *
-     * @alias directory.users.update
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.userKey Email or immutable ID of the user. If ID, it should match with id of user object
-     * @param {admin(directory_v1).User} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    update: function (params, options, callback) {
+    , /**
+       * directory.users.update
+       * @desc update user
+       * @alias directory.users.update
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.userKey Email or immutable ID of the user. If ID, it should match with id of user object
+       * @param {admin(directory_v1).User} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    update: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3486,46 +3568,46 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/users/{userKey}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PUT'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/admin/directory/v1/users/{userKey}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
         params: params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * directory.users.watch
-     *
-     * @desc Watch for changes in users list
-     *
-     * @alias directory.users.watch
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.customFieldMask Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
-     * @param {string=} params.customer Immutable ID of the G Suite account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.
-     * @param {string=} params.domain Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead.
-     * @param {string=} params.event Event on which subscription is intended (if subscribing)
-     * @param {integer=} params.maxResults Maximum number of results to return. Default is 100. Max allowed is 500
-     * @param {string=} params.orderBy Column to use for sorting results
-     * @param {string=} params.pageToken Token to specify next page in the list
-     * @param {string=} params.projection What subset of fields to fetch for this user.
-     * @param {string=} params.query Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/admin-sdk/directory/v1/guides/search-users
-     * @param {string=} params.showDeleted If set to true retrieves the list of deleted users. Default is false
-     * @param {string=} params.sortOrder Whether to return results in ascending or descending order.
-     * @param {string=} params.viewType Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
-     * @param {admin(directory_v1).Channel} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    watch: function (params, options, callback) {
+    , /**
+       * directory.users.watch
+       * @desc Watch for changes in users list
+       * @alias directory.users.watch
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.customer Immutable ID of the G Suite account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.
+       * @param {string=} params.customFieldMask Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
+       * @param {string=} params.domain Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead.
+       * @param {string=} params.event Event on which subscription is intended (if subscribing)
+       * @param {integer=} params.maxResults Maximum number of results to return. Default is 100. Max allowed is 500
+       * @param {string=} params.orderBy Column to use for sorting results
+       * @param {string=} params.pageToken Token to specify next page in the list
+       * @param {string=} params.projection What subset of fields to fetch for this user.
+       * @param {string=} params.query Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/admin-sdk/directory/v1/guides/search-users
+       * @param {string=} params.showDeleted If set to true retrieves the list of deleted users. Default is false
+       * @param {string=} params.sortOrder Whether to return results in ascending or descending order.
+       * @param {string=} params.viewType Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
+       * @param {admin(directory_v1).Channel} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    watch: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3535,25 +3617,26 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/users/watch').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/admin/directory/v1/users/watch')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
+
+    ,
     aliases: {
-
       /**
        * directory.users.aliases.delete
-       *
        * @desc Remove a alias for the user
-       *
        * @alias directory.users.aliases.delete
        * @memberOf! admin(directory_v1)
        *
@@ -3564,7 +3647,7 @@ function Admin(options) { // eslint-disable-line
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, options, callback) {
+      delete: function(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -3574,141 +3657,144 @@ function Admin(options) { // eslint-disable-line
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
         const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/admin/directory/v1/users/{userKey}/aliases/{alias}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE'
-          }, options),
+          options: Object.assign(
+              {
+                url: (rootUrl +
+                      '/admin/directory/v1/users/{userKey}/aliases/{alias}')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'DELETE'
+              },
+              options),
           params: params,
           requiredParams: ['userKey', 'alias'],
           pathParams: ['alias', 'userKey'],
           context: self
         };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * directory.users.aliases.insert
-       *
-       * @desc Add a alias for the user
-       *
-       * @alias directory.users.aliases.insert
-       * @memberOf! admin(directory_v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.userKey Email or immutable ID of the user
-       * @param {admin(directory_v1).Alias} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      insert: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/admin/directory/v1/users/{userKey}/aliases').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['userKey'],
-          pathParams: ['userKey'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * directory.users.aliases.list
-       *
-       * @desc List all aliases for a user
-       *
-       * @alias directory.users.aliases.list
-       * @memberOf! admin(directory_v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.event Event on which subscription is intended (if subscribing)
-       * @param {string} params.userKey Email or immutable ID of the user
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/admin/directory/v1/users/{userKey}/aliases').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['userKey'],
-          pathParams: ['userKey'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * directory.users.aliases.watch
-       *
-       * @desc Watch for changes in user aliases list
-       *
-       * @alias directory.users.aliases.watch
-       * @memberOf! admin(directory_v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.event Event on which subscription is intended (if subscribing)
-       * @param {string} params.userKey Email or immutable ID of the user
-       * @param {admin(directory_v1).Channel} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      watch: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/admin/directory/v1/users/{userKey}/aliases/watch').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['userKey'],
-          pathParams: ['userKey'],
-          context: self
-        };
-
         return createAPIRequest(parameters, callback);
       }
+
+      , /**
+         * directory.users.aliases.insert
+         * @desc Add a alias for the user
+         * @alias directory.users.aliases.insert
+         * @memberOf! admin(directory_v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.userKey Email or immutable ID of the user
+         * @param {admin(directory_v1).Alias} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+      insert: function(params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/admin/directory/v1/users/{userKey}/aliases')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'POST'
+              },
+              options),
+          params: params,
+          requiredParams: ['userKey'],
+          pathParams: ['userKey'],
+          context: self
+        };
+        return createAPIRequest(parameters, callback);
+      }
+
+      , /**
+         * directory.users.aliases.list
+         * @desc List all aliases for a user
+         * @alias directory.users.aliases.list
+         * @memberOf! admin(directory_v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string=} params.event Event on which subscription is intended (if subscribing)
+         * @param {string} params.userKey Email or immutable ID of the user
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+      list: function(params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/admin/directory/v1/users/{userKey}/aliases')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params: params,
+          requiredParams: ['userKey'],
+          pathParams: ['userKey'],
+          context: self
+        };
+        return createAPIRequest(parameters, callback);
+      }
+
+      , /**
+         * directory.users.aliases.watch
+         * @desc Watch for changes in user aliases list
+         * @alias directory.users.aliases.watch
+         * @memberOf! admin(directory_v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string=} params.event Event on which subscription is intended (if subscribing)
+         * @param {string} params.userKey Email or immutable ID of the user
+         * @param {admin(directory_v1).Channel} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+      watch: function(params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl +
+                      '/admin/directory/v1/users/{userKey}/aliases/watch')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'POST'
+              },
+              options),
+          params: params,
+          requiredParams: ['userKey'],
+          pathParams: ['userKey'],
+          context: self
+        };
+        return createAPIRequest(parameters, callback);
+      }
+
+
     },
     photos: {
-
       /**
        * directory.users.photos.delete
-       *
        * @desc Remove photos for the user
-       *
        * @alias directory.users.photos.delete
        * @memberOf! admin(directory_v1)
        *
@@ -3718,7 +3804,7 @@ function Admin(options) { // eslint-disable-line
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, options, callback) {
+      delete: function(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -3728,141 +3814,145 @@ function Admin(options) { // eslint-disable-line
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
         const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/admin/directory/v1/users/{userKey}/photos/thumbnail').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE'
-          }, options),
+          options: Object.assign(
+              {
+                url: (rootUrl +
+                      '/admin/directory/v1/users/{userKey}/photos/thumbnail')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'DELETE'
+              },
+              options),
           params: params,
           requiredParams: ['userKey'],
           pathParams: ['userKey'],
           context: self
         };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * directory.users.photos.get
-       *
-       * @desc Retrieve photo of a user
-       *
-       * @alias directory.users.photos.get
-       * @memberOf! admin(directory_v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.userKey Email or immutable ID of the user
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/admin/directory/v1/users/{userKey}/photos/thumbnail').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['userKey'],
-          pathParams: ['userKey'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * directory.users.photos.patch
-       *
-       * @desc Add a photo for the user. This method supports patch semantics.
-       *
-       * @alias directory.users.photos.patch
-       * @memberOf! admin(directory_v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.userKey Email or immutable ID of the user
-       * @param {admin(directory_v1).UserPhoto} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      patch: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/admin/directory/v1/users/{userKey}/photos/thumbnail').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH'
-          }, options),
-          params: params,
-          requiredParams: ['userKey'],
-          pathParams: ['userKey'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * directory.users.photos.update
-       *
-       * @desc Add a photo for the user
-       *
-       * @alias directory.users.photos.update
-       * @memberOf! admin(directory_v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.userKey Email or immutable ID of the user
-       * @param {admin(directory_v1).UserPhoto} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      update: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/admin/directory/v1/users/{userKey}/photos/thumbnail').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PUT'
-          }, options),
-          params: params,
-          requiredParams: ['userKey'],
-          pathParams: ['userKey'],
-          context: self
-        };
-
         return createAPIRequest(parameters, callback);
       }
+
+      , /**
+         * directory.users.photos.get
+         * @desc Retrieve photo of a user
+         * @alias directory.users.photos.get
+         * @memberOf! admin(directory_v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.userKey Email or immutable ID of the user
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+      get: function(params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl +
+                      '/admin/directory/v1/users/{userKey}/photos/thumbnail')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params: params,
+          requiredParams: ['userKey'],
+          pathParams: ['userKey'],
+          context: self
+        };
+        return createAPIRequest(parameters, callback);
+      }
+
+      , /**
+         * directory.users.photos.patch
+         * @desc Add a photo for the user. This method supports patch semantics.
+         * @alias directory.users.photos.patch
+         * @memberOf! admin(directory_v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.userKey Email or immutable ID of the user
+         * @param {admin(directory_v1).UserPhoto} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+      patch: function(params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl +
+                      '/admin/directory/v1/users/{userKey}/photos/thumbnail')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'PATCH'
+              },
+              options),
+          params: params,
+          requiredParams: ['userKey'],
+          pathParams: ['userKey'],
+          context: self
+        };
+        return createAPIRequest(parameters, callback);
+      }
+
+      , /**
+         * directory.users.photos.update
+         * @desc Add a photo for the user
+         * @alias directory.users.photos.update
+         * @memberOf! admin(directory_v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.userKey Email or immutable ID of the user
+         * @param {admin(directory_v1).UserPhoto} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+      update: function(params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl +
+                      '/admin/directory/v1/users/{userKey}/photos/thumbnail')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'PUT'
+              },
+              options),
+          params: params,
+          requiredParams: ['userKey'],
+          pathParams: ['userKey'],
+          context: self
+        };
+        return createAPIRequest(parameters, callback);
+      }
+
+
     }
   };
-
   self.verificationCodes = {
-
     /**
      * directory.verificationCodes.generate
-     *
      * @desc Generate new backup verification codes for the user.
-     *
      * @alias directory.verificationCodes.generate
      * @memberOf! admin(directory_v1)
      *
@@ -3872,7 +3962,7 @@ function Admin(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    generate: function (params, options, callback) {
+    generate: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3882,96 +3972,104 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/users/{userKey}/verificationCodes/generate').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/admin/directory/v1/users/{userKey}/verificationCodes/generate')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.verificationCodes.invalidate
-     *
-     * @desc Invalidate the current backup verification codes for the user.
-     *
-     * @alias directory.verificationCodes.invalidate
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.userKey Email or immutable ID of the user
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    invalidate: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/users/{userKey}/verificationCodes/invalidate').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['userKey'],
-        pathParams: ['userKey'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.verificationCodes.list
-     *
-     * @desc Returns the current set of valid backup verification codes for the specified user.
-     *
-     * @alias directory.verificationCodes.list
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.userKey Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/users/{userKey}/verificationCodes').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['userKey'],
-        pathParams: ['userKey'],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
+    , /**
+       * directory.verificationCodes.invalidate
+       * @desc Invalidate the current backup verification codes for the user.
+       * @alias directory.verificationCodes.invalidate
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.userKey Email or immutable ID of the user
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    invalidate: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/admin/directory/v1/users/{userKey}/verificationCodes/invalidate')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: ['userKey'],
+        pathParams: ['userKey'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * directory.verificationCodes.list
+       * @desc Returns the current set of valid backup verification codes for
+       * the specified user.
+       * @alias directory.verificationCodes.list
+       * @memberOf! admin(directory_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.userKey Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/admin/directory/v1/users/{userKey}/verificationCodes')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['userKey'],
+        pathParams: ['userKey'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
   };
 }
-
 /**
  * @typedef Alias
  * @memberOf! admin(directory_v1)
@@ -3982,7 +4080,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} kind Kind of resource this is.
  * @property {string} primaryEmail Group&#39;s primary email (Read-only) User&#39;s primary email (Read-only)
  */
-
 /**
  * @typedef Aliases
  * @memberOf! admin(directory_v1)
@@ -3991,7 +4088,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} etag ETag of the resource.
  * @property {string} kind Kind of resource this is.
  */
-
 /**
  * @typedef AppAccessCollections
  * @memberOf! admin(directory_v1)
@@ -4005,7 +4101,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} resourceName Resource name given by the customer while creating/updating. Should be unique under given customer.
  * @property {boolean} trustDomainOwnedApps Boolean that indicates whether to trust domain owned apps.
  */
-
 /**
  * @typedef Asp
  * @memberOf! admin(directory_v1)
@@ -4018,7 +4113,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} name The name of the application that the user, represented by their userId, entered when the ASP was created.
  * @property {string} userKey The unique ID of the user who issued the ASP.
  */
-
 /**
  * @typedef Asps
  * @memberOf! admin(directory_v1)
@@ -4027,7 +4121,6 @@ function Admin(options) { // eslint-disable-line
  * @property {admin(directory_v1).Asp[]} items A list of ASP resources.
  * @property {string} kind The type of the API resource. This is always admin#directory#aspList.
  */
-
 /**
  * @typedef CalendarResource
  * @memberOf! admin(directory_v1)
@@ -4041,7 +4134,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} resourceName The name of the calendar resource. For example, Training Room 1A
  * @property {string} resourceType The type of the calendar resource. Used for grouping resources in the calendar user interface.
  */
-
 /**
  * @typedef CalendarResources
  * @memberOf! admin(directory_v1)
@@ -4051,7 +4143,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} kind Identifies this as a collection of CalendarResources. This is always admin#directory#resources#calendars#calendarResourcesList.
  * @property {string} nextPageToken The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
  */
-
 /**
  * @typedef Channel
  * @memberOf! admin(directory_v1)
@@ -4067,7 +4158,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} token An arbitrary string delivered to the target address with each notification delivered over this channel. Optional.
  * @property {string} type The type of delivery mechanism used for this channel.
  */
-
 /**
  * @typedef ChromeOsDevice
  * @memberOf! admin(directory_v1)
@@ -4098,15 +4188,13 @@ function Admin(options) { // eslint-disable-line
  * @property {string} supportEndDate Final date the device will be supported (Read-only)
  * @property {boolean} willAutoRenew Will Chromebook auto renew after support end date (Read-only)
  */
-
 /**
  * @typedef ChromeOsDeviceAction
  * @memberOf! admin(directory_v1)
  * @type object
  * @property {string} action Action to be taken on the ChromeOs Device
- * @property {string} deprovisionReason 
+ * @property {string} deprovisionReason
  */
-
 /**
  * @typedef ChromeOsDevices
  * @memberOf! admin(directory_v1)
@@ -4116,14 +4204,12 @@ function Admin(options) { // eslint-disable-line
  * @property {string} kind Kind of resource this is.
  * @property {string} nextPageToken Token used to access next page of this result.
  */
-
 /**
  * @typedef ChromeOsMoveDevicesToOu
  * @memberOf! admin(directory_v1)
  * @type object
  * @property {string[]} deviceIds ChromeOs Devices to be moved to OU
  */
-
 /**
  * @typedef Customer
  * @memberOf! admin(directory_v1)
@@ -4138,7 +4224,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} phoneNumber The customer&#39;s contact phone number in E.164 format.
  * @property {admin(directory_v1).CustomerPostalAddress} postalAddress The customer&#39;s postal address information.
  */
-
 /**
  * @typedef CustomerPostalAddress
  * @memberOf! admin(directory_v1)
@@ -4153,7 +4238,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} postalCode The postal code. A postalCode example is a postal zip code such as 10009. This is in accordance with - http://portablecontacts.net/draft-spec.html#address_element.
  * @property {string} region Name of the region. An example of a region value is NY for the state of New York.
  */
-
 /**
  * @typedef DomainAlias
  * @memberOf! admin(directory_v1)
@@ -4165,7 +4249,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} parentDomainName The parent domain name that the domain alias is associated with. This can either be a primary or secondary domain name within a customer.
  * @property {boolean} verified Indicates the verification state of a domain alias. (Read-only)
  */
-
 /**
  * @typedef DomainAliases
  * @memberOf! admin(directory_v1)
@@ -4174,7 +4257,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} etag ETag of the resource.
  * @property {string} kind Kind of resource this is.
  */
-
 /**
  * @typedef Domains
  * @memberOf! admin(directory_v1)
@@ -4187,7 +4269,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} kind Kind of resource this is.
  * @property {boolean} verified Indicates the verification state of a domain. (Read-only).
  */
-
 /**
  * @typedef Domains2
  * @memberOf! admin(directory_v1)
@@ -4196,7 +4277,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} etag ETag of the resource.
  * @property {string} kind Kind of resource this is.
  */
-
 /**
  * @typedef Group
  * @memberOf! admin(directory_v1)
@@ -4212,7 +4292,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} name Group name
  * @property {string[]} nonEditableAliases List of non editable aliases (Read-only)
  */
-
 /**
  * @typedef Groups
  * @memberOf! admin(directory_v1)
@@ -4222,7 +4301,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} kind Kind of resource this is.
  * @property {string} nextPageToken Token used to access next page of this result.
  */
-
 /**
  * @typedef Member
  * @memberOf! admin(directory_v1)
@@ -4235,7 +4313,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} status Status of member (Immutable)
  * @property {string} type Type of member (Immutable)
  */
-
 /**
  * @typedef Members
  * @memberOf! admin(directory_v1)
@@ -4245,14 +4322,12 @@ function Admin(options) { // eslint-disable-line
  * @property {admin(directory_v1).Member[]} members List of member objects.
  * @property {string} nextPageToken Token used to access next page of this result.
  */
-
 /**
  * @typedef MembersHasMember
  * @memberOf! admin(directory_v1)
  * @type object
  * @property {boolean} isMember Identifies whether given user is a member or not.
  */
-
 /**
  * @typedef MobileDevice
  * @memberOf! admin(directory_v1)
@@ -4298,14 +4373,12 @@ function Admin(options) { // eslint-disable-line
  * @property {string} userAgent Mobile Device user agent
  * @property {string} wifiMacAddress Mobile Device WiFi MAC address (Read-only)
  */
-
 /**
  * @typedef MobileDeviceAction
  * @memberOf! admin(directory_v1)
  * @type object
  * @property {string} action Action to be taken on the Mobile Device
  */
-
 /**
  * @typedef MobileDevices
  * @memberOf! admin(directory_v1)
@@ -4315,7 +4388,6 @@ function Admin(options) { // eslint-disable-line
  * @property {admin(directory_v1).MobileDevice[]} mobiledevices List of Mobile Device objects.
  * @property {string} nextPageToken Token used to access next page of this result.
  */
-
 /**
  * @typedef Notification
  * @memberOf! admin(directory_v1)
@@ -4325,11 +4397,10 @@ function Admin(options) { // eslint-disable-line
  * @property {string} fromAddress Address from which the notification is received (Read-only)
  * @property {boolean} isUnread Boolean indicating whether the notification is unread or not.
  * @property {string} kind The type of the resource.
- * @property {string} notificationId 
+ * @property {string} notificationId
  * @property {string} sendTime Time at which notification was sent (Read-only)
  * @property {string} subject Subject of the notification (Read-only)
  */
-
 /**
  * @typedef Notifications
  * @memberOf! admin(directory_v1)
@@ -4340,7 +4411,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} nextPageToken Token for fetching the next page of notifications.
  * @property {integer} unreadNotificationsCount Number of unread notification for the domain.
  */
-
 /**
  * @typedef OrgUnit
  * @memberOf! admin(directory_v1)
@@ -4355,7 +4425,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} parentOrgUnitId Id of parent OrgUnit
  * @property {string} parentOrgUnitPath Path of parent OrgUnit
  */
-
 /**
  * @typedef OrgUnits
  * @memberOf! admin(directory_v1)
@@ -4364,7 +4433,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} kind Kind of resource this is.
  * @property {admin(directory_v1).OrgUnit[]} organizationUnits List of user objects.
  */
-
 /**
  * @typedef Privilege
  * @memberOf! admin(directory_v1)
@@ -4377,7 +4445,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} serviceId The obfuscated ID of the service this privilege is for.
  * @property {string} serviceName The name of the service this privilege is for.
  */
-
 /**
  * @typedef Privileges
  * @memberOf! admin(directory_v1)
@@ -4386,7 +4453,6 @@ function Admin(options) { // eslint-disable-line
  * @property {admin(directory_v1).Privilege[]} items A list of Privilege resources.
  * @property {string} kind The type of the API resource. This is always admin#directory#privileges.
  */
-
 /**
  * @typedef Role
  * @memberOf! admin(directory_v1)
@@ -4400,22 +4466,20 @@ function Admin(options) { // eslint-disable-line
  * @property {string} roleName Name of the role.
  * @property {object[]} rolePrivileges The set of privileges that are granted to this role.
  */
-
 /**
  * @typedef RoleAssignment
  * @memberOf! admin(directory_v1)
  * @type object
-* @property {string} assignedTo The unique ID of the user this role is assigned to.
-* @property {string} etag ETag of the resource.
-* @property {string} kind The type of the API resource. This is always admin#directory#roleAssignment.
-* @property {string} orgUnitId If the role is restricted to an organization unit, this contains the ID for the organization unit the exercise of this role is restricted to.
-* @property {string} roleAssignmentId ID of this roleAssignment.
-* @property {string} roleId The ID of the role that is assigned.
-* @property {string} scopeType The scope in which this role is assigned. Possible values are: 
+ * @property {string} assignedTo The unique ID of the user this role is assigned to.
+ * @property {string} etag ETag of the resource.
+ * @property {string} kind The type of the API resource. This is always admin#directory#roleAssignment.
+ * @property {string} orgUnitId If the role is restricted to an organization unit, this contains the ID for the organization unit the exercise of this role is restricted to.
+ * @property {string} roleAssignmentId ID of this roleAssignment.
+ * @property {string} roleId The ID of the role that is assigned.
+ * @property {string} scopeType The scope in which this role is assigned. Possible values are:
 - CUSTOMER
 - ORG_UNIT
-*/
-
+ */
 /**
  * @typedef RoleAssignments
  * @memberOf! admin(directory_v1)
@@ -4423,9 +4487,8 @@ function Admin(options) { // eslint-disable-line
  * @property {string} etag ETag of the resource.
  * @property {admin(directory_v1).RoleAssignment[]} items A list of RoleAssignment resources.
  * @property {string} kind The type of the API resource. This is always admin#directory#roleAssignments.
- * @property {string} nextPageToken 
+ * @property {string} nextPageToken
  */
-
 /**
  * @typedef Roles
  * @memberOf! admin(directory_v1)
@@ -4433,9 +4496,8 @@ function Admin(options) { // eslint-disable-line
  * @property {string} etag ETag of the resource.
  * @property {admin(directory_v1).Role[]} items A list of Role resources.
  * @property {string} kind The type of the API resource. This is always admin#directory#roles.
- * @property {string} nextPageToken 
+ * @property {string} nextPageToken
  */
-
 /**
  * @typedef Schema
  * @memberOf! admin(directory_v1)
@@ -4446,7 +4508,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} schemaId Unique identifier of Schema (Read-only)
  * @property {string} schemaName Schema name
  */
-
 /**
  * @typedef SchemaFieldSpec
  * @memberOf! admin(directory_v1)
@@ -4461,7 +4522,6 @@ function Admin(options) { // eslint-disable-line
  * @property {object} numericIndexingSpec Indexing spec for a numeric field. By default, only exact match queries will be supported for numeric fields. Setting the numericIndexingSpec allows range queries to be supported.
  * @property {string} readAccessType Read ACLs on the field specifying who can view values of this field. Valid values are &quot;ALL_DOMAIN_USERS&quot; and &quot;ADMINS_AND_SELF&quot;.
  */
-
 /**
  * @typedef Schemas
  * @memberOf! admin(directory_v1)
@@ -4470,7 +4530,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} kind Kind of resource this is.
  * @property {admin(directory_v1).Schema[]} schemas List of UserSchema objects.
  */
-
 /**
  * @typedef Token
  * @memberOf! admin(directory_v1)
@@ -4484,7 +4543,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string[]} scopes A list of authorization scopes the application is granted.
  * @property {string} userKey The unique ID of the user that issued the token.
  */
-
 /**
  * @typedef Tokens
  * @memberOf! admin(directory_v1)
@@ -4493,7 +4551,6 @@ function Admin(options) { // eslint-disable-line
  * @property {admin(directory_v1).Token[]} items A list of Token resources.
  * @property {string} kind The type of the API resource. This is always admin#directory#tokenList.
  */
-
 /**
  * @typedef TrustedAppId
  * @memberOf! admin(directory_v1)
@@ -4501,39 +4558,37 @@ function Admin(options) { // eslint-disable-line
  * @property {string} androidPackageName Android package name.
  * @property {string} certificateHashSHA1 SHA1 signature of the app certificate.
  * @property {string} certificateHashSHA256 SHA256 signature of the app certificate.
- * @property {string} etag 
+ * @property {string} etag
  * @property {string} kind Identifies the resource as a trusted AppId.
  */
-
 /**
  * @typedef TrustedApps
  * @memberOf! admin(directory_v1)
  * @type object
  * @property {string} etag ETag of the resource.
  * @property {string} kind Identifies the resource as trusted apps response.
- * @property {string} nextPageToken 
+ * @property {string} nextPageToken
  * @property {admin(directory_v1).TrustedAppId[]} trustedApps Trusted Apps list.
  */
-
 /**
  * @typedef User
  * @memberOf! admin(directory_v1)
  * @type object
- * @property {any} addresses 
+ * @property {any} addresses
  * @property {boolean} agreedToTerms Indicates if user has agreed to terms (Read-only)
  * @property {string[]} aliases List of aliases (Read-only)
  * @property {boolean} changePasswordAtNextLogin Boolean indicating if the user should change password in next login
  * @property {string} creationTime User&#39;s G Suite account creation time. (Read-only)
- * @property {object} customSchemas Custom fields of the user.
  * @property {string} customerId CustomerId of User (Read-only)
- * @property {string} deletionTime 
- * @property {any} emails 
+ * @property {object} customSchemas Custom fields of the user.
+ * @property {string} deletionTime
+ * @property {any} emails
  * @property {string} etag ETag of the resource.
- * @property {any} externalIds 
- * @property {any} gender 
+ * @property {any} externalIds
+ * @property {any} gender
  * @property {string} hashFunction Hash function name for password. Supported are MD5, SHA-1 and crypt
  * @property {string} id Unique identifier of User (Read-only)
- * @property {any} ims 
+ * @property {any} ims
  * @property {boolean} includeInGlobalAddressList Boolean indicating if user is included in Global Address List
  * @property {boolean} ipWhitelisted Boolean indicating if ip is whitelisted
  * @property {boolean} isAdmin Boolean indicating if the user is admin (Read-only)
@@ -4541,29 +4596,28 @@ function Admin(options) { // eslint-disable-line
  * @property {boolean} isEnforcedIn2Sv Is 2-step verification enforced (Read-only)
  * @property {boolean} isEnrolledIn2Sv Is enrolled in 2-step verification (Read-only)
  * @property {boolean} isMailboxSetup Is mailbox setup (Read-only)
- * @property {any} keywords 
+ * @property {any} keywords
  * @property {string} kind Kind of resource this is.
- * @property {any} languages 
+ * @property {any} languages
  * @property {string} lastLoginTime User&#39;s last login time. (Read-only)
- * @property {any} locations 
+ * @property {any} locations
  * @property {admin(directory_v1).UserName} name User&#39;s name
  * @property {string[]} nonEditableAliases List of non editable aliases (Read-only)
- * @property {any} notes 
+ * @property {any} notes
+ * @property {any} organizations
  * @property {string} orgUnitPath OrgUnit of User
- * @property {any} organizations 
  * @property {string} password User&#39;s password
- * @property {any} phones 
- * @property {any} posixAccounts 
+ * @property {any} phones
+ * @property {any} posixAccounts
  * @property {string} primaryEmail username of User
- * @property {any} relations 
- * @property {any} sshPublicKeys 
+ * @property {any} relations
+ * @property {any} sshPublicKeys
  * @property {boolean} suspended Indicates if user is suspended
  * @property {string} suspensionReason Suspension reason if user is suspended (Read-only)
  * @property {string} thumbnailPhotoEtag ETag of the user&#39;s photo (Read-only)
  * @property {string} thumbnailPhotoUrl Photo Url of the user (Read-only)
- * @property {any} websites 
+ * @property {any} websites
  */
-
 /**
  * @typedef UserAbout
  * @memberOf! admin(directory_v1)
@@ -4571,7 +4625,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} contentType About entry can have a type which indicates the content type. It can either be plain or html. By default, notes contents are assumed to contain plain text.
  * @property {string} value Actual value of notes.
  */
-
 /**
  * @typedef UserAddress
  * @memberOf! admin(directory_v1)
@@ -4590,13 +4643,11 @@ function Admin(options) { // eslint-disable-line
  * @property {string} streetAddress Street.
  * @property {string} type Each entry can have a type which indicates standard values of that entry. For example address could be of home, work etc. In addition to the standard type, an entry can have a custom type and can take any value. Such type should have the CUSTOM value as type and also have a customType value.
  */
-
 /**
  * @typedef UserCustomProperties
  * @memberOf! admin(directory_v1)
  * @type object
  */
-
 /**
  * @typedef UserEmail
  * @memberOf! admin(directory_v1)
@@ -4606,7 +4657,6 @@ function Admin(options) { // eslint-disable-line
  * @property {boolean} primary If this is user&#39;s primary email. Only one entry could be marked as primary.
  * @property {string} type Each entry can have a type which indicates standard types of that entry. For example email could be of home, work etc. In addition to the standard type, an entry can have a custom type and can take any value Such types should have the CUSTOM value as type and also have a customType value.
  */
-
 /**
  * @typedef UserExternalId
  * @memberOf! admin(directory_v1)
@@ -4615,7 +4665,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} type The type of the Id.
  * @property {string} value The value of the id.
  */
-
 /**
  * @typedef UserGender
  * @memberOf! admin(directory_v1)
@@ -4624,7 +4673,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} customGender Custom gender.
  * @property {string} type Gender.
  */
-
 /**
  * @typedef UserIm
  * @memberOf! admin(directory_v1)
@@ -4636,7 +4684,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} protocol Protocol used in the instant messenger. It should be one of the values from ImProtocolTypes map. Similar to type, it can take a CUSTOM value and specify the custom name in customProtocol field.
  * @property {string} type Each entry can have a type which indicates standard types of that entry. For example instant messengers could be of home, work etc. In addition to the standard type, an entry can have a custom type and can take any value. Such types should have the CUSTOM value as type and also have a customType value.
  */
-
 /**
  * @typedef UserKeyword
  * @memberOf! admin(directory_v1)
@@ -4645,7 +4692,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} type Each entry can have a type which indicates standard type of that entry. For example, keyword could be of type occupation or outlook. In addition to the standard type, an entry can have a custom type and can give it any name. Such types should have the CUSTOM value as type and also have a customType value.
  * @property {string} value Keyword.
  */
-
 /**
  * @typedef UserLanguage
  * @memberOf! admin(directory_v1)
@@ -4653,7 +4699,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} customLanguage Other language. User can provide own language name if there is no corresponding Google III language code. If this is set LanguageCode can&#39;t be set
  * @property {string} languageCode Language Code. Should be used for storing Google III LanguageCode string representation for language. Illegal values cause SchemaException.
  */
-
 /**
  * @typedef UserLocation
  * @memberOf! admin(directory_v1)
@@ -4666,14 +4711,12 @@ function Admin(options) { // eslint-disable-line
  * @property {string} floorSection Floor section. More specific location within the floor. For example, if a floor is divided into sections &quot;A&quot;, &quot;B&quot;, and &quot;C&quot;, this field would identify one of those values.
  * @property {string} type Each entry can have a type which indicates standard types of that entry. For example location could be of types default and desk. In addition to standard type, an entry can have a custom type and can give it any name. Such types should have &quot;custom&quot; as type and also have a customType value.
  */
-
 /**
  * @typedef UserMakeAdmin
  * @memberOf! admin(directory_v1)
  * @type object
  * @property {boolean} status Boolean indicating new admin status of the user
  */
-
 /**
  * @typedef UserName
  * @memberOf! admin(directory_v1)
@@ -4682,7 +4725,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} fullName Full Name
  * @property {string} givenName First Name
  */
-
 /**
  * @typedef UserOrganization
  * @memberOf! admin(directory_v1)
@@ -4700,7 +4742,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} title Title (designation) of the user in the organization.
  * @property {string} type Each entry can have a type which indicates standard types of that entry. For example organization could be of school, work etc. In addition to the standard type, an entry can have a custom type and can give it any name. Such types should have the CUSTOM value as type and also have a CustomType value.
  */
-
 /**
  * @typedef UserPhone
  * @memberOf! admin(directory_v1)
@@ -4710,7 +4751,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} type Each entry can have a type which indicates standard types of that entry. For example phone could be of home_fax, work, mobile etc. In addition to the standard type, an entry can have a custom type and can give it any name. Such types should have the CUSTOM value as type and also have a customType value.
  * @property {string} value Phone number.
  */
-
 /**
  * @typedef UserPhoto
  * @memberOf! admin(directory_v1)
@@ -4724,7 +4764,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} primaryEmail Primary email of User (Read-only)
  * @property {integer} width Width in pixels of the photo
  */
-
 /**
  * @typedef UserPosixAccount
  * @memberOf! admin(directory_v1)
@@ -4739,7 +4778,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} uid The POSIX compliant user ID.
  * @property {string} username The username of the account.
  */
-
 /**
  * @typedef UserRelation
  * @memberOf! admin(directory_v1)
@@ -4748,33 +4786,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} type The relation of the user. Some of the possible values are mother, father, sister, brother, manager, assistant, partner.
  * @property {string} value The name of the relation.
  */
-
-/**
- * @typedef UserSshPublicKey
- * @memberOf! admin(directory_v1)
- * @type object
- * @property {string} expirationTimeUsec An expiration time in microseconds since epoch.
- * @property {string} fingerprint A SHA-256 fingerprint of the SSH public key. (Read-only)
- * @property {string} key An SSH public key.
- */
-
-/**
- * @typedef UserUndelete
- * @memberOf! admin(directory_v1)
- * @type object
- * @property {string} orgUnitPath OrgUnit of User
- */
-
-/**
- * @typedef UserWebsite
- * @memberOf! admin(directory_v1)
- * @type object
- * @property {string} customType Custom Type.
- * @property {boolean} primary If this is user&#39;s primary website or not.
- * @property {string} type Each entry can have a type which indicates standard types of that entry. For example website could be of home, work, blog etc. In addition to the standard type, an entry can have a custom type and can give it any name. Such types should have the CUSTOM value as type and also have a customType value.
- * @property {string} value Website.
- */
-
 /**
  * @typedef Users
  * @memberOf! admin(directory_v1)
@@ -4785,7 +4796,29 @@ function Admin(options) { // eslint-disable-line
  * @property {string} trigger_event Event that triggered this response (only used in case of Push Response)
  * @property {admin(directory_v1).User[]} users List of user objects.
  */
-
+/**
+ * @typedef UserSshPublicKey
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} expirationTimeUsec An expiration time in microseconds since epoch.
+ * @property {string} fingerprint A SHA-256 fingerprint of the SSH public key. (Read-only)
+ * @property {string} key An SSH public key.
+ */
+/**
+ * @typedef UserUndelete
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} orgUnitPath OrgUnit of User
+ */
+/**
+ * @typedef UserWebsite
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} customType Custom Type.
+ * @property {boolean} primary If this is user&#39;s primary website or not.
+ * @property {string} type Each entry can have a type which indicates standard types of that entry. For example website could be of home, work, blog etc. In addition to the standard type, an entry can have a custom type and can give it any name. Such types should have the CUSTOM value as type and also have a customType value.
+ * @property {string} value Website.
+ */
 /**
  * @typedef VerificationCode
  * @memberOf! admin(directory_v1)
@@ -4795,7 +4828,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} userId The obfuscated unique ID of the user.
  * @property {string} verificationCode A current verification code for the user. Invalidated or used verification codes are not returned as part of the result.
  */
-
 /**
  * @typedef VerificationCodes
  * @memberOf! admin(directory_v1)
@@ -4804,4 +4836,5 @@ function Admin(options) { // eslint-disable-line
  * @property {admin(directory_v1).VerificationCode[]} items A list of verification code resources.
  * @property {string} kind The type of the resource. This is always admin#directory#verificationCodesList.
  */
+
 export = Admin;

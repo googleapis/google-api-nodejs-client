@@ -14,16 +14,13 @@
  * limitations under the License.
  */
 
-/* jshint maxlen: false */
-
-import {
-  createAPIRequest
-} from '../../lib/apirequest';
+import {createAPIRequest} from '../../lib/apirequest';
 
 /**
  * Google Ad Experience Report API
  *
- * View Ad Experience Report data, and get a list of sites that have a significant number of annoying ads.
+ * View Ad Experience Report data, and get a list of sites that have a
+ * significant number of annoying ads.
  *
  * @example
  * const google = require('googleapis');
@@ -35,17 +32,13 @@ import {
  * @variation v1
  * @param {object=} options Options for Adexperiencereport
  */
-function Adexperiencereport(options) { // eslint-disable-line
+function Adexperiencereport(options) {
   const self = this;
   self._options = options || {};
-
   self.sites = {
-
     /**
      * adexperiencereport.sites.get
-     *
      * @desc Gets a summary of the ad experience rating of a site.
-     *
      * @alias adexperiencereport.sites.get
      * @memberOf! adexperiencereport(v1)
      *
@@ -55,38 +48,38 @@ function Adexperiencereport(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, options, callback) {
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
       options || (options = {});
 
-      const rootUrl = options.rootUrl || 'https://adexperiencereport.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://adexperiencereport.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['name'],
         pathParams: ['name'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
-
   self.violatingSites = {
-
     /**
      * adexperiencereport.violatingSites.list
-     *
-     * @desc Lists sites with Ad Experience Report statuses of "Failing" or "Warning".
-     *
+     * @desc Lists sites with Ad Experience Report statuses of "Failing" or
+     * "Warning".
      * @alias adexperiencereport.violatingSites.list
      * @memberOf! adexperiencereport(v1)
      *
@@ -95,32 +88,35 @@ function Adexperiencereport(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, options, callback) {
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
       options || (options = {});
 
-      const rootUrl = options.rootUrl || 'https://adexperiencereport.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://adexperiencereport.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1/violatingSites').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/violatingSites')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
 }
-
 /**
  * @typedef PlatformSummary
  * @memberOf! adexperiencereport(v1)
@@ -133,7 +129,6 @@ function Adexperiencereport(options) { // eslint-disable-line
  * @property {string} reportUrl A link that leads to a full ad experience report.
  * @property {boolean} underReview Whether the site is currently under review.
  */
-
 /**
  * @typedef SiteSummaryResponse
  * @memberOf! adexperiencereport(v1)
@@ -142,11 +137,11 @@ function Adexperiencereport(options) { // eslint-disable-line
  * @property {adexperiencereport(v1).PlatformSummary} mobileSummary Summary for the mobile review of the site.
  * @property {string} reviewedSite The name of the site reviewed.
  */
-
 /**
  * @typedef ViolatingSitesResponse
  * @memberOf! adexperiencereport(v1)
  * @type object
  * @property {adexperiencereport(v1).SiteSummaryResponse[]} violatingSites A list of summaries of violating sites.
  */
+
 export = Adexperiencereport;

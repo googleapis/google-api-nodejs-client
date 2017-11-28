@@ -14,16 +14,14 @@
  * limitations under the License.
  */
 
-/* jshint maxlen: false */
-
-import {
-  createAPIRequest
-} from '../../lib/apirequest';
+import {createAPIRequest} from '../../lib/apirequest';
 
 /**
  * Google Fonts Developer API
  *
- * Accesses the metadata for all families served by Google Fonts, providing a list of families currently available (including available styles and a list of supported script subsets).
+ * Accesses the metadata for all families served by Google Fonts, providing a
+ * list of families currently available (including available styles and a list
+ * of supported script subsets).
  *
  * @example
  * const google = require('googleapis');
@@ -35,17 +33,14 @@ import {
  * @variation v1
  * @param {object=} options Options for Webfonts
  */
-function Webfonts(options) { // eslint-disable-line
+function Webfonts(options) {
   const self = this;
   self._options = options || {};
-
   self.webfonts = {
-
     /**
      * webfonts.webfonts.list
-     *
-     * @desc Retrieves the list of fonts currently served by the Google Fonts Developer API
-     *
+     * @desc Retrieves the list of fonts currently served by the Google Fonts
+     * Developer API
      * @alias webfonts.webfonts.list
      * @memberOf! webfonts(v1)
      *
@@ -55,7 +50,7 @@ function Webfonts(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, options, callback) {
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -65,22 +60,24 @@ function Webfonts(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/webfonts/v1/webfonts').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/webfonts/v1/webfonts')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
 }
-
 /**
  * @typedef Webfont
  * @memberOf! webfonts(v1)
@@ -94,7 +91,6 @@ function Webfonts(options) { // eslint-disable-line
  * @property {string[]} variants The available variants for the font.
  * @property {string} version The font version.
  */
-
 /**
  * @typedef WebfontList
  * @memberOf! webfonts(v1)
@@ -102,4 +98,5 @@ function Webfonts(options) { // eslint-disable-line
  * @property {webfonts(v1).Webfont[]} items The list of fonts currently served by the Google Fonts API.
  * @property {string} kind This kind represents a list of webfont objects in the webfonts service.
  */
+
 export = Webfonts;

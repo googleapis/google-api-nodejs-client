@@ -14,11 +14,7 @@
  * limitations under the License.
  */
 
-/* jshint maxlen: false */
-
-import {
-  createAPIRequest
-} from '../../lib/apirequest';
+import {createAPIRequest} from '../../lib/apirequest';
 
 /**
  * Admin Data Transfer API
@@ -35,17 +31,14 @@ import {
  * @variation datatransfer_v1
  * @param {object=} options Options for Admin
  */
-function Admin(options) { // eslint-disable-line
+function Admin(options) {
   const self = this;
   self._options = options || {};
-
   self.applications = {
-
     /**
      * datatransfer.applications.get
-     *
-     * @desc Retrieves information about an application for the given application ID.
-     *
+     * @desc Retrieves information about an application for the given
+     * application ID.
      * @alias datatransfer.applications.get
      * @memberOf! admin(datatransfer_v1)
      *
@@ -55,7 +48,7 @@ function Admin(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, options, callback) {
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -65,36 +58,38 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/datatransfer/v1/applications/{applicationId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/admin/datatransfer/v1/applications/{applicationId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['applicationId'],
         pathParams: ['applicationId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * datatransfer.applications.list
-     *
-     * @desc Lists the applications available for data transfer for a customer.
-     *
-     * @alias datatransfer.applications.list
-     * @memberOf! admin(datatransfer_v1)
-     *
-     * @param {object=} params Parameters for request
-     * @param {string=} params.customerId Immutable ID of the Google Apps account.
-     * @param {integer=} params.maxResults Maximum number of results to return. Default is 100.
-     * @param {string=} params.pageToken Token to specify next page in the list.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
+    , /**
+       * datatransfer.applications.list
+       * @desc Lists the applications available for data transfer for a
+       * customer.
+       * @alias datatransfer.applications.list
+       * @memberOf! admin(datatransfer_v1)
+       *
+       * @param {object=} params Parameters for request
+       * @param {string=} params.customerId Immutable ID of the Google Apps account.
+       * @param {integer=} params.maxResults Maximum number of results to return. Default is 100.
+       * @param {string=} params.pageToken Token to specify next page in the list.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -104,28 +99,27 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/datatransfer/v1/applications').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/admin/datatransfer/v1/applications')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
-
   self.transfers = {
-
     /**
      * datatransfer.transfers.get
-     *
      * @desc Retrieves a data transfer request by its resource ID.
-     *
      * @alias datatransfer.transfers.get
      * @memberOf! admin(datatransfer_v1)
      *
@@ -135,7 +129,7 @@ function Admin(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, options, callback) {
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -145,101 +139,105 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/datatransfer/v1/transfers/{dataTransferId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/admin/datatransfer/v1/transfers/{dataTransferId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['dataTransferId'],
         pathParams: ['dataTransferId'],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * datatransfer.transfers.insert
-     *
-     * @desc Inserts a data transfer request.
-     *
-     * @alias datatransfer.transfers.insert
-     * @memberOf! admin(datatransfer_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {admin(datatransfer_v1).DataTransfer} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    insert: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/datatransfer/v1/transfers').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * datatransfer.transfers.list
-     *
-     * @desc Lists the transfers for a customer by source user, destination user, or status.
-     *
-     * @alias datatransfer.transfers.list
-     * @memberOf! admin(datatransfer_v1)
-     *
-     * @param {object=} params Parameters for request
-     * @param {string=} params.customerId Immutable ID of the Google Apps account.
-     * @param {integer=} params.maxResults Maximum number of results to return. Default is 100.
-     * @param {string=} params.newOwnerUserId Destination user's profile ID.
-     * @param {string=} params.oldOwnerUserId Source user's profile ID.
-     * @param {string=} params.pageToken Token to specify the next page in the list.
-     * @param {string=} params.status Status of the transfer.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/datatransfer/v1/transfers').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
+    , /**
+       * datatransfer.transfers.insert
+       * @desc Inserts a data transfer request.
+       * @alias datatransfer.transfers.insert
+       * @memberOf! admin(datatransfer_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {admin(datatransfer_v1).DataTransfer} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    insert: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/admin/datatransfer/v1/transfers')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * datatransfer.transfers.list
+       * @desc Lists the transfers for a customer by source user, destination
+       * user, or status.
+       * @alias datatransfer.transfers.list
+       * @memberOf! admin(datatransfer_v1)
+       *
+       * @param {object=} params Parameters for request
+       * @param {string=} params.customerId Immutable ID of the Google Apps account.
+       * @param {integer=} params.maxResults Maximum number of results to return. Default is 100.
+       * @param {string=} params.newOwnerUserId Destination user's profile ID.
+       * @param {string=} params.oldOwnerUserId Source user's profile ID.
+       * @param {string=} params.pageToken Token to specify the next page in the list.
+       * @param {string=} params.status Status of the transfer.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/admin/datatransfer/v1/transfers')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
   };
 }
-
 /**
  * @typedef Application
  * @memberOf! admin(datatransfer_v1)
@@ -250,7 +248,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} name The application&#39;s name.
  * @property {admin(datatransfer_v1).ApplicationTransferParam[]} transferParams The list of all possible transfer parameters for this application. These parameters can be used to select the data of the user in this application to be transfered.
  */
-
 /**
  * @typedef ApplicationDataTransfer
  * @memberOf! admin(datatransfer_v1)
@@ -259,15 +256,6 @@ function Admin(options) { // eslint-disable-line
  * @property {admin(datatransfer_v1).ApplicationTransferParam[]} applicationTransferParams The transfer parameters for the application. These parameters are used to select the data which will get transfered in context of this application.
  * @property {string} applicationTransferStatus Current status of transfer for this application. (Read-only)
  */
-
-/**
- * @typedef ApplicationTransferParam
- * @memberOf! admin(datatransfer_v1)
- * @type object
- * @property {string} key The type of the transfer parameter. eg: &#39;PRIVACY_LEVEL&#39;
- * @property {string[]} value The value of the coressponding transfer parameter. eg: &#39;PRIVATE&#39; or &#39;SHARED&#39;
- */
-
 /**
  * @typedef ApplicationsListResponse
  * @memberOf! admin(datatransfer_v1)
@@ -277,7 +265,13 @@ function Admin(options) { // eslint-disable-line
  * @property {string} kind Identifies the resource as a collection of Applications.
  * @property {string} nextPageToken Continuation token which will be used to specify next page in list API.
  */
-
+/**
+ * @typedef ApplicationTransferParam
+ * @memberOf! admin(datatransfer_v1)
+ * @type object
+ * @property {string} key The type of the transfer parameter. eg: &#39;PRIVACY_LEVEL&#39;
+ * @property {string[]} value The value of the coressponding transfer parameter. eg: &#39;PRIVATE&#39; or &#39;SHARED&#39;
+ */
 /**
  * @typedef DataTransfer
  * @memberOf! admin(datatransfer_v1)
@@ -291,7 +285,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} overallTransferStatusCode Overall transfer status (Read-only).
  * @property {string} requestTime The time at which the data transfer was requested (Read-only).
  */
-
 /**
  * @typedef DataTransfersListResponse
  * @memberOf! admin(datatransfer_v1)
@@ -301,4 +294,5 @@ function Admin(options) { // eslint-disable-line
  * @property {string} kind Identifies the resource as a collection of data transfer requests.
  * @property {string} nextPageToken Continuation token which will be used to specify next page in list API.
  */
+
 export = Admin;

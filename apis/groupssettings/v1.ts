@@ -14,11 +14,7 @@
  * limitations under the License.
  */
 
-/* jshint maxlen: false */
-
-import {
-  createAPIRequest
-} from '../../lib/apirequest';
+import {createAPIRequest} from '../../lib/apirequest';
 
 /**
  * Groups Settings API
@@ -35,17 +31,13 @@ import {
  * @variation v1
  * @param {object=} options Options for Groupssettings
  */
-function Groupssettings(options) { // eslint-disable-line
+function Groupssettings(options) {
   const self = this;
   self._options = options || {};
-
   self.groups = {
-
     /**
      * groupsSettings.groups.get
-     *
      * @desc Gets one resource by id.
-     *
      * @alias groupsSettings.groups.get
      * @memberOf! groupssettings(v1)
      *
@@ -55,7 +47,7 @@ function Groupssettings(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, options, callback) {
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -65,98 +57,101 @@ function Groupssettings(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/groups/v1/groups/{groupUniqueId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/groups/v1/groups/{groupUniqueId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['groupUniqueId'],
         pathParams: ['groupUniqueId'],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * groupsSettings.groups.patch
-     *
-     * @desc Updates an existing resource. This method supports patch semantics.
-     *
-     * @alias groupsSettings.groups.patch
-     * @memberOf! groupssettings(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.groupUniqueId The resource ID
-     * @param {groupssettings(v1).Groups} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/groups/v1/groups/{groupUniqueId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PATCH'
-        }, options),
-        params: params,
-        requiredParams: ['groupUniqueId'],
-        pathParams: ['groupUniqueId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * groupsSettings.groups.update
-     *
-     * @desc Updates an existing resource.
-     *
-     * @alias groupsSettings.groups.update
-     * @memberOf! groupssettings(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.groupUniqueId The resource ID
-     * @param {groupssettings(v1).Groups} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    update: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/groups/v1/groups/{groupUniqueId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PUT'
-        }, options),
-        params: params,
-        requiredParams: ['groupUniqueId'],
-        pathParams: ['groupUniqueId'],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
+    , /**
+       * groupsSettings.groups.patch
+       * @desc Updates an existing resource. This method supports patch
+       * semantics.
+       * @alias groupsSettings.groups.patch
+       * @memberOf! groupssettings(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.groupUniqueId The resource ID
+       * @param {groupssettings(v1).Groups} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    patch: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/groups/v1/groups/{groupUniqueId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params: params,
+        requiredParams: ['groupUniqueId'],
+        pathParams: ['groupUniqueId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * groupsSettings.groups.update
+       * @desc Updates an existing resource.
+       * @alias groupsSettings.groups.update
+       * @memberOf! groupssettings(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.groupUniqueId The resource ID
+       * @param {groupssettings(v1).Groups} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    update: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/groups/v1/groups/{groupUniqueId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
+        params: params,
+        requiredParams: ['groupUniqueId'],
+        pathParams: ['groupUniqueId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
   };
 }
-
 /**
  * @typedef Groups
  * @memberOf! groupssettings(v1)
@@ -193,4 +188,5 @@ function Groupssettings(options) { // eslint-disable-line
  * @property {string} whoCanViewGroup Permissions to view group. Possible values are: ANYONE_CAN_VIEW ALL_IN_DOMAIN_CAN_VIEW ALL_MEMBERS_CAN_VIEW ALL_MANAGERS_CAN_VIEW
  * @property {string} whoCanViewMembership Permissions to view membership. Possible values are: ALL_IN_DOMAIN_CAN_VIEW ALL_MEMBERS_CAN_VIEW ALL_MANAGERS_CAN_VIEW
  */
+
 export = Groupssettings;

@@ -14,11 +14,7 @@
  * limitations under the License.
  */
 
-/* jshint maxlen: false */
-
-import {
-  createAPIRequest
-} from '../../lib/apirequest';
+import {createAPIRequest} from '../../lib/apirequest';
 
 /**
  * Enterprise License Manager API
@@ -35,17 +31,13 @@ import {
  * @variation v1
  * @param {object=} options Options for Licensing
  */
-function Licensing(options) { // eslint-disable-line
+function Licensing(options) {
   const self = this;
   self._options = options || {};
-
   self.licenseAssignments = {
-
     /**
      * licensing.licenseAssignments.delete
-     *
      * @desc Revoke License.
-     *
      * @alias licensing.licenseAssignments.delete
      * @memberOf! licensing(v1)
      *
@@ -57,7 +49,7 @@ function Licensing(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, options, callback) {
+    delete: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -67,36 +59,38 @@ function Licensing(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
         params: params,
         requiredParams: ['productId', 'skuId', 'userId'],
         pathParams: ['productId', 'skuId', 'userId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * licensing.licenseAssignments.get
-     *
-     * @desc Get license assignment of a particular product and sku for a user
-     *
-     * @alias licensing.licenseAssignments.get
-     * @memberOf! licensing(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.productId Name for product
-     * @param {string} params.skuId Name for sku
-     * @param {string} params.userId email id or unique Id of the user
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
+    , /**
+       * licensing.licenseAssignments.get
+       * @desc Get license assignment of a particular product and sku for a user
+       * @alias licensing.licenseAssignments.get
+       * @memberOf! licensing(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.productId Name for product
+       * @param {string} params.skuId Name for sku
+       * @param {string} params.userId email id or unique Id of the user
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -106,36 +100,38 @@ function Licensing(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['productId', 'skuId', 'userId'],
         pathParams: ['productId', 'skuId', 'userId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * licensing.licenseAssignments.insert
-     *
-     * @desc Assign License.
-     *
-     * @alias licensing.licenseAssignments.insert
-     * @memberOf! licensing(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.productId Name for product
-     * @param {string} params.skuId Name for sku
-     * @param {licensing(v1).LicenseAssignmentInsert} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    insert: function (params, options, callback) {
+    , /**
+       * licensing.licenseAssignments.insert
+       * @desc Assign License.
+       * @alias licensing.licenseAssignments.insert
+       * @memberOf! licensing(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.productId Name for product
+       * @param {string} params.skuId Name for sku
+       * @param {licensing(v1).LicenseAssignmentInsert} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    insert: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -145,37 +141,38 @@ function Licensing(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/apps/licensing/v1/product/{productId}/sku/{skuId}/user').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/apps/licensing/v1/product/{productId}/sku/{skuId}/user')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: ['productId', 'skuId'],
         pathParams: ['productId', 'skuId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * licensing.licenseAssignments.listForProduct
-     *
-     * @desc List license assignments for given product of the customer.
-     *
-     * @alias licensing.licenseAssignments.listForProduct
-     * @memberOf! licensing(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId CustomerId represents the customer for whom licenseassignments are queried
-     * @param {integer=} params.maxResults Maximum number of campaigns to return at one time. Must be positive. Optional. Default value is 100.
-     * @param {string=} params.pageToken Token to fetch the next page.Optional. By default server will return first page
-     * @param {string} params.productId Name for product
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    listForProduct: function (params, options, callback) {
+    , /**
+       * licensing.licenseAssignments.listForProduct
+       * @desc List license assignments for given product of the customer.
+       * @alias licensing.licenseAssignments.listForProduct
+       * @memberOf! licensing(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customerId CustomerId represents the customer for whom licenseassignments are queried
+       * @param {integer=} params.maxResults Maximum number of campaigns to return at one time. Must be positive. Optional. Default value is 100.
+       * @param {string=} params.pageToken Token to fetch the next page.Optional. By default server will return first page
+       * @param {string} params.productId Name for product
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    listForProduct: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -185,38 +182,39 @@ function Licensing(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/apps/licensing/v1/product/{productId}/users').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/apps/licensing/v1/product/{productId}/users')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['productId', 'customerId'],
         pathParams: ['productId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * licensing.licenseAssignments.listForProductAndSku
-     *
-     * @desc List license assignments for given product and sku of the customer.
-     *
-     * @alias licensing.licenseAssignments.listForProductAndSku
-     * @memberOf! licensing(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId CustomerId represents the customer for whom licenseassignments are queried
-     * @param {integer=} params.maxResults Maximum number of campaigns to return at one time. Must be positive. Optional. Default value is 100.
-     * @param {string=} params.pageToken Token to fetch the next page.Optional. By default server will return first page
-     * @param {string} params.productId Name for product
-     * @param {string} params.skuId Name for sku
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    listForProductAndSku: function (params, options, callback) {
+    , /**
+       * licensing.licenseAssignments.listForProductAndSku
+       * @desc List license assignments for given product and sku of the
+       * customer.
+       * @alias licensing.licenseAssignments.listForProductAndSku
+       * @memberOf! licensing(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.customerId CustomerId represents the customer for whom licenseassignments are queried
+       * @param {integer=} params.maxResults Maximum number of campaigns to return at one time. Must be positive. Optional. Default value is 100.
+       * @param {string=} params.pageToken Token to fetch the next page.Optional. By default server will return first page
+       * @param {string} params.productId Name for product
+       * @param {string} params.skuId Name for sku
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    listForProductAndSku: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -226,102 +224,109 @@ function Licensing(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/apps/licensing/v1/product/{productId}/sku/{skuId}/users').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/apps/licensing/v1/product/{productId}/sku/{skuId}/users')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['productId', 'skuId', 'customerId'],
         pathParams: ['productId', 'skuId'],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * licensing.licenseAssignments.patch
-     *
-     * @desc Assign License. This method supports patch semantics.
-     *
-     * @alias licensing.licenseAssignments.patch
-     * @memberOf! licensing(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.productId Name for product
-     * @param {string} params.skuId Name for sku for which license would be revoked
-     * @param {string} params.userId email id or unique Id of the user
-     * @param {licensing(v1).LicenseAssignment} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PATCH'
-        }, options),
-        params: params,
-        requiredParams: ['productId', 'skuId', 'userId'],
-        pathParams: ['productId', 'skuId', 'userId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * licensing.licenseAssignments.update
-     *
-     * @desc Assign License.
-     *
-     * @alias licensing.licenseAssignments.update
-     * @memberOf! licensing(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.productId Name for product
-     * @param {string} params.skuId Name for sku for which license would be revoked
-     * @param {string} params.userId email id or unique Id of the user
-     * @param {licensing(v1).LicenseAssignment} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    update: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PUT'
-        }, options),
-        params: params,
-        requiredParams: ['productId', 'skuId', 'userId'],
-        pathParams: ['productId', 'skuId', 'userId'],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
+    , /**
+       * licensing.licenseAssignments.patch
+       * @desc Assign License. This method supports patch semantics.
+       * @alias licensing.licenseAssignments.patch
+       * @memberOf! licensing(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.productId Name for product
+       * @param {string} params.skuId Name for sku for which license would be revoked
+       * @param {string} params.userId email id or unique Id of the user
+       * @param {licensing(v1).LicenseAssignment} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    patch: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params: params,
+        requiredParams: ['productId', 'skuId', 'userId'],
+        pathParams: ['productId', 'skuId', 'userId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * licensing.licenseAssignments.update
+       * @desc Assign License.
+       * @alias licensing.licenseAssignments.update
+       * @memberOf! licensing(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.productId Name for product
+       * @param {string} params.skuId Name for sku for which license would be revoked
+       * @param {string} params.userId email id or unique Id of the user
+       * @param {licensing(v1).LicenseAssignment} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    update: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
+        params: params,
+        requiredParams: ['productId', 'skuId', 'userId'],
+        pathParams: ['productId', 'skuId', 'userId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
   };
 }
-
 /**
  * @typedef LicenseAssignment
  * @memberOf! licensing(v1)
@@ -335,14 +340,12 @@ function Licensing(options) { // eslint-disable-line
  * @property {string} skuName Display Name of the sku of the product.
  * @property {string} userId Email id of the user.
  */
-
 /**
  * @typedef LicenseAssignmentInsert
  * @memberOf! licensing(v1)
  * @type object
  * @property {string} userId Email id of the user
  */
-
 /**
  * @typedef LicenseAssignmentList
  * @memberOf! licensing(v1)
@@ -352,4 +355,5 @@ function Licensing(options) { // eslint-disable-line
  * @property {string} kind Identifies the resource as a collection of LicenseAssignments.
  * @property {string} nextPageToken The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
  */
+
 export = Licensing;

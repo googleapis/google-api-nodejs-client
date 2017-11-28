@@ -14,11 +14,7 @@
  * limitations under the License.
  */
 
-/* jshint maxlen: false */
-
-import {
-  createAPIRequest
-} from '../../lib/apirequest';
+import {createAPIRequest} from '../../lib/apirequest';
 
 /**
  * Google Play EMM API
@@ -35,17 +31,13 @@ import {
  * @variation v1
  * @param {object=} options Options for Androidenterprise
  */
-function Androidenterprise(options) { // eslint-disable-line
+function Androidenterprise(options) {
   const self = this;
   self._options = options || {};
-
   self.devices = {
-
     /**
      * androidenterprise.devices.get
-     *
      * @desc Retrieves the details of a device.
-     *
      * @alias androidenterprise.devices.get
      * @memberOf! androidenterprise(v1)
      *
@@ -57,7 +49,7 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, options, callback) {
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -67,36 +59,43 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.devices.getState
-     *
-     * @desc Retrieves whether a device's access to Google services is enabled or disabled. The device state takes effect only if enforcing EMM policies on Android devices is enabled in the Google Admin Console. Otherwise, the device state is ignored and all devices are allowed access to Google services. This is only supported for Google-managed users.
-     *
-     * @alias androidenterprise.devices.getState
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.deviceId The ID of the device.
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getState: function (params, options, callback) {
+    , /**
+       * androidenterprise.devices.getState
+       * @desc Retrieves whether a device's access to Google services is enabled
+       * or disabled. The device state takes effect only if enforcing EMM
+       * policies on Android devices is enabled in the Google Admin Console.
+       * Otherwise, the device state is ignored and all devices are allowed
+       * access to Google services. This is only supported for Google-managed
+       * users.
+       * @alias androidenterprise.devices.getState
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.deviceId The ID of the device.
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.userId The ID of the user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    getState: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -106,35 +105,37 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/state').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/state')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.devices.list
-     *
-     * @desc Retrieves the IDs of all of a user's devices.
-     *
-     * @alias androidenterprise.devices.list
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
+    , /**
+       * androidenterprise.devices.list
+       * @desc Retrieves the IDs of all of a user's devices.
+       * @alias androidenterprise.devices.list
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.userId The ID of the user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -144,37 +145,43 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.devices.setState
-     *
-     * @desc Sets whether a device's access to Google services is enabled or disabled. The device state takes effect only if enforcing EMM policies on Android devices is enabled in the Google Admin Console. Otherwise, the device state is ignored and all devices are allowed access to Google services. This is only supported for Google-managed users.
-     *
-     * @alias androidenterprise.devices.setState
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.deviceId The ID of the device.
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.userId The ID of the user.
-     * @param {androidenterprise(v1).DeviceState} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    setState: function (params, options, callback) {
+    , /**
+       * androidenterprise.devices.setState
+       * @desc Sets whether a device's access to Google services is enabled or
+       * disabled. The device state takes effect only if enforcing EMM policies
+       * on Android devices is enabled in the Google Admin Console. Otherwise,
+       * the device state is ignored and all devices are allowed access to
+       * Google services. This is only supported for Google-managed users.
+       * @alias androidenterprise.devices.setState
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.deviceId The ID of the device.
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.userId The ID of the user.
+       * @param {androidenterprise(v1).DeviceState} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    setState: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -184,28 +191,31 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/state').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PUT'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/state')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
-
   self.enterprises = {
-
     /**
      * androidenterprise.enterprises.acknowledgeNotificationSet
-     *
-     * @desc Acknowledges notifications that were received from Enterprises.PullNotificationSet to prevent subsequent calls from returning the same notifications.
-     *
+     * @desc Acknowledges notifications that were received from
+     * Enterprises.PullNotificationSet to prevent subsequent calls from
+     * returning the same notifications.
      * @alias androidenterprise.enterprises.acknowledgeNotificationSet
      * @memberOf! androidenterprise(v1)
      *
@@ -215,7 +225,7 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    acknowledgeNotificationSet: function (params, options, callback) {
+    acknowledgeNotificationSet: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -225,35 +235,39 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/acknowledgeNotificationSet').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/acknowledgeNotificationSet')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.enterprises.completeSignup
-     *
-     * @desc Completes the signup flow, by specifying the Completion token and Enterprise token. This request must not be called multiple times for a given Enterprise Token.
-     *
-     * @alias androidenterprise.enterprises.completeSignup
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object=} params Parameters for request
-     * @param {string=} params.completionToken The Completion token initially returned by GenerateSignupUrl.
-     * @param {string=} params.enterpriseToken The Enterprise token appended to the Callback URL.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    completeSignup: function (params, options, callback) {
+    , /**
+       * androidenterprise.enterprises.completeSignup
+       * @desc Completes the signup flow, by specifying the Completion token and
+       * Enterprise token. This request must not be called multiple times for a
+       * given Enterprise Token.
+       * @alias androidenterprise.enterprises.completeSignup
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object=} params Parameters for request
+       * @param {string=} params.completionToken The Completion token initially returned by GenerateSignupUrl.
+       * @param {string=} params.enterpriseToken The Enterprise token appended to the Callback URL.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    completeSignup: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -263,35 +277,39 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/completeSignup').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl + '/androidenterprise/v1/enterprises/completeSignup')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.enterprises.createWebToken
-     *
-     * @desc Returns a unique token to access an embeddable UI. To generate a web UI, pass the generated token into the managed Google Play javascript API. Each token may only be used to start one UI session. See the javascript API documentation for further information.
-     *
-     * @alias androidenterprise.enterprises.createWebToken
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {androidenterprise(v1).AdministratorWebTokenSpec} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    createWebToken: function (params, options, callback) {
+    , /**
+       * androidenterprise.enterprises.createWebToken
+       * @desc Returns a unique token to access an embeddable UI. To generate a
+       * web UI, pass the generated token into the managed Google Play
+       * javascript API. Each token may only be used to start one UI session.
+       * See the javascript API documentation for further information.
+       * @alias androidenterprise.enterprises.createWebToken
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {androidenterprise(v1).AdministratorWebTokenSpec} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    createWebToken: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -301,34 +319,39 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/createWebToken').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/createWebToken')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.enterprises.delete
-     *
-     * @desc Deletes the binding between the EMM and enterprise. This is now deprecated. Use this method only to unenroll customers that were previously enrolled with the insert call, then enroll them again with the enroll call.
-     *
-     * @alias androidenterprise.enterprises.delete
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete: function (params, options, callback) {
+    , /**
+       * androidenterprise.enterprises.delete
+       * @desc Deletes the binding between the EMM and enterprise. This is now
+       * deprecated. Use this method only to unenroll customers that were
+       * previously enrolled with the insert call, then enroll them again with
+       * the enroll call.
+       * @alias androidenterprise.enterprises.delete
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    delete: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -338,35 +361,36 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.enterprises.enroll
-     *
-     * @desc Enrolls an enterprise with the calling EMM.
-     *
-     * @alias androidenterprise.enterprises.enroll
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.token The token provided by the enterprise to register the EMM.
-     * @param {androidenterprise(v1).Enterprise} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    enroll: function (params, options, callback) {
+    , /**
+       * androidenterprise.enterprises.enroll
+       * @desc Enrolls an enterprise with the calling EMM.
+       * @alias androidenterprise.enterprises.enroll
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.token The token provided by the enterprise to register the EMM.
+       * @param {androidenterprise(v1).Enterprise} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    enroll: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -376,34 +400,34 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/enroll').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/androidenterprise/v1/enterprises/enroll')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: ['token'],
         pathParams: [],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.enterprises.generateSignupUrl
-     *
-     * @desc Generates a sign-up URL.
-     *
-     * @alias androidenterprise.enterprises.generateSignupUrl
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object=} params Parameters for request
-     * @param {string=} params.callbackUrl The callback URL to which the Admin will be redirected after successfully creating an enterprise. Before redirecting there the system will add a single query parameter to this URL named "enterpriseToken" which will contain an opaque token to be used for the CompleteSignup request. Beware that this means that the URL will be parsed, the parameter added and then a new URL formatted, i.e. there may be some minor formatting changes and, more importantly, the URL must be well-formed so that it can be parsed.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    generateSignupUrl: function (params, options, callback) {
+    , /**
+       * androidenterprise.enterprises.generateSignupUrl
+       * @desc Generates a sign-up URL.
+       * @alias androidenterprise.enterprises.generateSignupUrl
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object=} params Parameters for request
+       * @param {string=} params.callbackUrl The callback URL to which the Admin will be redirected after successfully creating an enterprise. Before redirecting there the system will add a single query parameter to this URL named "enterpriseToken" which will contain an opaque token to be used for the CompleteSignup request. Beware that this means that the URL will be parsed, the parameter added and then a new URL formatted, i.e. there may be some minor formatting changes and, more importantly, the URL must be well-formed so that it can be parsed.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    generateSignupUrl: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -413,34 +437,34 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/signupUrl').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/androidenterprise/v1/enterprises/signupUrl')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.enterprises.get
-     *
-     * @desc Retrieves the name and domain of an enterprise.
-     *
-     * @alias androidenterprise.enterprises.get
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
+    , /**
+       * androidenterprise.enterprises.get
+       * @desc Retrieves the name and domain of an enterprise.
+       * @alias androidenterprise.enterprises.get
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -450,34 +474,35 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.enterprises.getAndroidDevicePolicyConfig
-     *
-     * @desc Returns the Android Device Policy config resource.
-     *
-     * @alias androidenterprise.enterprises.getAndroidDevicePolicyConfig
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getAndroidDevicePolicyConfig: function (params, options, callback) {
+    , /**
+       * androidenterprise.enterprises.getAndroidDevicePolicyConfig
+       * @desc Returns the Android Device Policy config resource.
+       * @alias androidenterprise.enterprises.getAndroidDevicePolicyConfig
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    getAndroidDevicePolicyConfig: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -487,35 +512,47 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/androidDevicePolicyConfig').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/androidDevicePolicyConfig')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.enterprises.getServiceAccount
-     *
-     * @desc Returns a service account and credentials. The service account can be bound to the enterprise by calling setAccount. The service account is unique to this enterprise and EMM, and will be deleted if the enterprise is unbound. The credentials contain private key data and are not stored server-side.  This method can only be called after calling Enterprises.Enroll or Enterprises.CompleteSignup, and before Enterprises.SetAccount; at other times it will return an error.  Subsequent calls after the first will generate a new, unique set of credentials, and invalidate the previously generated credentials.  Once the service account is bound to the enterprise, it can be managed using the serviceAccountKeys resource.
-     *
-     * @alias androidenterprise.enterprises.getServiceAccount
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string=} params.keyType The type of credential to return with the service account. Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getServiceAccount: function (params, options, callback) {
+    , /**
+       * androidenterprise.enterprises.getServiceAccount
+       * @desc Returns a service account and credentials. The service account
+       * can be bound to the enterprise by calling setAccount. The service
+       * account is unique to this enterprise and EMM, and will be deleted if
+       * the enterprise is unbound. The credentials contain private key data and
+       * are not stored server-side.  This method can only be called after
+       * calling Enterprises.Enroll or Enterprises.CompleteSignup, and before
+       * Enterprises.SetAccount; at other times it will return an error.
+       * Subsequent calls after the first will generate a new, unique set of
+       * credentials, and invalidate the previously generated credentials.  Once
+       * the service account is bound to the enterprise, it can be managed using
+       * the serviceAccountKeys resource.
+       * @alias androidenterprise.enterprises.getServiceAccount
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string=} params.keyType The type of credential to return with the service account. Required.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    getServiceAccount: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -525,34 +562,38 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccount').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccount')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.enterprises.getStoreLayout
-     *
-     * @desc Returns the store layout for the enterprise. If the store layout has not been set, returns "basic" as the store layout type and no homepage.
-     *
-     * @alias androidenterprise.enterprises.getStoreLayout
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getStoreLayout: function (params, options, callback) {
+    , /**
+       * androidenterprise.enterprises.getStoreLayout
+       * @desc Returns the store layout for the enterprise. If the store layout
+       * has not been set, returns "basic" as the store layout type and no
+       * homepage.
+       * @alias androidenterprise.enterprises.getStoreLayout
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    getStoreLayout: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -562,35 +603,38 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.enterprises.insert
-     *
-     * @desc Establishes the binding between the EMM and an enterprise. This is now deprecated; use enroll instead.
-     *
-     * @alias androidenterprise.enterprises.insert
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.token The token provided by the enterprise to register the EMM.
-     * @param {androidenterprise(v1).Enterprise} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    insert: function (params, options, callback) {
+    , /**
+       * androidenterprise.enterprises.insert
+       * @desc Establishes the binding between the EMM and an enterprise. This
+       * is now deprecated; use enroll instead.
+       * @alias androidenterprise.enterprises.insert
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.token The token provided by the enterprise to register the EMM.
+       * @param {androidenterprise(v1).Enterprise} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    insert: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -600,34 +644,38 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/androidenterprise/v1/enterprises')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: ['token'],
         pathParams: [],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.enterprises.list
-     *
-     * @desc Looks up an enterprise by domain name. This is only supported for enterprises created via the Google-initiated creation flow. Lookup of the id is not needed for enterprises created via the EMM-initiated flow since the EMM learns the enterprise ID in the callback specified in the Enterprises.generateSignupUrl call.
-     *
-     * @alias androidenterprise.enterprises.list
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.domain The exact primary domain name of the enterprise to look up.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
+    , /**
+       * androidenterprise.enterprises.list
+       * @desc Looks up an enterprise by domain name. This is only supported for
+       * enterprises created via the Google-initiated creation flow. Lookup of
+       * the id is not needed for enterprises created via the EMM-initiated flow
+       * since the EMM learns the enterprise ID in the callback specified in the
+       * Enterprises.generateSignupUrl call.
+       * @alias androidenterprise.enterprises.list
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.domain The exact primary domain name of the enterprise to look up.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -637,34 +685,48 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/androidenterprise/v1/enterprises')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['domain'],
         pathParams: [],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.enterprises.pullNotificationSet
-     *
-     * @desc Pulls and returns a notification set for the enterprises associated with the service account authenticated for the request. The notification set may be empty if no notification are pending. A notification set returned needs to be acknowledged within 20 seconds by calling Enterprises.AcknowledgeNotificationSet, unless the notification set is empty. Notifications that are not acknowledged within the 20 seconds will eventually be included again in the response to another PullNotificationSet request, and those that are never acknowledged will ultimately be deleted according to the Google Cloud Platform Pub/Sub system policy. Multiple requests might be performed concurrently to retrieve notifications, in which case the pending notifications (if any) will be split among each caller, if any are pending. If no notifications are present, an empty notification list is returned. Subsequent requests may return more notifications once they become available.
-     *
-     * @alias androidenterprise.enterprises.pullNotificationSet
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object=} params Parameters for request
-     * @param {string=} params.requestMode The request mode for pulling notifications. Specifying waitForNotifications will cause the request to block and wait until one or more notifications are present, or return an empty notification list if no notifications are present after some time. Speciying returnImmediately will cause the request to immediately return the pending notifications, or an empty list if no notifications are present. If omitted, defaults to waitForNotifications.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    pullNotificationSet: function (params, options, callback) {
+    , /**
+       * androidenterprise.enterprises.pullNotificationSet
+       * @desc Pulls and returns a notification set for the enterprises
+       * associated with the service account authenticated for the request. The
+       * notification set may be empty if no notification are pending. A
+       * notification set returned needs to be acknowledged within 20 seconds by
+       * calling Enterprises.AcknowledgeNotificationSet, unless the notification
+       * set is empty. Notifications that are not acknowledged within the 20
+       * seconds will eventually be included again in the response to another
+       * PullNotificationSet request, and those that are never acknowledged will
+       * ultimately be deleted according to the Google Cloud Platform Pub/Sub
+       * system policy. Multiple requests might be performed concurrently to
+       * retrieve notifications, in which case the pending notifications (if
+       * any) will be split among each caller, if any are pending. If no
+       * notifications are present, an empty notification list is returned.
+       * Subsequent requests may return more notifications once they become
+       * available.
+       * @alias androidenterprise.enterprises.pullNotificationSet
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object=} params Parameters for request
+       * @param {string=} params.requestMode The request mode for pulling notifications. Specifying waitForNotifications will cause the request to block and wait until one or more notifications are present, or return an empty notification list if no notifications are present after some time. Speciying returnImmediately will cause the request to immediately return the pending notifications, or an empty list if no notifications are present. If omitted, defaults to waitForNotifications.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    pullNotificationSet: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -674,216 +736,236 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/pullNotificationSet').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/androidenterprise/v1/enterprises/pullNotificationSet')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.enterprises.sendTestPushNotification
-     *
-     * @desc Sends a test notification to validate the EMM integration with the Google Cloud Pub/Sub service for this enterprise.
-     *
-     * @alias androidenterprise.enterprises.sendTestPushNotification
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    sendTestPushNotification: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/sendTestPushNotification').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId'],
-        pathParams: ['enterpriseId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.enterprises.setAccount
-     *
-     * @desc Sets the account that will be used to authenticate to the API as the enterprise.
-     *
-     * @alias androidenterprise.enterprises.setAccount
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {androidenterprise(v1).EnterpriseAccount} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    setAccount: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/account').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PUT'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId'],
-        pathParams: ['enterpriseId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.enterprises.setAndroidDevicePolicyConfig
-     *
-     * @desc Sets the Android Device Policy config resource. EMM may use this method to enable or disable Android Device Policy support for the specified enterprise. To learn more about managing devices and apps with Android Device Policy, see the Android Management API.
-     *
-     * @alias androidenterprise.enterprises.setAndroidDevicePolicyConfig
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {androidenterprise(v1).AndroidDevicePolicyConfig} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    setAndroidDevicePolicyConfig: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/androidDevicePolicyConfig').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PUT'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId'],
-        pathParams: ['enterpriseId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.enterprises.setStoreLayout
-     *
-     * @desc Sets the store layout for the enterprise. By default, storeLayoutType is set to "basic" and the basic store layout is enabled. The basic layout only contains apps approved by the admin, and that have been added to the available product set for a user (using the  setAvailableProductSet call). Apps on the page are sorted in order of their product ID value. If you create a custom store layout (by setting storeLayoutType = "custom" and setting a homepage), the basic store layout is disabled.
-     *
-     * @alias androidenterprise.enterprises.setStoreLayout
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {androidenterprise(v1).StoreLayout} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    setStoreLayout: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PUT'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId'],
-        pathParams: ['enterpriseId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.enterprises.unenroll
-     *
-     * @desc Unenrolls an enterprise from the calling EMM.
-     *
-     * @alias androidenterprise.enterprises.unenroll
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    unenroll: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/unenroll').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId'],
-        pathParams: ['enterpriseId'],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
+    , /**
+       * androidenterprise.enterprises.sendTestPushNotification
+       * @desc Sends a test notification to validate the EMM integration with
+       * the Google Cloud Pub/Sub service for this enterprise.
+       * @alias androidenterprise.enterprises.sendTestPushNotification
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    sendTestPushNotification: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/sendTestPushNotification')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: ['enterpriseId'],
+        pathParams: ['enterpriseId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * androidenterprise.enterprises.setAccount
+       * @desc Sets the account that will be used to authenticate to the API as
+       * the enterprise.
+       * @alias androidenterprise.enterprises.setAccount
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {androidenterprise(v1).EnterpriseAccount} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    setAccount: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/androidenterprise/v1/enterprises/{enterpriseId}/account')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
+        params: params,
+        requiredParams: ['enterpriseId'],
+        pathParams: ['enterpriseId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * androidenterprise.enterprises.setAndroidDevicePolicyConfig
+       * @desc Sets the Android Device Policy config resource. EMM may use this
+       * method to enable or disable Android Device Policy support for the
+       * specified enterprise. To learn more about managing devices and apps
+       * with Android Device Policy, see the Android Management API.
+       * @alias androidenterprise.enterprises.setAndroidDevicePolicyConfig
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {androidenterprise(v1).AndroidDevicePolicyConfig} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    setAndroidDevicePolicyConfig: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/androidDevicePolicyConfig')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
+        params: params,
+        requiredParams: ['enterpriseId'],
+        pathParams: ['enterpriseId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * androidenterprise.enterprises.setStoreLayout
+       * @desc Sets the store layout for the enterprise. By default,
+       * storeLayoutType is set to "basic" and the basic store layout is
+       * enabled. The basic layout only contains apps approved by the admin, and
+       * that have been added to the available product set for a user (using the
+       * setAvailableProductSet call). Apps on the page are sorted in order of
+       * their product ID value. If you create a custom store layout (by setting
+       * storeLayoutType = "custom" and setting a homepage), the basic store
+       * layout is disabled.
+       * @alias androidenterprise.enterprises.setStoreLayout
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {androidenterprise(v1).StoreLayout} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    setStoreLayout: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
+        params: params,
+        requiredParams: ['enterpriseId'],
+        pathParams: ['enterpriseId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * androidenterprise.enterprises.unenroll
+       * @desc Unenrolls an enterprise from the calling EMM.
+       * @alias androidenterprise.enterprises.unenroll
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    unenroll: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/androidenterprise/v1/enterprises/{enterpriseId}/unenroll')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: ['enterpriseId'],
+        pathParams: ['enterpriseId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
   };
-
   self.entitlements = {
-
     /**
      * androidenterprise.entitlements.delete
-     *
      * @desc Removes an entitlement to an app for a user.
-     *
      * @alias androidenterprise.entitlements.delete
      * @memberOf! androidenterprise(v1)
      *
@@ -895,7 +977,7 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, options, callback) {
+    delete: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -905,36 +987,38 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId', 'userId', 'entitlementId'],
         pathParams: ['enterpriseId', 'entitlementId', 'userId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.entitlements.get
-     *
-     * @desc Retrieves details of an entitlement.
-     *
-     * @alias androidenterprise.entitlements.get
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.entitlementId The ID of the entitlement (a product ID), e.g. "app:com.google.android.gm".
-     * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
+    , /**
+       * androidenterprise.entitlements.get
+       * @desc Retrieves details of an entitlement.
+       * @alias androidenterprise.entitlements.get
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.entitlementId The ID of the entitlement (a product ID), e.g. "app:com.google.android.gm".
+       * @param {string} params.userId The ID of the user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -944,35 +1028,38 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId', 'userId', 'entitlementId'],
         pathParams: ['enterpriseId', 'entitlementId', 'userId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.entitlements.list
-     *
-     * @desc Lists all entitlements for the specified user. Only the ID is set.
-     *
-     * @alias androidenterprise.entitlements.list
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
+    , /**
+       * androidenterprise.entitlements.list
+       * @desc Lists all entitlements for the specified user. Only the ID is
+       * set.
+       * @alias androidenterprise.entitlements.list
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.userId The ID of the user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -982,110 +1069,116 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.entitlements.patch
-     *
-     * @desc Adds or updates an entitlement to an app for a user. This method supports patch semantics.
-     *
-     * @alias androidenterprise.entitlements.patch
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.entitlementId The ID of the entitlement (a product ID), e.g. "app:com.google.android.gm".
-     * @param {boolean=} params.install Set to true to also install the product on all the user's devices where possible. Failure to install on one or more devices will not prevent this operation from returning successfully, as long as the entitlement was successfully assigned to the user.
-     * @param {string} params.userId The ID of the user.
-     * @param {androidenterprise(v1).Entitlement} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PATCH'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId', 'userId', 'entitlementId'],
-        pathParams: ['enterpriseId', 'entitlementId', 'userId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.entitlements.update
-     *
-     * @desc Adds or updates an entitlement to an app for a user.
-     *
-     * @alias androidenterprise.entitlements.update
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.entitlementId The ID of the entitlement (a product ID), e.g. "app:com.google.android.gm".
-     * @param {boolean=} params.install Set to true to also install the product on all the user's devices where possible. Failure to install on one or more devices will not prevent this operation from returning successfully, as long as the entitlement was successfully assigned to the user.
-     * @param {string} params.userId The ID of the user.
-     * @param {androidenterprise(v1).Entitlement} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    update: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PUT'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId', 'userId', 'entitlementId'],
-        pathParams: ['enterpriseId', 'entitlementId', 'userId'],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
+    , /**
+       * androidenterprise.entitlements.patch
+       * @desc Adds or updates an entitlement to an app for a user. This method
+       * supports patch semantics.
+       * @alias androidenterprise.entitlements.patch
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.entitlementId The ID of the entitlement (a product ID), e.g. "app:com.google.android.gm".
+       * @param {boolean=} params.install Set to true to also install the product on all the user's devices where possible. Failure to install on one or more devices will not prevent this operation from returning successfully, as long as the entitlement was successfully assigned to the user.
+       * @param {string} params.userId The ID of the user.
+       * @param {androidenterprise(v1).Entitlement} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    patch: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params: params,
+        requiredParams: ['enterpriseId', 'userId', 'entitlementId'],
+        pathParams: ['enterpriseId', 'entitlementId', 'userId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * androidenterprise.entitlements.update
+       * @desc Adds or updates an entitlement to an app for a user.
+       * @alias androidenterprise.entitlements.update
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.entitlementId The ID of the entitlement (a product ID), e.g. "app:com.google.android.gm".
+       * @param {boolean=} params.install Set to true to also install the product on all the user's devices where possible. Failure to install on one or more devices will not prevent this operation from returning successfully, as long as the entitlement was successfully assigned to the user.
+       * @param {string} params.userId The ID of the user.
+       * @param {androidenterprise(v1).Entitlement} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    update: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
+        params: params,
+        requiredParams: ['enterpriseId', 'userId', 'entitlementId'],
+        pathParams: ['enterpriseId', 'entitlementId', 'userId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
   };
-
   self.grouplicenses = {
-
     /**
      * androidenterprise.grouplicenses.get
-     *
      * @desc Retrieves details of an enterprise's group license for a product.
-     *
      * @alias androidenterprise.grouplicenses.get
      * @memberOf! androidenterprise(v1)
      *
@@ -1096,7 +1189,7 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, options, callback) {
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1106,34 +1199,37 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/groupLicenses/{groupLicenseId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/groupLicenses/{groupLicenseId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId', 'groupLicenseId'],
         pathParams: ['enterpriseId', 'groupLicenseId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.grouplicenses.list
-     *
-     * @desc Retrieves IDs of all products for which the enterprise has a group license.
-     *
-     * @alias androidenterprise.grouplicenses.list
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
+    , /**
+       * androidenterprise.grouplicenses.list
+       * @desc Retrieves IDs of all products for which the enterprise has a
+       * group license.
+       * @alias androidenterprise.grouplicenses.list
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1143,28 +1239,30 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/groupLicenses').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/groupLicenses')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
-
   self.grouplicenseusers = {
-
     /**
      * androidenterprise.grouplicenseusers.list
-     *
-     * @desc Retrieves the IDs of the users who have been granted entitlements under the license.
-     *
+     * @desc Retrieves the IDs of the users who have been granted entitlements
+     * under the license.
      * @alias androidenterprise.grouplicenseusers.list
      * @memberOf! androidenterprise(v1)
      *
@@ -1175,7 +1273,7 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, options, callback) {
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1185,28 +1283,31 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/groupLicenses/{groupLicenseId}/users').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/groupLicenses/{groupLicenseId}/users')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId', 'groupLicenseId'],
         pathParams: ['enterpriseId', 'groupLicenseId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
-
   self.installs = {
-
     /**
      * androidenterprise.installs.delete
-     *
-     * @desc Requests to remove an app from a device. A call to get or list will still show the app as installed on the device until it is actually removed.
-     *
+     * @desc Requests to remove an app from a device. A call to get or list will
+     * still show the app as installed on the device until it is actually
+     * removed.
      * @alias androidenterprise.installs.delete
      * @memberOf! androidenterprise(v1)
      *
@@ -1219,7 +1320,7 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, options, callback) {
+    delete: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1229,37 +1330,39 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId', 'installId'],
         pathParams: ['deviceId', 'enterpriseId', 'installId', 'userId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.installs.get
-     *
-     * @desc Retrieves details of an installation of an app on a device.
-     *
-     * @alias androidenterprise.installs.get
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.deviceId The Android ID of the device.
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.installId The ID of the product represented by the install, e.g. "app:com.google.android.gm".
-     * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
+    , /**
+       * androidenterprise.installs.get
+       * @desc Retrieves details of an installation of an app on a device.
+       * @alias androidenterprise.installs.get
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.deviceId The Android ID of the device.
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.installId The ID of the product represented by the install, e.g. "app:com.google.android.gm".
+       * @param {string} params.userId The ID of the user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1269,36 +1372,39 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId', 'installId'],
         pathParams: ['deviceId', 'enterpriseId', 'installId', 'userId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.installs.list
-     *
-     * @desc Retrieves the details of all apps installed on the specified device.
-     *
-     * @alias androidenterprise.installs.list
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.deviceId The Android ID of the device.
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
+    , /**
+       * androidenterprise.installs.list
+       * @desc Retrieves the details of all apps installed on the specified
+       * device.
+       * @alias androidenterprise.installs.list
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.deviceId The Android ID of the device.
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.userId The ID of the user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1308,110 +1414,120 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.installs.patch
-     *
-     * @desc Requests to install the latest version of an app to a device. If the app is already installed, then it is updated to the latest version if necessary. This method supports patch semantics.
-     *
-     * @alias androidenterprise.installs.patch
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.deviceId The Android ID of the device.
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.installId The ID of the product represented by the install, e.g. "app:com.google.android.gm".
-     * @param {string} params.userId The ID of the user.
-     * @param {androidenterprise(v1).Install} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PATCH'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId', 'userId', 'deviceId', 'installId'],
-        pathParams: ['deviceId', 'enterpriseId', 'installId', 'userId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.installs.update
-     *
-     * @desc Requests to install the latest version of an app to a device. If the app is already installed, then it is updated to the latest version if necessary.
-     *
-     * @alias androidenterprise.installs.update
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.deviceId The Android ID of the device.
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.installId The ID of the product represented by the install, e.g. "app:com.google.android.gm".
-     * @param {string} params.userId The ID of the user.
-     * @param {androidenterprise(v1).Install} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    update: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PUT'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId', 'userId', 'deviceId', 'installId'],
-        pathParams: ['deviceId', 'enterpriseId', 'installId', 'userId'],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
+    , /**
+       * androidenterprise.installs.patch
+       * @desc Requests to install the latest version of an app to a device. If
+       * the app is already installed, then it is updated to the latest version
+       * if necessary. This method supports patch semantics.
+       * @alias androidenterprise.installs.patch
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.deviceId The Android ID of the device.
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.installId The ID of the product represented by the install, e.g. "app:com.google.android.gm".
+       * @param {string} params.userId The ID of the user.
+       * @param {androidenterprise(v1).Install} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    patch: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params: params,
+        requiredParams: ['enterpriseId', 'userId', 'deviceId', 'installId'],
+        pathParams: ['deviceId', 'enterpriseId', 'installId', 'userId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * androidenterprise.installs.update
+       * @desc Requests to install the latest version of an app to a device. If
+       * the app is already installed, then it is updated to the latest version
+       * if necessary.
+       * @alias androidenterprise.installs.update
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.deviceId The Android ID of the device.
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.installId The ID of the product represented by the install, e.g. "app:com.google.android.gm".
+       * @param {string} params.userId The ID of the user.
+       * @param {androidenterprise(v1).Install} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    update: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
+        params: params,
+        requiredParams: ['enterpriseId', 'userId', 'deviceId', 'installId'],
+        pathParams: ['deviceId', 'enterpriseId', 'installId', 'userId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
   };
-
   self.managedconfigurationsfordevice = {
-
     /**
      * androidenterprise.managedconfigurationsfordevice.delete
-     *
-     * @desc Removes a per-device managed configuration for an app for the specified device.
-     *
+     * @desc Removes a per-device managed configuration for an app for the
+     * specified device.
      * @alias androidenterprise.managedconfigurationsfordevice.delete
      * @memberOf! androidenterprise(v1)
      *
@@ -1424,7 +1540,7 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, options, callback) {
+    delete: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1434,37 +1550,45 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
         params: params,
-        requiredParams: ['enterpriseId', 'userId', 'deviceId', 'managedConfigurationForDeviceId'],
-        pathParams: ['deviceId', 'enterpriseId', 'managedConfigurationForDeviceId', 'userId'],
+        requiredParams: [
+          'enterpriseId', 'userId', 'deviceId',
+          'managedConfigurationForDeviceId'
+        ],
+        pathParams: [
+          'deviceId', 'enterpriseId', 'managedConfigurationForDeviceId',
+          'userId'
+        ],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.managedconfigurationsfordevice.get
-     *
-     * @desc Retrieves details of a per-device managed configuration.
-     *
-     * @alias androidenterprise.managedconfigurationsfordevice.get
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.deviceId The Android ID of the device.
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.managedConfigurationForDeviceId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
-     * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
+    , /**
+       * androidenterprise.managedconfigurationsfordevice.get
+       * @desc Retrieves details of a per-device managed configuration.
+       * @alias androidenterprise.managedconfigurationsfordevice.get
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.deviceId The Android ID of the device.
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.managedConfigurationForDeviceId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
+       * @param {string} params.userId The ID of the user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1474,36 +1598,45 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
-        requiredParams: ['enterpriseId', 'userId', 'deviceId', 'managedConfigurationForDeviceId'],
-        pathParams: ['deviceId', 'enterpriseId', 'managedConfigurationForDeviceId', 'userId'],
+        requiredParams: [
+          'enterpriseId', 'userId', 'deviceId',
+          'managedConfigurationForDeviceId'
+        ],
+        pathParams: [
+          'deviceId', 'enterpriseId', 'managedConfigurationForDeviceId',
+          'userId'
+        ],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.managedconfigurationsfordevice.list
-     *
-     * @desc Lists all the per-device managed configurations for the specified device. Only the ID is set.
-     *
-     * @alias androidenterprise.managedconfigurationsfordevice.list
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.deviceId The Android ID of the device.
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
+    , /**
+       * androidenterprise.managedconfigurationsfordevice.list
+       * @desc Lists all the per-device managed configurations for the specified
+       * device. Only the ID is set.
+       * @alias androidenterprise.managedconfigurationsfordevice.list
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.deviceId The Android ID of the device.
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.userId The ID of the user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1513,110 +1646,130 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.managedconfigurationsfordevice.patch
-     *
-     * @desc Adds or updates a per-device managed configuration for an app for the specified device. This method supports patch semantics.
-     *
-     * @alias androidenterprise.managedconfigurationsfordevice.patch
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.deviceId The Android ID of the device.
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.managedConfigurationForDeviceId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
-     * @param {string} params.userId The ID of the user.
-     * @param {androidenterprise(v1).ManagedConfiguration} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PATCH'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId', 'userId', 'deviceId', 'managedConfigurationForDeviceId'],
-        pathParams: ['deviceId', 'enterpriseId', 'managedConfigurationForDeviceId', 'userId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.managedconfigurationsfordevice.update
-     *
-     * @desc Adds or updates a per-device managed configuration for an app for the specified device.
-     *
-     * @alias androidenterprise.managedconfigurationsfordevice.update
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.deviceId The Android ID of the device.
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.managedConfigurationForDeviceId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
-     * @param {string} params.userId The ID of the user.
-     * @param {androidenterprise(v1).ManagedConfiguration} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    update: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PUT'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId', 'userId', 'deviceId', 'managedConfigurationForDeviceId'],
-        pathParams: ['deviceId', 'enterpriseId', 'managedConfigurationForDeviceId', 'userId'],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
+    , /**
+       * androidenterprise.managedconfigurationsfordevice.patch
+       * @desc Adds or updates a per-device managed configuration for an app for
+       * the specified device. This method supports patch semantics.
+       * @alias androidenterprise.managedconfigurationsfordevice.patch
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.deviceId The Android ID of the device.
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.managedConfigurationForDeviceId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
+       * @param {string} params.userId The ID of the user.
+       * @param {androidenterprise(v1).ManagedConfiguration} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    patch: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params: params,
+        requiredParams: [
+          'enterpriseId', 'userId', 'deviceId',
+          'managedConfigurationForDeviceId'
+        ],
+        pathParams: [
+          'deviceId', 'enterpriseId', 'managedConfigurationForDeviceId',
+          'userId'
+        ],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * androidenterprise.managedconfigurationsfordevice.update
+       * @desc Adds or updates a per-device managed configuration for an app for
+       * the specified device.
+       * @alias androidenterprise.managedconfigurationsfordevice.update
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.deviceId The Android ID of the device.
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.managedConfigurationForDeviceId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
+       * @param {string} params.userId The ID of the user.
+       * @param {androidenterprise(v1).ManagedConfiguration} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    update: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
+        params: params,
+        requiredParams: [
+          'enterpriseId', 'userId', 'deviceId',
+          'managedConfigurationForDeviceId'
+        ],
+        pathParams: [
+          'deviceId', 'enterpriseId', 'managedConfigurationForDeviceId',
+          'userId'
+        ],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
   };
-
   self.managedconfigurationsforuser = {
-
     /**
      * androidenterprise.managedconfigurationsforuser.delete
-     *
-     * @desc Removes a per-user managed configuration for an app for the specified user.
-     *
+     * @desc Removes a per-user managed configuration for an app for the
+     * specified user.
      * @alias androidenterprise.managedconfigurationsforuser.delete
      * @memberOf! androidenterprise(v1)
      *
@@ -1628,7 +1781,7 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, options, callback) {
+    delete: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1638,36 +1791,40 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
         params: params,
-        requiredParams: ['enterpriseId', 'userId', 'managedConfigurationForUserId'],
+        requiredParams:
+            ['enterpriseId', 'userId', 'managedConfigurationForUserId'],
         pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.managedconfigurationsforuser.get
-     *
-     * @desc Retrieves details of a per-user managed configuration for an app for the specified user.
-     *
-     * @alias androidenterprise.managedconfigurationsforuser.get
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.managedConfigurationForUserId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
-     * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
+    , /**
+       * androidenterprise.managedconfigurationsforuser.get
+       * @desc Retrieves details of a per-user managed configuration for an app
+       * for the specified user.
+       * @alias androidenterprise.managedconfigurationsforuser.get
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.managedConfigurationForUserId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
+       * @param {string} params.userId The ID of the user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1677,35 +1834,39 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
-        requiredParams: ['enterpriseId', 'userId', 'managedConfigurationForUserId'],
+        requiredParams:
+            ['enterpriseId', 'userId', 'managedConfigurationForUserId'],
         pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.managedconfigurationsforuser.list
-     *
-     * @desc Lists all the per-user managed configurations for the specified user. Only the ID is set.
-     *
-     * @alias androidenterprise.managedconfigurationsforuser.list
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
+    , /**
+       * androidenterprise.managedconfigurationsforuser.list
+       * @desc Lists all the per-user managed configurations for the specified
+       * user. Only the ID is set.
+       * @alias androidenterprise.managedconfigurationsforuser.list
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.userId The ID of the user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1715,108 +1876,126 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.managedconfigurationsforuser.patch
-     *
-     * @desc Adds or updates the managed configuration settings for an app for the specified user. If you support the Managed configurations iframe, you can apply managed configurations to a user by specifying an mcmId and its associated configuration variables (if any) in the request. Alternatively, all EMMs can apply managed configurations by passing a list of managed properties. This method supports patch semantics.
-     *
-     * @alias androidenterprise.managedconfigurationsforuser.patch
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.managedConfigurationForUserId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
-     * @param {string} params.userId The ID of the user.
-     * @param {androidenterprise(v1).ManagedConfiguration} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PATCH'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId', 'userId', 'managedConfigurationForUserId'],
-        pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.managedconfigurationsforuser.update
-     *
-     * @desc Adds or updates the managed configuration settings for an app for the specified user. If you support the Managed configurations iframe, you can apply managed configurations to a user by specifying an mcmId and its associated configuration variables (if any) in the request. Alternatively, all EMMs can apply managed configurations by passing a list of managed properties.
-     *
-     * @alias androidenterprise.managedconfigurationsforuser.update
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.managedConfigurationForUserId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
-     * @param {string} params.userId The ID of the user.
-     * @param {androidenterprise(v1).ManagedConfiguration} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    update: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PUT'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId', 'userId', 'managedConfigurationForUserId'],
-        pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
+    , /**
+       * androidenterprise.managedconfigurationsforuser.patch
+       * @desc Adds or updates the managed configuration settings for an app for
+       * the specified user. If you support the Managed configurations iframe,
+       * you can apply managed configurations to a user by specifying an mcmId
+       * and its associated configuration variables (if any) in the request.
+       * Alternatively, all EMMs can apply managed configurations by passing a
+       * list of managed properties. This method supports patch semantics.
+       * @alias androidenterprise.managedconfigurationsforuser.patch
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.managedConfigurationForUserId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
+       * @param {string} params.userId The ID of the user.
+       * @param {androidenterprise(v1).ManagedConfiguration} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    patch: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params: params,
+        requiredParams:
+            ['enterpriseId', 'userId', 'managedConfigurationForUserId'],
+        pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * androidenterprise.managedconfigurationsforuser.update
+       * @desc Adds or updates the managed configuration settings for an app for
+       * the specified user. If you support the Managed configurations iframe,
+       * you can apply managed configurations to a user by specifying an mcmId
+       * and its associated configuration variables (if any) in the request.
+       * Alternatively, all EMMs can apply managed configurations by passing a
+       * list of managed properties.
+       * @alias androidenterprise.managedconfigurationsforuser.update
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.managedConfigurationForUserId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
+       * @param {string} params.userId The ID of the user.
+       * @param {androidenterprise(v1).ManagedConfiguration} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    update: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
+        params: params,
+        requiredParams:
+            ['enterpriseId', 'userId', 'managedConfigurationForUserId'],
+        pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
   };
-
   self.managedconfigurationssettings = {
-
     /**
      * androidenterprise.managedconfigurationssettings.list
-     *
-     * @desc Lists all the managed configurations settings for the specified app. Only the ID and the name is set.
-     *
+     * @desc Lists all the managed configurations settings for the specified
+     * app. Only the ID and the name is set.
      * @alias androidenterprise.managedconfigurationssettings.list
      * @memberOf! androidenterprise(v1)
      *
@@ -1827,7 +2006,7 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, options, callback) {
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1837,28 +2016,30 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/managedConfigurationsSettings').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/managedConfigurationsSettings')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
-
   self.permissions = {
-
     /**
      * androidenterprise.permissions.get
-     *
-     * @desc Retrieves details of an Android app permission for display to an enterprise admin.
-     *
+     * @desc Retrieves details of an Android app permission for display to an
+     * enterprise admin.
      * @alias androidenterprise.permissions.get
      * @memberOf! androidenterprise(v1)
      *
@@ -1869,7 +2050,7 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, options, callback) {
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1879,28 +2060,32 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/permissions/{permissionId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl + '/androidenterprise/v1/permissions/{permissionId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['permissionId'],
         pathParams: ['permissionId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
-
   self.products = {
-
     /**
      * androidenterprise.products.approve
-     *
-     * @desc Approves the specified product and the relevant app permissions, if any. The maximum number of products that you can approve per enterprise customer is 1,000.  To learn how to use managed Google Play to design and create a store layout to display approved products to your users, see Store Layout Design.
-     *
+     * @desc Approves the specified product and the relevant app permissions, if
+     * any. The maximum number of products that you can approve per enterprise
+     * customer is 1,000.  To learn how to use managed Google Play to design and
+     * create a store layout to display approved products to your users, see
+     * Store Layout Design.
      * @alias androidenterprise.products.approve
      * @memberOf! androidenterprise(v1)
      *
@@ -1912,7 +2097,7 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    approve: function (params, options, callback) {
+    approve: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1922,36 +2107,46 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/approve').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/approve')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.products.generateApprovalUrl
-     *
-     * @desc Generates a URL that can be rendered in an iframe to display the permissions (if any) of a product. An enterprise admin must view these permissions and accept them on behalf of their organization in order to approve that product.  Admins should accept the displayed permissions by interacting with a separate UI element in the EMM console, which in turn should trigger the use of this URL as the approvalUrlInfo.approvalUrl property in a Products.approve call to approve the product. This URL can only be used to display permissions for up to 1 day.
-     *
-     * @alias androidenterprise.products.generateApprovalUrl
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string=} params.languageCode The BCP 47 language code used for permission names and descriptions in the returned iframe, for instance "en-US".
-     * @param {string} params.productId The ID of the product.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    generateApprovalUrl: function (params, options, callback) {
+    , /**
+       * androidenterprise.products.generateApprovalUrl
+       * @desc Generates a URL that can be rendered in an iframe to display the
+       * permissions (if any) of a product. An enterprise admin must view these
+       * permissions and accept them on behalf of their organization in order to
+       * approve that product.  Admins should accept the displayed permissions
+       * by interacting with a separate UI element in the EMM console, which in
+       * turn should trigger the use of this URL as the
+       * approvalUrlInfo.approvalUrl property in a Products.approve call to
+       * approve the product. This URL can only be used to display permissions
+       * for up to 1 day.
+       * @alias androidenterprise.products.generateApprovalUrl
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string=} params.languageCode The BCP 47 language code used for permission names and descriptions in the returned iframe, for instance "en-US".
+       * @param {string} params.productId The ID of the product.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    generateApprovalUrl: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1961,36 +2156,39 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/generateApprovalUrl').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/generateApprovalUrl')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.products.get
-     *
-     * @desc Retrieves details of a product for display to an enterprise admin.
-     *
-     * @alias androidenterprise.products.get
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string=} params.language The BCP47 tag for the user's preferred language (e.g. "en-US", "de").
-     * @param {string} params.productId The ID of the product, e.g. "app:com.google.android.gm".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
+    , /**
+       * androidenterprise.products.get
+       * @desc Retrieves details of a product for display to an enterprise
+       * admin.
+       * @alias androidenterprise.products.get
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string=} params.language The BCP47 tag for the user's preferred language (e.g. "en-US", "de").
+       * @param {string} params.productId The ID of the product, e.g. "app:com.google.android.gm".
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2000,36 +2198,43 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.products.getAppRestrictionsSchema
-     *
-     * @desc Retrieves the schema that defines the configurable properties for this product. All products have a schema, but this schema may be empty if no managed configurations have been defined. This schema can be used to populate a UI that allows an admin to configure the product. To apply a managed configuration based on the schema obtained using this API, see Managed Configurations through Play.
-     *
-     * @alias androidenterprise.products.getAppRestrictionsSchema
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string=} params.language The BCP47 tag for the user's preferred language (e.g. "en-US", "de").
-     * @param {string} params.productId The ID of the product.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getAppRestrictionsSchema: function (params, options, callback) {
+    , /**
+       * androidenterprise.products.getAppRestrictionsSchema
+       * @desc Retrieves the schema that defines the configurable properties for
+       * this product. All products have a schema, but this schema may be empty
+       * if no managed configurations have been defined. This schema can be used
+       * to populate a UI that allows an admin to configure the product. To
+       * apply a managed configuration based on the schema obtained using this
+       * API, see Managed Configurations through Play.
+       * @alias androidenterprise.products.getAppRestrictionsSchema
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string=} params.language The BCP47 tag for the user's preferred language (e.g. "en-US", "de").
+       * @param {string} params.productId The ID of the product.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    getAppRestrictionsSchema: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2039,35 +2244,37 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/appRestrictionsSchema').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/appRestrictionsSchema')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.products.getPermissions
-     *
-     * @desc Retrieves the Android app permissions required by this app.
-     *
-     * @alias androidenterprise.products.getPermissions
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.productId The ID of the product.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getPermissions: function (params, options, callback) {
+    , /**
+       * androidenterprise.products.getPermissions
+       * @desc Retrieves the Android app permissions required by this app.
+       * @alias androidenterprise.products.getPermissions
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.productId The ID of the product.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    getPermissions: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2077,39 +2284,42 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/permissions').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/permissions')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.products.list
-     *
-     * @desc Finds approved products that match a query, or all approved products if there is no query.
-     *
-     * @alias androidenterprise.products.list
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.approved Specifies whether to search among all products (false) or among only products that have been approved (true). Only "true" is supported, and should be specified.
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string=} params.language The BCP47 tag for the user's preferred language (e.g. "en-US", "de"). Results are returned in the language best matching the preferred language.
-     * @param {integer=} params.maxResults Specifies the maximum number of products that can be returned per request. If not specified, uses a default value of 100, which is also the maximum retrievable within a single response.
-     * @param {string=} params.query The search query as typed in the Google Play store search box. If omitted, all approved apps will be returned (using the pagination parameters), including apps that are not available in the store (e.g. unpublished apps).
-     * @param {string=} params.token A pagination token is contained in a request''s response when there are more products. The token can be used in a subsequent request to obtain more products, and so forth. This parameter cannot be used in the initial request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
+    , /**
+       * androidenterprise.products.list
+       * @desc Finds approved products that match a query, or all approved
+       * products if there is no query.
+       * @alias androidenterprise.products.list
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {boolean=} params.approved Specifies whether to search among all products (false) or among only products that have been approved (true). Only "true" is supported, and should be specified.
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string=} params.language The BCP47 tag for the user's preferred language (e.g. "en-US", "de"). Results are returned in the language best matching the preferred language.
+       * @param {integer=} params.maxResults Specifies the maximum number of products that can be returned per request. If not specified, uses a default value of 100, which is also the maximum retrievable within a single response.
+       * @param {string=} params.query The search query as typed in the Google Play store search box. If omitted, all approved apps will be returned (using the pagination parameters), including apps that are not available in the store (e.g. unpublished apps).
+       * @param {string=} params.token A pagination token is contained in a request''s response when there are more products. The token can be used in a subsequent request to obtain more products, and so forth. This parameter cannot be used in the initial request.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2119,35 +2329,37 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/products').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/androidenterprise/v1/enterprises/{enterpriseId}/products')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.products.unapprove
-     *
-     * @desc Unapproves the specified product (and the relevant app permissions, if any)
-     *
-     * @alias androidenterprise.products.unapprove
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.productId The ID of the product.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    unapprove: function (params, options, callback) {
+    , /**
+       * androidenterprise.products.unapprove
+       * @desc Unapproves the specified product (and the relevant app
+       * permissions, if any)
+       * @alias androidenterprise.products.unapprove
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.productId The ID of the product.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    unapprove: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2157,28 +2369,33 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/unapprove').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/unapprove')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
-
   self.serviceaccountkeys = {
-
     /**
      * androidenterprise.serviceaccountkeys.delete
-     *
-     * @desc Removes and invalidates the specified credentials for the service account associated with this enterprise. The calling service account must have been retrieved by calling Enterprises.GetServiceAccount and must have been set as the enterprise service account by calling Enterprises.SetAccount.
-     *
+     * @desc Removes and invalidates the specified credentials for the service
+     * account associated with this enterprise. The calling service account must
+     * have been retrieved by calling Enterprises.GetServiceAccount and must
+     * have been set as the enterprise service account by calling
+     * Enterprises.SetAccount.
      * @alias androidenterprise.serviceaccountkeys.delete
      * @memberOf! androidenterprise(v1)
      *
@@ -2189,7 +2406,7 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, options, callback) {
+    delete: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2199,103 +2416,116 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccountKeys/{keyId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccountKeys/{keyId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId', 'keyId'],
         pathParams: ['enterpriseId', 'keyId'],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.serviceaccountkeys.insert
-     *
-     * @desc Generates new credentials for the service account associated with this enterprise. The calling service account must have been retrieved by calling Enterprises.GetServiceAccount and must have been set as the enterprise service account by calling Enterprises.SetAccount.  Only the type of the key should be populated in the resource to be inserted.
-     *
-     * @alias androidenterprise.serviceaccountkeys.insert
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {androidenterprise(v1).ServiceAccountKey} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    insert: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccountKeys').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId'],
-        pathParams: ['enterpriseId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.serviceaccountkeys.list
-     *
-     * @desc Lists all active credentials for the service account associated with this enterprise. Only the ID and key type are returned. The calling service account must have been retrieved by calling Enterprises.GetServiceAccount and must have been set as the enterprise service account by calling Enterprises.SetAccount.
-     *
-     * @alias androidenterprise.serviceaccountkeys.list
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccountKeys').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId'],
-        pathParams: ['enterpriseId'],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
+    , /**
+       * androidenterprise.serviceaccountkeys.insert
+       * @desc Generates new credentials for the service account associated with
+       * this enterprise. The calling service account must have been retrieved
+       * by calling Enterprises.GetServiceAccount and must have been set as the
+       * enterprise service account by calling Enterprises.SetAccount.  Only the
+       * type of the key should be populated in the resource to be inserted.
+       * @alias androidenterprise.serviceaccountkeys.insert
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {androidenterprise(v1).ServiceAccountKey} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    insert: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccountKeys')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: ['enterpriseId'],
+        pathParams: ['enterpriseId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * androidenterprise.serviceaccountkeys.list
+       * @desc Lists all active credentials for the service account associated
+       * with this enterprise. Only the ID and key type are returned. The
+       * calling service account must have been retrieved by calling
+       * Enterprises.GetServiceAccount and must have been set as the enterprise
+       * service account by calling Enterprises.SetAccount.
+       * @alias androidenterprise.serviceaccountkeys.list
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccountKeys')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['enterpriseId'],
+        pathParams: ['enterpriseId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
   };
-
   self.storelayoutclusters = {
-
     /**
      * androidenterprise.storelayoutclusters.delete
-     *
      * @desc Deletes a cluster.
-     *
      * @alias androidenterprise.storelayoutclusters.delete
      * @memberOf! androidenterprise(v1)
      *
@@ -2307,7 +2537,7 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, options, callback) {
+    delete: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2317,224 +2547,235 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId', 'pageId', 'clusterId'],
         pathParams: ['clusterId', 'enterpriseId', 'pageId'],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.storelayoutclusters.get
-     *
-     * @desc Retrieves details of a cluster.
-     *
-     * @alias androidenterprise.storelayoutclusters.get
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.clusterId The ID of the cluster.
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.pageId The ID of the page.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId', 'pageId', 'clusterId'],
-        pathParams: ['clusterId', 'enterpriseId', 'pageId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.storelayoutclusters.insert
-     *
-     * @desc Inserts a new cluster in a page.
-     *
-     * @alias androidenterprise.storelayoutclusters.insert
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.pageId The ID of the page.
-     * @param {androidenterprise(v1).StoreCluster} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    insert: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId', 'pageId'],
-        pathParams: ['enterpriseId', 'pageId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.storelayoutclusters.list
-     *
-     * @desc Retrieves the details of all clusters on the specified page.
-     *
-     * @alias androidenterprise.storelayoutclusters.list
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.pageId The ID of the page.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId', 'pageId'],
-        pathParams: ['enterpriseId', 'pageId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.storelayoutclusters.patch
-     *
-     * @desc Updates a cluster. This method supports patch semantics.
-     *
-     * @alias androidenterprise.storelayoutclusters.patch
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.clusterId The ID of the cluster.
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.pageId The ID of the page.
-     * @param {androidenterprise(v1).StoreCluster} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PATCH'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId', 'pageId', 'clusterId'],
-        pathParams: ['clusterId', 'enterpriseId', 'pageId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.storelayoutclusters.update
-     *
-     * @desc Updates a cluster.
-     *
-     * @alias androidenterprise.storelayoutclusters.update
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.clusterId The ID of the cluster.
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.pageId The ID of the page.
-     * @param {androidenterprise(v1).StoreCluster} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    update: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PUT'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId', 'pageId', 'clusterId'],
-        pathParams: ['clusterId', 'enterpriseId', 'pageId'],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
+    , /**
+       * androidenterprise.storelayoutclusters.get
+       * @desc Retrieves details of a cluster.
+       * @alias androidenterprise.storelayoutclusters.get
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.clusterId The ID of the cluster.
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.pageId The ID of the page.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['enterpriseId', 'pageId', 'clusterId'],
+        pathParams: ['clusterId', 'enterpriseId', 'pageId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * androidenterprise.storelayoutclusters.insert
+       * @desc Inserts a new cluster in a page.
+       * @alias androidenterprise.storelayoutclusters.insert
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.pageId The ID of the page.
+       * @param {androidenterprise(v1).StoreCluster} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    insert: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: ['enterpriseId', 'pageId'],
+        pathParams: ['enterpriseId', 'pageId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * androidenterprise.storelayoutclusters.list
+       * @desc Retrieves the details of all clusters on the specified page.
+       * @alias androidenterprise.storelayoutclusters.list
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.pageId The ID of the page.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['enterpriseId', 'pageId'],
+        pathParams: ['enterpriseId', 'pageId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * androidenterprise.storelayoutclusters.patch
+       * @desc Updates a cluster. This method supports patch semantics.
+       * @alias androidenterprise.storelayoutclusters.patch
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.clusterId The ID of the cluster.
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.pageId The ID of the page.
+       * @param {androidenterprise(v1).StoreCluster} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    patch: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params: params,
+        requiredParams: ['enterpriseId', 'pageId', 'clusterId'],
+        pathParams: ['clusterId', 'enterpriseId', 'pageId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * androidenterprise.storelayoutclusters.update
+       * @desc Updates a cluster.
+       * @alias androidenterprise.storelayoutclusters.update
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.clusterId The ID of the cluster.
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.pageId The ID of the page.
+       * @param {androidenterprise(v1).StoreCluster} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    update: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
+        params: params,
+        requiredParams: ['enterpriseId', 'pageId', 'clusterId'],
+        pathParams: ['clusterId', 'enterpriseId', 'pageId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
   };
-
   self.storelayoutpages = {
-
     /**
      * androidenterprise.storelayoutpages.delete
-     *
      * @desc Deletes a store page.
-     *
      * @alias androidenterprise.storelayoutpages.delete
      * @memberOf! androidenterprise(v1)
      *
@@ -2545,7 +2786,7 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, options, callback) {
+    delete: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2555,219 +2796,231 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId', 'pageId'],
         pathParams: ['enterpriseId', 'pageId'],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.storelayoutpages.get
-     *
-     * @desc Retrieves details of a store page.
-     *
-     * @alias androidenterprise.storelayoutpages.get
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.pageId The ID of the page.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId', 'pageId'],
-        pathParams: ['enterpriseId', 'pageId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.storelayoutpages.insert
-     *
-     * @desc Inserts a new store page.
-     *
-     * @alias androidenterprise.storelayoutpages.insert
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {androidenterprise(v1).StorePage} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    insert: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId'],
-        pathParams: ['enterpriseId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.storelayoutpages.list
-     *
-     * @desc Retrieves the details of all pages in the store.
-     *
-     * @alias androidenterprise.storelayoutpages.list
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId'],
-        pathParams: ['enterpriseId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.storelayoutpages.patch
-     *
-     * @desc Updates the content of a store page. This method supports patch semantics.
-     *
-     * @alias androidenterprise.storelayoutpages.patch
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.pageId The ID of the page.
-     * @param {androidenterprise(v1).StorePage} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PATCH'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId', 'pageId'],
-        pathParams: ['enterpriseId', 'pageId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.storelayoutpages.update
-     *
-     * @desc Updates the content of a store page.
-     *
-     * @alias androidenterprise.storelayoutpages.update
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.pageId The ID of the page.
-     * @param {androidenterprise(v1).StorePage} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    update: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PUT'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId', 'pageId'],
-        pathParams: ['enterpriseId', 'pageId'],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
+    , /**
+       * androidenterprise.storelayoutpages.get
+       * @desc Retrieves details of a store page.
+       * @alias androidenterprise.storelayoutpages.get
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.pageId The ID of the page.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['enterpriseId', 'pageId'],
+        pathParams: ['enterpriseId', 'pageId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * androidenterprise.storelayoutpages.insert
+       * @desc Inserts a new store page.
+       * @alias androidenterprise.storelayoutpages.insert
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {androidenterprise(v1).StorePage} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    insert: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: ['enterpriseId'],
+        pathParams: ['enterpriseId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * androidenterprise.storelayoutpages.list
+       * @desc Retrieves the details of all pages in the store.
+       * @alias androidenterprise.storelayoutpages.list
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['enterpriseId'],
+        pathParams: ['enterpriseId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * androidenterprise.storelayoutpages.patch
+       * @desc Updates the content of a store page. This method supports patch
+       * semantics.
+       * @alias androidenterprise.storelayoutpages.patch
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.pageId The ID of the page.
+       * @param {androidenterprise(v1).StorePage} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    patch: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params: params,
+        requiredParams: ['enterpriseId', 'pageId'],
+        pathParams: ['enterpriseId', 'pageId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * androidenterprise.storelayoutpages.update
+       * @desc Updates the content of a store page.
+       * @alias androidenterprise.storelayoutpages.update
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.pageId The ID of the page.
+       * @param {androidenterprise(v1).StorePage} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    update: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
+        params: params,
+        requiredParams: ['enterpriseId', 'pageId'],
+        pathParams: ['enterpriseId', 'pageId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
   };
-
   self.users = {
-
     /**
      * androidenterprise.users.delete
-     *
      * @desc Deleted an EMM-managed user.
-     *
      * @alias androidenterprise.users.delete
      * @memberOf! androidenterprise(v1)
      *
@@ -2778,7 +3031,7 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, options, callback) {
+    delete: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2788,35 +3041,40 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.users.generateAuthenticationToken
-     *
-     * @desc Generates an authentication token which the device policy client can use to provision the given EMM-managed user account on a device. The generated token is single-use and expires after a few minutes.  This call only works with EMM-managed accounts.
-     *
-     * @alias androidenterprise.users.generateAuthenticationToken
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    generateAuthenticationToken: function (params, options, callback) {
+    , /**
+       * androidenterprise.users.generateAuthenticationToken
+       * @desc Generates an authentication token which the device policy client
+       * can use to provision the given EMM-managed user account on a device.
+       * The generated token is single-use and expires after a few minutes.
+       * This call only works with EMM-managed accounts.
+       * @alias androidenterprise.users.generateAuthenticationToken
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.userId The ID of the user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    generateAuthenticationToken: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2826,35 +3084,40 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/authenticationToken').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/authenticationToken')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.users.generateToken
-     *
-     * @desc Generates a token (activation code) to allow this user to configure their managed account in the Android Setup Wizard. Revokes any previously generated token.  This call only works with Google managed accounts.
-     *
-     * @alias androidenterprise.users.generateToken
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    generateToken: function (params, options, callback) {
+    , /**
+       * androidenterprise.users.generateToken
+       * @desc Generates a token (activation code) to allow this user to
+       * configure their managed account in the Android Setup Wizard. Revokes
+       * any previously generated token.  This call only works with Google
+       * managed accounts.
+       * @alias androidenterprise.users.generateToken
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.userId The ID of the user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    generateToken: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2864,35 +3127,37 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/token').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/token')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.users.get
-     *
-     * @desc Retrieves a user's details.
-     *
-     * @alias androidenterprise.users.get
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
+    , /**
+       * androidenterprise.users.get
+       * @desc Retrieves a user's details.
+       * @alias androidenterprise.users.get
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.userId The ID of the user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2902,35 +3167,37 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.users.getAvailableProductSet
-     *
-     * @desc Retrieves the set of products a user is entitled to access.
-     *
-     * @alias androidenterprise.users.getAvailableProductSet
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getAvailableProductSet: function (params, options, callback) {
+    , /**
+       * androidenterprise.users.getAvailableProductSet
+       * @desc Retrieves the set of products a user is entitled to access.
+       * @alias androidenterprise.users.getAvailableProductSet
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.userId The ID of the user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    getAvailableProductSet: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2940,35 +3207,41 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/availableProductSet').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/availableProductSet')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.users.insert
-     *
-     * @desc Creates a new EMM-managed user.  The Users resource passed in the body of the request should include an accountIdentifier and an accountType. If a corresponding user already exists with the same account identifier, the user will be updated with the resource. In this case only the displayName field can be changed.
-     *
-     * @alias androidenterprise.users.insert
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {androidenterprise(v1).User} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    insert: function (params, options, callback) {
+    , /**
+       * androidenterprise.users.insert
+       * @desc Creates a new EMM-managed user.  The Users resource passed in the
+       * body of the request should include an accountIdentifier and an
+       * accountType. If a corresponding user already exists with the same
+       * account identifier, the user will be updated with the resource. In this
+       * case only the displayName field can be changed.
+       * @alias androidenterprise.users.insert
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {androidenterprise(v1).User} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    insert: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2978,35 +3251,39 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/androidenterprise/v1/enterprises/{enterpriseId}/users')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * androidenterprise.users.list
-     *
-     * @desc Looks up a user by primary email address. This is only supported for Google-managed users. Lookup of the id is not needed for EMM-managed users because the id is already returned in the result of the Users.insert call.
-     *
-     * @alias androidenterprise.users.list
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.email The exact primary email address of the user to look up.
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
+    , /**
+       * androidenterprise.users.list
+       * @desc Looks up a user by primary email address. This is only supported
+       * for Google-managed users. Lookup of the id is not needed for
+       * EMM-managed users because the id is already returned in the result of
+       * the Users.insert call.
+       * @alias androidenterprise.users.list
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.email The exact primary email address of the user to look up.
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3016,222 +3293,248 @@ function Androidenterprise(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/androidenterprise/v1/enterprises/{enterpriseId}/users')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['enterpriseId', 'email'],
         pathParams: ['enterpriseId'],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.users.patch
-     *
-     * @desc Updates the details of an EMM-managed user.  Can be used with EMM-managed users only (not Google managed users). Pass the new details in the Users resource in the request body. Only the displayName field can be changed. Other fields must either be unset or have the currently active value. This method supports patch semantics.
-     *
-     * @alias androidenterprise.users.patch
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.userId The ID of the user.
-     * @param {androidenterprise(v1).User} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PATCH'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId', 'userId'],
-        pathParams: ['enterpriseId', 'userId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.users.revokeDeviceAccess
-     *
-     * @desc Revokes access to all devices currently provisioned to the user. The user will no longer be able to use the managed Play store on any of their managed devices.  This call only works with EMM-managed accounts.
-     *
-     * @alias androidenterprise.users.revokeDeviceAccess
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    revokeDeviceAccess: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/deviceAccess').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId', 'userId'],
-        pathParams: ['enterpriseId', 'userId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.users.revokeToken
-     *
-     * @desc Revokes a previously generated token (activation code) for the user.
-     *
-     * @alias androidenterprise.users.revokeToken
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    revokeToken: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/token').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId', 'userId'],
-        pathParams: ['enterpriseId', 'userId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.users.setAvailableProductSet
-     *
-     * @desc Modifies the set of products that a user is entitled to access (referred to as whitelisted products). Only products that are approved or products that were previously approved (products with revoked approval) can be whitelisted.
-     *
-     * @alias androidenterprise.users.setAvailableProductSet
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.userId The ID of the user.
-     * @param {androidenterprise(v1).ProductSet} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    setAvailableProductSet: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/availableProductSet').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PUT'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId', 'userId'],
-        pathParams: ['enterpriseId', 'userId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.users.update
-     *
-     * @desc Updates the details of an EMM-managed user.  Can be used with EMM-managed users only (not Google managed users). Pass the new details in the Users resource in the request body. Only the displayName field can be changed. Other fields must either be unset or have the currently active value.
-     *
-     * @alias androidenterprise.users.update
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.userId The ID of the user.
-     * @param {androidenterprise(v1).User} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    update: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PUT'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId', 'userId'],
-        pathParams: ['enterpriseId', 'userId'],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
+    , /**
+       * androidenterprise.users.patch
+       * @desc Updates the details of an EMM-managed user.  Can be used with
+       * EMM-managed users only (not Google managed users). Pass the new details
+       * in the Users resource in the request body. Only the displayName field
+       * can be changed. Other fields must either be unset or have the currently
+       * active value. This method supports patch semantics.
+       * @alias androidenterprise.users.patch
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.userId The ID of the user.
+       * @param {androidenterprise(v1).User} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    patch: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params: params,
+        requiredParams: ['enterpriseId', 'userId'],
+        pathParams: ['enterpriseId', 'userId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * androidenterprise.users.revokeDeviceAccess
+       * @desc Revokes access to all devices currently provisioned to the user.
+       * The user will no longer be able to use the managed Play store on any of
+       * their managed devices.  This call only works with EMM-managed accounts.
+       * @alias androidenterprise.users.revokeDeviceAccess
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.userId The ID of the user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    revokeDeviceAccess: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/deviceAccess')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params: params,
+        requiredParams: ['enterpriseId', 'userId'],
+        pathParams: ['enterpriseId', 'userId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * androidenterprise.users.revokeToken
+       * @desc Revokes a previously generated token (activation code) for the
+       * user.
+       * @alias androidenterprise.users.revokeToken
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.userId The ID of the user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    revokeToken: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/token')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params: params,
+        requiredParams: ['enterpriseId', 'userId'],
+        pathParams: ['enterpriseId', 'userId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * androidenterprise.users.setAvailableProductSet
+       * @desc Modifies the set of products that a user is entitled to access
+       * (referred to as whitelisted products). Only products that are approved
+       * or products that were previously approved (products with revoked
+       * approval) can be whitelisted.
+       * @alias androidenterprise.users.setAvailableProductSet
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.userId The ID of the user.
+       * @param {androidenterprise(v1).ProductSet} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    setAvailableProductSet: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/availableProductSet')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
+        params: params,
+        requiredParams: ['enterpriseId', 'userId'],
+        pathParams: ['enterpriseId', 'userId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * androidenterprise.users.update
+       * @desc Updates the details of an EMM-managed user.  Can be used with
+       * EMM-managed users only (not Google managed users). Pass the new details
+       * in the Users resource in the request body. Only the displayName field
+       * can be changed. Other fields must either be unset or have the currently
+       * active value.
+       * @alias androidenterprise.users.update
+       * @memberOf! androidenterprise(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.enterpriseId The ID of the enterprise.
+       * @param {string} params.userId The ID of the user.
+       * @param {androidenterprise(v1).User} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    update: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
+        params: params,
+        requiredParams: ['enterpriseId', 'userId'],
+        pathParams: ['enterpriseId', 'userId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
   };
 }
-
 /**
  * @typedef Administrator
  * @memberOf! androidenterprise(v1)
  * @type object
  * @property {string} email The admin&#39;s email address.
  */
-
 /**
  * @typedef AdministratorWebToken
  * @memberOf! androidenterprise(v1)
@@ -3239,7 +3542,6 @@ function Androidenterprise(options) { // eslint-disable-line
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#administratorWebToken&quot;.
  * @property {string} token An opaque token to be passed to the Play front-end to generate an iframe.
  */
-
 /**
  * @typedef AdministratorWebTokenSpec
  * @memberOf! androidenterprise(v1)
@@ -3248,7 +3550,6 @@ function Androidenterprise(options) { // eslint-disable-line
  * @property {string} parent The URI of the parent frame hosting the iframe. To prevent XSS, the iframe may not be hosted at other URIs. This URI must be https.
  * @property {string[]} permission The list of permissions the admin is granted within the iframe. The admin will only be allowed to view an iframe if they have all of the permissions associated with it. The only valid value is &quot;approveApps&quot; that will allow the admin to access the iframe in &quot;approve&quot; mode.
  */
-
 /**
  * @typedef AndroidDevicePolicyConfig
  * @memberOf! androidenterprise(v1)
@@ -3256,7 +3557,6 @@ function Androidenterprise(options) { // eslint-disable-line
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#androidDevicePolicyConfig&quot;.
  * @property {string} state The state of Android Device Policy. &quot;enabled&quot; indicates that Android Device Policy is enabled for the enterprise and the EMM is allowed to manage devices with Android Device Policy, while &quot;disabled&quot; means that it cannot.
  */
-
 /**
  * @typedef AppRestrictionsSchema
  * @memberOf! androidenterprise(v1)
@@ -3264,14 +3564,12 @@ function Androidenterprise(options) { // eslint-disable-line
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#appRestrictionsSchema&quot;.
  * @property {androidenterprise(v1).AppRestrictionsSchemaRestriction[]} restrictions The set of restrictions that make up this schema.
  */
-
 /**
  * @typedef AppRestrictionsSchemaChangeEvent
  * @memberOf! androidenterprise(v1)
  * @type object
  * @property {string} productId The id of the product (e.g. &quot;app:com.google.android.gm&quot;) for which the app restriction schema changed. This field will always be present.
  */
-
 /**
  * @typedef AppRestrictionsSchemaRestriction
  * @memberOf! androidenterprise(v1)
@@ -3285,7 +3583,6 @@ function Androidenterprise(options) { // eslint-disable-line
  * @property {string} restrictionType The type of the restriction.
  * @property {string} title The name of the restriction.
  */
-
 /**
  * @typedef AppRestrictionsSchemaRestrictionRestrictionValue
  * @memberOf! androidenterprise(v1)
@@ -3296,14 +3593,19 @@ function Androidenterprise(options) { // eslint-disable-line
  * @property {string[]} valueMultiselect The list of string values - this will only be present if type is multiselect.
  * @property {string} valueString The string value - this will be present for types string, choice and hidden.
  */
-
+/**
+ * @typedef ApprovalUrlInfo
+ * @memberOf! androidenterprise(v1)
+ * @type object
+ * @property {string} approvalUrl A URL that displays a product&#39;s permissions and that can also be used to approve the product with the Products.approve call.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#approvalUrlInfo&quot;.
+ */
 /**
  * @typedef AppUpdateEvent
  * @memberOf! androidenterprise(v1)
  * @type object
  * @property {string} productId The id of the product (e.g. &quot;app:com.google.android.gm&quot;) that was updated. This field will always be present.
  */
-
 /**
  * @typedef AppVersion
  * @memberOf! androidenterprise(v1)
@@ -3312,15 +3614,6 @@ function Androidenterprise(options) { // eslint-disable-line
  * @property {integer} versionCode Unique increasing identifier for the app version.
  * @property {string} versionString The string used in the Play store by the app developer to identify the version. The string is not necessarily unique or localized (for example, the string could be &quot;1.4&quot;).
  */
-
-/**
- * @typedef ApprovalUrlInfo
- * @memberOf! androidenterprise(v1)
- * @type object
- * @property {string} approvalUrl A URL that displays a product&#39;s permissions and that can also be used to approve the product with the Products.approve call.
- * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#approvalUrlInfo&quot;.
- */
-
 /**
  * @typedef AuthenticationToken
  * @memberOf! androidenterprise(v1)
@@ -3328,7 +3621,6 @@ function Androidenterprise(options) { // eslint-disable-line
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#authenticationToken&quot;.
  * @property {string} token The authentication token to be passed to the device policy client on the device where it can be used to provision the account for which this token was generated.
  */
-
 /**
  * @typedef ConfigurationVariables
  * @memberOf! androidenterprise(v1)
@@ -3337,30 +3629,25 @@ function Androidenterprise(options) { // eslint-disable-line
  * @property {string} mcmId The ID of the managed configurations settings.
  * @property {androidenterprise(v1).VariableSet[]} variableSet The variable set that is attributed to the user.
  */
-
 /**
  * @typedef Device
  * @memberOf! androidenterprise(v1)
  * @type object
-* @property {string} androidId The Google Play Services Android ID for the device encoded as a lowercase hex string. For example, &quot;123456789abcdef0&quot;.
-* @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#device&quot;.
-* @property {string} managementType Identifies the extent to which the device is controlled by a managed Google Play EMM in various deployment configurations.
+ * @property {string} androidId The Google Play Services Android ID for the device encoded as a lowercase hex string. For example, &quot;123456789abcdef0&quot;.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#device&quot;.
+ * @property {string} managementType Identifies the extent to which the device is controlled by a managed Google Play EMM in various deployment configurations.
 
-Possible values include: 
-- &quot;managedDevice&quot;, a device that has the EMM&#39;s device policy controller (DPC) as the device owner. 
-- &quot;managedProfile&quot;, a device that has a profile managed by the DPC (DPC is profile owner) in addition to a separate, personal profile that is unavailable to the DPC. 
-- &quot;containerApp&quot;, no longer used (deprecated). 
-- &quot;unmanagedProfile&quot;, a device that has been allowed (by the domain&#39;s admin, using the Admin Console to enable the privilege) to use managed Google Play, but the profile is itself not owned by a DPC.
-*/
-
-/**
- * @typedef DeviceState
- * @memberOf! androidenterprise(v1)
- * @type object
- * @property {string} accountState The state of the Google account on the device. &quot;enabled&quot; indicates that the Google account on the device can be used to access Google services (including Google Play), while &quot;disabled&quot; means that it cannot. A new device is initially in the &quot;disabled&quot; state.
- * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#deviceState&quot;.
+Possible values include:
+- &quot;managedDevice&quot;, a device that has the EMM&#39;s device policy
+controller (DPC) as the device owner.
+- &quot;managedProfile&quot;, a device that has a profile managed by the DPC
+(DPC is profile owner) in addition to a separate, personal profile that is
+unavailable to the DPC.
+- &quot;containerApp&quot;, no longer used (deprecated).
+- &quot;unmanagedProfile&quot;, a device that has been allowed (by the
+domain&#39;s admin, using the Admin Console to enable the privilege) to use
+managed Google Play, but the profile is itself not owned by a DPC.
  */
-
 /**
  * @typedef DevicesListResponse
  * @memberOf! androidenterprise(v1)
@@ -3368,7 +3655,13 @@ Possible values include:
  * @property {androidenterprise(v1).Device[]} device A managed device.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#devicesListResponse&quot;.
  */
-
+/**
+ * @typedef DeviceState
+ * @memberOf! androidenterprise(v1)
+ * @type object
+ * @property {string} accountState The state of the Google account on the device. &quot;enabled&quot; indicates that the Google account on the device can be used to access Google services (including Google Play), while &quot;disabled&quot; means that it cannot. A new device is initially in the &quot;disabled&quot; state.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#deviceState&quot;.
+ */
 /**
  * @typedef Enterprise
  * @memberOf! androidenterprise(v1)
@@ -3379,7 +3672,6 @@ Possible values include:
  * @property {string} name The name of the enterprise, for example, &quot;Example, Inc&quot;.
  * @property {string} primaryDomain The enterprise&#39;s primary domain, such as &quot;example.com&quot;.
  */
-
 /**
  * @typedef EnterpriseAccount
  * @memberOf! androidenterprise(v1)
@@ -3387,7 +3679,6 @@ Possible values include:
  * @property {string} accountEmail The email address of the service account.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#enterpriseAccount&quot;.
  */
-
 /**
  * @typedef EnterprisesListResponse
  * @memberOf! androidenterprise(v1)
@@ -3395,7 +3686,6 @@ Possible values include:
  * @property {androidenterprise(v1).Enterprise[]} enterprise An enterprise.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#enterprisesListResponse&quot;.
  */
-
 /**
  * @typedef EnterprisesSendTestPushNotificationResponse
  * @memberOf! androidenterprise(v1)
@@ -3403,7 +3693,6 @@ Possible values include:
  * @property {string} messageId The message ID of the test push notification that was sent.
  * @property {string} topicName The name of the Cloud Pub/Sub topic to which notifications for this enterprise&#39;s enrolled account will be sent.
  */
-
 /**
  * @typedef Entitlement
  * @memberOf! androidenterprise(v1)
@@ -3412,7 +3701,6 @@ Possible values include:
  * @property {string} productId The ID of the product that the entitlement is for. For example, &quot;app:com.google.android.gm&quot;.
  * @property {string} reason The reason for the entitlement. For example, &quot;free&quot; for free apps. This property is temporary: it will be replaced by the acquisition kind field of group licenses.
  */
-
 /**
  * @typedef EntitlementsListResponse
  * @memberOf! androidenterprise(v1)
@@ -3420,31 +3708,27 @@ Possible values include:
  * @property {androidenterprise(v1).Entitlement[]} entitlement An entitlement of a user to a product (e.g. an app). For example, a free app that they have installed, or a paid app that they have been allocated a license to.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#entitlementsListResponse&quot;.
  */
-
 /**
  * @typedef GroupLicense
  * @memberOf! androidenterprise(v1)
  * @type object
-* @property {string} acquisitionKind How this group license was acquired. &quot;bulkPurchase&quot; means that this Grouplicenses resource was created because the enterprise purchased licenses for this product; otherwise, the value is &quot;free&quot; (for free products).
-* @property {string} approval Whether the product to which this group license relates is currently approved by the enterprise. Products are approved when a group license is first created, but this approval may be revoked by an enterprise admin via Google Play. Unapproved products will not be visible to end users in collections, and new entitlements to them should not normally be created.
-* @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#groupLicense&quot;.
-* @property {integer} numProvisioned The total number of provisioned licenses for this product. Returned by read operations, but ignored in write operations.
-* @property {integer} numPurchased The number of purchased licenses (possibly in multiple purchases). If this field is omitted, then there is no limit on the number of licenses that can be provisioned (for example, if the acquisition kind is &quot;free&quot;).
-* @property {string} permissions The permission approval status of the product. This field is only set if the product is approved. Possible states are: 
-- &quot;currentApproved&quot;, the current set of permissions is approved, but additional permissions will require the administrator to reapprove the product (If the product was approved without specifying the approved permissions setting, then this is the default behavior.), 
-- &quot;needsReapproval&quot;, the product has unapproved permissions. No additional product licenses can be assigned until the product is reapproved, 
-- &quot;allCurrentAndFutureApproved&quot;, the current permissions are approved and any future permission updates will be automatically approved without administrator review.
-* @property {string} productId The ID of the product that the license is for. For example, &quot;app:com.google.android.gm&quot;.
-*/
-
-/**
- * @typedef GroupLicenseUsersListResponse
- * @memberOf! androidenterprise(v1)
- * @type object
- * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#groupLicenseUsersListResponse&quot;.
- * @property {androidenterprise(v1).User[]} user A user of an enterprise.
+ * @property {string} acquisitionKind How this group license was acquired. &quot;bulkPurchase&quot; means that this Grouplicenses resource was created because the enterprise purchased licenses for this product; otherwise, the value is &quot;free&quot; (for free products).
+ * @property {string} approval Whether the product to which this group license relates is currently approved by the enterprise. Products are approved when a group license is first created, but this approval may be revoked by an enterprise admin via Google Play. Unapproved products will not be visible to end users in collections, and new entitlements to them should not normally be created.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#groupLicense&quot;.
+ * @property {integer} numProvisioned The total number of provisioned licenses for this product. Returned by read operations, but ignored in write operations.
+ * @property {integer} numPurchased The number of purchased licenses (possibly in multiple purchases). If this field is omitted, then there is no limit on the number of licenses that can be provisioned (for example, if the acquisition kind is &quot;free&quot;).
+ * @property {string} permissions The permission approval status of the product. This field is only set if the product is approved. Possible states are:
+- &quot;currentApproved&quot;, the current set of permissions is approved, but
+additional permissions will require the administrator to reapprove the product
+(If the product was approved without specifying the approved permissions
+setting, then this is the default behavior.),
+- &quot;needsReapproval&quot;, the product has unapproved permissions. No
+additional product licenses can be assigned until the product is reapproved,
+- &quot;allCurrentAndFutureApproved&quot;, the current permissions are approved
+and any future permission updates will be automatically approved without
+administrator review.
+ * @property {string} productId The ID of the product that the license is for. For example, &quot;app:com.google.android.gm&quot;.
  */
-
 /**
  * @typedef GroupLicensesListResponse
  * @memberOf! androidenterprise(v1)
@@ -3452,7 +3736,13 @@ Possible values include:
  * @property {androidenterprise(v1).GroupLicense[]} groupLicense A group license for a product approved for use in the enterprise.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#groupLicensesListResponse&quot;.
  */
-
+/**
+ * @typedef GroupLicenseUsersListResponse
+ * @memberOf! androidenterprise(v1)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#groupLicenseUsersListResponse&quot;.
+ * @property {androidenterprise(v1).User[]} user A user of an enterprise.
+ */
 /**
  * @typedef Install
  * @memberOf! androidenterprise(v1)
@@ -3462,7 +3752,6 @@ Possible values include:
  * @property {string} productId The ID of the product that the install is for. For example, &quot;app:com.google.android.gm&quot;.
  * @property {integer} versionCode The version of the installed product. Guaranteed to be set only if the install state is &quot;installed&quot;.
  */
-
 /**
  * @typedef InstallFailureEvent
  * @memberOf! androidenterprise(v1)
@@ -3473,7 +3762,6 @@ Possible values include:
  * @property {string} productId The id of the product (e.g. &quot;app:com.google.android.gm&quot;) for which the install failure event occured. This field will always be present.
  * @property {string} userId The ID of the user. This field will always be present.
  */
-
 /**
  * @typedef InstallsListResponse
  * @memberOf! androidenterprise(v1)
@@ -3481,7 +3769,6 @@ Possible values include:
  * @property {androidenterprise(v1).Install[]} install An installation of an app for a user on a specific device. The existence of an install implies that the user must have an entitlement to the app.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#installsListResponse&quot;.
  */
-
 /**
  * @typedef LocalizedText
  * @memberOf! androidenterprise(v1)
@@ -3489,7 +3776,6 @@ Possible values include:
  * @property {string} locale The BCP47 tag for a locale. (e.g. &quot;en-US&quot;, &quot;de&quot;).
  * @property {string} text The text localized in the associated locale.
  */
-
 /**
  * @typedef ManagedConfiguration
  * @memberOf! androidenterprise(v1)
@@ -3499,7 +3785,6 @@ Possible values include:
  * @property {androidenterprise(v1).ManagedProperty[]} managedProperty The set of managed properties for this configuration.
  * @property {string} productId The ID of the product that the managed configuration is for, e.g. &quot;app:com.google.android.gm&quot;.
  */
-
 /**
  * @typedef ManagedConfigurationsForDeviceListResponse
  * @memberOf! androidenterprise(v1)
@@ -3507,7 +3792,6 @@ Possible values include:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#managedConfigurationsForDeviceListResponse&quot;.
  * @property {androidenterprise(v1).ManagedConfiguration[]} managedConfigurationForDevice A managed configuration for an app on a specific device.
  */
-
 /**
  * @typedef ManagedConfigurationsForUserListResponse
  * @memberOf! androidenterprise(v1)
@@ -3515,7 +3799,6 @@ Possible values include:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#managedConfigurationsForUserListResponse&quot;.
  * @property {androidenterprise(v1).ManagedConfiguration[]} managedConfigurationForUser A managed configuration for an app for a specific user.
  */
-
 /**
  * @typedef ManagedConfigurationsSettings
  * @memberOf! androidenterprise(v1)
@@ -3525,7 +3808,6 @@ Possible values include:
  * @property {string} mcmId The ID of the managed configurations settings.
  * @property {string} name The name of the managed configurations settings.
  */
-
 /**
  * @typedef ManagedConfigurationsSettingsListResponse
  * @memberOf! androidenterprise(v1)
@@ -3533,7 +3815,6 @@ Possible values include:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#managedConfigurationsSettingsListResponse&quot;.
  * @property {androidenterprise(v1).ManagedConfigurationsSettings[]} managedConfigurationsSettings A managed configurations settings for an app that may be assigned to a group of users in an enterprise.
  */
-
 /**
  * @typedef ManagedProperty
  * @memberOf! androidenterprise(v1)
@@ -3546,27 +3827,24 @@ Possible values include:
  * @property {string} valueString The string value - this will only be present if type of the property is string, choice or hidden.
  * @property {string[]} valueStringArray The list of string values - this will only be present if type of the property is multiselect.
  */
-
 /**
  * @typedef ManagedPropertyBundle
  * @memberOf! androidenterprise(v1)
  * @type object
  * @property {androidenterprise(v1).ManagedProperty[]} managedProperty The list of managed properties.
  */
-
 /**
  * @typedef NewDeviceEvent
  * @memberOf! androidenterprise(v1)
  * @type object
-* @property {string} deviceId The Android ID of the device. This field will always be present.
-* @property {string} managementType Identifies the extent to which the device is controlled by an Android EMM in various deployment configurations.
+ * @property {string} deviceId The Android ID of the device. This field will always be present.
+ * @property {string} managementType Identifies the extent to which the device is controlled by an Android EMM in various deployment configurations.
 
-Possible values include: 
-- &quot;managedDevice&quot;, a device where the DPC is set as device owner, 
+Possible values include:
+- &quot;managedDevice&quot;, a device where the DPC is set as device owner,
 - &quot;managedProfile&quot;, a device where the DPC is set as profile owner.
-* @property {string} userId The ID of the user. This field will always be present.
-*/
-
+ * @property {string} userId The ID of the user. This field will always be present.
+ */
 /**
  * @typedef NewPermissionsEvent
  * @memberOf! androidenterprise(v1)
@@ -3575,7 +3853,6 @@ Possible values include:
  * @property {string} productId The id of the product (e.g. &quot;app:com.google.android.gm&quot;) for which new permissions were added. This field will always be present.
  * @property {string[]} requestedPermissions The set of permissions that the app is currently requesting. Use Permissions.Get on the EMM API to retrieve details about these permissions.
  */
-
 /**
  * @typedef Notification
  * @memberOf! androidenterprise(v1)
@@ -3591,7 +3868,6 @@ Possible values include:
  * @property {androidenterprise(v1).ProductAvailabilityChangeEvent} productAvailabilityChangeEvent Notifications about product availability changes.
  * @property {string} timestampMillis The time when the notification was published in milliseconds since 1970-01-01T00:00:00Z. This will always be present.
  */
-
 /**
  * @typedef NotificationSet
  * @memberOf! androidenterprise(v1)
@@ -3600,16 +3876,14 @@ Possible values include:
  * @property {androidenterprise(v1).Notification[]} notification The notifications received, or empty if no notifications are present.
  * @property {string} notificationSetId The notification set ID, required to mark the notification as received with the Enterprises.AcknowledgeNotification API. This will be omitted if no notifications are present.
  */
-
 /**
  * @typedef PageInfo
  * @memberOf! androidenterprise(v1)
  * @type object
- * @property {integer} resultPerPage 
- * @property {integer} startIndex 
- * @property {integer} totalResults 
+ * @property {integer} resultPerPage
+ * @property {integer} startIndex
+ * @property {integer} totalResults
  */
-
 /**
  * @typedef Permission
  * @memberOf! androidenterprise(v1)
@@ -3619,7 +3893,6 @@ Possible values include:
  * @property {string} name The name of the permission.
  * @property {string} permissionId An opaque string uniquely identifying the permission.
  */
-
 /**
  * @typedef Product
  * @memberOf! androidenterprise(v1)
@@ -3639,7 +3912,6 @@ Possible values include:
  * @property {string} title The name of the product.
  * @property {string} workDetailsUrl A link to the managed Google Play details page for the product, for use by an Enterprise admin.
  */
-
 /**
  * @typedef ProductApprovalEvent
  * @memberOf! androidenterprise(v1)
@@ -3647,7 +3919,6 @@ Possible values include:
  * @property {string} approved Whether the product was approved or unapproved. This field will always be present.
  * @property {string} productId The id of the product (e.g. &quot;app:com.google.android.gm&quot;) for which the approval status has changed. This field will always be present.
  */
-
 /**
  * @typedef ProductAvailabilityChangeEvent
  * @memberOf! androidenterprise(v1)
@@ -3655,7 +3926,6 @@ Possible values include:
  * @property {string} availabilityStatus The new state of the product. This field will always be present.
  * @property {string} productId The id of the product (e.g. &quot;app:com.google.android.gm&quot;) for which the product availability changed. This field will always be present.
  */
-
 /**
  * @typedef ProductPermission
  * @memberOf! androidenterprise(v1)
@@ -3663,7 +3933,6 @@ Possible values include:
  * @property {string} permissionId An opaque string uniquely identifying the permission.
  * @property {string} state Whether the permission has been accepted or not.
  */
-
 /**
  * @typedef ProductPermissions
  * @memberOf! androidenterprise(v1)
@@ -3672,7 +3941,13 @@ Possible values include:
  * @property {androidenterprise(v1).ProductPermission[]} permission The permissions required by the app.
  * @property {string} productId The ID of the app that the permissions relate to, e.g. &quot;app:com.google.android.gm&quot;.
  */
-
+/**
+ * @typedef ProductsApproveRequest
+ * @memberOf! androidenterprise(v1)
+ * @type object
+ * @property {androidenterprise(v1).ApprovalUrlInfo} approvalUrlInfo The approval URL that was shown to the user. Only the permissions shown to the user with that URL will be accepted, which may not be the product&#39;s entire set of permissions. For example, the URL may only display new permissions from an update after the product was approved, or not include new permissions if the product was updated since the URL was generated.
+ * @property {string} approvedPermissions Sets how new permission requests for the product are handled. &quot;allPermissions&quot; automatically approves all current and future permissions for the product. &quot;currentPermissionsOnly&quot; approves the current set of permissions for the product, but any future permissions added through updates will require manual reapproval. If not specified, only the current set of permissions will be approved.
+ */
 /**
  * @typedef ProductSet
  * @memberOf! androidenterprise(v1)
@@ -3682,7 +3957,12 @@ Possible values include:
  * @property {string} productSetBehavior The interpretation of this product set. &quot;unknown&quot; should never be sent and is ignored if received. &quot;whitelist&quot; means that the user is entitled to access the product set. &quot;includeAll&quot; means that all products are accessible, including products that are approved, products with revoked approval, and products that have never been approved. &quot;allApproved&quot; means that the user is entitled to access all products that are approved for the enterprise. If the value is &quot;allApproved&quot; or &quot;includeAll&quot;, the productId field is ignored. If no value is provided, it is interpreted as &quot;whitelist&quot; for backwards compatibility. Further &quot;allApproved&quot; or &quot;includeAll&quot; does not enable automatic visibility of &quot;alpha&quot; or &quot;beta&quot; tracks for Android app. Use ProductVisibility to enable &quot;alpha&quot; or &quot;beta&quot; tracks per user.
  * @property {androidenterprise(v1).ProductVisibility[]} productVisibility Additional list of product IDs making up the product set. Unlike the productID array, in this list It&#39;s possible to specify which tracks (alpha, beta, production) of a product are visible to the user. See ProductVisibility and its fields for more information. Specifying the same product ID both here and in the productId array is not allowed and it will result in an error.
  */
-
+/**
+ * @typedef ProductsGenerateApprovalUrlResponse
+ * @memberOf! androidenterprise(v1)
+ * @type object
+ * @property {string} url A URL that can be rendered in an iframe to display the permissions (if any) of a product. This URL can be used to approve the product only once and only within 24 hours of being generated, using the Products.approve call. If the product is currently unapproved and has no permissions, this URL will point to an empty page. If the product is currently approved, a URL will only be generated if that product has added permissions since it was last approved, and the URL will only display those new permissions that have not yet been accepted.
+ */
 /**
  * @typedef ProductSigningCertificate
  * @memberOf! androidenterprise(v1)
@@ -3690,32 +3970,6 @@ Possible values include:
  * @property {string} certificateHashSha1 The base64 urlsafe encoded SHA1 hash of the certificate. (This field is deprecated in favor of SHA2-256. It should not be used and may be removed at any time.)
  * @property {string} certificateHashSha256 The base64 urlsafe encoded SHA2-256 hash of the certificate.
  */
-
-/**
- * @typedef ProductVisibility
- * @memberOf! androidenterprise(v1)
- * @type object
-* @property {string} productId The product ID to make visible to the user. Required for each item in the productVisibility list.
-* @property {string[]} tracks Grants visibility to the specified track(s) of the product to the user. The track available to the user is based on the following order of preference: alpha, beta, production. For example, if an app has a prod version, a beta version and an alpha version and the enterprise has been granted visibility to both the alpha and beta tracks, if tracks is {&quot;beta&quot;, &quot;production&quot;} the user will be able to install the app and they will get the beta version of the app. If there are no app versions in the specified track adding the &quot;alpha&quot; and &quot;beta&quot; values to the list of tracks will have no effect. Note that the enterprise requires access to alpha and/or beta tracks before users can be granted visibility to apps in those tracks.
-
-The allowed sets are: {} (considered equivalent to {&quot;production&quot;}) {&quot;production&quot;} {&quot;beta&quot;, &quot;production&quot;} {&quot;alpha&quot;, &quot;beta&quot;, &quot;production&quot;} The order of elements is not relevant. Any other set of tracks will be rejected with an error.
-*/
-
-/**
- * @typedef ProductsApproveRequest
- * @memberOf! androidenterprise(v1)
- * @type object
- * @property {androidenterprise(v1).ApprovalUrlInfo} approvalUrlInfo The approval URL that was shown to the user. Only the permissions shown to the user with that URL will be accepted, which may not be the product&#39;s entire set of permissions. For example, the URL may only display new permissions from an update after the product was approved, or not include new permissions if the product was updated since the URL was generated.
- * @property {string} approvedPermissions Sets how new permission requests for the product are handled. &quot;allPermissions&quot; automatically approves all current and future permissions for the product. &quot;currentPermissionsOnly&quot; approves the current set of permissions for the product, but any future permissions added through updates will require manual reapproval. If not specified, only the current set of permissions will be approved.
- */
-
-/**
- * @typedef ProductsGenerateApprovalUrlResponse
- * @memberOf! androidenterprise(v1)
- * @type object
- * @property {string} url A URL that can be rendered in an iframe to display the permissions (if any) of a product. This URL can be used to approve the product only once and only within 24 hours of being generated, using the Products.approve call. If the product is currently unapproved and has no permissions, this URL will point to an empty page. If the product is currently approved, a URL will only be generated if that product has added permissions since it was last approved, and the URL will only display those new permissions that have not yet been accepted.
- */
-
 /**
  * @typedef ProductsListResponse
  * @memberOf! androidenterprise(v1)
@@ -3725,7 +3979,19 @@ The allowed sets are: {} (considered equivalent to {&quot;production&quot;}) {&q
  * @property {androidenterprise(v1).Product[]} product Information about a product (e.g. an app) in the Google Play store, for display to an enterprise admin.
  * @property {androidenterprise(v1).TokenPagination} tokenPagination Pagination information for token pagination.
  */
+/**
+ * @typedef ProductVisibility
+ * @memberOf! androidenterprise(v1)
+ * @type object
+ * @property {string} productId The product ID to make visible to the user. Required for each item in the productVisibility list.
+ * @property {string[]} tracks Grants visibility to the specified track(s) of the product to the user. The track available to the user is based on the following order of preference: alpha, beta, production. For example, if an app has a prod version, a beta version and an alpha version and the enterprise has been granted visibility to both the alpha and beta tracks, if tracks is {&quot;beta&quot;, &quot;production&quot;} the user will be able to install the app and they will get the beta version of the app. If there are no app versions in the specified track adding the &quot;alpha&quot; and &quot;beta&quot; values to the list of tracks will have no effect. Note that the enterprise requires access to alpha and/or beta tracks before users can be granted visibility to apps in those tracks.
 
+The allowed sets are: {} (considered equivalent to {&quot;production&quot;})
+{&quot;production&quot;} {&quot;beta&quot;, &quot;production&quot;}
+{&quot;alpha&quot;, &quot;beta&quot;, &quot;production&quot;} The order of
+elements is not relevant. Any other set of tracks will be rejected with an
+error.
+ */
 /**
  * @typedef ServiceAccount
  * @memberOf! androidenterprise(v1)
@@ -3734,7 +4000,6 @@ The allowed sets are: {} (considered equivalent to {&quot;production&quot;}) {&q
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#serviceAccount&quot;.
  * @property {string} name The account name of the service account, in the form of an email address. Assigned by the server.
  */
-
 /**
  * @typedef ServiceAccountKey
  * @memberOf! androidenterprise(v1)
@@ -3745,14 +4010,12 @@ The allowed sets are: {} (considered equivalent to {&quot;production&quot;}) {&q
  * @property {string} publicData Public key data for the credentials file. This is an X.509 cert. If you are using the googleCredentials key type, this is identical to the cert that can be retrieved by using the X.509 cert url inside of the credentials file.
  * @property {string} type The file format of the generated key data.
  */
-
 /**
  * @typedef ServiceAccountKeysListResponse
  * @memberOf! androidenterprise(v1)
  * @type object
  * @property {androidenterprise(v1).ServiceAccountKey[]} serviceAccountKey The service account credentials.
  */
-
 /**
  * @typedef SignupInfo
  * @memberOf! androidenterprise(v1)
@@ -3761,31 +4024,30 @@ The allowed sets are: {} (considered equivalent to {&quot;production&quot;}) {&q
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#signupInfo&quot;.
  * @property {string} url A URL under which the Admin can sign up for an enterprise. The page pointed to cannot be rendered in an iframe.
  */
-
 /**
  * @typedef StoreCluster
  * @memberOf! androidenterprise(v1)
  * @type object
-* @property {string} id Unique ID of this cluster. Assigned by the server. Immutable once assigned.
-* @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#storeCluster&quot;.
-* @property {androidenterprise(v1).LocalizedText[]} name Ordered list of localized strings giving the name of this page. The text displayed is the one that best matches the user locale, or the first entry if there is no good match. There needs to be at least one entry.
-* @property {string} orderInPage String (US-ASCII only) used to determine order of this cluster within the parent page&#39;s elements. Page elements are sorted in lexicographic order of this field. Duplicated values are allowed, but ordering between elements with duplicate order is undefined.
+ * @property {string} id Unique ID of this cluster. Assigned by the server. Immutable once assigned.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#storeCluster&quot;.
+ * @property {androidenterprise(v1).LocalizedText[]} name Ordered list of localized strings giving the name of this page. The text displayed is the one that best matches the user locale, or the first entry if there is no good match. There needs to be at least one entry.
+ * @property {string} orderInPage String (US-ASCII only) used to determine order of this cluster within the parent page&#39;s elements. Page elements are sorted in lexicographic order of this field. Duplicated values are allowed, but ordering between elements with duplicate order is undefined.
 
-The value of this field is never visible to a user, it is used solely for the purpose of defining an ordering. Maximum length is 256 characters.
-* @property {string[]} productId List of products in the order they are displayed in the cluster. There should not be duplicates within a cluster.
-*/
-
+The value of this field is never visible to a user, it is used solely for the
+purpose of defining an ordering. Maximum length is 256 characters.
+ * @property {string[]} productId List of products in the order they are displayed in the cluster. There should not be duplicates within a cluster.
+ */
 /**
  * @typedef StoreLayout
  * @memberOf! androidenterprise(v1)
  * @type object
-* @property {string} homepageId The ID of the store page to be used as the homepage. The homepage is the first page shown in the managed Google Play Store.
+ * @property {string} homepageId The ID of the store page to be used as the homepage. The homepage is the first page shown in the managed Google Play Store.
 
-Not specifying a homepage is equivalent to setting the store layout type to &quot;basic&quot;.
-* @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#storeLayout&quot;.
-* @property {string} storeLayoutType The store layout type. By default, this value is set to &quot;basic&quot; if the homepageId field is not set, and to &quot;custom&quot; otherwise. If set to &quot;basic&quot;, the layout will consist of all approved apps that have been whitelisted for the user.
-*/
-
+Not specifying a homepage is equivalent to setting the store layout type to
+&quot;basic&quot;.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#storeLayout&quot;.
+ * @property {string} storeLayoutType The store layout type. By default, this value is set to &quot;basic&quot; if the homepageId field is not set, and to &quot;custom&quot; otherwise. If set to &quot;basic&quot;, the layout will consist of all approved apps that have been whitelisted for the user.
+ */
 /**
  * @typedef StoreLayoutClustersListResponse
  * @memberOf! androidenterprise(v1)
@@ -3793,7 +4055,6 @@ Not specifying a homepage is equivalent to setting the store layout type to &quo
  * @property {androidenterprise(v1).StoreCluster[]} cluster A store cluster of an enterprise.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#storeLayoutClustersListResponse&quot;.
  */
-
 /**
  * @typedef StoreLayoutPagesListResponse
  * @memberOf! androidenterprise(v1)
@@ -3801,27 +4062,24 @@ Not specifying a homepage is equivalent to setting the store layout type to &quo
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#storeLayoutPagesListResponse&quot;.
  * @property {androidenterprise(v1).StorePage[]} page A store page of an enterprise.
  */
-
 /**
  * @typedef StorePage
  * @memberOf! androidenterprise(v1)
  * @type object
-* @property {string} id Unique ID of this page. Assigned by the server. Immutable once assigned.
-* @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#storePage&quot;.
-* @property {string[]} link Ordered list of pages a user should be able to reach from this page. The pages must exist, must not be this page, and once a link is created the page linked to cannot be deleted until all links to it are removed. It is recommended that the basic pages are created first, before adding the links between pages.
+ * @property {string} id Unique ID of this page. Assigned by the server. Immutable once assigned.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#storePage&quot;.
+ * @property {string[]} link Ordered list of pages a user should be able to reach from this page. The pages must exist, must not be this page, and once a link is created the page linked to cannot be deleted until all links to it are removed. It is recommended that the basic pages are created first, before adding the links between pages.
 
 No attempt is made to verify that all pages are reachable from the homepage.
-* @property {androidenterprise(v1).LocalizedText[]} name Ordered list of localized strings giving the name of this page. The text displayed is the one that best matches the user locale, or the first entry if there is no good match. There needs to be at least one entry.
-*/
-
+ * @property {androidenterprise(v1).LocalizedText[]} name Ordered list of localized strings giving the name of this page. The text displayed is the one that best matches the user locale, or the first entry if there is no good match. There needs to be at least one entry.
+ */
 /**
  * @typedef TokenPagination
  * @memberOf! androidenterprise(v1)
  * @type object
- * @property {string} nextPageToken 
- * @property {string} previousPageToken 
+ * @property {string} nextPageToken
+ * @property {string} previousPageToken
  */
-
 /**
  * @typedef User
  * @memberOf! androidenterprise(v1)
@@ -3834,7 +4092,13 @@ No attempt is made to verify that all pages are reachable from the homepage.
  * @property {string} managementType The entity that manages the user. With googleManaged users, the source of truth is Google so EMMs have to make sure a Google Account exists for the user. With emmManaged users, the EMM is in charge.
  * @property {string} primaryEmail The user&#39;s primary email address, for example, &quot;jsmith@example.com&quot;. Will always be set for Google managed users and not set for EMM managed users.
  */
-
+/**
+ * @typedef UsersListResponse
+ * @memberOf! androidenterprise(v1)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#usersListResponse&quot;.
+ * @property {androidenterprise(v1).User[]} user A user of an enterprise.
+ */
 /**
  * @typedef UserToken
  * @memberOf! androidenterprise(v1)
@@ -3843,15 +4107,6 @@ No attempt is made to verify that all pages are reachable from the homepage.
  * @property {string} token The token (activation code) to be entered by the user. This consists of a sequence of decimal digits. Note that the leading digit may be 0.
  * @property {string} userId The unique ID for the user.
  */
-
-/**
- * @typedef UsersListResponse
- * @memberOf! androidenterprise(v1)
- * @type object
- * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#usersListResponse&quot;.
- * @property {androidenterprise(v1).User[]} user A user of an enterprise.
- */
-
 /**
  * @typedef VariableSet
  * @memberOf! androidenterprise(v1)
@@ -3860,4 +4115,5 @@ No attempt is made to verify that all pages are reachable from the homepage.
  * @property {string} placeholder The placeholder string; defined by EMM.
  * @property {string} userValue The value of the placeholder, specific to the user.
  */
+
 export = Androidenterprise;

@@ -31,7 +31,6 @@ const argv = minimist(process.argv.slice(2));
 const gen = new Generator({ debug, includePrivate: false });
 
 const args = argv._;
-
 if (args.length) {
   args.forEach((url) => {
     gen.generateAPI(url, (err) => {

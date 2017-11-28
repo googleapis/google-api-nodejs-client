@@ -17,11 +17,11 @@ import * as path from 'path';
 import * as util from 'util';
 
 const APIS = {
-  {% for apiName in apis|sort %}{% set api = apis[apiName] %}{{ apiName }}: {
-    {% for versionName in api|sort %}{% set version = api[versionName] %}'{{ version }}': require('./{{ apiName }}/{{ version }}'),
-    {%- endfor -%}
+  {% for apiName, api in apis %}{{ apiName }}: {
+    {% for versionName, version in api %}'{{ version }}': require('./{{ apiName }}/{{ version }}'),
+    {% endfor %}
   },
-  {%- endfor -%}
+  {% endfor %}
 };
 
 function getAPI (api, options) {
@@ -47,9 +47,8 @@ function getAPI (api, options) {
   }
 }
 
-{% for apiName in apis|sort %}
-{% set api = apis[apiName] %}
+{% for apiName, api in apis %}
 export function {{ apiName }}(options) {
   return getAPI.call(this, '{{ apiName }}', options);
 }
-{%- endfor -%}
+{% endfor %}

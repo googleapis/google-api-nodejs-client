@@ -14,11 +14,7 @@
  * limitations under the License.
  */
 
-/* jshint maxlen: false */
-
-import {
-  createAPIRequest
-} from '../../lib/apirequest';
+import {createAPIRequest} from '../../lib/apirequest';
 
 /**
  * Google Play Custom App Publishing API
@@ -35,18 +31,14 @@ import {
  * @variation v1
  * @param {object=} options Options for Playcustomapp
  */
-function Playcustomapp(options) { // eslint-disable-line
+function Playcustomapp(options) {
   const self = this;
   self._options = options || {};
-
   self.accounts = {
     customApps: {
-
       /**
        * playcustomapp.accounts.customApps.create
-       *
        * @desc Create and publish a new custom app.
-       *
        * @alias playcustomapp.accounts.customApps.create
        * @memberOf! playcustomapp(v1)
        *
@@ -60,7 +52,7 @@ function Playcustomapp(options) { // eslint-disable-line
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, options, callback) {
+      create: function(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -70,23 +62,29 @@ function Playcustomapp(options) { // eslint-disable-line
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
         const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/playcustomapp/v1/accounts/{account}/customApps').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST'
-          }, options),
+          options: Object.assign(
+              {
+                url: (rootUrl +
+                      '/playcustomapp/v1/accounts/{account}/customApps')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'POST'
+              },
+              options),
           params: params,
-          mediaUrl: (rootUrl + '/upload/playcustomapp/v1/accounts/{account}/customApps').replace(/([^:]\/)\/+/g, '$1'),
+          mediaUrl: (rootUrl +
+                     '/upload/playcustomapp/v1/accounts/{account}/customApps')
+                        .replace(/([^:]\/)\/+/g, '$1'),
           requiredParams: ['account'],
           pathParams: ['account'],
           context: self
         };
-
         return createAPIRequest(parameters, callback);
       }
+
+
     }
   };
 }
-
 /**
  * @typedef CustomApp
  * @memberOf! playcustomapp(v1)
@@ -94,4 +92,5 @@ function Playcustomapp(options) { // eslint-disable-line
  * @property {string} languageCode Default listing language in BCP 47 format.
  * @property {string} title Title for the Android app.
  */
+
 export = Playcustomapp;

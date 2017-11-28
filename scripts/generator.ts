@@ -14,11 +14,10 @@
 import * as async from 'async';
 import * as fs from 'fs';
 import {DefaultTransporter} from 'google-auth-library/lib/transporters';
-import {js_beautify} from 'js-beautify';
 import * as minimist from 'minimist';
 import * as mkdirp from 'mkdirp';
+import * as nunjucks from 'nunjucks';
 import * as path from 'path';
-import * as swig from 'swig';
 import * as url from 'url';
 import * as util from 'util';
 
@@ -34,38 +33,24 @@ const DISCOVERY_URL = argv['discovery-url'] ?
 const FRAGMENT_URL =
     'https://storage.googleapis.com/apisnippets-staging/public/';
 
-const API_TEMPLATE = './templates/api-endpoint.ts';
-const INDEX_TEMPLATE = './templates/index.ts';
-const BEAUTIFY_OPTIONS = {
-  'indent_size': 2,
-  'indent_char': ' ',
-  'eol': '\n',
-  'indent_level': 0,
-  'indent_with_tabs': false,
-  'preserve_newlines': true,
-  'max_preserve_newlines': 2,
-  'jslint_happy': false,
-  'space_after_anon_function': true,
-  'brace_style': 'collapse',
-  'keep_array_indentation': false,
-  'keep_function_indentation': true,
-  'space_before_conditional': true,
-  'break_chained_methods': false,
-  'eval_code': false,
-  'unescape_strings': false,
-  'wrap_line_length': 0,
-  'wrap_attributes': 'auto',
-  'wrap_attributes_indent_size': 4,
-  'end_with_newline': true
-};
+const API_TEMPLATE = './api-endpoint.njk';
+const INDEX_TEMPLATE = './templates/index.njk';
 const RESERVED_PARAMS = ['resource', 'media', 'auth'];
-const templateContents = fs.readFileSync(API_TEMPLATE, {encoding: 'utf8'});
-const indexTemplateContents =
-    fs.readFileSync(INDEX_TEMPLATE, {encoding: 'utf8'});
+
+export interface GeneratorOptions {
+  debug?: boolean;
+  includePrivate?: boolean;
+}
+
+interface Api {
+  discoveryRestUrl?: string;
+  id?: string;
+}
 
 export class Generator {
   private transporter = new DefaultTransporter();
   private requestQueue;
+  private env: nunjucks.Environment;
 
   /**
    * A multi-line string is turned into one line.
@@ -74,8 +59,8 @@ export class Generator {
    * @param  {string} str String to process
    * @return {string}     Single line string processed
    */
-  private oneLine(str: string) {
-    return str.replace(/\n/g, ' ');
+  private oneLine(str?: string) {
+    return str ? str.replace(/\n/g, ' ') : '';
   }
 
   /**
@@ -85,26 +70,9 @@ export class Generator {
    * @param  {string} str String to process
    * @return {string}     Single line string processed
    */
-  private cleanComments(str: string) {
+  private cleanComments(str?: string) {
     // Convert /* into /x and */ into x/
-    return str.replace(/\*\//g, 'x/').replace(/\/\*/g, '/x');
-  }
-
-  /**
-   * Returns the list of names of APIS
-   *
-   * @private
-   * @param  {object} items Object of api endpoints
-   * @return {array}        Array of api names
-   */
-  private getAPIs(items) {
-    const apis = [];
-    for (const i in items) {
-      if (items.hasOwnProperty(i)) {
-        apis.push(items[i].name);
-      }
-    }
-    return apis;
+    return str ? str.replace(/\*\//g, 'x/').replace(/\/\*/g, '/x') : '';
   }
 
   private getPathParams(params) {
@@ -127,7 +95,7 @@ export class Generator {
     return param;
   }
 
-  private options: any;
+  private options: GeneratorOptions;
 
   private state = {};
 
@@ -138,7 +106,7 @@ export class Generator {
    * @param {object} options Options for generation
    * @this {Generator}
    */
-  constructor(options = {}) {
+  constructor(options: GeneratorOptions = {}) {
     this.options = options;
 
     /**
@@ -153,17 +121,16 @@ export class Generator {
       });
     }, 10);
 
-    swig.setFilter('buildurl', buildurl);
-    swig.setFilter('getAPIs', this.getAPIs);
-    swig.setFilter('oneLine', this.oneLine);
-    swig.setFilter('cleanComments', this.cleanComments);
-    swig.setFilter('getPathParams', this.getPathParams);
-    swig.setFilter('getSafeParamName', this.getSafeParamName);
-    swig.setFilter('cleanPaths', (str) => {
-      return str.replace(/\/\*\//gi, '/x/').replace(/\/\*`/gi, '/x');
+    this.env = new nunjucks.Environment(
+        new nunjucks.FileSystemLoader('templates'), {trimBlocks: true});
+    this.env.addFilter('buildurl', buildurl);
+    this.env.addFilter('oneLine', this.oneLine);
+    this.env.addFilter('cleanComments', this.cleanComments);
+    this.env.addFilter('getPathParams', this.getPathParams);
+    this.env.addFilter('getSafeParamName', this.getSafeParamName);
+    this.env.addFilter('cleanPaths', (str) => {
+      return str ? str.replace(/\/\*\//gi, '/x/').replace(/\/\*`/gi, '/x') : '';
     });
-    swig.setDefaults(
-        {loader: swig.loaders.fs(path.join(__dirname, '..', 'templates'))});
   }
 
   /**
@@ -209,9 +176,9 @@ export class Generator {
       if (err) {
         return handleError(err, callback);
       }
-      const apis = resp.items;
+      const apis: Api[] = resp.items;
 
-      const queue = async.queue((api: any, next) => {
+      const queue = async.queue((api: Api, next) => {
         this.log('Generating API for %s...', api.id);
         this.logResult(
             api.discoveryRestUrl, 'Attempting first generateAPI call...');
@@ -225,9 +192,9 @@ export class Generator {
                 console.error(`Failed to generate API: ${api.id}`);
                 console.log(
                     api.id + '\n-----------\n' +
-                    (util as any).inspect(this.state[api.discoveryRestUrl], {
-                      maxArrayLength: null
-                    }) +
+                    util.inspect(
+                        this.state[api.discoveryRestUrl],
+                        {maxArrayLength: null}) +
                     '\n');
               } else {
                 this.logResult(
@@ -244,7 +211,7 @@ export class Generator {
       });
 
       queue.drain = (drainError: Error) => {
-        console.log((util as any).inspect(this.state, {maxArrayLength: null}));
+        console.log(util.inspect(this.state, {maxArrayLength: null}));
         if (drainError && callback) {
           callback(drainError);
           return;
@@ -267,13 +234,14 @@ export class Generator {
       }
       apis[file] = {};
       fs.readdirSync(path.join(apisPath, file)).forEach(version => {
-        apis[file][version] = path.parse(version).name;
+        const parts = path.parse(version);
+        if (!version.endsWith('.d.ts') && parts.ext === '.ts') {
+          apis[file][version] = parts.name;
+        }
       });
     });
-
-    const result = swig.render(indexTemplateContents, {locals: {apis}});
-    const contents = js_beautify(result, BEAUTIFY_OPTIONS);
-    fs.writeFile(indexPath, contents, {encoding: 'utf8'}, err => {
+    const result = this.env.render('index.njk', {apis});
+    fs.writeFile(indexPath, result, {encoding: 'utf8'}, err => {
       if (callback) callback(err);
     });
   }
@@ -369,8 +337,7 @@ export class Generator {
             },
             (results, cb) => {
               this.logResult(apiDiscoveryUrl, `Step 2...`);
-              const result = swig.render(templateContents, {locals: resp});
-              contents = js_beautify(result, BEAUTIFY_OPTIONS);
+              contents = this.env.render(API_TEMPLATE, {api: resp});
               mkdirp(path.dirname(exportFilename), cb);
             },
             (dir, cb) => {

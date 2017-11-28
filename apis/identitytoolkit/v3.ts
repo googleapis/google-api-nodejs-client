@@ -14,11 +14,7 @@
  * limitations under the License.
  */
 
-/* jshint maxlen: false */
-
-import {
-  createAPIRequest
-} from '../../lib/apirequest';
+import {createAPIRequest} from '../../lib/apirequest';
 
 /**
  * Google Identity Toolkit API
@@ -35,17 +31,13 @@ import {
  * @variation v3
  * @param {object=} options Options for Identitytoolkit
  */
-function Identitytoolkit(options) { // eslint-disable-line
+function Identitytoolkit(options) {
   const self = this;
   self._options = options || {};
-
   self.relyingparty = {
-
     /**
      * identitytoolkit.relyingparty.createAuthUri
-     *
      * @desc Creates the URI used by the IdP to authenticate the user.
-     *
      * @alias identitytoolkit.relyingparty.createAuthUri
      * @memberOf! identitytoolkit(v3)
      *
@@ -55,7 +47,7 @@ function Identitytoolkit(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    createAuthUri: function (params, options, callback) {
+    createAuthUri: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -65,724 +57,737 @@ function Identitytoolkit(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/identitytoolkit/v3/relyingparty/createAuthUri').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/identitytoolkit/v3/relyingparty/createAuthUri')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * identitytoolkit.relyingparty.deleteAccount
-     *
-     * @desc Delete user account.
-     *
-     * @alias identitytoolkit.relyingparty.deleteAccount
-     * @memberOf! identitytoolkit(v3)
-     *
-     * @param {object} params Parameters for request
-     * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartyDeleteAccountRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    deleteAccount: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/identitytoolkit/v3/relyingparty/deleteAccount').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * identitytoolkit.relyingparty.downloadAccount
-     *
-     * @desc Batch download user accounts.
-     *
-     * @alias identitytoolkit.relyingparty.downloadAccount
-     * @memberOf! identitytoolkit(v3)
-     *
-     * @param {object} params Parameters for request
-     * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartyDownloadAccountRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    downloadAccount: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/identitytoolkit/v3/relyingparty/downloadAccount').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * identitytoolkit.relyingparty.emailLinkSignin
-     *
-     * @desc Reset password for a user.
-     *
-     * @alias identitytoolkit.relyingparty.emailLinkSignin
-     * @memberOf! identitytoolkit(v3)
-     *
-     * @param {object} params Parameters for request
-     * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartyEmailLinkSigninRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    emailLinkSignin: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/identitytoolkit/v3/relyingparty/emailLinkSignin').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * identitytoolkit.relyingparty.getAccountInfo
-     *
-     * @desc Returns the account info.
-     *
-     * @alias identitytoolkit.relyingparty.getAccountInfo
-     * @memberOf! identitytoolkit(v3)
-     *
-     * @param {object} params Parameters for request
-     * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartyGetAccountInfoRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getAccountInfo: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/identitytoolkit/v3/relyingparty/getAccountInfo').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * identitytoolkit.relyingparty.getOobConfirmationCode
-     *
-     * @desc Get a code for user action confirmation.
-     *
-     * @alias identitytoolkit.relyingparty.getOobConfirmationCode
-     * @memberOf! identitytoolkit(v3)
-     *
-     * @param {object} params Parameters for request
-     * @param {identitytoolkit(v3).Relyingparty} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getOobConfirmationCode: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/identitytoolkit/v3/relyingparty/getOobConfirmationCode').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * identitytoolkit.relyingparty.getProjectConfig
-     *
-     * @desc Get project configuration.
-     *
-     * @alias identitytoolkit.relyingparty.getProjectConfig
-     * @memberOf! identitytoolkit(v3)
-     *
-     * @param {object=} params Parameters for request
-     * @param {string=} params.delegatedProjectNumber Delegated GCP project number of the request.
-     * @param {string=} params.projectNumber GCP project number of the request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getProjectConfig: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/identitytoolkit/v3/relyingparty/getProjectConfig').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * identitytoolkit.relyingparty.getPublicKeys
-     *
-     * @desc Get token signing public key.
-     *
-     * @alias identitytoolkit.relyingparty.getPublicKeys
-     * @memberOf! identitytoolkit(v3)
-     *
-     * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getPublicKeys: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/identitytoolkit/v3/relyingparty/publicKeys').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * identitytoolkit.relyingparty.getRecaptchaParam
-     *
-     * @desc Get recaptcha secure param.
-     *
-     * @alias identitytoolkit.relyingparty.getRecaptchaParam
-     * @memberOf! identitytoolkit(v3)
-     *
-     * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getRecaptchaParam: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/identitytoolkit/v3/relyingparty/getRecaptchaParam').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * identitytoolkit.relyingparty.resetPassword
-     *
-     * @desc Reset password for a user.
-     *
-     * @alias identitytoolkit.relyingparty.resetPassword
-     * @memberOf! identitytoolkit(v3)
-     *
-     * @param {object} params Parameters for request
-     * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartyResetPasswordRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    resetPassword: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/identitytoolkit/v3/relyingparty/resetPassword').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * identitytoolkit.relyingparty.sendVerificationCode
-     *
-     * @desc Send SMS verification code.
-     *
-     * @alias identitytoolkit.relyingparty.sendVerificationCode
-     * @memberOf! identitytoolkit(v3)
-     *
-     * @param {object} params Parameters for request
-     * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartySendVerificationCodeRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    sendVerificationCode: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/identitytoolkit/v3/relyingparty/sendVerificationCode').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * identitytoolkit.relyingparty.setAccountInfo
-     *
-     * @desc Set account info for a user.
-     *
-     * @alias identitytoolkit.relyingparty.setAccountInfo
-     * @memberOf! identitytoolkit(v3)
-     *
-     * @param {object} params Parameters for request
-     * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartySetAccountInfoRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    setAccountInfo: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/identitytoolkit/v3/relyingparty/setAccountInfo').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * identitytoolkit.relyingparty.setProjectConfig
-     *
-     * @desc Set project configuration.
-     *
-     * @alias identitytoolkit.relyingparty.setProjectConfig
-     * @memberOf! identitytoolkit(v3)
-     *
-     * @param {object} params Parameters for request
-     * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartySetProjectConfigRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    setProjectConfig: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/identitytoolkit/v3/relyingparty/setProjectConfig').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * identitytoolkit.relyingparty.signOutUser
-     *
-     * @desc Sign out user.
-     *
-     * @alias identitytoolkit.relyingparty.signOutUser
-     * @memberOf! identitytoolkit(v3)
-     *
-     * @param {object} params Parameters for request
-     * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartySignOutUserRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    signOutUser: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/identitytoolkit/v3/relyingparty/signOutUser').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * identitytoolkit.relyingparty.signupNewUser
-     *
-     * @desc Signup new user.
-     *
-     * @alias identitytoolkit.relyingparty.signupNewUser
-     * @memberOf! identitytoolkit(v3)
-     *
-     * @param {object} params Parameters for request
-     * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartySignupNewUserRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    signupNewUser: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/identitytoolkit/v3/relyingparty/signupNewUser').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * identitytoolkit.relyingparty.uploadAccount
-     *
-     * @desc Batch upload existing user accounts.
-     *
-     * @alias identitytoolkit.relyingparty.uploadAccount
-     * @memberOf! identitytoolkit(v3)
-     *
-     * @param {object} params Parameters for request
-     * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartyUploadAccountRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    uploadAccount: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/identitytoolkit/v3/relyingparty/uploadAccount').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * identitytoolkit.relyingparty.verifyAssertion
-     *
-     * @desc Verifies the assertion returned by the IdP.
-     *
-     * @alias identitytoolkit.relyingparty.verifyAssertion
-     * @memberOf! identitytoolkit(v3)
-     *
-     * @param {object} params Parameters for request
-     * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartyVerifyAssertionRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    verifyAssertion: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/identitytoolkit/v3/relyingparty/verifyAssertion').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * identitytoolkit.relyingparty.verifyCustomToken
-     *
-     * @desc Verifies the developer asserted ID token.
-     *
-     * @alias identitytoolkit.relyingparty.verifyCustomToken
-     * @memberOf! identitytoolkit(v3)
-     *
-     * @param {object} params Parameters for request
-     * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartyVerifyCustomTokenRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    verifyCustomToken: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/identitytoolkit/v3/relyingparty/verifyCustomToken').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * identitytoolkit.relyingparty.verifyPassword
-     *
-     * @desc Verifies the user entered password.
-     *
-     * @alias identitytoolkit.relyingparty.verifyPassword
-     * @memberOf! identitytoolkit(v3)
-     *
-     * @param {object} params Parameters for request
-     * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartyVerifyPasswordRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    verifyPassword: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/identitytoolkit/v3/relyingparty/verifyPassword').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * identitytoolkit.relyingparty.verifyPhoneNumber
-     *
-     * @desc Verifies ownership of a phone number and creates/updates the user account accordingly.
-     *
-     * @alias identitytoolkit.relyingparty.verifyPhoneNumber
-     * @memberOf! identitytoolkit(v3)
-     *
-     * @param {object} params Parameters for request
-     * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartyVerifyPhoneNumberRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    verifyPhoneNumber: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/identitytoolkit/v3/relyingparty/verifyPhoneNumber').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
+    , /**
+       * identitytoolkit.relyingparty.deleteAccount
+       * @desc Delete user account.
+       * @alias identitytoolkit.relyingparty.deleteAccount
+       * @memberOf! identitytoolkit(v3)
+       *
+       * @param {object} params Parameters for request
+       * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartyDeleteAccountRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    deleteAccount: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/identitytoolkit/v3/relyingparty/deleteAccount')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * identitytoolkit.relyingparty.downloadAccount
+       * @desc Batch download user accounts.
+       * @alias identitytoolkit.relyingparty.downloadAccount
+       * @memberOf! identitytoolkit(v3)
+       *
+       * @param {object} params Parameters for request
+       * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartyDownloadAccountRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    downloadAccount: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl + '/identitytoolkit/v3/relyingparty/downloadAccount')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * identitytoolkit.relyingparty.emailLinkSignin
+       * @desc Reset password for a user.
+       * @alias identitytoolkit.relyingparty.emailLinkSignin
+       * @memberOf! identitytoolkit(v3)
+       *
+       * @param {object} params Parameters for request
+       * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartyEmailLinkSigninRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    emailLinkSignin: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl + '/identitytoolkit/v3/relyingparty/emailLinkSignin')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * identitytoolkit.relyingparty.getAccountInfo
+       * @desc Returns the account info.
+       * @alias identitytoolkit.relyingparty.getAccountInfo
+       * @memberOf! identitytoolkit(v3)
+       *
+       * @param {object} params Parameters for request
+       * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartyGetAccountInfoRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    getAccountInfo: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/identitytoolkit/v3/relyingparty/getAccountInfo')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * identitytoolkit.relyingparty.getOobConfirmationCode
+       * @desc Get a code for user action confirmation.
+       * @alias identitytoolkit.relyingparty.getOobConfirmationCode
+       * @memberOf! identitytoolkit(v3)
+       *
+       * @param {object} params Parameters for request
+       * @param {identitytoolkit(v3).Relyingparty} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    getOobConfirmationCode: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/identitytoolkit/v3/relyingparty/getOobConfirmationCode')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * identitytoolkit.relyingparty.getProjectConfig
+       * @desc Get project configuration.
+       * @alias identitytoolkit.relyingparty.getProjectConfig
+       * @memberOf! identitytoolkit(v3)
+       *
+       * @param {object=} params Parameters for request
+       * @param {string=} params.delegatedProjectNumber Delegated GCP project number of the request.
+       * @param {string=} params.projectNumber GCP project number of the request.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    getProjectConfig: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/identitytoolkit/v3/relyingparty/getProjectConfig')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * identitytoolkit.relyingparty.getPublicKeys
+       * @desc Get token signing public key.
+       * @alias identitytoolkit.relyingparty.getPublicKeys
+       * @memberOf! identitytoolkit(v3)
+       *
+       * @param {object=} params Parameters for request
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    getPublicKeys: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/identitytoolkit/v3/relyingparty/publicKeys')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * identitytoolkit.relyingparty.getRecaptchaParam
+       * @desc Get recaptcha secure param.
+       * @alias identitytoolkit.relyingparty.getRecaptchaParam
+       * @memberOf! identitytoolkit(v3)
+       *
+       * @param {object=} params Parameters for request
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    getRecaptchaParam: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/identitytoolkit/v3/relyingparty/getRecaptchaParam')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * identitytoolkit.relyingparty.resetPassword
+       * @desc Reset password for a user.
+       * @alias identitytoolkit.relyingparty.resetPassword
+       * @memberOf! identitytoolkit(v3)
+       *
+       * @param {object} params Parameters for request
+       * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartyResetPasswordRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    resetPassword: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/identitytoolkit/v3/relyingparty/resetPassword')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * identitytoolkit.relyingparty.sendVerificationCode
+       * @desc Send SMS verification code.
+       * @alias identitytoolkit.relyingparty.sendVerificationCode
+       * @memberOf! identitytoolkit(v3)
+       *
+       * @param {object} params Parameters for request
+       * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartySendVerificationCodeRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    sendVerificationCode: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/identitytoolkit/v3/relyingparty/sendVerificationCode')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * identitytoolkit.relyingparty.setAccountInfo
+       * @desc Set account info for a user.
+       * @alias identitytoolkit.relyingparty.setAccountInfo
+       * @memberOf! identitytoolkit(v3)
+       *
+       * @param {object} params Parameters for request
+       * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartySetAccountInfoRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    setAccountInfo: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/identitytoolkit/v3/relyingparty/setAccountInfo')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * identitytoolkit.relyingparty.setProjectConfig
+       * @desc Set project configuration.
+       * @alias identitytoolkit.relyingparty.setProjectConfig
+       * @memberOf! identitytoolkit(v3)
+       *
+       * @param {object} params Parameters for request
+       * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartySetProjectConfigRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    setProjectConfig: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/identitytoolkit/v3/relyingparty/setProjectConfig')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * identitytoolkit.relyingparty.signOutUser
+       * @desc Sign out user.
+       * @alias identitytoolkit.relyingparty.signOutUser
+       * @memberOf! identitytoolkit(v3)
+       *
+       * @param {object} params Parameters for request
+       * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartySignOutUserRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    signOutUser: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/identitytoolkit/v3/relyingparty/signOutUser')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * identitytoolkit.relyingparty.signupNewUser
+       * @desc Signup new user.
+       * @alias identitytoolkit.relyingparty.signupNewUser
+       * @memberOf! identitytoolkit(v3)
+       *
+       * @param {object} params Parameters for request
+       * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartySignupNewUserRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    signupNewUser: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/identitytoolkit/v3/relyingparty/signupNewUser')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * identitytoolkit.relyingparty.uploadAccount
+       * @desc Batch upload existing user accounts.
+       * @alias identitytoolkit.relyingparty.uploadAccount
+       * @memberOf! identitytoolkit(v3)
+       *
+       * @param {object} params Parameters for request
+       * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartyUploadAccountRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    uploadAccount: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/identitytoolkit/v3/relyingparty/uploadAccount')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * identitytoolkit.relyingparty.verifyAssertion
+       * @desc Verifies the assertion returned by the IdP.
+       * @alias identitytoolkit.relyingparty.verifyAssertion
+       * @memberOf! identitytoolkit(v3)
+       *
+       * @param {object} params Parameters for request
+       * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartyVerifyAssertionRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    verifyAssertion: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl + '/identitytoolkit/v3/relyingparty/verifyAssertion')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * identitytoolkit.relyingparty.verifyCustomToken
+       * @desc Verifies the developer asserted ID token.
+       * @alias identitytoolkit.relyingparty.verifyCustomToken
+       * @memberOf! identitytoolkit(v3)
+       *
+       * @param {object} params Parameters for request
+       * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartyVerifyCustomTokenRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    verifyCustomToken: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/identitytoolkit/v3/relyingparty/verifyCustomToken')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * identitytoolkit.relyingparty.verifyPassword
+       * @desc Verifies the user entered password.
+       * @alias identitytoolkit.relyingparty.verifyPassword
+       * @memberOf! identitytoolkit(v3)
+       *
+       * @param {object} params Parameters for request
+       * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartyVerifyPasswordRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    verifyPassword: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/identitytoolkit/v3/relyingparty/verifyPassword')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * identitytoolkit.relyingparty.verifyPhoneNumber
+       * @desc Verifies ownership of a phone number and creates/updates the user
+       * account accordingly.
+       * @alias identitytoolkit.relyingparty.verifyPhoneNumber
+       * @memberOf! identitytoolkit(v3)
+       *
+       * @param {object} params Parameters for request
+       * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartyVerifyPhoneNumberRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    verifyPhoneNumber: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/identitytoolkit/v3/relyingparty/verifyPhoneNumber')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
   };
 }
-
 /**
  * @typedef CreateAuthUriResponse
  * @memberOf! identitytoolkit(v3)
@@ -797,14 +802,12 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} sessionId Session ID which should be passed in the following verifyAssertion request.
  * @property {string[]} signinMethods All sign-in methods this user has used.
  */
-
 /**
  * @typedef DeleteAccountResponse
  * @memberOf! identitytoolkit(v3)
  * @type object
  * @property {string} kind The fixed string &quot;identitytoolkit#DeleteAccountResponse&quot;.
  */
-
 /**
  * @typedef DownloadAccountResponse
  * @memberOf! identitytoolkit(v3)
@@ -813,7 +816,6 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} nextPageToken The next page token. To be used in a subsequent request to return the next page of results.
  * @property {identitytoolkit(v3).UserInfo[]} users The user accounts data.
  */
-
 /**
  * @typedef EmailLinkSigninResponse
  * @memberOf! identitytoolkit(v3)
@@ -826,7 +828,6 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} localId The RP local ID of the user.
  * @property {string} refreshToken The refresh token for the signed in user.
  */
-
 /**
  * @typedef EmailTemplate
  * @memberOf! identitytoolkit(v3)
@@ -838,7 +839,6 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} replyTo Reply-to address.
  * @property {string} subject Subject of the email.
  */
-
 /**
  * @typedef GetAccountInfoResponse
  * @memberOf! identitytoolkit(v3)
@@ -846,7 +846,6 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} kind The fixed string &quot;identitytoolkit#GetAccountInfoResponse&quot;.
  * @property {identitytoolkit(v3).UserInfo[]} users The info of the users.
  */
-
 /**
  * @typedef GetOobConfirmationCodeResponse
  * @memberOf! identitytoolkit(v3)
@@ -855,7 +854,6 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} kind The fixed string &quot;identitytoolkit#GetOobConfirmationCodeResponse&quot;.
  * @property {string} oobCode The code to be send to the user.
  */
-
 /**
  * @typedef GetRecaptchaParamResponse
  * @memberOf! identitytoolkit(v3)
@@ -864,7 +862,6 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} recaptchaSiteKey Site key registered at recaptcha.
  * @property {string} recaptchaStoken The stoken field for the recaptcha widget, used to request captcha challenge.
  */
-
 /**
  * @typedef IdentitytoolkitRelyingpartyCreateAuthUriRequest
  * @memberOf! identitytoolkit(v3)
@@ -884,7 +881,6 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} providerId The IdP ID. For white listed IdPs it&#39;s a short domain name e.g. google.com, aol.com, live.net and yahoo.com. For other OpenID IdPs it&#39;s the OP identifier.
  * @property {string} sessionId The session_id passed by client.
  */
-
 /**
  * @typedef IdentitytoolkitRelyingpartyDeleteAccountRequest
  * @memberOf! identitytoolkit(v3)
@@ -893,7 +889,6 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} idToken The GITKit token or STS id token of the authenticated user.
  * @property {string} localId The local ID of the user.
  */
-
 /**
  * @typedef IdentitytoolkitRelyingpartyDownloadAccountRequest
  * @memberOf! identitytoolkit(v3)
@@ -903,7 +898,6 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} nextPageToken The token for the next page. This should be taken from the previous response.
  * @property {string} targetProjectId Specify which project (field value is actually project id) to operate. Only used when provided credential.
  */
-
 /**
  * @typedef IdentitytoolkitRelyingpartyEmailLinkSigninRequest
  * @memberOf! identitytoolkit(v3)
@@ -912,7 +906,6 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} idToken Token for linking flow.
  * @property {string} oobCode The confirmation code.
  */
-
 /**
  * @typedef IdentitytoolkitRelyingpartyGetAccountInfoRequest
  * @memberOf! identitytoolkit(v3)
@@ -923,7 +916,6 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string[]} localId The list of local ID&#39;s of the users to inquiry.
  * @property {string[]} phoneNumber Privileged caller can query users by specified phone number.
  */
-
 /**
  * @typedef IdentitytoolkitRelyingpartyGetProjectConfigResponse
  * @memberOf! identitytoolkit(v3)
@@ -932,7 +924,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} apiKey Browser API key, needed when making http request to Apiary.
  * @property {string[]} authorizedDomains Authorized domains.
  * @property {identitytoolkit(v3).EmailTemplate} changeEmailTemplate Change email template.
- * @property {string} dynamicLinksDomain 
+ * @property {string} dynamicLinksDomain
  * @property {boolean} enableAnonymousUser Whether anonymous user is enabled.
  * @property {identitytoolkit(v3).IdpConfig[]} idpConfig OAuth2 provider configuration.
  * @property {identitytoolkit(v3).EmailTemplate} legacyResetPasswordTemplate Legacy reset password email template.
@@ -941,13 +933,11 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {boolean} useEmailSending Whether to use email sending provided by Firebear.
  * @property {identitytoolkit(v3).EmailTemplate} verifyEmailTemplate Verify email template.
  */
-
 /**
  * @typedef IdentitytoolkitRelyingpartyGetPublicKeysResponse
  * @memberOf! identitytoolkit(v3)
  * @type object
  */
-
 /**
  * @typedef IdentitytoolkitRelyingpartyResetPasswordRequest
  * @memberOf! identitytoolkit(v3)
@@ -957,7 +947,6 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} oldPassword The old password inputted by the user.
  * @property {string} oobCode The confirmation code.
  */
-
 /**
  * @typedef IdentitytoolkitRelyingpartySendVerificationCodeRequest
  * @memberOf! identitytoolkit(v3)
@@ -967,14 +956,12 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} phoneNumber The phone number to send the verification code to in E.164 format.
  * @property {string} recaptchaToken Recaptcha solution.
  */
-
 /**
  * @typedef IdentitytoolkitRelyingpartySendVerificationCodeResponse
  * @memberOf! identitytoolkit(v3)
  * @type object
  * @property {string} sessionInfo Encrypted session information
  */
-
 /**
  * @typedef IdentitytoolkitRelyingpartySetAccountInfoRequest
  * @memberOf! identitytoolkit(v3)
@@ -1003,7 +990,6 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {boolean} upgradeToFederatedLogin Mark the user to upgrade to federated login.
  * @property {string} validSince Timestamp in seconds for valid login token.
  */
-
 /**
  * @typedef IdentitytoolkitRelyingpartySetProjectConfigRequest
  * @memberOf! identitytoolkit(v3)
@@ -1020,14 +1006,12 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {boolean} useEmailSending Whether to use email sending provided by Firebear.
  * @property {identitytoolkit(v3).EmailTemplate} verifyEmailTemplate Verify email template.
  */
-
 /**
  * @typedef IdentitytoolkitRelyingpartySetProjectConfigResponse
  * @memberOf! identitytoolkit(v3)
  * @type object
  * @property {string} projectId Project ID of the relying party.
  */
-
 /**
  * @typedef IdentitytoolkitRelyingpartySignOutUserRequest
  * @memberOf! identitytoolkit(v3)
@@ -1035,14 +1019,12 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} instanceId Instance id token of the app.
  * @property {string} localId The local ID of the user.
  */
-
 /**
  * @typedef IdentitytoolkitRelyingpartySignOutUserResponse
  * @memberOf! identitytoolkit(v3)
  * @type object
  * @property {string} localId The local ID of the user.
  */
-
 /**
  * @typedef IdentitytoolkitRelyingpartySignupNewUserRequest
  * @memberOf! identitytoolkit(v3)
@@ -1060,19 +1042,18 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} phoneNumber Privileged caller can create user with specified phone number.
  * @property {string} photoUrl The photo url of the user.
  */
-
 /**
  * @typedef IdentitytoolkitRelyingpartyUploadAccountRequest
  * @memberOf! identitytoolkit(v3)
  * @type object
  * @property {boolean} allowOverwrite Whether allow overwrite existing account when user local_id exists.
- * @property {integer} blockSize 
+ * @property {integer} blockSize
  * @property {integer} cpuMemCost The following 4 fields are for standard scrypt algorithm.
  * @property {string} delegatedProjectNumber GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration.
- * @property {integer} dkLen 
+ * @property {integer} dkLen
  * @property {string} hashAlgorithm The password hash algorithm.
  * @property {integer} memoryCost Memory cost for hash calculation. Used by scrypt similar algorithms.
- * @property {integer} parallelization 
+ * @property {integer} parallelization
  * @property {integer} rounds Rounds for hash calculation. Used by scrypt and similar algorithms.
  * @property {string} saltSeparator The salt separator.
  * @property {boolean} sanityCheck If true, backend will do sanity check(including duplicate email and federated id) when uploading account.
@@ -1080,7 +1061,6 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} targetProjectId Specify which project (field value is actually project id) to operate. Only used when provided credential.
  * @property {identitytoolkit(v3).UserInfo[]} users The account info to be stored.
  */
-
 /**
  * @typedef IdentitytoolkitRelyingpartyVerifyAssertionRequest
  * @memberOf! identitytoolkit(v3)
@@ -1097,7 +1077,6 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {boolean} returnSecureToken Whether return sts id token and refresh token instead of gitkit token.
  * @property {string} sessionId Session ID, which should match the one in previous createAuthUri request.
  */
-
 /**
  * @typedef IdentitytoolkitRelyingpartyVerifyCustomTokenRequest
  * @memberOf! identitytoolkit(v3)
@@ -1107,7 +1086,6 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {boolean} returnSecureToken Whether return sts id token and refresh token instead of gitkit token.
  * @property {string} token The custom token to verify
  */
-
 /**
  * @typedef IdentitytoolkitRelyingpartyVerifyPasswordRequest
  * @memberOf! identitytoolkit(v3)
@@ -1122,36 +1100,33 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} pendingIdToken The GITKit token for the non-trusted IDP, which is to be confirmed by the user.
  * @property {boolean} returnSecureToken Whether return sts id token and refresh token instead of gitkit token.
  */
-
 /**
  * @typedef IdentitytoolkitRelyingpartyVerifyPhoneNumberRequest
  * @memberOf! identitytoolkit(v3)
  * @type object
- * @property {string} code 
- * @property {string} idToken 
- * @property {string} operation 
- * @property {string} phoneNumber 
+ * @property {string} code
+ * @property {string} idToken
+ * @property {string} operation
+ * @property {string} phoneNumber
  * @property {string} sessionInfo The session info previously returned by IdentityToolkit-SendVerificationCode.
- * @property {string} temporaryProof 
- * @property {string} verificationProof 
+ * @property {string} temporaryProof
+ * @property {string} verificationProof
  */
-
 /**
  * @typedef IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
  * @memberOf! identitytoolkit(v3)
  * @type object
- * @property {string} expiresIn 
- * @property {string} idToken 
- * @property {boolean} isNewUser 
- * @property {string} localId 
- * @property {string} phoneNumber 
- * @property {string} refreshToken 
- * @property {string} temporaryProof 
- * @property {string} temporaryProofExpiresIn 
- * @property {string} verificationProof 
- * @property {string} verificationProofExpiresIn 
+ * @property {string} expiresIn
+ * @property {string} idToken
+ * @property {boolean} isNewUser
+ * @property {string} localId
+ * @property {string} phoneNumber
+ * @property {string} refreshToken
+ * @property {string} temporaryProof
+ * @property {string} temporaryProofExpiresIn
+ * @property {string} verificationProof
+ * @property {string} verificationProofExpiresIn
  */
-
 /**
  * @typedef IdpConfig
  * @memberOf! identitytoolkit(v3)
@@ -1163,7 +1138,6 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} secret OAuth2 client secret.
  * @property {string[]} whitelistedAudiences Whitelisted client IDs for audience check.
  */
-
 /**
  * @typedef Relyingparty
  * @memberOf! identitytoolkit(v3)
@@ -1176,15 +1150,14 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} challenge The recaptcha challenge presented to the user.
  * @property {string} continueUrl The url to continue to the Gitkit app
  * @property {string} email The email of the user.
+ * @property {string} idToken The user&#39;s Gitkit login token for email change.
  * @property {string} iOSAppStoreId iOS app store id to download the app if it&#39;s not already installed
  * @property {string} iOSBundleId the iOS bundle id of iOS app to handle the action code
- * @property {string} idToken The user&#39;s Gitkit login token for email change.
  * @property {string} kind The fixed string &quot;identitytoolkit#relyingparty&quot;.
  * @property {string} newEmail The new email if the code is for email change.
  * @property {string} requestType The request type.
  * @property {string} userIp The IP address of the user.
  */
-
 /**
  * @typedef ResetPasswordResponse
  * @memberOf! identitytoolkit(v3)
@@ -1194,7 +1167,6 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} newEmail If the out-of-band code is for email recovery, the user&#39;s new email.
  * @property {string} requestType The request type.
  */
-
 /**
  * @typedef SetAccountInfoResponse
  * @memberOf! identitytoolkit(v3)
@@ -1212,7 +1184,6 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {object[]} providerUserInfo The user&#39;s profiles at the associated IdPs.
  * @property {string} refreshToken If idToken is STS id token, then this field will be refresh token.
  */
-
 /**
  * @typedef SignupNewUserResponse
  * @memberOf! identitytoolkit(v3)
@@ -1225,7 +1196,6 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} localId The RP local ID of the user.
  * @property {string} refreshToken If idToken is STS id token, then this field will be refresh token.
  */
-
 /**
  * @typedef UploadAccountResponse
  * @memberOf! identitytoolkit(v3)
@@ -1233,7 +1203,6 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {object[]} error The error encountered while processing the account info.
  * @property {string} kind The fixed string &quot;identitytoolkit#UploadAccountResponse&quot;.
  */
-
 /**
  * @typedef UserInfo
  * @memberOf! identitytoolkit(v3)
@@ -1258,7 +1227,6 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} validSince Timestamp in seconds for valid login token.
  * @property {integer} version Version of the user&#39;s password.
  */
-
 /**
  * @typedef VerifyAssertionResponse
  * @memberOf! identitytoolkit(v3)
@@ -1303,7 +1271,6 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} timeZone The timezone of the user.
  * @property {string[]} verifiedProvider When action is &#39;map&#39;, contains the idps which can be used for confirmation.
  */
-
 /**
  * @typedef VerifyCustomTokenResponse
  * @memberOf! identitytoolkit(v3)
@@ -1314,7 +1281,6 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} kind The fixed string &quot;identitytoolkit#VerifyCustomTokenResponse&quot;.
  * @property {string} refreshToken If idToken is STS id token, then this field will be refresh token.
  */
-
 /**
  * @typedef VerifyPasswordResponse
  * @memberOf! identitytoolkit(v3)
@@ -1332,4 +1298,5 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} refreshToken If idToken is STS id token, then this field will be refresh token.
  * @property {boolean} registered Whether the email is registered.
  */
+
 export = Identitytoolkit;

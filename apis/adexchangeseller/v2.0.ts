@@ -14,11 +14,7 @@
  * limitations under the License.
  */
 
-/* jshint maxlen: false */
-
-import {
-  createAPIRequest
-} from '../../lib/apirequest';
+import {createAPIRequest} from '../../lib/apirequest';
 
 /**
  * Ad Exchange Seller API
@@ -35,17 +31,13 @@ import {
  * @variation v2.0
  * @param {object=} options Options for Adexchangeseller
  */
-function Adexchangeseller(options) { // eslint-disable-line
+function Adexchangeseller(options) {
   const self = this;
   self._options = options || {};
-
   self.accounts = {
-
     /**
      * adexchangeseller.accounts.get
-     *
      * @desc Get information about the selected Ad Exchange account.
-     *
      * @alias adexchangeseller.accounts.get
      * @memberOf! adexchangeseller(v2.0)
      *
@@ -55,7 +47,7 @@ function Adexchangeseller(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, options, callback) {
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -65,35 +57,35 @@ function Adexchangeseller(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/adexchangeseller/v2.0/accounts/{accountId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/adexchangeseller/v2.0/accounts/{accountId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * adexchangeseller.accounts.list
-     *
-     * @desc List all accounts available to this Ad Exchange account.
-     *
-     * @alias adexchangeseller.accounts.list
-     * @memberOf! adexchangeseller(v2.0)
-     *
-     * @param {object=} params Parameters for request
-     * @param {integer=} params.maxResults The maximum number of accounts to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page through accounts. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
+    , /**
+       * adexchangeseller.accounts.list
+       * @desc List all accounts available to this Ad Exchange account.
+       * @alias adexchangeseller.accounts.list
+       * @memberOf! adexchangeseller(v2.0)
+       *
+       * @param {object=} params Parameters for request
+       * @param {integer=} params.maxResults The maximum number of accounts to include in the response, used for paging.
+       * @param {string=} params.pageToken A continuation token, used to page through accounts. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -103,25 +95,26 @@ function Adexchangeseller(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/adexchangeseller/v2.0/accounts').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/adexchangeseller/v2.0/accounts')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
-    adclients: {
+    }
 
+    ,
+    adclients: {
       /**
        * adexchangeseller.accounts.adclients.list
-       *
        * @desc List all ad clients in this Ad Exchange account.
-       *
        * @alias adexchangeseller.accounts.adclients.list
        * @memberOf! adexchangeseller(v2.0)
        *
@@ -133,7 +126,7 @@ function Adexchangeseller(options) { // eslint-disable-line
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, options, callback) {
+      list: function(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -143,26 +136,28 @@ function Adexchangeseller(options) { // eslint-disable-line
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
         const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/adexchangeseller/v2.0/accounts/{accountId}/adclients').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET'
-          }, options),
+          options: Object.assign(
+              {
+                url: (rootUrl +
+                      '/adexchangeseller/v2.0/accounts/{accountId}/adclients')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
           params: params,
           requiredParams: ['accountId'],
           pathParams: ['accountId'],
           context: self
         };
-
         return createAPIRequest(parameters, callback);
       }
+
+
     },
     alerts: {
-
       /**
        * adexchangeseller.accounts.alerts.list
-       *
        * @desc List the alerts for this Ad Exchange account.
-       *
        * @alias adexchangeseller.accounts.alerts.list
        * @memberOf! adexchangeseller(v2.0)
        *
@@ -173,7 +168,7 @@ function Adexchangeseller(options) { // eslint-disable-line
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, options, callback) {
+      list: function(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -183,26 +178,28 @@ function Adexchangeseller(options) { // eslint-disable-line
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
         const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/adexchangeseller/v2.0/accounts/{accountId}/alerts').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET'
-          }, options),
+          options: Object.assign(
+              {
+                url: (rootUrl +
+                      '/adexchangeseller/v2.0/accounts/{accountId}/alerts')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
           params: params,
           requiredParams: ['accountId'],
           pathParams: ['accountId'],
           context: self
         };
-
         return createAPIRequest(parameters, callback);
       }
+
+
     },
     customchannels: {
-
       /**
        * adexchangeseller.accounts.customchannels.get
-       *
        * @desc Get the specified custom channel from the specified ad client.
-       *
        * @alias adexchangeseller.accounts.customchannels.get
        * @memberOf! adexchangeseller(v2.0)
        *
@@ -214,7 +211,7 @@ function Adexchangeseller(options) { // eslint-disable-line
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, options, callback) {
+      get: function(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -224,37 +221,40 @@ function Adexchangeseller(options) { // eslint-disable-line
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
         const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/adexchangeseller/v2.0/accounts/{accountId}/adclients/{adClientId}/customchannels/{customChannelId}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET'
-          }, options),
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl +
+                     '/adexchangeseller/v2.0/accounts/{accountId}/adclients/{adClientId}/customchannels/{customChannelId}')
+                        .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
           params: params,
           requiredParams: ['accountId', 'adClientId', 'customChannelId'],
           pathParams: ['accountId', 'adClientId', 'customChannelId'],
           context: self
         };
-
         return createAPIRequest(parameters, callback);
-      },
+      }
 
-      /**
-       * adexchangeseller.accounts.customchannels.list
-       *
-       * @desc List all custom channels in the specified ad client for this Ad Exchange account.
-       *
-       * @alias adexchangeseller.accounts.customchannels.list
-       * @memberOf! adexchangeseller(v2.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId Account to which the ad client belongs.
-       * @param {string} params.adClientId Ad client for which to list custom channels.
-       * @param {integer=} params.maxResults The maximum number of custom channels to include in the response, used for paging.
-       * @param {string=} params.pageToken A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list: function (params, options, callback) {
+      , /**
+         * adexchangeseller.accounts.customchannels.list
+         * @desc List all custom channels in the specified ad client for this Ad
+         * Exchange account.
+         * @alias adexchangeseller.accounts.customchannels.list
+         * @memberOf! adexchangeseller(v2.0)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId Account to which the ad client belongs.
+         * @param {string} params.adClientId Ad client for which to list custom channels.
+         * @param {integer=} params.maxResults The maximum number of custom channels to include in the response, used for paging.
+         * @param {string=} params.pageToken A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+      list: function(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -264,27 +264,31 @@ function Adexchangeseller(options) { // eslint-disable-line
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
         const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/adexchangeseller/v2.0/accounts/{accountId}/adclients/{adClientId}/customchannels').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET'
-          }, options),
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl +
+                     '/adexchangeseller/v2.0/accounts/{accountId}/adclients/{adClientId}/customchannels')
+                        .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
           params: params,
           requiredParams: ['accountId', 'adClientId'],
           pathParams: ['accountId', 'adClientId'],
           context: self
         };
-
         return createAPIRequest(parameters, callback);
       }
+
+
     },
     metadata: {
       dimensions: {
-
         /**
          * adexchangeseller.accounts.metadata.dimensions.list
-         *
-         * @desc List the metadata for the dimensions available to this AdExchange account.
-         *
+         * @desc List the metadata for the dimensions available to this
+         * AdExchange account.
          * @alias adexchangeseller.accounts.metadata.dimensions.list
          * @memberOf! adexchangeseller(v2.0)
          *
@@ -294,7 +298,7 @@ function Adexchangeseller(options) { // eslint-disable-line
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function (params, options, callback) {
+        list: function(params, options, callback) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -304,26 +308,30 @@ function Adexchangeseller(options) { // eslint-disable-line
           const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
           const parameters = {
-            options: Object.assign({
-              url: (rootUrl + '/adexchangeseller/v2.0/accounts/{accountId}/metadata/dimensions').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            }, options),
+            options: Object.assign(
+                {
+                  url:
+                      (rootUrl +
+                       '/adexchangeseller/v2.0/accounts/{accountId}/metadata/dimensions')
+                          .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'GET'
+                },
+                options),
             params: params,
             requiredParams: ['accountId'],
             pathParams: ['accountId'],
             context: self
           };
-
           return createAPIRequest(parameters, callback);
         }
+
+
       },
       metrics: {
-
         /**
          * adexchangeseller.accounts.metadata.metrics.list
-         *
-         * @desc List the metadata for the metrics available to this AdExchange account.
-         *
+         * @desc List the metadata for the metrics available to this AdExchange
+         * account.
          * @alias adexchangeseller.accounts.metadata.metrics.list
          * @memberOf! adexchangeseller(v2.0)
          *
@@ -333,7 +341,7 @@ function Adexchangeseller(options) { // eslint-disable-line
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function (params, options, callback) {
+        list: function(params, options, callback) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -343,27 +351,30 @@ function Adexchangeseller(options) { // eslint-disable-line
           const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
           const parameters = {
-            options: Object.assign({
-              url: (rootUrl + '/adexchangeseller/v2.0/accounts/{accountId}/metadata/metrics').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            }, options),
+            options: Object.assign(
+                {
+                  url:
+                      (rootUrl +
+                       '/adexchangeseller/v2.0/accounts/{accountId}/metadata/metrics')
+                          .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'GET'
+                },
+                options),
             params: params,
             requiredParams: ['accountId'],
             pathParams: ['accountId'],
             context: self
           };
-
           return createAPIRequest(parameters, callback);
         }
+
+
       }
     },
     preferreddeals: {
-
       /**
        * adexchangeseller.accounts.preferreddeals.get
-       *
        * @desc Get information about the selected Ad Exchange Preferred Deal.
-       *
        * @alias adexchangeseller.accounts.preferreddeals.get
        * @memberOf! adexchangeseller(v2.0)
        *
@@ -374,7 +385,7 @@ function Adexchangeseller(options) { // eslint-disable-line
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, options, callback) {
+      get: function(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -384,34 +395,36 @@ function Adexchangeseller(options) { // eslint-disable-line
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
         const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/adexchangeseller/v2.0/accounts/{accountId}/preferreddeals/{dealId}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET'
-          }, options),
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl +
+                     '/adexchangeseller/v2.0/accounts/{accountId}/preferreddeals/{dealId}')
+                        .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
           params: params,
           requiredParams: ['accountId', 'dealId'],
           pathParams: ['accountId', 'dealId'],
           context: self
         };
-
         return createAPIRequest(parameters, callback);
-      },
+      }
 
-      /**
-       * adexchangeseller.accounts.preferreddeals.list
-       *
-       * @desc List the preferred deals for this Ad Exchange account.
-       *
-       * @alias adexchangeseller.accounts.preferreddeals.list
-       * @memberOf! adexchangeseller(v2.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId Account owning the deals.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list: function (params, options, callback) {
+      , /**
+         * adexchangeseller.accounts.preferreddeals.list
+         * @desc List the preferred deals for this Ad Exchange account.
+         * @alias adexchangeseller.accounts.preferreddeals.list
+         * @memberOf! adexchangeseller(v2.0)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId Account owning the deals.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+      list: function(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -421,26 +434,31 @@ function Adexchangeseller(options) { // eslint-disable-line
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
         const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/adexchangeseller/v2.0/accounts/{accountId}/preferreddeals').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET'
-          }, options),
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl +
+                     '/adexchangeseller/v2.0/accounts/{accountId}/preferreddeals')
+                        .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
           params: params,
           requiredParams: ['accountId'],
           pathParams: ['accountId'],
           context: self
         };
-
         return createAPIRequest(parameters, callback);
       }
+
+
     },
     reports: {
-
       /**
        * adexchangeseller.accounts.reports.generate
-       *
-       * @desc Generate an Ad Exchange report based on the report request sent in the query parameters. Returns the result as JSON; to retrieve output in CSV format specify "alt=csv" as a query parameter.
-       *
+       * @desc Generate an Ad Exchange report based on the report request sent
+       * in the query parameters. Returns the result as JSON; to retrieve output
+       * in CSV format specify "alt=csv" as a query parameter.
        * @alias adexchangeseller.accounts.reports.generate
        * @memberOf! adexchangeseller(v2.0)
        *
@@ -459,7 +477,7 @@ function Adexchangeseller(options) { // eslint-disable-line
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      generate: function (params, options, callback) {
+      generate: function(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -469,25 +487,28 @@ function Adexchangeseller(options) { // eslint-disable-line
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
         const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/adexchangeseller/v2.0/accounts/{accountId}/reports').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET'
-          }, options),
+          options: Object.assign(
+              {
+                url: (rootUrl +
+                      '/adexchangeseller/v2.0/accounts/{accountId}/reports')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
           params: params,
           requiredParams: ['accountId', 'startDate', 'endDate'],
           pathParams: ['accountId'],
           context: self
         };
-
         return createAPIRequest(parameters, callback);
-      },
-      saved: {
+      }
 
+      ,
+      saved: {
         /**
          * adexchangeseller.accounts.reports.saved.generate
-         *
-         * @desc Generate an Ad Exchange report based on the saved report ID sent in the query parameters.
-         *
+         * @desc Generate an Ad Exchange report based on the saved report ID
+         * sent in the query parameters.
          * @alias adexchangeseller.accounts.reports.saved.generate
          * @memberOf! adexchangeseller(v2.0)
          *
@@ -501,7 +522,7 @@ function Adexchangeseller(options) { // eslint-disable-line
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        generate: function (params, options, callback) {
+        generate: function(params, options, callback) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -511,36 +532,38 @@ function Adexchangeseller(options) { // eslint-disable-line
           const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
           const parameters = {
-            options: Object.assign({
-              url: (rootUrl + '/adexchangeseller/v2.0/accounts/{accountId}/reports/{savedReportId}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            }, options),
+            options: Object.assign(
+                {
+                  url:
+                      (rootUrl +
+                       '/adexchangeseller/v2.0/accounts/{accountId}/reports/{savedReportId}')
+                          .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'GET'
+                },
+                options),
             params: params,
             requiredParams: ['accountId', 'savedReportId'],
             pathParams: ['accountId', 'savedReportId'],
             context: self
           };
-
           return createAPIRequest(parameters, callback);
-        },
+        }
 
-        /**
-         * adexchangeseller.accounts.reports.saved.list
-         *
-         * @desc List all saved reports in this Ad Exchange account.
-         *
-         * @alias adexchangeseller.accounts.reports.saved.list
-         * @memberOf! adexchangeseller(v2.0)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account owning the saved reports.
-         * @param {integer=} params.maxResults The maximum number of saved reports to include in the response, used for paging.
-         * @param {string=} params.pageToken A continuation token, used to page through saved reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        list: function (params, options, callback) {
+        , /**
+           * adexchangeseller.accounts.reports.saved.list
+           * @desc List all saved reports in this Ad Exchange account.
+           * @alias adexchangeseller.accounts.reports.saved.list
+           * @memberOf! adexchangeseller(v2.0)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.accountId Account owning the saved reports.
+           * @param {integer=} params.maxResults The maximum number of saved reports to include in the response, used for paging.
+           * @param {string=} params.pageToken A continuation token, used to page through saved reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+        list: function(params, options, callback) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -550,27 +573,31 @@ function Adexchangeseller(options) { // eslint-disable-line
           const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
           const parameters = {
-            options: Object.assign({
-              url: (rootUrl + '/adexchangeseller/v2.0/accounts/{accountId}/reports/saved').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            }, options),
+            options: Object.assign(
+                {
+                  url:
+                      (rootUrl +
+                       '/adexchangeseller/v2.0/accounts/{accountId}/reports/saved')
+                          .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'GET'
+                },
+                options),
             params: params,
             requiredParams: ['accountId'],
             pathParams: ['accountId'],
             context: self
           };
-
           return createAPIRequest(parameters, callback);
         }
+
+
       }
     },
     urlchannels: {
-
       /**
        * adexchangeseller.accounts.urlchannels.list
-       *
-       * @desc List all URL channels in the specified ad client for this Ad Exchange account.
-       *
+       * @desc List all URL channels in the specified ad client for this Ad
+       * Exchange account.
        * @alias adexchangeseller.accounts.urlchannels.list
        * @memberOf! adexchangeseller(v2.0)
        *
@@ -583,7 +610,7 @@ function Adexchangeseller(options) { // eslint-disable-line
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, options, callback) {
+      list: function(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -593,22 +620,27 @@ function Adexchangeseller(options) { // eslint-disable-line
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
         const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/adexchangeseller/v2.0/accounts/{accountId}/adclients/{adClientId}/urlchannels').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET'
-          }, options),
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl +
+                     '/adexchangeseller/v2.0/accounts/{accountId}/adclients/{adClientId}/urlchannels')
+                        .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
           params: params,
           requiredParams: ['accountId', 'adClientId'],
           pathParams: ['accountId', 'adClientId'],
           context: self
         };
-
         return createAPIRequest(parameters, callback);
       }
+
+
     }
   };
 }
-
 /**
  * @typedef Account
  * @memberOf! adexchangeseller(v2.0)
@@ -617,7 +649,6 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {string} kind Kind of resource this is, in this case adexchangeseller#account.
  * @property {string} name Name of this account.
  */
-
 /**
  * @typedef Accounts
  * @memberOf! adexchangeseller(v2.0)
@@ -627,7 +658,6 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {string} kind Kind of list this is, in this case adexchangeseller#accounts.
  * @property {string} nextPageToken Continuation token used to page through accounts. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
  */
-
 /**
  * @typedef AdClient
  * @memberOf! adexchangeseller(v2.0)
@@ -638,7 +668,6 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {string} productCode This ad client&#39;s product code, which corresponds to the PRODUCT_CODE report dimension.
  * @property {boolean} supportsReporting Whether this ad client supports being reported on.
  */
-
 /**
  * @typedef AdClients
  * @memberOf! adexchangeseller(v2.0)
@@ -648,7 +677,6 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {string} kind Kind of list this is, in this case adexchangeseller#adClients.
  * @property {string} nextPageToken Continuation token used to page through ad clients. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
  */
-
 /**
  * @typedef Alert
  * @memberOf! adexchangeseller(v2.0)
@@ -659,7 +687,6 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {string} severity Severity of this alert. Possible values: INFO, WARNING, SEVERE.
  * @property {string} type Type of this alert. Possible values: SELF_HOLD, MIGRATED_TO_BILLING3, ADDRESS_PIN_VERIFICATION, PHONE_PIN_VERIFICATION, CORPORATE_ENTITY, GRAYLISTED_PUBLISHER, API_HOLD.
  */
-
 /**
  * @typedef Alerts
  * @memberOf! adexchangeseller(v2.0)
@@ -667,7 +694,6 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {adexchangeseller(v2.0).Alert[]} items The alerts returned in this list response.
  * @property {string} kind Kind of list this is, in this case adexchangeseller#alerts.
  */
-
 /**
  * @typedef CustomChannel
  * @memberOf! adexchangeseller(v2.0)
@@ -678,7 +704,6 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {string} name Name of this custom channel.
  * @property {object} targetingInfo The targeting information of this custom channel, if activated.
  */
-
 /**
  * @typedef CustomChannels
  * @memberOf! adexchangeseller(v2.0)
@@ -688,15 +713,13 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {string} kind Kind of list this is, in this case adexchangeseller#customChannels.
  * @property {string} nextPageToken Continuation token used to page through custom channels. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
  */
-
 /**
  * @typedef Metadata
  * @memberOf! adexchangeseller(v2.0)
  * @type object
- * @property {adexchangeseller(v2.0).ReportingMetadataEntry[]} items 
+ * @property {adexchangeseller(v2.0).ReportingMetadataEntry[]} items
  * @property {string} kind Kind of list this is, in this case adexchangeseller#metadata.
  */
-
 /**
  * @typedef PreferredDeal
  * @memberOf! adexchangeseller(v2.0)
@@ -710,7 +733,6 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {string} kind Kind of resource this is, in this case adexchangeseller#preferredDeal.
  * @property {string} startTime Time when this deal becomes active in seconds since the epoch (GMT). If not set then this deal is active immediately upon creation.
  */
-
 /**
  * @typedef PreferredDeals
  * @memberOf! adexchangeseller(v2.0)
@@ -718,7 +740,6 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {adexchangeseller(v2.0).PreferredDeal[]} items The preferred deals returned in this list response.
  * @property {string} kind Kind of list this is, in this case adexchangeseller#preferredDeals.
  */
-
 /**
  * @typedef Report
  * @memberOf! adexchangeseller(v2.0)
@@ -731,7 +752,6 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {string[]} totals The totals of the report. This is the same length as any other row in the report; cells corresponding to dimension columns are empty.
  * @property {string[]} warnings Any warnings associated with generation of the report.
  */
-
 /**
  * @typedef ReportingMetadataEntry
  * @memberOf! adexchangeseller(v2.0)
@@ -744,7 +764,6 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {string[]} requiredMetrics The names of the metrics which the dimension or metric this reporting metadata entry describes requires to also be present in order for the report to be valid. Omitting these will not cause an error or warning, but may result in data which cannot be correctly interpreted.
  * @property {string[]} supportedProducts The codes of the projects supported by the dimension or metric this reporting metadata entry describes.
  */
-
 /**
  * @typedef SavedReport
  * @memberOf! adexchangeseller(v2.0)
@@ -753,7 +772,6 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {string} kind Kind of resource this is, in this case adexchangeseller#savedReport.
  * @property {string} name This saved report&#39;s name.
  */
-
 /**
  * @typedef SavedReports
  * @memberOf! adexchangeseller(v2.0)
@@ -763,7 +781,6 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {string} kind Kind of list this is, in this case adexchangeseller#savedReports.
  * @property {string} nextPageToken Continuation token used to page through saved reports. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
  */
-
 /**
  * @typedef UrlChannel
  * @memberOf! adexchangeseller(v2.0)
@@ -772,7 +789,6 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {string} kind Kind of resource this is, in this case adexchangeseller#urlChannel.
  * @property {string} urlPattern URL Pattern of this URL channel. Does not include &quot;http://&quot; or &quot;https://&quot;. Example: www.example.com/home
  */
-
 /**
  * @typedef UrlChannels
  * @memberOf! adexchangeseller(v2.0)
@@ -782,4 +798,5 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {string} kind Kind of list this is, in this case adexchangeseller#urlChannels.
  * @property {string} nextPageToken Continuation token used to page through URL channels. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
  */
+
 export = Adexchangeseller;

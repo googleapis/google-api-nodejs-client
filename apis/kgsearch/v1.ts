@@ -14,11 +14,7 @@
  * limitations under the License.
  */
 
-/* jshint maxlen: false */
-
-import {
-  createAPIRequest
-} from '../../lib/apirequest';
+import {createAPIRequest} from '../../lib/apirequest';
 
 /**
  * Knowledge Graph Search API
@@ -35,17 +31,15 @@ import {
  * @variation v1
  * @param {object=} options Options for Kgsearch
  */
-function Kgsearch(options) { // eslint-disable-line
+function Kgsearch(options) {
   const self = this;
   self._options = options || {};
-
   self.entities = {
-
     /**
      * kgsearch.entities.search
-     *
-     * @desc Searches Knowledge Graph for entities that match the constraints. A list of matched entities will be returned in response, which will be in JSON-LD format and compatible with http://schema.org
-     *
+     * @desc Searches Knowledge Graph for entities that match the constraints. A
+     * list of matched entities will be returned in response, which will be in
+     * JSON-LD format and compatible with http://schema.org
      * @alias kgsearch.entities.search
      * @memberOf! kgsearch(v1)
      *
@@ -61,7 +55,7 @@ function Kgsearch(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search: function (params, options, callback) {
+    search: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -71,29 +65,32 @@ function Kgsearch(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://kgsearch.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1/entities:search').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/entities:search')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
 }
-
 /**
  * @typedef SearchResponse
  * @memberOf! kgsearch(v1)
  * @type object
-* @property {any} @context The local context applicable for the response. See more details at
+ * @property {any} @context The local context applicable for the response. See more details at
 http://www.w3.org/TR/json-ld/#context-definitions.
-* @property {any} @type The schema type of top-level JSON-LD object, e.g. ItemList.
-* @property {any[]} itemListElement The item list of search results.
-*/
+ * @property {any} @type The schema type of top-level JSON-LD object, e.g. ItemList.
+ * @property {any[]} itemListElement The item list of search results.
+ */
+
 export = Kgsearch;
