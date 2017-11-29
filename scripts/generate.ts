@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
-import {Generator} from './generator';
-import * as rimraf from 'rimraf';
-import * as path from 'path';
 import * as minimist from 'minimist';
-import { install } from 'source-map-support';
+import * as path from 'path';
+import * as rimraf from 'rimraf';
+import {install} from 'source-map-support';
+
+import {Generator} from './generator';
 
 // enable source map support
 install();
@@ -28,7 +29,7 @@ const debug = true;
 const argv = minimist(process.argv.slice(2));
 
 // constructors
-const gen = new Generator({ debug, includePrivate: false });
+const gen = new Generator({debug, includePrivate: false});
 
 const args = argv._;
 if (args.length) {

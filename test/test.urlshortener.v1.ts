@@ -11,32 +11,35 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as assert from 'power-assert';
 import * as nock from 'nock';
 import * as path from 'path';
+import * as assert from 'power-assert';
+
 import {Utils} from './utils';
+
 const googleapis = require('../');
 
-function testSingleRequest (urlshortener) {
-  const obj = { longUrl: 'http://someurl...' };
+function testSingleRequest(urlshortener) {
+  const obj = {longUrl: 'http://someurl...'};
   const req = urlshortener.url.insert(obj, Utils.noop);
   assert.equal(
-    req.uri.href,
-    'https://www.googleapis.com/urlshortener/v1/url?longUrl=http%3A%2F%2Fsomeurl...'
-  );
+      req.uri.href,
+      'https://www.googleapis.com/urlshortener/v1/url?longUrl=http%3A%2F%2Fsomeurl...');
   assert.equal(req.method, 'POST');
 }
 
-function testParams (urlshortener) {
-  const params = { shortUrl: 'a' };
+function testParams(urlshortener) {
+  const params = {shortUrl: 'a'};
   const req = urlshortener.url.get(params, Utils.noop);
-  assert.equal(req.uri.href, 'https://www.googleapis.com/urlshortener/v1/url?shortUrl=a');
+  assert.equal(
+      req.uri.href,
+      'https://www.googleapis.com/urlshortener/v1/url?shortUrl=a');
   assert.equal(req.method, 'GET');
 }
 
-function testInsert (urlshortener, cb) {
-  const obj = { longUrl: 'http://google.com/' };
-  urlshortener.url.insert({ resource: obj }, (err, result) => {
+function testInsert(urlshortener, cb) {
+  const obj = {longUrl: 'http://google.com/'};
+  urlshortener.url.insert({resource: obj}, (err, result) => {
     assert.equal(err, null);
     assert.notEqual(result, null);
     assert.notEqual(result.kind, null);
@@ -81,12 +84,13 @@ describe('Urlshortener', () => {
   });
 
   it('should return a single response object for single requests', (done) => {
-    const scope = nock('https://www.googleapis.com', {
-      allowUnmocked: true
-    })
-      .post('/urlshortener/v1/url')
-      .times(2)
-      .replyWithFile(200, path.join(__dirname, '/fixtures/urlshort-insert-res.json'));
+    const scope =
+        nock('https://www.googleapis.com', {allowUnmocked: true})
+            .post('/urlshortener/v1/url')
+            .times(2)
+            .replyWithFile(
+                200,
+                path.join(__dirname, '/fixtures/urlshort-insert-res.json'));
 
     testInsert(localUrlshortener, (err) => {
       if (err) {

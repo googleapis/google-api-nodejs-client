@@ -20,7 +20,6 @@ import * as nunjucks from 'nunjucks';
 import * as path from 'path';
 import * as url from 'url';
 import * as util from 'util';
-
 import {buildurl, handleError} from './generator_utils';
 
 const argv = minimist(process.argv.slice(2));

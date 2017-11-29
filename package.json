@@ -57,17 +57,17 @@
   ],
   "version": "23.0.0",
   "scripts": {
-    "posttest": "npm run lint",
+    "posttest": "npm run check && npm run lint",
     "test": "npm run cover",
     "doc": "jsdoc -c jsdoc-conf.json",
-    "prepare": "npm run build",
+    "prepare": "npm run compile",
     "build-tools": "tsc -p tsconfig.tools.json",
-    "build": "tsc",
+    "compile": "tsc",
     "lint": "semistandard \"samples/**/*.js\"",
     "generate-apis": "npm run build-tools && node scripts/generate.js && clang-format -i -style='{Language: JavaScript, BasedOnStyle: Google, ColumnLimit: 80}' apis/**/*.ts",
     "mocha": "mocha test/ --recursive -t 10000 -S -R spec --require source-map-support/register --require intelli-espower-loader",
     "cover": "nyc --cache mocha test/ --recursive -t 10000 -S -R spec --require intelli-espower-loader && nyc report --reporter=html",
-    "pretest": "npm run build",
+    "pretest": "npm run compile",
     "clean": "del-cli \"**/*.js.map\" \"*(test|lib|apis|scripts)/**/*.js\" \"**/*.d.ts\"",
     "check": "gts check",
     "fix": "gts fix"
@@ -108,7 +108,6 @@
     "rimraf": "2.6.2",
     "semistandard": "11.0.0",
     "source-map-support": "0.5.0",
-    "swig": "1.4.2",
     "typescript": "2.6.2"
   }
 }

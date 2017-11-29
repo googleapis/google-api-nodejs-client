@@ -11,10 +11,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as assert from 'power-assert';
 import * as async from 'async';
 import * as nock from 'nock';
+import * as assert from 'power-assert';
+
 import {Utils} from './utils';
+
 const googleapis = require('../');
 
 
@@ -24,7 +26,7 @@ describe('JWT client', () => {
   });
   it('should create a jwt through googleapis', () => {
     const jwt = new googleapis.auth.JWT(
-      'someone@somewhere.com', 'file1', 'key1', 'scope1', 'subject1');
+        'someone@somewhere.com', 'file1', 'key1', 'scope1', 'subject1');
     assert.equal(jwt.email, 'someone@somewhere.com');
     assert.equal(jwt.keyFile, 'file1');
     assert.equal(jwt.key, 'key1');
@@ -32,7 +34,8 @@ describe('JWT client', () => {
     assert.equal(jwt.subject, 'subject1');
   });
   it('should create scoped JWT', () => {
-    const jwt = new googleapis.auth.JWT('someone@somewhere.com', 'file1', 'key1', null, 'subject1');
+    const jwt = new googleapis.auth.JWT(
+        'someone@somewhere.com', 'file1', 'key1', null, 'subject1');
     assert.equal(jwt.scopes, null);
     assert.equal(jwt.createScopedRequired(), true);
 
@@ -50,38 +53,29 @@ describe('JWT client', () => {
 });
 
 describe('Compute client', () => {
-
   it('should create a computeclient', () => {
     const compute = new googleapis.auth.Compute();
     assert.equal(compute.createScopedRequired(), false);
   });
 });
 
-function testNoTokens (urlshortener, oauth2client, cb) {
-  urlshortener.url.get({
-    shortUrl: '123',
-    auth: oauth2client
-  }, (err, result) => {
+function testNoTokens(urlshortener, oauth2client, cb) {
+  urlshortener.url.get({shortUrl: '123', auth: oauth2client}, (err, result) => {
     assert.equal(err.message, 'No access, refresh token or API key is set.');
     assert.equal(result, null);
     cb();
   });
 }
 
-function testNoBearer (urlshortener, oauth2client, cb) {
-  urlshortener.url.list({
-    auth: oauth2client
-  }, (err) => {
+function testNoBearer(urlshortener, oauth2client, cb) {
+  urlshortener.url.list({auth: oauth2client}, (err) => {
     assert.equal(oauth2client.credentials.token_type, 'Bearer');
     cb(err);
   });
 }
 
-function testExpired (drive, oauth2client, now, cb) {
-  drive.files.get({
-    fileId: 'wat',
-    auth: oauth2client
-  }, () => {
+function testExpired(drive, oauth2client, now, cb) {
+  drive.files.get({fileId: 'wat', auth: oauth2client}, () => {
     const expiryDate = oauth2client.credentials.expiry_date;
     assert.notEqual(expiryDate, undefined);
     assert(expiryDate > now);
@@ -92,11 +86,8 @@ function testExpired (drive, oauth2client, now, cb) {
   });
 }
 
-function testNoAccessToken (drive, oauth2client, now, cb) {
-  drive.files.get({
-    fileId: 'wat',
-    auth: oauth2client
-  }, () => {
+function testNoAccessToken(drive, oauth2client, now, cb) {
+  drive.files.get({fileId: 'wat', auth: oauth2client}, () => {
     const expiryDate = oauth2client.credentials.expiry_date;
     assert.notEqual(expiryDate, undefined);
     assert(expiryDate > now);
@@ -115,22 +106,24 @@ describe('OAuth2 client', () => {
     nock.cleanAll();
     const google = new googleapis.GoogleApis();
     nock.enableNetConnect();
-    async.parallel([
-      (cb) => {
-        Utils.loadApi(google, 'drive', 'v2', {}, cb);
-      },
-      (cb) => {
-        Utils.loadApi(google, 'urlshortener', 'v1', {}, cb);
-      }
-    ], (err, apis) => {
-      if (err) {
-        return done(err);
-      }
-      remoteDrive = apis[0];
-      remoteUrlshortener = apis[1];
-      nock.disableNetConnect();
-      done();
-    });
+    async.parallel(
+        [
+          (cb) => {
+            Utils.loadApi(google, 'drive', 'v2', {}, cb);
+          },
+          (cb) => {
+            Utils.loadApi(google, 'urlshortener', 'v1', {}, cb);
+          }
+        ],
+        (err, apis) => {
+          if (err) {
+            return done(err);
+          }
+          remoteDrive = apis[0];
+          remoteUrlshortener = apis[1];
+          nock.disableNetConnect();
+          done();
+        });
   });
 
   beforeEach(() => {
@@ -146,41 +139,32 @@ describe('OAuth2 client', () => {
   const REDIRECT_URI = 'REDIRECT';
 
   it('should return err if no access or refresh token is set', (done) => {
-    const oauth2client = new googleapis.auth.OAuth2(
-      CLIENT_ID,
-      CLIENT_SECRET,
-      REDIRECT_URI
-    );
+    const oauth2client =
+        new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
     testNoTokens(localUrlshortener, oauth2client, () => {
       testNoTokens(remoteUrlshortener, oauth2client, done);
     });
   });
 
   it('should not error if only refresh token is set', () => {
-    const oauth2client = new googleapis.auth.OAuth2(
-      CLIENT_ID,
-      CLIENT_SECRET,
-      REDIRECT_URI
-    );
-    oauth2client.credentials = { refresh_token: 'refresh_token' };
+    const oauth2client =
+        new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+    oauth2client.credentials = {refresh_token: 'refresh_token'};
     assert.doesNotThrow(() => {
-      const options = { auth: oauth2client, shortUrl: '...' };
+      const options = {auth: oauth2client, shortUrl: '...'};
       localUrlshortener.url.get(options, Utils.noop);
       remoteUrlshortener.url.get(options, Utils.noop);
     });
   });
 
   it('should set access token type to Bearer if none is set', (done) => {
-    const oauth2client = new googleapis.auth.OAuth2(
-      CLIENT_ID,
-      CLIENT_SECRET,
-      REDIRECT_URI
-    );
-    oauth2client.credentials = { access_token: 'foo', refresh_token: '' };
+    const oauth2client =
+        new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+    oauth2client.credentials = {access_token: 'foo', refresh_token: ''};
     const scope = nock('https://www.googleapis.com')
-      .get('/urlshortener/v1/url/history')
-      .times(2)
-      .reply(200);
+                      .get('/urlshortener/v1/url/history')
+                      .times(2)
+                      .reply(200);
 
     testNoBearer(localUrlshortener, oauth2client, (err) => {
       if (err) {
@@ -198,23 +182,20 @@ describe('OAuth2 client', () => {
 
   it('should refresh if access token is expired', (done) => {
     const scope = nock('https://accounts.google.com')
-        .post('/o/oauth2/token')
-        .times(2)
-        .reply(200, { access_token: 'abc123', expires_in: 1 });
-    let oauth2client = new googleapis.auth.OAuth2(
-      CLIENT_ID,
-      CLIENT_SECRET,
-      REDIRECT_URI
-    );
+                      .post('/o/oauth2/token')
+                      .times(2)
+                      .reply(200, {access_token: 'abc123', expires_in: 1});
+    let oauth2client =
+        new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
     let now = new Date().getTime();
     let twoSecondsAgo = now - 2000;
-    oauth2client.credentials = { refresh_token: 'abc', expiry_date: twoSecondsAgo };
+    oauth2client.credentials = {
+      refresh_token: 'abc',
+      expiry_date: twoSecondsAgo
+    };
     testExpired(localDrive, oauth2client, now, () => {
-      oauth2client = new googleapis.auth.OAuth2(
-        CLIENT_ID,
-        CLIENT_SECRET,
-        REDIRECT_URI
-      );
+      oauth2client =
+          new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
       now = new Date().getTime();
       twoSecondsAgo = now - 2000;
       oauth2client.credentials = {
@@ -230,14 +211,11 @@ describe('OAuth2 client', () => {
 
   it('should make request if access token not expired', (done) => {
     const scope = nock('https://accounts.google.com')
-        .post('/o/oauth2/token')
-        .times(2)
-        .reply(200, { access_token: 'abc123', expires_in: 10000 });
-    let oauth2client = new googleapis.auth.OAuth2(
-      CLIENT_ID,
-      CLIENT_SECRET,
-      REDIRECT_URI
-    );
+                      .post('/o/oauth2/token')
+                      .times(2)
+                      .reply(200, {access_token: 'abc123', expires_in: 10000});
+    let oauth2client =
+        new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
     let now = (new Date()).getTime();
     let tenSecondsFromNow = now + 10000;
     oauth2client.credentials = {
@@ -245,7 +223,7 @@ describe('OAuth2 client', () => {
       refresh_token: 'abc',
       expiry_date: tenSecondsFromNow
     };
-    localDrive.files.get({ fileId: 'wat', auth: oauth2client }, () => {
+    localDrive.files.get({fileId: 'wat', auth: oauth2client}, () => {
       assert.equal(JSON.stringify(oauth2client.credentials), JSON.stringify({
         access_token: 'abc123',
         refresh_token: 'abc',
@@ -256,11 +234,8 @@ describe('OAuth2 client', () => {
       assert.throws(() => {
         scope.done();
       }, 'AssertionError');
-      oauth2client = new googleapis.auth.OAuth2(
-        CLIENT_ID,
-        CLIENT_SECRET,
-        REDIRECT_URI
-      );
+      oauth2client =
+          new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
       now = (new Date()).getTime();
       tenSecondsFromNow = now + 10000;
       oauth2client.credentials = {
@@ -269,7 +244,7 @@ describe('OAuth2 client', () => {
         expiry_date: tenSecondsFromNow
       };
 
-      remoteDrive.files.get({ fileId: 'wat', auth: oauth2client }, () => {
+      remoteDrive.files.get({fileId: 'wat', auth: oauth2client}, () => {
         assert.equal(JSON.stringify(oauth2client.credentials), JSON.stringify({
           access_token: 'abc123',
           refresh_token: 'abc',
@@ -288,19 +263,16 @@ describe('OAuth2 client', () => {
 
   it('should refresh if have refresh token but no access token', (done) => {
     const scope = nock('https://accounts.google.com')
-        .post('/o/oauth2/token')
-        .times(2)
-        .reply(200, { access_token: 'abc123', expires_in: 1 });
-    const oauth2client = new googleapis.auth.OAuth2(
-      CLIENT_ID,
-      CLIENT_SECRET,
-      REDIRECT_URI
-    );
+                      .post('/o/oauth2/token')
+                      .times(2)
+                      .reply(200, {access_token: 'abc123', expires_in: 1});
+    const oauth2client =
+        new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
     let now = (new Date()).getTime();
-    oauth2client.credentials = { refresh_token: 'abc' };
+    oauth2client.credentials = {refresh_token: 'abc'};
     testNoAccessToken(localDrive, oauth2client, now, () => {
       now = (new Date()).getTime();
-      oauth2client.credentials = { refresh_token: 'abc' };
+      oauth2client.credentials = {refresh_token: 'abc'};
       testNoAccessToken(remoteDrive, oauth2client, now, () => {
         scope.done();
         done();
@@ -311,10 +283,11 @@ describe('OAuth2 client', () => {
   describe('revokeCredentials()', () => {
     it('should revoke credentials if access token present', (done) => {
       const scope = nock('https://accounts.google.com')
-          .get('/o/oauth2/revoke?token=abc')
-          .reply(200, { success: true });
-      const oauth2client = new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
-      oauth2client.credentials = { access_token: 'abc', refresh_token: 'abc' };
+                        .get('/o/oauth2/revoke?token=abc')
+                        .reply(200, {success: true});
+      const oauth2client =
+          new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+      oauth2client.credentials = {access_token: 'abc', refresh_token: 'abc'};
       oauth2client.revokeCredentials((err, result) => {
         assert.equal(err, null);
         assert.equal(result.success, true);
@@ -324,25 +297,31 @@ describe('OAuth2 client', () => {
       });
     });
 
-    it('should clear credentials and return error if no access token to revoke', (done) => {
-      const oauth2client = new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
-      oauth2client.credentials = { refresh_token: 'abc' };
-      oauth2client.revokeCredentials((err, result) => {
-        assert.equal(err.message, 'No access token to revoke.');
-        assert.equal(result, null);
-        assert.equal(JSON.stringify(oauth2client.credentials), '{}');
-        done();
-      });
-    });
+    it('should clear credentials and return error if no access token to revoke',
+       (done) => {
+         const oauth2client =
+             new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+         oauth2client.credentials = {refresh_token: 'abc'};
+         oauth2client.revokeCredentials((err, result) => {
+           assert.equal(err.message, 'No access token to revoke.');
+           assert.equal(result, null);
+           assert.equal(JSON.stringify(oauth2client.credentials), '{}');
+           done();
+         });
+       });
   });
 
   describe('getToken()', () => {
     it('should return expiry_date', (done) => {
       const now = (new Date()).getTime();
-      const scope = nock('https://accounts.google.com')
-          .post('/o/oauth2/token')
-          .reply(200, { access_token: 'abc', refresh_token: '123', expires_in: 10 });
-      const oauth2client = new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+      const scope =
+          nock('https://accounts.google.com')
+              .post('/o/oauth2/token')
+              .reply(
+                  200,
+                  {access_token: 'abc', refresh_token: '123', expires_in: 10});
+      const oauth2client =
+          new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
       oauth2client.getToken('code here', (err, tokens) => {
         if (err) {
           return done(err);

@@ -8,15 +8,8 @@ node_js:
   - "9"
 
 cache:
-  yarn: true
   directories:
   - node_modules/
-
-before_install:
-  - npm i -g nyc codecov
-
-before_script:
-  - npm run build
 
 after_success:
   - nyc report --reporter=lcov > coverage.lcov && codecov

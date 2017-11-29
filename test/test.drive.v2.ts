@@ -11,9 +11,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as assert from 'power-assert';
 import * as nock from 'nock';
+import * as assert from 'power-assert';
+
 import {Utils} from './utils';
+
 const googleapis = require('../');
 
 describe('drive:v2', () => {
@@ -109,17 +111,17 @@ describe('drive:v2', () => {
       });
 
       it('should return a Request object', () => {
-        let req = localDrive.files.get({ fileId: '123' }, Utils.noop);
+        let req = localDrive.files.get({fileId: '123'}, Utils.noop);
         assert.equal(req.constructor.name, 'Request');
-        req = remoteDrive.files.get({ fileId: '123' }, Utils.noop);
+        req = remoteDrive.files.get({fileId: '123'}, Utils.noop);
         assert.equal(req.constructor.name, 'Request');
       });
 
       it('should use logError callback if no callback specified', (done) => {
         const scope = nock('https://www.googleapis.com')
-          .get('/drive/v2/files?q=hello')
-          .times(2)
-          .reply(501, { error: 'not a real error' });
+                          .get('/drive/v2/files?q=hello')
+                          .times(2)
+                          .reply(501, {error: 'not a real error'});
 
         // logError internally uses console.error - let's monkey-patch the
         // function to intercept calls to it, then restore the original function
@@ -137,8 +139,8 @@ describe('drive:v2', () => {
         };
 
         assert.doesNotThrow(() => {
-          localDrive.files.list({ q: 'hello' });
-          remoteDrive.files.list({ q: 'hello' });
+          localDrive.files.list({q: 'hello'});
+          remoteDrive.files.list({q: 'hello'});
         });
       });
     });
@@ -159,12 +161,12 @@ describe('drive:v2', () => {
   describe('.files.list()', () => {
     it('should not return missing param error', (done) => {
       const scope = nock('https://www.googleapis.com')
-        .get('/drive/v2/files?q=hello')
-        .times(2)
-        .reply(200);
-      localDrive.files.list({ q: 'hello' }, (err) => {
+                        .get('/drive/v2/files?q=hello')
+                        .times(2)
+                        .reply(200);
+      localDrive.files.list({q: 'hello'}, (err) => {
         assert.equal(err, null);
-        remoteDrive.files.list({ q: 'hello' }, err2 => {
+        remoteDrive.files.list({q: 'hello'}, err2 => {
           assert.equal(err2, null);
           scope.done();
           done();
