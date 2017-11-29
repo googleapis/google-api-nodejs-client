@@ -15,10 +15,9 @@ import {DefaultTransporter} from 'google-auth-library/lib/transporters';
 import * as stream from 'stream';
 import * as parseString from 'string-template';
 
-function isReadableStream(obj) {
-  return obj instanceof stream.Stream &&
-      typeof (obj as any)._read === 'function' &&
-      typeof (obj as any)._readableState === 'object';
+// tslint:disable-next-line: no-any
+function isReadableStream(obj: any) {
+  return obj instanceof stream.Readable && typeof obj._read === 'function';
 }
 
 function logError(err) {

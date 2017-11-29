@@ -53,7 +53,6 @@ describe('JWT client', () => {
 });
 
 describe('Compute client', () => {
-
   it('should create a computeclient', () => {
     const compute = new googleapis.auth.Compute();
     assert.equal(compute.createScopedRequired(), false);

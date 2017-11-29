@@ -19,7 +19,6 @@ const googleapis = require('../');
 
 describe('GoogleApis#discover', () => {
   it('should generate all apis', (done) => {
-
     const localApis = fs.readdirSync(path.join(__dirname, '../apis'));
     const google = new googleapis.GoogleApis();
     const localDrive = google.drive('v2');
