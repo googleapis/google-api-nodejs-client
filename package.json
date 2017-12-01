@@ -1,7 +1,8 @@
 {
   "nyc": {
     "exclude": [
-      "apis"
+      "apis",
+      "test"
     ]
   },
   "license": "Apache-2.0",
