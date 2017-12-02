@@ -1,21 +1,20 @@
 {
-    "extends": "./node_modules/gts/tsconfig-google.json",
-    "compilerOptions": {
-      "rootDir": ".",
-      "outDir": "build",
-      "noImplicitAny": false,
-      "strictNullChecks": false,
-      "noImplicitThis": false
-    },
-    "include": [
-      "src/*.ts",
-      "src/**/*.ts",
-      "test/*.ts",
-      "test/**/*.ts"
-    ],
-    "exclude": [
-      "node_modules",
-      "test/fixtures"
-    ]
-  }
-  
+  "extends": "./node_modules/gts/tsconfig-google.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "build",
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "noImplicitThis": false
+  },
+  "include": [
+    "src/*.ts",
+    "src/**/*.ts",
+    "test/*.ts",
+    "test/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "test/fixtures"
+  ]
+}

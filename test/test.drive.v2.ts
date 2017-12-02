@@ -16,7 +16,7 @@ import * as assert from 'power-assert';
 
 import {Utils} from './utils';
 
-const googleapis = require('../');
+const googleapis = require('../src/lib/googleapis');
 
 describe('drive:v2', () => {
   let localDrive, remoteDrive;

@@ -65,7 +65,7 @@
     "build-tools": "tsc -p tsconfig.tools.json",
     "compile": "tsc -p .",
     "lint": "semistandard \"samples/**/*.js\"",
-    "generate-apis": "npm run build-tools && node src/scripts/generate.js && clang-format -i -style='{Language: JavaScript, BasedOnStyle: Google, ColumnLimit: 80}' src/apis/**/*.ts",
+    "generate-apis": "npm run build-tools && node build/src/scripts/generate.js && clang-format -i -style='{Language: JavaScript, BasedOnStyle: Google, ColumnLimit: 80}' src/apis/**/*.ts",
     "cover": "nyc --cache mocha build/test/ --recursive -t 10000 -S -R spec --require intelli-espower-loader && nyc report --reporter=html",
     "pretest": "npm run compile",
     "clean": "gts clean",

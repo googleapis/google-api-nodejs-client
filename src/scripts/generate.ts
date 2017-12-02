@@ -43,7 +43,7 @@ if (args.length) {
   });
 } else {
   console.log('Removing old APIs...');
-  rimraf(path.join(__dirname, '..', 'apis'), (err) => {
+  rimraf(path.join(__dirname, '../../../src/apis'), (err) => {
     if (err) {
       throw err;
     }

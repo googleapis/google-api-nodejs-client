@@ -19,7 +19,7 @@ import * as assert from 'power-assert';
 
 import {Utils} from './utils';
 
-const googleapis = require('../');
+const googleapis = require('../src/lib/googleapis');
 
 const boundaryPrefix = 'multipart/related; boundary=';
 
@@ -27,7 +27,8 @@ function testMultpart(drive, cb) {
   const resource = {title: 'title', mimeType: 'text/plain'};
   const media = {body: 'hey'};
   let expectedResp = fs.readFileSync(
-      path.join(__dirname, '/fixtures/media-response.txt'), {encoding: 'utf8'});
+      path.join(__dirname, '../../test/fixtures/media-response.txt'),
+      {encoding: 'utf8'});
   const req = drive.files.insert({resource, media}, (err, body) => {
     if (err) {
       return cb(err);
@@ -53,7 +54,8 @@ function testMediaBody(drive, cb) {
   const resource = {title: 'title'};
   const media = {body: 'hey'};
   let expectedResp = fs.readFileSync(
-      path.join(__dirname, '/fixtures/media-response.txt'), {encoding: 'utf8'});
+      path.join(__dirname, '../../test/fixtures/media-response.txt'),
+      {encoding: 'utf8'});
   const req = drive.files.insert({resource, media}, (err, body) => {
     if (err) {
       return cb(err);
@@ -298,10 +300,10 @@ describe('Media', () => {
                                          // testing purposes
                       });
 
-    let body =
-        fs.createReadStream(path.join(__dirname, '/fixtures/mediabody.txt'));
-    let expectedBody =
-        fs.readFileSync(path.join(__dirname, '/fixtures/mediabody.txt'));
+    let body = fs.createReadStream(
+        path.join(__dirname, '../../test/fixtures/mediabody.txt'));
+    let expectedBody = fs.readFileSync(
+        path.join(__dirname, '../../test/fixtures/mediabody.txt'));
     localGmail.users.drafts.create(
         {userId: 'me', media: {mimeType: 'message/rfc822', body}},
         (err, resp) => {
@@ -310,9 +312,9 @@ describe('Media', () => {
           }
           assert.equal(resp, expectedBody);
           body = fs.createReadStream(
-              path.join(__dirname, '/fixtures/mediabody.txt'));
-          expectedBody =
-              fs.readFileSync(path.join(__dirname, '/fixtures/mediabody.txt'));
+              path.join(__dirname, '../../test/fixtures/mediabody.txt'));
+          expectedBody = fs.readFileSync(
+              path.join(__dirname, '../../test/fixtures/mediabody.txt'));
           remoteGmail.users.drafts.create(
               {userId: 'me', media: {mimeType: 'message/rfc822', body}},
               (e2, resp2) => {
@@ -339,13 +341,14 @@ describe('Media', () => {
     let resource = {
       message: {raw: (new Buffer('hello', 'binary')).toString('base64')}
     };
-    let body =
-        fs.createReadStream(path.join(__dirname, '/fixtures/mediabody.txt'));
+    let body = fs.createReadStream(
+        path.join(__dirname, '../../test/fixtures/mediabody.txt'));
     let bodyString = fs.readFileSync(
-        path.join(__dirname, '/fixtures/mediabody.txt'), {encoding: 'utf8'});
+        path.join(__dirname, '../../test/fixtures/mediabody.txt'),
+        {encoding: 'utf8'});
     let media = {mimeType: 'message/rfc822', body};
     let expectedBody = fs.readFileSync(
-        path.join(__dirname, '/fixtures/media-response.txt'),
+        path.join(__dirname, '../../test/fixtures/media-response.txt'),
         {encoding: 'utf8'});
     let req = localGmail.users.drafts.create(
         {userId: 'me', resource, media}, (err, resp) => {
@@ -365,13 +368,13 @@ describe('Media', () => {
             message: {raw: (new Buffer('hello', 'binary')).toString('base64')}
           };
           body = fs.createReadStream(
-              path.join(__dirname, '/fixtures/mediabody.txt'));
+              path.join(__dirname, '../../test/fixtures/mediabody.txt'));
           bodyString = fs.readFileSync(
-              path.join(__dirname, '/fixtures/mediabody.txt'),
+              path.join(__dirname, '../../test/fixtures/mediabody.txt'),
               {encoding: 'utf8'});
           media = {mimeType: 'message/rfc822', body};
           expectedBody = fs.readFileSync(
-              path.join(__dirname, '/fixtures/media-response.txt'),
+              path.join(__dirname, '../../test/fixtures/media-response.txt'),
               {encoding: 'utf8'});
           req = remoteGmail.users.drafts.create(
               {userId: 'me', resource, media}, (err2, resp2) => {
@@ -407,8 +410,8 @@ describe('Media', () => {
        let resource = {
          message: {raw: (new Buffer('hello', 'binary')).toString('base64')}
        };
-       const body =
-           fs.createReadStream(path.join(__dirname, '/fixtures/mediabody.txt'));
+       const body = fs.createReadStream(
+           path.join(__dirname, '../../test/fixtures/mediabody.txt'));
        let media = {mimeType: 'message/rfc822', body};
        localGmail.users.drafts.create(
            {userId: 'me', resource, media}, (err, body2, resp) => {
@@ -424,7 +427,7 @@ describe('Media', () => {
                    {raw: (new Buffer('hello', 'binary')).toString('base64')}
              };
              body2 = fs.createReadStream(
-                 path.join(__dirname, '/fixtures/mediabody.txt'));
+                 path.join(__dirname, '../../test/fixtures/mediabody.txt'));
              media = {mimeType: 'message/rfc822', body: body2};
              remoteGmail.users.drafts.create(
                  {userId: 'me', resource, media}, (err2, body3, resp2) => {

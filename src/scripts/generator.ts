@@ -32,8 +32,9 @@ const DISCOVERY_URL = argv['discovery-url'] ?
 const FRAGMENT_URL =
     'https://storage.googleapis.com/apisnippets-staging/public/';
 
-const API_TEMPLATE = './api-endpoint.njk';
-const INDEX_TEMPLATE = './templates/index.njk';
+const TEMPLATES_DIR = path.join(__dirname, '../../../src/templates/');
+const API_TEMPLATE = path.join(TEMPLATES_DIR, 'api-endpoint.njk');
+const INDEX_TEMPLATE = path.join(TEMPLATES_DIR, 'index.njk');
 const RESERVED_PARAMS = ['resource', 'media', 'auth'];
 
 export interface GeneratorOptions {
@@ -121,7 +122,7 @@ export class Generator {
     }, 10);
 
     this.env = new nunjucks.Environment(
-        new nunjucks.FileSystemLoader('templates'), {trimBlocks: true});
+        new nunjucks.FileSystemLoader(TEMPLATES_DIR), {trimBlocks: true});
     this.env.addFilter('buildurl', buildurl);
     this.env.addFilter('oneLine', this.oneLine);
     this.env.addFilter('cleanComments', this.cleanComments);
@@ -222,7 +223,7 @@ export class Generator {
 
   generateIndex(callback: Function) {
     const apis = {};
-    const apisPath = path.join(__dirname, '../apis');
+    const apisPath = path.join(__dirname, '../../../src/apis');
     const indexPath = path.join(apisPath, 'index.ts');
 
     // Dynamically discover available APIs
@@ -324,8 +325,8 @@ export class Generator {
           tasks);
 
       // e.g. apis/drive/v2.js
-      const exportFilename =
-          path.join(__dirname, '../apis', resp.name, resp.version + '.ts');
+      const exportFilename = path.join(
+          __dirname, '../../../src/apis', resp.name, resp.version + '.ts');
       let contents;
       this.logResult(apiDiscoveryUrl, `Generating templates...`);
       async.waterfall(
