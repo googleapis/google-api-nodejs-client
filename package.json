@@ -88,7 +88,7 @@
   },
   "devDependencies": {
     "@types/minimist": "1.2.0",
-    "@types/mkdirp": "0.5.1",
+    "@types/mkdirp": "0.5.2",
     "@types/mocha": "2.2.44",
     "@types/node": "8.0.54",
     "@types/nunjucks": "^3.0.0",
