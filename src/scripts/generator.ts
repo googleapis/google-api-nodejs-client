@@ -32,7 +32,8 @@ const DISCOVERY_URL = argv['discovery-url'] ?
 const FRAGMENT_URL =
     'https://storage.googleapis.com/apisnippets-staging/public/';
 
-const TEMPLATES_DIR = path.join(__dirname, '../../../src/templates/');
+const srcPath = path.join(__dirname, '../../../src');
+const TEMPLATES_DIR = path.join(srcPath, 'templates');
 const API_TEMPLATE = path.join(TEMPLATES_DIR, 'api-endpoint.njk');
 const INDEX_TEMPLATE = path.join(TEMPLATES_DIR, 'index.njk');
 const RESERVED_PARAMS = ['resource', 'media', 'auth'];
@@ -223,7 +224,7 @@ export class Generator {
 
   generateIndex(callback: Function) {
     const apis = {};
-    const apisPath = path.join(__dirname, '../../../src/apis');
+    const apisPath = path.join(srcPath, 'apis');
     const indexPath = path.join(apisPath, 'index.ts');
 
     // Dynamically discover available APIs
@@ -325,8 +326,8 @@ export class Generator {
           tasks);
 
       // e.g. apis/drive/v2.js
-      const exportFilename = path.join(
-          __dirname, '../../../src/apis', resp.name, resp.version + '.ts');
+      const exportFilename =
+          path.join(srcPath, 'apis', resp.name, resp.version + '.ts');
       let contents;
       this.logResult(apiDiscoveryUrl, `Generating templates...`);
       async.waterfall(
