@@ -17,7 +17,7 @@ import * as assert from 'power-assert';
 
 import {Utils} from './utils';
 
-const googleapis = require('../');
+const googleapis = require('../src/lib/googleapis');
 
 function testSingleRequest(urlshortener) {
   const obj = {longUrl: 'http://someurl...'};
@@ -90,7 +90,8 @@ describe('Urlshortener', () => {
             .times(2)
             .replyWithFile(
                 200,
-                path.join(__dirname, '/fixtures/urlshort-insert-res.json'));
+                path.join(
+                    __dirname, '../../test/fixtures/urlshort-insert-res.json'));
 
     testInsert(localUrlshortener, (err) => {
       if (err) {

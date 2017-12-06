@@ -1,15 +1,20 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "target": "es6",
-        "noImplicitAny": false,
-        "sourceMap": true,
-        "alwaysStrict": true,
-        "declaration": true
-    },
-    "exclude": [
-        "node_modules",
-        "templates",
-        "samples"
-    ]
+  "extends": "./node_modules/gts/tsconfig-google.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "build",
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "noImplicitThis": false
+  },
+  "include": [
+    "src/*.ts",
+    "src/**/*.ts",
+    "test/*.ts",
+    "test/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "test/fixtures"
+  ]
 }

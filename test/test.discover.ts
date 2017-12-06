@@ -15,11 +15,11 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as assert from 'power-assert';
 
-const googleapis = require('../');
+const googleapis = require('../src/lib/googleapis');
 
 describe('GoogleApis#discover', () => {
   it('should generate all apis', (done) => {
-    const localApis = fs.readdirSync(path.join(__dirname, '../apis'));
+    const localApis = fs.readdirSync(path.join(__dirname, '../src/apis'));
     const google = new googleapis.GoogleApis();
     const localDrive = google.drive('v2');
 

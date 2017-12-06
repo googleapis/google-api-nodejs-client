@@ -1,8 +1,8 @@
 {
   "nyc": {
     "exclude": [
-      "apis",
-      "test"
+      "build/src/apis",
+      "build/test"
     ]
   },
   "license": "Apache-2.0",
@@ -63,13 +63,12 @@
     "doc": "jsdoc -c jsdoc-conf.json",
     "prepare": "npm run compile",
     "build-tools": "tsc -p tsconfig.tools.json",
-    "compile": "tsc",
+    "compile": "tsc -p .",
     "lint": "semistandard \"samples/**/*.js\"",
-    "generate-apis": "npm run build-tools && node scripts/generate.js && clang-format -i -style='{Language: JavaScript, BasedOnStyle: Google, ColumnLimit: 80}' apis/**/*.ts",
-    "mocha": "mocha test/ --recursive -t 10000 -S -R spec --require source-map-support/register --require intelli-espower-loader",
-    "cover": "nyc --cache mocha test/ --recursive -t 10000 -S -R spec --require intelli-espower-loader && nyc report --reporter=html",
+    "generate-apis": "npm run build-tools && node build/src/scripts/generate.js && clang-format -i -style='{Language: JavaScript, BasedOnStyle: Google, ColumnLimit: 80}' src/apis/**/*.ts",
+    "cover": "nyc --cache mocha build/test/ --recursive -t 10000 -S -R spec --require intelli-espower-loader && nyc report --reporter=html",
     "pretest": "npm run compile",
-    "clean": "del-cli \"**/*.js.map\" \"*(test|lib|apis|scripts)/**/*.js\" \"**/*.d.ts\"",
+    "clean": "gts clean",
     "check": "gts check",
     "fix": "gts fix"
   },
@@ -82,7 +81,7 @@
     "client library"
   ],
   "description": "Google APIs Client Library for Node.js",
-  "main": "./lib/googleapis.js",
+  "main": "./build/src/lib/googleapis.js",
   "engines": {
     "node": ">=4.0"
   },
@@ -93,7 +92,6 @@
     "@types/node": "8.0.54",
     "@types/nunjucks": "^3.0.0",
     "clang-format": "^1.1.1",
-    "del-cli": "1.1.0",
     "gts": "0.5.1",
     "ink-docstrap": "1.3.2",
     "intelli-espower-loader": "1.0.1",

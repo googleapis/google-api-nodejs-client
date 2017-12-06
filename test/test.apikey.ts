@@ -17,7 +17,7 @@ import * as assert from 'power-assert';
 
 import {Utils} from './utils';
 
-const googleapis = require('../lib/googleapis');
+const googleapis = require('../src/lib/googleapis');
 
 function testGet(drive) {
   const req = drive.files.get({fileId: '123', auth: 'APIKEY'}, Utils.noop);

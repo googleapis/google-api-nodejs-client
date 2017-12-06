@@ -19,7 +19,7 @@ import * as assert from 'power-assert';
 
 import {Utils} from './utils';
 
-const googleapis = require('../');
+const googleapis = require('../src/lib/googleapis');
 
 describe('Clients', () => {
   let localPlus, remotePlus;
@@ -119,7 +119,7 @@ describe('Clients', () => {
       return files;
     }
 
-    const apiFiles = getFiles(path.join(__dirname, '/../apis'));
+    const apiFiles = getFiles(path.join(__dirname, '/../src/apis'));
 
     assert.doesNotThrow(() => {
       for (const i in apiFiles) {

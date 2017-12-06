@@ -17,7 +17,7 @@ import * as assert from 'power-assert';
 
 import {Utils} from './utils';
 
-const googleapis = require('../lib/googleapis');
+const googleapis = require('../src/lib/googleapis');
 
 describe('Query params', () => {
   let localCompute, remoteCompute;
