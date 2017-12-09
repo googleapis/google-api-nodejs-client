@@ -12,11 +12,17 @@
 // limitations under the License.
 
 import * as nock from 'nock';
+import * as pify from 'pify';
 import * as assert from 'power-assert';
-
+import * as url from 'url';
 import {Utils} from './utils';
 
 const googleapis = require('../src/lib/googleapis');
+
+function createNock(path?: string) {
+  const p = path ? path : '/drive/v2/files/woot';
+  nock(Utils.baseUrl).get(p).reply(200);
+}
 
 describe('Options', () => {
   let authClient;
@@ -44,107 +50,120 @@ describe('Options', () => {
     assert.equal(google._options.hello, 'world');
   });
 
-  it('should promote endpoint options over global options', () => {
+  it('should promote endpoint options over global options', async () => {
     const google = new googleapis.GoogleApis();
     google.options({hello: 'world'});
     const drive = google.drive({version: 'v2', hello: 'changed'});
-    const req = drive.files.get({fileId: '123'}, Utils.noop);
-    assert.equal(req.hello, 'changed');
+    createNock('/drive/v2/files/123');
+    const res = await pify(drive.files.get)({fileId: '123'});
+    assert.equal(res.config.hello, 'changed');
   });
 
-  it('should support global request params', (done) => {
+  it('should support global request params', async () => {
     const google = new googleapis.GoogleApis();
     google.options({params: {myParam: '123'}});
     const drive = google.drive('v2');
-    let req = drive.files.get({fileId: '123'}, Utils.noop);
+    nock(Utils.baseUrl).get('/drive/v2/files/123?myParam=123').reply(200);
+    const res = await pify(drive.files.get)({fileId: '123'});
     // If the default param handling is broken, query might be undefined, thus
-    // concealing the assertion message with some generic "cannot call .indexOf
-    // of undefined"
-    let query = req.uri.query || '';
+    // concealing the assertion message with some generic "cannot call
+    // .indexOf of undefined"
+    let query = Utils.getQs(res) || '';
     assert.notEqual(
         query.indexOf('myParam=123'), -1, 'Default param not found in query');
+    // I can't explain why, but the `nock.enableNetConnect()` call below simply
+    // won't work unless I call `nock.cleanAll()` first.
+    nock.cleanAll();
     nock.enableNetConnect();
-    Utils.loadApi(google, 'drive', 'v2', {}, (err, d) => {
-      nock.disableNetConnect();
-      if (err) {
-        return done(err);
-      }
-      req = d.files.get({fileId: '123'}, Utils.noop);
-      // If the default param handling is broken, query might be undefined, thus
-      // concealing the assertion message with some generic "cannot call
-      // .indexOf of undefined"
-      query = req.uri.query || '';
-      assert.notEqual(
-          query.indexOf('myParam=123'), -1, 'Default param not found in query');
-      done();
-    });
+    const d = await pify(Utils.loadApi)(google, 'drive', 'v2', {});
+    nock.disableNetConnect();
+    nock(Utils.baseUrl).get('/drive/v2/files/123?myParam=123').reply(200);
+    const res3 = await pify(d.files.get)({fileId: '123'});
+    // If the default param handling is broken, query might be undefined,
+    // thus concealing the assertion message with some generic "cannot
+    // call .indexOf of undefined"
+    query = Utils.getQs(res3) || '';
+    assert.notEqual(
+        query.indexOf('myParam=123'), -1, 'Default param not found in query');
   });
 
-  it('should promote auth apikey options on request basis', () => {
+  it('should promote auth apikey options on request basis', async () => {
     const google = new googleapis.GoogleApis();
     google.options({auth: 'apikey1'});
     const drive = google.drive({version: 'v2', auth: 'apikey2'});
-    const req = drive.files.get({auth: 'apikey3', fileId: 'woot'}, Utils.noop);
-    assert.equal(req.uri.query, 'key=apikey3');
+    createNock('/drive/v2/files/woot?key=apikey3');
+    const res = await pify(drive.files.get)({auth: 'apikey3', fileId: 'woot'});
+    assert.equal(Utils.getQs(res), 'key=apikey3');
   });
 
-  it('should apply google options to request object like proxy', () => {
+  it('should apply google options to request object like timeout', async () => {
     const google = new googleapis.GoogleApis();
-    google.options({proxy: 'http://proxy.example.com'});
+    google.options({timeout: 12345});
     const drive = google.drive({version: 'v2', auth: 'apikey2'});
-    const req = drive.files.get({auth: 'apikey3', fileId: 'woot'}, Utils.noop);
-    assert.equal(req.proxy.host, 'proxy.example.com');
-    assert.equal(req.proxy.protocol, 'http:');
+    createNock('/drive/v2/files/woot?key=apikey3');
+    const res = await pify(drive.files.get)({auth: 'apikey3', fileId: 'woot'});
+    assert.equal(res.config.timeout, '12345');
   });
 
-  it('should apply endpoint options to request object like proxy', () => {
-    const google = new googleapis.GoogleApis();
-    const drive = google.drive(
-        {version: 'v2', auth: 'apikey2', proxy: 'http://proxy.example.com'});
-    const req = drive.files.get({auth: 'apikey3', fileId: 'woot'}, Utils.noop);
-    assert.equal(req.proxy.host, 'proxy.example.com');
-    assert.equal(req.proxy.protocol, 'http:');
-    assert.equal(req.uri.query, 'key=apikey3');
-  });
+  it('should apply endpoint options to request object like timeout',
+     async () => {
+       const google = new googleapis.GoogleApis();
+       const drive =
+           google.drive({version: 'v2', auth: 'apikey2', timeout: 23456});
+       createNock('/drive/v2/files/woot?key=apikey3');
+       const res =
+           await pify(drive.files.get)({auth: 'apikey3', fileId: 'woot'});
+       assert.equal(res.config.timeout, 23456);
+       assert.equal(Utils.getQs(res), 'key=apikey3');
+     });
 
-  it('should allow overriding endpoint options', () => {
+  it('should allow overriding endpoint options', async () => {
     const google = new googleapis.GoogleApis();
     const drive = google.drive('v3');
-    const req = drive.files.get(
+    const host = 'https://myproxy.com';
+    nock(host).get('/drive/v3/files/woot').reply(200);
+    const res = await pify(drive.files.get)(
         {fileId: 'woot'},
-        {url: 'https://myproxy.com/drive/v3/files/{fileId}', encoding: null},
-        Utils.noop);
+        {url: 'https://myproxy.com/drive/v3/files/{fileId}', encoding: null});
+
     assert.equal(
-        req.url, 'https://myproxy.com/drive/v3/files/woot',
+        res.request.path, '/drive/v3/files/woot',
         'Request used overridden url.');
-    assert.equal(req.encoding, null, 'Request used overridden encoding.');
+    assert.equal(res.request.headers.host, 'myproxy.com');
+    assert.equal(
+        res.config.encoding, null, 'Request used overridden encoding.');
   });
 
-  it('should apply endpoint options like proxy to oauth transporter', () => {
-    const google = new googleapis.GoogleApis();
-    const OAuth2 = google.auth.OAuth2;
-    authClient = new OAuth2('CLIENTID', 'CLIENTSECRET', 'REDIRECTURI');
-    authClient.credentials = {access_token: 'abc'};
-    const drive = google.drive(
-        {version: 'v2', auth: 'apikey2', proxy: 'http://proxy.example.com'});
-    const req = drive.files.get({auth: authClient, fileId: 'woot'}, Utils.noop);
-    assert.equal(req.proxy.host, 'proxy.example.com');
-    assert.equal(req.proxy.protocol, 'http:');
-    assert.equal(req.headers.Authorization, 'Bearer abc');
-  });
+  it('should apply endpoint options like timeout to oauth transporter',
+     async () => {
+       const google = new googleapis.GoogleApis();
+       const OAuth2 = google.auth.OAuth2;
+       authClient = new OAuth2('CLIENTID', 'CLIENTSECRET', 'REDIRECTURI');
+       authClient.credentials = {access_token: 'abc'};
+       const drive =
+           google.drive({version: 'v2', auth: 'apikey2', timeout: 12345});
+       createNock('/drive/v2/files/woot');
+       const res =
+           await pify(drive.files.get)({auth: authClient, fileId: 'woot'});
+       assert.equal(res.config.timeout, 12345);
+       assert.equal(res.config.headers.Authorization, 'Bearer abc');
+     });
 
-  it('should allow overriding rootUrl via options', () => {
+  it('should allow overriding rootUrl via options', async () => {
     const google = new googleapis.GoogleApis();
     const drive = google.drive('v3');
-    const reqWithSlash = drive.files.get(
-        {fileId: 'woot'}, {rootUrl: 'https://myrooturl.com/'}, Utils.noop);
+    const fileId = 'woot';
+    const rootUrl = 'https://myrooturl.com';
+    nock(rootUrl).get('/drive/v3/files/woot').reply(200);
+    const res = await pify(drive.files.get)({fileId}, {rootUrl});
     assert.equal(
-        reqWithSlash.url, 'https://myrooturl.com/drive/v3/files/woot',
+        res.config.url, 'https://myrooturl.com/drive/v3/files/woot',
         'Request used overridden rootUrl with trailing slash.');
-    const reqWithoutSlash = drive.files.get(
-        {fileId: 'woot'}, {rootUrl: 'https://myrooturl.com'}, Utils.noop);
+
+    nock(rootUrl).get('/drive/v3/files/woot').reply(200);
+    const res2 = await pify(drive.files.get)({fileId}, {rootUrl});
     assert.equal(
-        reqWithoutSlash.url, 'https://myrooturl.com/drive/v3/files/woot',
+        res.config.url, 'https://myrooturl.com/drive/v3/files/woot',
         'Request used overridden rootUrl.');
   });
 

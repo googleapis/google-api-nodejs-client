@@ -13,7 +13,7 @@
 
 import * as async from 'async';
 import * as fs from 'fs';
-import {DefaultTransporter} from 'google-auth-library/lib/transporters';
+import {DefaultTransporter} from 'google-auth-library';
 import * as url from 'url';
 import * as util from 'util';
 
@@ -34,6 +34,15 @@ function getPathParams(params) {
     }
   });
   return pathParams;
+}
+
+interface DiscoverAPIsResponse {
+  items: API[];
+}
+
+interface API {
+  discoveryRestUrl: string;
+  api;
 }
 
 /**
@@ -136,7 +145,7 @@ function makeEndpoint(schema) {
     const self = this;
     self._options = options || {};
 
-    applySchema(self, schema, schema, self);
+    applySchema(self, schema.data, schema.data, self);
   };
   return Endpoint;
 }
@@ -171,67 +180,68 @@ Discovery.prototype.log = function() {
 Discovery.prototype.discoverAllAPIs = function(discoveryUrl, callback) {
   const self = this;
   const headers = this.options.includePrivate ? {} : {'X-User-Ip': '0.0.0.0'};
-  transporter.request({uri: discoveryUrl, headers}, (err, resp) => {
-    if (err) {
-      return handleError(err, callback);
-    }
-
-    async.parallel(
-        resp.items.map(api => {
-          return (cb) => {
-            self.discoverAPI(api.discoveryRestUrl, (e, newApi) => {
-              if (e) {
-                return cb(e);
-              }
-              api.api = newApi;
-              cb(null, api);
-            });
-          };
-        }),
-        (e, apis) => {
-          if (e) {
-            return callback(e);
-          }
-
-          const versionIndex = {};
-          const apisIndex = {};
-
-          apis.forEach(api => {
-            if (!apisIndex[api.name]) {
-              versionIndex[api.name] = {};
-              apisIndex[api.name] = (options) => {
-                const type = typeof options;
-                let version;
-                if (type === 'string') {
-                  version = options;
-                  options = {};
-                } else if (type === 'object') {
-                  version = options.version;
-                  delete options.version;
-                } else {
-                  throw new Error(
-                      'Argument error: Accepts only string or object');
-                }
-                try {
-                  // Creating an object, so Pascal case is appropriate.
-                  // tslint:disable-next-line
-                  const Endpoint = versionIndex[api.name][version];
-                  const ep = new Endpoint(options);
-                  ep.google = this;          // for drive.google.transporter
-                  return Object.freeze(ep);  // create new & freeze
-                } catch (e) {
-                  throw new Error(util.format(
-                      'Unable to load endpoint %s("%s"): %s', api.name, version,
-                      e.message));
-                }
+  transporter.request<DiscoverAPIsResponse>({url: discoveryUrl, headers})
+      .then(res => {
+        const items = res.data.items;
+        async.parallel(
+            items.map(api => {
+              return (cb) => {
+                self.discoverAPI(api.discoveryRestUrl, (e, newApi) => {
+                  if (e) {
+                    return cb(e);
+                  }
+                  api.api = newApi;
+                  cb(null, api);
+                });
               };
-            }
-            versionIndex[api.name][api.version] = api.api;
-          });
+            }),
+            (e, apis) => {
+              if (e) {
+                return callback(e);
+              }
 
-          return callback(null, apisIndex);
-        });
-  });
+              const versionIndex = {};
+              const apisIndex = {};
+
+              apis.forEach(api => {
+                if (!apisIndex[api.name]) {
+                  versionIndex[api.name] = {};
+                  apisIndex[api.name] = (options) => {
+                    const type = typeof options;
+                    let version;
+                    if (type === 'string') {
+                      version = options;
+                      options = {};
+                    } else if (type === 'object') {
+                      version = options.version;
+                      delete options.version;
+                    } else {
+                      throw new Error(
+                          'Argument error: Accepts only string or object');
+                    }
+                    try {
+                      // Creating an object, so Pascal case is appropriate.
+                      // tslint:disable-next-line
+                      const Endpoint = versionIndex[api.name][version];
+                      const ep = new Endpoint(options);
+                      ep.google = this;          // for drive.google.transporter
+                      return Object.freeze(ep);  // create new & freeze
+                    } catch (e) {
+                      throw new Error(util.format(
+                          'Unable to load endpoint %s("%s"): %s', api.name,
+                          version, e.message));
+                    }
+                  };
+                }
+                versionIndex[api.name][api.version] = api.api;
+              });
+
+              return callback(null, apisIndex);
+            });
+      })
+      .catch(e => {
+        return handleError(e, callback);
+      });
 };
 
 /**
@@ -263,7 +273,7 @@ Discovery.prototype.discoverAPI = function(apiDiscoveryUrl, callback) {
       }
     } else {
       this.log('Requesting ' + apiDiscoveryUrl);
-      transporter.request({uri: apiDiscoveryUrl}, _generate);
+      transporter.request({url: apiDiscoveryUrl}, _generate);
     }
   } else {
     const options = apiDiscoveryUrl;

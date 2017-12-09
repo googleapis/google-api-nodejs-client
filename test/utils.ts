@@ -11,7 +11,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import {AxiosResponse} from 'axios';
+import * as url from 'url';
+
 export abstract class Utils {
+  static getQs(res: AxiosResponse) {
+    const query = url.parse(res.request.path).query;
+    return query ? query.toString() : null;
+  }
+
   static getDiscoveryUrl(name, version) {
     return 'https://www.googleapis.com/discovery/v1/apis/' + name + '/' +
         version + '/rest';
@@ -27,4 +35,6 @@ export abstract class Utils {
   }
 
   static readonly noop = () => undefined;
+
+  static readonly baseUrl = 'https://www.googleapis.com';
 }

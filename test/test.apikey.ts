@@ -13,31 +13,37 @@
 
 import * as async from 'async';
 import * as nock from 'nock';
+import * as pify from 'pify';
 import * as assert from 'power-assert';
-
 import {Utils} from './utils';
 
 const googleapis = require('../src/lib/googleapis');
 
-function testGet(drive) {
-  const req = drive.files.get({fileId: '123', auth: 'APIKEY'}, Utils.noop);
-  assert.equal(req.uri.query, 'key=APIKEY');
+async function testGet(drive) {
+  nock(Utils.baseUrl).get('/drive/v2/files/123?key=APIKEY').reply(200);
+  const res = await pify(drive.files.get)({fileId: '123', auth: 'APIKEY'});
+  assert.equal(Utils.getQs(res), 'key=APIKEY');
 }
 
-function testParams2(drive) {
-  const req = drive.files.get({fileId: '123', auth: 'API KEY'}, Utils.noop);
-  assert.equal(req.uri.query, 'key=API%20KEY');
+async function testParams2(drive) {
+  nock(Utils.baseUrl).get('/drive/v2/files/123?key=API%20KEY').reply(200);
+  const res = await pify(drive.files.get)({fileId: '123', auth: 'API KEY'});
+  assert.equal(Utils.getQs(res), 'key=API%20KEY');
 }
 
-function testKeyParam(drive) {
-  const req = drive.files.get(
-      {fileId: '123', auth: 'API KEY', key: 'abc123'}, Utils.noop);
-  assert.equal(req.uri.query, 'key=abc123');
+async function testKeyParam(drive) {
+  nock(Utils.baseUrl).get('/drive/v2/files/123?key=abc123').reply(200);
+  const res = await pify(drive.files.get)(
+      {fileId: '123', auth: 'API KEY', key: 'abc123'});
+  assert.equal(Utils.getQs(res), 'key=abc123');
 }
 
-function testAuthKey(urlshortener) {
-  const req = urlshortener.url.list({auth: 'YOUR API KEY'}, Utils.noop);
-  assert.equal(req.uri.href.indexOf('key=YOUR%20API%20KEY') > 0, true);
+async function testAuthKey(urlshortener) {
+  nock(Utils.baseUrl)
+      .get('/urlshortener/v1/url/history?key=YOUR%20API%20KEY')
+      .reply(200);
+  const res = await pify(urlshortener.url.list)({auth: 'YOUR API KEY'});
+  assert.equal(Utils.getQs(res).indexOf('key=YOUR%20API%20KEY') > -1, true);
 }
 
 describe('API key', () => {
@@ -80,24 +86,25 @@ describe('API key', () => {
     localUrlshortener = google.urlshortener('v1');
   });
 
-  it('should include auth APIKEY as key=<APIKEY>', () => {
-    testGet(localDrive);
-    testGet(remoteDrive);
+  it('should include auth APIKEY as key=<APIKEY>', async () => {
+    await testGet(localDrive);
+    await testGet(remoteDrive);
   });
 
-  it('should properly escape params E.g. API KEY to API%20KEY', () => {
-    testParams2(localDrive);
-    testParams2(remoteDrive);
+  it('should properly escape params E.g. API KEY to API%20KEY', async () => {
+    await testParams2(localDrive);
+    await testParams2(remoteDrive);
   });
 
-  it('should use key param over auth apikey param if both provided', () => {
-    testKeyParam(localDrive);
-    testKeyParam(remoteDrive);
-  });
+  it('should use key param over auth apikey param if both provided',
+     async () => {
+       await testKeyParam(localDrive);
+       await testKeyParam(remoteDrive);
+     });
 
-  it('should set API key parameter if it is present', () => {
-    testAuthKey(localUrlshortener);
-    testAuthKey(remoteUrlshortener);
+  it('should set API key parameter if it is present', async () => {
+    await testAuthKey(localUrlshortener);
+    await testAuthKey(remoteUrlshortener);
   });
 
   after(() => {

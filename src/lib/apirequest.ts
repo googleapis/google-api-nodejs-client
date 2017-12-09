@@ -11,9 +11,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {DefaultTransporter} from 'google-auth-library/lib/transporters';
+import {AxiosRequestConfig} from 'axios';
+import {DefaultTransporter} from 'google-auth-library';
+import * as qs from 'qs';
 import * as stream from 'stream';
 import * as parseString from 'string-template';
+import * as uuid from 'uuid';
 
 // tslint:disable-next-line: no-any
 function isReadableStream(obj: any) {
@@ -51,10 +54,10 @@ function getMissingParams(params, required) {
  * @param  {Function} callback   Callback when request finished or error found
  * @return {Request}             Returns Request object or null
  */
-export function createAPIRequest(parameters, callback) {
-  let req, body, missingParams;
+export function createAPIRequest(parameters, callback): void {
+  let missingParams;
   let params = parameters.params;
-  let options = Object.assign({}, parameters.options);
+  let options: AxiosRequestConfig = Object.assign({}, parameters.options);
 
   // If the params are not present, and callback was passed instead,
   // use params as the callback and create empty params.
@@ -120,6 +123,15 @@ export function createAPIRequest(parameters, callback) {
     parameters.mediaUrl = parseString(parameters.mediaUrl, params);
   }
 
+  // When forming the querystring, override the serializer so that array
+  // values are serialized like this:
+  // myParams: ['one', 'two'] ---> 'myParams=one&myParams=two'
+  // This serializer also encodes spaces in the querystring as `%20`,
+  // whereas the default serializer in axios encodes to a `+`.
+  options.paramsSerializer = (params) => {
+    return qs.stringify(params, {arrayFormat: 'repeat'});
+  };
+
   // delete path parameters from the params object so they do not end up in
   // query
   parameters.pathParams.forEach(param => {
@@ -135,49 +147,62 @@ export function createAPIRequest(parameters, callback) {
   if (parameters.mediaUrl && media.body) {
     options.url = parameters.mediaUrl;
     if (resource) {
+      // Axios doesn't support multipart/related uploads, so it has to
+      // be implemented here.
       params.uploadType = 'multipart';
-      options.multipart = [
+      const multipart = [
         {'Content-Type': 'application/json', body: JSON.stringify(resource)}, {
           'Content-Type':
               media.mimeType || (resource && resource.mimeType) || defaultMime,
           body: media.body  // can be a readable stream or raw string!
         }
       ];
+      const boundary = uuid.v4();
+      const finale = `--${boundary}--`;
+      const rStream = new stream.PassThrough();
+      const isStream = isReadableStream(multipart[1].body);
+      headers['Content-Type'] = `multipart/related; boundary=${boundary}`;
+      for (const part of multipart) {
+        const preamble =
+            `--${boundary}\r\nContent-Type: ${part['Content-Type']}\r\n\r\n`;
+        rStream.push(preamble);
+        if (typeof part.body === 'string') {
+          rStream.push(part.body);
+          rStream.push('\r\n');
+        } else {
+          part.body.pipe(rStream, {end: false});
+          part.body.on('end', () => {
+            rStream.push('\r\n');
+            rStream.push(finale);
+            rStream.push(null);
+          });
+        }
+      }
+      if (!isStream) {
+        rStream.push(finale);
+        rStream.push(null);
+      }
+      options.data = rStream;
     } else {
       params.uploadType = 'media';
       Object.assign(headers, {'Content-Type': media.mimeType || defaultMime});
-
-      if (isReadableStream(media.body)) {
-        body = media.body;
-      } else {
-        options.body = media.body;
-      }
+      options.data = media.body;
     }
   } else {
-    options.json = resource ||
-        ((options.method === 'GET' || options.method === 'DELETE') ? true : {});
+    options.data = resource || undefined;
   }
 
   options.headers = headers;
-  options.qs = params;
-  options.useQuerystring = true;
-
+  options.params = params;
   options = Object.assign(
       {}, parameters.context.google._options, parameters.context._options,
       options);
-  delete options.auth;    // is overridden by our auth code
-  delete options.params;  // We handle params ourselves and Request does not
-                          // recognise 'params'
+  delete options.auth;  // is overridden by our auth code
 
   // create request (using authClient or otherwise and return request obj)
   if (authClient) {
-    req = authClient.request(options, callback);
+    authClient.request(options, callback);
   } else {
-    req = new DefaultTransporter().request(options, callback);
+    (new DefaultTransporter()).request(options, callback);
   }
-
-  if (body) {
-    body.pipe(req);
-  }
-  return req;
 }
