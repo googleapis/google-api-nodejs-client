@@ -89,7 +89,7 @@
     "@types/minimist": "1.2.0",
     "@types/mkdirp": "0.5.2",
     "@types/mocha": "2.2.44",
-    "@types/node": "8.0.56",
+    "@types/node": "8.0.58",
     "@types/nunjucks": "^3.0.0",
     "clang-format": "^1.1.1",
     "gts": "0.5.1",
