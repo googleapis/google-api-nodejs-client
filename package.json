@@ -92,7 +92,7 @@
     "@types/node": "8.0.58",
     "@types/nunjucks": "^3.0.0",
     "clang-format": "^1.1.1",
-    "gts": "0.5.1",
+    "gts": "0.5.2",
     "ink-docstrap": "1.3.2",
     "intelli-espower-loader": "1.0.1",
     "jsdoc": "3.5.5",
