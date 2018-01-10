@@ -13,17 +13,26 @@
 
 'use strict';
 
-var google = require('../../lib/googleapis.js');
-var urlshortener = google.urlshortener('v1');
+const google = require('../../');
+const config = require('../config');
+const urlshortener = google.urlshortener('v1', config.api_key);
 
-var printResult = function (err, result) {
+urlshortener.url.get({
+  shortUrl: 'http://goo.gl/DdUKX',
+}, (err, result) => {
   if (err) {
-    return console.log('Error occurred: ', err);
+    throw err;
   }
-  console.log('Result: ', result);
-};
+  console.log(result);
+});
 
-urlshortener.url.get({ shortUrl: 'http://goo.gl/DdUKX' }, printResult);
-urlshortener.url.insert({ resource: {
-  longUrl: 'http://somelongurl.com' }
-}, printResult);
+urlshortener.url.insert({
+  resource: {
+    longUrl: 'http://somelongurl.com'
+  }
+}, (err, result) => {
+  if (err) {
+    throw err;
+  }
+  console.log(result);
+});

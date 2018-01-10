@@ -13,55 +13,49 @@
 
 'use strict';
 
-var google = require('../../lib/googleapis.js');
-var analytics = google.analytics('v3');
-var OAuth2Client = google.auth.OAuth2;
-
-// Client ID and client secret are available at
-// https://code.google.com/apis/console
-var CLIENT_ID = 'YOUR CLIENT ID HERE';
-var CLIENT_SECRET = 'YOUR CLIENT SECRET HERE';
-var REDIRECT_URL = 'YOUR REDIRECT URL HERE';
-
-var oauth2Client = new OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
-
-oauth2Client.setCredentials({
-  access_token: 'ACCESS TOKEN HERE'
-});
+const google = require('../../');
+const analytics = google.analytics('v3');
+const sampleClient = require('../sampleclient');
 
 // Custom Goals must be exist prior to used as an objectiveMetric
-var objectiveMetric = 'ga:goal1Completions';
+const objectiveMetric = 'ga:goal1Completions';
 
 // Serving frameworks listed below:
 // https://developers.google.com/analytics/devguides/platform/experiments#serving-framework
-var servingFramework = 'API';
+const servingFramework = 'API';
 
 // Invalid URLs are used when user is not redirected when showing an experiment
 // Read more: http://goo.gl/oVwKH1
-var variations = [
+const constiations = [
   {'name': 'Default', 'url': 'http://www.example.com', 'status': 'ACTIVE'},
-  {'name': 'Variation 1', 'url': 'http://www.1.com', 'status': 'ACTIVE'},
-  {'name': 'Variation 2', 'url': 'http://www.2.com', 'status': 'ACTIVE'}
+  {'name': 'constiation 1', 'url': 'http://www.1.com', 'status': 'ACTIVE'},
+  {'name': 'constiation 2', 'url': 'http://www.2.com', 'status': 'ACTIVE'}
 ];
 
 // Specify Experiment configuration
-var resourceBody = {
+const resourceBody = {
   'name': 'Example Experiment',
   'status': 'READY_TO_RUN',
   'objectiveMetric': objectiveMetric,
   'servingFramework': servingFramework,
-  'variations': variations
+  'constiations': constiations
 };
 
-analytics.management.experiments.insert({
-  auth: oauth2Client,
-  accountId: 'your-accountId',
-  webPropertyId: 'your-webPropertyId',
-  profileId: 'your-profileId',
-  resource: resourceBody
-}, function (err, body) {
-  if (err) {
-    return console.log(err);
-  }
-  console.log(body);
+const scopes = [
+  'https://www.googleapis.com/auth/analytics'
+];
+
+sampleClient.authenticate(scopes, (err, authClient) => {
+  analytics.management.experiments.insert({
+    auth: authClient,
+    accountId: 'your-accountId',
+    webPropertyId: 'your-webPropertyId',
+    profileId: 'your-profileId',
+    resource: resourceBody
+  }, (err, body) => {
+    if (err) {
+      return console.error(err);
+    }
+    console.log(body);
+  });
 });

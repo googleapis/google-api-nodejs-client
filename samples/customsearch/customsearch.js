@@ -13,22 +13,29 @@
 
 'use strict';
 
-var google = require('../../lib/googleapis.js');
-var customsearch = google.customsearch('v1');
+// Example:  node customsearch.js example_term
+
+const google = require('../../');
+const customsearch = google.customsearch('v1');
 
 // You can get a custom search engine id at
 // https://www.google.com/cse/create/new
-const CX = 'INSERT YOUR CUSTOM SEARCH ENGINE ID here';
-const API_KEY = 'INSERT YOUR API KEY HERE';
-const SEARCH = 'INSERT A GOOGLE REQUEST HERE';
+const config = require('../config.json');
+const CX = config.customsearch_engine_id;
+const API_KEY = config.api_key;
+const SEARCH = process.argv[2];
 
-customsearch.cse.list({ cx: CX, q: SEARCH, auth: API_KEY }, function (err, resp) {
+customsearch.cse.list({
+  cx: CX,
+  q: SEARCH,
+  auth: API_KEY
+}, (err, res) => {
   if (err) {
-    return console.log('An error occured', err);
+    throw err;
   }
   // Got the response from custom search
-  console.log('Result: ' + resp.searchInformation.formattedTotalResults);
-  if (resp.items && resp.items.length > 0) {
-    console.log('First result name is ' + resp.items[0].title);
+  console.log('Result: ' + res.searchInformation.formattedTotalResults);
+  if (res.items && res.items.length > 0) {
+    console.log('First result name is ' + res.items[0].title);
   }
 });

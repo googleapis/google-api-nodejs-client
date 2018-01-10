@@ -6,7 +6,7 @@ With the YouTube Data API, you can add a variety of YouTube features to your app
 
 ## Running the samples
 
-To run this sample, add your client id, client secret, and redirect url in secrets.json.  You can also download this file directly from the Google Developers console.  The samples include:
+To run this sample, add your client id, client secret, and redirect url in oauth2.keys.json.  You can also download this file directly from the Google Developers console.  The samples include:
 
 - `node playlist`
 - `node search`

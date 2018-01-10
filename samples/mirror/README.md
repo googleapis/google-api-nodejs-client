@@ -6,6 +6,6 @@ The Google Mirror API allows you to build web-based services that interact with 
 
 ## Running the sample
 
-To run this sample, add your client id, client secret, and redirect url in secrets.json.  You can also download this file directly from the Google Developers console.  Then run:
+To run this sample, add your client id, client secret, and redirect url in oauth2.keys.json.  You can also download this file directly from the Google Developers console.  Then run:
 
 `node mirror.js`

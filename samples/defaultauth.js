@@ -13,8 +13,8 @@
 
 'use strict';
 
-var google = require('../lib/googleapis.js');
-var compute = google.compute('v1');
+const google = require('../');
+const compute = google.compute('v1');
 
 /**
  * The getApplicationDefault method creates the appropriate type of credential client for you,
@@ -24,19 +24,20 @@ var compute = google.compute('v1');
  * method rather than creating your own JWT or Compute client directly.
  *
  * Note: In order to run on a local developer machine, it is necessary to download a private key
- * file to your machine, and to set a local environment variable pointing to the location of the
+ * file to your machine, and to set a local environment constiable pointing to the location of the
  * file. Create a service account using the Google Developers Console using the section APIs & Auth.
  * Select "Generate new JSON key" and download the resulting file. Once this is done, set the
- * GOOGLE_APPLICATION_CREDENTIALS environment variable to point to the location of the .json file.
+ * GOOGLE_APPLICATION_CREDENTIALS environment constiable to point to the location of the .json file.
  *
  * See also:
  * https://developers.google.com/accounts/docs/application-default-credentials
  */
 
 // Get the appropriate type of credential client, depending upon the runtime environment.
-google.auth.getApplicationDefault(function (err, authClient) {
+google.auth.getApplicationDefault((err, authClient) => {
   if (err) {
-    return console.log('Failed to get the default credentials: ' + String(err));
+    console.error('Failed to get the default credentials.');
+    throw err;
   }
   // The createScopedRequired method returns true when running on GAE or a local developer
   // machine. In that case, the desired scopes must be passed in manually. When the code is
@@ -48,8 +49,11 @@ google.auth.getApplicationDefault(function (err, authClient) {
   }
   // Fetch the list of GCE zones within a project.
   // NOTE: You must fill in your valid project ID before running this sample!
-  var projectId = 'fill in your project id here!';
-  compute.zones.list({ project: projectId, auth: authClient }, function (err, result) {
-    console.log(err, result);
+  const projectId = 'fill in your project id here!';
+  compute.zones.list({ project: projectId, auth: authClient }, (err, result) => {
+    if (err) {
+      throw err;
+    }
+    console.log(result);
   });
 });
