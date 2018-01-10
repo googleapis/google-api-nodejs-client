@@ -8,7 +8,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "async": "2.6.0",
-    "google-auth-library": "0.12.0",
+    "google-auth-library": "1.0.0",
     "string-template": "1.0.0"
   },
   "semistandard": {
