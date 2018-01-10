@@ -15,7 +15,7 @@
 
 // Example:  node customsearch.js example_term
 
-const google = require('../../');
+const google = require('googleapis');
 const customsearch = google.customsearch('v1');
 
 // You can get a custom search engine id at

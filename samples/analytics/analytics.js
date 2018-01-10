@@ -13,7 +13,7 @@
 
 'use strict';
 
-const google = require('../../');
+const google = require('googleapis');
 const analytics = google.analytics('v3');
 const sampleClient = require('../sampleclient');
 

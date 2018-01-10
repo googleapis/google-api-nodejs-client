@@ -13,7 +13,7 @@
 
 'use strict';
 
-const google = require('../../');
+const google = require('googleapis');
 const blogger = google.blogger('v3');
 const config = require('../config.json');
 
