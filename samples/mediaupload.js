@@ -28,7 +28,7 @@ function runSamples () {
       mimeType: 'text/plain',
       body: 'Hello World updated with metadata'
     },
-    auth: oauth2Client
+    auth: sampleClient.oAuth2Client
   }, (err, res) => {
     if (err) {
       throw err;
@@ -43,7 +43,7 @@ function runSamples () {
       mimeType: 'text/plain',
       body: 'Hello World updated with metadata'
     },
-    auth: oauth2Client
+    auth: sampleClient.oAuth2Client
   }, (err, res) => {
     if (err) {
       throw err;
@@ -61,7 +61,7 @@ function runSamples () {
       mimeType: 'text/plain',
       body: 'Hello World updated with metadata'
     },
-    auth: oauth2Client
+    auth: sampleClient.oAuth2Client
   }, (err, res) => {
     if (err) {
       throw err;
