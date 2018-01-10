@@ -71,6 +71,7 @@
     "clean": "gts clean",
     "check": "gts check",
     "fix": "gts fix",
+    "fix-samples": "semistandard --fix samples/**/*.js",
     "license-check": "jsgl --local ."
   },
   "author": "Google Inc.",

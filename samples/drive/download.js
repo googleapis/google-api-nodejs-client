@@ -24,8 +24,6 @@ const drive = google.drive({
   auth: auth
 });
 
-
-
 function download (fileId) {
   drive.files.get({
     fileId: fileId

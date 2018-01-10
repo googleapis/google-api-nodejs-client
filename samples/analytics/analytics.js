@@ -46,6 +46,9 @@ const scopes = [
 ];
 
 sampleClient.authenticate(scopes, (err, authClient) => {
+  if (err) {
+    throw err;
+  }
   analytics.management.experiments.insert({
     auth: authClient,
     accountId: 'your-accountId',
@@ -54,7 +57,7 @@ sampleClient.authenticate(scopes, (err, authClient) => {
     resource: resourceBody
   }, (err, body) => {
     if (err) {
-      return console.error(err);
+      throw err;
     }
     console.log(body);
   });

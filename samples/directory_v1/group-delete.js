@@ -22,8 +22,8 @@ const jwt = new googleapis.auth.JWT(
   null,
   keys.private_key,
   [
-    "https://www.googleapis.com/auth/admin.directory.group",
-    "https://www.googleapis.com/auth/admin.directory.group.member"
+    'https://www.googleapis.com/auth/admin.directory.group',
+    'https://www.googleapis.com/auth/admin.directory.group.member'
   ]
 );
 

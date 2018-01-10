@@ -21,7 +21,7 @@ const google = require('../../');
 const sampleClient = require('../sampleclient');
 const fs = require('fs');
 
-const FILENAME = argv[2];
+const FILENAME = process.argv[2];
 
 // initialize the Youtube API library
 const youtube = google.youtube({
@@ -31,7 +31,7 @@ const youtube = google.youtube({
 
 // very basic example of uploading a video to youtube
 function uploadVideo () {
-  youtube.videos.insert({
+  const req = youtube.videos.insert({
     part: 'id,snippet,status',
     notifySubscribers: false,
     resource: {
@@ -82,5 +82,5 @@ sampleClient.authenticate(scopes, err => {
   if (err) {
     throw err;
   }
-  uploadVideo()
+  uploadVideo();
 });

@@ -31,7 +31,7 @@ request.get({ uri, headers }, (err, res, project) => {
     throw err;
   }
   if (res.statusCode !== 200) {
-    throw new Error(`Response failed with status ${res.statusCode}`)
+    throw new Error(`Response failed with status ${res.statusCode}`);
   }
   compute.zones.list({ project }, (err, result) => {
     console.log(err, result);

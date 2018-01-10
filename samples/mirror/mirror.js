@@ -25,6 +25,10 @@ const scopes = [
 ];
 
 sampleClient.authenticate(scopes, err => {
+  if (err) {
+    throw err;
+  }
+
   // a very simple example of listing locations from the mirror API
   mirror.locations.list({}, (err, data) => {
     if (err) {

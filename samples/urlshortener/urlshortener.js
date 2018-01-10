@@ -18,7 +18,7 @@ const config = require('../config');
 const urlshortener = google.urlshortener('v1', config.api_key);
 
 urlshortener.url.get({
-  shortUrl: 'http://goo.gl/DdUKX',
+  shortUrl: 'http://goo.gl/DdUKX'
 }, (err, result) => {
   if (err) {
     throw err;

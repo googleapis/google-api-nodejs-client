@@ -27,7 +27,7 @@ const opn = require('opn');
 const keys = require('./oauth2.keys.json');
 
 class SampleClient {
-  constructor(options) {
+  constructor (options) {
     this._options = options || { scopes: [] };
 
     // create an oAuth client to authorize the API call
@@ -41,7 +41,7 @@ class SampleClient {
   // Open an http server to accept the oauth callback. In this
   // simple example, the only request to our webserver is to
   // /callback?code=<code>
-  authenticate(scopes, callback) {
+  authenticate (scopes, callback) {
     // grab the url that will be used for authorization
     this.authorizeUrl = this.oAuth2Client.generateAuthUrl({
       access_type: 'offline',
@@ -65,7 +65,7 @@ class SampleClient {
       // open the browser to the authorize url to start the workflow
       opn(this.authorizeUrl);
     });
-  };
+  }
 }
 
 module.exports = new SampleClient();

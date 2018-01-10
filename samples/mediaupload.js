@@ -17,7 +17,7 @@ const google = require('../');
 const drive = google.drive('v2');
 const sampleClient = require('./sampleclient');
 
-function runSamples() {
+function runSamples () {
   // insertion example
   drive.files.insert({
     resource: {
