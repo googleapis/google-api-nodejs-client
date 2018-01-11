@@ -42,7 +42,7 @@ function Cloudresourcemanager(options) {
      * which can be used to track the progress of the folder creation workflow.
      * Upon success the Operation.response field will be populated with the
      * created Folder.  In order to succeed, the addition of this new Folder
-     * must not violate the Folder naming, height or fanout constraints. + The
+     * must not violate the Folder naming, height or fanout constraints.  + The
      * Folder's display_name must be distinct from all other Folder's that share
      * its parent. + The addition of the Folder must not cause the active Folder
      * hierarchy to exceed a height of 4. Note, the full active + deleted Folder
@@ -90,10 +90,10 @@ function Cloudresourcemanager(options) {
     }, /**
         * cloudresourcemanager.folders.delete
         * @desc Requests deletion of a Folder. The Folder is moved into the
-        * [DELETE_REQUESTED] state immediately, and is deleted approximately 30
+        * DELETE_REQUESTED state immediately, and is deleted approximately 30
         * days later. This method may only be called on an empty Folder in the
-        * [ACTIVE] state, where a Folder is empty if it doesn't contain any
-        * Folders or Projects in the [ACTIVE] state. The caller must have
+        * ACTIVE state, where a Folder is empty if it doesn't contain any
+        * Folders or Projects in the ACTIVE state. The caller must have
         * `resourcemanager.folders.delete` permission on the identified folder.
         * @alias cloudresourcemanager.folders.delete
         * @memberOf! cloudresourcemanager(v2beta1)
@@ -215,7 +215,7 @@ function Cloudresourcemanager(options) {
         * @param {integer=} params.pageSize The maximum number of Folders to return in the response. This field is optional.
         * @param {string=} params.pageToken A pagination token returned from a previous call to `ListFolders` that indicates where this listing should continue from. This field is optional.
         * @param {string=} params.parent The resource name of the Organization or Folder whose Folders are being listed. Must be of the form `folders/{folder_id}` or `organizations/{org_id}`. Access to this method is controlled by checking the `resourcemanager.folders.list` permission on the `parent`.
-        * @param {boolean=} params.showDeleted Controls whether Folders in the [DELETE_REQUESTED} state should be returned.
+        * @param {boolean=} params.showDeleted Controls whether Folders in the DELETE_REQUESTED state should be returned. Defaults to false. This field is optional.
         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
@@ -254,7 +254,7 @@ function Cloudresourcemanager(options) {
         * Operation.metadata field will be populated with a FolderOperation
         * message as an aid to stateless clients. Folder moves will be rejected
         * if they violate either the naming, height or fanout constraints
-        * described in the [CreateFolder] documentation. The caller must have
+        * described in the CreateFolder documentation. The caller must have
         * `resourcemanager.folders.move` permission on the folder's current and
         * proposed new parent.
         * @alias cloudresourcemanager.folders.move
@@ -294,8 +294,8 @@ function Cloudresourcemanager(options) {
         * @desc Updates a Folder, changing its display_name. Changes to the
         * folder display_name will be rejected if they violate either the
         * display_name formatting rules or naming constraints described in the
-        * [CreateFolder] documentation. + The Folder's display name must start
-        * and end with a letter or digit, may contain letters, digits, spaces,
+        * CreateFolder documentation.  The Folder's display name must start and
+        * end with a letter or digit, may contain letters, digits, spaces,
         * hyphens and underscores and can be no longer than 30 characters. This
         * is captured by the regular expression: [\p{L}\p{N}]({\p{L}\p{N}_-
         * ]{0,28}[\p{L}\p{N}])?. The caller must have
@@ -453,13 +453,12 @@ function Cloudresourcemanager(options) {
     }, /**
         * cloudresourcemanager.folders.undelete
         * @desc Cancels the deletion request for a Folder. This method may only
-        * be called on a Folder in the [DELETE_REQUESTED] state. In order to
-        * succeed, the Folder's parent must be in the [ACTIVE] state. In
-        * addition, reintroducing the folder into the tree must not violate
-        * folder naming, height and fanout constraints described in the
-        * [CreateFolder] documentation. The caller must have
-        * `resourcemanager.folders.undelete` permission on the identified
-        * folder.
+        * be called on a Folder in the DELETE_REQUESTED state. In order to
+        * succeed, the Folder's parent must be in the ACTIVE state. In addition,
+        * reintroducing the folder into the tree must not violate folder naming,
+        * height and fanout constraints described in the CreateFolder
+        * documentation. The caller must have `resourcemanager.folders.undelete`
+        * permission on the identified folder.
         * @alias cloudresourcemanager.folders.undelete
         * @memberOf! cloudresourcemanager(v2beta1)
         *
@@ -523,9 +522,9 @@ function Cloudresourcemanager(options) {
  * @type object
  * @property {string} createTime Output only. Timestamp when the Folder was created. Assigned by the server.
  * @property {string} displayName The folder’s display name. A folder’s display name must be unique amongst its siblings, e.g. no two folders with the same parent can share the same display name. The display name must start and end with a letter or digit, may contain letters, digits, spaces, hyphens and underscores and can be no longer than 30 characters. This is captured by the regular expression: [\p{L}\p{N}]({\p{L}\p{N}_- ]{0,28}[\p{L}\p{N}])?.
- * @property {string} lifecycleState Output only.  The lifecycle state of the folder. Updates to the lifecycle_state must be performed via [DeleteFolder] and [UndeleteFolder].
+ * @property {string} lifecycleState Output only.  The lifecycle state of the folder. Updates to the lifecycle_state must be performed via DeleteFolder and UndeleteFolder.
  * @property {string} name Output only. The resource name of the Folder. Its format is `folders/{folder_id}`, for example: &quot;folders/1234&quot;.
- * @property {string} parent The Folder’s parent&#39;s resource name. Updates to the folder&#39;s parent must be performed via [MoveFolders].
+ * @property {string} parent The Folder’s parent&#39;s resource name. Updates to the folder&#39;s parent must be performed via MoveFolder.
  */
 /**
  * @typedef FolderOperation
@@ -577,7 +576,7 @@ function Cloudresourcemanager(options) {
  * @property {cloudresourcemanager(v2beta1).AuditConfig[]} auditConfigs Specifies cloud audit logging configuration for this policy.
  * @property {cloudresourcemanager(v2beta1).Binding[]} bindings Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
  * @property {string} etag `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
- * @property {integer} version Version of the `Policy`. The default version is 0.
+ * @property {integer} version Deprecated.
  */
 /**
  * @typedef ProjectCreationStatus
@@ -593,7 +592,7 @@ function Cloudresourcemanager(options) {
  * @type object
  * @property {integer} pageSize The maximum number of folders to return in the response. This field is optional.
  * @property {string} pageToken A pagination token returned from a previous call to `SearchFolders` that indicates from where search should continue. This field is optional.
- * @property {string} query Search criteria used to select the Folders to return. If no search criteria is specified then all accessible folders will be returned.  Query expressions can be used to restrict results based upon displayName, lifecycleState and parent, where the operators `=`, `NOT`, `AND` and `OR` can be used along with the suffix wildcard symbol `*`.  Some example queries are: |Query|Description| |------|-----------| |displayName=Test*|Folders whose display name starts with &quot;Test&quot;.| |lifecycleState=ACTIVE|Folders whose lifecycleState is ACTIVE.| |parent=folders/123|Folders whose parent is &quot;folders/123&quot;.| |parent=folders/123 AND lifecycleState=ACTIVE|Active folders whose parent is &quot;folders/123&quot;.|
+ * @property {string} query Search criteria used to select the Folders to return. If no search criteria is specified then all accessible folders will be returned.  Query expressions can be used to restrict results based upon displayName, lifecycleState and parent, where the operators `=`, `NOT`, `AND` and `OR` can be used along with the suffix wildcard symbol `*`.  Some example queries are:  |Query | Description| |----- | -----------| |displayName=Test*|Folders whose display name starts with &quot;Test&quot;.| |lifecycleState=ACTIVE|Folders whose lifecycleState is ACTIVE.| |parent=folders/123|Folders whose parent is &quot;folders/123&quot;.| |parent=folders/123 AND lifecycleState=ACTIVE|Active folders whose parent is &quot;folders/123&quot;.|
  */
 /**
  * @typedef SearchFoldersResponse

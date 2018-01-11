@@ -1059,6 +1059,41 @@ function Storage(options) {
       };
       return createAPIRequest(parameters, callback);
     }, /**
+        * storage.buckets.lockRetentionPolicy
+        * @desc Locks retention policy on a bucket.
+        * @alias storage.buckets.lockRetentionPolicy
+        * @memberOf! storage(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.bucket Name of a bucket.
+        * @param {string} params.ifMetagenerationMatch Makes the operation conditional on whether bucket's current metageneration matches the given value.
+        * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    lockRetentionPolicy(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/storage/v1/b/{bucket}/lockRetentionPolicy')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['bucket', 'ifMetagenerationMatch'],
+        pathParams: ['bucket'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
         * storage.buckets.patch
         * @desc Updates a bucket. Changes to the bucket will be readable
         * immediately after writing, but configuration changes may take time to
@@ -3690,7 +3725,7 @@ function Storage(options) {
             * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
             * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
             * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the object's current metageneration does not match the given value.
-            * @param {string=} params.kmsKeyName Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
+            * @param {string=} params.kmsKeyName Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any. Limited availability; usable only by enabled projects.
             * @param {string=} params.name Name of the object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
             * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this object.
             * @param {string=} params.projection Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
@@ -4586,10 +4621,11 @@ function Storage(options) {
  * @property {storage(v1).BucketAccessControl[]} acl Access controls on the bucket.
  * @property {object} billing The bucket&#39;s billing configuration.
  * @property {object[]} cors The bucket&#39;s Cross-Origin Resource Sharing (CORS) configuration.
+ * @property {boolean} defaultEventBasedHold Defines the default value for Event-Based hold on newly created objects in this bucket. Event-Based hold is a way to retain objects indefinitely until an event occurs, signified by the hold&#39;s release. After being released, such objects will be subject to bucket-level retention (if any). One sample use case of this flag is for banks to hold loan documents for at least 3 years after loan is paid in full. Here bucket-level retention is 3 years and the event is loan being paid in full. In this example these objects will be held intact for any number of years until the event has occurred (hold is released) and then 3 more years after that. Objects under Event-Based hold cannot be deleted, overwritten or archived until the hold is removed.
  * @property {storage(v1).ObjectAccessControl[]} defaultObjectAcl Default access controls to apply to new objects when no ACL is provided.
  * @property {object} encryption Encryption configuration used by default for newly inserted objects, when no encryption config is specified.
  * @property {string} etag HTTP 1.1 Entity tag for the bucket.
- * @property {string} id The ID of the bucket. For buckets, the id and name properities are the same.
+ * @property {string} id The ID of the bucket. For buckets, the id and name properties are the same.
  * @property {string} kind The kind of item this is. For buckets, this is always storage#bucket.
  * @property {object} labels User-provided labels, in key/value pairs.
  * @property {object} lifecycle The bucket&#39;s lifecycle configuration. See lifecycle management for more information.
@@ -4599,6 +4635,7 @@ function Storage(options) {
  * @property {string} name The name of the bucket.
  * @property {object} owner The owner of the bucket. This is always the project team&#39;s owner group.
  * @property {string} projectNumber The project number of the project the bucket belongs to.
+ * @property {object} retentionPolicy Defines the retention policy for a bucket. The Retention policy enforces a minimum retention time for all objects contained in the bucket, based on their creation time. Any attempt to overwrite or delete objects younger than the retention period will result in a PERMISSION_DENIED error. An unlocked retention policy can be modified or removed from the bucket via the UpdateBucketMetadata RPC. A locked retention policy cannot be removed or shortened in duration for the lifetime of the bucket. Attempting to remove or decrease period of a locked retention policy will result in a PERMISSION_DENIED error.
  * @property {string} selfLink The URI of this bucket.
  * @property {string} storageClass The bucket&#39;s default storage class, used whenever no storageClass is specified for a newly-created object. This defines how objects in the bucket are stored and determines the SLA and the cost of storage. Values include MULTI_REGIONAL, REGIONAL, STANDARD, NEARLINE, COLDLINE, and DURABLE_REDUCED_AVAILABILITY. If this value is not specified when the bucket is created, it will default to STANDARD. For more information, see storage classes.
  * @property {string} timeCreated The creation time of the bucket in RFC 3339 format.
@@ -4696,19 +4733,22 @@ function Storage(options) {
  * @property {string} crc32c CRC32c checksum, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order. For more information about using the CRC32c checksum, see Hashes and ETags: Best Practices.
  * @property {object} customerEncryption Metadata of customer-supplied encryption key, if the object is encrypted by such a key.
  * @property {string} etag HTTP 1.1 Entity tag for the object.
+ * @property {boolean} eventBasedHold Defines the Event-Based hold for an object. Event-Based hold is a way to retain objects indefinitely until an event occurs, signified by the hold&#39;s release. After being released, such objects will be subject to bucket-level retention (if any). One sample use case of this flag is for banks to hold loan documents for at least 3 years after loan is paid in full. Here bucket-level retention is 3 years and the event is loan being paid in full. In this example these objects will be held intact for any number of years until the event has occurred (hold is released) and then 3 more years after that.
  * @property {string} generation The content generation of this object. Used for object versioning.
  * @property {string} id The ID of the object, including the bucket name, object name, and generation number.
  * @property {string} kind The kind of item this is. For objects, this is always storage#object.
- * @property {string} kmsKeyName Cloud KMS Key used to encrypt this object, if the object is encrypted by such a key.
+ * @property {string} kmsKeyName Cloud KMS Key used to encrypt this object, if the object is encrypted by such a key. Limited availability; usable only by enabled projects.
  * @property {string} md5Hash MD5 hash of the data; encoded using base64. For more information about using the MD5 hash, see Hashes and ETags: Best Practices.
  * @property {string} mediaLink Media download link.
  * @property {object} metadata User-provided metadata, in key/value pairs.
  * @property {string} metageneration The version of the metadata for this object at this generation. Used for preconditions and for detecting changes in metadata. A metageneration number is only meaningful in the context of a particular generation of a particular object.
  * @property {string} name The name of the object. Required if not specified by URL parameter.
  * @property {object} owner The owner of the object. This will always be the uploader of the object.
+ * @property {string} retentionExpirationTime Specifies the earliest time that the object&#39;s retention period expires. This value is server-determined and is in RFC 3339 format. Note 1: This field is not provided for objects with an active Event-Based hold, since retention expiration is unknown until the hold is removed. Note 2: This value can be provided even when TemporaryHold is set (so that the user can reason about policy without having to first unset the TemporaryHold).
  * @property {string} selfLink The link to this object.
  * @property {string} size Content-Length of the data in bytes.
  * @property {string} storageClass Storage class of the object.
+ * @property {boolean} temporaryHold Defines the temporary hold for an object. This flag is used to enforce a temporary hold on an object. While it is set to true, the object is protected against deletion and overwrites. A common use case of this flag is regulatory investigations where objects need to be retained while the investigation is ongoing.
  * @property {string} timeCreated The creation time of the object in RFC 3339 format.
  * @property {string} timeDeleted The deletion time of the object in RFC 3339 format. Will be returned if and only if this version of the object has been deleted.
  * @property {string} timeStorageClassUpdated The time at which the object&#39;s storage class was last changed. When the object is initially created, it will be set to timeCreated.

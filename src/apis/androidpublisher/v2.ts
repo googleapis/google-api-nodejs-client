@@ -2557,6 +2557,7 @@ function Androidpublisher(options) {
  * @property {string} orderId The order id associated with the purchase of the inapp product.
  * @property {integer} purchaseState The purchase state of the order. Possible values are:   - Purchased  - Cancelled
  * @property {string} purchaseTimeMillis The time the product was purchased, in milliseconds since the epoch (Jan 1, 1970).
+ * @property {integer} purchaseType The type of purchase of the inapp product. This field is only set if this purchase was not made using the standard in-app billing flow. Possible values are:   - Test (i.e. purchased from a license testing account)
  */
 /**
  * @typedef Prorate
@@ -2620,15 +2621,17 @@ function Androidpublisher(options) {
  * @memberOf! androidpublisher(v2)
  * @type object
  * @property {boolean} autoRenewing Whether the subscription will automatically be renewed when it reaches its current expiry time.
- * @property {integer} cancelReason The reason why a subscription was cancelled or is not auto-renewing. Possible values are:   - User cancelled the subscription  - Subscription was cancelled by the system, for example because of a billing problem  - Subscription was replaced with a new subscription
+ * @property {integer} cancelReason The reason why a subscription was cancelled or is not auto-renewing. Possible values are:   - User cancelled the subscription  - Subscription was cancelled by the system, for example because of a billing problem  - Subscription was replaced with a new subscription  - Subscription was cancelled by the developer
  * @property {string} countryCode ISO 3166-1 alpha-2 billing country/region code of the user at the time the subscription was granted.
  * @property {string} developerPayload A developer-specified string that contains supplemental information about an order.
  * @property {string} expiryTimeMillis Time at which the subscription will expire, in milliseconds since the Epoch.
  * @property {string} kind This kind represents a subscriptionPurchase object in the androidpublisher service.
+ * @property {string} linkedPurchaseToken The purchase token of the originating purchase if this subscription is one of the following:   - Re-signup of a canceled but non-lapsed subscription  - Upgrade/downgrade from a previous subscription  For example, suppose a user originally signs up and you receive purchase token X, then the user cancels and goes through the resignup flow (before their subscription lapses) and you receive purchase token Y, and finally the user upgrades their subscription and you receive purchase token Z. If you call this API with purchase token Z, this field will be set to Y. If you call this API with purchase token Y, this field will be set to X. If you call this API with purchase token X, this field will not be set.
  * @property {string} orderId The order id of the latest recurring order associated with the purchase of the subscription.
  * @property {integer} paymentState The payment state of the subscription. Possible values are:   - Payment pending  - Payment received  - Free trial
  * @property {string} priceAmountMicros Price of the subscription, not including tax. Price is expressed in micro-units, where 1,000,000 micro-units represents one unit of the currency. For example, if the subscription price is €1.99, price_amount_micros is 1990000.
  * @property {string} priceCurrencyCode ISO 4217 currency code for the subscription price. For example, if the price is specified in British pounds sterling, price_currency_code is &quot;GBP&quot;.
+ * @property {integer} purchaseType The type of purchase of the subscription. This field is only set if this purchase was not made using the standard in-app billing flow. Possible values are:   - Test (i.e. purchased from a license testing account)
  * @property {string} startTimeMillis Time at which the subscription was granted, in milliseconds since the Epoch.
  * @property {string} userCancellationTimeMillis The time at which the subscription was canceled by the user, in milliseconds since the epoch. Only present if cancelReason is 0.
  */

@@ -2045,237 +2045,729 @@ function Admin(options) {
     }
 
   };
-  self.resources = {
-    calendars: {
-      /**
-       * directory.resources.calendars.delete
-       * @desc Deletes a calendar resource.
-       * @alias directory.resources.calendars.delete
-       * @memberOf! admin(directory_v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.calendarResourceId The unique ID of the calendar resource to delete.
-       * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['customer', 'calendarResourceId'],
-          pathParams: ['calendarResourceId', 'customer'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }, /**
-          * directory.resources.calendars.get
-          * @desc Retrieves a calendar resource.
-          * @alias directory.resources.calendars.get
-          * @memberOf! admin(directory_v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.calendarResourceId The unique ID of the calendar resource to retrieve.
-          * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      get(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['customer', 'calendarResourceId'],
-          pathParams: ['calendarResourceId', 'customer'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }, /**
-          * directory.resources.calendars.insert
-          * @desc Inserts a calendar resource.
-          * @alias directory.resources.calendars.insert
-          * @memberOf! admin(directory_v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-          * @param {admin(directory_v1).CalendarResource} params.resource Request body data
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      insert(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/admin/directory/v1/customer/{customer}/resources/calendars')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['customer'],
-          pathParams: ['customer'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }, /**
-          * directory.resources.calendars.list
-          * @desc Retrieves a list of calendar resources for an account.
-          * @alias directory.resources.calendars.list
-          * @memberOf! admin(directory_v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-          * @param {integer=} params.maxResults Maximum number of results to return.
-          * @param {string=} params.pageToken Token to specify the next page in the list.
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      list(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/admin/directory/v1/customer/{customer}/resources/calendars')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['customer'],
-          pathParams: ['customer'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }, /**
-          * directory.resources.calendars.patch
-          * @desc Updates a calendar resource.  This method supports patch
-          * semantics, meaning you only need to include the fields you wish to
-          * update. Fields that are not present in the request will be
-          * preserved. This method supports patch semantics.
-          * @alias directory.resources.calendars.patch
-          * @memberOf! admin(directory_v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.calendarResourceId The unique ID of the calendar resource to update.
-          * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-          * @param {admin(directory_v1).CalendarResource} params.resource Request body data
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      patch(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['customer', 'calendarResourceId'],
-          pathParams: ['calendarResourceId', 'customer'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }, /**
-          * directory.resources.calendars.update
-          * @desc Updates a calendar resource.  This method supports patch
-          * semantics, meaning you only need to include the fields you wish to
-          * update. Fields that are not present in the request will be
-          * preserved.
-          * @alias directory.resources.calendars.update
-          * @memberOf! admin(directory_v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.calendarResourceId The unique ID of the calendar resource to update.
-          * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-          * @param {admin(directory_v1).CalendarResource} params.resource Request body data
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      update(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['customer', 'calendarResourceId'],
-          pathParams: ['calendarResourceId', 'customer'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
+  self.resources =
+      {
+        buildings: {
+          /**
+           * directory.resources.buildings.delete
+           * @desc Deletes a building.
+           * @alias directory.resources.buildings.delete
+           * @memberOf! admin(directory_v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.buildingId The ID of the building to delete.
+           * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          delete (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/admin/directory/v1/customer/{customer}/resources/buildings/{buildingId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'DELETE'
+                  },
+                  options),
+              params,
+              requiredParams: ['customer', 'buildingId'],
+              pathParams: ['buildingId', 'customer'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * directory.resources.buildings.get
+              * @desc Retrieves a building.
+              * @alias directory.resources.buildings.get
+              * @memberOf! admin(directory_v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.buildingId The unique ID of the building to retrieve.
+              * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          get(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/admin/directory/v1/customer/{customer}/resources/buildings/{buildingId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['customer', 'buildingId'],
+              pathParams: ['buildingId', 'customer'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * directory.resources.buildings.insert
+              * @desc Inserts a building.
+              * @alias directory.resources.buildings.insert
+              * @memberOf! admin(directory_v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+              * @param {admin(directory_v1).Building} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          insert(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/admin/directory/v1/customer/{customer}/resources/buildings')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['customer'],
+              pathParams: ['customer'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * directory.resources.buildings.list
+              * @desc Retrieves a list of buildings for an account.
+              * @alias directory.resources.buildings.list
+              * @memberOf! admin(directory_v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/admin/directory/v1/customer/{customer}/resources/buildings')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['customer'],
+              pathParams: ['customer'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * directory.resources.buildings.patch
+              * @desc Updates a building. This method supports patch semantics.
+              * @alias directory.resources.buildings.patch
+              * @memberOf! admin(directory_v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.buildingId The ID of the building to update.
+              * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+              * @param {admin(directory_v1).Building} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          patch(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/admin/directory/v1/customer/{customer}/resources/buildings/{buildingId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'PATCH'
+                  },
+                  options),
+              params,
+              requiredParams: ['customer', 'buildingId'],
+              pathParams: ['buildingId', 'customer'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * directory.resources.buildings.update
+              * @desc Updates a building.
+              * @alias directory.resources.buildings.update
+              * @memberOf! admin(directory_v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.buildingId The ID of the building to update.
+              * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+              * @param {admin(directory_v1).Building} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          update(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/admin/directory/v1/customer/{customer}/resources/buildings/{buildingId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'PUT'
+                  },
+                  options),
+              params,
+              requiredParams: ['customer', 'buildingId'],
+              pathParams: ['buildingId', 'customer'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }
 
-    }
-  };
+        },
+        calendars: {
+          /**
+           * directory.resources.calendars.delete
+           * @desc Deletes a calendar resource.
+           * @alias directory.resources.calendars.delete
+           * @memberOf! admin(directory_v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.calendarResourceId The unique ID of the calendar resource to delete.
+           * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          delete (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'DELETE'
+                  },
+                  options),
+              params,
+              requiredParams: ['customer', 'calendarResourceId'],
+              pathParams: ['calendarResourceId', 'customer'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * directory.resources.calendars.get
+              * @desc Retrieves a calendar resource.
+              * @alias directory.resources.calendars.get
+              * @memberOf! admin(directory_v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.calendarResourceId The unique ID of the calendar resource to retrieve.
+              * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          get(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['customer', 'calendarResourceId'],
+              pathParams: ['calendarResourceId', 'customer'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * directory.resources.calendars.insert
+              * @desc Inserts a calendar resource.
+              * @alias directory.resources.calendars.insert
+              * @memberOf! admin(directory_v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+              * @param {admin(directory_v1).CalendarResource} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          insert(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/admin/directory/v1/customer/{customer}/resources/calendars')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['customer'],
+              pathParams: ['customer'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * directory.resources.calendars.list
+              * @desc Retrieves a list of calendar resources for an account.
+              * @alias directory.resources.calendars.list
+              * @memberOf! admin(directory_v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+              * @param {integer=} params.maxResults Maximum number of results to return.
+              * @param {string=} params.orderBy Field(s) to sort results by in either ascending or descending order. Supported fields include resourceId, resourceName, capacity, buildingId, and floorName. If no order is specified, defaults to ascending. Should be of the form "field [asc|desc], field [asc|desc], ...". For example buildingId, capacity desc would return results sorted first by buildingId in ascending order then by capacity in descending order.
+              * @param {string=} params.pageToken Token to specify the next page in the list.
+              * @param {string=} params.query String query used to filter results. Should be of the form "field operator value" where field can be any of supported fields and operators can be any of supported operations. Operators include '=' for exact match and ':' for prefix match where applicable. For prefix match, the value should always be followed by a *.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/admin/directory/v1/customer/{customer}/resources/calendars')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['customer'],
+              pathParams: ['customer'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * directory.resources.calendars.patch
+              * @desc Updates a calendar resource.  This method supports patch
+              * semantics, meaning you only need to include the fields you wish
+              * to update. Fields that are not present in the request will be
+              * preserved. This method supports patch semantics.
+              * @alias directory.resources.calendars.patch
+              * @memberOf! admin(directory_v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.calendarResourceId The unique ID of the calendar resource to update.
+              * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+              * @param {admin(directory_v1).CalendarResource} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          patch(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'PATCH'
+                  },
+                  options),
+              params,
+              requiredParams: ['customer', 'calendarResourceId'],
+              pathParams: ['calendarResourceId', 'customer'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * directory.resources.calendars.update
+              * @desc Updates a calendar resource.  This method supports patch
+              * semantics, meaning you only need to include the fields you wish
+              * to update. Fields that are not present in the request will be
+              * preserved.
+              * @alias directory.resources.calendars.update
+              * @memberOf! admin(directory_v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.calendarResourceId The unique ID of the calendar resource to update.
+              * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+              * @param {admin(directory_v1).CalendarResource} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          update(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'PUT'
+                  },
+                  options),
+              params,
+              requiredParams: ['customer', 'calendarResourceId'],
+              pathParams: ['calendarResourceId', 'customer'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }
+
+        },
+        features:
+            {
+              /**
+               * directory.resources.features.delete
+               * @desc Deletes a feature.
+               * @alias directory.resources.features.delete
+               * @memberOf! admin(directory_v1)
+               *
+               * @param {object} params Parameters for request
+               * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+               * @param {string} params.featureKey The unique ID of the feature to delete.
+               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+               * @param {callback} callback The callback that handles the response.
+               * @return {object} Request object
+               */
+              delete (params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/admin/directory/v1/customer/{customer}/resources/features/{featureKey}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'DELETE'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['customer', 'featureKey'],
+                  pathParams: ['customer', 'featureKey'],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }, /**
+                  * directory.resources.features.get
+                  * @desc Retrieves a feature.
+                  * @alias directory.resources.features.get
+                  * @memberOf! admin(directory_v1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+                  * @param {string} params.featureKey The unique ID of the feature to retrieve.
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              get(params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/admin/directory/v1/customer/{customer}/resources/features/{featureKey}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['customer', 'featureKey'],
+                  pathParams: ['customer', 'featureKey'],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }, /**
+                  * directory.resources.features.insert
+                  * @desc Inserts a feature.
+                  * @alias directory.resources.features.insert
+                  * @memberOf! admin(directory_v1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+                  * @param {admin(directory_v1).Feature} params.resource Request body data
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              insert(params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/admin/directory/v1/customer/{customer}/resources/features')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'POST'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['customer'],
+                  pathParams: ['customer'],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }, /**
+                  * directory.resources.features.list
+                  * @desc Retrieves a list of features for an account.
+                  * @alias directory.resources.features.list
+                  * @memberOf! admin(directory_v1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+                  * @param {string=} params.pageToken Token to specify the next page in the list.
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              list(params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/admin/directory/v1/customer/{customer}/resources/features')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['customer'],
+                  pathParams: ['customer'],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }, /**
+                  * directory.resources.features.patch
+                  * @desc Updates a feature. This method supports patch
+                  * semantics.
+                  * @alias directory.resources.features.patch
+                  * @memberOf! admin(directory_v1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+                  * @param {string} params.featureKey The unique ID of the feature to update.
+                  * @param {admin(directory_v1).Feature} params.resource Request body data
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              patch(params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/admin/directory/v1/customer/{customer}/resources/features/{featureKey}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'PATCH'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['customer', 'featureKey'],
+                  pathParams: ['customer', 'featureKey'],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }, /**
+                  * directory.resources.features.rename
+                  * @desc Renames a feature.
+                  * @alias directory.resources.features.rename
+                  * @memberOf! admin(directory_v1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+                  * @param {string} params.oldName The unique ID of the feature to rename.
+                  * @param {admin(directory_v1).FeatureRename} params.resource Request body data
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              rename(params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/admin/directory/v1/customer/{customer}/resources/features/{oldName}/rename')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'POST'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['customer', 'oldName'],
+                  pathParams: ['customer', 'oldName'],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }, /**
+                  * directory.resources.features.update
+                  * @desc Updates a feature.
+                  * @alias directory.resources.features.update
+                  * @memberOf! admin(directory_v1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+                  * @param {string} params.featureKey The unique ID of the feature to update.
+                  * @param {admin(directory_v1).Feature} params.resource Request body data
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              update(params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/admin/directory/v1/customer/{customer}/resources/features/{featureKey}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'PUT'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['customer', 'featureKey'],
+                  pathParams: ['customer', 'featureKey'],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }
+
+            }
+      };
   self.roleAssignments = {
     /**
      * directory.roleAssignments.delete
@@ -3746,17 +4238,52 @@ function Admin(options) {
  * @property {string} kind The type of the API resource. This is always admin#directory#aspList.
  */
 /**
+ * @typedef Building
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} buildingId Unique identifier for the building. The maximum length is 100 characters.
+ * @property {string} buildingName The building name as seen by users in Calendar. Must be unique for the customer. For example, &quot;NYC-CHEL&quot;. The maximum length is 100 characters.
+ * @property {admin(directory_v1).BuildingCoordinates} coordinates The geographic coordinates of the center of the building, expressed as latitude and longitude in decimal degrees.
+ * @property {string} description A brief description of the building. For example, &quot;Chelsea Market&quot;.
+ * @property {string} etags ETag of the resource.
+ * @property {string[]} floorNames The display names for all floors in this building. The floors are expected to be sorted in ascending order, from lowest floor to highest floor. For example, [&quot;B2&quot;, &quot;B1&quot;, &quot;L&quot;, &quot;1&quot;, &quot;2&quot;, &quot;2M&quot;, &quot;3&quot;, &quot;PH&quot;] Must contain at least one entry.
+ * @property {string} kind Kind of resource this is.
+ */
+/**
+ * @typedef BuildingCoordinates
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {number} latitude Latitude in decimal degrees.
+ * @property {number} longitude Longitude in decimal degrees.
+ */
+/**
+ * @typedef Buildings
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {admin(directory_v1).Building[]} buildings The Buildings in this page of results.
+ * @property {string} etag ETag of the resource.
+ * @property {string} kind Kind of resource this is.
+ * @property {string} nextPageToken The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
+ */
+/**
  * @typedef CalendarResource
  * @memberOf! admin(directory_v1)
  * @type object
+ * @property {string} buildingId Unique ID for the building a resource is located in.
+ * @property {integer} capacity Capacity of a resource, number of seats in a room.
  * @property {string} etags ETag of the resource.
- * @property {string} generatedResourceName The auto-generated name of the calendar resource which includes metadata about the resource such as building name, floor, capacity, etc. For example, NYC-2-Training Room 1A (16)
+ * @property {any} featureInstances
+ * @property {string} floorName Name of the floor a resource is located on.
+ * @property {string} floorSection Name of the section within a floor a resource is located in.
+ * @property {string} generatedResourceName The read-only auto-generated name of the calendar resource which includes metadata about the resource such as building name, floor, capacity, etc. For example, &quot;NYC-2-Training Room 1A (16)&quot;.
  * @property {string} kind The type of the resource. For calendar resources, the value is admin#directory#resources#calendars#CalendarResource.
- * @property {string} resourceDescription The brief description of the calendar resource.
- * @property {string} resourceEmail The read-only email ID for the calendar resource. Generated as part of creating a new calendar resource.
+ * @property {string} resourceCategory The category of the calendar resource. Either CONFERENCE_ROOM or OTHER. Legacy data is set to CATEGORY_UNKNOWN.
+ * @property {string} resourceDescription Description of the resource, visible only to admins.
+ * @property {string} resourceEmail The read-only email for the calendar resource. Generated as part of creating a new calendar resource.
  * @property {string} resourceId The unique ID for the calendar resource.
- * @property {string} resourceName The name of the calendar resource. For example, Training Room 1A
- * @property {string} resourceType The type of the calendar resource. Used for grouping resources in the calendar user interface.
+ * @property {string} resourceName The name of the calendar resource. For example, &quot;Training Room 1A&quot;.
+ * @property {string} resourceType The type of the calendar resource, intended for non-room resources.
+ * @property {string} userVisibleDescription Description of the resource, visible to users and admins.
  */
 /**
  * @typedef CalendarResources
@@ -3791,6 +4318,7 @@ function Admin(options) {
  * @property {string} annotatedLocation Address or location of the device as noted by the administrator
  * @property {string} annotatedUser User of the device
  * @property {string} bootMode Chromebook boot mode (Read-only)
+ * @property {object[]} deviceFiles List of device files to download (Read-only)
  * @property {string} deviceId Unique identifier of Chrome OS Device (Read-only)
  * @property {string} etag ETag of the resource.
  * @property {string} ethernetMacAddress Chromebook Mac Address on ethernet network interface (Read-only)
@@ -3810,6 +4338,7 @@ function Admin(options) {
  * @property {string} serialNumber Chromebook serial number (Read-only)
  * @property {string} status status of the device (Read-only)
  * @property {string} supportEndDate Final date the device will be supported (Read-only)
+ * @property {object} tpmVersionInfo
  * @property {boolean} willAutoRenew Will Chromebook auto renew after support end date (Read-only)
  */
 /**
@@ -3900,6 +4429,35 @@ function Admin(options) {
  * @property {admin(directory_v1).Domains[]} domains List of domain objects.
  * @property {string} etag ETag of the resource.
  * @property {string} kind Kind of resource this is.
+ */
+/**
+ * @typedef Feature
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} etags ETag of the resource.
+ * @property {string} kind Kind of resource this is.
+ * @property {string} name The name of the feature.
+ */
+/**
+ * @typedef FeatureInstance
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {admin(directory_v1).Feature} feature
+ */
+/**
+ * @typedef FeatureRename
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} newName New name of the feature.
+ */
+/**
+ * @typedef Features
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} etag ETag of the resource.
+ * @property {admin(directory_v1).Feature[]} features The Features in this page of results.
+ * @property {string} kind Kind of resource this is.
+ * @property {string} nextPageToken The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
  */
 /**
  * @typedef Group

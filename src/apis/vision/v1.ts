@@ -169,7 +169,7 @@ function Vision(options) {
  * @memberOf! vision(v1)
  * @type object
  * @property {string} blockType Detected block type (text, image etc) for this block.
- * @property {vision(v1).BoundingPoly} boundingBox The bounding box for the block. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example:   * when the text is horizontal it might look like:      0----1      |    |      3----2   * when it&#39;s rotated 180 degrees around the top-left corner it becomes:      2----3      |    |      1----0   and the vertice order will still be (0, 1, 2, 3).
+ * @property {vision(v1).BoundingPoly} boundingBox The bounding box for the block. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example:  * when the text is horizontal it might look like:          0----1         |    |         3----2  * when it&#39;s rotated 180 degrees around the top-left corner it becomes:          2----3         |    |         1----0    and the vertice order will still be (0, 1, 2, 3).
  * @property {vision(v1).Paragraph[]} paragraphs List of paragraphs in this block (if this blocks is of type text).
  * @property {vision(v1).TextProperty} property Additional information detected for the block.
  */
@@ -241,7 +241,7 @@ function Vision(options) {
  * @memberOf! vision(v1)
  * @type object
  * @property {vision(v1).BoundingPoly} boundingPoly Image region to which this entity belongs. Not produced for `LABEL_DETECTION` features.
- * @property {number} confidence The accuracy of the entity detection in an image. For example, for an image in which the &quot;Eiffel Tower&quot; entity is detected, this field represents the confidence that there is a tower in the query image. Range [0, 1].
+ * @property {number} confidence **Deprecated. Use `score` instead.** The accuracy of the entity detection in an image. For example, for an image in which the &quot;Eiffel Tower&quot; entity is detected, this field represents the confidence that there is a tower in the query image. Range [0, 1].
  * @property {string} description Entity textual description, expressed in its `locale` language.
  * @property {string} locale The language code for the locale in which the entity textual `description` is expressed.
  * @property {vision(v1).LocationInfo[]} locations The location information for the detected entity. Multiple `LocationInfo` elements can be present because one location may indicate the location of the scene in the image, and another location may indicate the location of the place where the image was taken. Location information is usually present for landmarks.
@@ -274,15 +274,15 @@ function Vision(options) {
  * @typedef Feature
  * @memberOf! vision(v1)
  * @type object
- * @property {integer} maxResults Maximum number of results of this type.
+ * @property {integer} maxResults Maximum number of results of this type. Does not apply to `TEXT_DETECTION`, `DOCUMENT_TEXT_DETECTION`, or `CROP_HINTS`.
  * @property {string} type The feature type.
  */
 /**
  * @typedef Image
  * @memberOf! vision(v1)
  * @type object
- * @property {string} content Image content, represented as a stream of bytes. Note: as with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64.
- * @property {vision(v1).ImageSource} source Google Cloud Storage image location. If both `content` and `source` are provided for an image, `content` takes precedence and is used to perform the image annotation request.
+ * @property {string} content Image content, represented as a stream of bytes. Note: As with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64.
+ * @property {vision(v1).ImageSource} source Google Cloud Storage image location, or publicly-accessible image URL. If both `content` and `source` are provided for an image, `content` takes precedence and is used to perform the image annotation request.
  */
 /**
  * @typedef ImageContext
@@ -302,8 +302,8 @@ function Vision(options) {
  * @typedef ImageSource
  * @memberOf! vision(v1)
  * @type object
- * @property {string} gcsImageUri NOTE: For new code `image_uri` below is preferred. Google Cloud Storage image URI, which must be in the following form: `gs://bucket_name/object_name` (for details, see [Google Cloud Storage Request URIs](https://cloud.google.com/storage/docs/reference-uris)). NOTE: Cloud Storage object versioning is not supported.
- * @property {string} imageUri Image URI which supports: 1) Google Cloud Storage image URI, which must be in the following form: `gs://bucket_name/object_name` (for details, see [Google Cloud Storage Request URIs](https://cloud.google.com/storage/docs/reference-uris)). NOTE: Cloud Storage object versioning is not supported. 2) Publicly accessible image HTTP/HTTPS URL. This is preferred over the legacy `gcs_image_uri` above. When both `gcs_image_uri` and `image_uri` are specified, `image_uri` takes precedence.
+ * @property {string} gcsImageUri **Use `image_uri` instead.**  The Google Cloud Storage  URI of the form `gs://bucket_name/object_name`. Object versioning is not supported. See [Google Cloud Storage Request URIs](https://cloud.google.com/storage/docs/reference-uris) for more info.
+ * @property {string} imageUri The URI of the source image. Can be either:  1. A Google Cloud Storage URI of the form    `gs://bucket_name/object_name`. Object versioning is not supported. See    [Google Cloud Storage Request    URIs](https://cloud.google.com/storage/docs/reference-uris) for more    info.  2. A publicly-accessible image HTTP/HTTPS URL. When fetching images from    HTTP/HTTPS URLs, Google cannot guarantee that the request will be    completed. Your request may fail if the specified host denies the    request (e.g. due to request throttling or DOS prevention), or if Google    throttles requests to the site for abuse prevention. You should not    depend on externally-hosted images for production applications.  When both `gcs_image_uri` and `image_uri` are specified, `image_uri` takes precedence.
  */
 /**
  * @typedef Landmark

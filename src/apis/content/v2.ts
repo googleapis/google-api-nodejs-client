@@ -1520,6 +1520,43 @@ function Content(options) {
       };
       return createAPIRequest(parameters, callback);
     }, /**
+        * content.orders.setlineitemmetadata
+        * @desc Sets (overrides) merchant provided annotations on the line item.
+        * @alias content.orders.setlineitemmetadata
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string} params.orderId The ID of the order.
+        * @param {content(v2).OrdersSetLineItemMetadataRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    setlineitemmetadata(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2/{merchantId}/orders/{orderId}/setLineItemMetadata')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'orderId'],
+        pathParams: ['merchantId', 'orderId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
         * content.orders.shiplineitems
         * @desc Marks line item(s) as shipped.
         * @alias content.orders.shiplineitems
@@ -1546,6 +1583,43 @@ function Content(options) {
               url: (rootUrl +
                     '/content/v2/{merchantId}/orders/{orderId}/shipLineItems')
                        .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'orderId'],
+        pathParams: ['merchantId', 'orderId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * content.orders.updatelineitemshippingdetails
+        * @desc Updates ship by and delivery by dates for a line item.
+        * @alias content.orders.updatelineitemshippingdetails
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string} params.orderId The ID of the order.
+        * @param {content(v2).OrdersUpdateLineItemShippingDetailsRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    updatelineitemshippingdetails(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2/{merchantId}/orders/{orderId}/updateLineItemShippingDetails')
+                      .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
             options),
@@ -2763,6 +2837,7 @@ function Content(options) {
  * @typedef OrderLineItem
  * @memberOf! content(v2)
  * @type object
+ * @property {content(v2).OrderMerchantProvidedAnnotation[]} annotations Annotations that are attached to the line item.
  * @property {content(v2).OrderCancellation[]} cancellations Cancellations of the line item.
  * @property {string} id The id of the line item.
  * @property {content(v2).Price} price Total price for the line item. For example, if two items for $10 are purchased, the total price will be $20.
@@ -2829,6 +2904,13 @@ function Content(options) {
  * @property {integer} maxDaysInTransit Maximum transit time.
  * @property {string} methodName The name of the shipping method.
  * @property {integer} minDaysInTransit Minimum transit time.
+ */
+/**
+ * @typedef OrderMerchantProvidedAnnotation
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} key Key for additional merchant provided (as key-value pairs) annotation about the line item.
+ * @property {string} value Value for additional merchant provided (as key-value pairs) annotation about the line item.
  */
 /**
  * @typedef OrderPaymentMethod
@@ -2972,7 +3054,9 @@ function Content(options) {
  * @property {string} orderId The ID of the order. Required for all methods beside getByMerchantOrderId.
  * @property {content(v2).OrdersCustomBatchRequestEntryRefund} refund Required for refund method.
  * @property {content(v2).OrdersCustomBatchRequestEntryReturnLineItem} returnLineItem Required for returnLineItem method.
+ * @property {content(v2).OrdersCustomBatchRequestEntrySetLineItemMetadata} setLineItemMetadata Required for setLineItemMetadata method.
  * @property {content(v2).OrdersCustomBatchRequestEntryShipLineItems} shipLineItems Required for shipLineItems method.
+ * @property {content(v2).OrdersCustomBatchRequestEntryUpdateLineItemShippingDetails} updateLineItemShippingDetails Required for updateLineItemShippingDate method.
  * @property {content(v2).OrdersCustomBatchRequestEntryUpdateShipment} updateShipment Required for updateShipment method.
  */
 /**
@@ -3016,6 +3100,14 @@ function Content(options) {
  * @property {string} reasonText The explanation of the reason.
  */
 /**
+ * @typedef OrdersCustomBatchRequestEntrySetLineItemMetadata
+ * @memberOf! content(v2)
+ * @type object
+ * @property {content(v2).OrderMerchantProvidedAnnotation[]} annotations
+ * @property {string} lineItemId The ID of the line item to set metadata. Either lineItemId or productId is required.
+ * @property {string} productId The ID of the product to set metadata. This is the REST ID used in the products service. Either lineItemId or productId is required.
+ */
+/**
  * @typedef OrdersCustomBatchRequestEntryShipLineItems
  * @memberOf! content(v2)
  * @type object
@@ -3032,6 +3124,15 @@ function Content(options) {
  * @property {string} carrier The carrier handling the shipment. See shipments[].carrier in the  Orders resource representation for a list of acceptable values.
  * @property {string} shipmentId The ID of the shipment.
  * @property {string} trackingId The tracking id for the shipment.
+ */
+/**
+ * @typedef OrdersCustomBatchRequestEntryUpdateLineItemShippingDetails
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} deliverByDate Updated delivery by date, in ISO 8601 format. If not specified only ship by date is updated.
+ * @property {string} lineItemId The ID of the line item to set metadata. Either lineItemId or productId is required.
+ * @property {string} productId The ID of the product to set metadata. This is the REST ID used in the products service. Either lineItemId or productId is required.
+ * @property {string} shipByDate Updated ship by date, in ISO 8601 format. If not specified only deliver by date is updated.
  */
 /**
  * @typedef OrdersCustomBatchRequestEntryUpdateShipment
@@ -3138,6 +3239,22 @@ function Content(options) {
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersReturnLineItemResponse&quot;.
  */
 /**
+ * @typedef OrdersSetLineItemMetadataRequest
+ * @memberOf! content(v2)
+ * @type object
+ * @property {content(v2).OrderMerchantProvidedAnnotation[]} annotations
+ * @property {string} lineItemId The ID of the line item to set metadata. Either lineItemId or productId is required.
+ * @property {string} operationId The ID of the operation. Unique across all operations for a given order.
+ * @property {string} productId The ID of the product to set metadata. This is the REST ID used in the products service. Either lineItemId or productId is required.
+ */
+/**
+ * @typedef OrdersSetLineItemMetadataResponse
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} executionStatus The status of the execution.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersSetLineItemMetadataResponse&quot;.
+ */
+/**
  * @typedef OrdersShipLineItemsRequest
  * @memberOf! content(v2)
  * @type object
@@ -3154,6 +3271,23 @@ function Content(options) {
  * @type object
  * @property {string} executionStatus The status of the execution.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersShipLineItemsResponse&quot;.
+ */
+/**
+ * @typedef OrdersUpdateLineItemShippingDetailsRequest
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} deliverByDate Updated delivery by date, in ISO 8601 format. If not specified only ship by date is updated.
+ * @property {string} lineItemId The ID of the line item to set metadata. Either lineItemId or productId is required.
+ * @property {string} operationId The ID of the operation. Unique across all operations for a given order.
+ * @property {string} productId The ID of the product to set metadata. This is the REST ID used in the products service. Either lineItemId or productId is required.
+ * @property {string} shipByDate Updated ship by date, in ISO 8601 format. If not specified only deliver by date is updated.
+ */
+/**
+ * @typedef OrdersUpdateLineItemShippingDetailsResponse
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} executionStatus The status of the execution.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersUpdateLineItemShippingDetailsResponse&quot;.
  */
 /**
  * @typedef OrdersUpdateMerchantOrderIdRequest

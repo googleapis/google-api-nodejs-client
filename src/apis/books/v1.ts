@@ -290,6 +290,115 @@ function Books(options) {
     }
 
   };
+  self.familysharing = {
+    /**
+     * books.familysharing.getFamilyInfo
+     * @desc Gets information regarding the family that the user is part of.
+     * @alias books.familysharing.getFamilyInfo
+     * @memberOf! books(v1)
+     *
+     * @param {object=} params Parameters for request
+     * @param {string=} params.source String to identify the originator of this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getFamilyInfo(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/books/v1/familysharing/getFamilyInfo')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * books.familysharing.share
+        * @desc Initiates sharing of the content with the user's family. Empty
+        * response indicates success.
+        * @alias books.familysharing.share
+        * @memberOf! books(v1)
+        *
+        * @param {object=} params Parameters for request
+        * @param {string=} params.docId The docid to share.
+        * @param {string=} params.source String to identify the originator of this request.
+        * @param {string=} params.volumeId The volume to share.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    share(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/books/v1/familysharing/share')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * books.familysharing.unshare
+        * @desc Initiates revoking content that has already been shared with the
+        * user's family. Empty response indicates success.
+        * @alias books.familysharing.unshare
+        * @memberOf! books(v1)
+        *
+        * @param {object=} params Parameters for request
+        * @param {string=} params.docId The docid to unshare.
+        * @param {string=} params.source String to identify the originator of this request.
+        * @param {string=} params.volumeId The volume to unshare.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    unshare(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/books/v1/familysharing/unshare')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
   self.layers = {
     /**
      * books.layers.get
@@ -2078,6 +2187,13 @@ function Books(options) {
  * @property {string} signature Response signature.
  * @property {string} source Client app identifier for verification. Download access and client-validation only.
  * @property {string} volumeId Identifies the volume for which this entry applies.
+ */
+/**
+ * @typedef FamilyInfo
+ * @memberOf! books(v1)
+ * @type object
+ * @property {string} kind Resource type.
+ * @property {object} membership Family membership info of the user that made the request.
  */
 /**
  * @typedef Geolayerdata
