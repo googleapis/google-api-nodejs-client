@@ -1877,690 +1877,801 @@ function Compute(options) {
     }
 
   };
-  self.backendBuckets =
-      {
-        /**
-         * compute.backendBuckets.delete
-         * @desc Deletes the specified BackendBucket resource.
-         * @example
-         * // BEFORE RUNNING:
-         * // ---------------
-         * // 1. If not already done, enable the Compute Engine API
-         * //    and check the quota for your project at
-         * //    https://console.developers.google.com/apis/api/compute
-         * // 2. This sample uses Application Default Credentials for
-         * authentication.
-         * //    If not already done, install the gcloud CLI from
-         * //    https://cloud.google.com/sdk and run
-         * //    `gcloud beta auth application-default login`.
-         * //    For more information, see
-         * //
-         * https://developers.google.com/identity/protocols/application-default-credentials
-         * // 3. Install the Node.js client library by running
-         * //    `npm install googleapis --save`
-         *
-         * var google = require('googleapis');
-         * var compute = google.compute('beta');
-         *
-         * authorize(function(authClient) {
-         *   var request = {
-         *     // Project ID for this request.
-         *     project: 'my-project',  // TODO: Update placeholder value.
-         *
-         *     // Name of the BackendBucket resource to delete.
-         *     backendBucket: 'my-backend-bucket',  // TODO: Update placeholder
-         * value.
-         *
-         *     auth: authClient,
-         *   };
-         *
-         *   compute.backendBuckets.delete(request, function(err, response) {
-         *     if (err) {
-         *       console.error(err);
-         *       return;
-         *     }
-         *
-         *     // TODO: Change code below to process the `response` object:
-         *     console.log(JSON.stringify(response, null, 2));
-         *   });
-         * });
-         *
-         * function authorize(callback) {
-         *   google.auth.getApplicationDefault(function(err, authClient) {
-         *     if (err) {
-         *       console.error('authentication failed: ', err);
-         *       return;
-         *     }
-         *     if (authClient.createScopedRequired &&
-         * authClient.createScopedRequired()) { var scopes =
-         * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-         * authClient.createScoped(scopes);
-         *     }
-         *     callback(authClient);
-         *   });
-         * }
-         * @alias compute.backendBuckets.delete
-         * @memberOf! compute(beta)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.backendBucket Name of the BackendBucket resource to delete.
-         * @param {string} params.project Project ID for this request.
-         * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        delete (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/global/backendBuckets/{backendBucket}')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'DELETE'
-                },
-                options),
-            params,
-            requiredParams: ['project', 'backendBucket'],
-            pathParams: ['backendBucket', 'project'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.backendBuckets.get
-            * @desc Returns the specified BackendBucket resource. Get a list of
-            * available backend buckets by making a list() request.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     // Name of the BackendBucket resource to return.
-            *     backendBucket: 'my-backend-bucket',  // TODO: Update
-            * placeholder value.
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   compute.backendBuckets.get(request, function(err, response) {
-            *     if (err) {
-            *       console.error(err);
-            *       return;
-            *     }
-            *
-            *     // TODO: Change code below to process the `response` object:
-            *     console.log(JSON.stringify(response, null, 2));
-            *   });
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.backendBuckets.get
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.backendBucket Name of the BackendBucket resource to return.
-            * @param {string} params.project Project ID for this request.
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        get(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/global/backendBuckets/{backendBucket}')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'GET'
-                },
-                options),
-            params,
-            requiredParams: ['project', 'backendBucket'],
-            pathParams: ['backendBucket', 'project'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.backendBuckets.insert
-            * @desc Creates a BackendBucket resource in the specified project
-            * using the data included in the request.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     resource: {
-            *       // TODO: Add desired properties to the request body.
-            *     },
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   compute.backendBuckets.insert(request, function(err, response) {
-            *     if (err) {
-            *       console.error(err);
-            *       return;
-            *     }
-            *
-            *     // TODO: Change code below to process the `response` object:
-            *     console.log(JSON.stringify(response, null, 2));
-            *   });
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.backendBuckets.insert
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.project Project ID for this request.
-            * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-            * @param {compute(beta).BackendBucket} params.resource Request body data
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        insert(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/global/backendBuckets')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'POST'
-                },
-                options),
-            params,
-            requiredParams: ['project'],
-            pathParams: ['project'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.backendBuckets.list
-            * @desc Retrieves the list of BackendBucket resources available to
-            * the specified project.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   var handlePage = function(err, response) {
-            *     if (err) {
-            *       console.error(err);
-            *       return;
-            *     }
-            *
-            *     var itemsPage = response['items'];
-            *     if (!itemsPage) {
-            *       return;
-            *     }
-            *     for (var i = 0; i < itemsPage.length; i++) {
-            *       // TODO: Change code below to process each resource in
-            * `itemsPage`: console.log(JSON.stringify(itemsPage[i], null, 2));
-            *     }
-            *
-            *     if (response.nextPageToken) {
-            *       request.pageToken = response.nextPageToken;
-            *       compute.backendBuckets.list(request, handlePage);
-            *     }
-            *   };
-            *
-            *   compute.backendBuckets.list(request, handlePage);
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.backendBuckets.list
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-            * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
-            * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-            * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-            * @param {string} params.project Project ID for this request.
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        list(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/global/backendBuckets')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'GET'
-                },
-                options),
-            params,
-            requiredParams: ['project'],
-            pathParams: ['project'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.backendBuckets.patch
-            * @desc Updates the specified BackendBucket resource with the data
-            * included in the request. This method supports PATCH semantics and
-            * uses the JSON merge patch format and processing rules.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     // Name of the BackendBucket resource to patch.
-            *     backendBucket: 'my-backend-bucket',  // TODO: Update
-            * placeholder value.
-            *
-            *     resource: {
-            *       // TODO: Add desired properties to the request body. Only
-            * these properties
-            *       // will be changed.
-            *     },
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   compute.backendBuckets.patch(request, function(err, response) {
-            *     if (err) {
-            *       console.error(err);
-            *       return;
-            *     }
-            *
-            *     // TODO: Change code below to process the `response` object:
-            *     console.log(JSON.stringify(response, null, 2));
-            *   });
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.backendBuckets.patch
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.backendBucket Name of the BackendBucket resource to patch.
-            * @param {string} params.project Project ID for this request.
-            * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-            * @param {compute(beta).BackendBucket} params.resource Request body data
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        patch(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/global/backendBuckets/{backendBucket}')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'PATCH'
-                },
-                options),
-            params,
-            requiredParams: ['project', 'backendBucket'],
-            pathParams: ['backendBucket', 'project'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.backendBuckets.update
-            * @desc Updates the specified BackendBucket resource with the data
-            * included in the request.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     // Name of the BackendBucket resource to update.
-            *     backendBucket: 'my-backend-bucket',  // TODO: Update
-            * placeholder value.
-            *
-            *     resource: {
-            *       // TODO: Add desired properties to the request body. All
-            * existing properties
-            *       // will be replaced.
-            *     },
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   compute.backendBuckets.update(request, function(err, response) {
-            *     if (err) {
-            *       console.error(err);
-            *       return;
-            *     }
-            *
-            *     // TODO: Change code below to process the `response` object:
-            *     console.log(JSON.stringify(response, null, 2));
-            *   });
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.backendBuckets.update
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.backendBucket Name of the BackendBucket resource to update.
-            * @param {string} params.project Project ID for this request.
-            * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-            * @param {compute(beta).BackendBucket} params.resource Request body data
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        update(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/global/backendBuckets/{backendBucket}')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'PUT'
-                },
-                options),
-            params,
-            requiredParams: ['project', 'backendBucket'],
-            pathParams: ['backendBucket', 'project'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }
-
-      };
-  self.backendServices = {
+  self.backendBuckets = {
     /**
-     * compute.backendServices.aggregatedList
-     * @desc Retrieves the list of all BackendService resources, regional and
-     * global, available to the specified project.
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Compute Engine API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/compute
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var compute = google.compute('beta');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Name of the project scoping this request.
-     *     project: 'my-project',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var itemsPage = response['items'];
-     *     if (!itemsPage) {
-     *       return;
-     *     }
-     *     Object.keys(itemsPage).forEach(function(name) {
-     *       // TODO: Change code below to process each `name` property:
-     *       console.log(name + ': ' + JSON.stringify(itemsPage[name], null,
-     * 2));
-     *     });
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       compute.backendServices.aggregatedList(request, handlePage);
-     *     }
-     *   };
-     *
-     *   compute.backendServices.aggregatedList(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     * @alias compute.backendServices.aggregatedList
+     * compute.backendBuckets.addSignedUrlKey
+     * @desc Adds the given Signed URL Key to the backend bucket.
+     * @alias compute.backendBuckets.addSignedUrlKey
      * @memberOf! compute(beta)
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
-     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param {string} params.project Name of the project scoping this request.
+     * @param {string} params.backendBucket Name of the BackendBucket resource to which the Signed URL Key should be added. The name should conform to RFC1035.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {compute(beta).SignedUrlKey} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
+    addSignedUrlKey(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/backendBuckets/{backendBucket}/addSignedUrlKey')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'backendBucket'],
+        pathParams: ['backendBucket', 'project'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * compute.backendBuckets.delete
+        * @desc Deletes the specified BackendBucket resource.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // Name of the BackendBucket resource to delete.
+        *     backendBucket: 'my-backend-bucket',  // TODO: Update placeholder
+        * value.
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.backendBuckets.delete(request, function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.backendBuckets.delete
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.backendBucket Name of the BackendBucket resource to delete.
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    delete (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/backendBuckets/{backendBucket}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'backendBucket'],
+        pathParams: ['backendBucket', 'project'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * compute.backendBuckets.deleteSignedUrlKey
+        * @desc Deletes the given Signed URL Key from the backend bucket.
+        * @alias compute.backendBuckets.deleteSignedUrlKey
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.backendBucket Name of the BackendBucket resource to which the Signed URL Key should be added. The name should conform to RFC1035.
+        * @param {string} params.keyName The name of the Signed URL Key to delete.
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    deleteSignedUrlKey(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/backendBuckets/{backendBucket}/deleteSignedUrlKey')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'backendBucket', 'keyName'],
+        pathParams: ['backendBucket', 'project'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * compute.backendBuckets.get
+        * @desc Returns the specified BackendBucket resource. Get a list of
+        * available backend buckets by making a list() request.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // Name of the BackendBucket resource to return.
+        *     backendBucket: 'my-backend-bucket',  // TODO: Update placeholder
+        * value.
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.backendBuckets.get(request, function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.backendBuckets.get
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.backendBucket Name of the BackendBucket resource to return.
+        * @param {string} params.project Project ID for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/backendBuckets/{backendBucket}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'backendBucket'],
+        pathParams: ['backendBucket', 'project'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * compute.backendBuckets.insert
+        * @desc Creates a BackendBucket resource in the specified project using
+        * the data included in the request.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     resource: {
+        *       // TODO: Add desired properties to the request body.
+        *     },
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.backendBuckets.insert(request, function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.backendBuckets.insert
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {compute(beta).BackendBucket} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/compute/beta/projects/{project}/global/backendBuckets')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * compute.backendBuckets.list
+        * @desc Retrieves the list of BackendBucket resources available to the
+        * specified project.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   var handlePage = function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     var itemsPage = response['items'];
+        *     if (!itemsPage) {
+        *       return;
+        *     }
+        *     for (var i = 0; i < itemsPage.length; i++) {
+        *       // TODO: Change code below to process each resource in
+        * `itemsPage`: console.log(JSON.stringify(itemsPage[i], null, 2));
+        *     }
+        *
+        *     if (response.nextPageToken) {
+        *       request.pageToken = response.nextPageToken;
+        *       compute.backendBuckets.list(request, handlePage);
+        *     }
+        *   };
+        *
+        *   compute.backendBuckets.list(request, handlePage);
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.backendBuckets.list
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+        * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+        * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+        * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+        * @param {string} params.project Project ID for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/compute/beta/projects/{project}/global/backendBuckets')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * compute.backendBuckets.patch
+        * @desc Updates the specified BackendBucket resource with the data
+        * included in the request. This method supports PATCH semantics and uses
+        * the JSON merge patch format and processing rules.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // Name of the BackendBucket resource to patch.
+        *     backendBucket: 'my-backend-bucket',  // TODO: Update placeholder
+        * value.
+        *
+        *     resource: {
+        *       // TODO: Add desired properties to the request body. Only these
+        * properties
+        *       // will be changed.
+        *     },
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.backendBuckets.patch(request, function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.backendBuckets.patch
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.backendBucket Name of the BackendBucket resource to patch.
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {compute(beta).BackendBucket} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/backendBuckets/{backendBucket}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'backendBucket'],
+        pathParams: ['backendBucket', 'project'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * compute.backendBuckets.update
+        * @desc Updates the specified BackendBucket resource with the data
+        * included in the request.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // Name of the BackendBucket resource to update.
+        *     backendBucket: 'my-backend-bucket',  // TODO: Update placeholder
+        * value.
+        *
+        *     resource: {
+        *       // TODO: Add desired properties to the request body. All
+        * existing properties
+        *       // will be replaced.
+        *     },
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.backendBuckets.update(request, function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.backendBuckets.update
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.backendBucket Name of the BackendBucket resource to update.
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {compute(beta).BackendBucket} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/backendBuckets/{backendBucket}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'backendBucket'],
+        pathParams: ['backendBucket', 'project'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+  self.backendServices = {
+    /**
+     * compute.backendServices.addSignedUrlKey
+     * @desc Adds the given Signed URL Key to the specified backend service.
+     * @alias compute.backendServices.addSignedUrlKey
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.backendService Name of the BackendService resource to which the Signed URL Key should be added. The name should conform to RFC1035.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {compute(beta).SignedUrlKey} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    addSignedUrlKey(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/backendServices/{backendService}/addSignedUrlKey')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'backendService'],
+        pathParams: ['backendService', 'project'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * compute.backendServices.aggregatedList
+        * @desc Retrieves the list of all BackendService resources, regional and
+        * global, available to the specified project.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Name of the project scoping this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   var handlePage = function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     var itemsPage = response['items'];
+        *     if (!itemsPage) {
+        *       return;
+        *     }
+        *     Object.keys(itemsPage).forEach(function(name) {
+        *       // TODO: Change code below to process each `name` property:
+        *       console.log(name + ': ' + JSON.stringify(itemsPage[name], null,
+        * 2));
+        *     });
+        *
+        *     if (response.nextPageToken) {
+        *       request.pageToken = response.nextPageToken;
+        *       compute.backendServices.aggregatedList(request, handlePage);
+        *     }
+        *   };
+        *
+        *   compute.backendServices.aggregatedList(request, handlePage);
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.backendServices.aggregatedList
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+        * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+        * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+        * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+        * @param {string} params.project Name of the project scoping this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
     aggregatedList(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
@@ -2674,6 +2785,45 @@ function Compute(options) {
             options),
         params,
         requiredParams: ['project', 'backendService'],
+        pathParams: ['backendService', 'project'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * compute.backendServices.deleteSignedUrlKey
+        * @desc Deletes the given Signed URL Key from the specified backend
+        * service.
+        * @alias compute.backendServices.deleteSignedUrlKey
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.backendService Name of the BackendService resource to which the Signed URL Key should be added. The name should conform to RFC1035.
+        * @param {string} params.keyName The name of the Signed URL Key to delete.
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    deleteSignedUrlKey(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/backendServices/{backendService}/deleteSignedUrlKey')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'backendService', 'keyName'],
         pathParams: ['backendService', 'project'],
         context: self
       };
@@ -4097,7 +4247,8 @@ function Compute(options) {
           return createAPIRequest(parameters, callback);
         }, /**
             * compute.disks.resize
-            * @desc Resizes the specified persistent disk.
+            * @desc Resizes the specified persistent disk. You can only increase
+            * the size of the disk.
             * @example
             * // BEFORE RUNNING:
             * // ---------------
@@ -19457,7 +19608,8 @@ function Compute(options) {
         }, /**
             * compute.networks.patch
             * @desc Patches the specified network with the data included in the
-            * request.
+            * request. Only the following fields can be modified:
+            * routingConfig.routingMode.
             * @example
             * // BEFORE RUNNING:
             * // ---------------
@@ -27044,594 +27196,743 @@ function Compute(options) {
     }
 
   };
-  self.securityPolicies =
-      {
-        /**
-         * compute.securityPolicies.delete
-         * @desc Deletes the specified policy.
-         * @example
-         * // BEFORE RUNNING:
-         * // ---------------
-         * // 1. If not already done, enable the Compute Engine API
-         * //    and check the quota for your project at
-         * //    https://console.developers.google.com/apis/api/compute
-         * // 2. This sample uses Application Default Credentials for
-         * authentication.
-         * //    If not already done, install the gcloud CLI from
-         * //    https://cloud.google.com/sdk and run
-         * //    `gcloud beta auth application-default login`.
-         * //    For more information, see
-         * //
-         * https://developers.google.com/identity/protocols/application-default-credentials
-         * // 3. Install the Node.js client library by running
-         * //    `npm install googleapis --save`
-         *
-         * var google = require('googleapis');
-         * var compute = google.compute('beta');
-         *
-         * authorize(function(authClient) {
-         *   var request = {
-         *     // Project ID for this request.
-         *     project: 'my-project',  // TODO: Update placeholder value.
-         *
-         *     // Name of the security policy to delete.
-         *     securityPolicy: 'my-security-policy',  // TODO: Update
-         * placeholder value.
-         *
-         *     auth: authClient,
-         *   };
-         *
-         *   compute.securityPolicies.delete(request, function(err, response) {
-         *     if (err) {
-         *       console.error(err);
-         *       return;
-         *     }
-         *
-         *     // TODO: Change code below to process the `response` object:
-         *     console.log(JSON.stringify(response, null, 2));
-         *   });
-         * });
-         *
-         * function authorize(callback) {
-         *   google.auth.getApplicationDefault(function(err, authClient) {
-         *     if (err) {
-         *       console.error('authentication failed: ', err);
-         *       return;
-         *     }
-         *     if (authClient.createScopedRequired &&
-         * authClient.createScopedRequired()) { var scopes =
-         * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-         * authClient.createScoped(scopes);
-         *     }
-         *     callback(authClient);
-         *   });
-         * }
-         * @alias compute.securityPolicies.delete
-         * @memberOf! compute(beta)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.project Project ID for this request.
-         * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-         * @param {string} params.securityPolicy Name of the security policy to delete.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        delete (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/global/securityPolicies/{securityPolicy}')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'DELETE'
-                },
-                options),
-            params,
-            requiredParams: ['project', 'securityPolicy'],
-            pathParams: ['project', 'securityPolicy'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.securityPolicies.get
-            * @desc List all of the ordered rules present in a single specified
-            * policy.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     // Name of the security policy to get.
-            *     securityPolicy: 'my-security-policy',  // TODO: Update
-            * placeholder value.
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   compute.securityPolicies.get(request, function(err, response) {
-            *     if (err) {
-            *       console.error(err);
-            *       return;
-            *     }
-            *
-            *     // TODO: Change code below to process the `response` object:
-            *     console.log(JSON.stringify(response, null, 2));
-            *   });
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.securityPolicies.get
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.project Project ID for this request.
-            * @param {string} params.securityPolicy Name of the security policy to get.
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        get(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/global/securityPolicies/{securityPolicy}')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'GET'
-                },
-                options),
-            params,
-            requiredParams: ['project', 'securityPolicy'],
-            pathParams: ['project', 'securityPolicy'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.securityPolicies.insert
-            * @desc Creates a new policy in the specified project using the data
-            * included in the request.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     resource: {
-            *       // TODO: Add desired properties to the request body.
-            *     },
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   compute.securityPolicies.insert(request, function(err, response)
-            * { if (err) { console.error(err); return;
-            *     }
-            *
-            *     // TODO: Change code below to process the `response` object:
-            *     console.log(JSON.stringify(response, null, 2));
-            *   });
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.securityPolicies.insert
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.project Project ID for this request.
-            * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-            * @param {compute(beta).SecurityPolicy} params.resource Request body data
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        insert(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/global/securityPolicies')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'POST'
-                },
-                options),
-            params,
-            requiredParams: ['project'],
-            pathParams: ['project'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.securityPolicies.list
-            * @desc List all the policies that have been configured for the
-            * specified project.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   var handlePage = function(err, response) {
-            *     if (err) {
-            *       console.error(err);
-            *       return;
-            *     }
-            *
-            *     var itemsPage = response['items'];
-            *     if (!itemsPage) {
-            *       return;
-            *     }
-            *     for (var i = 0; i < itemsPage.length; i++) {
-            *       // TODO: Change code below to process each resource in
-            * `itemsPage`: console.log(JSON.stringify(itemsPage[i], null, 2));
-            *     }
-            *
-            *     if (response.nextPageToken) {
-            *       request.pageToken = response.nextPageToken;
-            *       compute.securityPolicies.list(request, handlePage);
-            *     }
-            *   };
-            *
-            *   compute.securityPolicies.list(request, handlePage);
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.securityPolicies.list
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-            * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
-            * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-            * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-            * @param {string} params.project Project ID for this request.
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        list(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/global/securityPolicies')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'GET'
-                },
-                options),
-            params,
-            requiredParams: ['project'],
-            pathParams: ['project'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.securityPolicies.patch
-            * @desc Patches the specified policy with the data included in the
-            * request.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     // Name of the security policy to update.
-            *     securityPolicy: 'my-security-policy',  // TODO: Update
-            * placeholder value.
-            *
-            *     resource: {
-            *       // TODO: Add desired properties to the request body. Only
-            * these properties
-            *       // will be changed.
-            *     },
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   compute.securityPolicies.patch(request, function(err, response)
-            * { if (err) { console.error(err); return;
-            *     }
-            *
-            *     // TODO: Change code below to process the `response` object:
-            *     console.log(JSON.stringify(response, null, 2));
-            *   });
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.securityPolicies.patch
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.project Project ID for this request.
-            * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-            * @param {string} params.securityPolicy Name of the security policy to update.
-            * @param {compute(beta).SecurityPolicy} params.resource Request body data
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        patch(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/global/securityPolicies/{securityPolicy}')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'PATCH'
-                },
-                options),
-            params,
-            requiredParams: ['project', 'securityPolicy'],
-            pathParams: ['project', 'securityPolicy'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.securityPolicies.testIamPermissions
-            * @desc Returns permissions that a caller has on the specified
-            * resource.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     // Name of the resource for this request.
-            *     resource_: 'my-resource',  // TODO: Update placeholder value.
-            *
-            *     resource: {
-            *       // TODO: Add desired properties to the request body.
-            *     },
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   compute.securityPolicies.testIamPermissions(request,
-            * function(err, response) { if (err) { console.error(err); return;
-            *     }
-            *
-            *     // TODO: Change code below to process the `response` object:
-            *     console.log(JSON.stringify(response, null, 2));
-            *   });
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.securityPolicies.testIamPermissions
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.project Project ID for this request.
-            * @param {string} params.resource_ Name of the resource for this request.
-            * @param {compute(beta).TestPermissionsRequest} params.resource Request body data
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        testIamPermissions(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/global/securityPolicies/{resource}/testIamPermissions')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'POST'
-                },
-                options),
-            params,
-            requiredParams: ['project', 'resource'],
-            pathParams: ['project', 'resource'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }
-
+  self.securityPolicies = {
+    /**
+     * compute.securityPolicies.addRule
+     * @desc Inserts a rule into a security policy.
+     * @alias compute.securityPolicies.addRule
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.securityPolicy Name of the security policy to update.
+     * @param {compute(beta).SecurityPolicyRule} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    addRule(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/securityPolicies/{securityPolicy}/addRule')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'securityPolicy'],
+        pathParams: ['project', 'securityPolicy'],
+        context: self
       };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * compute.securityPolicies.delete
+        * @desc Deletes the specified policy.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // Name of the security policy to delete.
+        *     securityPolicy: 'my-security-policy',  // TODO: Update placeholder
+        * value.
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.securityPolicies.delete(request, function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.securityPolicies.delete
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {string} params.securityPolicy Name of the security policy to delete.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    delete (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/securityPolicies/{securityPolicy}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'securityPolicy'],
+        pathParams: ['project', 'securityPolicy'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * compute.securityPolicies.get
+        * @desc List all of the ordered rules present in a single specified
+        * policy.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // Name of the security policy to get.
+        *     securityPolicy: 'my-security-policy',  // TODO: Update placeholder
+        * value.
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.securityPolicies.get(request, function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.securityPolicies.get
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project Project ID for this request.
+        * @param {string} params.securityPolicy Name of the security policy to get.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/securityPolicies/{securityPolicy}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'securityPolicy'],
+        pathParams: ['project', 'securityPolicy'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * compute.securityPolicies.getRule
+        * @desc Gets a rule at the specified priority.
+        * @alias compute.securityPolicies.getRule
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {integer=} params.priority The priority of the rule to get from the security policy.
+        * @param {string} params.project Project ID for this request.
+        * @param {string} params.securityPolicy Name of the security policy to which the queried rule belongs.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    getRule(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/securityPolicies/{securityPolicy}/getRule')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'securityPolicy'],
+        pathParams: ['project', 'securityPolicy'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * compute.securityPolicies.insert
+        * @desc Creates a new policy in the specified project using the data
+        * included in the request.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     resource: {
+        *       // TODO: Add desired properties to the request body.
+        *     },
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.securityPolicies.insert(request, function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.securityPolicies.insert
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {compute(beta).SecurityPolicy} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/compute/beta/projects/{project}/global/securityPolicies')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * compute.securityPolicies.list
+        * @desc List all the policies that have been configured for the
+        * specified project.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   var handlePage = function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     var itemsPage = response['items'];
+        *     if (!itemsPage) {
+        *       return;
+        *     }
+        *     for (var i = 0; i < itemsPage.length; i++) {
+        *       // TODO: Change code below to process each resource in
+        * `itemsPage`: console.log(JSON.stringify(itemsPage[i], null, 2));
+        *     }
+        *
+        *     if (response.nextPageToken) {
+        *       request.pageToken = response.nextPageToken;
+        *       compute.securityPolicies.list(request, handlePage);
+        *     }
+        *   };
+        *
+        *   compute.securityPolicies.list(request, handlePage);
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.securityPolicies.list
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+        * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+        * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+        * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+        * @param {string} params.project Project ID for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/compute/beta/projects/{project}/global/securityPolicies')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * compute.securityPolicies.patch
+        * @desc Patches the specified policy with the data included in the
+        * request.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // Name of the security policy to update.
+        *     securityPolicy: 'my-security-policy',  // TODO: Update placeholder
+        * value.
+        *
+        *     resource: {
+        *       // TODO: Add desired properties to the request body. Only these
+        * properties
+        *       // will be changed.
+        *     },
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.securityPolicies.patch(request, function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.securityPolicies.patch
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {string} params.securityPolicy Name of the security policy to update.
+        * @param {compute(beta).SecurityPolicy} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/securityPolicies/{securityPolicy}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'securityPolicy'],
+        pathParams: ['project', 'securityPolicy'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * compute.securityPolicies.patchRule
+        * @desc Patches a rule at the specified priority.
+        * @alias compute.securityPolicies.patchRule
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {integer=} params.priority The priority of the rule to patch.
+        * @param {string} params.project Project ID for this request.
+        * @param {string} params.securityPolicy Name of the security policy to update.
+        * @param {compute(beta).SecurityPolicyRule} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patchRule(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/securityPolicies/{securityPolicy}/patchRule')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'securityPolicy'],
+        pathParams: ['project', 'securityPolicy'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * compute.securityPolicies.removeRule
+        * @desc Deletes a rule at the specified priority.
+        * @alias compute.securityPolicies.removeRule
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {integer=} params.priority The priority of the rule to remove from the security policy.
+        * @param {string} params.project Project ID for this request.
+        * @param {string} params.securityPolicy Name of the security policy to update.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    removeRule(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/securityPolicies/{securityPolicy}/removeRule')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'securityPolicy'],
+        pathParams: ['project', 'securityPolicy'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * compute.securityPolicies.testIamPermissions
+        * @desc Returns permissions that a caller has on the specified resource.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // Name of the resource for this request.
+        *     resource_: 'my-resource',  // TODO: Update placeholder value.
+        *
+        *     resource: {
+        *       // TODO: Add desired properties to the request body.
+        *     },
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.securityPolicies.testIamPermissions(request, function(err,
+        * response) { if (err) { console.error(err); return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.securityPolicies.testIamPermissions
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project Project ID for this request.
+        * @param {string} params.resource_ Name of the resource for this request.
+        * @param {compute(beta).TestPermissionsRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    testIamPermissions(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/securityPolicies/{resource}/testIamPermissions')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
   self.snapshots = {
     /**
      * compute.snapshots.delete
@@ -28597,6 +28898,278 @@ function Compute(options) {
               url:
                   (rootUrl +
                    '/compute/beta/projects/{project}/global/sslCertificates/{resource}/testIamPermissions')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+  self.sslPolicies = {
+    /**
+     * compute.sslPolicies.delete
+     * @desc Deletes the specified SSL policy. The SSL policy resource can be
+     * deleted only if it is not in use by any TargetHttpsProxy or
+     * TargetSslProxy resources.
+     * @alias compute.sslPolicies.delete
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.sslPolicy Name of the SSL policy to delete. The name must be 1-63 characters long, and comply with RFC1035.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/sslPolicies/{sslPolicy}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'sslPolicy'],
+        pathParams: ['project', 'sslPolicy'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * compute.sslPolicies.get
+        * @desc List all of the ordered rules present in a single specified
+        * policy.
+        * @alias compute.sslPolicies.get
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project Project ID for this request.
+        * @param {string} params.sslPolicy Name of the SSL policy to update. The name must be 1-63 characters long, and comply with RFC1035.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/sslPolicies/{sslPolicy}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'sslPolicy'],
+        pathParams: ['project', 'sslPolicy'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * compute.sslPolicies.insert
+        * @desc Returns the specified SSL policy resource. Get a list of
+        * available SSL policies by making a list() request.
+        * @alias compute.sslPolicies.insert
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {compute(beta).SslPolicy} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/compute/beta/projects/{project}/global/sslPolicies')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * compute.sslPolicies.list
+        * @desc List all the SSL policies that have been configured for the
+        * specified project.
+        * @alias compute.sslPolicies.list
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+        * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+        * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+        * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+        * @param {string} params.project Project ID for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/compute/beta/projects/{project}/global/sslPolicies')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * compute.sslPolicies.listAvailableFeatures
+        * @desc Lists all features that can be specified in the SSL policy when
+        * using custom profile.
+        * @alias compute.sslPolicies.listAvailableFeatures
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+        * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+        * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+        * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+        * @param {string} params.project Project ID for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    listAvailableFeatures(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/sslPolicies/listAvailableFeatures')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * compute.sslPolicies.patch
+        * @desc Patches the specified SSL policy with the data included in the
+        * request.
+        * @alias compute.sslPolicies.patch
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {string} params.sslPolicy Name of the SSL policy to update. The name must be 1-63 characters long, and comply with RFC1035.
+        * @param {compute(beta).SslPolicy} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/sslPolicies/{sslPolicy}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'sslPolicy'],
+        pathParams: ['project', 'sslPolicy'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * compute.sslPolicies.testIamPermissions
+        * @desc Returns permissions that a caller has on the specified resource.
+        * @alias compute.sslPolicies.testIamPermissions
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project Project ID for this request.
+        * @param {string} params.resource_ Name of the resource for this request.
+        * @param {compute(beta).TestPermissionsRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    testIamPermissions(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/sslPolicies/{resource}/testIamPermissions')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -30704,6 +31277,44 @@ function Compute(options) {
       };
       return createAPIRequest(parameters, callback);
     }, /**
+        * compute.targetHttpsProxies.setQuicOverride
+        * @desc Sets the QUIC override policy for TargetHttpsProxy.
+        * @alias compute.targetHttpsProxies.setQuicOverride
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource to set the QUIC override policy for. The name should conform to RFC1035.
+        * @param {compute(beta).TargetHttpsProxiesSetQuicOverrideRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    setQuicOverride(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/targetHttpsProxies/{targetHttpsProxy}/setQuicOverride')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'targetHttpsProxy'],
+        pathParams: ['project', 'targetHttpsProxy'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
         * compute.targetHttpsProxies.setSslCertificates
         * @desc Replaces SslCertificates for TargetHttpsProxy.
         * @example
@@ -30790,6 +31401,47 @@ function Compute(options) {
               url:
                   (rootUrl +
                    '/compute/beta/projects/{project}/targetHttpsProxies/{targetHttpsProxy}/setSslCertificates')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'targetHttpsProxy'],
+        pathParams: ['project', 'targetHttpsProxy'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * compute.targetHttpsProxies.setSslPolicy
+        * @desc Sets the SSL policy for TargetHttpsProxy. The SSL policy
+        * specifies the server-side support for SSL features. This affects
+        * connections between clients and the HTTPS proxy load balancer. They do
+        * not affect the connection between the load balancer and the backends.
+        * @alias compute.targetHttpsProxies.setSslPolicy
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource whose SSL policy is to be set. The name must be 1-63 characters long, and comply with RFC1035.
+        * @param {compute(beta).SslPolicyReference} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    setSslPolicy(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/targetHttpsProxies/{targetHttpsProxy}/setSslPolicy')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -33510,6 +34162,47 @@ function Compute(options) {
       };
       return createAPIRequest(parameters, callback);
     }, /**
+        * compute.targetSslProxies.setSslPolicy
+        * @desc Sets the SSL policy for TargetSslProxy. The SSL policy specifies
+        * the server-side support for SSL features. This affects connections
+        * between clients and the SSL proxy load balancer. They do not affect
+        * the connection between the load balancer and the backends.
+        * @alias compute.targetSslProxies.setSslPolicy
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {string} params.targetSslProxy Name of the TargetSslProxy resource whose SSL policy is to be set. The name must be 1-63 characters long, and comply with RFC1035.
+        * @param {compute(beta).SslPolicyReference} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    setSslPolicy(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/targetSslProxies/{targetSslProxy}/setSslPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'targetSslProxy'],
+        pathParams: ['project', 'targetSslProxy'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
         * compute.targetSslProxies.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
         * @example
@@ -34701,6 +35394,46 @@ function Compute(options) {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * compute.targetVpnGateways.setLabels
+        * @desc Sets the labels on a TargetVpnGateway. To learn more about
+        * labels, read the Labeling Resources documentation.
+        * @alias compute.targetVpnGateways.setLabels
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project Project ID for this request.
+        * @param {string} params.region The region for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {string} params.resource_ Name of the resource for this request.
+        * @param {compute(beta).RegionSetLabelsRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    setLabels(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/regions/{region}/targetVpnGateways/{resource}/setLabels')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
         context: self
       };
       return createAPIRequest(parameters, callback);
@@ -36201,6 +36934,46 @@ function Compute(options) {
       };
       return createAPIRequest(parameters, callback);
     }, /**
+        * compute.vpnTunnels.setLabels
+        * @desc Sets the labels on a VpnTunnel. To learn more about labels, read
+        * the Labeling Resources documentation.
+        * @alias compute.vpnTunnels.setLabels
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project Project ID for this request.
+        * @param {string} params.region The region for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {string} params.resource_ Name of the resource for this request.
+        * @param {compute(beta).RegionSetLabelsRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    setLabels(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/regions/{region}/vpnTunnels/{resource}/setLabels')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
         * compute.vpnTunnels.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
         * @example
@@ -36882,7 +37655,7 @@ function Compute(options) {
  * @property {string} region [Output Only] URL of the region where the regional address resides. This field is not applicable to global addresses.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} status [Output Only] The status of the address, which can be one of RESERVING, RESERVED, or IN_USE. An address that is RESERVING is currently in the process of being reserved. A RESERVED address is currently reserved and available to use. An IN_USE address is currently being used by another resource and is not available.
- * @property {string} subnetwork For external addresses, this field should not be used.  The URL of the subnetwork in which to reserve the address. If an IP address is specified, it must be within the subnetwork&#39;s IP range.
+ * @property {string} subnetwork The URL of the subnetwork in which to reserve the address. If an IP address is specified, it must be within the subnetwork&#39;s IP range. This field can only be used with INTERNAL type with GCE_ENDPOINT/DNS_RESOLVER purposes.
  * @property {string[]} users [Output Only] The URLs of the resources that are using this address.
  */
 /**
@@ -37075,6 +37848,7 @@ function Compute(options) {
  * @memberOf! compute(beta)
  * @type object
  * @property {string} bucketName Cloud Storage bucket name.
+ * @property {compute(beta).BackendBucketCdnPolicy} cdnPolicy Cloud CDN Coniguration for this BackendBucket.
  * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
  * @property {string} description An optional textual description of the resource; provided by the client when the resource is created.
  * @property {boolean} enableCdn If true, enable Cloud CDN for this BackendBucket.
@@ -37082,6 +37856,13 @@ function Compute(options) {
  * @property {string} kind Type of the resource.
  * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ */
+/**
+ * @typedef BackendBucketCdnPolicy
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} signedUrlCacheMaxAgeSec Number of seconds up to which the response to a signed URL request will be cached in the CDN. After this time period, the Signed URL will be revalidated before being served. Defaults to 1hr (3600s). If this field is set, Cloud CDN will internally act as though all responses from this bucket had a ?Cache-Control: public, max-age=[TTL]? header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.
+ * @property {string[]} signedUrlKeyNames [Output Only] Names of the keys currently configured for Cloud CDN Signed URL on this backend bucket.
  */
 /**
  * @typedef BackendBucketList
@@ -37137,6 +37918,8 @@ function Compute(options) {
  * @memberOf! compute(beta)
  * @type object
  * @property {compute(beta).CacheKeyPolicy} cacheKeyPolicy The CacheKeyPolicy for this CdnPolicy.
+ * @property {string} signedUrlCacheMaxAgeSec Number of seconds up to which the response to a signed URL request will be cached in the CDN. After this time period, the Signed URL will be revalidated before being served. Defaults to 1hr (3600s). If this field is set, Cloud CDN will internally act as though all responses from this backend had a ?Cache-Control: public, max-age=[TTL]? header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.
+ * @property {string[]} signedUrlKeyNames [Output Only] Names of the keys currently configured for Cloud CDN Signed URL on this backend service.
  */
 /**
  * @typedef BackendServiceGroupHealth
@@ -37327,6 +38110,15 @@ function Compute(options) {
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  * @property {object} warning [Output Only] Informational warning message.
+ */
+/**
+ * @typedef DiskInstantiationConfig
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {boolean} autoDelete Specifies whether the disk will be auto-deleted when the instance is deleted (but not when the disk is detached from the instance).
+ * @property {string} deviceName Specifies the device name of the disk to which the configurations apply to.
+ * @property {string} instantiateFrom Specifies whether to include the disk and what image to use.
+ * @property {string} sourceImage The custom source image to be used to restore this disk when instantiating this instance template.
  */
 /**
  * @typedef DiskList
@@ -37531,7 +38323,7 @@ function Compute(options) {
  * @typedef GuestOsFeature
  * @memberOf! compute(beta)
  * @type object
- * @property {string} type The type of supported feature. Currently only VIRTIO_SCSI_MULTIQUEUE is supported. For newer Windows images, the server might also populate this property with the value WINDOWS to indicate that this is a Windows image.
+ * @property {string} type The ID of a supported feature. Read  Enabling guest operating system features to see a list of available options.
  */
 /**
  * @typedef HealthCheck
@@ -37678,7 +38470,7 @@ function Compute(options) {
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
  * @property {string} diskSizeGb Size of the image when restored onto a persistent disk (in GB).
  * @property {string} family The name of the image family to which this image belongs. You can create disks by specifying an image family instead of a specific image name. The image family always returns its latest image that is not deprecated. The name of the image family must comply with RFC1035.
- * @property {compute(beta).GuestOsFeature[]} guestOsFeatures A list of features to enable on the guest OS. Applicable for bootable images only. Currently, only one feature can be enabled, VIRTIO_SCSI_MULTIQUEUE, which allows each virtual CPU to have its own queue. For Windows images, you can only enable VIRTIO_SCSI_MULTIQUEUE on images with driver version 1.2.0.1621 or higher. Linux images with kernel versions 3.17 and higher will support VIRTIO_SCSI_MULTIQUEUE.  For newer Windows images, the server might also populate this property with the value WINDOWS to indicate that this is a Windows image.
+ * @property {compute(beta).GuestOsFeature[]} guestOsFeatures A list of features to enable on the guest operating system. Applicable only for bootable images. Read  Enabling guest operating system features to see a list of available options.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {compute(beta).CustomerEncryptionKey} imageEncryptionKey Encrypts the image using a customer-supplied encryption key.  After you encrypt an image with a customer-supplied key, you must provide the same key if you use the image later (e.g. to create a disk from the image).  Customer-supplied encryption keys do not protect access to metadata of the disk.  If you do not provide an encryption key when creating the image, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the image later.
  * @property {string} kind [Output Only] Type of the resource. Always compute#image for images.
@@ -37932,7 +38724,7 @@ function Compute(options) {
  * @memberOf! compute(beta)
  * @type object
  * @property {compute(beta).FixedOrPercent} maxSurge The maximum number of instances that can be created above the specified targetSize during the update process. By default, a fixed value of 1 is used. This value can be either a fixed number or a percentage if the instance group has 10 or more instances. If you set a percentage, the number of instances will be rounded up if necessary.  At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxSurge.
- * @property {compute(beta).FixedOrPercent} maxUnavailable The maximum number of instances that can be unavailable during the update process. An instance is considered available if all of the following conditions are satisfied:    - The instance&#39;s status is RUNNING.  - If there is a health check on the instance grourp, the instance&#39;s liveness health check result must be HEALTHY at least once. If there is no health check on the group, then the instance only needs to have a status of RUNNING to be considered available.  By default, a fixed value of 1 is used. This value can be either a fixed number or a percentage if the instance group has 10 or more instances. If you set a percentage, the number of instances will be rounded up if necessary.  At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxUnavailable.
+ * @property {compute(beta).FixedOrPercent} maxUnavailable The maximum number of instances that can be unavailable during the update process. An instance is considered available if all of the following conditions are satisfied:    - The instance&#39;s status is RUNNING.  - If there is a health check on the instance group, the instance&#39;s liveness health check result must be HEALTHY at least once. If there is no health check on the group, then the instance only needs to have a status of RUNNING to be considered available.  By default, a fixed value of 1 is used. This value can be either a fixed number or a percentage if the instance group has 10 or more instances. If you set a percentage, the number of instances will be rounded up if necessary.  At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxUnavailable.
  * @property {string} minimalAction Minimal action to be taken on an instance. You can specify either RESTART to restart existing instances or REPLACE to delete and create new instances from the target template. If you specify a code&gt;RESTART, the Updater will attempt to perform that action only. However, if the Updater determines that the minimal action you specify is not enough to perform the update, it might perform a more disruptive action.
  * @property {integer} minReadySec Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600].
  * @property {string} type
@@ -38096,6 +38888,8 @@ function Compute(options) {
  * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {compute(beta).InstanceProperties} properties The instance properties for this instance template.
  * @property {string} selfLink [Output Only] The URL for this instance template. The server defines this URL.
+ * @property {string} sourceInstance The source instance used to create the template. You can provide this as a partial or full URL to the resource. For example, the following are valid values:   - https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance  - projects/project/zones/zone/instances/instance
+ * @property {compute(beta).SourceInstanceParams} sourceInstanceParams The source instance params to use to create this instance template.
  */
 /**
  * @typedef InstanceTemplateList
@@ -38846,6 +39640,13 @@ function Compute(options) {
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  */
 /**
+ * @typedef RouterAdvertisedIpRange
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} description User-specified description for the IP range.
+ * @property {string} range The IP range to advertise. The value must be a CIDR-formatted string.
+ */
+/**
  * @typedef RouterAggregatedList
  * @memberOf! compute(beta)
  * @type object
@@ -38860,13 +39661,19 @@ function Compute(options) {
  * @typedef RouterBgp
  * @memberOf! compute(beta)
  * @type object
+ * @property {string[]} advertisedGroups User-specified list of prefix groups to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and is advertised to all peers of the router. These groups will be advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
+ * @property {compute(beta).RouterAdvertisedIpRange[]} advertisedIpRanges User-specified list of individual IP ranges to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and is advertised to all peers of the router. These IP ranges will be advertised in addition to any specified groups. Leave this field blank to advertise no custom IP ranges.
+ * @property {string} advertiseMode User-specified flag to indicate which mode to use for advertisement.
  * @property {integer} asn Local BGP Autonomous System Number (ASN). Must be an RFC6996 private ASN, either 16-bit or 32-bit. The value will be fixed for this router resource. All VPN tunnels that link to this router will have the same local ASN.
  */
 /**
  * @typedef RouterBgpPeer
  * @memberOf! compute(beta)
  * @type object
+ * @property {string[]} advertisedGroups User-specified list of prefix groups to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in Bgp message). These groups will be advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
+ * @property {compute(beta).RouterAdvertisedIpRange[]} advertisedIpRanges User-specified list of individual IP ranges to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in Bgp message). These IP ranges will be advertised in addition to any specified groups. Leave this field blank to advertise no custom IP ranges.
  * @property {integer} advertisedRoutePriority The priority of routes advertised to this BGP peer. In the case where there is more than one matching route of maximum length, the routes with lowest priority value win.
+ * @property {string} advertiseMode User-specified flag to indicate which mode to use for advertisement.
  * @property {string} interfaceName Name of the interface the BGP peer is associated with.
  * @property {string} ipAddress IP address of the interface inside Google Cloud Platform. Only IPv4 is supported.
  * @property {string} name Name of this BGP peer. The name must be 1-63 characters long and comply with RFC1035.
@@ -39001,6 +39808,14 @@ function Compute(options) {
  * @typedef SecurityPolicyRuleMatcher
  * @memberOf! compute(beta)
  * @type object
+ * @property {compute(beta).SecurityPolicyRuleMatcherConfig} config The configuration options available when specifying versioned_expr. This field must be specified if versioned_expr is specified and cannot be specified if versioned_expr is not specified.
+ * @property {string[]} srcIpRanges CIDR IP address range. Only IPv4 is supported.
+ * @property {string} versionedExpr Preconfigured versioned expression. If this field is specified, config must also be specified. Available preconfigured expressions along with their requirements are: SRC_IPS_V1 - must specify the corresponding src_ip_range field in config.
+ */
+/**
+ * @typedef SecurityPolicyRuleMatcherConfig
+ * @memberOf! compute(beta)
+ * @type object
  * @property {string[]} srcIpRanges CIDR IP address range. Only IPv4 is supported.
  */
 /**
@@ -39019,6 +39834,13 @@ function Compute(options) {
  * @type object
  * @property {string} email Email address of the service account.
  * @property {string[]} scopes The list of scopes to be made available for this service account.
+ */
+/**
+ * @typedef SignedUrlKey
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} keyName Name of the key. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} keyValue 128-bit key value used for signing the URL. The key value must be a valid RFC 4648 Section 5 base64url encoded string.
  */
 /**
  * @typedef Snapshot
@@ -39055,6 +39877,12 @@ function Compute(options) {
  * @property {object} warning [Output Only] Informational warning message.
  */
 /**
+ * @typedef SourceInstanceParams
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {compute(beta).DiskInstantiationConfig[]} diskConfigs Attached disks configuration. If not provided, defaults are applied: For boot disk and any other R/W disks, new custom images will be created from each disk. For read-only disks, they will be attached in read-only mode. Local SSD disks will be created as blank volumes.
+ */
+/**
  * @typedef SslCertificate
  * @memberOf! compute(beta)
  * @type object
@@ -39087,6 +39915,46 @@ function Compute(options) {
  * @property {string} proxyHeader Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
  * @property {string} request The application data to send once the SSL connection has been established (default value is empty). If both request and response are empty, the connection establishment alone will indicate health. The request data can only be ASCII.
  * @property {string} response The bytes to match against the beginning of the response data. If left empty (the default value), any response will indicate health. The response data can only be ASCII.
+ */
+/**
+ * @typedef SslPoliciesList
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(beta).SslPolicy[]} items A list of SslPolicy resources.
+ * @property {string} kind [Output Only] Type of the resource. Always compute#sslPoliciesList for lists of sslPolicies.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
+ */
+/**
+ * @typedef SslPoliciesListAvailableFeaturesResponse
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string[]} features
+ */
+/**
+ * @typedef SslPolicy
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string[]} customFeatures List of features enabled when the selected profile is CUSTOM. The - method returns the set of features that can be specified in this list. This field must be empty if the profile is not CUSTOM.
+ * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+ * @property {string[]} enabledFeatures [Output Only] The list of features enabled in the SSL policy.
+ * @property {string} fingerprint Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a SslPolicy. An up-to-date fingerprint must be provided in order to update the SslPolicy.
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} kind [Output only] Type of the resource. Always compute#sslPolicyfor SSL policies.
+ * @property {string} minTlsVersion The minimum version of SSL protocol that can be used by the clients to establish a connection with the load balancer. This can be one of TLS_1_0, TLS_1_1, TLS_1_2, TLS_1_3.
+ * @property {string} name Name of the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} profile Profile specifies the set of SSL features that can be used by the load balancer when negotiating SSL with clients. This can be one of COMPATIBLE, MODERN, RESTRICTED, or CUSTOM. If using CUSTOM, the set of SSL features to enable must be specified in the customFeatures field.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {object[]} warnings [Output Only] If potential misconfigurations are detected for this SSL policy, this field will be populated with warning messages.
+ */
+/**
+ * @typedef SslPolicyReference
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} sslPolicy URL of the SSL policy resource. Set this to empty string to clear any existing SSL policy associated with the target proxy resource.
  */
 /**
  * @typedef Subnetwork
@@ -39186,6 +40054,12 @@ function Compute(options) {
  * @property {object} warning [Output Only] Informational warning message.
  */
 /**
+ * @typedef TargetHttpsProxiesSetQuicOverrideRequest
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} quicOverride QUIC policy for the TargetHttpsProxy resource.
+ */
+/**
  * @typedef TargetHttpsProxiesSetSslCertificatesRequest
  * @memberOf! compute(beta)
  * @type object
@@ -39200,8 +40074,10 @@ function Compute(options) {
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of resource. Always compute#targetHttpsProxy for target HTTPS proxies.
  * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} quicOverride Specifies the QUIC override policy for this TargetHttpsProxy resource. This determines whether the load balancer will attempt to negotiate QUIC with clients or not. Can specify one of NONE, ENABLE, or DISABLE. Specify ENABLE to always enable QUIC, Enables QUIC when set to ENABLE, and disables QUIC when set to DISABLE. If NONE is specified, uses the QUIC policy with no user overrides, which is equivalent to DISABLE. Not specifying this field is equivalent to specifying NONE.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string[]} sslCertificates URLs to SslCertificate resources that are used to authenticate connections between users and the load balancer. Currently, exactly one SSL certificate must be specified.
+ * @property {string} sslPolicy URL of SslPolicy resource that will be associated with the TargetHttpsProxy resource. If not set, the TargetHttpsProxy resource will not have any SSL policy configured.
  * @property {string} urlMap A fully-qualified or valid partial URL to the UrlMap resource that defines the mapping from URL to the BackendService. For example, the following are all valid URLs for specifying a URL map:   - https://www.googleapis.compute/v1/projects/project/global/urlMaps/url-map  - projects/project/global/urlMaps/url-map  - global/urlMaps/url-map
  */
 /**
@@ -39372,6 +40248,7 @@ function Compute(options) {
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} service URL to the BackendService resource.
  * @property {string[]} sslCertificates URLs to SslCertificate resources that are used to authenticate connections to Backends. Currently exactly one SSL certificate must be specified.
+ * @property {string} sslPolicy URL of SslPolicy resource that will be associated with the TargetSslProxy resource. If not set, the TargetSslProxy resource will not have any SSL policy configured.
  */
 /**
  * @typedef TargetSslProxyList
@@ -39429,6 +40306,8 @@ function Compute(options) {
  * @property {string[]} forwardingRules [Output Only] A list of URLs to the ForwardingRule resources. ForwardingRules are created using compute.forwardingRules.insert and associated to a VPN gateway.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of resource. Always compute#targetVpnGateway for target VPN gateways.
+ * @property {string} labelFingerprint A fingerprint for the labels being applied to this TargetVpnGateway, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels.  To see the latest fingerprint, make a get() request to retrieve an TargetVpnGateway.
+ * @property {object} labels Labels to apply to this TargetVpnGateway resource. These can be later modified by the setLabels method. Each label key/value must comply with RFC1035. Label values may be empty.
  * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} network URL of the network to which this VPN gateway is attached. Provided by the client when the VPN gateway is created.
  * @property {string} region [Output Only] URL of the region where the target VPN gateway resides.
@@ -39585,6 +40464,8 @@ function Compute(options) {
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {integer} ikeVersion IKE protocol version to use when establishing the VPN tunnel with peer VPN gateway. Acceptable IKE versions are 1 or 2. Default version is 2.
  * @property {string} kind [Output Only] Type of resource. Always compute#vpnTunnel for VPN tunnels.
+ * @property {string} labelFingerprint A fingerprint for the labels being applied to this VpnTunnel, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels.  To see the latest fingerprint, make a get() request to retrieve a VpnTunnel.
+ * @property {object} labels Labels to apply to this VpnTunnel. These can be later modified by the setLabels method. Each label key/value pair must comply with RFC1035. Label values may be empty.
  * @property {string[]} localTrafficSelector Local traffic selector to use when establishing the VPN tunnel with peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges should be disjoint. Only IPv4 is supported.
  * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} peerIp IP address of the peer VPN gateway. Only IPv4 is supported.

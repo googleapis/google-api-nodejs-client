@@ -1398,6 +1398,7 @@ function Dataproc(options) {
  * @memberOf! dataproc(v1beta2)
  * @type object
  * @property {integer} bootDiskSizeGb Optional. Size in GB of the boot disk (default is 500GB).
+ * @property {string} bootDiskType Optional. Type of the boot disk (default is &#39;pd-standard&#39;). Valid values: &#39;pd-ssd&#39;, &#39;pd-standard&#39;
  * @property {integer} numLocalSsds Optional. Number of attached SSDs, from 0 to 4 (default is 0). If SSDs are not attached, the boot disk is used to store runtime logs and HDFS (https://hadoop.apache.org/docs/r1.2.1/hdfs_user_guide.html) data. If one or more SSDs are attached, this runtime bulk data is spread across them, and the boot disk contains only basic config and installed binaries.
  */
 /**
@@ -1453,6 +1454,7 @@ function Dataproc(options) {
  * @property {boolean} isPreemptible Optional. Specifies that this instance group contains preemptible instances.
  * @property {string} machineTypeUri Optional. The Google Compute Engine machine type used for cluster instances.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2 projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2 n1-standard-2
  * @property {dataproc(v1beta2).ManagedGroupConfig} managedGroupConfig Output-only. The config for Google Compute Engine Instance Group Manager that manages this group. This is only used for preemptible instance groups.
+ * @property {string} minCpuPlatform Optional. Specifies the minimum cpu platform for the Instance Group. Examples: * https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform
  * @property {integer} numInstances Optional. The number of VM instances in the instance group. For master instance groups, must be set to 1.
  */
 /**

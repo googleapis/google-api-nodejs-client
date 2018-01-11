@@ -830,6 +830,41 @@ function Fusiontables(options) {
       };
       return createAPIRequest(parameters, callback);
     }, /**
+        * fusiontables.table.refetchSheet
+        * @desc Replaces rows of the table with the rows of the spreadsheet that
+        * is first imported from. Current rows remain visible until all
+        * replacement rows are ready.
+        * @alias fusiontables.table.refetchSheet
+        * @memberOf! fusiontables(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.tableId Table whose rows will be replaced from the spreadsheet.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    refetchSheet(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/fusiontables/v2/tables/{tableId}/refetch')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['tableId'],
+        pathParams: ['tableId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
         * fusiontables.table.replaceRows
         * @desc Replaces rows of an existing table. Current rows remain visible
         * until all replacement rows are ready.

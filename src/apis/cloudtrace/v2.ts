@@ -76,9 +76,9 @@ function Cloudtrace(options) {
       },
       spans: {
         /**
-         * cloudtrace.projects.traces.spans.create
+         * cloudtrace.projects.traces.spans.createSpan
          * @desc Creates a new span.
-         * @alias cloudtrace.projects.traces.spans.create
+         * @alias cloudtrace.projects.traces.spans.createSpan
          * @memberOf! cloudtrace(v2)
          *
          * @param {object} params Parameters for request
@@ -88,7 +88,7 @@ function Cloudtrace(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create(params, options, callback) {
+        createSpan(params, options, callback) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -99,8 +99,7 @@ function Cloudtrace(options) {
           const parameters = {
             options: Object.assign(
                 {
-                  url: (rootUrl + '/v2/{name}/spans')
-                           .replace(/([^:]\/)\/+/g, '$1'),
+                  url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                   method: 'POST'
                 },
                 options),

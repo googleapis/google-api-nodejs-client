@@ -84,6 +84,7 @@ function Pagespeedonline(options) {
  * @typedef Result
  * @memberOf! pagespeedonline(v1)
  * @type object
+ * @property {string} captchaResult The captcha verify result
  * @property {object} formattedResults Localized PageSpeed results. Contains a ruleResults entry for each PageSpeed rule instantiated and run by the server.
  * @property {string} id Canonicalized and final URL for the document, after following page redirects (if any).
  * @property {string[]} invalidRules List of rules that were specified in the request, but which the server did not know how to instantiate.

@@ -1118,7 +1118,6 @@ function Iam(options) {
  * @memberOf! iam(v1)
  * @type object
  * @property {string} action The action that was performed on a Binding. Required
- * @property {iam(v1).Expr} condition The condition that is associated with this binding. This field is GOOGLE_INTERNAL. This field is not logged in IAM side because it&#39;s only for audit logging. Optional
  * @property {string} member A single identity requesting access for a Cloud Platform resource. Follows the same format of Binding.members. Required
  * @property {string} role Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. Required
  */
@@ -1134,7 +1133,7 @@ function Iam(options) {
  * @memberOf! iam(v1)
  * @type object
  * @property {string} keyAlgorithm Which type of key and algorithm to use for the key. The default is currently a 2K RSA key.  However this may change in the future.
- * @property {string} privateKeyType The output format of the private key. `GOOGLE_CREDENTIALS_FILE` is the default output format.
+ * @property {string} privateKeyType The output format of the private key. The default value is `TYPE_GOOGLE_CREDENTIALS_FILE`, which is the Google Credentials File format.
  */
 /**
  * @typedef CreateServiceAccountRequest
@@ -1147,15 +1146,6 @@ function Iam(options) {
  * @typedef Empty
  * @memberOf! iam(v1)
  * @type object
- */
-/**
- * @typedef Expr
- * @memberOf! iam(v1)
- * @type object
- * @property {string} description An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
- * @property {string} expression Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
- * @property {string} location An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
- * @property {string} title An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
  */
 /**
  * @typedef ListRolesResponse
@@ -1194,7 +1184,7 @@ function Iam(options) {
  * @type object
  * @property {iam(v1).Binding[]} bindings Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
  * @property {string} etag `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
- * @property {integer} version Version of the `Policy`. The default version is 0.
+ * @property {integer} version Deprecated.
  */
 /**
  * @typedef PolicyDelta
