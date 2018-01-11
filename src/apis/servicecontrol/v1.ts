@@ -369,7 +369,6 @@ function Servicecontrol(options) {
  * @type object
  * @property {string} code The error code.
  * @property {string} detail Free-form text providing details on the error cause of the error.
- * @property {string} subject Subject to whom this error applies. See the specific code enum for more details on this field. For example:     - “project:&lt;project-id or project-number&gt;”     - “folder:&lt;folder-id&gt;”     - “organization:&lt;organization-id&gt;”
  */
 /**
  * @typedef CheckInfo

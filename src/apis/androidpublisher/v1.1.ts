@@ -166,7 +166,6 @@ function Androidpublisher(options) {
  * @property {string} orderId The order id associated with the purchase of the inapp product.
  * @property {integer} purchaseState The purchase state of the order. Possible values are:   - Purchased  - Cancelled
  * @property {string} purchaseTime The time the product was purchased, in milliseconds since the epoch (Jan 1, 1970).
- * @property {integer} purchaseType The type of purchase of the inapp product. This field is only set if this purchase was not made using the standard in-app billing flow. Possible values are:   - Test (i.e. purchased from a license testing account)
  */
 /**
  * @typedef SubscriptionPurchase

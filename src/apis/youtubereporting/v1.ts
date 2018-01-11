@@ -266,7 +266,7 @@ function Youtubereporting(options) {
      * @memberOf! youtubereporting(v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resourceName Name of the media that is being downloaded.
+     * @param {string} params.resourceName Name of the media that is being downloaded.  See ReadRequest.resource_name.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -343,130 +343,6 @@ function Youtubereporting(options) {
  * @type object
  */
 /**
- * @typedef GdataBlobstore2Info
- * @memberOf! youtubereporting(v1)
- * @type object
- * @property {string} blobGeneration gdata
- * @property {string} blobId gdata
- * @property {string} downloadReadHandle gdata
- * @property {string} readToken gdata
- * @property {string} uploadMetadataContainer gdata
- */
-/**
- * @typedef GdataCompositeMedia
- * @memberOf! youtubereporting(v1)
- * @type object
- * @property {string} blobRef gdata
- * @property {youtubereporting(v1).GdataBlobstore2Info} blobstore2Info gdata
- * @property {string} cosmoBinaryReference gdata
- * @property {integer} crc32cHash gdata
- * @property {string} inline gdata
- * @property {string} length gdata
- * @property {string} md5Hash gdata
- * @property {youtubereporting(v1).GdataObjectId} objectId gdata
- * @property {string} path gdata
- * @property {string} referenceType gdata
- * @property {string} sha1Hash gdata
- */
-/**
- * @typedef GdataContentTypeInfo
- * @memberOf! youtubereporting(v1)
- * @type object
- * @property {string} bestGuess gdata
- * @property {string} fromBytes gdata
- * @property {string} fromFileName gdata
- * @property {string} fromHeader gdata
- * @property {string} fromUrlPath gdata
- */
-/**
- * @typedef GdataDiffChecksumsResponse
- * @memberOf! youtubereporting(v1)
- * @type object
- * @property {youtubereporting(v1).GdataCompositeMedia} checksumsLocation gdata
- * @property {string} chunkSizeBytes gdata
- * @property {youtubereporting(v1).GdataCompositeMedia} objectLocation gdata
- * @property {string} objectSizeBytes gdata
- * @property {string} objectVersion gdata
- */
-/**
- * @typedef GdataDiffDownloadResponse
- * @memberOf! youtubereporting(v1)
- * @type object
- * @property {youtubereporting(v1).GdataCompositeMedia} objectLocation gdata
- */
-/**
- * @typedef GdataDiffUploadRequest
- * @memberOf! youtubereporting(v1)
- * @type object
- * @property {youtubereporting(v1).GdataCompositeMedia} checksumsInfo gdata
- * @property {youtubereporting(v1).GdataCompositeMedia} objectInfo gdata
- * @property {string} objectVersion gdata
- */
-/**
- * @typedef GdataDiffUploadResponse
- * @memberOf! youtubereporting(v1)
- * @type object
- * @property {string} objectVersion gdata
- * @property {youtubereporting(v1).GdataCompositeMedia} originalObject gdata
- */
-/**
- * @typedef GdataDiffVersionResponse
- * @memberOf! youtubereporting(v1)
- * @type object
- * @property {string} objectSizeBytes gdata
- * @property {string} objectVersion gdata
- */
-/**
- * @typedef GdataDownloadParameters
- * @memberOf! youtubereporting(v1)
- * @type object
- * @property {boolean} allowGzipCompression gdata
- * @property {boolean} ignoreRange gdata
- */
-/**
- * @typedef GdataMedia
- * @memberOf! youtubereporting(v1)
- * @type object
- * @property {string} algorithm gdata
- * @property {string} bigstoreObjectRef gdata
- * @property {string} blobRef gdata
- * @property {youtubereporting(v1).GdataBlobstore2Info} blobstore2Info gdata
- * @property {youtubereporting(v1).GdataCompositeMedia[]} compositeMedia gdata
- * @property {string} contentType gdata
- * @property {youtubereporting(v1).GdataContentTypeInfo} contentTypeInfo gdata
- * @property {string} cosmoBinaryReference gdata
- * @property {integer} crc32cHash gdata
- * @property {youtubereporting(v1).GdataDiffChecksumsResponse} diffChecksumsResponse gdata
- * @property {youtubereporting(v1).GdataDiffDownloadResponse} diffDownloadResponse gdata
- * @property {youtubereporting(v1).GdataDiffUploadRequest} diffUploadRequest gdata
- * @property {youtubereporting(v1).GdataDiffUploadResponse} diffUploadResponse gdata
- * @property {youtubereporting(v1).GdataDiffVersionResponse} diffVersionResponse gdata
- * @property {youtubereporting(v1).GdataDownloadParameters} downloadParameters gdata
- * @property {string} filename gdata
- * @property {string} hash gdata
- * @property {boolean} hashVerified gdata
- * @property {string} inline gdata
- * @property {boolean} isPotentialRetry gdata
- * @property {string} length gdata
- * @property {string} md5Hash gdata
- * @property {string} mediaId gdata
- * @property {youtubereporting(v1).GdataObjectId} objectId gdata
- * @property {string} path gdata
- * @property {string} referenceType gdata
- * @property {string} sha1Hash gdata
- * @property {string} sha256Hash gdata
- * @property {string} timestamp gdata
- * @property {string} token gdata
- */
-/**
- * @typedef GdataObjectId
- * @memberOf! youtubereporting(v1)
- * @type object
- * @property {string} bucketName gdata
- * @property {string} generation gdata
- * @property {string} objectName gdata
- */
-/**
  * @typedef Job
  * @memberOf! youtubereporting(v1)
  * @type object
@@ -497,6 +373,12 @@ function Youtubereporting(options) {
  * @type object
  * @property {string} nextPageToken A token to retrieve next page of results. Pass this value in the ListReportTypesRequest.page_token field in the subsequent call to `ListReportTypes` method to retrieve the next page of results.
  * @property {youtubereporting(v1).ReportType[]} reportTypes The list of report types.
+ */
+/**
+ * @typedef Media
+ * @memberOf! youtubereporting(v1)
+ * @type object
+ * @property {string} resourceName Name of the media resource.
  */
 /**
  * @typedef Report

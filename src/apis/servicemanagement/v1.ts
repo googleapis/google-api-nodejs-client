@@ -1511,7 +1511,7 @@ function Servicemanagement(options) {
  * @property {servicemanagement(v1).Binding[]} bindings Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
  * @property {string} etag `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
  * @property {boolean} iamOwned
- * @property {integer} version Deprecated.
+ * @property {integer} version Version of the `Policy`. The default version is 0.
  */
 /**
  * @typedef Quota
@@ -1696,9 +1696,9 @@ function Servicemanagement(options) {
  * @typedef UsageRule
  * @memberOf! servicemanagement(v1)
  * @type object
- * @property {boolean} allowUnregisteredCalls If true, the selected method allows unregistered calls, e.g. calls that don&#39;t identify any user or application.
+ * @property {boolean} allowUnregisteredCalls True, if the method allows unregistered calls; false otherwise.
  * @property {string} selector Selects the methods to which this rule applies. Use &#39;*&#39; to indicate all methods in all APIs.  Refer to selector for syntax details.
- * @property {boolean} skipServiceControl If true, the selected method should skip service control and the control plane features, such as quota and billing, will not be available. This flag is used by Google Cloud Endpoints to bypass checks for internal methods, such as service health check methods.
+ * @property {boolean} skipServiceControl True, if the method should skip service control. If so, no control plane feature (like quota and billing) will be enabled. This flag is used by ESP to allow some Endpoints customers to bypass Google internal checks.
  */
 /**
  * @typedef Visibility

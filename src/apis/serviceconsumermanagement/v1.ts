@@ -1031,9 +1031,9 @@ function Serviceconsumermanagement(options) {
  * @typedef UsageRule
  * @memberOf! serviceconsumermanagement(v1)
  * @type object
- * @property {boolean} allowUnregisteredCalls If true, the selected method allows unregistered calls, e.g. calls that don&#39;t identify any user or application.
+ * @property {boolean} allowUnregisteredCalls True, if the method allows unregistered calls; false otherwise.
  * @property {string} selector Selects the methods to which this rule applies. Use &#39;*&#39; to indicate all methods in all APIs.  Refer to selector for syntax details.
- * @property {boolean} skipServiceControl If true, the selected method should skip service control and the control plane features, such as quota and billing, will not be available. This flag is used by Google Cloud Endpoints to bypass checks for internal methods, such as service health check methods.
+ * @property {boolean} skipServiceControl True, if the method should skip service control. If so, no control plane feature (like quota and billing) will be enabled. This flag is used by ESP to allow some Endpoints customers to bypass Google internal checks.
  */
 /**
  * @typedef Visibility

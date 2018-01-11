@@ -293,7 +293,7 @@ function Slides(options) {
  * @typedef CreateImageRequest
  * @memberOf! slides(v1)
  * @type object
- * @property {slides(v1).PageElementProperties} elementProperties The element properties for the image.  When the aspect ratio of the provided size does not match the image aspect ratio, the image is scaled and centered with respect to the size in order to maintain aspect ratio. The provided transform is applied after this operation.  The PageElementProperties.size property is optional. If you don&#39;t specify the size, the default size of the image is used.  The PageElementProperties.transform property is optional. If you don&#39;t specify a transform, the image will be placed at the top left corner of the page.
+ * @property {slides(v1).PageElementProperties} elementProperties The element properties for the image.  When the aspect ratio of the provided size does not match the image aspect ratio, the image is scaled and centered with respect to the size in order to maintain aspect ratio. The provided transform is applied after this operation.
  * @property {string} objectId A user-supplied object ID.  If you specify an ID, it must be unique among all pages and page elements in the presentation. The ID must start with an alphanumeric character or an underscore (matches regex `[a-zA-Z0-9_]`); remaining characters may include those as well as a hyphen or colon (matches regex `[a-zA-Z0-9_-:]`). The length of the ID must not be less than 5 or greater than 50.  If you don&#39;t specify an ID, a unique one is generated.
  * @property {string} url The image URL.  The image is fetched once at insertion time and a copy is stored for display inside the presentation. Images must be less than 50MB in size, cannot exceed 25 megapixels, and must be in either in PNG, JPEG, or GIF format.  The provided URL can be at most 2 kB in length.
  */
@@ -390,7 +390,7 @@ function Slides(options) {
  * @typedef CreateVideoRequest
  * @memberOf! slides(v1)
  * @type object
- * @property {slides(v1).PageElementProperties} elementProperties The element properties for the video.  The PageElementProperties.size property is optional. If you don&#39;t specify a size, a default size is chosen by the server.  The PageElementProperties.transform property is optional. The transform must not have shear components. If you don&#39;t specify a transform, the video will be placed at the top left corner of the page.
+ * @property {slides(v1).PageElementProperties} elementProperties The element properties for the video.
  * @property {string} id The video source&#39;s unique identifier for this video.  e.g. For YouTube video https://www.youtube.com/watch?v=7U3axjORYZ0, the ID is 7U3axjORYZ0.
  * @property {string} objectId A user-supplied object ID.  If you specify an ID, it must be unique among all pages and page elements in the presentation. The ID must start with an alphanumeric character or an underscore (matches regex `[a-zA-Z0-9_]`); remaining characters may include those as well as a hyphen or colon (matches regex `[a-zA-Z0-9_-:]`). The length of the ID must not be less than 5 or greater than 50.  If you don&#39;t specify an ID, a unique one is generated.
  * @property {string} source The video source.
@@ -844,7 +844,6 @@ function Slides(options) {
  * @property {slides(v1).UnmergeTableCellsRequest} unmergeTableCells Unmerges cells in a Table.
  * @property {slides(v1).UpdateImagePropertiesRequest} updateImageProperties Updates the properties of an Image.
  * @property {slides(v1).UpdateLinePropertiesRequest} updateLineProperties Updates the properties of a Line.
- * @property {slides(v1).UpdatePageElementAltTextRequest} updatePageElementAltText Updates the alt text title and/or description of a page element.
  * @property {slides(v1).UpdatePageElementTransformRequest} updatePageElementTransform Updates the transform of a page element.
  * @property {slides(v1).UpdatePagePropertiesRequest} updatePageProperties Updates the properties of a Page.
  * @property {slides(v1).UpdateParagraphStyleRequest} updateParagraphStyle Updates the styling of paragraphs within a Shape or Table.
@@ -1153,14 +1152,6 @@ function Slides(options) {
  * @property {string} fields The fields that should be updated.  At least one field must be specified. The root `lineProperties` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.  For example to update the line solid fill color, set `fields` to `&quot;lineFill.solidFill.color&quot;`.  To reset a property to its default value, include its field name in the field mask but leave the field itself unset.
  * @property {slides(v1).LineProperties} lineProperties The line properties to update.
  * @property {string} objectId The object ID of the line the update is applied to.
- */
-/**
- * @typedef UpdatePageElementAltTextRequest
- * @memberOf! slides(v1)
- * @type object
- * @property {string} description The updated alt text description of the page element. If unset the existing value will be maintained. The description is exposed to screen readers and other accessibility interfaces. Only use human readable values related to the content of the page element.
- * @property {string} objectId The object ID of the page element the updates are applied to.
- * @property {string} title The updated alt text title of the page element. If unset the existing value will be maintained. The title is exposed to screen readers and other accessibility interfaces. Only use human readable values related to the content of the page element.
  */
 /**
  * @typedef UpdatePageElementTransformRequest

@@ -818,7 +818,6 @@ function Dlp(options) {
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1CryptoKey} cryptoKey The key used by the encryption algorithm. [required]
  * @property {string} customAlphabet This is supported by mapping these to the alphanumeric characters that the FFX mode natively supports. This happens before/after encryption/decryption. Each character listed must appear only once. Number of characters must be in the range [2, 62]. This must be encoded as ASCII. The order of characters does not matter.
  * @property {integer} radix The native way to select the alphabet. Must be in the range [2, 62].
- * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1InfoType} surrogateInfoType The custom info type to annotate the surrogate with. This annotation will be applied to the surrogate by prefixing it with the name of the custom info type followed by the number of characters comprising the surrogate. The following scheme defines the format: info_type_name(surrogate_character_count):surrogate  For example, if the name of custom info type is &#39;MY_TOKEN_INFO_TYPE&#39; and the surrogate is &#39;abc&#39;, the full replacement value will be: &#39;MY_TOKEN_INFO_TYPE(3):abc&#39;  This annotation identifies the surrogate when inspecting content using the custom info type [`SurrogateType`](/dlp/docs/reference/rest/v2beta1/InspectConfig#surrogatetype). This facilitates reversal of the surrogate when it occurs in free text.  In order for inspection to work properly, the name of this info type must not occur naturally anywhere in your data; otherwise, inspection may find a surrogate that does not correspond to an actual identifier. Therefore, choose your custom info type name carefully after considering what your data looks like. One way to select a name that has a high chance of yielding reliable detection is to include one or more unicode characters that are highly improbable to exist in your data. For example, assuming your data is entered from a regular ASCII keyboard, the symbol with the hex code point 29DD might be used like so: ⧝MY_TOKEN_TYPE
  */
 /**
  * @typedef GooglePrivacyDlpV2beta1CustomInfoType
@@ -826,7 +825,6 @@ function Dlp(options) {
  * @type object
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Dictionary} dictionary Dictionary-based custom info type.
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1InfoType} infoType Info type configuration. All custom info types must have configurations that do not conflict with built-in info types or other custom info types.
- * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1SurrogateType} surrogateType Surrogate info type.
  */
 /**
  * @typedef GooglePrivacyDlpV2beta1DatastoreKey
@@ -916,10 +914,10 @@ function Dlp(options) {
  * @memberOf! dlp(v2beta1)
  * @type object
  * @property {string} createTime Timestamp when finding was detected.
- * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1InfoType} infoType The type of content that might have been found. Provided if requested by the `InspectConfig`.
- * @property {string} likelihood Estimate of how likely it is that the `info_type` is correct.
- * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Location} location Where the content was found.
- * @property {string} quote The content that was found. Even if the content is not textual, it may be converted to a textual representation here. Provided if requested by the `InspectConfig`.
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1InfoType} infoType The specific type of info the string might be.
+ * @property {string} likelihood Estimate of how likely it is that the info_type is correct.
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Location} location Location of the info found.
+ * @property {string} quote The specific string that may be potentially sensitive info.
  */
 /**
  * @typedef GooglePrivacyDlpV2beta1FixedSizeBucketingConfig
@@ -1170,12 +1168,12 @@ function Dlp(options) {
  * @typedef GooglePrivacyDlpV2beta1Location
  * @memberOf! dlp(v2beta1)
  * @type object
- * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Range} byteRange Zero-based byte offsets delimiting the finding. These are relative to the finding&#39;s containing element. Note that when the content is not textual, this references the UTF-8 encoded textual representation of the content. Omitted if content is an image.
- * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Range} codepointRange Unicode character offsets delimiting the finding. These are relative to the finding&#39;s containing element. Provided when the content is text.
- * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1FieldId} fieldId The pointer to the property or cell that contained the finding. Provided when the finding&#39;s containing element is a cell in a table or a property of storage object.
- * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1ImageLocation[]} imageBoxes The area within the image that contained the finding. Provided when the content is an image.
- * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1RecordKey} recordKey The pointer to the record in storage that contained the field the finding was found in. Provided when the finding&#39;s containing element is a property of a storage object.
- * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1TableLocation} tableLocation The pointer to the row of the table that contained the finding. Provided when the finding&#39;s containing element is a cell of a table.
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Range} byteRange Zero-based byte offsets within a content item.
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Range} codepointRange Character offsets within a content item, included when content type is a text. Default charset assumed to be UTF-8.
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1FieldId} fieldId Field id of the field containing the finding.
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1ImageLocation[]} imageBoxes Location within an image&#39;s pixels.
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1RecordKey} recordKey Key of the finding.
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1TableLocation} tableLocation Location within a `ContentItem.Table`.
  */
 /**
  * @typedef GooglePrivacyDlpV2beta1NumericalStatsConfig
@@ -1374,11 +1372,6 @@ function Dlp(options) {
  * @property {string} details A place for warnings or errors to show up if a transformation didn&#39;t work as expected.
  */
 /**
- * @typedef GooglePrivacyDlpV2beta1SurrogateType
- * @memberOf! dlp(v2beta1)
- * @type object
- */
-/**
  * @typedef GooglePrivacyDlpV2beta1Table
  * @memberOf! dlp(v2beta1)
  * @type object
@@ -1411,12 +1404,11 @@ function Dlp(options) {
  * @memberOf! dlp(v2beta1)
  * @type object
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1FieldId} field Set if the transformation was limited to a specific FieldId.
- * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1FieldTransformation[]} fieldTransformations The field transformation that was applied. If multiple field transformations are requested for a single field, this list will contain all of them; otherwise, only one is supplied.
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1FieldTransformation[]} fieldTransformations The field transformation that was applied. This list will contain multiple only in the case of errors.
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1InfoType} infoType Set if the transformation was limited to a specific info_type.
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1RecordSuppression} recordSuppress The specific suppression option these stats apply to.
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1SummaryResult[]} results
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1PrimitiveTransformation} transformation The specific transformation these stats apply to.
- * @property {string} transformedBytes Total size in bytes that were transformed in some way.
  */
 /**
  * @typedef GooglePrivacyDlpV2beta1TransientCryptoKey

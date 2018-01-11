@@ -798,7 +798,7 @@ function Drive(options) {
      * @memberOf! drive(v3)
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.emailMessage A plain text custom message to include in the notification email.
+     * @param {string=} params.emailMessage A custom message to include in the notification email.
      * @param {string} params.fileId The ID of the file or Team Drive.
      * @param {boolean=} params.sendNotificationEmail Whether to send a notification email when sharing to users or groups. This defaults to true for users and groups, and is not allowed for other requests. It must not be disabled for ownership transfers.
      * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
