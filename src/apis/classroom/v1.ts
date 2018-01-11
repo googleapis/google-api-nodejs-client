@@ -1653,90 +1653,6 @@ function Classroom(options) {
             return createAPIRequest(parameters, callback);
           }
 
-        },
-        topics: {
-          /**
-           * classroom.courses.topics.get
-           * @desc Returns a topic.  This method returns the following error
-           * codes:  * `PERMISSION_DENIED` if the requesting user is not
-           * permitted to access the requested course or topic, or for access
-           * errors. * `INVALID_ARGUMENT` if the request is malformed. *
-           * `NOT_FOUND` if the requested course or topic does not exist.
-           * @alias classroom.courses.topics.get
-           * @memberOf! classroom(v1)
-           *
-           * @param {object} params Parameters for request
-           * @param {string} params.courseId Identifier of the course.
-           * @param {string} params.id Identifier of the topic.
-           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-           * @param {callback} callback The callback that handles the response.
-           * @return {object} Request object
-           */
-          get(params, options, callback) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://classroom.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url: (rootUrl + '/v1/courses/{courseId}/topics/{id}')
-                             .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'GET'
-                  },
-                  options),
-              params,
-              requiredParams: ['courseId', 'id'],
-              pathParams: ['courseId', 'id'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback);
-          }, /**
-              * classroom.courses.topics.list
-              * @desc Returns the list of topics that the requester is permitted
-              * to view.  This method returns the following error codes:  *
-              * `PERMISSION_DENIED` if the requesting user is not permitted to
-              * access the requested course or for access errors. *
-              * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if
-              * the requested course does not exist.
-              * @alias classroom.courses.topics.list
-              * @memberOf! classroom(v1)
-              *
-              * @param {object} params Parameters for request
-              * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-              * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum.  The server may return fewer than the specified number of results.
-              * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
-              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-              * @param {callback} callback The callback that handles the response.
-              * @return {object} Request object
-              */
-          list(params, options, callback) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://classroom.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url: (rootUrl + '/v1/courses/{courseId}/topics')
-                             .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'GET'
-                  },
-                  options),
-              params,
-              requiredParams: ['courseId'],
-              pathParams: ['courseId'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback);
-          }
-
         }
       };
   self.invitations = {
@@ -2722,13 +2638,6 @@ function Classroom(options) {
  * @property {classroom(v1).Teacher[]} teachers Teachers who match the list request.
  */
 /**
- * @typedef ListTopicResponse
- * @memberOf! classroom(v1)
- * @type object
- * @property {string} nextPageToken Token identifying the next page of results to return. If empty, no further results are available.
- * @property {classroom(v1).Topic[]} topic Topic items that match the request.
- */
-/**
  * @typedef Material
  * @memberOf! classroom(v1)
  * @type object
@@ -2878,15 +2787,6 @@ function Classroom(options) {
  * @property {integer} minutes Minutes of hour of day. Must be from 0 to 59.
  * @property {integer} nanos Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
  * @property {integer} seconds Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
- */
-/**
- * @typedef Topic
- * @memberOf! classroom(v1)
- * @type object
- * @property {string} courseId Identifier of the course.  Read-only.
- * @property {string} name The name of the topic, generated by the user. Leading and trailing whitespaces, if any, will be trimmed. Also, multiple consecutive whitespaces will be collapsed into one inside the name. Topic names are case sensitive, and must be no longer than 100 characters.
- * @property {string} topicId Unique identifier for the topic.  Read-only.
- * @property {string} updateTime The time the topic was last updated by the system.  Read-only.
  */
 /**
  * @typedef TurnInStudentSubmissionRequest

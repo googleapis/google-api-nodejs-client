@@ -229,9 +229,8 @@ function Cloudbilling(options) {
       /**
        * cloudbilling.billingAccounts.projects.list
        * @desc Lists the projects associated with a billing account. The current
-       * authenticated user must have the "billing.resourceAssociations.list"
-       * IAM permission, which is often given to billing account
-       * [viewers](https://support.google.com/cloud/answer/4430947).
+       * authenticated user must be an [owner of the billing
+       * account](https://support.google.com/cloud/answer/4430947).
        * @example
        * // BEFORE RUNNING:
        * // ---------------
@@ -728,11 +727,11 @@ function Cloudbilling(options) {
        *
        * @param {object} params Parameters for request
        * @param {string=} params.currencyCode The ISO 4217 currency code for the pricing info in the response proto. Will use the conversion rate as of start_time. Optional. If not specified USD will be used.
-       * @param {string=} params.endTime Optional exclusive end time of the time range for which the pricing versions will be returned. Timestamps in the future are not allowed. The time range has to be within a single calendar month in America/Los_Angeles timezone. Time range as a whole is optional. If not specified, the latest pricing will be returned (up to 12 hours old at most).
+       * @param {string=} params.endTime Optional exclusive end time of the time range for which the pricing versions will be returned. Timestamps in the future are not allowed. Maximum allowable time range is 1 month (31 days). Time range as a whole is optional. If not specified, the latest pricing will be returned (up to 12 hours old at most).
        * @param {integer=} params.pageSize Requested page size. Defaults to 5000.
        * @param {string=} params.pageToken A token identifying a page of results to return. This should be a `next_page_token` value returned from a previous `ListSkus` call. If unspecified, the first page of results is returned.
        * @param {string} params.parent The name of the service. Example: "services/DA34-426B-A397"
-       * @param {string=} params.startTime Optional inclusive start time of the time range for which the pricing versions will be returned. Timestamps in the future are not allowed. The time range has to be within a single calendar month in America/Los_Angeles timezone. Time range as a whole is optional. If not specified, the latest pricing will be returned (up to 12 hours old at most).
+       * @param {string=} params.startTime Optional inclusive start time of the time range for which the pricing versions will be returned. Timestamps in the future are not allowed. Maximum allowable time range is 1 month (31 days). Time range as a whole is optional. If not specified, the latest pricing will be returned (up to 12 hours old at most).
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object

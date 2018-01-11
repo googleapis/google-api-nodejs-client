@@ -797,7 +797,7 @@ function Cloudiot(options) {
  * @property {cloudiot(v1).Binding[]} bindings Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
  * @property {string} etag `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
  * @property {boolean} iamOwned
- * @property {integer} version Deprecated.
+ * @property {integer} version Version of the `Policy`. The default version is 0.
  */
 /**
  * @typedef PublicKeyCertificate

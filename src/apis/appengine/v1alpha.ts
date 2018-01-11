@@ -653,18 +653,6 @@ function Appengine(options) {
  * @property {string} publicCertificate PEM encoded x.509 public key certificate. This field is set once on certificate creation. Must include the header and footer. Example: &lt;pre&gt; -----BEGIN CERTIFICATE----- &lt;certificate_value&gt; -----END CERTIFICATE----- &lt;/pre&gt;
  */
 /**
- * @typedef CreateVersionMetadataV1Alpha
- * @memberOf! appengine(v1alpha)
- * @type object
- * @property {string} cloudBuildId The Cloud Build ID if one was created as part of the version create. @OutputOnly
- */
-/**
- * @typedef CreateVersionMetadataV1Beta
- * @memberOf! appengine(v1alpha)
- * @type object
- * @property {string} cloudBuildId The Cloud Build ID if one was created as part of the version create. @OutputOnly
- */
-/**
  * @typedef DomainMapping
  * @memberOf! appengine(v1alpha)
  * @type object
@@ -773,7 +761,6 @@ function Appengine(options) {
  * @typedef OperationMetadataV1Alpha
  * @memberOf! appengine(v1alpha)
  * @type object
- * @property {appengine(v1alpha).CreateVersionMetadataV1Alpha} createVersionMetadata
  * @property {string} endTime Time that this operation completed.@OutputOnly
  * @property {string} ephemeralMessage Ephemeral message that may change every time the operation is polled. @OutputOnly
  * @property {string} insertTime Time that this operation was created.@OutputOnly
@@ -786,7 +773,6 @@ function Appengine(options) {
  * @typedef OperationMetadataV1Beta
  * @memberOf! appengine(v1alpha)
  * @type object
- * @property {appengine(v1alpha).CreateVersionMetadataV1Beta} createVersionMetadata
  * @property {string} endTime Time that this operation completed.@OutputOnly
  * @property {string} ephemeralMessage Ephemeral message that may change every time the operation is polled. @OutputOnly
  * @property {string} insertTime Time that this operation was created.@OutputOnly

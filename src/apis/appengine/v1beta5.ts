@@ -950,18 +950,6 @@ function Appengine(options) {
  * @property {number} targetUtilization Target CPU utilization ratio to maintain when scaling. Must be between 0 and 1.
  */
 /**
- * @typedef CreateVersionMetadataV1Alpha
- * @memberOf! appengine(v1beta5)
- * @type object
- * @property {string} cloudBuildId The Cloud Build ID if one was created as part of the version create. @OutputOnly
- */
-/**
- * @typedef CreateVersionMetadataV1Beta
- * @memberOf! appengine(v1beta5)
- * @type object
- * @property {string} cloudBuildId The Cloud Build ID if one was created as part of the version create. @OutputOnly
- */
-/**
  * @typedef DebugInstanceRequest
  * @memberOf! appengine(v1beta5)
  * @type object
@@ -1168,7 +1156,6 @@ function Appengine(options) {
  * @typedef OperationMetadataV1Alpha
  * @memberOf! appengine(v1beta5)
  * @type object
- * @property {appengine(v1beta5).CreateVersionMetadataV1Alpha} createVersionMetadata
  * @property {string} endTime Time that this operation completed.@OutputOnly
  * @property {string} ephemeralMessage Ephemeral message that may change every time the operation is polled. @OutputOnly
  * @property {string} insertTime Time that this operation was created.@OutputOnly
@@ -1181,7 +1168,6 @@ function Appengine(options) {
  * @typedef OperationMetadataV1Beta
  * @memberOf! appengine(v1beta5)
  * @type object
- * @property {appengine(v1beta5).CreateVersionMetadataV1Beta} createVersionMetadata
  * @property {string} endTime Time that this operation completed.@OutputOnly
  * @property {string} ephemeralMessage Ephemeral message that may change every time the operation is polled. @OutputOnly
  * @property {string} insertTime Time that this operation was created.@OutputOnly

@@ -282,7 +282,6 @@ function Testing(options) {
  * @property {integer} maxDepth The max depth of the traversal stack Robo can explore. Needs to be at least 2 to make Robo explore the app beyond the first activity. Default is 50. Optional
  * @property {integer} maxSteps The max number of steps Robo can execute. Default is no limit. Optional
  * @property {testing(v1).RoboDirective[]} roboDirectives A set of directives Robo should apply during the crawl. This allows users to customize the crawl. For example, the username and password for a test account can be provided. Optional
- * @property {testing(v1).RoboStartingIntent[]} startingIntents The intents used to launch the app for the crawl. If none are provided, then the main launcher activity is launched. If some are provided, then only those provided are launched (the main launcher activity must be provided explicitly).
  */
 /**
  * @typedef AndroidRuntimeConfiguration
@@ -391,17 +390,12 @@ function Testing(options) {
  * @property {string} gcsPath The path to a directory in GCS that will eventually contain the results for this test. The requesting user must have write access on the bucket in the supplied path. Required
  */
 /**
- * @typedef LauncherActivityIntent
- * @memberOf! testing(v1)
- * @type object
- */
-/**
  * @typedef Locale
  * @memberOf! testing(v1)
  * @type object
  * @property {string} id The id for this locale. Example: &quot;en_US&quot; @OutputOnly
  * @property {string} name A human-friendly name for this language/locale. Example: &quot;English&quot; @OutputOnly
- * @property {string} region A human-friendly string representing the region for this locale. Example: &quot;United States&quot; Not present for every locale. @OutputOnly
+ * @property {string} region A human-friendy string representing the region for this locale. Example: &quot;United States&quot; Not present for every locale. @OutputOnly
  * @property {string[]} tags Tags for this dimension. Examples: &quot;default&quot;
  */
 /**
@@ -448,21 +442,6 @@ function Testing(options) {
  * @property {string} actionType The type of action that Robo should perform on the specified element. Required.
  * @property {string} inputText The text that Robo is directed to set. If left empty, the directive will be treated as a CLICK on the element matching the resource_name. Optional
  * @property {string} resourceName The android resource name of the target UI element For example,    in Java: R.string.foo    in xml: @string/foo Only the “foo” part is needed. Reference doc: https://developer.android.com/guide/topics/resources/accessing-resources.html Required
- */
-/**
- * @typedef RoboStartingIntent
- * @memberOf! testing(v1)
- * @type object
- * @property {testing(v1).LauncherActivityIntent} launcherActivity
- * @property {testing(v1).StartActivityIntent} startActivity
- */
-/**
- * @typedef StartActivityIntent
- * @memberOf! testing(v1)
- * @type object
- * @property {string} action Action name. Required for START_ACTIVITY.
- * @property {string[]} categories Intent categories to set on the intent. Optional.
- * @property {string} uri URI for the action. Optional.
  */
 /**
  * @typedef TestDetails

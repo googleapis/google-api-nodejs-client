@@ -441,7 +441,6 @@ function Adexchangebuyer2(options) {
            *
            * @param {object} params Parameters for request
            * @param {string} params.accountId The account that this creative belongs to. Can be used to filter the response of the creatives.list method.
-           * @param {string=} params.accountId1 The account the creative belongs to.
            * @param {string=} params.duplicateIdMode Indicates if multiple creatives can share an ID or not. Default is NO_DUPLICATES (one ID per creative).
            * @param {adexchangebuyer2(v2beta1).Creative} params.resource Request body data
            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -517,7 +516,7 @@ function Adexchangebuyer2(options) {
               * @param {string} params.accountId The account to list the creatives from. Specify "-" to list all creatives the current user has access to.
               * @param {integer=} params.pageSize Requested page size. The server may return fewer creatives than requested (due to timeout constraint) even if more are available via another call. If unspecified, server will pick an appropriate default. Acceptable values are 1 to 1000, inclusive.
               * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListCreativesResponse.next_page_token returned from the previous call to 'ListCreatives' method.
-              * @param {string=} params.query An optional query string to filter creatives. If no filter is specified, all active creatives will be returned. Supported queries are: <ul> <li>accountId=<i>account_id_string</i> <li>creativeId=<i>creative_id_string</i> <li>dealsStatus: {approved, conditionally_approved, disapproved,                    not_checked} <li>openAuctionStatus: {approved, conditionally_approved, disapproved,                           not_checked} <li>attribute: {a numeric attribute from the list of attributes} <li>disapprovalReason: {a reason from DisapprovalReason} </ul> Example: 'accountId=12345 AND (dealsStatus:disapproved AND disapprovalReason:unacceptable_content) OR attribute:47'
+              * @param {string=} params.query An optional query string to filter creatives. If no filter is specified, all active creatives will be returned. Supported queries are: <ul> <li>accountId=<i>account_id_string</i> <li>creativeId=<i>creative_id_string</i> <li>dealsStatus: {approved, conditionally_approved, disapproved,                    not_checked} <li>openAuctionStatus: {approved, conditionally_approved, disapproved,                           not_checked} <li>attribute: {a numeric attribute from the list of attributes} <li>disapprovalReason: {a reason from DisapprovalReason </ul> Example: 'accountId=12345 AND (dealsStatus:disapproved AND disapprovalReason:unacceptable_content) OR attribute:47'
               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
@@ -591,7 +590,6 @@ function Adexchangebuyer2(options) {
               *
               * @param {object} params Parameters for request
               * @param {string} params.accountId The account that this creative belongs to. Can be used to filter the response of the creatives.list method.
-              * @param {string=} params.accountId1 The account the creative belongs to.
               * @param {string} params.creativeId The buyer-defined creative ID of this creative. Can be used to filter the response of the creatives.list method.
               * @param {adexchangebuyer2(v2beta1).Creative} params.resource Request body data
               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2139,12 +2137,11 @@ function Adexchangebuyer2(options) {
  * @memberOf! adexchangebuyer2(v2beta1)
  * @type object
  * @property {adexchangebuyer2(v2beta1).AbsoluteDateRange} absoluteDateRange An absolute date range, defined by a start date and an end date. Interpreted relative to Pacific time zone.
- * @property {string} creativeId The ID of the creative on which to filter; optional. This field may be set only for a filter set that accesses account-level troubleshooting data, i.e. one whose name matches the `bidders/x/accounts/x/filterSets/x pattern.
- * @property {string} dealId The ID of the deal on which to filter; optional. This field may be set only for a filter set that accesses account-level troubleshooting data, i.e. one whose name matches the `bidders/x/accounts/x/filterSets/x pattern.
+ * @property {string} creativeId The ID of the creative on which to filter; optional. This field may be set only for a filter set that accesses buyer-level troubleshooting data, i.e. one whose name matches the `bidders/x/accounts/x/filterSets/x pattern.
+ * @property {string} dealId The ID of the deal on which to filter; optional. This field may be set only for a filter set that accesses buyer-level troubleshooting data, i.e. one whose name matches the `bidders/x/accounts/x/filterSets/x pattern.
  * @property {string} environment The environment on which to filter; optional.
- * @property {string} format DEPRECATED: use repeated formats field instead. The format on which to filter; optional.
- * @property {string[]} formats The list of formats on which to filter; may be empty. The filters represented by multiple formats are ORed together (i.e. if non-empty, results must match any one of the formats).
- * @property {string} name A user-defined name of the filter set. Filter set names must be unique globally and match one of the patterns:  - `bidders/x/filterSets/x (for accessing bidder-level troubleshooting data) - `bidders/x/accounts/x/filterSets/x (for accessing account-level troubleshooting data)  This field is required in create operations.
+ * @property {string} format The format on which to filter; optional.
+ * @property {string} name A user-defined name of the filter set. Filter set names must be unique globally and match one of the patterns:  - `bidders/x/filterSets/x (for accessing bidder-level troubleshooting data) - `bidders/x/accounts/x/filterSets/x (for accessing buyer-level troubleshooting data)  This field is required in create operations.
  * @property {string[]} platforms The list of platforms on which to filter; may be empty. The filters represented by multiple platforms are ORed together (i.e. if non-empty, results must match any one of the platforms).
  * @property {adexchangebuyer2(v2beta1).RealtimeTimeRange} realtimeTimeRange An open-ended realtime time range, defined by the aggregation start timestamp.
  * @property {adexchangebuyer2(v2beta1).RelativeDateRange} relativeDateRange A relative date range, defined by an offset from today and a duration. Interpreted relative to Pacific time zone.

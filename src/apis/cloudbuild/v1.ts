@@ -599,7 +599,6 @@ function Cloudbuild(options) {
  * @property {object} substitutions Substitutions data for Build resource.
  * @property {string[]} tags Tags for annotation of a Build. These are not docker tags.
  * @property {string} timeout Amount of time that this build should be allowed to run, to second granularity. If this amount of time elapses, work on the build will cease and the build status will be TIMEOUT.  Default time is ten minutes.
- * @property {object} timing Stores timing information for phases of the build. Valid keys are:  * BUILD: time to execute all build steps * PUSH: time to push all specified images. * FETCHSOURCE: time to fetch source.  If the build does not specify source, or does not specify images, these keys will not be included.
  */
 /**
  * @typedef BuildOperationMetadata
@@ -613,7 +612,7 @@ function Cloudbuild(options) {
  * @type object
  * @property {string} diskSizeGb Requested disk size for the VM that runs the build. Note that this is *NOT* &quot;disk free&quot;; some of the space will be used by the operating system and build utilities. Also note that this is the minimum disk size that will be allocated for the build -- the build may run with a larger disk than requested. At present, the maximum disk size is 1000GB; builds that request more than the maximum are rejected with an error.
  * @property {string} logStreamingOption LogStreamingOption to define build log streaming behavior to Google Cloud Storage.
- * @property {string} machineType Compute Engine machine type on which to run the build.
+ * @property {string} machineType GCE VM size to run the build on.
  * @property {string} requestedVerifyOption Requested verifiability options.
  * @property {string[]} sourceProvenanceHash Requested hash for SourceProvenance.
  * @property {string} substitutionOption SubstitutionOption to allow unmatch substitutions.
@@ -629,7 +628,6 @@ function Cloudbuild(options) {
  * @property {string} id Optional unique identifier for this build step, used in wait_for to reference this build step as a dependency.
  * @property {string} name The name of the container image that will run this particular build step.  If the image is already available in the host&#39;s Docker daemon&#39;s cache, it will be run directly. If not, the host will attempt to pull the image first, using the builder service account&#39;s credentials if necessary.  The Docker daemon&#39;s cache will already have the latest versions of all of the officially supported build steps ([https://github.com/GoogleCloudPlatform/cloud-builders](https://github.com/GoogleCloudPlatform/cloud-builders)). The Docker daemon will also have cached many of the layers for some popular images, like &quot;ubuntu&quot;, &quot;debian&quot;, but they will be refreshed at the time you attempt to use them.  If you built an image in a previous build step, it will be stored in the host&#39;s Docker daemon&#39;s cache and is available to use as the name for a later build step.
  * @property {string[]} secretEnv A list of environment variables which are encrypted using a Cloud KMS crypto key. These values must be specified in the build&#39;s secrets.
- * @property {cloudbuild(v1).TimeSpan} timing Stores timing information for executing this build step.
  * @property {cloudbuild(v1).Volume[]} volumes List of volumes to mount into the build step.  Each volume will be created as an empty volume prior to execution of the build step. Upon completion of the build, volumes and their contents will be discarded.  Using a named volume in only one step is not valid as it is indicative of a mis-configured build request.
  * @property {string[]} waitFor The ID(s) of the step(s) that this build step depends on. This build step will not start until all the build steps in wait_for have completed successfully. If wait_for is empty, this build step will start when all previous build steps in the Build.Steps list have completed successfully.
  */
@@ -652,7 +650,6 @@ function Cloudbuild(options) {
  * @type object
  * @property {string} digest Docker Registry 2.0 digest.
  * @property {string} name Name used to push the container image to Google Container Registry, as presented to `docker push`.
- * @property {cloudbuild(v1).TimeSpan} pushTiming Stores timing information for pushing the specified image.
  */
 /**
  * @typedef CancelBuildRequest
@@ -772,13 +769,6 @@ function Cloudbuild(options) {
  * @property {string} bucket Google Cloud Storage bucket containing source (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
  * @property {string} generation Google Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.
  * @property {string} object Google Cloud Storage object containing source.  This object must be a gzipped archive file (.tar.gz) containing source to build.
- */
-/**
- * @typedef TimeSpan
- * @memberOf! cloudbuild(v1)
- * @type object
- * @property {string} endTime End of time span.
- * @property {string} startTime Start of time span.
  */
 /**
  * @typedef Volume

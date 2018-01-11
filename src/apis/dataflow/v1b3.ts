@@ -1843,7 +1843,6 @@ function Dataflow(options) {
  * @typedef RuntimeEnvironment
  * @memberOf! dataflow(v1b3)
  * @type object
- * @property {string[]} additionalExperiments Additional experiment flags for the job.
  * @property {boolean} bypassTempDirValidation Whether to bypass the safety checks for the job&#39;s temporary directory. Use with caution.
  * @property {string} machineType The machine type to use for the job. Defaults to the value from the template if not specified.
  * @property {integer} maxWorkers The maximum number of Google Compute Engine instances to be made available to your pipeline during execution, from 1 to 1000.

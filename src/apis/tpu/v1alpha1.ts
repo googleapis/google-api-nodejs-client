@@ -528,17 +528,16 @@ function Tpu(options) {
  * @type object
  * @property {string} acceleratorType The type of hardware accelerators associated with this node. Required.
  * @property {string} cidrBlock The CIDR block that the TPU node will use when selecting //an IP address. This CIDR block must be a /29 block; the GCE networks API forbids a smaller block, and using a larger block would be wasteful (a node can only consume one IP address). Errors will occur if the CIDR block has already been used for a currently existing TPU node, the CIDR block conflicts with any subnetworks in the user&#39;s provided network, or the provided network is peered with another network that is using that CIDR block. Required.
- * @property {string} createTime Output only. The time when the node was created.
+ * @property {string} createTime The time when the node was created. Output only.
  * @property {string} description The user-supplied description of the TPU. Maximum of 512 characters.
- * @property {string} health The health status of the TPU node.
- * @property {string} healthDescription Output only. If this field is populated, it contains a description of why the TPU Node is unhealthy.
+ * @property {string} healthDescription If this field is populated, it contains a description of why the TPU Node is unhealthy. Output only.
  * @property {string} ipAddress Output only. DEPRECATED! Use network_endpoints instead. The network address for the TPU Node as visible to GCE instances.
- * @property {string} name Output only. The immutable name of the TPU
+ * @property {string} name The immutable name of the TPU
  * @property {string} network The name of a network they wish to peer the TPU node to. It must be a preexisting GCE network inside of the project on which this API has been activated. If none is provided, &quot;default&quot; will be used.
  * @property {tpu(v1alpha1).NetworkEndpoint[]} networkEndpoints Output only. The network endpoints where TPU workers can be accessed and sent work. It is recommended that Tensorflow clients of the node reach out to the 0th entry in this map first.
  * @property {string} port Output only. DEPRECATED! Use network_endpoints instead. The network port for the TPU Node as visible to GCE instances.
- * @property {string} serviceAccount Output only. The service account used to run the tensor flow services within the node. To share resources, including Google Cloud Storage data, with the Tensorflow job running in the Node, this account must have permissions to that data.
- * @property {string} state Output only. The current state for the TPU Node.
+ * @property {string} serviceAccount The service account used to run the tensor flow services within the node. To share resources, including Google Cloud Storage data, with the Tensorflow job running in the Node, this account must have permissions to that data. Output only.
+ * @property {string} state The current state for the TPU Node. Output only.
  * @property {string} tensorflowVersion The version of Tensorflow running in the Node. Required.
  */
 /**

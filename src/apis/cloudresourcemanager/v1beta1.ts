@@ -993,8 +993,6 @@ function Cloudresourcemanager(options) {
         * cloudresourcemanager.projects.getIamPolicy
         * @desc Returns the IAM access control policy for the specified Project.
         * Permission is denied if the policy or the resource does not exist.
-        * For additional information about resource structure and
-        * identification, see [Resource Names](/apis/design/resource_names).
         * @example
         * // BEFORE RUNNING:
         * // ---------------
@@ -1089,11 +1087,7 @@ function Cloudresourcemanager(options) {
         * cloudresourcemanager.projects.list
         * @desc Lists Projects that are visible to the user and satisfy the
         * specified filter. This method returns Projects in an unspecified
-        * order. This method is eventually consistent with project mutations;
-        * this means that a newly created project may not appear in the results
-        * or recent updates to an existing project may not be reflected in the
-        * results. To retrieve the latest state of a project, use the
-        * GetProjectmethod.
+        * order. New Projects do not necessarily appear at the end of the list.
         * @example
         * // BEFORE RUNNING:
         * // ---------------
@@ -1194,7 +1188,7 @@ function Cloudresourcemanager(options) {
     }, /**
         * cloudresourcemanager.projects.setIamPolicy
         * @desc Sets the IAM access control policy for the specified Project.
-        * Overwrites any existing policy.  The following constraints apply when
+        * Replaces any existing policy.  The following constraints apply when
         * using `setIamPolicy()`:  + Project does not support `allUsers` and
         * `allAuthenticatedUsers` as `members` in a `Binding` of a `Policy`.  +
         * The owner role can be granted only to `user` and `serviceAccount`.  +
@@ -1214,11 +1208,11 @@ function Cloudresourcemanager(options) {
         * will fail. This restriction also applies to legacy projects that no
         * longer have owners who have accepted the ToS. Edits to IAM policies
         * will be rejected until the lack of a ToS-accepting owner is rectified.
-        * + This method will replace the existing policy, and cannot be used to
-        * append additional IAM settings.  Note: Removing service accounts from
-        * policies or changing their roles can render services completely
-        * inoperable. It is important to understand how the service account is
-        * being used before removing or updating its roles.
+        * + Calling this method requires enabling the App Engine Admin API.
+        * Note: Removing service accounts from policies or changing their roles
+        * can render services completely inoperable. It is important to
+        * understand how the service account is being used before removing or
+        * updating its roles.
         * @example
         * // BEFORE RUNNING:
         * // ---------------
@@ -1699,7 +1693,7 @@ function Cloudresourcemanager(options) {
  * @property {cloudresourcemanager(v1beta1).AuditConfig[]} auditConfigs Specifies cloud audit logging configuration for this policy.
  * @property {cloudresourcemanager(v1beta1).Binding[]} bindings Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
  * @property {string} etag `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
- * @property {integer} version Deprecated.
+ * @property {integer} version Version of the `Policy`. The default version is 0.
  */
 /**
  * @typedef Project
@@ -1709,7 +1703,7 @@ function Cloudresourcemanager(options) {
  * @property {object} labels The labels associated with this Project.  Label keys must be between 1 and 63 characters long and must conform to the following regular expression: \[a-z\](\[-a-z0-9\]*\[a-z0-9\])?.  Label values must be between 0 and 63 characters long and must conform to the regular expression (\[a-z\](\[-a-z0-9\]*\[a-z0-9\])?)?.  No more than 256 labels can be associated with a given resource.  Clients should store labels in a representation such as JSON that does not depend on specific characters being disallowed.  Example: &lt;code&gt;&quot;environment&quot; : &quot;dev&quot;&lt;/code&gt; Read-write.
  * @property {string} lifecycleState The Project lifecycle state.  Read-only.
  * @property {string} name The user-assigned display name of the Project. It must be 4 to 30 characters. Allowed characters are: lowercase and uppercase letters, numbers, hyphen, single-quote, double-quote, space, and exclamation point.  Example: &lt;code&gt;My Project&lt;/code&gt; Read-write.
- * @property {cloudresourcemanager(v1beta1).ResourceId} parent An optional reference to a parent Resource.  Supported parent types include &quot;organization&quot; and &quot;folder&quot;. Once set, the parent cannot be cleared. The `parent` can be set on creation or using the `UpdateProject` method; the end user must have the `resourcemanager.projects.create` permission on the parent.  Read-write.
+ * @property {cloudresourcemanager(v1beta1).ResourceId} parent An optional reference to a parent Resource.  The only supported parent type is &quot;organization&quot;. Once set, the parent cannot be modified. The `parent` can be set on creation or using the `UpdateProject` method; the end user must have the `resourcemanager.projects.create` permission on the parent.  Read-write.
  * @property {string} projectId The unique, user-assigned ID of the Project. It must be 6 to 30 lowercase letters, digits, or hyphens. It must start with a letter. Trailing hyphens are prohibited.  Example: &lt;code&gt;tokyo-rain-123&lt;/code&gt; Read-only after creation.
  * @property {string} projectNumber The number uniquely identifying the project.  Example: &lt;code&gt;415104041262&lt;/code&gt; Read-only.
  */
