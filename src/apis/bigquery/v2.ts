@@ -2337,12 +2337,14 @@ function Bigquery(options) {
  * @typedef ExplainQueryStage
  * @memberOf! bigquery(v2)
  * @type object
+ * @property {string} completedParallelInputs Number of parallel input segments completed.
  * @property {string} computeMsAvg Milliseconds the average shard spent on CPU-bound tasks.
  * @property {string} computeMsMax Milliseconds the slowest shard spent on CPU-bound tasks.
  * @property {number} computeRatioAvg Relative amount of time the average shard spent on CPU-bound tasks.
  * @property {number} computeRatioMax Relative amount of time the slowest shard spent on CPU-bound tasks.
  * @property {string} id Unique ID for stage within plan.
  * @property {string} name Human-readable name for stage.
+ * @property {string} parallelInputs Number of parallel input segments to be processed.
  * @property {string} readMsAvg Milliseconds the average shard spent reading input.
  * @property {string} readMsMax Milliseconds the slowest shard spent reading input.
  * @property {number} readRatioAvg Relative amount of time the average shard spent reading input.
@@ -2557,11 +2559,13 @@ function Bigquery(options) {
  * @property {boolean} cacheHit [Output-only] Whether the query result was fetched from the query cache.
  * @property {string} ddlOperationPerformed [Output-only, Experimental] The DDL operation performed, possibly dependent on the pre-existence of the DDL target. Possible values (new values might be added in the future): &quot;CREATE&quot;: The query created the DDL target. &quot;SKIP&quot;: No-op. Example cases: the query is CREATE TABLE IF NOT EXISTS while the table already exists, or the query is DROP TABLE IF EXISTS while the table does not exist. &quot;REPLACE&quot;: The query replaced the DDL target. Example case: the query is CREATE OR REPLACE TABLE, and the table already exists. &quot;DROP&quot;: The query deleted the DDL target.
  * @property {bigquery(v2).TableReference} ddlTargetTable [Output-only, Experimental] The DDL target table. Present only for CREATE/DROP TABLE/VIEW queries.
+ * @property {string} estimatedBytesProcessed [Output-only] The original estimate of bytes processed for the job.
  * @property {string} numDmlAffectedRows [Output-only] The number of rows affected by a DML statement. Present only for DML statements INSERT, UPDATE or DELETE.
  * @property {bigquery(v2).ExplainQueryStage[]} queryPlan [Output-only] Describes execution plan for the query.
  * @property {bigquery(v2).TableReference[]} referencedTables [Output-only, Experimental] Referenced tables for the job. Queries that reference more than 50 tables will not have a complete list.
  * @property {bigquery(v2).TableSchema} schema [Output-only, Experimental] The schema of the results. Present only for successful dry run of non-legacy SQL queries.
- * @property {string} statementType [Output-only, Experimental] The type of query statement, if valid.
+ * @property {string} statementType [Output-only, Experimental] The type of query statement, if valid. Possible values (new values might be added in the future): &quot;SELECT&quot;: SELECT query. &quot;INSERT&quot;: INSERT query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language &quot;UPDATE&quot;: UPDATE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language &quot;DELETE&quot;: DELETE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language &quot;CREATE_TABLE&quot;: CREATE [OR REPLACE] TABLE without AS SELECT. &quot;CREATE_TABLE_AS_SELECT&quot;: CREATE [OR REPLACE] TABLE ... AS SELECT ... &quot;DROP_TABLE&quot;: DROP TABLE query. &quot;CREATE_VIEW&quot;: CREATE [OR REPLACE] VIEW ... AS SELECT ... &quot;DROP_VIEW&quot;: DROP VIEW query.
+ * @property {bigquery(v2).QueryTimelineSample[]} timeline [Output-only] Describes a timeline of job execution.
  * @property {string} totalBytesBilled [Output-only] Total bytes billed for the job.
  * @property {string} totalBytesProcessed [Output-only] Total bytes processed for the job.
  * @property {string} totalSlotMs [Output-only] Slot-milliseconds for the job.
@@ -2674,6 +2678,17 @@ function Bigquery(options) {
  * @property {string} totalRows The total number of rows in the complete query result set, which can be more than the number of rows in this single page of results.
  */
 /**
+ * @typedef QueryTimelineSample
+ * @memberOf! bigquery(v2)
+ * @type object
+ * @property {integer} activeInputs Total number of active workers. This does not correspond directly to slot usage. This is the largest value observed since the last sample.
+ * @property {integer} completedInputs Total parallel units of work completed by this query.
+ * @property {integer} completedInputsForActiveStages Total parallel units of work completed by the currently active stages.
+ * @property {string} elapsedMs Milliseconds elapsed since the start of query execution.
+ * @property {string} pendingInputs Total parallel units of work remaining for the active stages.
+ * @property {string} totalSlotMs Cumulative slot-ms consumed by the query.
+ */
+/**
  * @typedef Streamingbuffer
  * @memberOf! bigquery(v2)
  * @type object
@@ -2689,7 +2704,7 @@ function Bigquery(options) {
  * @property {string} description [Optional] A user-friendly description of this table.
  * @property {bigquery(v2).EncryptionConfiguration} encryptionConfiguration [Experimental] Custom encryption configuration (e.g., Cloud KMS keys).
  * @property {string} etag [Output-only] A hash of this resource.
- * @property {string} expirationTime [Optional] The time when this table expires, in milliseconds since the epoch. If not present, the table will persist indefinitely. Expired tables will be deleted and their storage reclaimed.
+ * @property {string} expirationTime [Optional] The time when this table expires, in milliseconds since the epoch. If not present, the table will persist indefinitely. Expired tables will be deleted and their storage reclaimed. The defaultTableExpirationMs property of the encapsulating dataset can be used to set a default expirationTime on newly created tables.
  * @property {bigquery(v2).ExternalDataConfiguration} externalDataConfiguration [Optional] Describes the data format, location, and other properties of a table stored outside of BigQuery. By defining these properties, the data source can then be queried as if it were a standard BigQuery table.
  * @property {string} friendlyName [Optional] A descriptive name for this table.
  * @property {string} id [Output-only] An opaque ID uniquely identifying the table.

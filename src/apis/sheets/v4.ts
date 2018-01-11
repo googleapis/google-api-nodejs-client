@@ -1902,6 +1902,7 @@ function Sheets(options) {
  * @typedef BasicChartSeries
  * @memberOf! sheets(v4)
  * @type object
+ * @property {sheets(v4).LineStyle} lineStyle The line style of this series. Valid only if the chartType is AREA, LINE, or SCATTER. COMBO charts are also supported if the series chart type is AREA or LINE.
  * @property {sheets(v4).ChartData} series The data being visualized in this chart series.
  * @property {string} targetAxis The minor axis that will specify the range of values for this series. For example, if charting stocks over time, the &quot;Volume&quot; series may want to be pinned to the right with the prices pinned to the left, because the scale of trading volume is different than the scale of prices. It is an error to specify an axis that isn&#39;t a valid minor axis for the chart&#39;s type.
  * @property {string} type The type of this series. Valid only if the chartType is COMBO. Different types will change the way the series is visualized. Only LINE, AREA, and COLUMN are supported.
@@ -2178,6 +2179,7 @@ function Sheets(options) {
  * @property {string} title The title of the chart.
  * @property {sheets(v4).TextFormat} titleTextFormat The title text format. Strikethrough and underline are not supported.
  * @property {sheets(v4).TextPosition} titleTextPosition The title text position. This field is optional.
+ * @property {sheets(v4).WaterfallChartSpec} waterfallChart A waterfall chart specification.
  */
 /**
  * @typedef ClearBasicFilterRequest
@@ -2612,6 +2614,13 @@ function Sheets(options) {
  * @type object
  * @property {number} convergenceThreshold When iterative calculation is enabled and successive results differ by less than this threshold value, the calculation rounds stop.
  * @property {integer} maxIterations When iterative calculation is enabled, the maximum number of calculation rounds to perform.
+ */
+/**
+ * @typedef LineStyle
+ * @memberOf! sheets(v4)
+ * @type object
+ * @property {string} type The dash type of the line.
+ * @property {integer} width The thickness of the line, in px.
  */
 /**
  * @typedef MatchedDeveloperMetadata
@@ -3163,6 +3172,50 @@ function Sheets(options) {
  * @property {string} majorDimension The major dimension of the values.  For output, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` will return `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` will return `[[1,3],[2,4]]`.  For input, with `range=A1:B2,majorDimension=ROWS` then `[[1,2],[3,4]]` will set `A1=1,B1=2,A2=3,B2=4`. With `range=A1:B2,majorDimension=COLUMNS` then `[[1,2],[3,4]]` will set `A1=1,B1=3,A2=2,B2=4`.  When writing, if this field is not set, it defaults to ROWS.
  * @property {string} range The range the values cover, in A1 notation. For output, this range indicates the entire requested range, even though the values will exclude trailing rows and columns. When appending values, this field represents the range to search for a table, after which values will be appended.
  * @property {array[]} values The data that was read or to be written.  This is an array of arrays, the outer array representing all the data and each inner array representing a major dimension. Each item in the inner array corresponds with one cell.  For output, empty trailing rows and columns will not be included.  For input, supported value types are: bool, string, and double. Null values will be skipped. To set a cell to an empty value, set the string value to an empty string.
+ */
+/**
+ * @typedef WaterfallChartColumnStyle
+ * @memberOf! sheets(v4)
+ * @type object
+ * @property {sheets(v4).Color} color The color of the column.
+ * @property {string} label The label of the column&#39;s legend.
+ */
+/**
+ * @typedef WaterfallChartCustomSubtotal
+ * @memberOf! sheets(v4)
+ * @type object
+ * @property {boolean} dataIsSubtotal True if the data point at subtotal_index is the subtotal. If false, the subtotal will be computed and appear after the data point.
+ * @property {string} label A label for the subtotal column.
+ * @property {integer} subtotalIndex The 0-based index of a data point within the series. If data_is_subtotal is true, the data point at this index is the subtotal. Otherwise, the subtotal appears after the data point with this index. A series can have multiple subtotals at arbitrary indices, but subtotals do not affect the indices of the data points. For example, if a series has 3 data points, their indices will always be 0, 1, and 2, regardless of how many subtotals exist on the series or what data points they are associated with.
+ */
+/**
+ * @typedef WaterfallChartDomain
+ * @memberOf! sheets(v4)
+ * @type object
+ * @property {sheets(v4).ChartData} data The data of the WaterfallChartDomain.
+ * @property {boolean} reversed True to reverse the order of the domain values (horizontal axis).
+ */
+/**
+ * @typedef WaterfallChartSeries
+ * @memberOf! sheets(v4)
+ * @type object
+ * @property {sheets(v4).WaterfallChartCustomSubtotal[]} customSubtotals Custom subtotal columns appearing in this series. The order in which subtotals are defined is not significant. Only one subtotal may be defined for each data point.
+ * @property {sheets(v4).ChartData} data The data being visualized in this series.
+ * @property {boolean} hideTrailingSubtotal True to hide the subtotal column from the end of the series. By default, a subtotal column will appear at the end of each series. Setting this field to true will hide that subtotal column for this series.
+ * @property {sheets(v4).WaterfallChartColumnStyle} negativeColumnsStyle Styles for all columns in this series with negative values.
+ * @property {sheets(v4).WaterfallChartColumnStyle} positiveColumnsStyle Styles for all columns in this series with positive values.
+ * @property {sheets(v4).WaterfallChartColumnStyle} subtotalColumnsStyle Styles for all subtotal columns in this series.
+ */
+/**
+ * @typedef WaterfallChartSpec
+ * @memberOf! sheets(v4)
+ * @type object
+ * @property {sheets(v4).LineStyle} connectorLineStyle The line style for the connector lines.
+ * @property {sheets(v4).WaterfallChartDomain} domain The domain data (horizontal axis) for the waterfall chart.
+ * @property {boolean} firstValueIsTotal True to interpret the first value as a total.
+ * @property {boolean} hideConnectorLines True to hide connector lines between columns.
+ * @property {sheets(v4).WaterfallChartSeries[]} series The data this waterfall chart is visualizing.
+ * @property {string} stackedType The stacked type.
  */
 
 export = Sheets;

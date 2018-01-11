@@ -123,7 +123,9 @@ function Streetviewpublish(options) {
         * @desc Gets the metadata of the specified Photo.  This method returns
         * the following error codes:  * google.rpc.Code.PERMISSION_DENIED if the
         * requesting user did not create the requested Photo. *
-        * google.rpc.Code.NOT_FOUND if the requested Photo does not exist.
+        * google.rpc.Code.NOT_FOUND if the requested Photo does not exist. *
+        * google.rpc.Code.UNAVAILABLE if the requested Photo is still being
+        * indexed.
         * @alias streetviewpublish.photo.get
         * @memberOf! streetviewpublish(v1)
         *
@@ -214,7 +216,8 @@ function Streetviewpublish(options) {
         * google.rpc.Code.PERMISSION_DENIED if the requesting user did not
         * create the requested photo. * google.rpc.Code.INVALID_ARGUMENT if the
         * request is malformed. * google.rpc.Code.NOT_FOUND if the requested
-        * photo does not exist.
+        * photo does not exist. * google.rpc.Code.UNAVAILABLE if the requested
+        * Photo is still being indexed.
         * @alias streetviewpublish.photo.update
         * @memberOf! streetviewpublish(v1)
         *
@@ -379,7 +382,9 @@ function Streetviewpublish(options) {
       return createAPIRequest(parameters, callback);
     }, /**
         * streetviewpublish.photos.list
-        * @desc Lists all the Photos that belong to the user.
+        * @desc Lists all the Photos that belong to the user.  <aside
+        * class="note"><b>Note:</b> Recently created photos that are still being
+        * indexed are not returned in the response.</aside>
         * @alias streetviewpublish.photos.list
         * @memberOf! streetviewpublish(v1)
         *

@@ -1834,6 +1834,13 @@ function Monitoring(options) {
  * @property {string} type Required. The monitored resource type. For example, the type &quot;cloudsql_database&quot; represents databases in Google Cloud SQL. The maximum length of this value is 256 characters.
  */
 /**
+ * @typedef MonitoredResourceMetadata
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {object} systemLabels Output only. Values for predefined system metadata labels. System labels are a kind of metadata extracted by Google Stackdriver. Stackdriver determines what system labels are useful and how to obtain their values. Some examples: &quot;machine_image&quot;, &quot;vpc&quot;, &quot;subnet_id&quot;, &quot;security_group&quot;, &quot;name&quot;, etc. System label values can be only strings, Boolean values, or a list of strings. For example: { &quot;name&quot;: &quot;my-test-instance&quot;,   &quot;security_group&quot;: [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;],   &quot;spot_instance&quot;: false }
+ * @property {object} userLabels Output only. A map of user-defined metadata labels.
+ */
+/**
  * @typedef Option
  * @memberOf! monitoring(v3)
  * @type object
@@ -1892,6 +1899,7 @@ function Monitoring(options) {
  * @typedef TimeSeries
  * @memberOf! monitoring(v3)
  * @type object
+ * @property {monitoring(v3).MonitoredResourceMetadata} metadata Output only. The associated monitored resource metadata. When reading a a timeseries, this field will include metadata labels that are explicitly named in the reduction. When creating a timeseries, this field is ignored.
  * @property {monitoring(v3).Metric} metric The associated metric. A fully-specified metric used to identify the time series.
  * @property {string} metricKind The metric kind of the time series. When listing time series, this metric kind might be different from the metric kind of the associated metric if this time series is an alignment or reduction of other time series.When creating a time series, this field is optional. If present, it must be the same as the metric kind of the associated metric. If the associated metric&#39;s descriptor must be auto-created, then this field specifies the metric kind of the new descriptor and must be either GAUGE (the default) or CUMULATIVE.
  * @property {monitoring(v3).Point[]} points The data points of this time series. When listing time series, the order of the points is specified by the list method.When creating a time series, this field must contain exactly one point and the point&#39;s type must be the same as the value type of the associated metric. If the associated metric&#39;s descriptor must be auto-created, then the value type of the descriptor is determined by the point&#39;s type, which must be BOOL, INT64, DOUBLE, or DISTRIBUTION.
@@ -1926,7 +1934,8 @@ function Monitoring(options) {
  * @property {monitoring(v3).ContentMatcher[]} contentMatchers The expected content on the page the check is run against. Currently, only the first entry in the list is supported, and other entries will be ignored. The server will look for an exact match of the string in the page response&#39;s content. This field is optional and should only be specified if a content match is required.
  * @property {string} displayName A human-friendly name for the uptime check configuration. The display name should be unique within a Stackdriver Account in order to make it easier to identify; however, uniqueness is not enforced. Required.
  * @property {monitoring(v3).HttpCheck} httpCheck Contains information needed to make an HTTP or HTTPS check.
- * @property {monitoring(v3).InternalChecker[]} internalCheckers The internal checkers that this check will egress from.
+ * @property {monitoring(v3).InternalChecker[]} internalCheckers The internal checkers that this check will egress from. If is_internal is true and this list is empty, the check will egress from all InternalCheckers configured for the project that owns this CheckConfig.
+ * @property {boolean} isInternal Denotes whether this is a check that egresses from InternalCheckers.
  * @property {monitoring(v3).MonitoredResource} monitoredResource The monitored resource associated with the configuration.
  * @property {string} name A unique resource name for this UptimeCheckConfig. The format is:projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].This field should be omitted when creating the uptime check configuration; on create, the resource name is assigned by the server and included in the response.
  * @property {string} period How often the uptime check is performed. Currently, only 1, 5, 10, and 15 minutes are supported. Required.

@@ -3643,6 +3643,7 @@ function Youtube(options) {
  * @property {string} boundStreamId This value uniquely identifies the live stream bound to the broadcast.
  * @property {string} boundStreamLastUpdateTimeMs The date and time that the live stream referenced by boundStreamId was last updated.
  * @property {string} closedCaptionsType
+ * @property {boolean} enableAutoStart This setting indicates whether auto start is enabled for this broadcast.
  * @property {boolean} enableClosedCaptions This setting indicates whether HTTP POST closed captioning is enabled for this broadcast. The ingestion URL of the closed captions is returned through the liveStreams API. This is mutually exclusive with using the closed_captions_type property, and is equivalent to setting closed_captions_type to CLOSED_CAPTIONS_HTTP_POST.
  * @property {boolean} enableContentEncryption This setting indicates whether YouTube should enable content encryption for the broadcast.
  * @property {boolean} enableDvr This setting determines whether viewers can access DVR controls while watching the video. DVR controls enable the viewer to control the video playback experience by pausing, rewinding, or fast forwarding content. The default value for this property is true.    Important: You must set the value to true and also set the enableArchive property&#39;s value to true if you want to make playback available immediately after the broadcast ends.

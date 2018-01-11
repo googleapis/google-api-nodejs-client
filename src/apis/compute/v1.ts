@@ -3597,7 +3597,8 @@ function Compute(options) {
           return createAPIRequest(parameters, callback);
         }, /**
             * compute.disks.resize
-            * @desc Resizes the specified persistent disk.
+            * @desc Resizes the specified persistent disk. You can only increase
+            * the size of the disk.
             * @example
             * // BEFORE RUNNING:
             * // ---------------
@@ -16249,7 +16250,8 @@ function Compute(options) {
         }, /**
             * compute.networks.patch
             * @desc Patches the specified network with the data included in the
-            * request.
+            * request. Only the following fields can be modified:
+            * routingConfig.routingMode.
             * @example
             * // BEFORE RUNNING:
             * // ---------------
@@ -30677,7 +30679,7 @@ function Compute(options) {
  * @property {string} region [Output Only] URL of the region where the regional address resides. This field is not applicable to global addresses.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} status [Output Only] The status of the address, which can be one of RESERVING, RESERVED, or IN_USE. An address that is RESERVING is currently in the process of being reserved. A RESERVED address is currently reserved and available to use. An IN_USE address is currently being used by another resource and is not available.
- * @property {string} subnetwork For external addresses, this field should not be used.  The URL of the subnetwork in which to reserve the address. If an IP address is specified, it must be within the subnetwork&#39;s IP range.
+ * @property {string} subnetwork The URL of the subnetwork in which to reserve the address. If an IP address is specified, it must be within the subnetwork&#39;s IP range. This field can only be used with INTERNAL type with GCE_ENDPOINT/DNS_RESOLVER purposes.
  * @property {string[]} users [Output Only] The URLs of the resources that are using this address.
  */
 /**
@@ -31246,7 +31248,7 @@ function Compute(options) {
  * @typedef GuestOsFeature
  * @memberOf! compute(v1)
  * @type object
- * @property {string} type The type of supported feature. Currently only VIRTIO_SCSI_MULTIQUEUE is supported. For newer Windows images, the server might also populate this property with the value WINDOWS to indicate that this is a Windows image.
+ * @property {string} type The ID of a supported feature. Read  Enabling guest operating system features to see a list of available options.
  */
 /**
  * @typedef HealthCheck
@@ -31390,7 +31392,7 @@ function Compute(options) {
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
  * @property {string} diskSizeGb Size of the image when restored onto a persistent disk (in GB).
  * @property {string} family The name of the image family to which this image belongs. You can create disks by specifying an image family instead of a specific image name. The image family always returns its latest image that is not deprecated. The name of the image family must comply with RFC1035.
- * @property {compute(v1).GuestOsFeature[]} guestOsFeatures A list of features to enable on the guest OS. Applicable for bootable images only. Currently, only one feature can be enabled, VIRTIO_SCSI_MULTIQUEUE, which allows each virtual CPU to have its own queue. For Windows images, you can only enable VIRTIO_SCSI_MULTIQUEUE on images with driver version 1.2.0.1621 or higher. Linux images with kernel versions 3.17 and higher will support VIRTIO_SCSI_MULTIQUEUE.  For newer Windows images, the server might also populate this property with the value WINDOWS to indicate that this is a Windows image.
+ * @property {compute(v1).GuestOsFeature[]} guestOsFeatures A list of features to enable on the guest operating system. Applicable only for bootable images. Read  Enabling guest operating system features to see a list of available options.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {compute(v1).CustomerEncryptionKey} imageEncryptionKey Encrypts the image using a customer-supplied encryption key.  After you encrypt an image with a customer-supplied key, you must provide the same key if you use the image later (e.g. to create a disk from the image).  Customer-supplied encryption keys do not protect access to metadata of the disk.  If you do not provide an encryption key when creating the image, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the image later.
  * @property {string} kind [Output Only] Type of the resource. Always compute#image for images.
