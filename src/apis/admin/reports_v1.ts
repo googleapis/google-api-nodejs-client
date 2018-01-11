@@ -208,53 +208,6 @@ function Admin(options) {
     }
 
   };
-  self.entityUsageReports = {
-    /**
-     * reports.entityUsageReports.get
-     * @desc Retrieves a report which is a collection of properties / statistics
-     * for a set of objects.
-     * @alias reports.entityUsageReports.get
-     * @memberOf! admin(reports_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.customerId Represents the customer for which the data is to be fetched.
-     * @param {string} params.date Represents the date in yyyy-mm-dd format for which the data is to be fetched.
-     * @param {string} params.entityKey Represents the key of object for which the data should be filtered.
-     * @param {string} params.entityType Type of object. Should be one of - gplus_communities.
-     * @param {string=} params.filters Represents the set of filters including parameter operator value.
-     * @param {integer=} params.maxResults Maximum number of results to return. Maximum allowed is 1000
-     * @param {string=} params.pageToken Token to specify next page.
-     * @param {string=} params.parameters Represents the application name, parameter name pairs to fetch in csv as app_name1:param_name1, app_name2:param_name2.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/admin/reports/v1/usage/{entityType}/{entityKey}/dates/{date}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['entityType', 'entityKey', 'date'],
-        pathParams: ['date', 'entityKey', 'entityType'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
   self.userUsageReport = {
     /**
      * reports.userUsageReport.get

@@ -316,18 +316,13 @@ function Cloudfunctions(options) {
             * https://cloud.google.com/storage/docs/access-control/signed-urls
             * Once the function source code upload is complete, the used signed
             * URL should be provided in CreateFunction or UpdateFunction request
-            * as a reference to the function source code.  When uploading source
-            * code to the generated signed URL, please follow these
-            * restrictions:  * Source file type should be a zip file. * Source
-            * file size should not exceed 100MB limit.  When making a HTTP PUT
-            * request, these two headers need to be specified:  * `content-type:
-            * application/zip` * `x-google-content-length-range: 0,104857600`
+            * as a reference to the function source code.
             * @alias
             * cloudfunctions.projects.locations.functions.generateUploadUrl
             * @memberOf! cloudfunctions(v1beta2)
             *
             * @param {object} params Parameters for request
-            * @param {string} params.parent The project and location in which the Google Cloud Storage signed URL should be generated, specified in the format `projects/x/locations/x`.
+            * @param {string} params.parent The project and location in which the Google Cloud Storage signed URL should be generated, specified in the format `projects/x/locations/x
             * @param {cloudfunctions(v1beta2).GenerateUploadUrlRequest} params.resource Request body data
             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
             * @param {callback} callback The callback that handles the response.
@@ -508,7 +503,7 @@ function Cloudfunctions(options) {
  * @typedef EventTrigger
  * @memberOf! cloudfunctions(v1beta2)
  * @type object
- * @property {string} eventType `event_type` names contain the service that is sending an event and the kind of event that was fired. Must be of the form `providers/x/eventTypes/x e.g. Directly handle a Message published to Google Cloud Pub/Sub `providers/cloud.pubsub/eventTypes/topic.publish`.  Handle an object changing in Google Cloud Storage: `providers/cloud.storage/eventTypes/object.change`  Handle a write to the Firebase Realtime Database: `providers/google.firebase.database/eventTypes/ref.write`
+ * @property {string} eventType `event_type` names contain the service that is sending an event and the kind of event that was fired. Must be of the form `providers/x/eventTypes/x e.g. Directly handle a Message published to Google Cloud Pub/Sub `providers/cloud.pubsub/eventTypes/topic.publish`       Handle an object changing in Google Cloud Storage      `providers/cloud.storage/eventTypes/object.change`       Handle a write to the Firebase Realtime Database      `providers/google.firebase.database/eventTypes/ref.write`
  * @property {cloudfunctions(v1beta2).FailurePolicy} failurePolicy Specifies policy for failed executions.
  * @property {string} resource Which instance of the source&#39;s service should send events. E.g. for Pub/Sub this would be a Pub/Sub topic at `projects/x/topics/x. For Google Cloud Storage this would be a bucket at `projects/x/buckets/x. For any source that only supports one instance per-project, this should be the name of the project (`projects/x)
  * @property {string} service The hostname of the service that should be observed.  If no string is provided, the default service implementing the API will be used. For example, `storage.googleapis.com` is the default for all event types in the `google.storage` namespace.

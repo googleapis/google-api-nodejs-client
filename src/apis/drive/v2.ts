@@ -44,7 +44,7 @@ function Drive(options) {
      * @memberOf! drive(v2)
      *
      * @param {object=} params Parameters for request
-     * @param {boolean=} params.includeSubscribed Whether to count changes outside the My Drive hierarchy. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive will be omitted from the maxChangeIdCount.
+     * @param {boolean=} params.includeSubscribed When calculating the number of remaining change IDs, whether to include public files the user has opened and shared files. When set to false, this counts only change IDs for owned files and any shared or public files that the user has explicitly added to a folder they own.
      * @param {string=} params.maxChangeIdCount Maximum number of remaining change IDs to count
      * @param {string=} params.startChangeId Change ID to start counting from when calculating number of remaining change IDs
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -148,8 +148,7 @@ function Drive(options) {
   self.changes = {
     /**
      * drive.changes.get
-     * @desc Deprecated - Use changes.getStartPageToken and changes.list to
-     * retrieve recent changes.
+     * @desc Gets a specific change.
      * @alias drive.changes.get
      * @memberOf! drive(v2)
      *
@@ -225,12 +224,12 @@ function Drive(options) {
         * @param {object=} params Parameters for request
         * @param {boolean=} params.includeCorpusRemovals Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
         * @param {boolean=} params.includeDeleted Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
-        * @param {boolean=} params.includeSubscribed Whether to include changes outside the My Drive hierarchy in the result. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive will be omitted from the result.
+        * @param {boolean=} params.includeSubscribed Whether to include public files the user has opened and shared files. When set to false, the list only includes owned files plus any shared or public files the user has explicitly added to a folder they own.
         * @param {boolean=} params.includeTeamDriveItems Whether Team Drive files or changes should be included in results.
         * @param {integer=} params.maxResults Maximum number of changes to return.
         * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
         * @param {string=} params.spaces A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
-        * @param {string=} params.startChangeId Deprecated - use pageToken instead.
+        * @param {string=} params.startChangeId Change ID to start listing changes from.
         * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
         * @param {string=} params.teamDriveId The Team Drive from which changes will be returned. If specified the change IDs will be reflective of the Team Drive; use the combined Team Drive ID and change ID as an identifier.
         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -267,12 +266,12 @@ function Drive(options) {
         * @param {object} params Parameters for request
         * @param {boolean=} params.includeCorpusRemovals Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
         * @param {boolean=} params.includeDeleted Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
-        * @param {boolean=} params.includeSubscribed Whether to include changes outside the My Drive hierarchy in the result. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive will be omitted from the result.
+        * @param {boolean=} params.includeSubscribed Whether to include public files the user has opened and shared files. When set to false, the list only includes owned files plus any shared or public files the user has explicitly added to a folder they own.
         * @param {boolean=} params.includeTeamDriveItems Whether Team Drive files or changes should be included in results.
         * @param {integer=} params.maxResults Maximum number of changes to return.
         * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
         * @param {string=} params.spaces A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
-        * @param {string=} params.startChangeId Deprecated - use pageToken instead.
+        * @param {string=} params.startChangeId Change ID to start listing changes from.
         * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
         * @param {string=} params.teamDriveId The Team Drive from which changes will be returned. If specified the change IDs will be reflective of the Team Drive; use the combined Team Drive ID and change ID as an identifier.
         * @param {drive(v2).Channel} params.resource Request body data
@@ -1025,7 +1024,7 @@ function Drive(options) {
         * @param {string=} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
         * @param {boolean=} params.pinned Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
         * @param {string=} params.removeParents Comma-separated list of parent IDs to remove.
-        * @param {boolean=} params.setModifiedDate Whether to set the modified date using the value supplied in the request body. Setting this field to true is equivalent to modifiedDateBehavior=fromBodyOrNow, and false is equivalent to modifiedDateBehavior=now. To prevent any changes to the modified date set modifiedDateBehavior=noChange.
+        * @param {boolean=} params.setModifiedDate Whether to set the modified date with the supplied modified date.
         * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
         * @param {string=} params.timedTextLanguage The language of the timed text.
         * @param {string=} params.timedTextTrackName The timed text track name.
@@ -1176,7 +1175,7 @@ function Drive(options) {
         * @param {string=} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
         * @param {boolean=} params.pinned Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
         * @param {string=} params.removeParents Comma-separated list of parent IDs to remove.
-        * @param {boolean=} params.setModifiedDate Whether to set the modified date using the value supplied in the request body. Setting this field to true is equivalent to modifiedDateBehavior=fromBodyOrNow, and false is equivalent to modifiedDateBehavior=now. To prevent any changes to the modified date set modifiedDateBehavior=noChange.
+        * @param {boolean=} params.setModifiedDate Whether to set the modified date with the supplied modified date.
         * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
         * @param {string=} params.timedTextLanguage The language of the timed text.
         * @param {string=} params.timedTextTrackName The timed text track name.
@@ -1510,7 +1509,7 @@ function Drive(options) {
         * @memberOf! drive(v2)
         *
         * @param {object} params Parameters for request
-        * @param {string=} params.emailMessage A plain text custom message to include in notification emails.
+        * @param {string=} params.emailMessage A custom message to include in notification emails.
         * @param {string} params.fileId The ID for the file or Team Drive.
         * @param {boolean=} params.sendNotificationEmails Whether to send notification emails when sharing to users or groups. This parameter is ignored and an email is sent if the role is owner.
         * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.

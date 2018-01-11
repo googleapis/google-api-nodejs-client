@@ -148,43 +148,6 @@ function Safebrowsing(options) {
     }
 
   };
-  self.threatHits = {
-    /**
-     * safebrowsing.threatHits.create
-     * @desc Reports a Safe Browsing threat list hit to Google. Only projects
-     * with TRUSTED_REPORTER visibility can use this method.
-     * @alias safebrowsing.threatHits.create
-     * @memberOf! safebrowsing(v4)
-     *
-     * @param {object} params Parameters for request
-     * @param {safebrowsing(v4).ThreatHit} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    create(params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://safebrowsing.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v4/threatHits').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
   self.threatLists = {
     /**
      * safebrowsing.threatLists.list
@@ -319,11 +282,6 @@ function Safebrowsing(options) {
  * @property {string[]} supportedCompressions The compression types supported by the client.
  */
 /**
- * @typedef Empty
- * @memberOf! safebrowsing(v4)
- * @type object
- */
-/**
  * @typedef FetchThreatListUpdatesRequest
  * @memberOf! safebrowsing(v4)
  * @type object
@@ -450,17 +408,6 @@ function Safebrowsing(options) {
  * @property {safebrowsing(v4).RiceDeltaEncoding} riceIndices The encoded local, lexicographically-sorted list indices, using a Golomb-Rice encoding. Used for sending compressed removal indices. The removal indices (uint32) are sorted in ascending order, then delta encoded and stored as encoded_data.
  */
 /**
- * @typedef ThreatHit
- * @memberOf! safebrowsing(v4)
- * @type object
- * @property {safebrowsing(v4).ClientInfo} clientInfo Client-reported identification.
- * @property {safebrowsing(v4).ThreatEntry} entry The threat entry responsible for the hit. Full hash should be reported for hash-based hits.
- * @property {string} platformType The platform type reported.
- * @property {safebrowsing(v4).ThreatSource[]} resources The resources related to the threat hit.
- * @property {string} threatType The threat type reported.
- * @property {safebrowsing(v4).UserInfo} userInfo Details about the user that encountered the threat.
- */
-/**
  * @typedef ThreatInfo
  * @memberOf! safebrowsing(v4)
  * @type object
@@ -487,22 +434,6 @@ function Safebrowsing(options) {
  * @property {safebrowsing(v4).ThreatEntryMetadata} threatEntryMetadata Optional metadata associated with this threat.
  * @property {string} threatEntryType The threat entry type matching this threat.
  * @property {string} threatType The threat type matching this threat.
- */
-/**
- * @typedef ThreatSource
- * @memberOf! safebrowsing(v4)
- * @type object
- * @property {string} referrer Referrer of the resource. Only set if the referrer is available.
- * @property {string} remoteIp The remote IP of the resource in ASCII format. Either IPv4 or IPv6.
- * @property {string} type The type of source reported.
- * @property {string} url The URL of the resource.
- */
-/**
- * @typedef UserInfo
- * @memberOf! safebrowsing(v4)
- * @type object
- * @property {string} regionCode The UN M.49 region code associated with the user&#39;s location.
- * @property {string} userId Unique user identifier defined by the client.
  */
 
 export = Safebrowsing;

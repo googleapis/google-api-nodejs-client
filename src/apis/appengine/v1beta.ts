@@ -1646,7 +1646,7 @@ function Appengine(options) {
  * @typedef AutomaticScaling
  * @memberOf! appengine(v1beta)
  * @type object
- * @property {string} coolDownPeriod Amount of time that the Autoscaler (https://cloud.google.com/compute/docs/autoscaler/) should wait between changes to the number of virtual machines. Only applicable in the App Engine flexible environment.
+ * @property {string} coolDownPeriod Amount of time that the Autoscaler (https://cloud.google.com/compute/docs/autoscaler/) should wait between changes to the number of virtual machines. Only applicable for VM runtimes.
  * @property {appengine(v1beta).CpuUtilization} cpuUtilization Target scaling by CPU usage.
  * @property {appengine(v1beta).DiskUtilization} diskUtilization Target scaling by disk usage.
  * @property {integer} maxConcurrentRequests Number of concurrent requests an automatic scaling instance can accept before the scheduler spawns a new instance.Defaults to a runtime-specific value.
@@ -1693,13 +1693,6 @@ function Appengine(options) {
  * @property {string} publicCertificate PEM encoded x.509 public key certificate. This field is set once on certificate creation. Must include the header and footer. Example: &lt;pre&gt; -----BEGIN CERTIFICATE----- &lt;certificate_value&gt; -----END CERTIFICATE----- &lt;/pre&gt;
  */
 /**
- * @typedef CloudBuildOptions
- * @memberOf! appengine(v1beta)
- * @type object
- * @property {string} appYamlPath Path to the yaml file used in deployment, used to determine runtime configuration details.Required for flexible environment builds.See https://cloud.google.com/appengine/docs/standard/python/config/appref for more details.
- * @property {string} cloudBuildTimeout The Cloud Build timeout used as part of any dependent builds performed by version creation. Defaults to 10 minutes.
- */
-/**
  * @typedef ContainerInfo
  * @memberOf! appengine(v1beta)
  * @type object
@@ -1713,18 +1706,6 @@ function Appengine(options) {
  * @property {number} targetUtilization Target CPU utilization ratio to maintain when scaling. Must be between 0 and 1.
  */
 /**
- * @typedef CreateVersionMetadataV1Alpha
- * @memberOf! appengine(v1beta)
- * @type object
- * @property {string} cloudBuildId The Cloud Build ID if one was created as part of the version create. @OutputOnly
- */
-/**
- * @typedef CreateVersionMetadataV1Beta
- * @memberOf! appengine(v1beta)
- * @type object
- * @property {string} cloudBuildId The Cloud Build ID if one was created as part of the version create. @OutputOnly
- */
-/**
  * @typedef DebugInstanceRequest
  * @memberOf! appengine(v1beta)
  * @type object
@@ -1735,7 +1716,6 @@ function Appengine(options) {
  * @memberOf! appengine(v1beta)
  * @type object
  * @property {appengine(v1beta).BuildInfo} build Google Cloud Container Builder build information.
- * @property {appengine(v1beta).CloudBuildOptions} cloudBuildOptions Options for any Google Cloud Container Builder builds created as a part of this deployment.Note that this is orthogonal to the build parameter, where the deployment depends on an already existing cloud build. These options will only be used if a new build is created, such as when deploying to the App Engine flexible environment using files or zip.
  * @property {appengine(v1beta).ContainerInfo} container The Docker image for the container that runs the version. Only applicable for instances running in the App Engine flexible environment.
  * @property {object} files Manifest of the files stored in Google Cloud Storage that are included as part of this version. All files must be readable using the credentials supplied with this call.
  * @property {appengine(v1beta).ZipInfo} zip The zip file for this deployment, if this is a zip deployment.
@@ -1959,8 +1939,8 @@ function Appengine(options) {
  * @typedef Network
  * @memberOf! appengine(v1beta)
  * @type object
- * @property {string[]} forwardedPorts List of ports, or port pairs, to forward from the virtual machine to the application container. Only applicable in the App Engine flexible environment.
- * @property {string} instanceTag Tag to apply to the VM instance during creation. for Only applicable in the App Engine flexible environment.
+ * @property {string[]} forwardedPorts List of ports, or port pairs, to forward from the virtual machine to the application container. Only applicable for App Engine flexible environment versions.
+ * @property {string} instanceTag Tag to apply to the VM instance during creation. Only applicable for for App Engine flexible environment versions.
  * @property {string} name Google Compute Engine network where the virtual machines are created. Specify the short name, not the resource path.Defaults to default.
  * @property {string} subnetworkName Google Cloud Platform sub-network where the virtual machines are created. Specify the short name, not the resource path.If a subnetwork name is specified, a network name will also be required unless it is for the default network. If the network the VM instance is being created in is a Legacy network, then the IP address is allocated from the IPv4Range. If the network the VM instance is being created in is an auto Subnet Mode Network, then only network name should be specified (not the subnetwork_name) and the IP address is created from the IPCidrRange of the subnetwork that exists in that zone for that network. If the network the VM instance is being created in is a custom Subnet Mode Network, then the subnetwork_name must be specified and the IP address is created from the IPCidrRange of the subnetwork.If specified, the subnetwork must exist in the same region as the App Engine flexible environment application.
  */
@@ -2010,7 +1990,6 @@ function Appengine(options) {
  * @typedef OperationMetadataV1Alpha
  * @memberOf! appengine(v1beta)
  * @type object
- * @property {appengine(v1beta).CreateVersionMetadataV1Alpha} createVersionMetadata
  * @property {string} endTime Time that this operation completed.@OutputOnly
  * @property {string} ephemeralMessage Ephemeral message that may change every time the operation is polled. @OutputOnly
  * @property {string} insertTime Time that this operation was created.@OutputOnly
@@ -2023,7 +2002,6 @@ function Appengine(options) {
  * @typedef OperationMetadataV1Beta
  * @memberOf! appengine(v1beta)
  * @type object
- * @property {appengine(v1beta).CreateVersionMetadataV1Beta} createVersionMetadata
  * @property {string} endTime Time that this operation completed.@OutputOnly
  * @property {string} ephemeralMessage Ephemeral message that may change every time the operation is polled. @OutputOnly
  * @property {string} insertTime Time that this operation was created.@OutputOnly
@@ -2109,8 +2087,8 @@ function Appengine(options) {
  * @typedef StandardSchedulerSettings
  * @memberOf! appengine(v1beta)
  * @type object
- * @property {integer} maxInstances Maximum number of instances for an app version. Set to zero to disable max_instances configuration.
- * @property {integer} minInstances Minimum number of instances for an app version. Set to zero to disable min_instances configuration.
+ * @property {integer} maxInstances Maximum number of instances for an app version. Set to a non-positive value (0 by convention) to disable max_instances configuration.
+ * @property {integer} minInstances Minimum number of instances for an app version. Set to a non-positive value (0 by convention) to disable min_instances configuration.
  * @property {number} targetCpuUtilization Target CPU utilization ratio to maintain when scaling.
  * @property {number} targetThroughputUtilization Target throughput utilization ratio to maintain when scaling
  */
@@ -2174,13 +2152,13 @@ function Appengine(options) {
  * @property {string} createTime Time that this version was created.@OutputOnly
  * @property {string} defaultExpiration Duration that static files should be cached by web proxies and browsers. Only applicable if the corresponding StaticFilesHandler (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#staticfileshandler) does not specify its own expiration time.Only returned in GET requests if view=FULL is set.
  * @property {appengine(v1beta).Deployment} deployment Code and application artifacts that make up this version.Only returned in GET requests if view=FULL is set.
- * @property {string} diskUsageBytes Total size in bytes of all the files that are included in this version and currently hosted on the App Engine disk.@OutputOnly
+ * @property {string} diskUsageBytes Total size in bytes of all the files that are included in this version and curerntly hosted on the App Engine disk.@OutputOnly
  * @property {appengine(v1beta).EndpointsApiService} endpointsApiService Cloud Endpoints configuration.If endpoints_api_service is set, the Cloud Endpoints Extensible Service Proxy will be provided to serve the API implemented by the app.
  * @property {string} env App Engine execution environment for this version.Defaults to standard.
  * @property {object} envVariables Environment variables available to the application.Only returned in GET requests if view=FULL is set.
  * @property {appengine(v1beta).ErrorHandler[]} errorHandlers Custom static error pages. Limited to 10KB per page.Only returned in GET requests if view=FULL is set.
  * @property {appengine(v1beta).UrlMap[]} handlers An ordered list of URL-matching patterns that should be applied to incoming requests. The first matching URL handles the request and other request handlers are not attempted.Only returned in GET requests if view=FULL is set.
- * @property {appengine(v1beta).HealthCheck} healthCheck Configures health checking for VM instances. Unhealthy instances are stopped and replaced with new instances. Only applicable in the App Engine flexible environment.Only returned in GET requests if view=FULL is set.
+ * @property {appengine(v1beta).HealthCheck} healthCheck Configures health checking for VM instances. Unhealthy instances are stopped and replaced with new instances. Only applicable for VM runtimes.Only returned in GET requests if view=FULL is set.
  * @property {string} id Relative name of the version within the service. Example: v1. Version names can contain only lowercase letters, numbers, or hyphens. Reserved names: &quot;default&quot;, &quot;latest&quot;, and any name with the prefix &quot;ah-&quot;.
  * @property {string[]} inboundServices Before an application can receive email or XMPP messages, the application must be configured to enable the service.
  * @property {string} instanceClass Instance class that is used to run this version. Valid values are: AutomaticScaling: F1, F2, F4, F4_1G ManualScaling or BasicScaling: B1, B2, B4, B8, B4_1GDefaults to F1 for AutomaticScaling and B1 for ManualScaling or BasicScaling.
@@ -2188,7 +2166,7 @@ function Appengine(options) {
  * @property {appengine(v1beta).LivenessCheck} livenessCheck Configures liveness health checking for VM instances. Unhealthy instances are stopped and replaced with new instancesOnly returned in GET requests if view=FULL is set.
  * @property {appengine(v1beta).ManualScaling} manualScaling A service with manual scaling runs continuously, allowing you to perform complex initialization and rely on the state of its memory over time.
  * @property {string} name Full path to the Version resource in the API. Example: apps/myapp/services/default/versions/v1.@OutputOnly
- * @property {appengine(v1beta).Network} network Extra network settings. Only applicable in the App Engine flexible environment.
+ * @property {appengine(v1beta).Network} network Extra network settings. Only applicable for App Engine flexible environment versions.
  * @property {string} nobuildFilesRegex Files that match this pattern will not be built into this version. Only applicable for Go runtimes.Only returned in GET requests if view=FULL is set.
  * @property {appengine(v1beta).ReadinessCheck} readinessCheck Configures readiness health checking for VM instances. Unhealthy instances are not put into the backend traffic rotation.Only returned in GET requests if view=FULL is set.
  * @property {appengine(v1beta).Resources} resources Machine resources for this version. Only applicable for VM runtimes.
@@ -2198,7 +2176,6 @@ function Appengine(options) {
  * @property {boolean} threadsafe Whether multiple requests can be dispatched to this version at once.
  * @property {string} versionUrl Serving URL for this version. Example: &quot;https://myversion-dot-myservice-dot-myapp.appspot.com&quot;@OutputOnly
  * @property {boolean} vm Whether to deploy this version in a container on a virtual machine.
- * @property {string[]} zones The choice of gce zones to use for this App Engine Flexible version.
  */
 /**
  * @typedef Volume

@@ -73,8 +73,8 @@ function Dialogflow(options) {
     agent: {
       /**
        * dialogflow.projects.agent.export
-       * @desc Exports the specified agent to a ZIP file.   Operation <response:
-       * ExportAgentResponse,            metadata: google.protobuf.Struct>
+       * @desc Exports the specified agent to a ZIP file.   Operation<response:
+       * ExportAgentResponse,           metadata: google.protobuf.Struct>
        * @alias dialogflow.projects.agent.export
        * @memberOf! dialogflow(v2beta1)
        *
@@ -111,8 +111,8 @@ function Dialogflow(options) {
           * @desc Imports the specified agent from a ZIP file.  Uploads new
           * intents and entity types without deleting the existing ones. Intents
           * and entity types with the same name are replaced with the new
-          * versions from ImportAgentRequest.   Operation <response:
-          * google.protobuf.Empty,            metadata: google.protobuf.Struct>
+          * versions from ImportAgentRequest.   Operation<response:
+          * google.protobuf.Empty,           metadata: google.protobuf.Struct>
           * @alias dialogflow.projects.agent.import
           * @memberOf! dialogflow(v2beta1)
           *
@@ -148,8 +148,8 @@ function Dialogflow(options) {
           * dialogflow.projects.agent.restore
           * @desc Restores the specified agent from a ZIP file.  Replaces the
           * current agent version with a new one. All the intents and entity
-          * types in the older version are deleted.   Operation <response:
-          * google.protobuf.Empty,            metadata: google.protobuf.Struct>
+          * types in the older version are deleted.   Operation<response:
+          * google.protobuf.Empty,           metadata: google.protobuf.Struct>
           * @alias dialogflow.projects.agent.restore
           * @memberOf! dialogflow(v2beta1)
           *
@@ -223,8 +223,8 @@ function Dialogflow(options) {
         return createAPIRequest(parameters, callback);
       }, /**
           * dialogflow.projects.agent.train
-          * @desc Trains the specified agent.   Operation <response:
-          * google.protobuf.Empty,            metadata: google.protobuf.Struct>
+          * @desc Trains the specified agent.   Operation<response:
+          * google.protobuf.Empty,           metadata: google.protobuf.Struct>
           * @alias dialogflow.projects.agent.train
           * @memberOf! dialogflow(v2beta1)
           *
@@ -260,8 +260,8 @@ function Dialogflow(options) {
       entityTypes: {
         /**
          * dialogflow.projects.agent.entityTypes.batchDelete
-         * @desc Deletes entity types in the specified agent.  Operation
-         * <response: google.protobuf.Empty,            metadata:
+         * @desc Deletes entity types in the specified agent.
+         * Operation<response: google.protobuf.Empty,           metadata:
          * google.protobuf.Struct>
          * @alias dialogflow.projects.agent.entityTypes.batchDelete
          * @memberOf! dialogflow(v2beta1)
@@ -298,7 +298,7 @@ function Dialogflow(options) {
         }, /**
             * dialogflow.projects.agent.entityTypes.batchUpdate
             * @desc Updates/Creates multiple entity types in the specified
-            * agent.  Operation <response: BatchUpdateEntityTypesResponse,
+            * agent.  Operation<response: BatchUpdateEntityTypesResponse,
             * metadata: google.protobuf.Struct>
             * @alias dialogflow.projects.agent.entityTypes.batchUpdate
             * @memberOf! dialogflow(v2beta1)
@@ -516,7 +516,7 @@ function Dialogflow(options) {
           /**
            * dialogflow.projects.agent.entityTypes.entities.batchCreate
            * @desc Creates multiple new entities in the specified entity type
-           * (extends the existing collection of entries).  Operation <response:
+           * (extends the existing collection of entries).  Operation<response:
            * google.protobuf.Empty>
            * @alias dialogflow.projects.agent.entityTypes.entities.batchCreate
            * @memberOf! dialogflow(v2beta1)
@@ -552,8 +552,8 @@ function Dialogflow(options) {
             return createAPIRequest(parameters, callback);
           }, /**
               * dialogflow.projects.agent.entityTypes.entities.batchDelete
-              * @desc Deletes entities in the specified entity type.  Operation
-              * <response: google.protobuf.Empty,            metadata:
+              * @desc Deletes entities in the specified entity type.
+              * Operation<response: google.protobuf.Empty,           metadata:
               * google.protobuf.Struct>
               * @alias
               * dialogflow.projects.agent.entityTypes.entities.batchDelete
@@ -591,8 +591,8 @@ function Dialogflow(options) {
           }, /**
               * dialogflow.projects.agent.entityTypes.entities.batchUpdate
               * @desc Updates entities in the specified entity type (replaces
-              * the existing collection of entries).  Operation <response:
-              * google.protobuf.Empty,            metadata:
+              * the existing collection of entries).  Operation<response:
+              * google.protobuf.Empty,           metadata:
               * google.protobuf.Struct>
               * @alias
               * dialogflow.projects.agent.entityTypes.entities.batchUpdate
@@ -634,7 +634,7 @@ function Dialogflow(options) {
       intents: {
         /**
          * dialogflow.projects.agent.intents.batchDelete
-         * @desc Deletes intents in the specified agent.  Operation <response:
+         * @desc Deletes intents in the specified agent.  Operation<response:
          * google.protobuf.Empty>
          * @alias dialogflow.projects.agent.intents.batchDelete
          * @memberOf! dialogflow(v2beta1)
@@ -671,7 +671,7 @@ function Dialogflow(options) {
         }, /**
             * dialogflow.projects.agent.intents.batchUpdate
             * @desc Updates/Creates multiple intents in the specified agent.
-            * Operation <response: BatchUpdateIntentsResponse>
+            * Operation<response: BatchUpdateIntentsResponse>
             * @alias dialogflow.projects.agent.intents.batchUpdate
             * @memberOf! dialogflow(v2beta1)
             *
@@ -1510,29 +1510,21 @@ function Dialogflow(options) {
  * @typedef ExportAgentRequest
  * @memberOf! dialogflow(v2beta1)
  * @type object
- * @property {string} agentUri Warning: Exporting agents to a URI is not implemented yet. This feature is coming soon.  Optional. The Google Cloud Storage URI to export the agent to. Note: The URI must start with &quot;gs://&quot;. If left unspecified, the serialized agent is returned inline.
+ * @property {string} agentUri Warning: Exporting agents to a URI is not implemented yet. This feature is coming soon. Optional. The Google Cloud Storage URI to export the agent to. Note: The URI must start with &quot;gs://&quot;. If left unspecified, the serialized agent is returned inline.
  */
 /**
  * @typedef ExportAgentResponse
  * @memberOf! dialogflow(v2beta1)
  * @type object
- * @property {string} agentContent The exported agent.  Example for how to export an agent to a zip file via a command line:  curl \   &#39;https://dialogflow.googleapis.com/v2beta1/projects/&lt;project_name&gt;/agent:export&#39;\   -X POST \   -H &#39;Authorization: Bearer &#39;$(gcloud auth print-access-token) \   -H &#39;Accept: application/json&#39; \   -H &#39;Content-Type: application/json&#39; \   --compressed \   --data-binary &#39;{}&#39; \ | grep agentContent | sed -e &#39;s/.*&quot;agentContent&quot;: &quot;\([^&quot;]*\)&quot;.&ast;/\1 /&#39;\ |base64-- decode &gt; &lt;agent zip file&gt;
- * @property {string} agentUri The URI to a file containing the exported agent. This field is populated only if `agent_uri` is specified in `ExportAgentRequest`.
+ * @property {string} agentContent The exported agent.
+ * @property {string} agentUri The URI to a file containing the exported agent. This field is populated only if `agent_uri`
  */
 /**
  * @typedef ImportAgentRequest
  * @memberOf! dialogflow(v2beta1)
  * @type object
  * @property {string} agentContent The agent to import.
- * Example for how to import an agent via the command line:  curl \   &#39;
- * https://
- * dialogflow.googleapis.com/v2beta1/projects/&lt;project_name&gt;/agent:import\
- *        // -X POST \    -H &#39;Authorization: Bearer &#39;$(gcloud auth
- *        // print-access-token) \    -H &#39;Accept: application/json&#39; \
- *        // -H &#39;Content-Type: application/json&#39; \    --compressed \
- *        // --data-binary &quot;{       &#39;agentContent&#39;: &#39;$(cat
- *        // &lt;agent zip file&gt; | base64 -w 0)&#39;    }&quot;
- * @property{string} agentUri Warning: Importing agents from a URI is not implemented yet.This feature is coming soon.The URI to a Google Cloud Storage file containing the agent to import.Note: The URI must start with&quot;gs://&quot;.
+ * @property {string} agentUri Warning: Importing agents from a URI is not implemented yet. This feature is coming soon. The URI to a Google Cloud Storage file containing the agent to import. Note: The URI must start with &quot;gs://&quot;.
  */
 /**
  * @typedef InputAudioConfig
@@ -1654,7 +1646,6 @@ function Dialogflow(options) {
  * @typedef IntentMessageImage
  * @memberOf! dialogflow(v2beta1)
  * @type object
- * @property {string} accessibilityText Optional. A text description of the image to be used for accessibility, e.g., screen readers.
  * @property {string} imageUri Optional. The public URI to an image file.
  */
 /**
@@ -1851,8 +1842,8 @@ function Dialogflow(options) {
  * @typedef RestoreAgentRequest
  * @memberOf! dialogflow(v2beta1)
  * @type object
- * @property {string} agentContent The agent to restore.  Example for how to restore an agent via the command line:  curl \   &#39;https://dialogflow.googleapis.com/v2beta1/projects/&lt;project_name&gt;/agent:restore\    -X POST \    -H &#39;Authorization: Bearer &#39;$(gcloud auth print-access-token) \    -H &#39;Accept: application/json&#39; \    -H &#39;Content-Type: application/json&#39; \    --compressed \    --data-binary &quot;{        &#39;agentContent&#39;: &#39;$(cat &lt;agent zip file&gt; | base64 -w 0)&#39;    }&quot; \
- * @property {string} agentUri Warning: Restoring agents from a URI is not implemented yet. This feature is coming soon.  The URI to a Google Cloud Storage file containing the agent to restore. Note: The URI must start with &quot;gs://&quot;.
+ * @property {string} agentContent The agent to restore.
+ * @property {string} agentUri Warning: Restoring agents from a URI is not implemented yet. This feature is coming soon. The URI to a Google Cloud Storage file containing the agent to restore. Note: The URI must start with &quot;gs://&quot;.
  */
 /**
  * @typedef SearchAgentsResponse

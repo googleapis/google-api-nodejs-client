@@ -825,463 +825,461 @@ function Calendar(options) {
     }
 
   };
-  self.events = {
-    /**
-     * calendar.events.delete
-     * @desc Deletes an event.
-     * @alias calendar.events.delete
-     * @memberOf! calendar(v3)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param {string} params.eventId Event identifier.
-     * @param {boolean=} params.sendNotifications Whether to send notifications about the deletion of the event. Optional. The default is False.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/calendar/v3/calendars/{calendarId}/events/{eventId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
-        params,
-        requiredParams: ['calendarId', 'eventId'],
-        pathParams: ['calendarId', 'eventId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback);
-    }, /**
-        * calendar.events.get
-        * @desc Returns an event.
-        * @alias calendar.events.get
-        * @memberOf! calendar(v3)
-        *
-        * @param {object} params Parameters for request
-        * @param {boolean=} params.alwaysIncludeEmail Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
-        * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-        * @param {string} params.eventId Event identifier.
-        * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
-        * @param {string=} params.timeZone Time zone used in the response. Optional. The default is the time zone of the calendar.
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    get(params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/calendar/v3/calendars/{calendarId}/events/{eventId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['calendarId', 'eventId'],
-        pathParams: ['calendarId', 'eventId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback);
-    }, /**
-        * calendar.events.import
-        * @desc Imports an event. This operation is used to add a private copy
-        * of an existing event to a calendar.
-        * @alias calendar.events.import
-        * @memberOf! calendar(v3)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-        * @param {integer=} params.conferenceDataVersion Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
-        * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
-        * @param {calendar(v3).Event} params.resource Request body data
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    import(params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/calendar/v3/calendars/{calendarId}/events/import')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['calendarId'],
-        pathParams: ['calendarId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback);
-    }, /**
-        * calendar.events.insert
-        * @desc Creates an event.
-        * @alias calendar.events.insert
-        * @memberOf! calendar(v3)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-        * @param {integer=} params.conferenceDataVersion Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
-        * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
-        * @param {boolean=} params.sendNotifications Whether to send notifications about the creation of the new event. Optional. The default is False.
-        * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
-        * @param {calendar(v3).Event} params.resource Request body data
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    insert(params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['calendarId'],
-        pathParams: ['calendarId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback);
-    }, /**
-        * calendar.events.instances
-        * @desc Returns instances of the specified recurring event.
-        * @alias calendar.events.instances
-        * @memberOf! calendar(v3)
-        *
-        * @param {object} params Parameters for request
-        * @param {boolean=} params.alwaysIncludeEmail Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
-        * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-        * @param {string} params.eventId Recurring event identifier.
-        * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
-        * @param {integer=} params.maxResults Maximum number of events returned on one result page. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.
-        * @param {string=} params.originalStart The original start time of the instance in the result. Optional.
-        * @param {string=} params.pageToken Token specifying which result page to return. Optional.
-        * @param {boolean=} params.showDeleted Whether to include deleted events (with status equals "cancelled") in the result. Cancelled instances of recurring events will still be included if singleEvents is False. Optional. The default is False.
-        * @param {string=} params.timeMax Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset.
-        * @param {string=} params.timeMin Lower bound (inclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset.
-        * @param {string=} params.timeZone Time zone used in the response. Optional. The default is the time zone of the calendar.
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    instances(params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/calendar/v3/calendars/{calendarId}/events/{eventId}/instances')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['calendarId', 'eventId'],
-        pathParams: ['calendarId', 'eventId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback);
-    }, /**
-        * calendar.events.list
-        * @desc Returns events on the specified calendar.
-        * @alias calendar.events.list
-        * @memberOf! calendar(v3)
-        *
-        * @param {object} params Parameters for request
-        * @param {boolean=} params.alwaysIncludeEmail Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
-        * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-        * @param {string=} params.iCalUID Specifies event ID in the iCalendar format to be included in the response. Optional.
-        * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
-        * @param {integer=} params.maxResults Maximum number of events returned on one result page. The number of events in the resulting page may be less than this value, or none at all, even if there are more events matching the query. Incomplete pages can be detected by a non-empty nextPageToken field in the response. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.
-        * @param {string=} params.orderBy The order of the events returned in the result. Optional. The default is an unspecified, stable order.
-        * @param {string=} params.pageToken Token specifying which result page to return. Optional.
-        * @param {string=} params.privateExtendedProperty Extended properties constraint specified as propertyName=value. Matches only private properties. This parameter might be repeated multiple times to return events that match all given constraints.
-        * @param {string=} params.q Free text search terms to find events that match these terms in any field, except for extended properties. Optional.
-        * @param {string=} params.sharedExtendedProperty Extended properties constraint specified as propertyName=value. Matches only shared properties. This parameter might be repeated multiple times to return events that match all given constraints.
-        * @param {boolean=} params.showDeleted Whether to include deleted events (with status equals "cancelled") in the result. Cancelled instances of recurring events (but not the underlying recurring event) will still be included if showDeleted and singleEvents are both False. If showDeleted and singleEvents are both True, only single instances of deleted events (but not the underlying recurring events) are returned. Optional. The default is False.
-        * @param {boolean=} params.showHiddenInvitations Whether to include hidden invitations in the result. Optional. The default is False.
-        * @param {boolean=} params.singleEvents Whether to expand recurring events into instances and only return single one-off events and instances of recurring events, but not the underlying recurring events themselves. Optional. The default is False.
-        * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All events deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False. There are several query parameters that cannot be specified together with nextSyncToken to ensure consistency of the client state.  These are:  - iCalUID  - orderBy  - privateExtendedProperty  - q  - sharedExtendedProperty  - timeMin  - timeMax  - updatedMin If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
-        * @param {string=} params.timeMax Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored. If timeMin is set, timeMax must be greater than timeMin.
-        * @param {string=} params.timeMin Lower bound (inclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored. If timeMax is set, timeMin must be smaller than timeMax.
-        * @param {string=} params.timeZone Time zone used in the response. Optional. The default is the time zone of the calendar.
-        * @param {string=} params.updatedMin Lower bound for an event's last modification time (as a RFC3339 timestamp) to filter by. When specified, entries deleted since this time will always be included regardless of showDeleted. Optional. The default is not to filter by last modification time.
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    list(params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['calendarId'],
-        pathParams: ['calendarId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback);
-    }, /**
-        * calendar.events.move
-        * @desc Moves an event to another calendar, i.e. changes an event's
-        * organizer.
-        * @alias calendar.events.move
-        * @memberOf! calendar(v3)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.calendarId Calendar identifier of the source calendar where the event currently is on.
-        * @param {string} params.destination Calendar identifier of the target calendar where the event is to be moved to.
-        * @param {string} params.eventId Event identifier.
-        * @param {boolean=} params.sendNotifications Whether to send notifications about the change of the event's organizer. Optional. The default is False.
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    move(params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/calendar/v3/calendars/{calendarId}/events/{eventId}/move')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['calendarId', 'eventId', 'destination'],
-        pathParams: ['calendarId', 'eventId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback);
-    }, /**
-        * calendar.events.patch
-        * @desc Updates an event. This method supports patch semantics.
-        * @alias calendar.events.patch
-        * @memberOf! calendar(v3)
-        *
-        * @param {object} params Parameters for request
-        * @param {boolean=} params.alwaysIncludeEmail Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
-        * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-        * @param {integer=} params.conferenceDataVersion Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
-        * @param {string} params.eventId Event identifier.
-        * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
-        * @param {boolean=} params.sendNotifications Whether to send notifications about the event update (e.g. attendee's responses, title changes, etc.). Optional. The default is False.
-        * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
-        * @param {calendar(v3).Event} params.resource Request body data
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    patch(params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/calendar/v3/calendars/{calendarId}/events/{eventId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
-        params,
-        requiredParams: ['calendarId', 'eventId'],
-        pathParams: ['calendarId', 'eventId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback);
-    }, /**
-        * calendar.events.quickAdd
-        * @desc Creates an event based on a simple text string.
-        * @alias calendar.events.quickAdd
-        * @memberOf! calendar(v3)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-        * @param {boolean=} params.sendNotifications Whether to send notifications about the creation of the event. Optional. The default is False.
-        * @param {string} params.text The text describing the event to be created.
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    quickAdd(params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/calendar/v3/calendars/{calendarId}/events/quickAdd')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['calendarId', 'text'],
-        pathParams: ['calendarId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback);
-    }, /**
-        * calendar.events.update
-        * @desc Updates an event.
-        * @alias calendar.events.update
-        * @memberOf! calendar(v3)
-        *
-        * @param {object} params Parameters for request
-        * @param {boolean=} params.alwaysIncludeEmail Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
-        * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-        * @param {integer=} params.conferenceDataVersion Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
-        * @param {string} params.eventId Event identifier.
-        * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
-        * @param {boolean=} params.sendNotifications Whether to send notifications about the event update (e.g. attendee's responses, title changes, etc.). Optional. The default is False.
-        * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
-        * @param {calendar(v3).Event} params.resource Request body data
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    update(params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/calendar/v3/calendars/{calendarId}/events/{eventId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
-        params,
-        requiredParams: ['calendarId', 'eventId'],
-        pathParams: ['calendarId', 'eventId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback);
-    }, /**
-        * calendar.events.watch
-        * @desc Watch for changes to Events resources.
-        * @alias calendar.events.watch
-        * @memberOf! calendar(v3)
-        *
-        * @param {object} params Parameters for request
-        * @param {boolean=} params.alwaysIncludeEmail Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
-        * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-        * @param {string=} params.iCalUID Specifies event ID in the iCalendar format to be included in the response. Optional.
-        * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
-        * @param {integer=} params.maxResults Maximum number of events returned on one result page. The number of events in the resulting page may be less than this value, or none at all, even if there are more events matching the query. Incomplete pages can be detected by a non-empty nextPageToken field in the response. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.
-        * @param {string=} params.orderBy The order of the events returned in the result. Optional. The default is an unspecified, stable order.
-        * @param {string=} params.pageToken Token specifying which result page to return. Optional.
-        * @param {string=} params.privateExtendedProperty Extended properties constraint specified as propertyName=value. Matches only private properties. This parameter might be repeated multiple times to return events that match all given constraints.
-        * @param {string=} params.q Free text search terms to find events that match these terms in any field, except for extended properties. Optional.
-        * @param {string=} params.sharedExtendedProperty Extended properties constraint specified as propertyName=value. Matches only shared properties. This parameter might be repeated multiple times to return events that match all given constraints.
-        * @param {boolean=} params.showDeleted Whether to include deleted events (with status equals "cancelled") in the result. Cancelled instances of recurring events (but not the underlying recurring event) will still be included if showDeleted and singleEvents are both False. If showDeleted and singleEvents are both True, only single instances of deleted events (but not the underlying recurring events) are returned. Optional. The default is False.
-        * @param {boolean=} params.showHiddenInvitations Whether to include hidden invitations in the result. Optional. The default is False.
-        * @param {boolean=} params.singleEvents Whether to expand recurring events into instances and only return single one-off events and instances of recurring events, but not the underlying recurring events themselves. Optional. The default is False.
-        * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All events deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False. There are several query parameters that cannot be specified together with nextSyncToken to ensure consistency of the client state.  These are:  - iCalUID  - orderBy  - privateExtendedProperty  - q  - sharedExtendedProperty  - timeMin  - timeMax  - updatedMin If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
-        * @param {string=} params.timeMax Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored. If timeMin is set, timeMax must be greater than timeMin.
-        * @param {string=} params.timeMin Lower bound (inclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored. If timeMax is set, timeMin must be smaller than timeMax.
-        * @param {string=} params.timeZone Time zone used in the response. Optional. The default is the time zone of the calendar.
-        * @param {string=} params.updatedMin Lower bound for an event's last modification time (as a RFC3339 timestamp) to filter by. When specified, entries deleted since this time will always be included regardless of showDeleted. Optional. The default is not to filter by last modification time.
-        * @param {calendar(v3).Channel} params.resource Request body data
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    watch(params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/calendar/v3/calendars/{calendarId}/events/watch')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['calendarId'],
-        pathParams: ['calendarId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback);
-    }
+  self.events =
+      {
+        /**
+         * calendar.events.delete
+         * @desc Deletes an event.
+         * @alias calendar.events.delete
+         * @memberOf! calendar(v3)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+         * @param {string} params.eventId Event identifier.
+         * @param {boolean=} params.sendNotifications Whether to send notifications about the deletion of the event. Optional. The default is False.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        delete (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url: (rootUrl +
+                        '/calendar/v3/calendars/{calendarId}/events/{eventId}')
+                           .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'DELETE'
+                },
+                options),
+            params,
+            requiredParams: ['calendarId', 'eventId'],
+            pathParams: ['calendarId', 'eventId'],
+            context: self
+          };
+          return createAPIRequest(parameters, callback);
+        }, /**
+            * calendar.events.get
+            * @desc Returns an event.
+            * @alias calendar.events.get
+            * @memberOf! calendar(v3)
+            *
+            * @param {object} params Parameters for request
+            * @param {boolean=} params.alwaysIncludeEmail Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
+            * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+            * @param {string} params.eventId Event identifier.
+            * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+            * @param {string=} params.timeZone Time zone used in the response. Optional. The default is the time zone of the calendar.
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        get(params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url: (rootUrl +
+                        '/calendar/v3/calendars/{calendarId}/events/{eventId}')
+                           .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'GET'
+                },
+                options),
+            params,
+            requiredParams: ['calendarId', 'eventId'],
+            pathParams: ['calendarId', 'eventId'],
+            context: self
+          };
+          return createAPIRequest(parameters, callback);
+        }, /**
+            * calendar.events.import
+            * @desc Imports an event. This operation is used to add a private
+            * copy of an existing event to a calendar.
+            * @alias calendar.events.import
+            * @memberOf! calendar(v3)
+            *
+            * @param {object} params Parameters for request
+            * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+            * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
+            * @param {calendar(v3).Event} params.resource Request body data
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        import(params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url: (rootUrl +
+                        '/calendar/v3/calendars/{calendarId}/events/import')
+                           .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'POST'
+                },
+                options),
+            params,
+            requiredParams: ['calendarId'],
+            pathParams: ['calendarId'],
+            context: self
+          };
+          return createAPIRequest(parameters, callback);
+        }, /**
+            * calendar.events.insert
+            * @desc Creates an event.
+            * @alias calendar.events.insert
+            * @memberOf! calendar(v3)
+            *
+            * @param {object} params Parameters for request
+            * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+            * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+            * @param {boolean=} params.sendNotifications Whether to send notifications about the creation of the new event. Optional. The default is False.
+            * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
+            * @param {calendar(v3).Event} params.resource Request body data
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        insert(params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events')
+                           .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'POST'
+                },
+                options),
+            params,
+            requiredParams: ['calendarId'],
+            pathParams: ['calendarId'],
+            context: self
+          };
+          return createAPIRequest(parameters, callback);
+        }, /**
+            * calendar.events.instances
+            * @desc Returns instances of the specified recurring event.
+            * @alias calendar.events.instances
+            * @memberOf! calendar(v3)
+            *
+            * @param {object} params Parameters for request
+            * @param {boolean=} params.alwaysIncludeEmail Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
+            * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+            * @param {string} params.eventId Recurring event identifier.
+            * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+            * @param {integer=} params.maxResults Maximum number of events returned on one result page. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.
+            * @param {string=} params.originalStart The original start time of the instance in the result. Optional.
+            * @param {string=} params.pageToken Token specifying which result page to return. Optional.
+            * @param {boolean=} params.showDeleted Whether to include deleted events (with status equals "cancelled") in the result. Cancelled instances of recurring events will still be included if singleEvents is False. Optional. The default is False.
+            * @param {string=} params.timeMax Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset.
+            * @param {string=} params.timeMin Lower bound (inclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset.
+            * @param {string=} params.timeZone Time zone used in the response. Optional. The default is the time zone of the calendar.
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        instances(params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url:
+                      (rootUrl +
+                       '/calendar/v3/calendars/{calendarId}/events/{eventId}/instances')
+                          .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'GET'
+                },
+                options),
+            params,
+            requiredParams: ['calendarId', 'eventId'],
+            pathParams: ['calendarId', 'eventId'],
+            context: self
+          };
+          return createAPIRequest(parameters, callback);
+        }, /**
+            * calendar.events.list
+            * @desc Returns events on the specified calendar.
+            * @alias calendar.events.list
+            * @memberOf! calendar(v3)
+            *
+            * @param {object} params Parameters for request
+            * @param {boolean=} params.alwaysIncludeEmail Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
+            * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+            * @param {string=} params.iCalUID Specifies event ID in the iCalendar format to be included in the response. Optional.
+            * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+            * @param {integer=} params.maxResults Maximum number of events returned on one result page. The number of events in the resulting page may be less than this value, or none at all, even if there are more events matching the query. Incomplete pages can be detected by a non-empty nextPageToken field in the response. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.
+            * @param {string=} params.orderBy The order of the events returned in the result. Optional. The default is an unspecified, stable order.
+            * @param {string=} params.pageToken Token specifying which result page to return. Optional.
+            * @param {string=} params.privateExtendedProperty Extended properties constraint specified as propertyName=value. Matches only private properties. This parameter might be repeated multiple times to return events that match all given constraints.
+            * @param {string=} params.q Free text search terms to find events that match these terms in any field, except for extended properties. Optional.
+            * @param {string=} params.sharedExtendedProperty Extended properties constraint specified as propertyName=value. Matches only shared properties. This parameter might be repeated multiple times to return events that match all given constraints.
+            * @param {boolean=} params.showDeleted Whether to include deleted events (with status equals "cancelled") in the result. Cancelled instances of recurring events (but not the underlying recurring event) will still be included if showDeleted and singleEvents are both False. If showDeleted and singleEvents are both True, only single instances of deleted events (but not the underlying recurring events) are returned. Optional. The default is False.
+            * @param {boolean=} params.showHiddenInvitations Whether to include hidden invitations in the result. Optional. The default is False.
+            * @param {boolean=} params.singleEvents Whether to expand recurring events into instances and only return single one-off events and instances of recurring events, but not the underlying recurring events themselves. Optional. The default is False.
+            * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All events deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False. There are several query parameters that cannot be specified together with nextSyncToken to ensure consistency of the client state.  These are:  - iCalUID  - orderBy  - privateExtendedProperty  - q  - sharedExtendedProperty  - timeMin  - timeMax  - updatedMin If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
+            * @param {string=} params.timeMax Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored. If timeMin is set, timeMax must be greater than timeMin.
+            * @param {string=} params.timeMin Lower bound (inclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored. If timeMax is set, timeMin must be smaller than timeMax.
+            * @param {string=} params.timeZone Time zone used in the response. Optional. The default is the time zone of the calendar.
+            * @param {string=} params.updatedMin Lower bound for an event's last modification time (as a RFC3339 timestamp) to filter by. When specified, entries deleted since this time will always be included regardless of showDeleted. Optional. The default is not to filter by last modification time.
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        list(params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events')
+                           .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'GET'
+                },
+                options),
+            params,
+            requiredParams: ['calendarId'],
+            pathParams: ['calendarId'],
+            context: self
+          };
+          return createAPIRequest(parameters, callback);
+        }, /**
+            * calendar.events.move
+            * @desc Moves an event to another calendar, i.e. changes an event's
+            * organizer.
+            * @alias calendar.events.move
+            * @memberOf! calendar(v3)
+            *
+            * @param {object} params Parameters for request
+            * @param {string} params.calendarId Calendar identifier of the source calendar where the event currently is on.
+            * @param {string} params.destination Calendar identifier of the target calendar where the event is to be moved to.
+            * @param {string} params.eventId Event identifier.
+            * @param {boolean=} params.sendNotifications Whether to send notifications about the change of the event's organizer. Optional. The default is False.
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        move(params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url:
+                      (rootUrl +
+                       '/calendar/v3/calendars/{calendarId}/events/{eventId}/move')
+                          .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'POST'
+                },
+                options),
+            params,
+            requiredParams: ['calendarId', 'eventId', 'destination'],
+            pathParams: ['calendarId', 'eventId'],
+            context: self
+          };
+          return createAPIRequest(parameters, callback);
+        }, /**
+            * calendar.events.patch
+            * @desc Updates an event. This method supports patch semantics.
+            * @alias calendar.events.patch
+            * @memberOf! calendar(v3)
+            *
+            * @param {object} params Parameters for request
+            * @param {boolean=} params.alwaysIncludeEmail Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
+            * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+            * @param {string} params.eventId Event identifier.
+            * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+            * @param {boolean=} params.sendNotifications Whether to send notifications about the event update (e.g. attendee's responses, title changes, etc.). Optional. The default is False.
+            * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
+            * @param {calendar(v3).Event} params.resource Request body data
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        patch(params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url: (rootUrl +
+                        '/calendar/v3/calendars/{calendarId}/events/{eventId}')
+                           .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'PATCH'
+                },
+                options),
+            params,
+            requiredParams: ['calendarId', 'eventId'],
+            pathParams: ['calendarId', 'eventId'],
+            context: self
+          };
+          return createAPIRequest(parameters, callback);
+        }, /**
+            * calendar.events.quickAdd
+            * @desc Creates an event based on a simple text string.
+            * @alias calendar.events.quickAdd
+            * @memberOf! calendar(v3)
+            *
+            * @param {object} params Parameters for request
+            * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+            * @param {boolean=} params.sendNotifications Whether to send notifications about the creation of the event. Optional. The default is False.
+            * @param {string} params.text The text describing the event to be created.
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        quickAdd(params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url: (rootUrl +
+                        '/calendar/v3/calendars/{calendarId}/events/quickAdd')
+                           .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'POST'
+                },
+                options),
+            params,
+            requiredParams: ['calendarId', 'text'],
+            pathParams: ['calendarId'],
+            context: self
+          };
+          return createAPIRequest(parameters, callback);
+        }, /**
+            * calendar.events.update
+            * @desc Updates an event.
+            * @alias calendar.events.update
+            * @memberOf! calendar(v3)
+            *
+            * @param {object} params Parameters for request
+            * @param {boolean=} params.alwaysIncludeEmail Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
+            * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+            * @param {string} params.eventId Event identifier.
+            * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+            * @param {boolean=} params.sendNotifications Whether to send notifications about the event update (e.g. attendee's responses, title changes, etc.). Optional. The default is False.
+            * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
+            * @param {calendar(v3).Event} params.resource Request body data
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        update(params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url: (rootUrl +
+                        '/calendar/v3/calendars/{calendarId}/events/{eventId}')
+                           .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'PUT'
+                },
+                options),
+            params,
+            requiredParams: ['calendarId', 'eventId'],
+            pathParams: ['calendarId', 'eventId'],
+            context: self
+          };
+          return createAPIRequest(parameters, callback);
+        }, /**
+            * calendar.events.watch
+            * @desc Watch for changes to Events resources.
+            * @alias calendar.events.watch
+            * @memberOf! calendar(v3)
+            *
+            * @param {object} params Parameters for request
+            * @param {boolean=} params.alwaysIncludeEmail Whether to always include a value in the email field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
+            * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+            * @param {string=} params.iCalUID Specifies event ID in the iCalendar format to be included in the response. Optional.
+            * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+            * @param {integer=} params.maxResults Maximum number of events returned on one result page. The number of events in the resulting page may be less than this value, or none at all, even if there are more events matching the query. Incomplete pages can be detected by a non-empty nextPageToken field in the response. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.
+            * @param {string=} params.orderBy The order of the events returned in the result. Optional. The default is an unspecified, stable order.
+            * @param {string=} params.pageToken Token specifying which result page to return. Optional.
+            * @param {string=} params.privateExtendedProperty Extended properties constraint specified as propertyName=value. Matches only private properties. This parameter might be repeated multiple times to return events that match all given constraints.
+            * @param {string=} params.q Free text search terms to find events that match these terms in any field, except for extended properties. Optional.
+            * @param {string=} params.sharedExtendedProperty Extended properties constraint specified as propertyName=value. Matches only shared properties. This parameter might be repeated multiple times to return events that match all given constraints.
+            * @param {boolean=} params.showDeleted Whether to include deleted events (with status equals "cancelled") in the result. Cancelled instances of recurring events (but not the underlying recurring event) will still be included if showDeleted and singleEvents are both False. If showDeleted and singleEvents are both True, only single instances of deleted events (but not the underlying recurring events) are returned. Optional. The default is False.
+            * @param {boolean=} params.showHiddenInvitations Whether to include hidden invitations in the result. Optional. The default is False.
+            * @param {boolean=} params.singleEvents Whether to expand recurring events into instances and only return single one-off events and instances of recurring events, but not the underlying recurring events themselves. Optional. The default is False.
+            * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All events deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False. There are several query parameters that cannot be specified together with nextSyncToken to ensure consistency of the client state.  These are:  - iCalUID  - orderBy  - privateExtendedProperty  - q  - sharedExtendedProperty  - timeMin  - timeMax  - updatedMin If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
+            * @param {string=} params.timeMax Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored. If timeMin is set, timeMax must be greater than timeMin.
+            * @param {string=} params.timeMin Lower bound (inclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored. If timeMax is set, timeMin must be smaller than timeMax.
+            * @param {string=} params.timeZone Time zone used in the response. Optional. The default is the time zone of the calendar.
+            * @param {string=} params.updatedMin Lower bound for an event's last modification time (as a RFC3339 timestamp) to filter by. When specified, entries deleted since this time will always be included regardless of showDeleted. Optional. The default is not to filter by last modification time.
+            * @param {calendar(v3).Channel} params.resource Request body data
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        watch(params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url: (rootUrl +
+                        '/calendar/v3/calendars/{calendarId}/events/watch')
+                           .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'POST'
+                },
+                options),
+            params,
+            requiredParams: ['calendarId'],
+            pathParams: ['calendarId'],
+            context: self
+          };
+          return createAPIRequest(parameters, callback);
+        }
 
-  };
+      };
   self.freebusy = {
     /**
      * calendar.freebusy.query
@@ -1452,7 +1450,6 @@ function Calendar(options) {
  * @typedef Calendar
  * @memberOf! calendar(v3)
  * @type object
- * @property {calendar(v3).ConferenceProperties} conferenceProperties Conferencing properties for this calendar, for example what types of conferences are allowed.
  * @property {string} description Description of the calendar. Optional.
  * @property {string} etag ETag of the resource.
  * @property {string} id Identifier of the calendar. To retrieve IDs call the calendarList.list() method.
@@ -1478,7 +1475,6 @@ function Calendar(options) {
  * @property {string} accessRole The effective access role that the authenticated user has on the calendar. Read-only. Possible values are:   - &quot;freeBusyReader&quot; - Provides read access to free/busy information.  - &quot;reader&quot; - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden.  - &quot;writer&quot; - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible.  - &quot;owner&quot; - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs.
  * @property {string} backgroundColor The main color of the calendar in the hexadecimal format &quot;#0088aa&quot;. This property supersedes the index-based colorId property. To set or change this property, you need to specify colorRgbFormat=true in the parameters of the insert, update and patch methods. Optional.
  * @property {string} colorId The color of the calendar. This is an ID referring to an entry in the calendar section of the colors definition (see the colors endpoint). This property is superseded by the backgroundColor and foregroundColor properties and can be ignored when using these properties. Optional.
- * @property {calendar(v3).ConferenceProperties} conferenceProperties Conferencing properties for this calendar, for example what types of conferences are allowed.
  * @property {calendar(v3).EventReminder[]} defaultReminders The default reminders that the authenticated user has for this calendar.
  * @property {boolean} deleted Whether this calendar list entry has been deleted from the calendar list. Read-only. Optional. The default is False.
  * @property {string} description Description of the calendar. Optional. Read-only.
@@ -1534,64 +1530,6 @@ function Calendar(options) {
  * @property {string} updated Last modification time of the color palette (as a RFC3339 timestamp). Read-only.
  */
 /**
- * @typedef ConferenceData
- * @memberOf! calendar(v3)
- * @type object
- * @property {string} conferenceId The ID of the conference. Can be used by developers to keep track of conferences, should not be displayed to users. Values for solution types:   - &quot;eventHangout&quot;: unset. - &quot;eventNamedHangout&quot;: the name of the Hangout. - &quot;hangoutsMeet&quot;: the 10-letter meeting code, for example &quot;aaa-bbbb-ccc&quot;.  Optional.
- * @property {calendar(v3).ConferenceSolution} conferenceSolution The conference solution, such as Hangouts or Hangouts Meet. Unset for a conference with a failed create request. Either conferenceSolution and at least one entryPoint, or createRequest is required.
- * @property {calendar(v3).CreateConferenceRequest} createRequest A request to generate a new conference and attach it to the event. The data is generated asynchronously. To see whether the data is present check the status field. Either conferenceSolution and at least one entryPoint, or createRequest is required.
- * @property {calendar(v3).EntryPoint[]} entryPoints Information about individual conference entry points, such as URLs or phone numbers. All of them must belong to the same conference. Either conferenceSolution and at least one entryPoint, or createRequest is required.
- * @property {string} notes Additional notes (such as instructions from the domain administrator, legal notices) to display to the user. Can contain HTML. The maximum length is 2048 characters. Optional.
- * @property {string} signature The signature of the conference data. Genereated on server side. Must be preserved while copying the conference data between events, otherwise the conference data will not be copied. Unset for a conference with a failed create request. Optional for a conference with a pending create request.
- */
-/**
- * @typedef ConferenceProperties
- * @memberOf! calendar(v3)
- * @type object
- * @property {string[]} allowedConferenceSolutionTypes The types of conference solutions that are supported for this calendar. The possible values are:   - &quot;eventHangout&quot;  - &quot;eventNamedHangout&quot;  - &quot;hangoutsMeet&quot;  Optional.
- */
-/**
- * @typedef ConferenceRequestStatus
- * @memberOf! calendar(v3)
- * @type object
- * @property {string} statusCode The current status of the conference create request. Read-only. The possible values are:   - &quot;pending&quot;: the conference create request is still being processed. - &quot;success&quot;: the conference create request succeeded, the entry points are populated. - &quot;failure&quot;: the conference create request failed, there are no entry points.
- */
-/**
- * @typedef ConferenceSolution
- * @memberOf! calendar(v3)
- * @type object
- * @property {string} iconUri The user-visible icon for this solution.
- * @property {calendar(v3).ConferenceSolutionKey} key The key which can uniquely identify the conference solution for this event.
- * @property {string} name The user-visible name of this solution. Not localized.
- */
-/**
- * @typedef ConferenceSolutionKey
- * @memberOf! calendar(v3)
- * @type object
- * @property {string} type The conference solution type. If a client encounters an unfamiliar or empty type, it should still be able to display the entry points. However, it should disallow modifications. The possible values are:   - &quot;eventHangout&quot; for Hangouts for consumers (http://hangouts.google.com) - &quot;eventNamedHangout&quot; for classic Hangouts for G Suite users (http://hangouts.google.com) - &quot;hangoutsMeet&quot; for Hangouts Meet (http://meet.google.com)
- */
-/**
- * @typedef CreateConferenceRequest
- * @memberOf! calendar(v3)
- * @type object
- * @property {calendar(v3).ConferenceSolutionKey} conferenceSolutionKey The conference solution, such as Hangouts or Hangouts Meet.
- * @property {string} requestId The client-generated unique ID for this request. Clients should regenerate this ID for every new request. If an ID provided is the same as for the previous request, the request is ignored.
- * @property {calendar(v3).ConferenceRequestStatus} status The status of the conference create request.
- */
-/**
- * @typedef EntryPoint
- * @memberOf! calendar(v3)
- * @type object
- * @property {string} accessCode The access code to access the conference. The maximum length is 128 characters. When creating new conference data, populate only the subset of {meetingCode, accessCode, passcode, password, pin} fields that match the terminology that the conference provider uses. Only the populated fields should be displayed. Optional.
- * @property {string} entryPointType The type of the conference entry point. Possible values are:   - &quot;video&quot; - joining a conference over HTTP. A conference can have zero or one video entry point. - &quot;phone&quot; - joining a conference by dialing a phone number. A conference can have zero or more phone entry points. - &quot;sip&quot; - joining a conference over SIP. A conference can have zero or one sip entry point. - &quot;more&quot; - further conference joining instructions, for example additional phone numbers. A conference can have zero or one more entry point. A conference with only a more entry point is not a valid conference.
- * @property {string} label The label for the URI. Visible to end users. Not localized. The maximum length is 512 characters. Examples:   - for video: meet.google.com/aaa-bbbb-ccc - for phone: +1 123 268 2601 - for sip: 12345678@altostrat.com - for more: should not be filled   Optional.
- * @property {string} meetingCode The meeting code to access the conference. The maximum length is 128 characters. When creating new conference data, populate only the subset of {meetingCode, accessCode, passcode, password, pin} fields that match the terminology that the conference provider uses. Only the populated fields should be displayed. Optional.
- * @property {string} passcode The passcode to access the conference. The maximum length is 128 characters. When creating new conference data, populate only the subset of {meetingCode, accessCode, passcode, password, pin} fields that match the terminology that the conference provider uses. Only the populated fields should be displayed.
- * @property {string} password The password to access the conference. The maximum length is 128 characters. When creating new conference data, populate only the subset of {meetingCode, accessCode, passcode, password, pin} fields that match the terminology that the conference provider uses. Only the populated fields should be displayed. Optional.
- * @property {string} pin The PIN to access the conference. The maximum length is 128 characters. When creating new conference data, populate only the subset of {meetingCode, accessCode, passcode, password, pin} fields that match the terminology that the conference provider uses. Only the populated fields should be displayed. Optional.
- * @property {string} uri The URI of the entry point. The maximum length is 1300 characters. Format:   - for video, http: or https: schema is required. - for phone, tel: schema is required. The URI should include the entire dial sequence (e.g., tel:+12345678900,,,123456789;1234). - for sip, sip: schema is required, e.g., sip:12345678@myprovider.com. - for more, http: or https: schema is required.
- */
-/**
  * @typedef Error
  * @memberOf! calendar(v3)
  * @type object
@@ -1607,7 +1545,6 @@ function Calendar(options) {
  * @property {calendar(v3).EventAttendee[]} attendees The attendees of the event. See the Events with attendees guide for more information on scheduling events with other calendar users.
  * @property {boolean} attendeesOmitted Whether attendees may have been omitted from the event&#39;s representation. When retrieving an event, this may be due to a restriction specified by the maxAttendee query parameter. When updating an event, this can be used to only update the participant&#39;s response. Optional. The default is False.
  * @property {string} colorId The color of the event. This is an ID referring to an entry in the event section of the colors definition (see the  colors endpoint). Optional.
- * @property {calendar(v3).ConferenceData} conferenceData The conference-related information, such as details of a Hangouts Meet conference. To create new conference details use the createRequest field. To persist your changes, remember to set the conferenceDataVersion request parameter to 1 for all event modification requests.
  * @property {string} created Creation time of the event (as a RFC3339 timestamp). Read-only.
  * @property {object} creator The creator of the event. Read-only.
  * @property {string} description Description of the event. Optional.
