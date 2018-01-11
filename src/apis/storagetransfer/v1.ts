@@ -1201,7 +1201,7 @@ function Storagetransfer(options) {
  * @property {string} bytesFailedToDeleteFromSink Bytes that failed to be deleted from the data sink.
  * @property {string} bytesFoundFromSource Bytes found in the data source that are scheduled to be transferred, excluding any that are filtered based on object conditions or skipped due to sync.
  * @property {string} bytesFoundOnlyFromSink Bytes found only in the data sink that are scheduled to be deleted.
- * @property {string} bytesFromSourceFailed Bytes in the data source that failed during the transfer.
+ * @property {string} bytesFromSourceFailed Bytes in the data source that failed to be transferred or that failed to be deleted after being transferred.
  * @property {string} bytesFromSourceSkippedBySync Bytes in the data source that are not transferred because they already exist in the data sink.
  * @property {string} objectsCopiedToSink Objects that are copied to the data sink.
  * @property {string} objectsDeletedFromSink Objects that are deleted from the data sink.
@@ -1209,7 +1209,7 @@ function Storagetransfer(options) {
  * @property {string} objectsFailedToDeleteFromSink Objects that failed to be deleted from the data sink.
  * @property {string} objectsFoundFromSource Objects found in the data source that are scheduled to be transferred, excluding any that are filtered based on object conditions or skipped due to sync.
  * @property {string} objectsFoundOnlyFromSink Objects found only in the data sink that are scheduled to be deleted.
- * @property {string} objectsFromSourceFailed Objects in the data source that failed during the transfer.
+ * @property {string} objectsFromSourceFailed Objects in the data source that failed to be transferred or that failed to be deleted after being transferred.
  * @property {string} objectsFromSourceSkippedBySync Objects in the data source that are not transferred because they already exist in the data sink.
  */
 /**

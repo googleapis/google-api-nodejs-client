@@ -364,7 +364,7 @@ function People(options) {
         * @memberOf! people(v1)
         *
         * @param {object} params Parameters for request
-        * @param {string=} params.personFields **Required.** A field mask to restrict which fields on the person are returned. Valid values are:  * addresses * ageRanges * biographies * birthdays * braggingRights * coverPhotos * emailAddresses * events * genders * imClients * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * relationshipInterests * relationshipStatuses * residences * skills * taglines * urls
+        * @param {string=} params.personFields **Required.** A field mask to restrict which fields on the person are returned. Valid values are:  * addresses * ageRanges * biographies * birthdays * braggingRights * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * relationshipInterests * relationshipStatuses * residences * skills * taglines * urls
         * @param {string=} params.requestMask.includeField **Required.** Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.
         * @param {string} params.resourceName The resource name of the person to provide information about.  - To get information about the authenticated user, specify `people/me`. - To get information about a google account, specify  `people/`<var>account_id</var>. - To get information about a contact, specify the resource name that   identifies the contact as returned by [`people.connections.list`](/people/api/rest/v1/people.connections/list).
         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -402,7 +402,7 @@ function People(options) {
         * @memberOf! people(v1)
         *
         * @param {object} params Parameters for request
-        * @param {string=} params.personFields **Required.** A field mask to restrict which fields on each person are returned. Valid values are:  * addresses * ageRanges * biographies * birthdays * braggingRights * coverPhotos * emailAddresses * events * genders * imClients * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * relationshipInterests * relationshipStatuses * residences * skills * taglines * urls
+        * @param {string=} params.personFields **Required.** A field mask to restrict which fields on each person are returned. Valid values are:  * addresses * ageRanges * biographies * birthdays * braggingRights * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * relationshipInterests * relationshipStatuses * residences * skills * taglines * urls
         * @param {string=} params.requestMask.includeField **Required.** Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.
         * @param {string=} params.resourceNames The resource names of the people to provide information about.  - To get information about the authenticated user, specify `people/me`. - To get information about a google account, specify   `people/`<var>account_id</var>. - To get information about a contact, specify the resource name that   identifies the contact as returned by [`people.connections.list`](/people/api/rest/v1/people.connections/list).  You can include up to 50 resource names in one request.
         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -446,7 +446,7 @@ function People(options) {
         *
         * @param {object} params Parameters for request
         * @param {string} params.resourceName The resource name for the person, assigned by the server. An ASCII string with a max length of 27 characters, in the form of `people/`<var>person_id</var>.
-        * @param {string=} params.updatePersonFields **Required.** A field mask to restrict which fields on the person are updated. Valid values are:  * addresses * biographies * birthdays * braggingRights * emailAddresses * events * genders * imClients * locales * names * nicknames * occupations * organizations * phoneNumbers * relations * residences * skills * urls
+        * @param {string=} params.updatePersonFields **Required.** A field mask to restrict which fields on the person are updated. Valid values are:  * addresses * biographies * birthdays * braggingRights * emailAddresses * events * genders * imClients * interests * locales * names * nicknames * occupations * organizations * phoneNumbers * relations * residences * skills * urls
         * @param {people(v1).Person} params.resource Request body data
         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
         * @param {callback} callback The callback that handles the response.
@@ -486,7 +486,7 @@ function People(options) {
        * @param {object} params Parameters for request
        * @param {integer=} params.pageSize The number of connections to include in the response. Valid values are between 1 and 2000, inclusive. Defaults to 100.
        * @param {string=} params.pageToken The token of the page to be returned.
-       * @param {string=} params.personFields **Required.** A field mask to restrict which fields on each person are returned. Valid values are:  * addresses * ageRanges * biographies * birthdays * braggingRights * coverPhotos * emailAddresses * events * genders * imClients * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * relationshipInterests * relationshipStatuses * residences * skills * taglines * urls
+       * @param {string=} params.personFields **Required.** A field mask to restrict which fields on each person are returned. Valid values are:  * addresses * ageRanges * biographies * birthdays * braggingRights * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * relationshipInterests * relationshipStatuses * residences * skills * taglines * urls
        * @param {string=} params.requestMask.includeField **Required.** Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.
        * @param {boolean=} params.requestSyncToken Whether the response should include a sync token, which can be used to get all changes since the last request.
        * @param {string} params.resourceName The resource name to return connections for. Only `people/me` is valid.
@@ -817,7 +817,7 @@ function People(options) {
  * @property {people(v1).Event[]} events The person&#39;s events.
  * @property {people(v1).Gender[]} genders The person&#39;s genders.
  * @property {people(v1).ImClient[]} imClients The person&#39;s instant messaging clients.
- * @property {people(v1).Interest[]} interests The person&#39;s interests. **DEPRECATED** (No values will be returned.)
+ * @property {people(v1).Interest[]} interests The person&#39;s interests.
  * @property {people(v1).Locale[]} locales The person&#39;s locale preferences.
  * @property {people(v1).Membership[]} memberships The person&#39;s read-only group memberships.
  * @property {people(v1).PersonMetadata} metadata Read-only metadata about the person.

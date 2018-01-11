@@ -17,6 +17,9 @@ import * as path from 'path';
 import * as util from 'util';
 
 const APIS = {
+  abusiveexperiencereport: {
+    'v1': require('./abusiveexperiencereport/v1'),
+  },
   acceleratedmobilepageurl: {
     'v1': require('./acceleratedmobilepageurl/v1'),
   },
@@ -131,6 +134,13 @@ const APIS = {
     'v1beta1': require('./cloudresourcemanager/v1beta1'),
     'v2beta1': require('./cloudresourcemanager/v2beta1'),
   },
+  cloudshell: {
+    'v1': require('./cloudshell/v1'),
+    'v1alpha1': require('./cloudshell/v1alpha1'),
+  },
+  cloudtasks: {
+    'v2beta2': require('./cloudtasks/v2beta2'),
+  },
   cloudtrace: {
     'v1': require('./cloudtrace/v1'),
     'v2': require('./cloudtrace/v2'),
@@ -145,9 +155,6 @@ const APIS = {
     'alpha': require('./compute/alpha'),
     'beta': require('./compute/beta'),
     'v1': require('./compute/v1'),
-  },
-  consumersurveys: {
-    'v2': require('./consumersurveys/v2'),
   },
   container: {
     'v1': require('./container/v1'),
@@ -178,18 +185,21 @@ const APIS = {
     'v2beta': require('./deploymentmanager/v2beta'),
   },
   dfareporting: {
-    'v2.7': require('./dfareporting/v2.7'),
     'v2.8': require('./dfareporting/v2.8'),
     'v3.0': require('./dfareporting/v3.0'),
   },
   dialogflow: {
     'v2beta1': require('./dialogflow/v2beta1'),
   },
+  digitalassetlinks: {
+    'v1': require('./digitalassetlinks/v1'),
+  },
   discovery: {
     'v1': require('./discovery/v1'),
   },
   dlp: {
     'v2beta1': require('./dlp/v2beta1'),
+    'v2beta2': require('./dlp/v2beta2'),
   },
   dns: {
     'v1': require('./dns/v1'),
@@ -308,6 +318,9 @@ const APIS = {
   plusDomains: {
     'v1': require('./plusDomains/v1'),
   },
+  poly: {
+    'v1': require('./poly/v1'),
+  },
   prediction: {
     'v1.2': require('./prediction/v1.2'),
     'v1.3': require('./prediction/v1.3'),
@@ -358,6 +371,9 @@ const APIS = {
   },
   servicemanagement: {
     'v1': require('./servicemanagement/v1'),
+  },
+  serviceuser: {
+    'v1': require('./serviceuser/v1'),
   },
   sheets: {
     'v4': require('./sheets/v4'),
@@ -476,6 +492,9 @@ function getAPI(api, options) {
   }
 }
 
+export function abusiveexperiencereport(options) {
+  return getAPI.call(this, 'abusiveexperiencereport', options);
+}
 export function acceleratedmobilepageurl(options) {
   return getAPI.call(this, 'acceleratedmobilepageurl', options);
 }
@@ -572,6 +591,12 @@ export function cloudkms(options) {
 export function cloudresourcemanager(options) {
   return getAPI.call(this, 'cloudresourcemanager', options);
 }
+export function cloudshell(options) {
+  return getAPI.call(this, 'cloudshell', options);
+}
+export function cloudtasks(options) {
+  return getAPI.call(this, 'cloudtasks', options);
+}
 export function cloudtrace(options) {
   return getAPI.call(this, 'cloudtrace', options);
 }
@@ -580,9 +605,6 @@ export function clouduseraccounts(options) {
 }
 export function compute(options) {
   return getAPI.call(this, 'compute', options);
-}
-export function consumersurveys(options) {
-  return getAPI.call(this, 'consumersurveys', options);
 }
 export function container(options) {
   return getAPI.call(this, 'container', options);
@@ -610,6 +632,9 @@ export function dfareporting(options) {
 }
 export function dialogflow(options) {
   return getAPI.call(this, 'dialogflow', options);
+}
+export function digitalassetlinks(options) {
+  return getAPI.call(this, 'digitalassetlinks', options);
 }
 export function discovery(options) {
   return getAPI.call(this, 'discovery', options);
@@ -722,6 +747,9 @@ export function plus(options) {
 export function plusDomains(options) {
   return getAPI.call(this, 'plusDomains', options);
 }
+export function poly(options) {
+  return getAPI.call(this, 'poly', options);
+}
 export function prediction(options) {
   return getAPI.call(this, 'prediction', options);
 }
@@ -763,6 +791,9 @@ export function servicecontrol(options) {
 }
 export function servicemanagement(options) {
   return getAPI.call(this, 'servicemanagement', options);
+}
+export function serviceuser(options) {
+  return getAPI.call(this, 'serviceuser', options);
 }
 export function sheets(options) {
   return getAPI.call(this, 'sheets', options);

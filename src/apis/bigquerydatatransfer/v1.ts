@@ -347,7 +347,7 @@ function Bigquerydatatransfer(options) {
          *
          * @param {object} params Parameters for request
          * @param {string=} params.authorizationCode Optional OAuth2 authorization code to use with this transfer configuration. This is required if new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
-         * @param {string} params.parent The BigQuery project id where the transfer configuration should be created. Must be in the format /projects/{project_id}/locations/{location_id} or /projects/{project_id}/locations/- In case when '-' is specified as location_id, location is infered from the destination dataset region.
+         * @param {string} params.parent The BigQuery project id where the transfer configuration should be created. Must be in the format /projects/{project_id}/locations/{location_id} If specified location and location of the destination bigquery dataset do not match - the request will fail.
          * @param {bigquerydatatransfer(v1).TransferConfig} params.resource Request body data
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
@@ -722,7 +722,7 @@ function Bigquerydatatransfer(options) {
        *
        * @param {object} params Parameters for request
        * @param {string=} params.authorizationCode Optional OAuth2 authorization code to use with this transfer configuration. This is required if new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
-       * @param {string} params.parent The BigQuery project id where the transfer configuration should be created. Must be in the format /projects/{project_id}/locations/{location_id} or /projects/{project_id}/locations/- In case when '-' is specified as location_id, location is infered from the destination dataset region.
+       * @param {string} params.parent The BigQuery project id where the transfer configuration should be created. Must be in the format /projects/{project_id}/locations/{location_id} If specified location and location of the destination bigquery dataset do not match - the request will fail.
        * @param {bigquerydatatransfer(v1).TransferConfig} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -1107,7 +1107,7 @@ function Bigquerydatatransfer(options) {
  * @property {string} displayName User friendly data source name.
  * @property {string} helpUrl Url for the help document for this data source.
  * @property {boolean} manualRunsDisabled Disables backfilling and manual run scheduling for the data source.
- * @property {string} minimumScheduleInterval The minimum interval between two consecutive scheduled runs.
+ * @property {string} minimumScheduleInterval The minimum interval for scheduler to schedule runs.
  * @property {string} name Data source resource name.
  * @property {bigquerydatatransfer(v1).DataSourceParameter[]} parameters Data source parameters.
  * @property {string[]} scopes Api auth scopes for which refresh token needs to be obtained. Only valid when `client_id` is specified. Ignored otherwise. These are scopes needed by a data source to prepare data and ingest them into BigQuery, e.g., https://www.googleapis.com/auth/bigquery
@@ -1222,7 +1222,7 @@ function Bigquerydatatransfer(options) {
  * @property {string} schedule Data transfer schedule. If the data source does not support a custom schedule, this should be empty. If it is empty, the default value for the data source will be used. The specified times are in UTC. Examples of valid format: `1st,3rd monday of month 15:30`, `every wed,fri of jan,jun 13:15`, and `first sunday of quarter 00:00`. See more explanation about the format here: https://cloud.google.com/appengine/docs/flexible/python/scheduling-jobs-with-cron-yaml#the_schedule_format NOTE: the granularity should be at least 8 hours, or less frequent.
  * @property {string} state Output only. State of the most recently updated transfer run.
  * @property {string} updateTime Output only. Data transfer modification time. Ignored by server on input.
- * @property {string} userId Output only. Unique ID of the user on whose behalf transfer is done. Applicable only to data sources that do not support service accounts. When set to 0, the data source service account credentials are used.
+ * @property {string} userId Output only. Unique ID of the user on whose behalf transfer is done. Applicable only to data sources that do not support service accounts. When set to 0, the data source service account credentials are used. May be negative. Note, that this identifier is not stable. It may change over time even for the same user.
  */
 /**
  * @typedef TransferMessage
@@ -1237,18 +1237,18 @@ function Bigquerydatatransfer(options) {
  * @memberOf! bigquerydatatransfer(v1)
  * @type object
  * @property {string} dataSourceId Output only. Data source id.
- * @property {string} destinationDatasetId The BigQuery target dataset id.
+ * @property {string} destinationDatasetId Output only. The BigQuery target dataset id.
  * @property {string} endTime Output only. Time when transfer run ended. Parameter ignored by server for input requests.
  * @property {bigquerydatatransfer(v1).Status} errorStatus Status of the transfer run.
  * @property {string} name The resource name of the transfer run. Transfer run names have the form `projects/{project_id}/locations/{location}/transferConfigs/{config_id}/runs/{run_id}`. The name is ignored when creating a transfer run.
- * @property {object} params Data transfer specific parameters.
+ * @property {object} params Output only. Data transfer specific parameters.
  * @property {string} runTime For batch transfer runs, specifies the date and time that data should be ingested.
  * @property {string} schedule Output only. Describes the schedule of this transfer run if it was created as part of a regular schedule. For batch transfer runs that are scheduled manually, this is empty. NOTE: the system might choose to delay the schedule depending on the current load, so `schedule_time` doesn&#39;t always matches this.
  * @property {string} scheduleTime Minimum time after which a transfer run can be started.
  * @property {string} startTime Output only. Time when transfer run was started. Parameter ignored by server for input requests.
  * @property {string} state Data transfer run state. Ignored for input requests.
  * @property {string} updateTime Output only. Last time the data transfer run state was updated.
- * @property {string} userId Output only. Unique ID of the user on whose behalf transfer is done. Applicable only to data sources that do not support service accounts. When set to 0, the data source service account credentials are used. May be negative.
+ * @property {string} userId Output only. Unique ID of the user on whose behalf transfer is done. Applicable only to data sources that do not support service accounts. When set to 0, the data source service account credentials are used. May be negative. Note, that this identifier is not stable. It may change over time even for the same user.
  */
 
 export = Bigquerydatatransfer;

@@ -74,8 +74,10 @@ function Ml(options) {
       return createAPIRequest(parameters, callback);
     }, /**
         * ml.projects.predict
-        * @desc Performs prediction on the data in the request.  **** REMOVE
-        * FROM GENERATED DOCUMENTATION
+        * @desc Performs prediction on the data in the request. Cloud ML Engine
+        * implements a custom `predict` verb on top of an HTTP POST method.
+        * <p>For details of the request and response format, see the **guide to
+        * the [predict request format](/ml-engine/docs/v1/predict-request)**.
         * @alias ml.projects.predict
         * @memberOf! ml(v1)
         *
@@ -245,12 +247,14 @@ function Ml(options) {
         return createAPIRequest(parameters, callback);
       }, /**
           * ml.projects.jobs.list
-          * @desc Lists the jobs in the project.
+          * @desc Lists the jobs in the project.  If there are no jobs that
+          * match the request parameters, the list request returns an empty
+          * response body: {}.
           * @alias ml.projects.jobs.list
           * @memberOf! ml(v1)
           *
           * @param {object} params Parameters for request
-          * @param {string=} params.filter Optional. Specifies the subset of jobs to retrieve.
+          * @param {string=} params.filter Optional. Specifies the subset of jobs to retrieve. You can filter on the value of one or more attributes of the job object. For example, retrieve jobs with a job identifier that starts with 'census': <p><code>gcloud ml-engine jobs list --filter='jobId:census*'</code> <p>List all failed jobs with names that start with 'rnn': <p><code>gcloud ml-engine jobs list --filter='jobId:rnn* AND state:FAILED'</code> <p>For more examples, see the guide to <a href="/ml-engine/docs/monitor-training">monitoring jobs</a>.
           * @param {integer=} params.pageSize Optional. The number of jobs to retrieve per "page" of results. If there are more remaining results than this number, the response message will contain a valid value in the `next_page_token` field.  The default value is 20, and the maximum page size is 100.
           * @param {string=} params.pageToken Optional. A page token to request the next page of results.  You get the token from the `next_page_token` field of the response from the previous call.
           * @param {string} params.parent Required. The name of the project for which to list jobs.
@@ -385,6 +389,79 @@ function Ml(options) {
           params,
           requiredParams: ['resource'],
           pathParams: ['resource'],
+          context: self
+        };
+        return createAPIRequest(parameters, callback);
+      }
+
+    },
+    locations: {
+      /**
+       * ml.projects.locations.get
+       * @desc Get the complete list of CMLE capabilities in a location, along
+       * with their location-specific properties.
+       * @alias ml.projects.locations.get
+       * @memberOf! ml(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.name Required. The name of the location.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get(params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+        return createAPIRequest(parameters, callback);
+      }, /**
+          * ml.projects.locations.list
+          * @desc List all locations that provides at least one type of CMLE
+          * capability.
+          * @alias ml.projects.locations.list
+          * @memberOf! ml(v1)
+          *
+          * @param {object} params Parameters for request
+          * @param {integer=} params.pageSize Optional. The number of locations to retrieve per "page" of results. If there are more remaining results than this number, the response message will contain a valid value in the `next_page_token` field.  The default value is 20, and the maximum page size is 100.
+          * @param {string=} params.pageToken Optional. A page token to request the next page of results.  You get the token from the `next_page_token` field of the response from the previous call.
+          * @param {string} params.parent Required. The name of the project for which available locations are to be listed (since some locations might be whitelisted for specific projects).
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      list(params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/v1/{parent}/locations')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: ['parent'],
+          pathParams: ['parent'],
           context: self
         };
         return createAPIRequest(parameters, callback);
@@ -534,7 +611,9 @@ function Ml(options) {
       }, /**
           * ml.projects.models.list
           * @desc Lists the models in a project.  Each project can contain
-          * multiple models, and each model can have multiple versions.
+          * multiple models, and each model can have multiple versions.  If
+          * there are no models that match the request parameters, the list
+          * request returns an empty response body: {}.
           * @alias ml.projects.models.list
           * @memberOf! ml(v1)
           *
@@ -795,9 +874,11 @@ function Ml(options) {
         }, /**
             * ml.projects.models.versions.list
             * @desc Gets basic information about all the versions of a model.
-            * If you expect that a model has a lot of versions, or if you need
-            * to handle only a limited number of results at a time, you can
-            * request that the list be retrieved in batches (called pages):
+            * If you expect that a model has many versions, or if you need to
+            * handle only a limited number of results at a time, you can request
+            * that the list be retrieved in batches (called pages).  If there
+            * are no versions that match the request parameters, the list
+            * request returns an empty response body: {}.
             * @alias ml.projects.models.versions.list
             * @memberOf! ml(v1)
             *
@@ -840,7 +921,7 @@ function Ml(options) {
             *
             * @param {object} params Parameters for request
             * @param {string} params.name Required. The name of the model.
-            * @param {string=} params.updateMask Required. Specifies the path, relative to `Version`, of the field to update. Must be present and non-empty.  For example, to change the description of a version to "foo", the `update_mask` parameter would be specified as `description`, and the `PATCH` request body would specify the new value, as follows:     {       "description": "foo"     } In this example, the version is blindly overwritten since no etag is given.  To adopt etag mechanism, include `etag` field in the mask, and include the `etag` value in your version resource.  Currently the only supported update masks are `description`, `labels`, and `etag`.
+            * @param {string=} params.updateMask Required. Specifies the path, relative to `Version`, of the field to update. Must be present and non-empty.  For example, to change the description of a version to "foo", the `update_mask` parameter would be specified as `description`, and the `PATCH` request body would specify the new value, as follows:     {       "description": "foo"     } In this example, the version is blindly overwritten since no etag is given.  To adopt etag mechanism, include `etag` field in the mask, and include the `etag` value in your version resource.  Currently the only supported update masks are `description`, `labels`, and `etag`, and `expire_time`.
             * @param {ml(v1).GoogleCloudMlV1__Version} params.resource Request body data
             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
             * @param {callback} callback The callback that handles the response.
@@ -1097,6 +1178,13 @@ function Ml(options) {
  * @type object
  */
 /**
+ * @typedef GoogleCloudMlV1__Capability
+ * @memberOf! ml(v1)
+ * @type object
+ * @property {string[]} availableAccelerators Available accelerators for the capability.
+ * @property {string} type
+ */
+/**
  * @typedef GoogleCloudMlV1__GetConfigResponse
  * @memberOf! ml(v1)
  * @type object
@@ -1147,6 +1235,13 @@ function Ml(options) {
  * @property {string} nextPageToken Optional. Pass this token as the `page_token` field of the request for a subsequent call.
  */
 /**
+ * @typedef GoogleCloudMlV1__ListLocationsResponse
+ * @memberOf! ml(v1)
+ * @type object
+ * @property {ml(v1).GoogleCloudMlV1__Location[]} locations Locations where at least one type of CMLE capability is available.
+ * @property {string} nextPageToken Optional. Pass this token as the `page_token` field of the request for a subsequent call.
+ */
+/**
  * @typedef GoogleCloudMlV1__ListModelsResponse
  * @memberOf! ml(v1)
  * @type object
@@ -1159,6 +1254,13 @@ function Ml(options) {
  * @type object
  * @property {string} nextPageToken Optional. Pass this token as the `page_token` field of the request for a subsequent call.
  * @property {ml(v1).GoogleCloudMlV1__Version[]} versions The list of versions.
+ */
+/**
+ * @typedef GoogleCloudMlV1__Location
+ * @memberOf! ml(v1)
+ * @type object
+ * @property {ml(v1).GoogleCloudMlV1__Capability[]} capabilities Capabilities available in the location.
+ * @property {string} name
  */
 /**
  * @typedef GoogleCloudMlV1__ManualScaling
@@ -1176,7 +1278,7 @@ function Ml(options) {
  * @property {object} labels Optional. One or more labels that you can add, to organize your models. Each label is a key-value pair, where both the key and the value are arbitrary strings that you supply. For more information, see the documentation on &lt;a href=&quot;/ml-engine/docs/how-tos/resource-labels&quot;&gt;using labels&lt;/a&gt;.
  * @property {string} name Required. The name specified for the model when it was created.  The model name must be unique within the project it is created in.
  * @property {boolean} onlinePredictionLogging Optional. If true, enables StackDriver Logging for online prediction. Default is false.
- * @property {string[]} regions Optional. The list of regions where the model is going to be deployed. Currently only one region per model is supported. Defaults to &#39;us-central1&#39; if nothing is set. Note: *   No matter where a model is deployed, it can always be accessed by     users from anywhere, both for online and batch prediction. *   The region for a batch prediction job is set by the region field when     submitting the batch prediction job and does not take its value from     this field.
+ * @property {string[]} regions Optional. The list of regions where the model is going to be deployed. Currently only one region per model is supported. Defaults to &#39;us-central1&#39; if nothing is set. See the &lt;a href=&quot;/ml-engine/docs/regions&quot;&gt;available regions&lt;/a&gt; for ML Engine services. Note: *   No matter where a model is deployed, it can always be accessed by     users from anywhere, both for online and batch prediction. *   The region for a batch prediction job is set by the region field when     submitting the batch prediction job and does not take its value from     this field.
  */
 /**
  * @typedef GoogleCloudMlV1__OperationMetadata
@@ -1188,6 +1290,7 @@ function Ml(options) {
  * @property {object} labels The user labels, inherited from the model or the model version being operated on.
  * @property {string} modelName Contains the name of the model associated with the operation.
  * @property {string} operationType The operation type.
+ * @property {string} projectNumber Contains the project number associated with the operation.
  * @property {string} startTime The time operation processing started.
  * @property {ml(v1).GoogleCloudMlV1__Version} version Contains the version associated with the operation.
  */
@@ -1213,8 +1316,9 @@ function Ml(options) {
  * @property {string} maxWorkerCount Optional. The maximum number of workers to be used for parallel processing. Defaults to 10 if not specified.
  * @property {string} modelName Use this field if you want to use the default version for the specified model. The string must use the following format:  `&quot;projects/&lt;var&gt;[YOUR_PROJECT]&lt;/var&gt;/models/&lt;var&gt;[YOUR_MODEL]&lt;/var&gt;&quot;`
  * @property {string} outputPath Required. The output Google Cloud Storage location.
- * @property {string} region Required. The Google Compute Engine region to run the prediction job in.
+ * @property {string} region Required. The Google Compute Engine region to run the prediction job in. See the &lt;a href=&quot;/ml-engine/docs/regions&quot;&gt;available regions&lt;/a&gt; for ML Engine services.
  * @property {string} runtimeVersion Optional. The Google Cloud ML runtime version to use for this batch prediction. If not set, Google Cloud ML will pick the runtime version used during the CreateVersion request for this model version, or choose the latest stable version when model version information is not available such as when the model is specified by uri.
+ * @property {string} signatureName Optional. The name of the signature defined in the SavedModel to use for this job. Please refer to [SavedModel](https://tensorflow.github.io/serving/serving_basic.html) for information about how to use signatures.  Defaults to [DEFAULT_SERVING_SIGNATURE_DEF_KEY](https://www.tensorflow.org/api_docs/python/tf/saved_model/signature_constants) , which is &quot;serving_default&quot;.
  * @property {string} uri Use this field if you want to specify a Google Cloud Storage path for the model to use.
  * @property {string} versionName Use this field if you want to specify a version of the model to use. The string is formatted the same way as `model_version`, with the addition of the version information:  `&quot;projects/&lt;var&gt;[YOUR_PROJECT]&lt;/var&gt;/models/&lt;var&gt;YOUR_MODEL/versions/&lt;var&gt;[YOUR_VERSION]&lt;/var&gt;&quot;`
  */
@@ -1245,12 +1349,13 @@ function Ml(options) {
  * @property {string[]} args Optional. Command line arguments to pass to the program.
  * @property {ml(v1).GoogleCloudMlV1__HyperparameterSpec} hyperparameters Optional. The set of Hyperparameters to tune.
  * @property {string} jobDir Optional. A Google Cloud Storage path in which to store training outputs and other data needed for training. This path is passed to your TensorFlow program as the &#39;job_dir&#39; command-line argument. The benefit of specifying this field is that Cloud ML validates the path for use in training.
- * @property {string} masterType Optional. Specifies the type of virtual machine to use for your training job&#39;s master worker.  The following types are supported:  &lt;dl&gt;   &lt;dt&gt;standard&lt;/dt&gt;   &lt;dd&gt;   A basic machine configuration suitable for training simple models with   small to moderate datasets.   &lt;/dd&gt;   &lt;dt&gt;large_model&lt;/dt&gt;   &lt;dd&gt;   A machine with a lot of memory, specially suited for parameter servers   when your model is large (having many hidden layers or layers with very   large numbers of nodes).   &lt;/dd&gt;   &lt;dt&gt;complex_model_s&lt;/dt&gt;   &lt;dd&gt;   A machine suitable for the master and workers of the cluster when your   model requires more computation than the standard machine can handle   satisfactorily.   &lt;/dd&gt;   &lt;dt&gt;complex_model_m&lt;/dt&gt;   &lt;dd&gt;   A machine with roughly twice the number of cores and roughly double the   memory of &lt;code suppresswarning=&quot;true&quot;&gt;complex_model_s&lt;/code&gt;.   &lt;/dd&gt;   &lt;dt&gt;complex_model_l&lt;/dt&gt;   &lt;dd&gt;   A machine with roughly twice the number of cores and roughly double the   memory of &lt;code suppresswarning=&quot;true&quot;&gt;complex_model_m&lt;/code&gt;.   &lt;/dd&gt;   &lt;dt&gt;standard_gpu&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent to &lt;code suppresswarning=&quot;true&quot;&gt;standard&lt;/code&gt; that   also includes a single NVIDIA Tesla K80 GPU. See more about   &lt;a href=&quot;/ml-engine/docs/how-tos/using-gpus&quot;&gt;   using GPUs for training your model&lt;/a&gt;.   &lt;/dd&gt;   &lt;dt&gt;complex_model_m_gpu&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent to   &lt;code suppresswarning=&quot;true&quot;&gt;complex_model_m&lt;/code&gt; that also includes   four NVIDIA Tesla K80 GPUs.   &lt;/dd&gt;   &lt;dt&gt;complex_model_l_gpu&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent to   &lt;code suppresswarning=&quot;true&quot;&gt;complex_model_l&lt;/code&gt; that also includes   eight NVIDIA Tesla K80 GPUs.   &lt;/dd&gt;   &lt;dt&gt;standard_p100&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent to &lt;code suppresswarning=&quot;true&quot;&gt;standard&lt;/code&gt; that   also includes a single NVIDIA Tesla P100 GPU. The availability of these   GPUs is in the Alpha launch stage.   &lt;/dd&gt;   &lt;dt&gt;complex_model_m_p100&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent to   &lt;code suppresswarning=&quot;true&quot;&gt;complex_model_m&lt;/code&gt; that also includes   four NVIDIA Tesla P100 GPUs. The availability of these GPUs is in   the Alpha launch stage.   &lt;/dd&gt; &lt;/dl&gt;  You must set this value when `scaleTier` is set to `CUSTOM`.
+ * @property {string} masterType Optional. Specifies the type of virtual machine to use for your training job&#39;s master worker.  The following types are supported:  &lt;dl&gt;   &lt;dt&gt;standard&lt;/dt&gt;   &lt;dd&gt;   A basic machine configuration suitable for training simple models with   small to moderate datasets.   &lt;/dd&gt;   &lt;dt&gt;large_model&lt;/dt&gt;   &lt;dd&gt;   A machine with a lot of memory, specially suited for parameter servers   when your model is large (having many hidden layers or layers with very   large numbers of nodes).   &lt;/dd&gt;   &lt;dt&gt;complex_model_s&lt;/dt&gt;   &lt;dd&gt;   A machine suitable for the master and workers of the cluster when your   model requires more computation than the standard machine can handle   satisfactorily.   &lt;/dd&gt;   &lt;dt&gt;complex_model_m&lt;/dt&gt;   &lt;dd&gt;   A machine with roughly twice the number of cores and roughly double the   memory of &lt;code suppresswarning=&quot;true&quot;&gt;complex_model_s&lt;/code&gt;.   &lt;/dd&gt;   &lt;dt&gt;complex_model_l&lt;/dt&gt;   &lt;dd&gt;   A machine with roughly twice the number of cores and roughly double the   memory of &lt;code suppresswarning=&quot;true&quot;&gt;complex_model_m&lt;/code&gt;.   &lt;/dd&gt;   &lt;dt&gt;standard_gpu&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent to &lt;code suppresswarning=&quot;true&quot;&gt;standard&lt;/code&gt; that   also includes a single NVIDIA Tesla K80 GPU. See more about   &lt;a href=&quot;/ml-engine/docs/how-tos/using-gpus&quot;&gt;   using GPUs for training your model&lt;/a&gt;.   &lt;/dd&gt;   &lt;dt&gt;complex_model_m_gpu&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent to   &lt;code suppresswarning=&quot;true&quot;&gt;complex_model_m&lt;/code&gt; that also includes   four NVIDIA Tesla K80 GPUs.   &lt;/dd&gt;   &lt;dt&gt;complex_model_l_gpu&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent to   &lt;code suppresswarning=&quot;true&quot;&gt;complex_model_l&lt;/code&gt; that also includes   eight NVIDIA Tesla K80 GPUs.   &lt;/dd&gt;   &lt;dt&gt;standard_p100&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent to &lt;code suppresswarning=&quot;true&quot;&gt;standard&lt;/code&gt; that   also includes a single NVIDIA Tesla P100 GPU. The availability of these   GPUs is in the Beta launch stage.   &lt;/dd&gt;   &lt;dt&gt;complex_model_m_p100&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent to   &lt;code suppresswarning=&quot;true&quot;&gt;complex_model_m&lt;/code&gt; that also includes   four NVIDIA Tesla P100 GPUs. The availability of these GPUs is in   the Beta launch stage.   &lt;/dd&gt; &lt;/dl&gt;  You must set this value when `scaleTier` is set to `CUSTOM`.
  * @property {string[]} packageUris Required. The Google Cloud Storage location of the packages with the training program and any additional dependencies. The maximum number of package URIs is 100.
  * @property {string} parameterServerCount Optional. The number of parameter server replicas to use for the training job. Each replica in the cluster will be of the type specified in `parameter_server_type`.  This value can only be used when `scale_tier` is set to `CUSTOM`.If you set this value, you must also set `parameter_server_type`.
  * @property {string} parameterServerType Optional. Specifies the type of virtual machine to use for your training job&#39;s parameter server.  The supported values are the same as those described in the entry for `master_type`.  This value must be present when `scaleTier` is set to `CUSTOM` and `parameter_server_count` is greater than zero.
  * @property {string} pythonModule Required. The Python module name to run after installing the packages.
- * @property {string} region Required. The Google Compute Engine region to run the training job in.
+ * @property {string} pythonVersion Optional. The version of Python used in training. If not set, the default version is &#39;2.7&#39;. Python &#39;3.5&#39; is available when `runtime_version` is set to &#39;1.4&#39; and above. Python &#39;2.7&#39; works with all supported runtime versions.
+ * @property {string} region Required. The Google Compute Engine region to run the training job in. See the &lt;a href=&quot;/ml-engine/docs/regions&quot;&gt;available regions&lt;/a&gt; for ML Engine services.
  * @property {string} runtimeVersion Optional. The Google Cloud ML runtime version to use for training.  If not set, Google Cloud ML will choose the latest stable version.
  * @property {string} scaleTier Required. Specifies the machine types, the number of replicas for workers and parameter servers.
  * @property {string} workerCount Optional. The number of worker replicas to use for the training job. Each replica in the cluster will be of the type specified in `worker_type`.  This value can only be used when `scale_tier` is set to `CUSTOM`. If you set this value, you must also set `worker_type`.
@@ -1314,7 +1419,7 @@ function Ml(options) {
  * @property {ml(v1).GoogleIamV1__Binding[]} bindings Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
  * @property {string} etag `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
  * @property {boolean} iamOwned
- * @property {integer} version Version of the `Policy`. The default version is 0.
+ * @property {integer} version Deprecated.
  */
 /**
  * @typedef GoogleIamV1__SetIamPolicyRequest
