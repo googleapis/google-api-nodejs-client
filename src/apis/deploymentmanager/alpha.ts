@@ -1500,6 +1500,7 @@ function Deploymentmanager(options) {
  * @memberOf! deploymentmanager(alpha)
  * @type object
  * @property {string} collection The collection that identifies this resource within its service.
+ * @property {deploymentmanager(alpha).MethodMap} methodMap Custom verb method mappings to support unordered list API mappings.
  * @property {deploymentmanager(alpha).Options} options The options to apply to this resource-level override
  */
 /**
@@ -1712,6 +1713,16 @@ function Deploymentmanager(options) {
  * @property {string} nextPageToken Output only. A token used to continue a truncated list request.
  */
 /**
+ * @typedef MethodMap
+ * @memberOf! deploymentmanager(alpha)
+ * @type object
+ * @property {string} create The action identifier for the create method to be used for this collection
+ * @property {string} delete The action identifier for the delete method to be used for this collection
+ * @property {string} get The action identifier for the get method to be used for this collection
+ * @property {string} setIamPolicy The action identifier for the setIamPolicy method to be used for this collection
+ * @property {string} update The action identifier for the update method to be used for this collection
+ */
+/**
  * @typedef Operation
  * @memberOf! deploymentmanager(alpha)
  * @type object
@@ -1788,6 +1799,7 @@ function Deploymentmanager(options) {
  * @property {string} manifest Output only. URL of the manifest representing the current configuration of this resource.
  * @property {string} name Output only. The name of the resource as it appears in the YAML config.
  * @property {string} properties Output only. The current properties of the resource before any references have been filled in. Returned as serialized YAML.
+ * @property {string[]} runtimePolicies Output only. In case this is an action, it will show the runtimePolicies on which this action will run in the deployment
  * @property {string} type Output only. The type of the resource, for example compute.v1.instance, or cloudfunctions.v1beta1.function.
  * @property {deploymentmanager(alpha).ResourceUpdate} update Output only. If Deployment Manager is currently updating or previewing an update to this resource, the updated configuration appears here.
  * @property {string} updateTime Output only. Timestamp when the resource was updated, in RFC3339 text format .
@@ -1818,6 +1830,7 @@ function Deploymentmanager(options) {
  * @property {string} intent Output only. The intent of the resource: PREVIEW, UPDATE, or CANCEL.
  * @property {string} manifest Output only. URL of the manifest representing the update configuration of this resource.
  * @property {string} properties Output only. The set of updated properties for this resource, before references are expanded. Returned as serialized YAML.
+ * @property {string[]} runtimePolicies Output only. In case this is an action, it will show the runtimePolicies that this action will have after updating the deployment.
  * @property {string} state Output only. The state of the resource.
  * @property {object[]} warnings Output only. If warning messages are generated during processing of this resource, this field will be populated.
  */

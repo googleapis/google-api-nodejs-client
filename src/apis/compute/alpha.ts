@@ -1960,7 +1960,8 @@ function Compute(options) {
           return createAPIRequest(parameters, callback);
         }, /**
             * compute.disks.resize
-            * @desc Resizes the specified persistent disk.
+            * @desc Resizes the specified persistent disk. You can only increase
+            * the size of the disk.
             * @alias compute.disks.resize
             * @memberOf! compute(alpha)
             *
@@ -7160,6 +7161,46 @@ function Compute(options) {
       };
       return createAPIRequest(parameters, callback);
     }, /**
+        * compute.instances.resume
+        * @desc Resumes an instance that was suspended using the
+        * instances().suspend method.
+        * @alias compute.instances.resume
+        * @memberOf! compute(alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.instance Name of the instance resource to resume.
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {string} params.zone The name of the zone for this request.
+        * @param {compute(alpha).InstancesResumeRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    resume(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/resume')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
         * compute.instances.setDeletionProtection
         * @desc Sets deletion protection on the instance.
         * @alias compute.instances.setDeletionProtection
@@ -8404,6 +8445,47 @@ function Compute(options) {
       };
       return createAPIRequest(parameters, callback);
     }, /**
+        * compute.interconnectAttachments.patch
+        * @desc Updates the specified interconnect attachment with the data
+        * included in the request. This method supports PATCH semantics and uses
+        * the JSON merge patch format and processing rules.
+        * @alias compute.interconnectAttachments.patch
+        * @memberOf! compute(alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.interconnectAttachment Name of the interconnect attachment to patch.
+        * @param {string} params.project Project ID for this request.
+        * @param {string} params.region Name of the region scoping this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {compute(alpha).InterconnectAttachment} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/interconnectAttachments/{interconnectAttachment}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'interconnectAttachment'],
+        pathParams: ['interconnectAttachment', 'project', 'region'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
         * compute.interconnectAttachments.setIamPolicy
         * @desc Sets the access control policy on the specified resource.
         * Replaces any existing policy.
@@ -8432,6 +8514,46 @@ function Compute(options) {
               url:
                   (rootUrl +
                    '/compute/alpha/projects/{project}/regions/{region}/interconnectAttachments/{resource}/setIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * compute.interconnectAttachments.setLabels
+        * @desc Sets the labels on an InterconnectAttachment. To learn more
+        * about labels, read the Labeling Resources documentation.
+        * @alias compute.interconnectAttachments.setLabels
+        * @memberOf! compute(alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project Project ID for this request.
+        * @param {string} params.region The region for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {string} params.resource_ Name of the resource for this request.
+        * @param {compute(alpha).RegionSetLabelsRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    setLabels(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/interconnectAttachments/{resource}/setLabels')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -8860,6 +8982,44 @@ function Compute(options) {
                   url:
                       (rootUrl +
                        '/compute/alpha/projects/{project}/global/interconnects/{resource}/setIamPolicy')
+                          .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'POST'
+                },
+                options),
+            params,
+            requiredParams: ['project', 'resource'],
+            pathParams: ['project', 'resource'],
+            context: self
+          };
+          return createAPIRequest(parameters, callback);
+        }, /**
+            * compute.interconnects.setLabels
+            * @desc Sets the labels on an Interconnect. To learn more about
+            * labels, read the Labeling Resources documentation.
+            * @alias compute.interconnects.setLabels
+            * @memberOf! compute(alpha)
+            *
+            * @param {object} params Parameters for request
+            * @param {string} params.project Project ID for this request.
+            * @param {string} params.resource_ Name of the resource for this request.
+            * @param {compute(alpha).GlobalSetLabelsRequest} params.resource Request body data
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        setLabels(params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url:
+                      (rootUrl +
+                       '/compute/alpha/projects/{project}/global/interconnects/{resource}/setLabels')
                           .replace(/([^:]\/)\/+/g, '$1'),
                   method: 'POST'
                 },
@@ -10367,7 +10527,8 @@ function Compute(options) {
         }, /**
             * compute.networks.patch
             * @desc Patches the specified network with the data included in the
-            * request.
+            * request. Only the following fields can be modified:
+            * routingConfig.routingMode.
             * @alias compute.networks.patch
             * @memberOf! compute(alpha)
             *
@@ -18707,7 +18868,7 @@ function Compute(options) {
  * @property {string} region [Output Only] URL of the region where the regional address resides. This field is not applicable to global addresses.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} status [Output Only] The status of the address, which can be one of RESERVING, RESERVED, or IN_USE. An address that is RESERVING is currently in the process of being reserved. A RESERVED address is currently reserved and available to use. An IN_USE address is currently being used by another resource and is not available.
- * @property {string} subnetwork For external addresses, this field should not be used.  The URL of the subnetwork in which to reserve the address. If an IP address is specified, it must be within the subnetwork&#39;s IP range.
+ * @property {string} subnetwork The URL of the subnetwork in which to reserve the address. If an IP address is specified, it must be within the subnetwork&#39;s IP range. This field can only be used with INTERNAL type with GCE_ENDPOINT/DNS_RESOLVER purposes.
  * @property {string[]} users [Output Only] The URLs of the resources that are using this address.
  */
 /**
@@ -18755,12 +18916,14 @@ function Compute(options) {
  * @property {string} deviceName Specifies a unique device name of your choice that is reflected into the /dev/disk/by-id/google-* tree of a Linux operating system running within the instance. This name can be used to reference the device for mounting, resizing, and so on, from within the instance.  If not specified, the server chooses a default device name to apply to this disk, in the form persistent-disks-x, where x is a number assigned by Google Compute Engine. This field is only applicable for persistent disks.
  * @property {compute(alpha).CustomerEncryptionKey} diskEncryptionKey Encrypts or decrypts a disk using a customer-supplied encryption key.  If you are creating a new disk, this field encrypts the new disk using an encryption key that you provide. If you are attaching an existing disk that is already encrypted, this field decrypts the disk using the customer-supplied encryption key.  If you encrypt a disk using a customer-supplied key, you must provide the same key again when you attempt to use this resource at a later time. For example, you must provide the key when you create a snapshot or an image from the disk or when you attach the disk to a virtual machine instance.  If you do not provide an encryption key, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the disk later.  Instance templates do not store customer-supplied encryption keys, so you cannot use your own keys to encrypt disks in a managed instance group.
  * @property {string} diskSizeGb The size of the disk in base-2 GB. This supersedes disk_size_gb in InitializeParams.
+ * @property {compute(alpha).GuestOsFeature[]} guestOsFeatures A list of features to enable on the guest operating system. Applicable only for bootable images. Read  Enabling guest operating system features to see a list of available options.
  * @property {integer} index [Output Only] A zero-based index to this disk, where 0 is reserved for the boot disk. If you have many disks attached to an instance, each disk would have a unique index number.
  * @property {compute(alpha).AttachedDiskInitializeParams} initializeParams [Input Only] Specifies the parameters for a new disk that will be created alongside the new instance. Use initialization parameters to create boot disks or local SSDs attached to the new instance.  This property is mutually exclusive with the source property; you can only define one or the other, but not both.
  * @property {string} interface Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. Persistent disks must always use SCSI and the request will fail if you attempt to attach a persistent disk in any other format than SCSI. Local SSDs can use either NVME or SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance.
  * @property {string} kind [Output Only] Type of the resource. Always compute#attachedDisk for attached disks.
  * @property {string[]} licenses [Output Only] Any valid publicly visible licenses.
  * @property {string} mode The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode.
+ * @property {string} savedState For LocalSSD disks on VM Instances in STOPPED or SUSPENDED state, this field is set to PRESERVED iff the LocalSSD data has been saved to a persistent location by customer request. (see the discard_local_ssd option on Stop/Suspend). Read-only in the api.
  * @property {string} source Specifies a valid partial or full URL to an existing Persistent Disk resource. When creating a new instance, one of initializeParams.sourceImage or disks.source is required except for local SSD.  If desired, you can also attach existing non-root persistent disks using this property. This field is only applicable for persistent disks.  Note that for InstanceTemplate, specify the disk name, not the URL for the disk.
  * @property {string} type Specifies the type of the disk, either SCRATCH or PERSISTENT. If not specified, the default is PERSISTENT.
  */
@@ -18806,6 +18969,7 @@ function Compute(options) {
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of the resource. Always compute#autoscaler for autoscalers.
  * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {integer} recommendedSize [Output Only] Target recommended MIG size computed by autoscaler. Autoscaler calculates recommended MIG size even when autoscaling policy mode is different from ON. This field is empty when autoscaler is not connected to the existing managed instance group or autoscaler did not generate its first prediction.
  * @property {string} region [Output Only] URL of the region where the instance group resides (for autoscalers living in regional scope).
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} status [Output Only] The status of the autoscaler configuration.
@@ -19191,7 +19355,7 @@ function Compute(options) {
  * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
  * @property {compute(alpha).CustomerEncryptionKey} diskEncryptionKey Encrypts the disk using a customer-supplied encryption key.  After you encrypt a disk with a customer-supplied key, you must provide the same key if you use the disk later (e.g. to create a disk snapshot or an image, or to attach the disk to a virtual machine).  Customer-supplied encryption keys do not protect access to metadata of the disk.  If you do not provide an encryption key when creating the disk, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the disk later.
- * @property {compute(alpha).GuestOsFeature[]} guestOsFeatures A list of features to enable on the guest OS. Applicable for bootable disks only. Currently, only one feature can be enabled, VIRTIO_SCSI_MULTIQUEUE, which allows each virtual CPU to have its own queue. For Windows disks, you can only enable VIRTIO_SCSI_MULTIQUEUE on images with driver version 1.2.0.1621 or higher. Linux disks with kernel versions 3.17 and higher will support VIRTIO_SCSI_MULTIQUEUE.  For newer Windows images, the server might also populate this property with the value WINDOWS to indicate that this is a Windows image.
+ * @property {compute(alpha).GuestOsFeature[]} guestOsFeatures A list of features to enable on the guest operating system. Applicable only for bootable images. Read  Enabling guest operating system features to see a list of available options.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of the resource. Always compute#disk for disks.
  * @property {string} labelFingerprint A fingerprint for the labels being applied to this disk, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels.  To see the latest fingerprint, make a get() request to retrieve a disk.
@@ -19461,7 +19625,7 @@ function Compute(options) {
  * @typedef GuestOsFeature
  * @memberOf! compute(alpha)
  * @type object
- * @property {string} type The type of supported feature. Currently only VIRTIO_SCSI_MULTIQUEUE is supported. For newer Windows images, the server might also populate this property with the value WINDOWS to indicate that this is a Windows image.
+ * @property {string} type The ID of a supported feature. Read  Enabling guest operating system features to see a list of available options.
  */
 /**
  * @typedef HealthCheck
@@ -19733,7 +19897,7 @@ function Compute(options) {
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
  * @property {string} diskSizeGb Size of the image when restored onto a persistent disk (in GB).
  * @property {string} family The name of the image family to which this image belongs. You can create disks by specifying an image family instead of a specific image name. The image family always returns its latest image that is not deprecated. The name of the image family must comply with RFC1035.
- * @property {compute(alpha).GuestOsFeature[]} guestOsFeatures A list of features to enable on the guest OS. Applicable for bootable images only. Currently, only one feature can be enabled, VIRTIO_SCSI_MULTIQUEUE, which allows each virtual CPU to have its own queue. For Windows images, you can only enable VIRTIO_SCSI_MULTIQUEUE on images with driver version 1.2.0.1621 or higher. Linux images with kernel versions 3.17 and higher will support VIRTIO_SCSI_MULTIQUEUE.  For newer Windows images, the server might also populate this property with the value WINDOWS to indicate that this is a Windows image.
+ * @property {compute(alpha).GuestOsFeature[]} guestOsFeatures A list of features to enable on the guest operating system. Applicable only for bootable images. Read  Enabling guest operating system features to see a list of available options.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {compute(alpha).CustomerEncryptionKey} imageEncryptionKey Encrypts the image using a customer-supplied encryption key.  After you encrypt an image with a customer-supplied key, you must provide the same key if you use the image later (e.g. to create a disk from the image).  Customer-supplied encryption keys do not protect access to metadata of the disk.  If you do not provide an encryption key when creating the image, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the image later.
  * @property {string} kind [Output Only] Type of the resource. Always compute#image for images.
@@ -20038,7 +20202,7 @@ function Compute(options) {
  * @memberOf! compute(alpha)
  * @type object
  * @property {compute(alpha).FixedOrPercent} maxSurge The maximum number of instances that can be created above the specified targetSize during the update process. By default, a fixed value of 1 is used. This value can be either a fixed number or a percentage if the instance group has 10 or more instances. If you set a percentage, the number of instances will be rounded up if necessary.  At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxSurge.
- * @property {compute(alpha).FixedOrPercent} maxUnavailable The maximum number of instances that can be unavailable during the update process. An instance is considered available if all of the following conditions are satisfied:    - The instance&#39;s status is RUNNING.  - If there is a health check on the instance grourp, the instance&#39;s liveness health check result must be HEALTHY at least once. If there is no health check on the group, then the instance only needs to have a status of RUNNING to be considered available.  By default, a fixed value of 1 is used. This value can be either a fixed number or a percentage if the instance group has 10 or more instances. If you set a percentage, the number of instances will be rounded up if necessary.  At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxUnavailable.
+ * @property {compute(alpha).FixedOrPercent} maxUnavailable The maximum number of instances that can be unavailable during the update process. An instance is considered available if all of the following conditions are satisfied:    - The instance&#39;s status is RUNNING.  - If there is a health check on the instance group, the instance&#39;s liveness health check result must be HEALTHY at least once. If there is no health check on the group, then the instance only needs to have a status of RUNNING to be considered available.  By default, a fixed value of 1 is used. This value can be either a fixed number or a percentage if the instance group has 10 or more instances. If you set a percentage, the number of instances will be rounded up if necessary.  At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxUnavailable.
  * @property {string} minimalAction Minimal action to be taken on an instance. You can specify either RESTART to restart existing instances or REPLACE to delete and create new instances from the target template. If you specify a code&gt;RESTART, the Updater will attempt to perform that action only. However, if the Updater determines that the minimal action you specify is not enough to perform the update, it might perform a more disruptive action.
  * @property {integer} minReadySec Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600].
  * @property {string} type
@@ -20160,6 +20324,13 @@ function Compute(options) {
  * @property {string[]} maintenancePolicies Maintenance policies to be removed from this instance.
  */
 /**
+ * @typedef InstancesResumeRequest
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {compute(alpha).CustomerEncryptionKeyProtectedDisk[]} disks Array of disks associated with this instance that are protected with a customer-supplied encryption key.  In order to resume the instance, the disk url and its corresponding key must be provided.  If the disk is not protected with a customer-supplied encryption key it should not be specified.
+ * @property {compute(alpha).CustomerEncryptionKey} instanceEncryptionKey Decrypts data associated with an instance that is protected with a customer-supplied encryption key.  If the instance you are starting is protected with a customer-supplied encryption key, the correct key must be provided otherwise the instance resume will not succeed.
+ */
+/**
  * @typedef InstancesScopedList
  * @memberOf! compute(alpha)
  * @type object
@@ -20254,6 +20425,8 @@ function Compute(options) {
  * @property {string[]} interconnectAttachments [Output Only] A list of the URLs of all InterconnectAttachments configured to use this Interconnect.
  * @property {string} interconnectType Type of interconnect. Note that &quot;IT_PRIVATE&quot; has been deprecated in favor of &quot;DEDICATED&quot;
  * @property {string} kind [Output Only] Type of the resource. Always compute#interconnect for interconnects.
+ * @property {string} labelFingerprint A fingerprint for the labels being applied to this Interconnect, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels.  To see the latest fingerprint, make a get() request to retrieve an Interconnect.
+ * @property {object} labels Labels to apply to this Interconnect resource. These can be later modified by the setLabels method. Each label key/value must comply with RFC1035. Label values may be empty.
  * @property {string} linkType Type of link requested. This field indicates speed of each of the links in the bundle, not the entire bundle. Only 10G per link is allowed for a dedicated interconnect. Options: Ethernet_10G_LR
  * @property {string} location URL of the InterconnectLocation object that represents where this connection is to be provisioned.
  * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
@@ -20263,6 +20436,7 @@ function Compute(options) {
  * @property {integer} provisionedLinkCount [Output Only] Number of links actually provisioned in this interconnect.
  * @property {integer} requestedLinkCount Target number of physical links in the link bundle, as requested by the customer.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} state [Output Only] The current state of whether or not this Interconnect is functional.
  */
 /**
  * @typedef InterconnectAttachment
@@ -20280,16 +20454,20 @@ function Compute(options) {
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} interconnect URL of the underlying Interconnect object that this attachment&#39;s traffic will traverse through.
  * @property {string} kind [Output Only] Type of the resource. Always compute#interconnectAttachment for interconnect attachments.
+ * @property {string} labelFingerprint A fingerprint for the labels being applied to this InterconnectAttachment, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels.  To see the latest fingerprint, make a get() request to retrieve an InterconnectAttachment.
+ * @property {object} labels Labels to apply to this InterconnectAttachment resource. These can be later modified by the setLabels method. Each label key/value must comply with RFC1035. Label values may be empty.
  * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} operationalStatus [Output Only] The current status of whether or not this interconnect attachment is functional.
  * @property {string} pairingKey [Output only for type PARTNER. Input only for PARTNER_PROVIDER. Not present for DEDICATED]. Opaque string identifying an PARTNER attachment. Of the form ?cloud-region/XXXXXX?.
+ * @property {string} partnerAsn [Output only for PARTNER. Input for PARTNER_PROVIDER. Not present for DEDICATED] BGP ASN of the Partner. A layer 3 Partner should supply this if they configured BGP on behalf of the customer.
+ * @property {compute(alpha).InterconnectAttachmentPartnerMetadata} partnerMetadata
  * @property {compute(alpha).InterconnectAttachmentPrivateInfo} privateInterconnectInfo [Output Only] Information specific to an InterconnectAttachment. This property is populated if the interconnect that this is attached to is of type DEDICATED.
  * @property {string} region [Output Only] URL of the region where the regional interconnect attachment resides.
  * @property {string} router URL of the cloud router to be used for dynamic routing. This router must be in the same region as this InterconnectAttachment. The InterconnectAttachment will automatically connect the Interconnect to the network &amp; region within which the Cloud Router is configured.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} state [Output Only] The current state of whether or not this interconnect attachment is functional.
  * @property {string} type
- * @property {integer} vlanTag8021q Available only for DEDICATED and PARTNER_PROVIDER New field: VLAN. Only specified at creation time. This field is mapped to ieee_802_1q_tag in the resource proto.
+ * @property {integer} vlanTag8021q Available only for DEDICATED and PARTNER_PROVIDER. Desired VLAN tag for this attachment, in the range 2-4094. This field refers to 802.1q VLAN tag, also known as IEEE 802.1Q Only specified at creation time.
  */
 /**
  * @typedef InterconnectAttachmentAggregatedList
@@ -20312,6 +20490,14 @@ function Compute(options) {
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  * @property {object} warning [Output Only] Informational warning message.
+ */
+/**
+ * @typedef InterconnectAttachmentPartnerMetadata
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} interconnectName Plain text name of the Interconnect this attachment is connected to, as displayed in the Partner?s portal. For instance ?Chicago 1?. This value may be validated to match approved Partner values.
+ * @property {string} partnerName Plain text name of the Partner providing this attachment. This value may be validated to match approved Partner values.
+ * @property {string} portalUrl URL of the Partner?s portal for this Attachment. Partners may customise this to be a deep-link to the specific resource on the Partner portal. This value may be validated to match approved Partner values.
  */
 /**
  * @typedef InterconnectAttachmentPrivateInfo
@@ -21438,7 +21624,6 @@ function Compute(options) {
  * @property {compute(alpha).SecurityPolicyRuleMatcherConfig} config The configuration options available when specifying versioned_expr. This field must be specified if versioned_expr is specified and cannot be specified if versioned_expr is not specified.
  * @property {compute(alpha).Expr} expr User defined CEVAL expression. A CEVAL expression is used to specify match criteria such as origin.ip, source.region_code and contents in the request header.
  * @property {string[]} srcIpRanges CIDR IP address range. Only IPv4 is supported.
- * @property {string[]} srcRegionCodes Match by country or region code.
  * @property {string} versionedExpr Preconfigured versioned expression. If this field is specified, config must also be specified. Available preconfigured expressions along with their requirements are: SRC_IPS_V1 - must specify the corresponding src_ip_range field in config.
  */
 /**
@@ -21500,6 +21685,7 @@ function Compute(options) {
  * @property {string} status [Output Only] The status of the snapshot. This can be CREATING, DELETING, FAILED, READY, or UPLOADING.
  * @property {string} storageBytes [Output Only] A size of the storage used by the snapshot. As snapshots share storage, this number is expected to change with snapshot creation/deletion.
  * @property {string} storageBytesStatus [Output Only] An indicator whether storageBytes is in a stable state or it is being adjusted as a result of shared storage reallocation. This status can either be UPDATING, meaning the size of the snapshot is being updated, or UP_TO_DATE, meaning the size of the snapshot is up-to-date.
+ * @property {string[]} storageLocations GCS bucket storage location of the snapshot (regional or multi-regional).
  */
 /**
  * @typedef SnapshotList

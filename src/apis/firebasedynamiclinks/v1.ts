@@ -196,6 +196,7 @@ function Firebasedynamiclinks(options) {
  * @type object
  * @property {string} deviceModelName Device model name.
  * @property {string} languageCode Device language code setting.
+ * @property {string} languageCodeFromWebview Device language code setting obtained by executing JavaScript code in WebView.
  * @property {string} languageCodeRaw Device language code raw setting. iOS does returns language code in different format than iOS WebView. For example WebView returns en_US, but iOS returns en-US. Field below will return raw value returned by iOS.
  * @property {string} screenResolutionHeight Device display resolution height.
  * @property {string} screenResolutionWidth Device display resolution width.
