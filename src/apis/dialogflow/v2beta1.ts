@@ -1523,17 +1523,16 @@ function Dialogflow(options) {
  * @typedef ImportAgentRequest
  * @memberOf! dialogflow(v2beta1)
  * @type object
- * @property {string} agentContent The agent to import.  Example for how to import an agent via the command line:  curl \   &#39;
- https:  // dialogflow.googleapis.com/v2beta1/projects/&lt;project_name&gt;/agent:import\
-         // -X POST \    -H &#39;Authorization: Bearer &#39;$(gcloud auth
-         // print-access-token) \    -H &#39;Accept: application/json&#39; \
-         // -H &#39;Content-Type: application/json&#39; \    --compressed \
-         // --data-binary &quot;{       &#39;agentContent&#39;: &#39;$(cat
-         // &lt;agent zip file&gt; | base64 -w 0)&#39;    }&quot;
-     * @property{string} agentUri Warning: Importing agents from a URI is not
-           implemented yet.This feature is coming
-               soon.The URI to a Google Cloud Storage file containing the agent
-                   to import.Note: The URI must start with&quot;gs://&quot;.
+ * @property {string} agentContent The agent to import.
+ * Example for how to import an agent via the command line:  curl \   &#39;
+ * https://
+ * dialogflow.googleapis.com/v2beta1/projects/&lt;project_name&gt;/agent:import\
+ *        // -X POST \    -H &#39;Authorization: Bearer &#39;$(gcloud auth
+ *        // print-access-token) \    -H &#39;Accept: application/json&#39; \
+ *        // -H &#39;Content-Type: application/json&#39; \    --compressed \
+ *        // --data-binary &quot;{       &#39;agentContent&#39;: &#39;$(cat
+ *        // &lt;agent zip file&gt; | base64 -w 0)&#39;    }&quot;
+ * @property{string} agentUri Warning: Importing agents from a URI is not implemented yet.This feature is coming soon.The URI to a Google Cloud Storage file containing the agent to import.Note: The URI must start with&quot;gs://&quot;.
  */
 /**
  * @typedef InputAudioConfig
