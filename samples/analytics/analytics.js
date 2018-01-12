@@ -26,7 +26,7 @@ const servingFramework = 'API';
 
 // Invalid URLs are used when user is not redirected when showing an experiment
 // Read more: http://goo.gl/oVwKH1
-const constiations = [
+const variations = [
   {'name': 'Default', 'url': 'http://www.example.com', 'status': 'ACTIVE'},
   {'name': 'constiation 1', 'url': 'http://www.1.com', 'status': 'ACTIVE'},
   {'name': 'constiation 2', 'url': 'http://www.2.com', 'status': 'ACTIVE'}
@@ -38,7 +38,7 @@ const resourceBody = {
   'status': 'READY_TO_RUN',
   'objectiveMetric': objectiveMetric,
   'servingFramework': servingFramework,
-  'constiations': constiations
+  'variations': variations
 };
 
 const scopes = [

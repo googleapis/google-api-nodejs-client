@@ -13,8 +13,12 @@
 
 'use strict';
 
-const google = require('../');
+const google = require('googleapis');
 const drive = google.drive('v2');
+const nconf = require('nconf');
+const path = require('path');
+
+nconf.argv().env().file(path.join(__dirname, 'jwt.keys.json'));
 
 /**
  * The JWT authorization is ideal for performing server-to-server
@@ -33,12 +37,10 @@ const drive = google.drive('v2');
  * See the defaultauth.js sample for an alternate way of fetching compute credentials.
  */
 
-const keys = require('./jwt.keys.json');
-
 const authClient = new google.auth.JWT(
-    keys.client_email,
+    nconf.get('client_email'),
     null,
-    keys.private_key,
+    nconf.get('private_key'),
     // Scopes can be specified either as an array or as a single, space-delimited string
     ['https://www.googleapis.com/auth/drive.readonly'],
     // User to impersonate (leave empty if no impersonation needed)

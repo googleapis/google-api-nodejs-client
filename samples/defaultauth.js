@@ -13,7 +13,7 @@
 
 'use strict';
 
-const google = require('../');
+const google = require('googleapis');
 const compute = google.compute('v1');
 
 /**
@@ -24,10 +24,10 @@ const compute = google.compute('v1');
  * method rather than creating your own JWT or Compute client directly.
  *
  * Note: In order to run on a local developer machine, it is necessary to download a private key
- * file to your machine, and to set a local environment constiable pointing to the location of the
+ * file to your machine, and to set a local environment variable pointing to the location of the
  * file. Create a service account using the Google Developers Console using the section APIs & Auth.
  * Select "Generate new JSON key" and download the resulting file. Once this is done, set the
- * GOOGLE_APPLICATION_CREDENTIALS environment constiable to point to the location of the .json file.
+ * GOOGLE_APPLICATION_CREDENTIALS environment variable to point to the location of the .json file.
  *
  * See also:
  * https://developers.google.com/accounts/docs/application-default-credentials

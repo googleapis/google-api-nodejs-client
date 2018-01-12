@@ -18,13 +18,18 @@
  * an oauth2 workflow.
  */
 
-const google = require('../');
+const google = require('googleapis');
 const OAuth2Client = google.auth.OAuth2;
 const http = require('http');
 const url = require('url');
 const querystring = require('querystring');
 const opn = require('opn');
-const keys = require('./oauth2.keys.json');
+const nconf = require('nconf');
+const path = require('path');
+
+nconf.argv().env()
+   .file(path.join(__dirname, 'oauth2.keys.json'));
+const keys = nconf.get('web');
 
 class SampleClient {
   constructor (options) {
@@ -32,9 +37,9 @@ class SampleClient {
 
     // create an oAuth client to authorize the API call
     this.oAuth2Client = new OAuth2Client(
-      keys.web.client_id,
-      keys.web.client_secret,
-      keys.web.redirect_uris[0]
+      keys.client_id,
+      keys.client_secret,
+      keys.redirect_uris[0]
     );
   }
 

@@ -13,17 +13,21 @@
 
 'use strict';
 
+const google = require('googleapis');
+const nconf = require('nconf');
 const readline = require('readline');
-const google = require('../');
-const OAuth2Client = google.auth.OAuth2;
 const plus = google.plus('v1');
+const path = require('path');
+const OAuth2Client = google.auth.OAuth2;
+
+nconf.argv().env().file(path.join(__dirname, '/oauth2.keys.json'));
+const keys = nconf.get('web');
 
 // Client ID and client secret are available at
 // https://code.google.com/apis/console
-const keys = require('./oauth2.keys.json');
-const CLIENT_ID = keys.web.client_id;
-const CLIENT_SECRET = keys.web.client_secret;
-const REDIRECT_URL = keys.web.redirect_uris[0];
+const CLIENT_ID = keys.client_id;
+const CLIENT_SECRET = keys.client_secret;
+const REDIRECT_URL = keys.redirect_uris[0];
 
 const oauth2Client = new OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
 

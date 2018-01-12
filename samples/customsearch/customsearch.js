@@ -17,12 +17,18 @@
 
 const google = require('googleapis');
 const customsearch = google.customsearch('v1');
+const nconf = require('nconf');
+
+// Ex: node customsearch.js
+//      "Google Node.js"
+//      --api_key "YOUR KEY"
+//      --customsearch_engine_id="YOUR ID"
+nconf.argv().env().file(__dirname + '/config.json');
 
 // You can get a custom search engine id at
 // https://www.google.com/cse/create/new
-const config = require('../config.json');
-const CX = config.customsearch_engine_id;
-const API_KEY = config.api_key;
+const CX = nconf.get('customsearch_engine_id');
+const API_KEY = nconf.get('api_key');
 const SEARCH = process.argv[2];
 
 customsearch.cse.list({

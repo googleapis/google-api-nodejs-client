@@ -15,10 +15,13 @@
 
 const google = require('googleapis');
 const blogger = google.blogger('v3');
-const config = require('../config.json');
+const nconf = require('nconf');
+
+// Ex: node blogger.js --api_key "YOUR API KEY"
+nconf.argv().env().file(__dirname + '/config.json');
 
 blogger.blogs.get({
-  key: config.blogger_api_key,
+  key: nconf.get('api_key'),
   blogId: 3213900
 }, (err, result) => {
   if (err) {

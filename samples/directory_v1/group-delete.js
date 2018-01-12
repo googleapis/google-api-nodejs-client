@@ -13,14 +13,17 @@
 
 'use strict';
 
-const googleapis = require('../../');
-const keys = require('../jwt.keys.json');
+const googleapis = require('googleapis');
+const nconf = require('nconf');
+const path = require('path');
+
+nconf.argv().env().file(path.join(__dirname, '../jwt.keys.json'));
 
 // Create JWT auth object
 const jwt = new googleapis.auth.JWT(
-  keys.client_email,
+  nconf.get('client_email'),
   null,
-  keys.private_key,
+  nconf.get('private_key'),
   [
     'https://www.googleapis.com/auth/admin.directory.group',
     'https://www.googleapis.com/auth/admin.directory.group.member'

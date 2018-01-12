@@ -14,8 +14,11 @@
 'use strict';
 
 const google = require('googleapis');
-const config = require('../config');
-const urlshortener = google.urlshortener('v1', config.api_key);
+const path = require('path');
+const nconf = require('nconf');
+
+nconf.argv().env().file(path.join(__dirname, '../config.json'));
+const urlshortener = google.urlshortener('v1', nconf.get('api_key'));
 
 urlshortener.url.get({
   shortUrl: 'http://goo.gl/DdUKX'
