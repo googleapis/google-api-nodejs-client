@@ -28,8 +28,8 @@ const servingFramework = 'API';
 // Read more: http://goo.gl/oVwKH1
 const variations = [
   {'name': 'Default', 'url': 'http://www.example.com', 'status': 'ACTIVE'},
-  {'name': 'constiation 1', 'url': 'http://www.1.com', 'status': 'ACTIVE'},
-  {'name': 'constiation 2', 'url': 'http://www.2.com', 'status': 'ACTIVE'}
+  {'name': 'variation 1', 'url': 'http://www.1.com', 'status': 'ACTIVE'},
+  {'name': 'variation 2', 'url': 'http://www.2.com', 'status': 'ACTIVE'}
 ];
 
 // Specify Experiment configuration
