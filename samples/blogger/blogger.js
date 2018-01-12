@@ -16,9 +16,10 @@
 const google = require('googleapis');
 const blogger = google.blogger('v3');
 const nconf = require('nconf');
+const path = require('path');
 
 // Ex: node blogger.js --api_key "YOUR API KEY"
-nconf.argv().env().file(__dirname + '/config.json');
+nconf.argv().env().file(path.join(__dirname, 'config.json'));
 
 blogger.blogs.get({
   key: nconf.get('api_key'),
