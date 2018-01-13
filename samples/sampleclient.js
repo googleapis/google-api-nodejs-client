@@ -28,7 +28,7 @@ const nconf = require('nconf');
 const path = require('path');
 
 nconf.argv().env()
-   .file(path.join(__dirname, 'oauth2.keys.json'));
+  .file(path.join(__dirname, 'oauth2.keys.json'));
 const keys = nconf.get('web');
 
 class SampleClient {

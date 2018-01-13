@@ -38,11 +38,11 @@ function download (fileId) {
       fileId: fileId,
       alt: 'media'
     })
-    .on('error', err => {
-      console.error('Error downloading file');
-      throw err;
-    })
-    .pipe(dest);
+      .on('error', err => {
+        console.error('Error downloading file');
+        throw err;
+      })
+      .pipe(dest);
 
     dest
       .on('finish', () => {

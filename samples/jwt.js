@@ -38,13 +38,13 @@ nconf.argv().env().file(path.join(__dirname, 'jwt.keys.json'));
  */
 
 const authClient = new google.auth.JWT(
-    nconf.get('client_email'),
-    null,
-    nconf.get('private_key'),
-    // Scopes can be specified either as an array or as a single, space-delimited string
-    ['https://www.googleapis.com/auth/drive.readonly'],
-    // User to impersonate (leave empty if no impersonation needed)
-    'subject-account-email@example.com');
+  nconf.get('client_email'),
+  null,
+  nconf.get('private_key'),
+  // Scopes can be specified either as an array or as a single, space-delimited string
+  ['https://www.googleapis.com/auth/drive.readonly'],
+  // User to impersonate (leave empty if no impersonation needed)
+  'subject-account-email@example.com');
 
 authClient.authorize(err => {
   if (err) {

@@ -36,11 +36,11 @@ function download (fileId) {
       fileId: fileId,
       mimeType: 'application/pdf'
     })
-    .on('error', err => {
-      console.error('Error downloading file!');
-      throw err;
-    })
-    .pipe(dest);
+      .on('error', err => {
+        console.error('Error downloading file!');
+        throw err;
+      })
+      .pipe(dest);
 
     dest
       .on('finish', () => {
