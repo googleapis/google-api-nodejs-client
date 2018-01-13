@@ -13,18 +13,20 @@
 
 'use strict';
 
-var google = require('../../lib/googleapis');
-var blogger = google.blogger('v3');
-var util = require('util');
+const google = require('googleapis');
+const blogger = google.blogger('v3');
+const nconf = require('nconf');
+const path = require('path');
+
+// Ex: node blogger.js --api_key "YOUR API KEY"
+nconf.argv().env().file(path.join(__dirname, 'config.json'));
 
 blogger.blogs.get({
-  key: '<YOUR API KEY HERE>',
-  blogId: '<YOUR BLOG ID HERE>'
-}, function (err, result) {
+  key: nconf.get('api_key'),
+  blogId: 3213900
+}, (err, result) => {
   if (err) {
     console.error(err);
   }
-  if (result) {
-    console.log(util.inspect(result));
-  }
+  console.log(result);
 });

@@ -13,31 +13,27 @@
 
 'use strict';
 
-var google = require('../../');
-var sampleClient = require('../sampleclient');
+const google = require('googleapis');
+const sampleClient = require('../sampleclient');
 
-var auth = sampleClient.oAuth2Client;
-
-var plus = google.plus({
+const plus = google.plus({
   version: 'v1',
-  auth: auth
+  auth: sampleClient.oAuth2Client
 });
 
-function me (tokens) {
+function me () {
   plus.people.get({
     userId: 'me'
-  }, function (err, me) {
+  }, (err, me) => {
     if (err) {
-      console.error(err);
-      process.exit();
+      throw err;
     }
-
     console.log(me);
     process.exit();
   });
 }
 
-var scopes = [
+const scopes = [
   'https://www.googleapis.com/auth/plus.login',
   'https://www.googleapis.com/auth/plus.me',
   'https://www.googleapis.com/auth/userinfo.email',
@@ -45,7 +41,10 @@ var scopes = [
 ];
 
 if (module === require.main) {
-  sampleClient.execute(scopes, function (tokens) {
-    me(tokens);
+  sampleClient.authenticate(scopes, err => {
+    if (err) {
+      throw err;
+    }
+    me();
   });
 }

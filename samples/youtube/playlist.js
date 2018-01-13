@@ -13,12 +13,11 @@
 
 'use strict';
 
-var google = require('../../lib/googleapis');
-var sampleClient = require('../sampleclient');
-var util = require('util');
+const google = require('googleapis');
+const sampleClient = require('../sampleclient');
 
 // initialize the Youtube API library
-var youtube = google.youtube({
+const youtube = google.youtube({
   version: 'v3',
   auth: sampleClient.oAuth2Client
 });
@@ -26,19 +25,19 @@ var youtube = google.youtube({
 // a very simple example of getting data from a playlist
 function runSamples () {
   // the first query will return data with an etag
-  getPlaylistData(null, function (err, data, response) {
+  getPlaylistData(null, (err, data, res) => {
     if (err) {
-      return console.log(err);
+      throw err;
     }
-    var etag = data.etag;
+    const etag = data.etag;
 
     // the second query will (likely) return no data, and an HTTP 304
     // since the If-None-Match header was set with a matching eTag
-    getPlaylistData(etag, function (err, data, response) {
+    getPlaylistData(etag, (err, data, res) => {
       if (err) {
-        return console.log(err);
+        throw err;
       }
-      console.log(response.status);
+      console.log(res.status);
     });
   });
 }
@@ -46,7 +45,7 @@ function runSamples () {
 function getPlaylistData (etag, callback) {
   // Create custom HTTP headers for the request to enable
   // use of eTags
-  var headers = {};
+  const headers = {};
   if (etag) {
     headers['If-None-Match'] = etag;
   }
@@ -54,22 +53,25 @@ function getPlaylistData (etag, callback) {
     part: 'id,snippet',
     id: 'PLIivdWyY5sqIij_cgINUHZDMnGjVx3rxi',
     headers: headers
-  }, function (err, data, response) {
+  }, (err, data, res) => {
     if (err) {
-      console.error('Error: ' + err);
+      throw err;
     }
-    if (data) {
-      console.log(util.inspect(data, false, null));
+    if (res) {
+      console.log('Status code: ' + res.statusCode);
     }
-    if (response) {
-      console.log('Status code: ' + response.statusCode);
-    }
-    callback(err, data, response);
+    console.log(data);
+    callback(err, data, res);
   });
 }
 
-var scopes = [
+const scopes = [
   'https://www.googleapis.com/auth/youtube'
 ];
 
-sampleClient.execute(scopes, runSamples);
+sampleClient.authenticate(scopes, err => {
+  if (err) {
+    throw err;
+  }
+  runSamples();
+});

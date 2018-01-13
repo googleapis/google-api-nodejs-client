@@ -13,35 +13,29 @@
 
 'use strict';
 
-var google = require('../../');
-var sampleClient = require('../sampleclient');
+const google = require('googleapis');
+const sampleClient = require('../sampleclient');
 
-var auth = sampleClient.oAuth2Client;
-
-var drive = google.drive({
+const drive = google.drive({
   version: 'v3',
-  auth: auth
+  auth: sampleClient.oAuth2Client
 });
 
-function list (query, tokens) {
-  var params = {
-    pageSize: 3
-  };
+function list (query) {
+  const params = { pageSize: 3 };
   if (query) {
     params.q = query;
   }
-  drive.files.list(params, function (err, result) {
+  drive.files.list(params, (err, result) => {
     if (err) {
-      console.error(err);
-      process.exit();
+      throw err;
     }
-
     console.log(result.files);
     process.exit();
   });
 }
 
-var scopes = [
+const scopes = [
   'https://www.googleapis.com/auth/drive',
   'https://www.googleapis.com/auth/drive.appdata',
   'https://www.googleapis.com/auth/drive.file',
@@ -52,7 +46,10 @@ var scopes = [
 ];
 
 if (module === require.main) {
-  sampleClient.execute(scopes, function (tokens) {
-    list(process.argv.slice(2)[0], tokens);
+  sampleClient.authenticate(scopes, err => {
+    if (err) {
+      throw err;
+    }
+    list(process.argv.slice(2)[0]);
   });
 }

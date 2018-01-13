@@ -13,8 +13,12 @@
 
 'use strict';
 
-var google = require('../lib/googleapis.js');
-var drive = google.drive('v2');
+const google = require('googleapis');
+const drive = google.drive('v2');
+const nconf = require('nconf');
+const path = require('path');
+
+nconf.argv().env().file(path.join(__dirname, 'jwt.keys.json'));
 
 /**
  * The JWT authorization is ideal for performing server-to-server
@@ -32,27 +36,27 @@ var drive = google.drive('v2');
  *
  * See the defaultauth.js sample for an alternate way of fetching compute credentials.
  */
-var authClient = new google.auth.JWT(
-    'service-account-email@developer.gserviceaccount.com',
-    'path/to/key.pem',
-    // Contents of private_key.pem if you want to load the pem file yourself
-    // (do not use the path parameter above if using this param)
-    'key',
+
+const authClient = new google.auth.JWT(
+    nconf.get('client_email'),
+    null,
+    nconf.get('private_key'),
     // Scopes can be specified either as an array or as a single, space-delimited string
     ['https://www.googleapis.com/auth/drive.readonly'],
     // User to impersonate (leave empty if no impersonation needed)
     'subject-account-email@example.com');
 
-authClient.authorize(function (err, tokens) {
+authClient.authorize(err => {
   if (err) {
-    return console.log(err);
+    throw err;
   }
 
   // Make an authorized request to list Drive files.
-  drive.files.list({ auth: authClient }, function (err, resp) {
+  drive.files.list({ auth: authClient }, (err, res) => {
     // handle err and response
     if (err) {
-      return console.log(err);
+      throw err;
     }
+    console.log(res);
   });
 });

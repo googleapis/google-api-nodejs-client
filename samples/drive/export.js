@@ -13,67 +13,63 @@
 
 'use strict';
 
-var google = require('../../');
-var sampleClient = require('../sampleclient');
-var fs = require('fs');
+const google = require('googleapis');
+const sampleClient = require('../sampleclient');
+const fs = require('fs');
 
-var auth = sampleClient.oAuth2Client;
-
-var drive = google.drive({
+const drive = google.drive({
   version: 'v3',
-  auth: auth
+  auth: sampleClient.oAuth2Client
 });
 
-function download (fileId, tokens) {
+function download (fileId) {
   drive.files.get({
     fileId: fileId
-  }, function (err, metadata) {
+  }, (err, metadata) => {
     if (err) {
-      console.error(err);
-      return process.exit();
+      throw err;
     }
-
     console.log('Downloading %s...', metadata.name);
-
-    auth.setCredentials(tokens);
-
-    var dest = fs.createWriteStream(metadata.name + '.pdf');
+    const dest = fs.createWriteStream(metadata.name + '.pdf');
 
     drive.files.export({
       fileId: fileId,
       mimeType: 'application/pdf'
     })
-    .on('error', function (err) {
-      console.log('Error downloading file', err);
-      process.exit();
+    .on('error', err => {
+      console.error('Error downloading file!');
+      throw err;
     })
     .pipe(dest);
 
     dest
-      .on('finish', function () {
+      .on('finish', () => {
         console.log('Downloaded %s!', metadata.name);
         process.exit();
       })
-      .on('error', function (err) {
-        console.log('Error writing file', err);
-        process.exit();
+      .on('error', err => {
+        console.error('Error writing file!');
+        throw err;
       });
   });
 }
 
-var scopes = [
+const scopes = [
   'https://www.googleapis.com/auth/drive.metadata.readonly',
   'https://www.googleapis.com/auth/drive.photos.readonly',
   'https://www.googleapis.com/auth/drive.readonly'
 ];
 
 if (module === require.main) {
-  var args = process.argv.slice(2);
+  const args = process.argv.slice(2);
   if (!args[0]) {
     throw new Error('fileId required!');
   } else {
-    sampleClient.execute(scopes, function (tokens) {
-      download(args[0], tokens);
+    sampleClient.authenticate(scopes, (err, authClient) => {
+      if (err) {
+        throw err;
+      }
+      download(args[0]);
     });
   }
 }

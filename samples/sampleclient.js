@@ -18,79 +18,59 @@
  * an oauth2 workflow.
  */
 
-var google = require('../lib/googleapis');
-var OAuth2Client = google.auth.OAuth2;
-var http = require('http');
-var url = require('url');
-var querystring = require('querystring');
-var opn = require('opn');
-var secrets = require('./secrets.json');
+const google = require('googleapis');
+const OAuth2Client = google.auth.OAuth2;
+const http = require('http');
+const url = require('url');
+const querystring = require('querystring');
+const opn = require('opn');
+const nconf = require('nconf');
+const path = require('path');
 
-var called = false;
+nconf.argv().env()
+   .file(path.join(__dirname, 'oauth2.keys.json'));
+const keys = nconf.get('web');
 
-function callOnce (callback) {
-  if (!called) {
-    called = true;
-    callback();
+class SampleClient {
+  constructor (options) {
+    this._options = options || { scopes: [] };
+
+    // create an oAuth client to authorize the API call
+    this.oAuth2Client = new OAuth2Client(
+      keys.client_id,
+      keys.client_secret,
+      keys.redirect_uris[0]
+    );
   }
-}
-
-function handler (request, response, server, callback) {
-  var self = this;
-  var qs = querystring.parse(url.parse(request.url).query);
-  self.oAuth2Client.getToken(qs.code, function (err, tokens) {
-    if (err) {
-      console.error('Error getting oAuth tokens: ' + err);
-    }
-    self.oAuth2Client.setCredentials(tokens);
-    self.isAuthenticated = true;
-    response.end('Authentication successful! Please return to the console.');
-    callback(tokens);
-    server.close();
-  });
-}
-
-function SampleClient (options) {
-  var self = this;
-  self.isAuthenticated = false;
-  this._options = options || { scopes: [] };
-
-  // create an oAuth client to authorize the API call
-  this.oAuth2Client = new OAuth2Client(
-    secrets.web.client_id,
-    secrets.web.client_secret,
-    secrets.web.redirect_uris[0]
-  );
 
   // Open an http server to accept the oauth callback. In this
   // simple example, the only request to our webserver is to
   // /callback?code=<code>
-  this._authenticate = function (scopes, callback) {
+  authenticate (scopes, callback) {
     // grab the url that will be used for authorization
-    self.authorizeUrl = self.oAuth2Client.generateAuthUrl({
+    this.authorizeUrl = this.oAuth2Client.generateAuthUrl({
       access_type: 'offline',
       scope: scopes.join(' ')
     });
-    var server = http.createServer(function (request, response) {
-      callOnce(function () {
-        handler.call(self, request, response, server, callback);
-      });
-    }).listen(8080, function () {
+    const server = http.createServer((req, res) => {
+      if (req.url.indexOf('/oauth2callback') > -1) {
+        const qs = querystring.parse(url.parse(req.url).query);
+        this.oAuth2Client.getToken(qs.code, (err, tokens) => {
+          if (err) {
+            console.error('Error getting oAuth tokens: ' + err);
+            return callback(err);
+          }
+          this.oAuth2Client.credentials = tokens;
+          res.end('Authentication successful! Please return to the console.');
+          callback(null, this.oAuth2Client);
+          server.close();
+        });
+      }
+    }).listen(3000, () => {
       // open the browser to the authorize url to start the workflow
-      opn(self.authorizeUrl);
+      opn(this.authorizeUrl);
     });
-  };
-
-  self.execute = function (scopes, callback) {
-    self._callback = callback;
-    if (self.isAuthenticated) {
-      callback.apply();
-    } else {
-      self._authenticate(scopes, callback);
-    }
-  };
-
-  return self;
+  }
 }
 
 module.exports = new SampleClient();

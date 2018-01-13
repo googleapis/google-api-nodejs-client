@@ -13,60 +13,72 @@
 
 'use strict';
 
-var google = require('../lib/googleapis.js');
-var drive = google.drive('v2');
-var OAuth2Client = google.auth.OAuth2;
+const google = require('googleapis');
+const drive = google.drive('v2');
+const sampleClient = require('./sampleclient');
 
-// Client ID and client secret are available at
-// https://code.google.com/apis/console
-var CLIENT_ID = 'YOUR CLIENT ID HERE';
-var CLIENT_SECRET = 'YOUR CLIENT SECRET HERE';
-var REDIRECT_URL = 'YOUR REDIRECT URL HERE';
+function runSamples () {
+  // insertion example
+  drive.files.insert({
+    resource: {
+      title: 'Test',
+      mimeType: 'text/plain'
+    },
+    media: {
+      mimeType: 'text/plain',
+      body: 'Hello World updated with metadata'
+    },
+    auth: sampleClient.oAuth2Client
+  }, (err, res) => {
+    if (err) {
+      throw err;
+    }
+    console.log(res);
+  });
 
-var oauth2Client = new OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
+  // update with no metadata
+  drive.files.update({
+    fileId: '0B-skmV2m1Arna1lZSGFHNWx6YXc',
+    media: {
+      mimeType: 'text/plain',
+      body: 'Hello World updated with metadata'
+    },
+    auth: sampleClient.oAuth2Client
+  }, (err, res) => {
+    if (err) {
+      throw err;
+    }
+    console.log(res);
+  });
 
-oauth2Client.setCredentials({
-  access_token: 'ACCESS TOKEN HERE'
-});
+  // update example with metadata update
+  drive.files.update({
+    fileId: '0B-skmV2...',
+    resource: {
+      title: 'Updated title'
+    },
+    media: {
+      mimeType: 'text/plain',
+      body: 'Hello World updated with metadata'
+    },
+    auth: sampleClient.oAuth2Client
+  }, (err, res) => {
+    if (err) {
+      throw err;
+    }
+    console.log(res);
+  });
+}
 
-// insertion example
-drive.files.insert({
-  resource: {
-    title: 'Test',
-    mimeType: 'text/plain'
-  },
-  media: {
-    mimeType: 'text/plain',
-    body: 'Hello World updated with metadata'
-  },
-  auth: oauth2Client
-}, function (err, response) {
-  console.log('error:', err, 'inserted:', response.id);
-});
+const scopes = [
+  'https://www.googleapis.com/auth/drive.metadata',
+  'https://www.googleapis.com/auth/drive.photos',
+  'https://www.googleapis.com/auth/drive'
+];
 
-// update with no metadata
-drive.files.update({
-  fileId: '0B-skmV2m1Arna1lZSGFHNWx6YXc',
-  media: {
-    mimeType: 'text/plain',
-    body: 'Hello World updated with metadata'
-  },
-  auth: oauth2Client
-}, function (err, response) {
-  console.log('error:', err, 'updated:', response.id);
-});
-
-// update example with metadata update
-drive.files.update({
-  fileId: '0B-skmV2...',
-  resource: {
-    title: 'Updated title'
-  },
-  media: {
-    mimeType: 'text/plain',
-    body: 'Hello World updated with metadata'
-  },
-  auth: oauth2Client
-}, function (err, response) {
-  console.log('error:', err, 'updated:', response.id);
+sampleClient.authenticate(scopes, err => {
+  if (err) {
+    throw err;
+  }
+  runSamples();
 });

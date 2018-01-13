@@ -13,12 +13,11 @@
 
 'use strict';
 
-var google = require('../../lib/googleapis');
-var sampleClient = require('../sampleclient');
-var util = require('util');
+const google = require('googleapis');
+const sampleClient = require('../sampleclient');
 
 // initialize the Youtube API library
-var youtube = google.youtube({
+const youtube = google.youtube({
   version: 'v3',
   auth: sampleClient.oAuth2Client
 });
@@ -28,19 +27,22 @@ function runSamples () {
   youtube.search.list({
     part: 'id,snippet',
     q: 'Node.js on Google Cloud'
-  }, function (err, data) {
+  }, (err, data) => {
     if (err) {
-      console.error('Error: ' + err);
+      throw err;
     }
-    if (data) {
-      console.log(util.inspect(data, false, null));
-    }
+    console.log(data);
     process.exit();
   });
 }
 
-var scopes = [
+const scopes = [
   'https://www.googleapis.com/auth/youtube'
 ];
 
-sampleClient.execute(scopes, runSamples);
+sampleClient.authenticate(scopes, err => {
+  if (err) {
+    throw err;
+  }
+  runSamples();
+});

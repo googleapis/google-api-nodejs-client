@@ -13,22 +13,25 @@
 
 'use strict';
 
-var google = require('../../lib/googleapis');
-var sampleClient = require('../sampleclient');
-var util = require('util');
-var fs = require('fs');
+/**
+ * Usage: node upload.js PATH_TO_VIDEO_FILE
+ */
 
-var FILENAME = 'YOUR VIDEO FILENAME HERE';
+const google = require('googleapis');
+const sampleClient = require('../sampleclient');
+const fs = require('fs');
+
+const FILENAME = process.argv[2];
 
 // initialize the Youtube API library
-var youtube = google.youtube({
+const youtube = google.youtube({
   version: 'v3',
   auth: sampleClient.oAuth2Client
 });
 
 // very basic example of uploading a video to youtube
 function uploadVideo () {
-  var req = youtube.videos.insert({
+  const req = youtube.videos.insert({
     part: 'id,snippet,status',
     notifySubscribers: false,
     resource: {
@@ -43,23 +46,21 @@ function uploadVideo () {
     media: {
       body: fs.createReadStream(FILENAME)
     }
-  }, function (err, data) {
+  }, (err, data) => {
     if (err) {
-      console.error('Error: ' + err);
+      throw err;
     }
-    if (data) {
-      console.log(util.inspect(data, false, null));
-    }
+    console.log(data);
     process.exit();
   });
 
-  var fileSize = fs.statSync(FILENAME).size;
+  const fileSize = fs.statSync(FILENAME).size;
 
   // show some progress
-  var id = setInterval(function () {
-    var uploadedBytes = req.req.connection._bytesDispatched;
-    var uploadedMBytes = uploadedBytes / 1000000;
-    var progress = uploadedBytes > fileSize
+  const id = setInterval(() => {
+    const uploadedBytes = req.req.connection._bytesDispatched;
+    const uploadedMBytes = uploadedBytes / 1000000;
+    const progress = uploadedBytes > fileSize
       ? 100 : (uploadedBytes / fileSize) * 100;
     process.stdout.clearLine();
     process.stdout.cursorTo(0);
@@ -72,9 +73,14 @@ function uploadVideo () {
   }, 250);
 }
 
-var scopes = [
+const scopes = [
   'https://www.googleapis.com/auth/youtube.upload',
   'https://www.googleapis.com/auth/youtube'
 ];
 
-sampleClient.execute(scopes, uploadVideo);
+sampleClient.authenticate(scopes, err => {
+  if (err) {
+    throw err;
+  }
+  uploadVideo();
+});
