@@ -200,7 +200,7 @@ With the code returned, you can ask for an access token as shown below:
 oauth2Client.getToken(code, function (err, tokens) {
   // Now tokens contains an access_token and an optional refresh_token. Save them.
   if (!err) {
-    oauth2Client.setCredentials(tokens);
+    oauth2Client.credentials = tokens;
   }
 });
 ```
@@ -262,12 +262,12 @@ var oauth2Client = new OAuth2(
 );
 
 // Retrieve tokens via token exchange explained above or set them:
-oauth2Client.setCredentials({
+oauth2Client.credentials = {
   access_token: 'ACCESS TOKEN HERE',
   refresh_token: 'REFRESH TOKEN HERE'
   // Optional, provide an expiry_date (milliseconds since the Unix Epoch)
   // expiry_date: (new Date()).getTime() + (1000 * 60 * 60 * 24 * 7)
-});
+};
 
 plus.people.get({
   userId: 'me',
