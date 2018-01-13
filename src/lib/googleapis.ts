@@ -14,9 +14,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as util from 'util';
-
 import * as apis from '../apis';
-
 import {Discovery} from './discovery';
 
 const discovery = new Discovery({debug: false, includePrivate: false});
@@ -24,9 +22,9 @@ const discovery = new Discovery({debug: false, includePrivate: false});
 /**
  * @class GoogleAuth
  */
-// Pascal case preventing API breaking change.
-// tslint:disable-next-line
-const GoogleAuth = require('google-auth-library');
+import {GoogleAuth, JWT, Compute, OAuth2Client} from 'google-auth-library';
+
+
 
 /**
  * GoogleApis constructor.
@@ -49,6 +47,9 @@ function GoogleApis(options?) {
    * @type {GoogleAuth}
    */
   this.auth = new GoogleAuth();
+  this.auth.JWT = JWT;
+  this.auth.Compute = Compute;
+  this.auth.OAuth2 = OAuth2Client;
 
   /**
    * A reference to the {@link GoogleApis} constructor function.

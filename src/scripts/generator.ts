@@ -13,7 +13,7 @@
 
 import * as async from 'async';
 import * as fs from 'fs';
-import {DefaultTransporter} from 'google-auth-library/lib/transporters';
+import {DefaultTransporter} from 'google-auth-library';
 import * as minimist from 'minimist';
 import * as mkdirp from 'mkdirp';
 import * as nunjucks from 'nunjucks';
