@@ -194,7 +194,6 @@ export class Generator {
       };
     }));
     try {
-      // tslint:disable-next-line no-any
       await queue.onIdle();
       await this.generateIndex();
     } catch (e) {
