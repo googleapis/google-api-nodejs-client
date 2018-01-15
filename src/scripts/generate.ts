@@ -16,6 +16,7 @@
 
 import * as minimist from 'minimist';
 import * as path from 'path';
+import * as pify from 'pify';
 import * as rimraf from 'rimraf';
 import {install} from 'source-map-support';
 
@@ -25,34 +26,22 @@ import {Generator} from './generator';
 install();
 
 const debug = true;
-
 const argv = minimist(process.argv.slice(2));
-
-// constructors
+const args = argv._;
 const gen = new Generator({debug, includePrivate: false});
 
-const args = argv._;
-if (args.length) {
-  args.forEach((url) => {
-    gen.generateAPI(url, (err) => {
-      if (err) {
-        throw err;
-      }
+async function main() {
+  if (args.length) {
+    args.forEach(async url => {
+      await gen.generateAPI(url);
       console.log('Generated API for ' + url);
     });
-  });
-} else {
-  console.log('Removing old APIs...');
-  rimraf(path.join(__dirname, '../../../src/apis'), (err) => {
-    if (err) {
-      throw err;
-    }
+  } else {
+    console.log('Removing old APIs...');
+    await pify(rimraf)(path.join(__dirname, '../../../src/apis'));
     console.log('Generating APIs...');
-    gen.generateAllAPIs(e => {
-      if (e) {
-        throw e;
-      }
-      console.log('Finished generating APIs!');
-    });
-  });
+    await gen.generateAllAPIs();
+    console.log('Finished generating APIs!');
+  }
 }
+main().catch(console.error);
