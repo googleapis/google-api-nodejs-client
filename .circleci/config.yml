@@ -27,10 +27,6 @@ workflows:
           filters:
             tags:
               only: /.*/
-      - node7:
-          filters:
-            tags:
-              only: /.*/
       - node8:
           filters:
             tags:
@@ -43,7 +39,6 @@ workflows:
           requires:
             - node4
             - node6
-            - node7
             - node8
             - node9
           filters:
@@ -72,11 +67,6 @@ jobs:
   node6:
     docker:
       - image: node:6
-        user: node
-    <<: *unit_tests
-  node7:
-    docker:
-      - image: node:7
         user: node
     <<: *unit_tests
   node8:
