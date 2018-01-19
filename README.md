@@ -605,7 +605,7 @@ See [CONTRIBUTING][contributing].
 [oauthexample]: https://github.com/google/google-api-nodejs-client/tree/master/samples/oauth2.js
 [options]: https://github.com/google/google-api-nodejs-client/tree/master#options
 [googlecloud]: https://github.com/GoogleCloudPlatform/google-cloud-node
-[googlecloudapis]: https://googlecloudplatform.github.io/google-cloud-node/#/docs/google-cloud
+[googlecloudapis]: https://cloud.google.com/nodejs/docs/reference/apis
 [cloudplatform]: https://cloud.google.com/docs/
 [codecovimg]: https://codecov.io/github/google/google-api-nodejs-client/coverage.svg?branch=master
 [codecov]: https://codecov.io/github/google/google-api-nodejs-client?branch=master
