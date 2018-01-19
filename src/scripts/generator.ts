@@ -11,19 +11,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as async from 'async';
+import {AxiosRequestConfig} from 'axios';
 import * as fs from 'fs';
 import {DefaultTransporter} from 'google-auth-library';
 import * as minimist from 'minimist';
 import * as mkdirp from 'mkdirp';
 import * as nunjucks from 'nunjucks';
+import * as Q from 'p-queue';
 import * as path from 'path';
+import * as pify from 'pify';
 import * as url from 'url';
 import * as util from 'util';
 import {buildurl, handleError} from './generator_utils';
 
 const argv = minimist(process.argv.slice(2));
 const cliArgs = argv._;
+const fsp = pify(fs);
 
 const DISCOVERY_URL = argv['discovery-url'] ?
     argv['discovery-url'] :
@@ -48,17 +51,29 @@ interface Api {
   id?: string;
 }
 
+interface ApiResponse {
+  items: Api[];
+}
+
+interface FragmentResponse {
+  // tslint:disable-next-line no-any
+  codeFragment: any;
+}
+
+interface Schema {
+  name: string;
+  version: string;
+}
+
 export class Generator {
   private transporter = new DefaultTransporter();
-  private requestQueue;
+  private requestQueue = new Q({concurrency: 50});
   private env: nunjucks.Environment;
 
   /**
    * A multi-line string is turned into one line.
-   *
-   * @private
-   * @param  {string} str String to process
-   * @return {string}     Single line string processed
+   * @param str String to process
+   * @return Single line string processed
    */
   private oneLine(str?: string) {
     return str ? str.replace(/\n/g, ' ') : '';
@@ -66,10 +81,8 @@ export class Generator {
 
   /**
    * Clean a string of comment tags.
-   *
-   * @private
-   * @param  {string} str String to process
-   * @return {string}     Single line string processed
+   * @param str String to process
+   * @return Single line string processed
    */
   private cleanComments(str?: string) {
     // Convert /* into /x and */ into x/
@@ -102,26 +115,10 @@ export class Generator {
 
   /**
    * Generator for generating API endpoints
-   *
-   * @private
-   * @param {object} options Options for generation
-   * @this {Generator}
+   * @param options Options for generation
    */
   constructor(options: GeneratorOptions = {}) {
     this.options = options;
-
-    /**
-     * This API can generate thousands of concurrent HTTP requests.
-     * If left to happen while generating all APIs, things get very unstable.
-     * This makes sure we only ever have 10 concurrent network requests, and
-     * adds retry logic.
-     */
-    this.requestQueue = async.queue((opts, callback) => {
-      async.retry(3, () => {
-        return this.transporter.request(opts, callback);
-      });
-    }, 10);
-
     this.env = new nunjucks.Environment(
         new nunjucks.FileSystemLoader(TEMPLATES_DIR), {trimBlocks: true});
     this.env.addFilter('buildurl', buildurl);
@@ -137,17 +134,17 @@ export class Generator {
   /**
    * Add a requests to the rate limited queue.
    * @param opts Options to pass to the default transporter
-   * @param callback
    */
-  private makeRequest(opts, callback) {
-    this.requestQueue.push(opts, callback);
+  private request<T>(opts: AxiosRequestConfig) {
+    return this.requestQueue.add(() => {
+      return this.transporter.request<T>(opts);
+    });
   }
 
   /**
-   * Log output of generator
-   * Works just like console.log
+   * Log output of generator. Works just like console.log.
    */
-  private log(...args) {
+  private log(...args: string[]) {
     if (this.options && this.options.debug) {
       console.log.apply(this, arguments);
     }
@@ -167,74 +164,58 @@ export class Generator {
 
   /**
    * Generate all APIs and write to files.
-   *
-   * @param {function} callback Callback when all APIs have been generated
-   * @throws {Error} If there is an error generating any of the APIs
    */
-  generateAllAPIs(callback: Function) {
+  async generateAllAPIs() {
     const headers = this.options.includePrivate ? {} : {'X-User-Ip': '0.0.0.0'};
-    this.makeRequest({uri: DISCOVERY_URL, headers}, (err, resp) => {
-      if (err) {
-        return handleError(err, callback);
-      }
-      const apis: Api[] = resp.items;
-
-      const queue = async.queue((api: Api, next) => {
+    const res = await this.request<ApiResponse>({url: DISCOVERY_URL, headers});
+    const apis = res.data.items;
+    const queue = new Q({concurrency: 10});
+    console.log(`Generating ${apis.length} APIs...`);
+    queue.addAll(apis.map(api => {
+      return async () => {
         this.log('Generating API for %s...', api.id);
         this.logResult(
             api.discoveryRestUrl, 'Attempting first generateAPI call...');
-        async.retry(
-            3, this.generateAPI.bind(this, api.discoveryRestUrl),
-            (e, results) => {
-              if (e) {
-                this.logResult(
-                    api.discoveryRestUrl,
-                    `GenerateAPI call failed with error: ${e}, moving on.`);
-                console.error(`Failed to generate API: ${api.id}`);
-                console.log(
-                    api.id + '\n-----------\n' +
-                    util.inspect(
-                        this.state[api.discoveryRestUrl],
-                        {maxArrayLength: null}) +
-                    '\n');
-              } else {
-                this.logResult(
-                    api.discoveryRestUrl, `GenerateAPI call success!`);
-              }
-              this.state[api.discoveryRestUrl].done = true;
-              next(e, results);
-            });
-      }, 3);
-
-
-      apis.forEach((api) => {
-        queue.push(api);
-      });
-
-      queue.drain = (drainError: Error) => {
-        console.log(util.inspect(this.state, {maxArrayLength: null}));
-        if (drainError && callback) {
-          callback(drainError);
-          return;
+        try {
+          const results = await this.generateAPI(api.discoveryRestUrl);
+          this.logResult(api.discoveryRestUrl, `GenerateAPI call success!`);
+        } catch (e) {
+          this.logResult(
+              api.discoveryRestUrl,
+              `GenerateAPI call failed with error: ${e}, moving on.`);
+          console.error(`Failed to generate API: ${api.id}`);
+          console.log(
+              api.id + '\n-----------\n' +
+              util.inspect(
+                  this.state[api.discoveryRestUrl], {maxArrayLength: null}) +
+              '\n');
         }
-        this.generateIndex(callback);
+        this.state[api.discoveryRestUrl].done = true;
       };
-    });
+    }));
+    try {
+      await queue.onIdle();
+      await this.generateIndex();
+    } catch (e) {
+      console.log(util.inspect(this.state, {maxArrayLength: null}));
+    }
   }
 
-  generateIndex(callback: Function) {
+  async generateIndex() {
     const apis = {};
     const apisPath = path.join(srcPath, 'apis');
     const indexPath = path.join(apisPath, 'index.ts');
 
     // Dynamically discover available APIs
-    fs.readdirSync(apisPath).forEach(file => {
+    const files: string[] = await fsp.readdir(apisPath);
+    files.forEach(async file => {
       const filePath = path.join(apisPath, file);
-      if (!fs.statSync(filePath).isDirectory()) {
+      if (!(await fsp.stat(filePath)).isDirectory()) {
         return;
       }
       apis[file] = {};
-      fs.readdirSync(path.join(apisPath, file)).forEach(version => {
+      const files: string[] = await fsp.readdir(path.join(apisPath, file));
+      files.forEach(version => {
         const parts = path.parse(version);
         if (!version.endsWith('.d.ts') && parts.ext === '.ts') {
           apis[file][version] = parts.name;
@@ -242,42 +223,31 @@ export class Generator {
       });
     });
     const result = this.env.render('index.njk', {apis});
-    fs.writeFile(indexPath, result, {encoding: 'utf8'}, err => {
-      if (callback) callback(err);
-    });
+    await fsp.writeFile(indexPath, result, {encoding: 'utf8'});
   }
 
   /**
    * Given a discovery doc, parse it and recursively iterate over the various
    * embedded links.
-   * @param api
-   * @param schema
-   * @param apiPath
-   * @param tasks
    */
-  private getFragmentsForSchema(apiDiscoveryUrl, schema, apiPath, tasks) {
+  private getFragmentsForSchema(
+      apiDiscoveryUrl, schema, apiPath, tasks: Array<(() => Promise<void>)>) {
     if (schema.methods) {
       for (const methodName in schema.methods) {
         if (schema.methods.hasOwnProperty(methodName)) {
           const methodSchema = schema.methods[methodName];
           methodSchema.sampleUrl = apiPath + '.' + methodName + '.frag.json';
-          tasks.push((cb) => {
+          tasks.push(async () => {
             this.logResult(apiDiscoveryUrl, `Making fragment request...`);
             this.logResult(apiDiscoveryUrl, methodSchema.sampleUrl);
-            this.makeRequest({uri: methodSchema.sampleUrl}, (err, response) => {
-              if (err) {
-                this.logResult(apiDiscoveryUrl, `Fragment request err: ${err}`);
-                if (!err.message ||
-                    err.message.indexOf('AccessDenied') === -1) {
-                  return cb(err);
-                } else {
-                  this.logResult(apiDiscoveryUrl, 'Ignoring error.');
-                }
-              }
+            try {
+              const res = await this.request<FragmentResponse>(
+                  {url: methodSchema.sampleUrl});
               this.logResult(apiDiscoveryUrl, `Fragment request complete.`);
-              if (response && response.codeFragment &&
-                  response.codeFragment['Node.js']) {
-                let fragment = response.codeFragment['Node.js'].fragment;
+              if (res.data && res.data.codeFragment &&
+                  res.data.codeFragment['Node.js']) {
+                let fragment: string =
+                    res.data.codeFragment['Node.js'].fragment;
                 fragment = fragment.replace(/\/\*/gi, '/<');
                 fragment = fragment.replace(/\*\//gi, '>/');
                 fragment = fragment.replace(/`\*/gi, '`<');
@@ -289,8 +259,13 @@ export class Generator {
                 fragment = lines.join('\n');
                 methodSchema.fragment = fragment;
               }
-              cb();
-            });
+            } catch (err) {
+              this.logResult(apiDiscoveryUrl, `Fragment request err: ${err}`);
+              if (!err.message || err.message.indexOf('AccessDenied') === -1) {
+                throw err;
+              }
+              this.logResult(apiDiscoveryUrl, 'Ignoring error.');
+            }
           });
         }
       }
@@ -308,68 +283,43 @@ export class Generator {
 
   /**
    * Generate API file given discovery URL
-   * @param  {String} apiDiscoveryUri URL or filename of discovery doc for API
-   * @param {function} callback Callback when successful write of API
-   * @throws {Error} If there is an error generating the API.
+   * @param apiDiscoveryUri URL or filename of discovery doc for API
    */
-  generateAPI(apiDiscoveryUrl, callback: Function) {
-    const generate = (err: Error, resp) => {
-      this.logResult(apiDiscoveryUrl, `Discovery doc request complete.`);
-      if (err) {
-        handleError(err, callback);
-        return;
-      }
-      const tasks = [];
-      this.getFragmentsForSchema(
-          apiDiscoveryUrl, resp,
-          FRAGMENT_URL + resp.name + '/' + resp.version + '/0/' + resp.name,
-          tasks);
-
-      // e.g. apis/drive/v2.js
-      const exportFilename =
-          path.join(srcPath, 'apis', resp.name, resp.version + '.ts');
-      let contents;
-      this.logResult(apiDiscoveryUrl, `Generating templates...`);
-      async.waterfall(
-          [
-            (cb) => {
-              this.logResult(apiDiscoveryUrl, `Step 1...`);
-              async.parallel(tasks, cb);
-            },
-            (results, cb) => {
-              this.logResult(apiDiscoveryUrl, `Step 2...`);
-              contents = this.env.render(API_TEMPLATE, {api: resp});
-              mkdirp(path.dirname(exportFilename), cb);
-            },
-            (dir, cb) => {
-              this.logResult(apiDiscoveryUrl, `Step 3...`);
-              fs.writeFile(exportFilename, contents, {encoding: 'utf8'}, cb);
-            }
-          ],
-          (e) => {
-            if (e) {
-              handleError(e, callback);
-              return;
-            }
-            this.logResult(apiDiscoveryUrl, `Template generation complete.`);
-            callback(null, exportFilename);
-          });
-    };
-
+  async generateAPI(apiDiscoveryUrl) {
     const parts = url.parse(apiDiscoveryUrl);
     if (apiDiscoveryUrl && !parts.protocol) {
       this.log('Reading from file ' + apiDiscoveryUrl);
-      try {
-        return generate(
-            null,
-            JSON.parse(fs.readFileSync(apiDiscoveryUrl, {encoding: 'utf-8'})));
-      } catch (err) {
-        return handleError(err, callback);
-      }
+      const file: string =
+          await fsp.readFile(apiDiscoveryUrl, {encoding: 'utf-8'});
+      await this.generate(apiDiscoveryUrl, JSON.parse(file));
     } else {
       this.logResult(apiDiscoveryUrl, `Starting discovery doc request...`);
       this.logResult(apiDiscoveryUrl, apiDiscoveryUrl);
-      this.makeRequest({uri: apiDiscoveryUrl}, generate);
+      const res = await this.request<Schema>({url: apiDiscoveryUrl});
+      await this.generate(apiDiscoveryUrl, res.data);
     }
+  }
+
+  private async generate(apiDiscoveryUrl: string, schema: Schema) {
+    this.logResult(apiDiscoveryUrl, `Discovery doc request complete.`);
+    const tasks = new Array<() => Promise<void>>();
+    this.getFragmentsForSchema(
+        apiDiscoveryUrl, schema,
+        FRAGMENT_URL + schema.name + '/' + schema.version + '/0/' + schema.name,
+        tasks);
+
+    // e.g. apis/drive/v2.js
+    const exportFilename =
+        path.join(srcPath, 'apis', schema.name, schema.version + '.ts');
+    this.logResult(apiDiscoveryUrl, `Generating templates...`);
+    this.logResult(apiDiscoveryUrl, `Step 1...`);
+    await Promise.all(tasks.map(t => t()));
+    this.logResult(apiDiscoveryUrl, `Step 2...`);
+    const contents = this.env.render(API_TEMPLATE, {api: schema});
+    await pify(mkdirp)(path.dirname(exportFilename));
+    this.logResult(apiDiscoveryUrl, `Step 3...`);
+    await fsp.writeFile(exportFilename, contents, {encoding: 'utf8'});
+    this.logResult(apiDiscoveryUrl, `Template generation complete.`);
+    return exportFilename;
   }
 }
