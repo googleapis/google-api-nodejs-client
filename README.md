@@ -2,9 +2,9 @@
 
 # Google APIs Node.js Client
 
+[![CircleCI][circleimg]][circle]
 [![Greenkeeper][greenkeeperimg]][greenkeeper]
 [![npm version][npmimg]][npm]
-[![Build Status][travisimg]][travis]
 [![Code Coverage][codecovimg]][codecov]
 [![Downloads][downloadsimg]][downloads]
 [![Dependency Status][david-image]][david-url]
@@ -583,11 +583,11 @@ See [CONTRIBUTING][contributing].
 [david-dev-url]: https://david-dm.org/google/google-api-nodejs-client?type=dev
 [npmimg]: https://img.shields.io/npm/v/googleapis.svg
 [npm]: https://www.npmjs.org/package/googleapis
-[travisimg]: https://api.travis-ci.org/google/google-api-nodejs-client.svg
+[circle]: https://circleci.com/gh/google/google-auth-library-nodejs
+[circleimg]: https://circleci.com/gh/google/google-auth-library-nodejs.svg?style=svg
 [supported-list]: https://developers.google.com/apis-explorer/
 [bugs]: https://github.com/google/google-api-nodejs-client/issues
 [node]: http://nodejs.org/
-[travis]: https://travis-ci.org/google/google-api-nodejs-client
 [stackoverflow]: http://stackoverflow.com/questions/tagged/google-api-nodejs-client
 [apiexplorer]: https://developers.google.com/apis-explorer
 [urlshort]: https://developers.google.com/url-shortener/
