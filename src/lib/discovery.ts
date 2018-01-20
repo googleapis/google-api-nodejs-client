@@ -14,15 +14,10 @@
 import * as async from 'async';
 import * as fs from 'fs';
 import {DefaultTransporter} from 'google-auth-library';
-import * as pify from 'pify';
 import * as url from 'url';
 import * as util from 'util';
-
 import {buildurl, handleError} from '../scripts/generator_utils';
-
 import {createAPIRequest} from './apirequest';
-
-const fsp = pify(fs);
 
 interface DiscoverAPIsResponse {
   items: API[];
