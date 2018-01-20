@@ -13,14 +13,14 @@
 
 'use strict';
 
-const googleapis = require('googleapis');
+const {google} = require('googleapis');
 const path = require('path');
 const nconf = require('nconf');
 
 nconf.argv().env().file(path.join(__dirname, '../jwt.keys.json'));
 
 // Create JWT auth object
-const jwt = new googleapis.auth.JWT(
+const jwt = new google.auth.JWT(
   nconf.get('client_email'),
   null,
   nconf.get('private_key'),
@@ -38,7 +38,7 @@ jwt.authorize((err, data) => {
   console.log('You have been successfully authenticated: ', data);
 
   // Get Google Admin API
-  const admin = googleapis.admin('directory_v1');
+  const admin = google.admin('directory_v1');
 
   // Delete member from Google group
   admin.members.delete({

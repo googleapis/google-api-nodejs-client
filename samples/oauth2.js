@@ -13,7 +13,7 @@
 
 'use strict';
 
-const google = require('googleapis');
+const {google} = require('googleapis');
 const nconf = require('nconf');
 const readline = require('readline');
 const plus = google.plus('v1');

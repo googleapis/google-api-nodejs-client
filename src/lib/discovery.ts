@@ -14,10 +14,15 @@
 import * as async from 'async';
 import * as fs from 'fs';
 import {DefaultTransporter} from 'google-auth-library';
+import * as pify from 'pify';
 import * as url from 'url';
 import * as util from 'util';
+
 import {buildurl, handleError} from '../scripts/generator_utils';
+
 import {createAPIRequest} from './apirequest';
+
+const fsp = pify(fs);
 
 interface DiscoverAPIsResponse {
   items: API[];
@@ -28,10 +33,14 @@ interface API {
   api;
 }
 
-export class Discovery {
+interface DiscoveryOptions {
+  includePrivate?: boolean;
+  debug?: boolean;
+}
 
+export class Discovery {
   private transporter = new DefaultTransporter();
-  private options: any;
+  private options: DiscoveryOptions;
 
   private getPathParams(params) {
     const pathParams = [];
@@ -217,7 +226,7 @@ export class Discovery {
                         // tslint:disable-next-line
                         const Endpoint = versionIndex[api.name][version];
                         const ep = new Endpoint(options);
-                        ep.google = this;          // for drive.google.transporter
+                        ep.google = this;  // for drive.google.transporter
                         return Object.freeze(ep);  // create new & freeze
                       } catch (e) {
                         throw new Error(util.format(
@@ -235,7 +244,7 @@ export class Discovery {
         .catch(e => {
           return handleError(e, callback);
         });
-  };
+  }
 
   /**
    * Generate API file given discovery URL
@@ -244,13 +253,13 @@ export class Discovery {
    * @param {function} callback Callback when successful write of API
    * @throws {Error} If there is an error generating the API.
    */
-  discoverAPI(apiDiscoveryUrl, callback) {
+  async discoverAPI(apiDiscoveryUrl, callback) {
     const _generate = (err, resp) => {
       if (err) {
         return handleError(err, callback);
       }
       return callback(null, this.makeEndpoint(resp));
-    }
+    };
 
     if (typeof apiDiscoveryUrl === 'string') {
       const parts = url.parse(apiDiscoveryUrl);
@@ -258,9 +267,10 @@ export class Discovery {
       if (apiDiscoveryUrl && !parts.protocol) {
         this.log('Reading from file ' + apiDiscoveryUrl);
         try {
-          return fs.readFile(apiDiscoveryUrl, {encoding: 'utf8'}, (err, file) => {
-            _generate(err, JSON.parse(file));
-          });
+          return fs.readFile(
+              apiDiscoveryUrl, {encoding: 'utf8'}, (err, file) => {
+                _generate(err, JSON.parse(file));
+              });
         } catch (err) {
           return handleError(err, callback);
         }
@@ -282,5 +292,5 @@ export class Discovery {
       parameters.params = options;
       createAPIRequest(parameters, _generate);
     }
-  };
+  }
 }

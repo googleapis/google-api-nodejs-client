@@ -18,7 +18,7 @@
  * an oauth2 workflow.
  */
 
-const google = require('googleapis');
+const {google} = require('googleapis');
 const OAuth2Client = google.auth.OAuth2;
 const http = require('http');
 const url = require('url');

@@ -492,390 +492,392 @@ function getAPI(api, options) {
   }
 }
 
-export function abusiveexperiencereport(options) {
-  return getAPI.call(this, 'abusiveexperiencereport', options);
-}
-export function acceleratedmobilepageurl(options) {
-  return getAPI.call(this, 'acceleratedmobilepageurl', options);
-}
-export function adexchangebuyer(options) {
-  return getAPI.call(this, 'adexchangebuyer', options);
-}
-export function adexchangebuyer2(options) {
-  return getAPI.call(this, 'adexchangebuyer2', options);
-}
-export function adexchangeseller(options) {
-  return getAPI.call(this, 'adexchangeseller', options);
-}
-export function adexperiencereport(options) {
-  return getAPI.call(this, 'adexperiencereport', options);
-}
-export function admin(options) {
-  return getAPI.call(this, 'admin', options);
-}
-export function adsense(options) {
-  return getAPI.call(this, 'adsense', options);
-}
-export function adsensehost(options) {
-  return getAPI.call(this, 'adsensehost', options);
-}
-export function analytics(options) {
-  return getAPI.call(this, 'analytics', options);
-}
-export function analyticsreporting(options) {
-  return getAPI.call(this, 'analyticsreporting', options);
-}
-export function androiddeviceprovisioning(options) {
-  return getAPI.call(this, 'androiddeviceprovisioning', options);
-}
-export function androidenterprise(options) {
-  return getAPI.call(this, 'androidenterprise', options);
-}
-export function androidmanagement(options) {
-  return getAPI.call(this, 'androidmanagement', options);
-}
-export function androidpublisher(options) {
-  return getAPI.call(this, 'androidpublisher', options);
-}
-export function appengine(options) {
-  return getAPI.call(this, 'appengine', options);
-}
-export function appsactivity(options) {
-  return getAPI.call(this, 'appsactivity', options);
-}
-export function appstate(options) {
-  return getAPI.call(this, 'appstate', options);
-}
-export function bigquery(options) {
-  return getAPI.call(this, 'bigquery', options);
-}
-export function bigquerydatatransfer(options) {
-  return getAPI.call(this, 'bigquerydatatransfer', options);
-}
-export function blogger(options) {
-  return getAPI.call(this, 'blogger', options);
-}
-export function books(options) {
-  return getAPI.call(this, 'books', options);
-}
-export function calendar(options) {
-  return getAPI.call(this, 'calendar', options);
-}
-export function civicinfo(options) {
-  return getAPI.call(this, 'civicinfo', options);
-}
-export function classroom(options) {
-  return getAPI.call(this, 'classroom', options);
-}
-export function cloudbilling(options) {
-  return getAPI.call(this, 'cloudbilling', options);
-}
-export function cloudbuild(options) {
-  return getAPI.call(this, 'cloudbuild', options);
-}
-export function clouddebugger(options) {
-  return getAPI.call(this, 'clouddebugger', options);
-}
-export function clouderrorreporting(options) {
-  return getAPI.call(this, 'clouderrorreporting', options);
-}
-export function cloudfunctions(options) {
-  return getAPI.call(this, 'cloudfunctions', options);
-}
-export function cloudiot(options) {
-  return getAPI.call(this, 'cloudiot', options);
-}
-export function cloudkms(options) {
-  return getAPI.call(this, 'cloudkms', options);
-}
-export function cloudresourcemanager(options) {
-  return getAPI.call(this, 'cloudresourcemanager', options);
-}
-export function cloudshell(options) {
-  return getAPI.call(this, 'cloudshell', options);
-}
-export function cloudtasks(options) {
-  return getAPI.call(this, 'cloudtasks', options);
-}
-export function cloudtrace(options) {
-  return getAPI.call(this, 'cloudtrace', options);
-}
-export function clouduseraccounts(options) {
-  return getAPI.call(this, 'clouduseraccounts', options);
-}
-export function compute(options) {
-  return getAPI.call(this, 'compute', options);
-}
-export function container(options) {
-  return getAPI.call(this, 'container', options);
-}
-export function content(options) {
-  return getAPI.call(this, 'content', options);
-}
-export function customsearch(options) {
-  return getAPI.call(this, 'customsearch', options);
-}
-export function dataflow(options) {
-  return getAPI.call(this, 'dataflow', options);
-}
-export function dataproc(options) {
-  return getAPI.call(this, 'dataproc', options);
-}
-export function datastore(options) {
-  return getAPI.call(this, 'datastore', options);
-}
-export function deploymentmanager(options) {
-  return getAPI.call(this, 'deploymentmanager', options);
-}
-export function dfareporting(options) {
-  return getAPI.call(this, 'dfareporting', options);
-}
-export function dialogflow(options) {
-  return getAPI.call(this, 'dialogflow', options);
-}
-export function digitalassetlinks(options) {
-  return getAPI.call(this, 'digitalassetlinks', options);
-}
-export function discovery(options) {
-  return getAPI.call(this, 'discovery', options);
-}
-export function dlp(options) {
-  return getAPI.call(this, 'dlp', options);
-}
-export function dns(options) {
-  return getAPI.call(this, 'dns', options);
-}
-export function doubleclickbidmanager(options) {
-  return getAPI.call(this, 'doubleclickbidmanager', options);
-}
-export function doubleclicksearch(options) {
-  return getAPI.call(this, 'doubleclicksearch', options);
-}
-export function drive(options) {
-  return getAPI.call(this, 'drive', options);
-}
-export function firebasedynamiclinks(options) {
-  return getAPI.call(this, 'firebasedynamiclinks', options);
-}
-export function firebaseremoteconfig(options) {
-  return getAPI.call(this, 'firebaseremoteconfig', options);
-}
-export function firebaserules(options) {
-  return getAPI.call(this, 'firebaserules', options);
-}
-export function firestore(options) {
-  return getAPI.call(this, 'firestore', options);
-}
-export function fitness(options) {
-  return getAPI.call(this, 'fitness', options);
-}
-export function fusiontables(options) {
-  return getAPI.call(this, 'fusiontables', options);
-}
-export function games(options) {
-  return getAPI.call(this, 'games', options);
-}
-export function gamesConfiguration(options) {
-  return getAPI.call(this, 'gamesConfiguration', options);
-}
-export function gamesManagement(options) {
-  return getAPI.call(this, 'gamesManagement', options);
-}
-export function genomics(options) {
-  return getAPI.call(this, 'genomics', options);
-}
-export function gmail(options) {
-  return getAPI.call(this, 'gmail', options);
-}
-export function groupsmigration(options) {
-  return getAPI.call(this, 'groupsmigration', options);
-}
-export function groupssettings(options) {
-  return getAPI.call(this, 'groupssettings', options);
-}
-export function iam(options) {
-  return getAPI.call(this, 'iam', options);
-}
-export function identitytoolkit(options) {
-  return getAPI.call(this, 'identitytoolkit', options);
-}
-export function kgsearch(options) {
-  return getAPI.call(this, 'kgsearch', options);
-}
-export function language(options) {
-  return getAPI.call(this, 'language', options);
-}
-export function licensing(options) {
-  return getAPI.call(this, 'licensing', options);
-}
-export function logging(options) {
-  return getAPI.call(this, 'logging', options);
-}
-export function manufacturers(options) {
-  return getAPI.call(this, 'manufacturers', options);
-}
-export function mirror(options) {
-  return getAPI.call(this, 'mirror', options);
-}
-export function ml(options) {
-  return getAPI.call(this, 'ml', options);
-}
-export function monitoring(options) {
-  return getAPI.call(this, 'monitoring', options);
-}
-export function oauth2(options) {
-  return getAPI.call(this, 'oauth2', options);
-}
-export function oslogin(options) {
-  return getAPI.call(this, 'oslogin', options);
-}
-export function pagespeedonline(options) {
-  return getAPI.call(this, 'pagespeedonline', options);
-}
-export function partners(options) {
-  return getAPI.call(this, 'partners', options);
-}
-export function people(options) {
-  return getAPI.call(this, 'people', options);
-}
-export function playcustomapp(options) {
-  return getAPI.call(this, 'playcustomapp', options);
-}
-export function plus(options) {
-  return getAPI.call(this, 'plus', options);
-}
-export function plusDomains(options) {
-  return getAPI.call(this, 'plusDomains', options);
-}
-export function poly(options) {
-  return getAPI.call(this, 'poly', options);
-}
-export function prediction(options) {
-  return getAPI.call(this, 'prediction', options);
-}
-export function proximitybeacon(options) {
-  return getAPI.call(this, 'proximitybeacon', options);
-}
-export function pubsub(options) {
-  return getAPI.call(this, 'pubsub', options);
-}
-export function replicapool(options) {
-  return getAPI.call(this, 'replicapool', options);
-}
-export function replicapoolupdater(options) {
-  return getAPI.call(this, 'replicapoolupdater', options);
-}
-export function reseller(options) {
-  return getAPI.call(this, 'reseller', options);
-}
-export function resourceviews(options) {
-  return getAPI.call(this, 'resourceviews', options);
-}
-export function runtimeconfig(options) {
-  return getAPI.call(this, 'runtimeconfig', options);
-}
-export function safebrowsing(options) {
-  return getAPI.call(this, 'safebrowsing', options);
-}
-export function script(options) {
-  return getAPI.call(this, 'script', options);
-}
-export function searchconsole(options) {
-  return getAPI.call(this, 'searchconsole', options);
-}
-export function serviceconsumermanagement(options) {
-  return getAPI.call(this, 'serviceconsumermanagement', options);
-}
-export function servicecontrol(options) {
-  return getAPI.call(this, 'servicecontrol', options);
-}
-export function servicemanagement(options) {
-  return getAPI.call(this, 'servicemanagement', options);
-}
-export function serviceuser(options) {
-  return getAPI.call(this, 'serviceuser', options);
-}
-export function sheets(options) {
-  return getAPI.call(this, 'sheets', options);
-}
-export function siteVerification(options) {
-  return getAPI.call(this, 'siteVerification', options);
-}
-export function slides(options) {
-  return getAPI.call(this, 'slides', options);
-}
-export function sourcerepo(options) {
-  return getAPI.call(this, 'sourcerepo', options);
-}
-export function spanner(options) {
-  return getAPI.call(this, 'spanner', options);
-}
-export function spectrum(options) {
-  return getAPI.call(this, 'spectrum', options);
-}
-export function speech(options) {
-  return getAPI.call(this, 'speech', options);
-}
-export function sqladmin(options) {
-  return getAPI.call(this, 'sqladmin', options);
-}
-export function storage(options) {
-  return getAPI.call(this, 'storage', options);
-}
-export function storagetransfer(options) {
-  return getAPI.call(this, 'storagetransfer', options);
-}
-export function streetviewpublish(options) {
-  return getAPI.call(this, 'streetviewpublish', options);
-}
-export function surveys(options) {
-  return getAPI.call(this, 'surveys', options);
-}
-export function tagmanager(options) {
-  return getAPI.call(this, 'tagmanager', options);
-}
-export function taskqueue(options) {
-  return getAPI.call(this, 'taskqueue', options);
-}
-export function tasks(options) {
-  return getAPI.call(this, 'tasks', options);
-}
-export function testing(options) {
-  return getAPI.call(this, 'testing', options);
-}
-export function toolresults(options) {
-  return getAPI.call(this, 'toolresults', options);
-}
-export function tpu(options) {
-  return getAPI.call(this, 'tpu', options);
-}
-export function translate(options) {
-  return getAPI.call(this, 'translate', options);
-}
-export function urlshortener(options) {
-  return getAPI.call(this, 'urlshortener', options);
-}
-export function vault(options) {
-  return getAPI.call(this, 'vault', options);
-}
-export function videointelligence(options) {
-  return getAPI.call(this, 'videointelligence', options);
-}
-export function vision(options) {
-  return getAPI.call(this, 'vision', options);
-}
-export function webfonts(options) {
-  return getAPI.call(this, 'webfonts', options);
-}
-export function webmasters(options) {
-  return getAPI.call(this, 'webmasters', options);
-}
-export function youtube(options) {
-  return getAPI.call(this, 'youtube', options);
-}
-export function youtubeAnalytics(options) {
-  return getAPI.call(this, 'youtubeAnalytics', options);
-}
-export function youtubereporting(options) {
-  return getAPI.call(this, 'youtubereporting', options);
+export class GeneratedAPIs {
+  abusiveexperiencereport(options) {
+    return getAPI.call(this, 'abusiveexperiencereport', options);
+  }
+  acceleratedmobilepageurl(options) {
+    return getAPI.call(this, 'acceleratedmobilepageurl', options);
+  }
+  adexchangebuyer(options) {
+    return getAPI.call(this, 'adexchangebuyer', options);
+  }
+  adexchangebuyer2(options) {
+    return getAPI.call(this, 'adexchangebuyer2', options);
+  }
+  adexchangeseller(options) {
+    return getAPI.call(this, 'adexchangeseller', options);
+  }
+  adexperiencereport(options) {
+    return getAPI.call(this, 'adexperiencereport', options);
+  }
+  admin(options) {
+    return getAPI.call(this, 'admin', options);
+  }
+  adsense(options) {
+    return getAPI.call(this, 'adsense', options);
+  }
+  adsensehost(options) {
+    return getAPI.call(this, 'adsensehost', options);
+  }
+  analytics(options) {
+    return getAPI.call(this, 'analytics', options);
+  }
+  analyticsreporting(options) {
+    return getAPI.call(this, 'analyticsreporting', options);
+  }
+  androiddeviceprovisioning(options) {
+    return getAPI.call(this, 'androiddeviceprovisioning', options);
+  }
+  androidenterprise(options) {
+    return getAPI.call(this, 'androidenterprise', options);
+  }
+  androidmanagement(options) {
+    return getAPI.call(this, 'androidmanagement', options);
+  }
+  androidpublisher(options) {
+    return getAPI.call(this, 'androidpublisher', options);
+  }
+  appengine(options) {
+    return getAPI.call(this, 'appengine', options);
+  }
+  appsactivity(options) {
+    return getAPI.call(this, 'appsactivity', options);
+  }
+  appstate(options) {
+    return getAPI.call(this, 'appstate', options);
+  }
+  bigquery(options) {
+    return getAPI.call(this, 'bigquery', options);
+  }
+  bigquerydatatransfer(options) {
+    return getAPI.call(this, 'bigquerydatatransfer', options);
+  }
+  blogger(options) {
+    return getAPI.call(this, 'blogger', options);
+  }
+  books(options) {
+    return getAPI.call(this, 'books', options);
+  }
+  calendar(options) {
+    return getAPI.call(this, 'calendar', options);
+  }
+  civicinfo(options) {
+    return getAPI.call(this, 'civicinfo', options);
+  }
+  classroom(options) {
+    return getAPI.call(this, 'classroom', options);
+  }
+  cloudbilling(options) {
+    return getAPI.call(this, 'cloudbilling', options);
+  }
+  cloudbuild(options) {
+    return getAPI.call(this, 'cloudbuild', options);
+  }
+  clouddebugger(options) {
+    return getAPI.call(this, 'clouddebugger', options);
+  }
+  clouderrorreporting(options) {
+    return getAPI.call(this, 'clouderrorreporting', options);
+  }
+  cloudfunctions(options) {
+    return getAPI.call(this, 'cloudfunctions', options);
+  }
+  cloudiot(options) {
+    return getAPI.call(this, 'cloudiot', options);
+  }
+  cloudkms(options) {
+    return getAPI.call(this, 'cloudkms', options);
+  }
+  cloudresourcemanager(options) {
+    return getAPI.call(this, 'cloudresourcemanager', options);
+  }
+  cloudshell(options) {
+    return getAPI.call(this, 'cloudshell', options);
+  }
+  cloudtasks(options) {
+    return getAPI.call(this, 'cloudtasks', options);
+  }
+  cloudtrace(options) {
+    return getAPI.call(this, 'cloudtrace', options);
+  }
+  clouduseraccounts(options) {
+    return getAPI.call(this, 'clouduseraccounts', options);
+  }
+  compute(options) {
+    return getAPI.call(this, 'compute', options);
+  }
+  container(options) {
+    return getAPI.call(this, 'container', options);
+  }
+  content(options) {
+    return getAPI.call(this, 'content', options);
+  }
+  customsearch(options) {
+    return getAPI.call(this, 'customsearch', options);
+  }
+  dataflow(options) {
+    return getAPI.call(this, 'dataflow', options);
+  }
+  dataproc(options) {
+    return getAPI.call(this, 'dataproc', options);
+  }
+  datastore(options) {
+    return getAPI.call(this, 'datastore', options);
+  }
+  deploymentmanager(options) {
+    return getAPI.call(this, 'deploymentmanager', options);
+  }
+  dfareporting(options) {
+    return getAPI.call(this, 'dfareporting', options);
+  }
+  dialogflow(options) {
+    return getAPI.call(this, 'dialogflow', options);
+  }
+  digitalassetlinks(options) {
+    return getAPI.call(this, 'digitalassetlinks', options);
+  }
+  discovery(options) {
+    return getAPI.call(this, 'discovery', options);
+  }
+  dlp(options) {
+    return getAPI.call(this, 'dlp', options);
+  }
+  dns(options) {
+    return getAPI.call(this, 'dns', options);
+  }
+  doubleclickbidmanager(options) {
+    return getAPI.call(this, 'doubleclickbidmanager', options);
+  }
+  doubleclicksearch(options) {
+    return getAPI.call(this, 'doubleclicksearch', options);
+  }
+  drive(options) {
+    return getAPI.call(this, 'drive', options);
+  }
+  firebasedynamiclinks(options) {
+    return getAPI.call(this, 'firebasedynamiclinks', options);
+  }
+  firebaseremoteconfig(options) {
+    return getAPI.call(this, 'firebaseremoteconfig', options);
+  }
+  firebaserules(options) {
+    return getAPI.call(this, 'firebaserules', options);
+  }
+  firestore(options) {
+    return getAPI.call(this, 'firestore', options);
+  }
+  fitness(options) {
+    return getAPI.call(this, 'fitness', options);
+  }
+  fusiontables(options) {
+    return getAPI.call(this, 'fusiontables', options);
+  }
+  games(options) {
+    return getAPI.call(this, 'games', options);
+  }
+  gamesConfiguration(options) {
+    return getAPI.call(this, 'gamesConfiguration', options);
+  }
+  gamesManagement(options) {
+    return getAPI.call(this, 'gamesManagement', options);
+  }
+  genomics(options) {
+    return getAPI.call(this, 'genomics', options);
+  }
+  gmail(options) {
+    return getAPI.call(this, 'gmail', options);
+  }
+  groupsmigration(options) {
+    return getAPI.call(this, 'groupsmigration', options);
+  }
+  groupssettings(options) {
+    return getAPI.call(this, 'groupssettings', options);
+  }
+  iam(options) {
+    return getAPI.call(this, 'iam', options);
+  }
+  identitytoolkit(options) {
+    return getAPI.call(this, 'identitytoolkit', options);
+  }
+  kgsearch(options) {
+    return getAPI.call(this, 'kgsearch', options);
+  }
+  language(options) {
+    return getAPI.call(this, 'language', options);
+  }
+  licensing(options) {
+    return getAPI.call(this, 'licensing', options);
+  }
+  logging(options) {
+    return getAPI.call(this, 'logging', options);
+  }
+  manufacturers(options) {
+    return getAPI.call(this, 'manufacturers', options);
+  }
+  mirror(options) {
+    return getAPI.call(this, 'mirror', options);
+  }
+  ml(options) {
+    return getAPI.call(this, 'ml', options);
+  }
+  monitoring(options) {
+    return getAPI.call(this, 'monitoring', options);
+  }
+  oauth2(options) {
+    return getAPI.call(this, 'oauth2', options);
+  }
+  oslogin(options) {
+    return getAPI.call(this, 'oslogin', options);
+  }
+  pagespeedonline(options) {
+    return getAPI.call(this, 'pagespeedonline', options);
+  }
+  partners(options) {
+    return getAPI.call(this, 'partners', options);
+  }
+  people(options) {
+    return getAPI.call(this, 'people', options);
+  }
+  playcustomapp(options) {
+    return getAPI.call(this, 'playcustomapp', options);
+  }
+  plus(options) {
+    return getAPI.call(this, 'plus', options);
+  }
+  plusDomains(options) {
+    return getAPI.call(this, 'plusDomains', options);
+  }
+  poly(options) {
+    return getAPI.call(this, 'poly', options);
+  }
+  prediction(options) {
+    return getAPI.call(this, 'prediction', options);
+  }
+  proximitybeacon(options) {
+    return getAPI.call(this, 'proximitybeacon', options);
+  }
+  pubsub(options) {
+    return getAPI.call(this, 'pubsub', options);
+  }
+  replicapool(options) {
+    return getAPI.call(this, 'replicapool', options);
+  }
+  replicapoolupdater(options) {
+    return getAPI.call(this, 'replicapoolupdater', options);
+  }
+  reseller(options) {
+    return getAPI.call(this, 'reseller', options);
+  }
+  resourceviews(options) {
+    return getAPI.call(this, 'resourceviews', options);
+  }
+  runtimeconfig(options) {
+    return getAPI.call(this, 'runtimeconfig', options);
+  }
+  safebrowsing(options) {
+    return getAPI.call(this, 'safebrowsing', options);
+  }
+  script(options) {
+    return getAPI.call(this, 'script', options);
+  }
+  searchconsole(options) {
+    return getAPI.call(this, 'searchconsole', options);
+  }
+  serviceconsumermanagement(options) {
+    return getAPI.call(this, 'serviceconsumermanagement', options);
+  }
+  servicecontrol(options) {
+    return getAPI.call(this, 'servicecontrol', options);
+  }
+  servicemanagement(options) {
+    return getAPI.call(this, 'servicemanagement', options);
+  }
+  serviceuser(options) {
+    return getAPI.call(this, 'serviceuser', options);
+  }
+  sheets(options) {
+    return getAPI.call(this, 'sheets', options);
+  }
+  siteVerification(options) {
+    return getAPI.call(this, 'siteVerification', options);
+  }
+  slides(options) {
+    return getAPI.call(this, 'slides', options);
+  }
+  sourcerepo(options) {
+    return getAPI.call(this, 'sourcerepo', options);
+  }
+  spanner(options) {
+    return getAPI.call(this, 'spanner', options);
+  }
+  spectrum(options) {
+    return getAPI.call(this, 'spectrum', options);
+  }
+  speech(options) {
+    return getAPI.call(this, 'speech', options);
+  }
+  sqladmin(options) {
+    return getAPI.call(this, 'sqladmin', options);
+  }
+  storage(options) {
+    return getAPI.call(this, 'storage', options);
+  }
+  storagetransfer(options) {
+    return getAPI.call(this, 'storagetransfer', options);
+  }
+  streetviewpublish(options) {
+    return getAPI.call(this, 'streetviewpublish', options);
+  }
+  surveys(options) {
+    return getAPI.call(this, 'surveys', options);
+  }
+  tagmanager(options) {
+    return getAPI.call(this, 'tagmanager', options);
+  }
+  taskqueue(options) {
+    return getAPI.call(this, 'taskqueue', options);
+  }
+  tasks(options) {
+    return getAPI.call(this, 'tasks', options);
+  }
+  testing(options) {
+    return getAPI.call(this, 'testing', options);
+  }
+  toolresults(options) {
+    return getAPI.call(this, 'toolresults', options);
+  }
+  tpu(options) {
+    return getAPI.call(this, 'tpu', options);
+  }
+  translate(options) {
+    return getAPI.call(this, 'translate', options);
+  }
+  urlshortener(options) {
+    return getAPI.call(this, 'urlshortener', options);
+  }
+  vault(options) {
+    return getAPI.call(this, 'vault', options);
+  }
+  videointelligence(options) {
+    return getAPI.call(this, 'videointelligence', options);
+  }
+  vision(options) {
+    return getAPI.call(this, 'vision', options);
+  }
+  webfonts(options) {
+    return getAPI.call(this, 'webfonts', options);
+  }
+  webmasters(options) {
+    return getAPI.call(this, 'webmasters', options);
+  }
+  youtube(options) {
+    return getAPI.call(this, 'youtube', options);
+  }
+  youtubeAnalytics(options) {
+    return getAPI.call(this, 'youtubeAnalytics', options);
+  }
+  youtubereporting(options) {
+    return getAPI.call(this, 'youtubereporting', options);
+  }
 }

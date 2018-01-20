@@ -17,7 +17,7 @@
  * Usage: node upload.js PATH_TO_VIDEO_FILE
  */
 
-const google = require('googleapis');
+const {google} = require('googleapis');
 const sampleClient = require('../sampleclient');
 const fs = require('fs');
 

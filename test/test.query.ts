@@ -18,9 +18,9 @@ import * as pify from 'pify';
 import * as assert from 'power-assert';
 import * as url from 'url';
 
-import {Utils} from './utils';
+import {google, GoogleApis} from '../src';
 
-const googleapis = require('../src/lib/googleapis');
+import {Utils} from './utils';
 
 describe('Query params', () => {
   let localCompute, remoteCompute;
@@ -29,7 +29,7 @@ describe('Query params', () => {
 
   before((done) => {
     nock.cleanAll();
-    const google = new googleapis.GoogleApis();
+    const google = new GoogleApis();
     nock.enableNetConnect();
     async.parallel(
         [
@@ -58,7 +58,7 @@ describe('Query params', () => {
   beforeEach(() => {
     nock.cleanAll();
     nock.disableNetConnect();
-    const google = new googleapis.GoogleApis();
+    const google = new GoogleApis();
     localCompute = google.compute('v1');
     localDrive = google.drive('v2');
     localGmail = google.gmail('v1');
@@ -188,8 +188,8 @@ describe('Query params', () => {
   });
 
   it('should not include auth if auth is an OAuth2Client object', async () => {
-    const oauth2client = new googleapis.auth.OAuth2(
-        'CLIENT_ID', 'CLIENT_SECRET', 'REDIRECT_URI');
+    const oauth2client =
+        new google.auth.OAuth2('CLIENT_ID', 'CLIENT_SECRET', 'REDIRECT_URI');
     oauth2client.credentials = {access_token: 'abc123'};
 
     nock(Utils.baseUrl).get('/drive/v2/files/123').reply(200);
