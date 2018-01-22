@@ -11,39 +11,42 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as assert from 'power-assert';
 import * as nock from 'nock';
 import * as path from 'path';
-import utils from './utils';
-let googleapis = require('../');
+import * as pify from 'pify';
+import * as assert from 'power-assert';
+import * as url from 'url';
 
-function testSingleRequest (urlshortener) {
-  const obj = { longUrl: 'http://someurl...' };
-  const req = urlshortener.url.insert(obj, utils.noop);
-  assert.equal(
-    req.uri.href,
-    'https://www.googleapis.com/urlshortener/v1/url?longUrl=http%3A%2F%2Fsomeurl...'
-  );
-  assert.equal(req.method, 'POST');
+import {Utils} from './utils';
+
+const googleapis = require('../src/lib/googleapis');
+
+async function testSingleRequest(urlshortener) {
+  const obj = {longUrl: 'http://someurl...'};
+  const reqPath = '/urlshortener/v1/url?longUrl=http%3A%2F%2Fsomeurl...';
+  nock(Utils.baseUrl).post(reqPath).reply(200);
+  const res = await pify(urlshortener.url.insert)(obj);
+  assert.equal(Utils.getQs(res), 'longUrl=http%3A%2F%2Fsomeurl...');
+  assert.equal(res.config.method.toLowerCase(), 'post');
 }
 
-function testParams (urlshortener) {
-  const params = { shortUrl: 'a' };
-  const req = urlshortener.url.get(params, utils.noop);
-  assert.equal(req.uri.href, 'https://www.googleapis.com/urlshortener/v1/url?shortUrl=a');
-  assert.equal(req.method, 'GET');
+async function testParams(urlshortener) {
+  const params = {shortUrl: 'a'};
+  nock(Utils.baseUrl).get('/urlshortener/v1/url?shortUrl=a').reply(200);
+  const res = await pify(urlshortener.url.get)(params);
+  assert.equal(Utils.getQs(res), 'shortUrl=a');
+  assert.equal(res.config.method.toLowerCase(), 'get');
 }
 
-function testInsert (urlshortener, cb) {
-  const obj = { longUrl: 'http://google.com/' };
-  urlshortener.url.insert({ resource: obj }, (err, result) => {
-    assert.equal(err, null);
-    assert.notEqual(result, null);
-    assert.notEqual(result.kind, null);
-    assert.notEqual(result.id, null);
-    assert.equal(result.longUrl, 'http://google.com/');
-    cb(err);
-  });
+async function testInsert(urlshortener) {
+  const obj = {longUrl: 'http://google.com/'};
+  nock(Utils.baseUrl).post('/resource').reply(200);
+  const res = await pify(urlshortener.url.insert)({resource: obj});
+  assert.notEqual(res.data, null);
+  assert.notEqual(res.data.kind, null);
+  assert.notEqual(res.data.id, null);
+  assert.equal(res.data.longUrl, 'http://google.com/');
+  return res;
 }
 
 describe('Urlshortener', () => {
@@ -53,7 +56,7 @@ describe('Urlshortener', () => {
     nock.cleanAll();
     const google = new googleapis.GoogleApis();
     nock.enableNetConnect();
-    utils.loadApi(google, 'urlshortener', 'v1', {}, (err, urlshortener) => {
+    Utils.loadApi(google, 'urlshortener', 'v1', {}, (err, urlshortener) => {
       nock.disableNetConnect();
       if (err) {
         return done(err);
@@ -70,36 +73,26 @@ describe('Urlshortener', () => {
     localUrlshortener = google.urlshortener('v1');
   });
 
-  it('should generate a valid payload for single requests', () => {
-    testSingleRequest(localUrlshortener);
-    testSingleRequest(remoteUrlshortener);
+  it('should generate a valid payload for single requests', async () => {
+    await testSingleRequest(localUrlshortener);
+    await testSingleRequest(remoteUrlshortener);
   });
 
-  it('should generate valid payload if any params are given', () => {
-    testParams(localUrlshortener);
-    testParams(remoteUrlshortener);
+  it('should generate valid payload if any params are given', async () => {
+    await testParams(localUrlshortener);
+    await testParams(remoteUrlshortener);
   });
 
-  it('should return a single response object for single requests', (done) => {
-    const scope = nock('https://www.googleapis.com', {
-      allowUnmocked: true
-    })
-      .post('/urlshortener/v1/url')
-      .times(2)
-      .replyWithFile(200, path.join(__dirname, '/fixtures/urlshort-insert-res.json'));
-
-    testInsert(localUrlshortener, (err) => {
-      if (err) {
-        return done(err);
-      }
-      testInsert(remoteUrlshortener, (err) => {
-        if (err) {
-          return done(err);
-        }
-        scope.done();
-        done();
-      });
-    });
+  it('should return a single response object for single requests', async () => {
+    nock(Utils.baseUrl, {allowUnmocked: true})
+        .post('/urlshortener/v1/url')
+        .times(2)
+        .replyWithFile(
+            200,
+            path.join(
+                __dirname, '../../test/fixtures/urlshort-insert-res.json'));
+    await testInsert(localUrlshortener);
+    await testInsert(remoteUrlshortener);
   });
 
   after(() => {

@@ -13,37 +13,39 @@
 
 'use strict';
 
-// Dependencies
-var googleapis = require('googleapis');
-var authData = require('./authData');
+const googleapis = require('googleapis');
+const path = require('path');
+const nconf = require('nconf');
 
-console.log('Auth data is: ', authData);
+nconf.argv().env().file(path.join(__dirname, '../jwt.keys.json'));
 
 // Create JWT auth object
-var jwt = new googleapis.auth.JWT(
-  authData.email,
-  authData.keyFile,
-  authData.key,
-  authData.scopes,
-  authData.subject
+const jwt = new googleapis.auth.JWT(
+  nconf.get('client_email'),
+  null,
+  nconf.get('private_key'),
+  [
+    'https://www.googleapis.com/auth/admin.directory.group',
+    'https://www.googleapis.com/auth/admin.directory.group.member'
+  ]
 );
 
 // Authorize
-jwt.authorize(function (err, data) {
+jwt.authorize((err, data) => {
   if (err) {
     throw err;
   }
   console.log('You have been successfully authenticated: ', data);
 
   // Get Google Admin API
-  var admin = googleapis.admin('directory_v1');
+  const admin = googleapis.admin('directory_v1');
 
   // Insert member in Google group
   admin.members.insert({
     groupKey: 'my_group@example.com',
     resource: { email: 'me@example.com' },
     auth: jwt
-  }, function (err, data) {
+  }, (err, data) => {
     console.log(err || data);
   });
 });

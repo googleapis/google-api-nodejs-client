@@ -1,12 +1,13 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "target": "es6",
-        "noImplicitAny": false,
-        "sourceMap": true,
-        "alwaysStrict": true
-    },
-    "include": [
-        "scripts/**/*.ts"
-    ]
+  "extends": "./node_modules/gts/tsconfig-google.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "build",
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "noImplicitThis": false
+  },
+  "include": [
+    "src/scripts/*.ts"
+  ]
 }

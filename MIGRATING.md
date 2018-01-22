@@ -1,3 +1,121 @@
+# Migrating from version `24.x` to `25.x`
+This release includes the 1.0 version of the [Google Auth Library][googleauth]. This release has several breaking changes.
+
+For the latest, please see the [release notes](https://github.com/google/google-auth-library-nodejs/releases/tag/v1.0.0).
+
+TL;DR - This release includes a variety of bug fixes, new features, and breaking changes.  Please take care.
+
+## New Features
+
+### Ability to set maxExpiry when verifying tokens
+The `OAuth2Client.verifyIdToken` method now accepts an optional maxExpiry field:
+
+```js
+const result = await client.verifyIdToken({
+  idToken: <id Token>,
+  audience: <audience>,
+  maxExpiry: <max expiry>
+});
+```
+### Support for code_verifier and code_challenge with OAuth2
+
+The `OAuth2Client.generateAuthUrl` method has been extended to support the `code_challenge_method` and `code_challenge` fields.  There is also a convenience method to generate a verifier:
+
+```js
+// Generate a code_verifier and code_challenge
+const codes = oAuth2Client.generateCodeVerifier();
+
+// Generate the url that will be used for the consent dialog.
+const authorizeUrl = oAuth2Client.generateAuthUrl({
+  access_type: 'offline',
+  scope: 'https://www.googleapis.com/auth/plus.me',
+  code_challenge_method: 'S256',
+  code_challenge: codes.codeChallenge
+});
+```
+
+## Breaking changes
+There have been multiple API breaking changes with this release.  Please test your code accordingly after upgrading.
+
+### Synchronous methods
+Several public methods were switched from asynchronous to synchronous APIs.  In all cases, the APIs were not doing anything asynchronous - they were just providing errors in callback form.  This has been changed.
+
+```js
+// OLD CODE
+var auth = new GoogleAuth();
+auth.fromJSON(input, function (err, client) {
+  if (err) {
+    console.error('Error acquiring client: ' + err);
+  }
+  // make request with client ...
+});
+
+// NEW CODE
+const auth = new GoogleAuth();
+const client = auth.fromJSON(input);
+// make request with client ...
+```
+
+This change was made with the following methods:
+- `GoogleAuth.fromJSON`
+- `GoogleAuth.fromAPIKey`
+- `JWTAccess. getRequestMetadata`
+- `JWTAccess.fromJSON`
+- `JWTClient.fromJSON`
+- `JWTClient.fromAPIKey`
+- `UserRefreshClient.fromJSON`
+
+
+### Request -> Axios
+The underlying transport used for HTTP requests was changed from [`request`](https://github.com/request/request) to [`axios`](https://github.com/axios/axios).  This will result in a number of breaking changes.
+
+Any calls to the `client.request(opts)` method will both accept different parameters, and have different return types.  For the options passed to these methods, they are changing from a [request options object](https://github.com/request/request#requestoptions-callback) to an [axios request options object](https://github.com/axios/axios#request-config).
+
+In addition to the properties on the `opts` object changing, the signature of the callback is changing as well.  The previous version of the library would return objects with a callback that reversed `request`'s default order:  `function (err, body, response)`.  The signature of that callback has simply been changed to `function (err, response)`, where the body of the response is available by looking at `response.data`.
+
+```js
+// OLD CODE
+oAuth2Client.request({
+  uri: 'https://www.googleapis.com/plus/v1/people?query=pizza'
+}, function (err, body, res) {
+  console.log('The body of the response was ' + body);
+});
+
+// NEW CODE (using callbacks)
+oAuth2Client.request({
+  // note that we're using `url` instead of `uri` here, per the Axios request config.
+  url: 'https://www.googleapis.com/plus/v1/people?query=pizza'
+}, function (err, res) {
+  // The body isn't returned as part of the callback, and is available from `res.data`
+  console.log(`The body of the response was ${res.data}`);
+});
+
+// NEW CODE (using async/await)
+const res = await oAuth2Client.request({
+  url:  'https://www.googleapis.com/plus/v1/people?query=pizza'
+});
+console.log(`The body of the response was ${res.data}`);
+```
+
+In addition to these changes - the `request` and `axios` libraries handle errors differently.  `request` treats any completed request, even if it returns a non `2xx` response code, as a success.  The `err` parameter will be `null` or `undefined`.  `axios` treats any non `2xx` response as an *error*.  Code which may have previous not worked, but also not thrown errors - may now start throwing errors.
+
+### Parameter change for `verifyIdToken`
+The parameters to the `verifyIdToken` method of OAuth2Client have been changed. The function now accepts a single options object, and an optional callback. A function that used to look like this:
+
+```js
+oAuth2Client.verifyIdToken(idToken, audience, callback);
+```
+
+Would now be rewritten as this:
+
+```js
+oAuth2Client.verifyIdToken({
+  idToken: idToken,
+  audience: audience
+}, callback);
+```
+
+
 # Migrating from version `2.x` to `3.x`
 
 The only breaking changes from `2.x` to `3.x` are listed in the [changelog](https://github.com/google/google-api-nodejs-client/blob/master/CHANGELOG.md#300---14-march-2016).
@@ -6,13 +124,13 @@ Everything else should continue to work.
 
 # Migrating from version `1.x` to `2.x`
 
-Code written against a `1.x` version of this library should continue to work with the `2.x` 
+Code written against a `1.x` version of this library should continue to work with the `2.x`
 version. However, you may need to update any direct links in your code to
 ensure better forward compatibility.
 
 In the 2.0 version of this library, the authentication and authorization code was moved
-to the new [google-nodejs-auth-library][googleauth], and a dependency was taken from 
-this library to the new auth module. The list of files which were moved from this library to the 
+to the new [google-nodejs-auth-library][googleauth], and a dependency was taken from
+this library to the new auth module. The list of files which were moved from this library to the
 new auth module are:
 
 ```
@@ -27,8 +145,8 @@ lib/utils.js
 ```
 
 In each case, a stub file has been left behind in this library, forwarding the link to the
-new version of the file in the [google-nodejs-auth-library][googleauth] module. If your code 
-directly requires any of these files, you should add a dependency on the 
+new version of the file in the [google-nodejs-auth-library][googleauth] module. If your code
+directly requires any of these files, you should add a dependency on the
 [google-nodejs-auth-library][googleauth]
 module, and update your requires statement to link to the version of the file within that library.
 

@@ -1,14 +1,17 @@
 {
   "nyc": {
     "exclude": [
-      "apis"
+      "build/src/apis",
+      "build/test"
     ]
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "google-auth-library": "~0.10.0",
-    "async": "~2.3.0",
-    "string-template": "~1.0.0"
+    "async": "2.6.0",
+    "google-auth-library": "^1.0.0",
+    "qs": "^6.5.1",
+    "string-template": "1.0.0",
+    "uuid": "^3.1.0"
   },
   "semistandard": {
     "ignore": [
@@ -55,20 +58,23 @@
       "name": "Justin Beckwith"
     }
   ],
-  "version": "22.3.0",
+  "version": "25.0.0",
   "scripts": {
-    "posttest": "npm run lint",
+    "posttest": "npm run check && npm run license-check",
     "test": "npm run cover",
     "doc": "jsdoc -c jsdoc-conf.json",
-    "prepare": "npm run build",
+    "prepare": "npm run compile",
     "build-tools": "tsc -p tsconfig.tools.json",
-    "build": "tsc",
-    "lint": "semistandard \"samples/**/*.js\"",
-    "generate-apis": "npm run build-tools && node scripts/generate.js",
-    "mocha": "mocha test/ --recursive -t 10000 -S -R spec --require source-map-support/register --require intelli-espower-loader",
-    "cover": "nyc --cache mocha test/ --recursive -t 10000 -S -R spec --require intelli-espower-loader && nyc report --reporter=html",
-    "pretest": "npm run build",
-    "clean": "find . -name '*.js.map' -type f -delete && find -E . -regex '\\./(test|lib|apis|scripts)/.*.js$' -type f -delete"
+    "compile": "tsc -p .",
+    "check-samples": "semistandard \"samples/**/*.js\"",
+    "generate-apis": "npm run build-tools && node build/src/scripts/generate.js && clang-format -i -style='{Language: JavaScript, BasedOnStyle: Google, ColumnLimit: 80}' src/apis/**/*.ts",
+    "cover": "nyc --cache mocha build/test/ --recursive -t 10000 -S -R spec --require intelli-espower-loader && nyc report --reporter=html",
+    "pretest": "npm run compile",
+    "clean": "gts clean",
+    "check": "gts check && npm run check-samples",
+    "fix": "gts fix && npm run fix-samples",
+    "fix-samples": "semistandard --fix \"samples/**/*.js\"",
+    "license-check": "jsgl --local ."
   },
   "author": "Google Inc.",
   "keywords": [
@@ -79,29 +85,43 @@
     "client library"
   ],
   "description": "Google APIs Client Library for Node.js",
-  "main": "./lib/googleapis.js",
+  "main": "./build/src/lib/googleapis.js",
   "engines": {
     "node": ">=4.0"
   },
   "devDependencies": {
-    "jsdoc": "3.4.3",
-    "power-assert": "1.4.2",
-    "semistandard": "10.0.0",
-    "rimraf": "2.6.1",
-    "@types/mkdirp": "^0.3.29",
-    "ink-docstrap": "1.3.0",
+    "@types/minimist": "1.2.0",
+    "@types/mkdirp": "0.5.2",
+    "@types/mocha": "2.2.45",
+    "@types/nock": "^9.1.2",
+    "@types/node": "8.5.2",
+    "@types/nunjucks": "^3.0.0",
+    "@types/p-queue": "^2.3.0",
+    "@types/pify": "^3.0.0",
+    "@types/qs": "^6.5.1",
+    "@types/uuid": "^3.4.3",
+    "axios": "^0.17.1",
+    "clang-format": "^1.1.1",
+    "codecov": "^3.0.0",
+    "gts": "0.5.3",
+    "ink-docstrap": "1.3.2",
     "intelli-espower-loader": "1.0.1",
-    "@types/node": "^7.0.13",
+    "js-green-licenses": "^0.4.0",
+    "jsdoc": "3.5.5",
     "minimist": "1.2.0",
-    "@types/minimist": "^1.2.0",
-    "swig": "^1.4.2",
-    "nyc": "10.2.0",
-    "nock": "9.0.12",
-    "mocha": "3.2.0",
-    "@types/mocha": "^2.2.41",
-    "js-beautify": "1.6.12",
     "mkdirp": "0.5.1",
-    "source-map-support": "^0.4.14",
-    "typescript": "^2.2.2"
+    "mocha": "5.0.0",
+    "nconf": "^0.10.0",
+    "nock": "9.1.6",
+    "nunjucks": "^3.0.1",
+    "nyc": "11.4.1",
+    "opn": "5.2.0",
+    "pify": "^3.0.0",
+    "p-queue": "^2.3.0",
+    "power-assert": "1.4.4",
+    "rimraf": "2.6.2",
+    "semistandard": "12.0.0",
+    "source-map-support": "0.5.2",
+    "typescript": "2.6.2"
   }
 }

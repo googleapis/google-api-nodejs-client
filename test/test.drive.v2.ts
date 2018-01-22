@@ -11,10 +11,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as assert from 'power-assert';
 import * as nock from 'nock';
-import utils from './utils';
-let googleapis = require('../');
+import * as pify from 'pify';
+import * as assert from 'power-assert';
+
+import {Utils} from './utils';
+
+const googleapis = require('../src/lib/googleapis');
 
 describe('drive:v2', () => {
   let localDrive, remoteDrive;
@@ -23,7 +26,7 @@ describe('drive:v2', () => {
     nock.cleanAll();
     const google = new googleapis.GoogleApis();
     nock.enableNetConnect();
-    utils.loadApi(google, 'drive', 'v2', {}, (err, drive) => {
+    Utils.loadApi(google, 'drive', 'v2', {}, (err, drive) => {
       nock.disableNetConnect();
       if (err) {
         return done(err);
@@ -88,11 +91,11 @@ describe('drive:v2', () => {
         done();
       });
 
-      it('should return a Request object', (done) => {
-        let req = localDrive.files.insert({}, utils.noop);
-        assert.equal(req.constructor.name, 'Request');
-        req = remoteDrive.files.insert({}, utils.noop);
-        assert.equal(req.constructor.name, 'Request');
+      it('should not return a Request object', (done) => {
+        let req = localDrive.files.insert({}, Utils.noop);
+        assert.equal(req, undefined);
+        req = remoteDrive.files.insert({}, Utils.noop);
+        assert.equal(req, undefined);
         done();
       });
     });
@@ -108,18 +111,17 @@ describe('drive:v2', () => {
         assert.equal(typeof remoteDrive.files.get, 'function');
       });
 
-      it('should return a Request object', () => {
-        let req = localDrive.files.get({ fileId: '123' }, utils.noop);
-        assert.equal(req.constructor.name, 'Request');
-        req = remoteDrive.files.get({ fileId: '123' }, utils.noop);
-        assert.equal(req.constructor.name, 'Request');
+      it('should not return a Request object', () => {
+        let req = localDrive.files.get({fileId: '123'}, Utils.noop);
+        assert.equal(req, undefined);
+        req = remoteDrive.files.get({fileId: '123'}, Utils.noop);
+        assert.equal(req, undefined);
       });
 
       it('should use logError callback if no callback specified', (done) => {
-        const scope = nock('https://www.googleapis.com')
-          .get('/drive/v2/files?q=hello')
-          .times(2)
-          .reply(501, { error: 'not a real error' });
+        nock(Utils.baseUrl).get('/drive/v2/files?q=hello').times(2).reply(501, {
+          error: 'not a real error'
+        });
 
         // logError internally uses console.error - let's monkey-patch the
         // function to intercept calls to it, then restore the original function
@@ -128,17 +130,16 @@ describe('drive:v2', () => {
         let count = 0;
         console.error = (err) => {
           count++;
-          assert.equal(err.code, 501);
+          assert.equal(err.response.status, 501);
           if (count === 2) {
             console.error = origFn;
-            scope.done();
             done();
           }
         };
 
         assert.doesNotThrow(() => {
-          localDrive.files.list({ q: 'hello' });
-          remoteDrive.files.list({ q: 'hello' });
+          localDrive.files.list({q: 'hello'});
+          remoteDrive.files.list({q: 'hello'});
         });
       });
     });
@@ -157,19 +158,10 @@ describe('drive:v2', () => {
   });
 
   describe('.files.list()', () => {
-    it('should not return missing param error', (done) => {
-      const scope = nock('https://www.googleapis.com')
-        .get('/drive/v2/files?q=hello')
-        .times(2)
-        .reply(200);
-      localDrive.files.list({ q: 'hello' }, (err) => {
-        assert.equal(err, null);
-        remoteDrive.files.list({ q: 'hello' }, (err) => {
-          assert.equal(err, null);
-          scope.done();
-          done();
-        });
-      });
+    it('should not return missing param error', async () => {
+      nock(Utils.baseUrl).get('/drive/v2/files?q=hello').times(2).reply(200);
+      await pify(localDrive.files.list)({q: 'hello'});
+      await pify(remoteDrive.files.list)({q: 'hello'});
     });
   });
 

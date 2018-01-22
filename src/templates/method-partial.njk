@@ -1,0 +1,62 @@
+{% macro render(m, mname, api, globalmethods) %}
+{% set lb = "{" %}
+{% set rb = "}" %}
+{% set pathParams = m.parameters|getPathParams|sort %}
+/**
+ * {{ m.id }}
+{% if m.description %}
+ * @desc {{ m.description|oneLine|cleanComments|safe }}
+{% endif %}
+{% if m.fragment %}
+ * @example
+   {{ m.fragment|safe }}
+{% endif %}
+ * @alias {{ m.id }}
+ * @memberOf! {{ api.name }}({{ api.version }})
+ *
+ * @param {object{% if not m.parameterOrder and not m.request %}={% endif %}} params Parameters for request
+{% if m.parameters %}
+{% for pname, p in m.parameters|dictsort %}
+ * @param {{ lb }}{{ p.type }}{% if not p.required %}={% endif %}{{ rb }} params.{{ pname|getSafeParamName }} {{ p.description|oneLine|cleanComments|safe }}
+{% endfor %}
+{% endif %}
+{% if m.supportsMediaUpload %}
+{% if m.request %}
+ * @param  {object} params.resource Media resource metadata
+{% endif %}
+ * @param {object} params.media Media object
+ * @param {string} params.media.mimeType Media mime-type
+ * @param {string|object} params.media.body Media body contents
+{% elif m.request %}
+{% if m.request.$ref %}
+ * @param {{ lb }}{{ api.name }}({{ api.version }}).{{ m.request.$ref }}{{ rb }} params.resource Request body data
+{% else %}
+ * @param {object} params.resource Request body data
+{% endif %}
+{% endif %}
+ * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+ * @param {callback} callback The callback that handles the response.
+ * @return {object} Request object
+ */
+{% if globalmethods %}this.{{ mname }} = (params, options, callback) => { {% endif %}
+{% if not globalmethods %}{{ mname }} (params, options, callback) { {% endif %}
+
+  if (typeof options === 'function') {
+    callback = options;
+    options = {};
+  }
+  options = options || {};
+  const rootUrl = options.rootUrl || {{ api.rootUrl|buildurl|safe }};
+  const parameters = {
+    options: Object.assign({
+      url: (rootUrl + {{ ('/' + api.servicePath + m.path)|buildurl|safe }}).replace(/([^:]\/)\/+/g, '$1'),
+      method: '{{ m.httpMethod }}'
+    }, options),
+    params,
+    {% if m.mediaUpload.protocols.simple.path %}mediaUrl: (rootUrl + {{ ('/' + m.mediaUpload.protocols.simple.path)|buildurl|safe }}).replace(/([^:]\/)\/+/g, '$1'),{% endif %}
+    requiredParams: [{% if m.parameterOrder.length %}'{{ m.parameterOrder|join("', '")|safe }}'{% endif %}],
+    pathParams: [{% if pathParams.length %}'{{ pathParams|join("', '")|safe }}'{% endif %}],
+    context: self
+  };
+  return createAPIRequest(parameters, callback);
+}{% if globalmethods %};{% endif %}{% endmacro %}

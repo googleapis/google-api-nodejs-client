@@ -13,29 +13,28 @@
 
 'use strict';
 
-var google = require('../../lib/googleapis');
-var sampleClient = require('../sampleclient');
-var util = require('util');
+const google = require('googleapis');
+const sampleClient = require('../sampleclient');
 
 // initialize the Google Mirror API library
-var mirror = google.mirror({ version: 'v1', auth: sampleClient.oAuth2Client });
+const mirror = google.mirror({ version: 'v1', auth: sampleClient.oAuth2Client });
 
-// a very simple example of listing locations from the mirror API
-function runSamples () {
-  mirror.locations.list({}, function (err, data) {
-    if (err) {
-      console.error(err);
-    }
-    if (data) {
-      console.log('locations list data: ' + util.inspect(data));
-    }
-    process.exit();
-  });
-}
-
-var scopes = [
+const scopes = [
   'https://www.googleapis.com/auth/glass.timeline',
   'https://www.googleapis.com/auth/glass.location'
 ];
 
-sampleClient.execute(scopes, runSamples);
+sampleClient.authenticate(scopes, err => {
+  if (err) {
+    throw err;
+  }
+
+  // a very simple example of listing locations from the mirror API
+  mirror.locations.list({}, (err, data) => {
+    if (err) {
+      throw err;
+    }
+    console.log(data);
+    process.exit();
+  });
+});

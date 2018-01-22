@@ -1,0 +1,1298 @@
+/**
+ * Copyright 2015 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import {createAPIRequest} from '../../lib/apirequest';
+
+/**
+ * Content API for Shopping
+ *
+ * Manages product items, inventory, and Merchant Center accounts for Google
+ * Shopping.
+ *
+ * @example
+ * const google = require('googleapis');
+ * const content = google.content('v2sandbox');
+ *
+ * @namespace content
+ * @type {Function}
+ * @version v2sandbox
+ * @variation v2sandbox
+ * @param {object=} options Options for Content
+ */
+function Content(options) {
+  const self = this;
+  self._options = options || {};
+  self.orders = {
+    /**
+     * content.orders.acknowledge
+     * @desc Marks an order as acknowledged.
+     * @alias content.orders.acknowledge
+     * @memberOf! content(v2sandbox)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+     * @param {string} params.orderId The ID of the order.
+     * @param {content(v2sandbox).OrdersAcknowledgeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    acknowledge(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2sandbox/{merchantId}/orders/{orderId}/acknowledge')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'orderId'],
+        pathParams: ['merchantId', 'orderId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * content.orders.advancetestorder
+        * @desc Sandbox only. Moves a test order from state "inProgress" to
+        * state "pendingShipment".
+        * @alias content.orders.advancetestorder
+        * @memberOf! content(v2sandbox)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string} params.orderId The ID of the test order to modify.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    advancetestorder(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2sandbox/{merchantId}/testorders/{orderId}/advance')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'orderId'],
+        pathParams: ['merchantId', 'orderId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * content.orders.cancel
+        * @desc Cancels all line items in an order, making a full refund.
+        * @alias content.orders.cancel
+        * @memberOf! content(v2sandbox)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string} params.orderId The ID of the order to cancel.
+        * @param {content(v2sandbox).OrdersCancelRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    cancel(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/content/v2sandbox/{merchantId}/orders/{orderId}/cancel')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'orderId'],
+        pathParams: ['merchantId', 'orderId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * content.orders.cancellineitem
+        * @desc Cancels a line item, making a full refund.
+        * @alias content.orders.cancellineitem
+        * @memberOf! content(v2sandbox)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string} params.orderId The ID of the order.
+        * @param {content(v2sandbox).OrdersCancelLineItemRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    cancellineitem(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2sandbox/{merchantId}/orders/{orderId}/cancelLineItem')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'orderId'],
+        pathParams: ['merchantId', 'orderId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * content.orders.createtestorder
+        * @desc Sandbox only. Creates a test order.
+        * @alias content.orders.createtestorder
+        * @memberOf! content(v2sandbox)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that should manage the order. This cannot be a multi-client account.
+        * @param {content(v2sandbox).OrdersCreateTestOrderRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    createtestorder(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/content/v2sandbox/{merchantId}/testorders')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * content.orders.custombatch
+        * @desc Retrieves or modifies multiple orders in a single request.
+        * @alias content.orders.custombatch
+        * @memberOf! content(v2sandbox)
+        *
+        * @param {object} params Parameters for request
+        * @param {content(v2sandbox).OrdersCustomBatchRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    custombatch(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/content/v2sandbox/orders/batch')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * content.orders.get
+        * @desc Retrieves an order from your Merchant Center account.
+        * @alias content.orders.get
+        * @memberOf! content(v2sandbox)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string} params.orderId The ID of the order.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl + '/content/v2sandbox/{merchantId}/orders/{orderId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'orderId'],
+        pathParams: ['merchantId', 'orderId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * content.orders.getbymerchantorderid
+        * @desc Retrieves an order using merchant order id.
+        * @alias content.orders.getbymerchantorderid
+        * @memberOf! content(v2sandbox)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string} params.merchantOrderId The merchant order id to be looked for.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    getbymerchantorderid(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2sandbox/{merchantId}/ordersbymerchantid/{merchantOrderId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'merchantOrderId'],
+        pathParams: ['merchantId', 'merchantOrderId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * content.orders.gettestordertemplate
+        * @desc Sandbox only. Retrieves an order template that can be used to
+        * quickly create a new order in sandbox.
+        * @alias content.orders.gettestordertemplate
+        * @memberOf! content(v2sandbox)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that should manage the order. This cannot be a multi-client account.
+        * @param {string} params.templateName The name of the template to retrieve.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    gettestordertemplate(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2sandbox/{merchantId}/testordertemplates/{templateName}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'templateName'],
+        pathParams: ['merchantId', 'templateName'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * content.orders.list
+        * @desc Lists the orders in your Merchant Center account.
+        * @alias content.orders.list
+        * @memberOf! content(v2sandbox)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.acknowledged Obtains orders that match the acknowledgement status. When set to true, obtains orders that have been acknowledged. When false, obtains orders that have not been acknowledged. We recommend using this filter set to false, in conjunction with the acknowledge call, such that only un-acknowledged orders are returned.
+        * @param {integer=} params.maxResults The maximum number of orders to return in the response, used for paging. The default value is 25 orders per page, and the maximum allowed value is 250 orders per page. Known issue: All List calls will return all Orders without limit regardless of the value of this field.
+        * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string=} params.orderBy The ordering of the returned list. The only supported value are placedDate desc and placedDate asc for now, which returns orders sorted by placement date. "placedDate desc" stands for listing orders by placement date, from oldest to most recent. "placedDate asc" stands for listing orders by placement date, from most recent to oldest. In future releases we'll support other sorting criteria.
+        * @param {string=} params.pageToken The token returned by the previous request.
+        * @param {string=} params.placedDateEnd Obtains orders placed before this date (exclusively), in ISO 8601 format.
+        * @param {string=} params.placedDateStart Obtains orders placed after this date (inclusively), in ISO 8601 format.
+        * @param {string=} params.statuses Obtains orders that match any of the specified statuses. Multiple values can be specified with comma separation. Additionally, please note that active is a shortcut for pendingShipment and partiallyShipped, and completed is a shortcut for shipped , partiallyDelivered, delivered, partiallyReturned, returned, and canceled.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/content/v2sandbox/{merchantId}/orders')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * content.orders.refund
+        * @desc Refund a portion of the order, up to the full amount paid.
+        * @alias content.orders.refund
+        * @memberOf! content(v2sandbox)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string} params.orderId The ID of the order to refund.
+        * @param {content(v2sandbox).OrdersRefundRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    refund(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/content/v2sandbox/{merchantId}/orders/{orderId}/refund')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'orderId'],
+        pathParams: ['merchantId', 'orderId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * content.orders.returnlineitem
+        * @desc Returns a line item.
+        * @alias content.orders.returnlineitem
+        * @memberOf! content(v2sandbox)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string} params.orderId The ID of the order.
+        * @param {content(v2sandbox).OrdersReturnLineItemRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    returnlineitem(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2sandbox/{merchantId}/orders/{orderId}/returnLineItem')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'orderId'],
+        pathParams: ['merchantId', 'orderId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * content.orders.setlineitemmetadata
+        * @desc Sets (overrides) merchant provided annotations on the line item.
+        * @alias content.orders.setlineitemmetadata
+        * @memberOf! content(v2sandbox)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string} params.orderId The ID of the order.
+        * @param {content(v2sandbox).OrdersSetLineItemMetadataRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    setlineitemmetadata(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2sandbox/{merchantId}/orders/{orderId}/setLineItemMetadata')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'orderId'],
+        pathParams: ['merchantId', 'orderId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * content.orders.shiplineitems
+        * @desc Marks line item(s) as shipped.
+        * @alias content.orders.shiplineitems
+        * @memberOf! content(v2sandbox)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string} params.orderId The ID of the order.
+        * @param {content(v2sandbox).OrdersShipLineItemsRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    shiplineitems(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2sandbox/{merchantId}/orders/{orderId}/shipLineItems')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'orderId'],
+        pathParams: ['merchantId', 'orderId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * content.orders.updatelineitemshippingdetails
+        * @desc Updates ship by and delivery by dates for a line item.
+        * @alias content.orders.updatelineitemshippingdetails
+        * @memberOf! content(v2sandbox)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string} params.orderId The ID of the order.
+        * @param {content(v2sandbox).OrdersUpdateLineItemShippingDetailsRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    updatelineitemshippingdetails(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2sandbox/{merchantId}/orders/{orderId}/updateLineItemShippingDetails')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'orderId'],
+        pathParams: ['merchantId', 'orderId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * content.orders.updatemerchantorderid
+        * @desc Updates the merchant order ID for a given order.
+        * @alias content.orders.updatemerchantorderid
+        * @memberOf! content(v2sandbox)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string} params.orderId The ID of the order.
+        * @param {content(v2sandbox).OrdersUpdateMerchantOrderIdRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    updatemerchantorderid(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2sandbox/{merchantId}/orders/{orderId}/updateMerchantOrderId')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'orderId'],
+        pathParams: ['merchantId', 'orderId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * content.orders.updateshipment
+        * @desc Updates a shipment's status, carrier, and/or tracking ID.
+        * @alias content.orders.updateshipment
+        * @memberOf! content(v2sandbox)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string} params.orderId The ID of the order.
+        * @param {content(v2sandbox).OrdersUpdateShipmentRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    updateshipment(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2sandbox/{merchantId}/orders/{orderId}/updateShipment')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'orderId'],
+        pathParams: ['merchantId', 'orderId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+}
+/**
+ * @typedef Error
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} domain The domain of the error.
+ * @property {string} message A description of the error.
+ * @property {string} reason The error code.
+ */
+/**
+ * @typedef Errors
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {integer} code The HTTP status of the first error in errors.
+ * @property {content(v2sandbox).Error[]} errors A list of errors.
+ * @property {string} message The message of the first error in errors.
+ */
+/**
+ * @typedef Order
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {boolean} acknowledged Whether the order was acknowledged.
+ * @property {string} channelType The channel type of the order: &quot;purchaseOnGoogle&quot; or &quot;googleExpress&quot;.
+ * @property {content(v2sandbox).OrderCustomer} customer The details of the customer who placed the order.
+ * @property {content(v2sandbox).OrderDeliveryDetails} deliveryDetails The details for the delivery.
+ * @property {string} id The REST id of the order. Globally unique.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#order&quot;.
+ * @property {content(v2sandbox).OrderLineItem[]} lineItems Line items that are ordered.
+ * @property {string} merchantId
+ * @property {string} merchantOrderId Merchant-provided id of the order.
+ * @property {content(v2sandbox).Price} netAmount The net amount for the order. For example, if an order was originally for a grand total of $100 and a refund was issued for $20, the net amount will be $80.
+ * @property {content(v2sandbox).OrderPaymentMethod} paymentMethod The details of the payment method.
+ * @property {string} paymentStatus The status of the payment.
+ * @property {string} placedDate The date when the order was placed, in ISO 8601 format.
+ * @property {content(v2sandbox).OrderPromotion[]} promotions The details of the merchant provided promotions applied to the order. More details about the program are here.
+ * @property {content(v2sandbox).OrderRefund[]} refunds Refunds for the order.
+ * @property {content(v2sandbox).OrderShipment[]} shipments Shipments of the order.
+ * @property {content(v2sandbox).Price} shippingCost The total cost of shipping for all items.
+ * @property {content(v2sandbox).Price} shippingCostTax The tax for the total shipping cost.
+ * @property {string} shippingOption The requested shipping option.
+ * @property {string} status The status of the order.
+ */
+/**
+ * @typedef OrderAddress
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} country CLDR country code (e.g. &quot;US&quot;).
+ * @property {string[]} fullAddress Strings representing the lines of the printed label for mailing the order, for example: John Smith 1600 Amphitheatre Parkway Mountain View, CA, 94043 United States
+ * @property {boolean} isPostOfficeBox Whether the address is a post office box.
+ * @property {string} locality City, town or commune. May also include dependent localities or sublocalities (e.g. neighborhoods or suburbs).
+ * @property {string} postalCode Postal Code or ZIP (e.g. &quot;94043&quot;).
+ * @property {string} recipientName Name of the recipient.
+ * @property {string} region Top-level administrative subdivision of the country (e.g. &quot;CA&quot;).
+ * @property {string[]} streetAddress Street-level part of the address.
+ */
+/**
+ * @typedef OrderCancellation
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} actor The actor that created the cancellation.
+ * @property {string} creationDate Date on which the cancellation has been created, in ISO 8601 format.
+ * @property {integer} quantity The quantity that was canceled.
+ * @property {string} reason The reason for the cancellation. Orders that are cancelled with a noInventory reason will lead to the removal of the product from POG until you make an update to that product. This will not affect your Shopping ads.
+ * @property {string} reasonText The explanation of the reason.
+ */
+/**
+ * @typedef OrderCustomer
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} email Email address of the customer.
+ * @property {boolean} explicitMarketingPreference If set, this indicates the user explicitly chose to opt in or out of providing marketing rights to the merchant. If unset, this indicates the user has already made this choice in a previous purchase, and was thus not shown the marketing right opt in/out checkbox during the checkout flow.
+ * @property {string} fullName Full name of the customer.
+ */
+/**
+ * @typedef OrderDeliveryDetails
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {content(v2sandbox).OrderAddress} address The delivery address
+ * @property {string} phoneNumber The phone number of the person receiving the delivery.
+ */
+/**
+ * @typedef OrderLineItem
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {content(v2sandbox).OrderMerchantProvidedAnnotation[]} annotations Annotations that are attached to the line item.
+ * @property {content(v2sandbox).OrderCancellation[]} cancellations Cancellations of the line item.
+ * @property {string} id The id of the line item.
+ * @property {content(v2sandbox).Price} price Total price for the line item. For example, if two items for $10 are purchased, the total price will be $20.
+ * @property {content(v2sandbox).OrderLineItemProduct} product Product data from the time of the order placement.
+ * @property {integer} quantityCanceled Number of items canceled.
+ * @property {integer} quantityDelivered Number of items delivered.
+ * @property {integer} quantityOrdered Number of items ordered.
+ * @property {integer} quantityPending Number of items pending.
+ * @property {integer} quantityReturned Number of items returned.
+ * @property {integer} quantityShipped Number of items shipped.
+ * @property {content(v2sandbox).OrderLineItemReturnInfo} returnInfo Details of the return policy for the line item.
+ * @property {content(v2sandbox).OrderReturn[]} returns Returns of the line item.
+ * @property {content(v2sandbox).OrderLineItemShippingDetails} shippingDetails Details of the requested shipping for the line item.
+ * @property {content(v2sandbox).Price} tax Total tax amount for the line item. For example, if two items are purchased, and each have a cost tax of $2, the total tax amount will be $4.
+ */
+/**
+ * @typedef OrderLineItemProduct
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} brand Brand of the item.
+ * @property {string} channel The item&#39;s channel (online or local).
+ * @property {string} condition Condition or state of the item.
+ * @property {string} contentLanguage The two-letter ISO 639-1 language code for the item.
+ * @property {string} gtin Global Trade Item Number (GTIN) of the item.
+ * @property {string} id The REST id of the product.
+ * @property {string} imageLink URL of an image of the item.
+ * @property {string} itemGroupId Shared identifier for all variants of the same product.
+ * @property {string} mpn Manufacturer Part Number (MPN) of the item.
+ * @property {string} offerId An identifier of the item.
+ * @property {content(v2sandbox).Price} price Price of the item.
+ * @property {string} shownImage URL to the cached image shown to the user when order was placed.
+ * @property {string} targetCountry The CLDR territory code of the target country of the product.
+ * @property {string} title The title of the product.
+ * @property {content(v2sandbox).OrderLineItemProductVariantAttribute[]} variantAttributes Variant attributes for the item. These are dimensions of the product, such as color, gender, material, pattern, and size. You can find a comprehensive list of variant attributes here.
+ */
+/**
+ * @typedef OrderLineItemProductVariantAttribute
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} dimension The dimension of the variant.
+ * @property {string} value The value for the dimension.
+ */
+/**
+ * @typedef OrderLineItemReturnInfo
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {integer} daysToReturn How many days later the item can be returned.
+ * @property {boolean} isReturnable Whether the item is returnable.
+ * @property {string} policyUrl URL of the item return policy.
+ */
+/**
+ * @typedef OrderLineItemShippingDetails
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} deliverByDate The delivery by date, in ISO 8601 format.
+ * @property {content(v2sandbox).OrderLineItemShippingDetailsMethod} method Details of the shipping method.
+ * @property {string} shipByDate The ship by date, in ISO 8601 format.
+ */
+/**
+ * @typedef OrderLineItemShippingDetailsMethod
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} carrier The carrier for the shipping. Optional. See shipments[].carrier for a list of acceptable values.
+ * @property {integer} maxDaysInTransit Maximum transit time.
+ * @property {string} methodName The name of the shipping method.
+ * @property {integer} minDaysInTransit Minimum transit time.
+ */
+/**
+ * @typedef OrderMerchantProvidedAnnotation
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} key Key for additional merchant provided (as key-value pairs) annotation about the line item.
+ * @property {string} value Value for additional merchant provided (as key-value pairs) annotation about the line item.
+ */
+/**
+ * @typedef OrderPaymentMethod
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {content(v2sandbox).OrderAddress} billingAddress The billing address.
+ * @property {integer} expirationMonth The card expiration month (January = 1, February = 2 etc.).
+ * @property {integer} expirationYear The card expiration year (4-digit, e.g. 2015).
+ * @property {string} lastFourDigits The last four digits of the card number.
+ * @property {string} phoneNumber The billing phone number.
+ * @property {string} type The type of instrument.  Acceptable values are:   - &quot;AMEX&quot;  - &quot;DISCOVER&quot;  - &quot;JCB&quot;  - &quot;MASTERCARD&quot;  - &quot;UNIONPAY&quot;  - &quot;VISA&quot;  - &quot;&quot;
+ */
+/**
+ * @typedef OrderPromotion
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {content(v2sandbox).OrderPromotionBenefit[]} benefits
+ * @property {string} effectiveDates The date and time frame when the promotion is active and ready for validation review. Note that the promotion live time may be delayed for a few hours due to the validation review. Start date and end date are separated by a forward slash (/). The start date is specified by the format (YYYY-MM-DD), followed by the letter ?T?, the time of the day when the sale starts (in Greenwich Mean Time, GMT), followed by an expression of the time zone for the sale. The end date is in the same format.
+ * @property {string} genericRedemptionCode Optional. The text code that corresponds to the promotion when applied on the retailer?s website.
+ * @property {string} id The unique ID of the promotion.
+ * @property {string} longTitle The full title of the promotion.
+ * @property {string} productApplicability Whether the promotion is applicable to all products or only specific products.
+ * @property {string} redemptionChannel Indicates that the promotion is valid online.
+ */
+/**
+ * @typedef OrderPromotionBenefit
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {content(v2sandbox).Price} discount The discount in the order price when the promotion is applied.
+ * @property {string[]} offerIds The OfferId(s) that were purchased in this order and map to this specific benefit of the promotion.
+ * @property {string} subType Further describes the benefit of the promotion. Note that we will expand on this enumeration as we support new promotion sub-types.
+ * @property {content(v2sandbox).Price} taxImpact The impact on tax when the promotion is applied.
+ * @property {string} type Describes whether the promotion applies to products (e.g. 20% off) or to shipping (e.g. Free Shipping).
+ */
+/**
+ * @typedef OrderRefund
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} actor The actor that created the refund.
+ * @property {content(v2sandbox).Price} amount The amount that is refunded.
+ * @property {string} creationDate Date on which the item has been created, in ISO 8601 format.
+ * @property {string} reason The reason for the refund.
+ * @property {string} reasonText The explanation of the reason.
+ */
+/**
+ * @typedef OrderReturn
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} actor The actor that created the refund.
+ * @property {string} creationDate Date on which the item has been created, in ISO 8601 format.
+ * @property {integer} quantity Quantity that is returned.
+ * @property {string} reason The reason for the return.
+ * @property {string} reasonText The explanation of the reason.
+ */
+/**
+ * @typedef OrdersAcknowledgeRequest
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} operationId The ID of the operation. Unique across all operations for a given order.
+ */
+/**
+ * @typedef OrdersAcknowledgeResponse
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} executionStatus The status of the execution.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersAcknowledgeResponse&quot;.
+ */
+/**
+ * @typedef OrdersAdvanceTestOrderResponse
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersAdvanceTestOrderResponse&quot;.
+ */
+/**
+ * @typedef OrdersCancelLineItemRequest
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {content(v2sandbox).Price} amount Amount to refund for the cancelation. Optional. If not set, Google will calculate the default based on the price and tax of the items involved. The amount must not be larger than the net amount left on the order.
+ * @property {content(v2sandbox).Price} amountPretax Amount to refund for the cancelation. Optional. If not set, Google will calculate the default based on the price and tax of the items involved. The amount must not be larger than the net amount left on the order.
+ * @property {content(v2sandbox).Price} amountTax Tax amount that correspond to cancellation amount in amountPretax.
+ * @property {string} lineItemId The ID of the line item to cancel. Either lineItemId or productId is required.
+ * @property {string} operationId The ID of the operation. Unique across all operations for a given order.
+ * @property {string} productId The ID of the product to cancel. This is the REST ID used in the products service. Either lineItemId or productId is required.
+ * @property {integer} quantity The quantity to cancel.
+ * @property {string} reason The reason for the cancellation.
+ * @property {string} reasonText The explanation of the reason.
+ */
+/**
+ * @typedef OrdersCancelLineItemResponse
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} executionStatus The status of the execution.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersCancelLineItemResponse&quot;.
+ */
+/**
+ * @typedef OrdersCancelRequest
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} operationId The ID of the operation. Unique across all operations for a given order.
+ * @property {string} reason The reason for the cancellation.
+ * @property {string} reasonText The explanation of the reason.
+ */
+/**
+ * @typedef OrdersCancelResponse
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} executionStatus The status of the execution.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersCancelResponse&quot;.
+ */
+/**
+ * @typedef OrdersCreateTestOrderRequest
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} templateName The test order template to use. Specify as an alternative to testOrder as a shortcut for retrieving a template and then creating an order using that template.
+ * @property {content(v2sandbox).TestOrder} testOrder The test order to create.
+ */
+/**
+ * @typedef OrdersCreateTestOrderResponse
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersCreateTestOrderResponse&quot;.
+ * @property {string} orderId The ID of the newly created test order.
+ */
+/**
+ * @typedef OrdersCustomBatchRequest
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {content(v2sandbox).OrdersCustomBatchRequestEntry[]} entries The request entries to be processed in the batch.
+ */
+/**
+ * @typedef OrdersCustomBatchRequestEntry
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {integer} batchId An entry ID, unique within the batch request.
+ * @property {content(v2sandbox).OrdersCustomBatchRequestEntryCancel} cancel Required for cancel method.
+ * @property {content(v2sandbox).OrdersCustomBatchRequestEntryCancelLineItem} cancelLineItem Required for cancelLineItem method.
+ * @property {string} merchantId The ID of the managing account.
+ * @property {string} merchantOrderId The merchant order id. Required for updateMerchantOrderId and getByMerchantOrderId methods.
+ * @property {string} method The method to apply.
+ * @property {string} operationId The ID of the operation. Unique across all operations for a given order. Required for all methods beside get and getByMerchantOrderId.
+ * @property {string} orderId The ID of the order. Required for all methods beside getByMerchantOrderId.
+ * @property {content(v2sandbox).OrdersCustomBatchRequestEntryRefund} refund Required for refund method.
+ * @property {content(v2sandbox).OrdersCustomBatchRequestEntryReturnLineItem} returnLineItem Required for returnLineItem method.
+ * @property {content(v2sandbox).OrdersCustomBatchRequestEntrySetLineItemMetadata} setLineItemMetadata Required for setLineItemMetadata method.
+ * @property {content(v2sandbox).OrdersCustomBatchRequestEntryShipLineItems} shipLineItems Required for shipLineItems method.
+ * @property {content(v2sandbox).OrdersCustomBatchRequestEntryUpdateLineItemShippingDetails} updateLineItemShippingDetails Required for updateLineItemShippingDate method.
+ * @property {content(v2sandbox).OrdersCustomBatchRequestEntryUpdateShipment} updateShipment Required for updateShipment method.
+ */
+/**
+ * @typedef OrdersCustomBatchRequestEntryCancel
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} reason The reason for the cancellation.
+ * @property {string} reasonText The explanation of the reason.
+ */
+/**
+ * @typedef OrdersCustomBatchRequestEntryCancelLineItem
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {content(v2sandbox).Price} amount Amount to refund for the cancelation. Optional. If not set, Google will calculate the default based on the price and tax of the items involved. The amount must not be larger than the net amount left on the order.
+ * @property {content(v2sandbox).Price} amountPretax Amount to refund for the cancelation. Optional. If not set, Google will calculate the default based on the price and tax of the items involved. The amount must not be larger than the net amount left on the order.
+ * @property {content(v2sandbox).Price} amountTax Tax amount that correspond to cancellation amount in amountPretax.
+ * @property {string} lineItemId The ID of the line item to cancel. Either lineItemId or productId is required.
+ * @property {string} productId The ID of the product to cancel. This is the REST ID used in the products service. Either lineItemId or productId is required.
+ * @property {integer} quantity The quantity to cancel.
+ * @property {string} reason The reason for the cancellation.
+ * @property {string} reasonText The explanation of the reason.
+ */
+/**
+ * @typedef OrdersCustomBatchRequestEntryRefund
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {content(v2sandbox).Price} amount The amount that is refunded.
+ * @property {content(v2sandbox).Price} amountPretax The amount that is refunded. Either amount or amountPretax and amountTax should be filled.
+ * @property {content(v2sandbox).Price} amountTax Tax amount that correspond to refund amount in amountPretax.
+ * @property {string} reason The reason for the refund.
+ * @property {string} reasonText The explanation of the reason.
+ */
+/**
+ * @typedef OrdersCustomBatchRequestEntryReturnLineItem
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} lineItemId The ID of the line item to return. Either lineItemId or productId is required.
+ * @property {string} productId The ID of the product to return. This is the REST ID used in the products service. Either lineItemId or productId is required.
+ * @property {integer} quantity The quantity to return.
+ * @property {string} reason The reason for the return.
+ * @property {string} reasonText The explanation of the reason.
+ */
+/**
+ * @typedef OrdersCustomBatchRequestEntrySetLineItemMetadata
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {content(v2sandbox).OrderMerchantProvidedAnnotation[]} annotations
+ * @property {string} lineItemId The ID of the line item to set metadata. Either lineItemId or productId is required.
+ * @property {string} productId The ID of the product to set metadata. This is the REST ID used in the products service. Either lineItemId or productId is required.
+ */
+/**
+ * @typedef OrdersCustomBatchRequestEntryShipLineItems
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} carrier Deprecated. Please use shipmentInfo instead. The carrier handling the shipment. See shipments[].carrier in the  Orders resource representation for a list of acceptable values.
+ * @property {content(v2sandbox).OrderShipmentLineItemShipment[]} lineItems Line items to ship.
+ * @property {string} shipmentId Deprecated. Please use shipmentInfo instead. The ID of the shipment.
+ * @property {content(v2sandbox).OrdersCustomBatchRequestEntryShipLineItemsShipmentInfo[]} shipmentInfos Shipment information. This field is repeated because a single line item can be shipped in several packages (and have several tracking IDs).
+ * @property {string} trackingId Deprecated. Please use shipmentInfo instead. The tracking id for the shipment.
+ */
+/**
+ * @typedef OrdersCustomBatchRequestEntryShipLineItemsShipmentInfo
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} carrier The carrier handling the shipment. See shipments[].carrier in the  Orders resource representation for a list of acceptable values.
+ * @property {string} shipmentId The ID of the shipment.
+ * @property {string} trackingId The tracking id for the shipment.
+ */
+/**
+ * @typedef OrdersCustomBatchRequestEntryUpdateLineItemShippingDetails
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} deliverByDate Updated delivery by date, in ISO 8601 format. If not specified only ship by date is updated.
+ * @property {string} lineItemId The ID of the line item to set metadata. Either lineItemId or productId is required.
+ * @property {string} productId The ID of the product to set metadata. This is the REST ID used in the products service. Either lineItemId or productId is required.
+ * @property {string} shipByDate Updated ship by date, in ISO 8601 format. If not specified only deliver by date is updated.
+ */
+/**
+ * @typedef OrdersCustomBatchRequestEntryUpdateShipment
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} carrier The carrier handling the shipment. Not updated if missing. See shipments[].carrier in the  Orders resource representation for a list of acceptable values.
+ * @property {string} shipmentId The ID of the shipment.
+ * @property {string} status New status for the shipment. Not updated if missing.
+ * @property {string} trackingId The tracking id for the shipment. Not updated if missing.
+ */
+/**
+ * @typedef OrdersCustomBatchResponse
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {content(v2sandbox).OrdersCustomBatchResponseEntry[]} entries The result of the execution of the batch requests.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersCustomBatchResponse&quot;.
+ */
+/**
+ * @typedef OrdersCustomBatchResponseEntry
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {integer} batchId The ID of the request entry this entry responds to.
+ * @property {content(v2sandbox).Errors} errors A list of errors defined if and only if the request failed.
+ * @property {string} executionStatus The status of the execution. Only defined if the method is not get or getByMerchantOrderId and if the request was successful.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersCustomBatchResponseEntry&quot;.
+ * @property {content(v2sandbox).Order} order The retrieved order. Only defined if the method is get and if the request was successful.
+ */
+/**
+ * @typedef OrdersGetByMerchantOrderIdResponse
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersGetByMerchantOrderIdResponse&quot;.
+ * @property {content(v2sandbox).Order} order The requested order.
+ */
+/**
+ * @typedef OrdersGetTestOrderTemplateResponse
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersGetTestOrderTemplateResponse&quot;.
+ * @property {content(v2sandbox).TestOrder} template The requested test order template.
+ */
+/**
+ * @typedef OrderShipment
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} carrier The carrier handling the shipment.  Acceptable values are:   - &quot;gsx&quot;  - &quot;ups&quot;  - &quot;usps&quot;  - &quot;fedex&quot;  - &quot;dhl&quot;  - &quot;ecourier&quot;  - &quot;cxt&quot;  - &quot;google&quot;  - &quot;ontrac&quot;  - &quot;emsy&quot;  - &quot;ont&quot;  - &quot;deliv&quot;  - &quot;dynamex&quot;  - &quot;lasership&quot;  - &quot;mpx&quot;  - &quot;uds&quot;
+ * @property {string} creationDate Date on which the shipment has been created, in ISO 8601 format.
+ * @property {string} deliveryDate Date on which the shipment has been delivered, in ISO 8601 format. Present only if status is delievered
+ * @property {string} id The id of the shipment.
+ * @property {content(v2sandbox).OrderShipmentLineItemShipment[]} lineItems The line items that are shipped.
+ * @property {string} status The status of the shipment.
+ * @property {string} trackingId The tracking id for the shipment.
+ */
+/**
+ * @typedef OrderShipmentLineItemShipment
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} lineItemId The id of the line item that is shipped. Either lineItemId or productId is required.
+ * @property {string} productId The ID of the product to ship. This is the REST ID used in the products service. Either lineItemId or productId is required.
+ * @property {integer} quantity The quantity that is shipped.
+ */
+/**
+ * @typedef OrdersListResponse
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersListResponse&quot;.
+ * @property {string} nextPageToken The token for the retrieval of the next page of orders.
+ * @property {content(v2sandbox).Order[]} resources
+ */
+/**
+ * @typedef OrdersRefundRequest
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {content(v2sandbox).Price} amount The amount that is refunded.
+ * @property {content(v2sandbox).Price} amountPretax The amount that is refunded. Either amount or amountPretax and amountTax should be filled.
+ * @property {content(v2sandbox).Price} amountTax Tax amount that correspond to refund amount in amountPretax.
+ * @property {string} operationId The ID of the operation. Unique across all operations for a given order.
+ * @property {string} reason The reason for the refund.
+ * @property {string} reasonText The explanation of the reason.
+ */
+/**
+ * @typedef OrdersRefundResponse
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} executionStatus The status of the execution.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersRefundResponse&quot;.
+ */
+/**
+ * @typedef OrdersReturnLineItemRequest
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} lineItemId The ID of the line item to return. Either lineItemId or productId is required.
+ * @property {string} operationId The ID of the operation. Unique across all operations for a given order.
+ * @property {string} productId The ID of the product to return. This is the REST ID used in the products service. Either lineItemId or productId is required.
+ * @property {integer} quantity The quantity to return.
+ * @property {string} reason The reason for the return.
+ * @property {string} reasonText The explanation of the reason.
+ */
+/**
+ * @typedef OrdersReturnLineItemResponse
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} executionStatus The status of the execution.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersReturnLineItemResponse&quot;.
+ */
+/**
+ * @typedef OrdersSetLineItemMetadataRequest
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {content(v2sandbox).OrderMerchantProvidedAnnotation[]} annotations
+ * @property {string} lineItemId The ID of the line item to set metadata. Either lineItemId or productId is required.
+ * @property {string} operationId The ID of the operation. Unique across all operations for a given order.
+ * @property {string} productId The ID of the product to set metadata. This is the REST ID used in the products service. Either lineItemId or productId is required.
+ */
+/**
+ * @typedef OrdersSetLineItemMetadataResponse
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} executionStatus The status of the execution.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersSetLineItemMetadataResponse&quot;.
+ */
+/**
+ * @typedef OrdersShipLineItemsRequest
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} carrier Deprecated. Please use shipmentInfo instead. The carrier handling the shipment. See shipments[].carrier in the  Orders resource representation for a list of acceptable values.
+ * @property {content(v2sandbox).OrderShipmentLineItemShipment[]} lineItems Line items to ship.
+ * @property {string} operationId The ID of the operation. Unique across all operations for a given order.
+ * @property {string} shipmentId Deprecated. Please use shipmentInfo instead. The ID of the shipment.
+ * @property {content(v2sandbox).OrdersCustomBatchRequestEntryShipLineItemsShipmentInfo[]} shipmentInfos Shipment information. This field is repeated because a single line item can be shipped in several packages (and have several tracking IDs).
+ * @property {string} trackingId Deprecated. Please use shipmentInfo instead. The tracking id for the shipment.
+ */
+/**
+ * @typedef OrdersShipLineItemsResponse
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} executionStatus The status of the execution.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersShipLineItemsResponse&quot;.
+ */
+/**
+ * @typedef OrdersUpdateLineItemShippingDetailsRequest
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} deliverByDate Updated delivery by date, in ISO 8601 format. If not specified only ship by date is updated.
+ * @property {string} lineItemId The ID of the line item to set metadata. Either lineItemId or productId is required.
+ * @property {string} operationId The ID of the operation. Unique across all operations for a given order.
+ * @property {string} productId The ID of the product to set metadata. This is the REST ID used in the products service. Either lineItemId or productId is required.
+ * @property {string} shipByDate Updated ship by date, in ISO 8601 format. If not specified only deliver by date is updated.
+ */
+/**
+ * @typedef OrdersUpdateLineItemShippingDetailsResponse
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} executionStatus The status of the execution.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersUpdateLineItemShippingDetailsResponse&quot;.
+ */
+/**
+ * @typedef OrdersUpdateMerchantOrderIdRequest
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} merchantOrderId The merchant order id to be assigned to the order. Must be unique per merchant.
+ * @property {string} operationId The ID of the operation. Unique across all operations for a given order.
+ */
+/**
+ * @typedef OrdersUpdateMerchantOrderIdResponse
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} executionStatus The status of the execution.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersUpdateMerchantOrderIdResponse&quot;.
+ */
+/**
+ * @typedef OrdersUpdateShipmentRequest
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} carrier The carrier handling the shipment. Not updated if missing. See shipments[].carrier in the  Orders resource representation for a list of acceptable values.
+ * @property {string} operationId The ID of the operation. Unique across all operations for a given order.
+ * @property {string} shipmentId The ID of the shipment.
+ * @property {string} status New status for the shipment. Not updated if missing.
+ * @property {string} trackingId The tracking id for the shipment. Not updated if missing.
+ */
+/**
+ * @typedef OrdersUpdateShipmentResponse
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} executionStatus The status of the execution.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersUpdateShipmentResponse&quot;.
+ */
+/**
+ * @typedef Price
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} currency The currency of the price.
+ * @property {string} value The price represented as a number.
+ */
+/**
+ * @typedef TestOrder
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {content(v2sandbox).TestOrderCustomer} customer The details of the customer who placed the order.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#testOrder&quot;.
+ * @property {content(v2sandbox).TestOrderLineItem[]} lineItems Line items that are ordered. At least one line item must be provided.
+ * @property {string} notificationMode Determines if test order must be pulled by merchant or pushed to merchant via push integration.
+ * @property {content(v2sandbox).TestOrderPaymentMethod} paymentMethod The details of the payment method.
+ * @property {string} predefinedDeliveryAddress Identifier of one of the predefined delivery addresses for the delivery.
+ * @property {content(v2sandbox).OrderPromotion[]} promotions The details of the merchant provided promotions applied to the order. More details about the program are here.
+ * @property {content(v2sandbox).Price} shippingCost The total cost of shipping for all items.
+ * @property {content(v2sandbox).Price} shippingCostTax The tax for the total shipping cost.
+ * @property {string} shippingOption The requested shipping option.
+ */
+/**
+ * @typedef TestOrderCustomer
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} email Email address of the customer.
+ * @property {boolean} explicitMarketingPreference If set, this indicates the user explicitly chose to opt in or out of providing marketing rights to the merchant. If unset, this indicates the user has already made this choice in a previous purchase, and was thus not shown the marketing right opt in/out checkbox during the checkout flow. Optional.
+ * @property {string} fullName Full name of the customer.
+ */
+/**
+ * @typedef TestOrderLineItem
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {content(v2sandbox).TestOrderLineItemProduct} product Product data from the time of the order placement.
+ * @property {integer} quantityOrdered Number of items ordered.
+ * @property {content(v2sandbox).OrderLineItemReturnInfo} returnInfo Details of the return policy for the line item.
+ * @property {content(v2sandbox).OrderLineItemShippingDetails} shippingDetails Details of the requested shipping for the line item.
+ * @property {content(v2sandbox).Price} unitTax Unit tax for the line item.
+ */
+/**
+ * @typedef TestOrderLineItemProduct
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} brand Brand of the item.
+ * @property {string} channel The item&#39;s channel.
+ * @property {string} condition Condition or state of the item.
+ * @property {string} contentLanguage The two-letter ISO 639-1 language code for the item.
+ * @property {string} gtin Global Trade Item Number (GTIN) of the item. Optional.
+ * @property {string} imageLink URL of an image of the item.
+ * @property {string} itemGroupId Shared identifier for all variants of the same product. Optional.
+ * @property {string} mpn Manufacturer Part Number (MPN) of the item. Optional.
+ * @property {string} offerId An identifier of the item.
+ * @property {content(v2sandbox).Price} price The price for the product.
+ * @property {string} targetCountry The CLDR territory code of the target country of the product.
+ * @property {string} title The title of the product.
+ * @property {content(v2sandbox).OrderLineItemProductVariantAttribute[]} variantAttributes Variant attributes for the item. Optional.
+ */
+/**
+ * @typedef TestOrderPaymentMethod
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {integer} expirationMonth The card expiration month (January = 1, February = 2 etc.).
+ * @property {integer} expirationYear The card expiration year (4-digit, e.g. 2015).
+ * @property {string} lastFourDigits The last four digits of the card number.
+ * @property {string} predefinedBillingAddress The billing address.
+ * @property {string} type The type of instrument. Note that real orders might have different values than the four values accepted by createTestOrder.
+ */
+
+export = Content;
