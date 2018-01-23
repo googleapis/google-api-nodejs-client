@@ -210,6 +210,12 @@ describe('OAuth2 client', () => {
     };
 
     nock(Utils.baseUrl).get('/drive/v2/files/wat').reply(200);
+    nock(Utils.baseUrl).post('/oauth2/v4/token').reply(200, {
+      'access_token': 'abc123',
+      'refresh_token': 'abc',
+      'expiry_date': tenSecondsFromNow,
+      'token_type': 'Bearer'
+    });
     await pify(localDrive.files.get)({fileId: 'wat', auth: oauth2client});
     assert.equal(JSON.stringify(oauth2client.credentials), JSON.stringify({
       access_token: 'abc123',
@@ -232,6 +238,12 @@ describe('OAuth2 client', () => {
     };
 
     nock(Utils.baseUrl).get('/drive/v2/files/wat').reply(200);
+    nock(Utils.baseUrl).post('/oauth2/v4/token').reply(200, {
+      'access_token': 'abc123',
+      'refresh_token': 'abc',
+      'expiry_date': tenSecondsFromNow,
+      'token_type': 'Bearer'
+    });
     await pify(remoteDrive.files.get)({fileId: 'wat', auth: oauth2client});
     assert.equal(JSON.stringify(oauth2client.credentials), JSON.stringify({
       access_token: 'abc123',
