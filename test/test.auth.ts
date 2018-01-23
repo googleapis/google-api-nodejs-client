@@ -195,10 +195,6 @@ describe('OAuth2 client', () => {
   });
 
   it('should make request if access token not expired', async () => {
-    const scope = nock('https://accounts.google.com')
-                      .post('/o/oauth2/token')
-                      .times(2)
-                      .reply(200, {access_token: 'abc123', expires_in: 10000});
     let oauth2client =
         new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
     let now = (new Date()).getTime();
@@ -210,7 +206,7 @@ describe('OAuth2 client', () => {
     };
 
     nock(Utils.baseUrl).get('/drive/v2/files/wat').reply(200);
-    nock(Utils.baseUrl).post('/oauth2/v4/token').reply(200, {
+    let scope = nock(Utils.baseUrl).post('/oauth2/v4/token').reply(200, {
       'access_token': 'abc123',
       'refresh_token': 'abc',
       'expiry_date': tenSecondsFromNow,
@@ -238,7 +234,7 @@ describe('OAuth2 client', () => {
     };
 
     nock(Utils.baseUrl).get('/drive/v2/files/wat').reply(200);
-    nock(Utils.baseUrl).post('/oauth2/v4/token').reply(200, {
+    scope = nock(Utils.baseUrl).post('/oauth2/v4/token').reply(200, {
       'access_token': 'abc123',
       'refresh_token': 'abc',
       'expiry_date': tenSecondsFromNow,
