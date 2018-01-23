@@ -206,7 +206,7 @@ describe('OAuth2 client', () => {
     };
 
     nock(Utils.baseUrl).get('/drive/v2/files/wat').reply(200);
-    let scope = nock(Utils.baseUrl).post('/oauth2/v4/token').reply(200, {
+    const scope1 = nock(Utils.baseUrl).post('/oauth2/v4/token').reply(200, {
       'access_token': 'abc123',
       'refresh_token': 'abc',
       'expiry_date': tenSecondsFromNow,
@@ -221,7 +221,7 @@ describe('OAuth2 client', () => {
     }));
 
     assert.throws(() => {
-      scope.done();
+      scope1.done();
     }, 'AssertionError');
     oauth2client =
         new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
@@ -234,7 +234,7 @@ describe('OAuth2 client', () => {
     };
 
     nock(Utils.baseUrl).get('/drive/v2/files/wat').reply(200);
-    scope = nock(Utils.baseUrl).post('/oauth2/v4/token').reply(200, {
+    const scope2 = nock(Utils.baseUrl).post('/oauth2/v4/token').reply(200, {
       'access_token': 'abc123',
       'refresh_token': 'abc',
       'expiry_date': tenSecondsFromNow,
@@ -249,7 +249,7 @@ describe('OAuth2 client', () => {
     }));
 
     assert.throws(() => {
-      scope.done();
+      scope2.done();
     }, 'AssertionError');
   });
 
