@@ -195,10 +195,6 @@ describe('OAuth2 client', () => {
   });
 
   it('should make request if access token not expired', async () => {
-    const scope = nock('https://accounts.google.com')
-                      .post('/o/oauth2/token')
-                      .times(2)
-                      .reply(200, {access_token: 'abc123', expires_in: 10000});
     let oauth2client =
         new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
     let now = (new Date()).getTime();
@@ -210,6 +206,15 @@ describe('OAuth2 client', () => {
     };
 
     nock(Utils.baseUrl).get('/drive/v2/files/wat').reply(200);
+    const scope1 = nock(Utils.baseUrl)
+                       .post('/oauth2/v4/token')
+                       .reply(200, {
+                         'access_token': 'abc123',
+                         'refresh_token': 'abc',
+                         'expiry_date': tenSecondsFromNow,
+                         'token_type': 'Bearer'
+                       })
+                       .log(console.log);
     await pify(localDrive.files.get)({fileId: 'wat', auth: oauth2client});
     assert.equal(JSON.stringify(oauth2client.credentials), JSON.stringify({
       access_token: 'abc123',
@@ -217,10 +222,8 @@ describe('OAuth2 client', () => {
       expiry_date: tenSecondsFromNow,
       token_type: 'Bearer'
     }));
+    assert.strictEqual(scope1.isDone(), false);
 
-    assert.throws(() => {
-      scope.done();
-    }, 'AssertionError');
     oauth2client =
         new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
     now = (new Date()).getTime();
@@ -232,6 +235,15 @@ describe('OAuth2 client', () => {
     };
 
     nock(Utils.baseUrl).get('/drive/v2/files/wat').reply(200);
+    const scope2 = nock(Utils.baseUrl)
+                       .post('/oauth2/v4/token')
+                       .reply(200, {
+                         'access_token': 'abc123',
+                         'refresh_token': 'abc',
+                         'expiry_date': tenSecondsFromNow,
+                         'token_type': 'Bearer'
+                       })
+                       .log(console.log);
     await pify(remoteDrive.files.get)({fileId: 'wat', auth: oauth2client});
     assert.equal(JSON.stringify(oauth2client.credentials), JSON.stringify({
       access_token: 'abc123',
@@ -239,10 +251,7 @@ describe('OAuth2 client', () => {
       expiry_date: tenSecondsFromNow,
       token_type: 'Bearer'
     }));
-
-    assert.throws(() => {
-      scope.done();
-    }, 'AssertionError');
+    assert.strictEqual(scope2.isDone(), false);
   });
 
   it('should refresh if have refresh token but no access token', async () => {
