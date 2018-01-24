@@ -13,7 +13,7 @@
 
 'use strict';
 
-const google = require('googleapis');
+const {google} = require('googleapis');
 const sampleClient = require('../sampleclient');
 
 // initialize the Youtube API library

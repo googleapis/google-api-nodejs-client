@@ -47,8 +47,10 @@ function getAPI (api, options) {
   }
 }
 
+export class GeneratedAPIs {
 {% for apiName, api in apis %}
-export function {{ apiName }}(options) {
+{{ apiName }}(options) {
   return getAPI.call(this, '{{ apiName }}', options);
 }
 {% endfor %}
+}

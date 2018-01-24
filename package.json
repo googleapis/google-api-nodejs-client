@@ -85,7 +85,8 @@
     "client library"
   ],
   "description": "Google APIs Client Library for Node.js",
-  "main": "./build/src/lib/googleapis.js",
+  "main": "./build/src/index.js",
+  "types": "./build/src/index.d.ts",
   "engines": {
     "node": ">=4.0"
   },

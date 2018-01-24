@@ -14,7 +14,7 @@
 'use strict';
 
 const request = require('request');
-const google = require('googleapis');
+const {google} = require('googleapis');
 const compute = google.compute('v1');
 const uri = 'http://metadata/computeMetadata/v1/project/project-id';
 const headers = { 'Metadata-Flavor': 'Google' };

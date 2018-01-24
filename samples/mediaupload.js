@@ -13,7 +13,7 @@
 
 'use strict';
 
-const google = require('googleapis');
+const {google} = require('googleapis');
 const drive = google.drive('v2');
 const sampleClient = require('./sampleclient');
 
