@@ -1,0 +1,19 @@
+environment:
+  matrix:
+  - nodejs_version: 8
+
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - set PATH=%APPDATA%\npm;%PATH%
+  - npm install
+
+test_script:
+  - node --version
+  - npm --version
+  - npm rebuild
+  - npm test
+
+build: off
+
+matrix:
+  fast_finish: true
