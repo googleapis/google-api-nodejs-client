@@ -8,7 +8,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "async": "2.6.0",
-    "google-auth-library": "^1.0.0",
+    "google-auth-library": "^1.1.0",
     "qs": "^6.5.1",
     "string-template": "1.0.0",
     "uuid": "^3.1.0"
@@ -85,14 +85,15 @@
     "client library"
   ],
   "description": "Google APIs Client Library for Node.js",
-  "main": "./build/src/lib/googleapis.js",
+  "main": "./build/src/index.js",
+  "types": "./build/src/index.d.ts",
   "engines": {
     "node": ">=4.0"
   },
   "devDependencies": {
     "@types/minimist": "1.2.0",
     "@types/mkdirp": "0.5.2",
-    "@types/mocha": "2.2.45",
+    "@types/mocha": "2.2.47",
     "@types/nock": "^9.1.2",
     "@types/node": "8.5.2",
     "@types/nunjucks": "^3.0.0",

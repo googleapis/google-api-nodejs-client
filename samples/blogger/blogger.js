@@ -13,7 +13,7 @@
 
 'use strict';
 
-const google = require('googleapis');
+const {google} = require('googleapis');
 const blogger = google.blogger('v3');
 const nconf = require('nconf');
 const path = require('path');

@@ -15,16 +15,18 @@ import * as nock from 'nock';
 import * as pify from 'pify';
 import * as assert from 'power-assert';
 
+import {GoogleApis} from '../src';
+
 import {Utils} from './utils';
 
-const googleapis = require('../src/lib/googleapis');
+const googleapis = new GoogleApis();
 
 describe('drive:v2', () => {
   let localDrive, remoteDrive;
 
   before((done) => {
     nock.cleanAll();
-    const google = new googleapis.GoogleApis();
+    const google = new GoogleApis();
     nock.enableNetConnect();
     Utils.loadApi(google, 'drive', 'v2', {}, (err, drive) => {
       nock.disableNetConnect();
@@ -39,7 +41,7 @@ describe('drive:v2', () => {
   beforeEach(() => {
     nock.cleanAll();
     nock.disableNetConnect();
-    const google = new googleapis.GoogleApis();
+    const google = new GoogleApis();
     localDrive = google.drive('v2');
   });
 

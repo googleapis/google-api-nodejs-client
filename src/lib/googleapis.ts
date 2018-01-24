@@ -11,171 +11,133 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as fs from 'fs';
-import * as path from 'path';
-import * as util from 'util';
+import {Compute, GoogleAuth, JWT, OAuth2Client} from 'google-auth-library';
 import * as apis from '../apis';
 import {Discovery} from './discovery';
 
-const discovery = new Discovery({debug: false, includePrivate: false});
-
-/**
- * @class GoogleAuth
- */
-import {GoogleAuth, JWT, Compute, OAuth2Client} from 'google-auth-library';
-
-
-
-/**
- * GoogleApis constructor.
- *
- * @example
- * const GoogleApis = require('googleapis').GoogleApis;
- * const google = new GoogleApis();
- *
- * @class GoogleApis
- * @param {Object} [options] Configuration options.
- */
-function GoogleApis(options?) {
-  this.options(options);
-  this.addAPIs(apis);
-
-  /**
-   * A reference to an instance of GoogleAuth.
-   *
-   * @name GoogleApis#auth
-   * @type {GoogleAuth}
-   */
-  this.auth = new GoogleAuth();
-  this.auth.JWT = JWT;
-  this.auth.Compute = Compute;
-  this.auth.OAuth2 = OAuth2Client;
-
-  /**
-   * A reference to the {@link GoogleApis} constructor function.
-   *
-   * @name GoogleApis#GoogleApis
-   * @see GoogleApis
-   * @type {Function}
-   */
-  this.GoogleApis = GoogleApis;
+export class AuthPlus extends GoogleAuth {
+  // tslint:disable-next-line: variable-name
+  JWT = JWT;
+  // tslint:disable-next-line: variable-name
+  Compute = Compute;
+  // tslint:disable-next-line: variable-name
+  OAuth2 = OAuth2Client;
 }
 
-/**
- * Set options.
- *
- * @param  {Object} [options] Configuration options.
- */
-GoogleApis.prototype.options = function(options) {
-  this._options = options || {};
-};
+export class GoogleApis extends apis.GeneratedAPIs {
+  private _discovery = new Discovery({debug: false, includePrivate: false});
+  auth = new AuthPlus();
+  // tslint:disable-next-line: no-any
+  _options: any;
 
-/**
- * Add APIs endpoints to googleapis object
- * E.g. googleapis.drive and googleapis.datastore
- *
- * @name GoogleApis#addAPIs
- * @method
- * @param {Object} apis Apis to be added to this GoogleApis instance.
- * @private
- */
-GoogleApis.prototype.addAPIs = function(apisToAdd) {
-  for (const apiName in apisToAdd) {
-    if (apisToAdd.hasOwnProperty(apiName)) {
-      this[apiName] = apisToAdd[apiName].bind(this);
+  /**
+   * GoogleApis constructor.
+   *
+   * @example
+   * const GoogleApis = require('googleapis').GoogleApis;
+   * const google = new GoogleApis();
+   *
+   * @class GoogleApis
+   * @param {Object} [options] Configuration options.
+   */
+  constructor(options?) {
+    super();
+    this.options(options);
+    this.addAPIs(apis);
+  }
+
+  /**
+   * Set options.
+   *
+   * @param  {Object} [options] Configuration options.
+   */
+  options(options) {
+    this._options = options || {};
+  }
+
+  /**
+   * Add APIs endpoints to googleapis object
+   * E.g. googleapis.drive and googleapis.datastore
+   *
+   * @name GoogleApis#addAPIs
+   * @method
+   * @param {Object} apis Apis to be added to this GoogleApis instance.
+   * @private
+   */
+  private addAPIs(apisToAdd) {
+    for (const apiName in apisToAdd) {
+      if (apisToAdd.hasOwnProperty(apiName)) {
+        this[apiName] = apisToAdd[apiName].bind(this);
+      }
     }
   }
-};
 
-/**
- * Dynamically generate an apis object that can provide Endpoint objects for the
- * discovered APIs.
- *
- * @example
- * const google = require('googleapis');
- * const discoveryUrl = 'https://myapp.appspot.com/_ah/api/discovery/v1/apis/';
- * google.discover(discoveryUrl, function (err) {
- *   const someapi = google.someapi('v1');
- * });
- *
- * @name GoogleApis#discover
- * @method
- * @param {string} url Url to the discovery service for a set of APIs. e.g.,
- * https://www.googleapis.com/discovery/v1/apis
- * @param {Function} callback Callback function.
- */
-GoogleApis.prototype.discover = function(url, callback) {
-  const self = this;
+  /**
+   * Dynamically generate an apis object that can provide Endpoint objects for
+   * the discovered APIs.
+   *
+   * @example
+   * const google = require('googleapis');
+   * const discoveryUrl =
+   * 'https://myapp.appspot.com/_ah/api/discovery/v1/apis/';
+   * google.discover(discoveryUrl, function (err) {
+   *   const someapi = google.someapi('v1');
+   * });
+   *
+   * @name GoogleApis#discover
+   * @method
+   * @param {string} url Url to the discovery service for a set of APIs. e.g.,
+   * https://www.googleapis.com/discovery/v1/apis
+   * @param {Function} callback Callback function.
+   */
+  discover(url, callback) {
+    const self = this;
 
-  discovery.discoverAllAPIs(url, (err, allApis) => {
-    if (err) {
-      return callback(err);
-    }
-    self.addAPIs(allApis);
-    callback();
-  });
-};
-
-/**
- * Dynamically generate an Endpoint object from a discovery doc.
- *
- * @example
- * const google = require('google');
- * const discoveryDocUrl =
- * 'https://myapp.appspot.com/_ah/api/discovery/v1/apis/someapi/v1/rest';
- * google.discoverApi(discoveryDocUrl, function (err, someapi) {
- *   // use someapi
- * });
- *
- * @name GoogleApis#discoverAPI
- * @method
- * @param {string} path Url or file path to discover doc for a single API.
- * @param {object} [options] Options to configure the Endpoint object generated
- * from the discovery doc.
- * @param {Function} callback Callback function.
- */
-GoogleApis.prototype.discoverAPI = function(apiPath, options, callback) {
-  const self = this;
-  if (typeof options === 'function') {
-    callback = options;
-    options = {};
+    this._discovery.discoverAllAPIs(url, (err, allApis) => {
+      if (err) {
+        return callback(err);
+      }
+      self.addAPIs(allApis);
+      callback();
+    });
   }
-  if (!options) {
-    options = {};
-  }
-  // Creating an object, so Pascal case is appropriate.
-  // tslint:disable-next-line
-  discovery.discoverAPI(apiPath, (err, Endpoint) => {
-    if (err) {
-      return callback(err);
+
+  /**
+   * Dynamically generate an Endpoint object from a discovery doc.
+   *
+   * @example
+   * const google = require('google');
+   * const discoveryDocUrl =
+   * 'https://myapp.appspot.com/_ah/api/discovery/v1/apis/someapi/v1/rest';
+   * google.discoverApi(discoveryDocUrl, function (err, someapi) {
+   *   // use someapi
+   * });
+   *
+   * @name GoogleApis#discoverAPI
+   * @method
+   * @param {string} path Url or file path to discover doc for a single API.
+   * @param {object} [options] Options to configure the Endpoint object generated
+   * from the discovery doc.
+   * @param {Function} callback Callback function.
+   */
+  discoverAPI(apiPath, options, callback) {
+    const self = this;
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
     }
-    const ep = new Endpoint(options);
-    ep.google = self;                          // for drive.google.transporter
-    return callback(null, Object.freeze(ep));  // create new & freeze
-  });
-};
-
-/**
- * {@link GoogleApis} class.
- *
- * @name module:googleapis.GoogleApis
- * @see GoogleApis
- * @type {Function}
- */
-
-/**
- * {@link GoogleAuth} class.
- *
- * @name module:googleapis.auth
- * @see GoogleAuth
- * @type {Function}
- */
-
-/**
- * @example
- * const google = require('googleapis');
- *
- * @module googleapis
- * @type {GoogleApis}
- */
-export = new GoogleApis();
+    if (!options) {
+      options = {};
+    }
+    // Creating an object, so Pascal case is appropriate.
+    // tslint:disable-next-line
+    this._discovery.discoverAPI(apiPath, (err, Endpoint) => {
+      if (err) {
+        return callback(err);
+      }
+      const ep = new Endpoint(options);
+      ep.google = self;                          // for drive.google.transporter
+      return callback(null, Object.freeze(ep));  // create new & freeze
+    });
+  }
+}

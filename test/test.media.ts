@@ -17,9 +17,10 @@ import * as nock from 'nock';
 import * as path from 'path';
 import * as pify from 'pify';
 import * as assert from 'power-assert';
-import {Utils} from './utils';
 
-const googleapis = require('../src/lib/googleapis');
+import {GoogleApis} from '../src';
+
+import {Utils} from './utils';
 
 const boundaryPrefix = 'multipart/related; boundary=';
 
@@ -73,7 +74,7 @@ describe('Media', () => {
 
   before((done) => {
     nock.cleanAll();
-    const google = new googleapis.GoogleApis();
+    const google = new GoogleApis();
     nock.enableNetConnect();
     async.parallel(
         [
@@ -98,7 +99,7 @@ describe('Media', () => {
   beforeEach(() => {
     nock.cleanAll();
     nock.disableNetConnect();
-    const google = new googleapis.GoogleApis();
+    const google = new GoogleApis();
     localDrive = google.drive('v2');
     localGmail = google.gmail('v1');
   });
