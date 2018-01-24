@@ -1,0 +1,20 @@
+environment:
+  matrix:
+  - nodejs_version: 8
+
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - npm install -g npm # Force using the latest npm to get dedupe during install
+  - set PATH=%APPDATA%\npm;%PATH%
+  - npm install --force --ignore-scripts
+
+test_script:
+  - node --version
+  - npm --version
+  - npm rebuild
+  - npm test
+
+build: off
+
+matrix:
+  fast_finish: true
