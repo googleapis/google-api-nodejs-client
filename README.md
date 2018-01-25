@@ -92,7 +92,7 @@ $ npm install googleapis --save
 **Example** Creates a URL Shortener client and retrieves the long url of the given short url:
 
 ``` js
-var google = require('googleapis');
+var {google} = require('googleapis');
 var urlshortener = google.urlshortener('v1');
 
 var params = {
@@ -133,7 +133,7 @@ To interact with the various Google APIs you need to create a service client for
 Example: Creating a `urlshortener` client with version `v1` of the API.
 
 ``` js
-var google = require('googleapis');
+var {google} = require('googleapis');
 var urlshortener = google.urlshortener('v1');
 ```
 
@@ -157,7 +157,7 @@ A complete sample application that authorizes and authenticates with the OAuth2 
 To ask for permissions from a user to retrieve an access token, you redirect them to a consent page. To create a consent page URL:
 
 ``` js
-var google = require('googleapis');
+var {google} = require('googleapis');
 var OAuth2 = google.auth.OAuth2;
 
 var oauth2Client = new OAuth2(
@@ -212,7 +212,7 @@ You can set the `auth` as a global or service-level option so you don't need to 
 Example: Setting a global `auth` option.
 
 ``` js
-var google = require('googleapis');
+var {google} = require('googleapis');
 var OAuth2 = google.auth.OAuth2;
 var oauth2Client = new OAuth2(
   YOUR_CLIENT_ID,
@@ -229,7 +229,7 @@ google.options({
 Example: Setting a service-level `auth` option.
 
 ``` js
-var google = require('googleapis');
+var {google} = require('googleapis');
 var OAuth2 = google.auth.OAuth2;
 var oauth2Client = new OAuth2(
   YOUR_CLIENT_ID,
@@ -252,7 +252,7 @@ You can start using OAuth2 to authorize and authenticate your requests to Google
 The following sample retrieves Google+ profile of the authenticated user.
 
 ``` js
-var google = require('googleapis');
+var {google} = require('googleapis');
 var plus = google.plus('v1');
 var OAuth2 = google.auth.OAuth2;
 var oauth2Client = new OAuth2(
@@ -293,7 +293,7 @@ oauth2Client.refreshAccessToken(function(err, tokens) {
 You may need to send an API key with the request you are going to make. The following uses an API key to make a request to the Google+ API service to retrieve a person's profile given a userId:
 
 ``` js
-var google = require('googleapis');
+var {google} = require('googleapis');
 var plus = google.plus('v1');
 
 var API_KEY = 'ABC123'; // specify your API key here
@@ -324,7 +324,7 @@ To learn more about API keys, please see the [documentation][usingkeys].
 The Google Developers Console provides `.json` file that you can use to configure a JWT auth client and authenticate your requests, for example when using a service account.
 
 ``` js
-var google = require('googleapis');
+var {google} = require('googleapis');
 var drive = google.drive('v2');
 
 var key = require('/path/to/key.json');
@@ -465,7 +465,7 @@ A full list of supported options can be [found here][requestopts].
 ##### Example: Specifying a default proxy and `auth` to be used for each request
 
 ```js
-var google = require('googleapis');
+var {google} = require('googleapis');
 google.options({ proxy: 'http://proxy.example.com', auth: auth });
 
 // All requests made with this object will use these settings unless overridden.
@@ -474,7 +474,7 @@ google.options({ proxy: 'http://proxy.example.com', auth: auth });
 ##### Example: Specifying global request parameters
 
 ```js
-var google = require('googleapis');
+var {google} = require('googleapis');
 google.options({ params: { quotaUser: 'user123@example.com' } });
 
 // All requests from all services will contain the above query parameter
@@ -519,7 +519,7 @@ You can specify an `auth` object to be used per request. Each request also inher
 For example:
 
 ```js
-var google = require('googleapis');
+var {google} = require('googleapis');
 var bigquery = google.bigquery('v2');
 
 // This method looks for the GCLOUD_PROJECT and GOOGLE_APPLICATION_CREDENTIALS
