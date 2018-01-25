@@ -17,9 +17,9 @@ import * as pify from 'pify';
 import * as assert from 'power-assert';
 import * as url from 'url';
 
-import {Utils} from './utils';
+import {GoogleApis} from '../src';
 
-const googleapis = require('../src/lib/googleapis');
+import {Utils} from './utils';
 
 async function testSingleRequest(urlshortener) {
   const obj = {longUrl: 'http://someurl...'};
@@ -54,7 +54,7 @@ describe('Urlshortener', () => {
 
   before((done) => {
     nock.cleanAll();
-    const google = new googleapis.GoogleApis();
+    const google = new GoogleApis();
     nock.enableNetConnect();
     Utils.loadApi(google, 'urlshortener', 'v1', {}, (err, urlshortener) => {
       nock.disableNetConnect();
@@ -69,7 +69,7 @@ describe('Urlshortener', () => {
   beforeEach(() => {
     nock.cleanAll();
     nock.disableNetConnect();
-    const google = new googleapis.GoogleApis();
+    const google = new GoogleApis();
     localUrlshortener = google.urlshortener('v1');
   });
 

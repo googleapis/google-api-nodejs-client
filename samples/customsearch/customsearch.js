@@ -15,7 +15,7 @@
 
 // Example:  node customsearch.js example_term
 
-const google = require('googleapis');
+const {google} = require('googleapis');
 const customsearch = google.customsearch('v1');
 const nconf = require('nconf');
 const path = require('path');

@@ -15,9 +15,10 @@ import * as async from 'async';
 import * as nock from 'nock';
 import * as pify from 'pify';
 import * as assert from 'power-assert';
-import {Utils} from './utils';
 
-const googleapis = require('../src/lib/googleapis');
+import {GoogleApis} from '../src';
+
+import {Utils} from './utils';
 
 async function testHeaders(drive) {
   nock(Utils.baseUrl).post('/drive/v2/files/a/comments').reply(200);
@@ -83,7 +84,7 @@ describe('Transporters', () => {
 
   before((done) => {
     nock.cleanAll();
-    const google = new googleapis.GoogleApis();
+    const google = new GoogleApis();
     nock.enableNetConnect();
     async.parallel(
         [
@@ -112,7 +113,7 @@ describe('Transporters', () => {
   beforeEach(() => {
     nock.cleanAll();
     nock.disableNetConnect();
-    const google = new googleapis.GoogleApis();
+    const google = new GoogleApis();
     localDrive = google.drive('v2');
     localOauth2 = google.oauth2('v2');
     localUrlshortener = google.urlshortener('v1');

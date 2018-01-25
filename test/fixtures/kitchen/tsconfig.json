@@ -5,6 +5,10 @@
     "outDir": "build"
   },
   "include": [
-    "src/scripts/*.ts"
+    "src/*.ts",
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }

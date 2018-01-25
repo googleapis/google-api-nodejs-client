@@ -47,8 +47,8 @@ export interface GeneratorOptions {
 }
 
 interface Api {
-  discoveryRestUrl?: string;
-  id?: string;
+  discoveryRestUrl: string;
+  id: string;
 }
 
 interface ApiResponse {
@@ -63,6 +63,10 @@ interface FragmentResponse {
 interface Schema {
   name: string;
   version: string;
+  // tslint:disable-next-line no-any
+  methods: any[];
+  // tslint:disable-next-line no-any
+  resources: any[];
 }
 
 export class Generator {
@@ -89,8 +93,9 @@ export class Generator {
     return str ? str.replace(/\*\//g, 'x/').replace(/\/\*/g, '/x') : '';
   }
 
-  private getPathParams(params) {
-    const pathParams = [];
+  // tslint:disable-next-line no-any
+  private getPathParams(params: any) {
+    const pathParams = new Array<string>();
     if (typeof params !== 'object') {
       params = {};
     }
@@ -102,7 +107,7 @@ export class Generator {
     return pathParams;
   }
 
-  private getSafeParamName(param) {
+  private getSafeParamName(param: string) {
     if (RESERVED_PARAMS.indexOf(param) !== -1) {
       return param + '_';
     }
@@ -111,7 +116,7 @@ export class Generator {
 
   private options: GeneratorOptions;
 
-  private state = {};
+  private state = new Map<string, string[]>();
 
   /**
    * Generator for generating API endpoints
@@ -155,11 +160,11 @@ export class Generator {
    * @param id DiscoveryRestUrl of the endpoint to log
    * @param message
    */
-  private logResult(id, message) {
-    if (!this.state[id]) {
-      this.state[id] = [];
+  private logResult(id: string, message: string) {
+    if (!this.state.has(id)) {
+      this.state.set(id, new Array<string>());
     }
-    this.state[id].push(message);
+    this.state.get(id)!.push(message);
   }
 
   /**
@@ -187,10 +192,10 @@ export class Generator {
           console.log(
               api.id + '\n-----------\n' +
               util.inspect(
-                  this.state[api.discoveryRestUrl], {maxArrayLength: null}) +
+                  this.state.get(api.discoveryRestUrl),
+                  {maxArrayLength: null}) +
               '\n');
         }
-        this.state[api.discoveryRestUrl].done = true;
       };
     }));
     try {
@@ -202,26 +207,27 @@ export class Generator {
   }
 
   async generateIndex() {
-    const apis = {};
+    // tslint:disable-next-line no-any
+    const apis: any = {};
     const apisPath = path.join(srcPath, 'apis');
     const indexPath = path.join(apisPath, 'index.ts');
 
     // Dynamically discover available APIs
     const files: string[] = await fsp.readdir(apisPath);
-    files.forEach(async file => {
+    for (const file of files) {
       const filePath = path.join(apisPath, file);
       if (!(await fsp.stat(filePath)).isDirectory()) {
-        return;
+        continue;
       }
       apis[file] = {};
       const files: string[] = await fsp.readdir(path.join(apisPath, file));
-      files.forEach(version => {
+      for (const version of files) {
         const parts = path.parse(version);
         if (!version.endsWith('.d.ts') && parts.ext === '.ts') {
           apis[file][version] = parts.name;
         }
-      });
-    });
+      }
+    }
     const result = this.env.render('index.njk', {apis});
     await fsp.writeFile(indexPath, result, {encoding: 'utf8'});
   }
@@ -231,7 +237,8 @@ export class Generator {
    * embedded links.
    */
   private getFragmentsForSchema(
-      apiDiscoveryUrl, schema, apiPath, tasks: Array<(() => Promise<void>)>) {
+      apiDiscoveryUrl: string, schema: Schema, apiPath: string,
+      tasks: Array<(() => Promise<void>)>) {
     if (schema.methods) {
       for (const methodName in schema.methods) {
         if (schema.methods.hasOwnProperty(methodName)) {
@@ -285,7 +292,7 @@ export class Generator {
    * Generate API file given discovery URL
    * @param apiDiscoveryUri URL or filename of discovery doc for API
    */
-  async generateAPI(apiDiscoveryUrl) {
+  async generateAPI(apiDiscoveryUrl: string) {
     const parts = url.parse(apiDiscoveryUrl);
     if (apiDiscoveryUrl && !parts.protocol) {
       this.log('Reading from file ' + apiDiscoveryUrl);

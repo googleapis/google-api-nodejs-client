@@ -1,0 +1,24 @@
+{
+  "name": "google-api-nodejs-client-fixture",
+  "version": "1.0.0",
+  "description": "An app we're using to test the library. ",
+  "scripts": {
+    "check": "gts check",
+    "clean": "gts clean",
+    "compile": "tsc -p .",
+    "fix": "gts fix",
+    "prepare": "npm run compile",
+    "pretest": "npm run compile",
+    "posttest": "npm run check",
+    "start": "node build/src/index.js"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "googleapis": "file:./googleapis.tgz"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.53",
+    "typescript": "^2.6.2",
+    "gts": "^0.5.1"
+  }
+}

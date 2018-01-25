@@ -19,9 +19,9 @@ import * as pify from 'pify';
 import * as assert from 'power-assert';
 import * as url from 'url';
 
-import {Utils} from './utils';
+import {GoogleApis} from '../src';
 
-const googleapis = require('../src/lib/googleapis');
+import {Utils} from './utils';
 
 function createNock(qs?: string) {
   const query = qs ? `?${qs}` : '';
@@ -36,7 +36,7 @@ describe('Clients', () => {
 
   before((done) => {
     nock.cleanAll();
-    const google = new googleapis.GoogleApis();
+    const google = new GoogleApis();
     nock.enableNetConnect();
     async.parallel(
         [
@@ -61,7 +61,7 @@ describe('Clients', () => {
   beforeEach(() => {
     nock.cleanAll();
     nock.disableNetConnect();
-    const google = new googleapis.GoogleApis();
+    const google = new GoogleApis();
     localPlus = google.plus('v1');
     localOauth2 = google.oauth2('v2');
   });
@@ -145,7 +145,7 @@ describe('Clients', () => {
   });
 
   it('should support default params', async () => {
-    const google = new googleapis.GoogleApis();
+    const google = new GoogleApis();
     const datastore =
         google.datastore({version: 'v1beta3', params: {myParam: '123'}});
     createNock('myParam=123');
@@ -169,7 +169,7 @@ describe('Clients', () => {
   });
 
   it('should allow default params to be overriden per-request', async () => {
-    const google = new googleapis.GoogleApis();
+    const google = new GoogleApis();
     const datastore =
         google.datastore({version: 'v1beta3', params: {myParam: '123'}});
     // Override the default datasetId param for this particular API call
@@ -200,7 +200,7 @@ describe('Clients', () => {
 
   it('should include default params when only callback is provided to API call',
      async () => {
-       const google = new googleapis.GoogleApis();
+       const google = new GoogleApis();
        const datastore = google.datastore({
          version: 'v1beta3',
          params: {

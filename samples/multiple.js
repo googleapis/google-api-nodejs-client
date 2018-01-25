@@ -13,7 +13,7 @@
 
 'use strict';
 
-const google = require('googleapis');
+const {google} = require('googleapis');
 const urlshortener = google.urlshortener('v1');
 const plus = google.plus('v1');
 const nconf = require('nconf');
