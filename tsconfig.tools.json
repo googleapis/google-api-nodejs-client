@@ -2,10 +2,7 @@
   "extends": "./node_modules/gts/tsconfig-google.json",
   "compilerOptions": {
     "rootDir": ".",
-    "outDir": "build",
-    "noImplicitAny": false,
-    "strictNullChecks": false,
-    "noImplicitThis": false
+    "outDir": "build"
   },
   "include": [
     "src/scripts/*.ts"
