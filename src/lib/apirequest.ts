@@ -12,29 +12,61 @@
 // limitations under the License.
 
 import {AxiosRequestConfig} from 'axios';
-import {DefaultTransporter} from 'google-auth-library';
+import {DefaultTransporter, OAuth2Client} from 'google-auth-library';
+import {BodyResponseCallback} from 'google-auth-library/build/src/transporters';
 import * as qs from 'qs';
 import * as stream from 'stream';
 import * as parseString from 'string-template';
 import * as uuid from 'uuid';
+
+export interface APIRequestParams {
+  options: AxiosRequestConfig;
+  params: APIRequestMethodParams;
+  // tslint:disable-next-line no-any
+  requiredParams: any[];
+  // tslint:disable-next-line no-any
+  pathParams: any[];
+  context: APIRequestContext;
+  mediaUrl?: string|null;
+}
+
+export interface APIRequestContext {
+  google: {_options: APIRequestContextOptions;};
+  _options: APIRequestContextOptions;
+}
+
+export interface APIRequestContextOptions {
+  // tslint:disable-next-line no-any
+  params?: any;
+  auth?: OAuth2Client|string|null;
+}
+
+export interface APIRequestMethodParams {
+  media?: {body?: string|stream.Readable; mimeType?: string;};
+  resource?: {mimeType?: string;};
+  key?: string;
+  uploadType?: string;
+  auth?: OAuth2Client|string|null;
+  // tslint:disable-next-line no-any
+  headers?: any;
+}
 
 // tslint:disable-next-line: no-any
 function isReadableStream(obj: any) {
   return obj instanceof stream.Readable && typeof obj._read === 'function';
 }
 
-function logError(err) {
-  if (err) {
-    console.error(err);
-  }
-}
-
-function createCallback(callback) {
-  return typeof callback === 'function' ? callback : logError;
+function createCallback(callback: BodyResponseCallback<{}>) {
+  return typeof callback === 'function' ? callback : (err: Error|null) => {
+    if (err) {
+      console.error(err);
+    }
+  };
 }
 
 function getMissingParams(params, required) {
-  const missing = [];
+  // tslint:disable-next-line no-any
+  const missing = new Array<any>();
 
   required.forEach(param => {
     // Is the required param in the params object?
@@ -54,10 +86,11 @@ function getMissingParams(params, required) {
  * @param  {Function} callback   Callback when request finished or error found
  * @return {Request}             Returns Request object or null
  */
-export function createAPIRequest(parameters, callback): void {
+export function createAPIRequest(
+    parameters: APIRequestParams, callback: BodyResponseCallback<{}>): void {
   let missingParams;
   let params = parameters.params;
-  let options: AxiosRequestConfig = Object.assign({}, parameters.options);
+  let options = Object.assign({}, parameters.options);
 
   // If the params are not present, and callback was passed instead,
   // use params as the callback and create empty params.
@@ -109,10 +142,8 @@ export function createAPIRequest(parameters, callback): void {
   if (missingParams) {
     // Some params are missing - stop further operations and inform the
     // developer which required params are not included in the request
-    callback(
+    return callback(
         new Error('Missing required parameters: ' + missingParams.join(', ')));
-
-    return null;
   }
 
   // Parse urls
@@ -200,7 +231,7 @@ export function createAPIRequest(parameters, callback): void {
   delete options.auth;  // is overridden by our auth code
 
   // create request (using authClient or otherwise and return request obj)
-  if (authClient) {
+  if (authClient && typeof authClient === 'object') {
     authClient.request(options, callback);
   } else {
     (new DefaultTransporter()).request(options, callback);

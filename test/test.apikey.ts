@@ -15,9 +15,7 @@ import * as async from 'async';
 import * as nock from 'nock';
 import * as pify from 'pify';
 import * as assert from 'power-assert';
-
 import {GoogleApis} from '../src';
-
 import {Utils} from './utils';
 
 async function testGet(drive) {
@@ -44,7 +42,7 @@ async function testAuthKey(urlshortener) {
       .get('/urlshortener/v1/url/history?key=YOUR%20API%20KEY')
       .reply(200);
   const res = await pify(urlshortener.url.list)({auth: 'YOUR API KEY'});
-  assert.equal(Utils.getQs(res).indexOf('key=YOUR%20API%20KEY') > -1, true);
+  assert.equal(Utils.getQs(res)!.indexOf('key=YOUR%20API%20KEY') > -1, true);
 }
 
 describe('API key', () => {

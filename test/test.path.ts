@@ -12,12 +12,9 @@
 // limitations under the License.
 
 import * as nock from 'nock';
-import * as pify from 'pify';
 import * as assert from 'power-assert';
 import * as url from 'url';
-
 import {GoogleApis} from '../src';
-
 import {Utils} from './utils';
 
 describe('Path params', () => {
@@ -160,13 +157,15 @@ describe('Path params', () => {
       if (err) {
         return done(err);
       }
-      assert.equal(url.parse(res.config.url).path.split('/').pop(), 'p@ram');
+      const parm = url.parse(res.config.url).path!.split('/').pop();
+      assert.equal(parm, 'p@ram');
       nock(Utils.baseUrl).get(p).reply(200);
       remoteDrive.files.get({fileId: 'p@ram'}, (err2, res2) => {
         if (err2) {
           return done(err2);
         }
-        assert.equal(url.parse(res.config.url).path.split('/').pop(), 'p@ram');
+        const parm = url.parse(res.config.url).path!.split('/').pop();
+        assert.equal(parm, 'p@ram');
         done();
       });
     });

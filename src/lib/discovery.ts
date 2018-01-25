@@ -16,8 +16,10 @@ import * as fs from 'fs';
 import {DefaultTransporter} from 'google-auth-library';
 import * as url from 'url';
 import * as util from 'util';
+
 import {buildurl, handleError} from '../scripts/generator_utils';
-import {createAPIRequest} from './apirequest';
+
+import {APIRequestParams, createAPIRequest} from './apirequest';
 
 interface DiscoverAPIsResponse {
   items: API[];
@@ -38,7 +40,7 @@ export class Discovery {
   private options: DiscoveryOptions;
 
   private getPathParams(params) {
-    const pathParams = [];
+    const pathParams = new Array<string>();
     if (typeof params !== 'object') {
       params = {};
     }
@@ -73,7 +75,7 @@ export class Discovery {
         pathParams: this.getPathParams(method.parameters),
         context,
         mediaUrl: null
-      };
+      } as APIRequestParams;
 
       if (method.mediaUpload && method.mediaUpload.protocols &&
           method.mediaUpload.protocols.simple &&
@@ -276,15 +278,15 @@ export class Discovery {
     } else {
       const options = apiDiscoveryUrl;
       this.log('Requesting ' + options.url);
+      const url = options.url;
+      delete options.url;
       const parameters = {
-        options: {url: options.url, method: 'GET'},
+        options: {url, method: 'GET'},
         requiredParams: [],
         pathParams: [],
-        params: null,
+        params: options,
         context: {google: {_options: {}}, _options: {}}
       };
-      delete options.url;
-      parameters.params = options;
       createAPIRequest(parameters, _generate);
     }
   }
