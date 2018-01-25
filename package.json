@@ -13,6 +13,12 @@
     "string-template": "1.0.0",
     "uuid": "^3.1.0"
   },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "build/src",
+    "package.json"
+  ],
   "semistandard": {
     "ignore": [
       "apis",
