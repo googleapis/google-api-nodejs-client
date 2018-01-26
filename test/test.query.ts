@@ -15,9 +15,7 @@ import * as assert from 'assert';
 import * as nock from 'nock';
 import * as pify from 'pify';
 import * as url from 'url';
-
 import {google, GoogleApis} from '../src';
-
 import {Utils} from './utils';
 
 describe('Query params', () => {
@@ -29,9 +27,11 @@ describe('Query params', () => {
     nock.cleanAll();
     const google = new GoogleApis();
     nock.enableNetConnect();
-    remoteCompute = await Utils.loadApi(google, 'compute', 'v1');
-    remoteDrive = await Utils.loadApi(google, 'drive', 'v2');
-    remoteGmail = await Utils.loadApi(google, 'gmail', 'v1');
+    [remoteCompute, remoteDrive, remoteGmail] = await Promise.all([
+        Utils.loadApi(google, 'compute', 'v1'),
+        Utils.loadApi(google, 'drive', 'v2'),
+        Utils.loadApi(google, 'gmail', 'v1')
+    ]);
     nock.disableNetConnect();
   });
 

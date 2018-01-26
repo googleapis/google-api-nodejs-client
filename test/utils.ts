@@ -27,7 +27,7 @@ export abstract class Utils {
         version + '/rest';
   }
 
-  static async loadApi(
+  static loadApi(
       google: GoogleApis, name: string, version: string, options = {}) {
     return google.discoverAPI(Utils.getDiscoveryUrl(name, version), options);
   }

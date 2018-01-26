@@ -15,9 +15,7 @@ import * as assert from 'assert';
 import {OAuth2Client} from 'google-auth-library';
 import * as nock from 'nock';
 import * as pify from 'pify';
-
 import {GoogleApis} from '../src';
-
 import {Utils} from './utils';
 
 const googleapis = new GoogleApis();
@@ -107,8 +105,10 @@ describe('OAuth2 client', () => {
     nock.cleanAll();
     const google = new GoogleApis();
     nock.enableNetConnect();
-    remoteDrive = await Utils.loadApi(google, 'drive', 'v2');
-    remoteUrlshortener = await Utils.loadApi(google, 'urlshortener', 'v1');
+    [remoteDrive, remoteUrlshortener] = await Promise.all([
+      Utils.loadApi(google, 'drive', 'v2'),
+      Utils.loadApi(google, 'urlshortener', 'v1')
+    ]);
     nock.disableNetConnect();
   });
 

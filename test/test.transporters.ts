@@ -14,9 +14,7 @@
 import * as assert from 'assert';
 import * as nock from 'nock';
 import * as pify from 'pify';
-
 import {GoogleApis} from '../src';
-
 import {Utils} from './utils';
 
 async function testHeaders(drive) {
@@ -85,9 +83,11 @@ describe('Transporters', () => {
     nock.cleanAll();
     const google = new GoogleApis();
     nock.enableNetConnect();
-    remoteDrive = await Utils.loadApi(google, 'drive', 'v2');
-    remoteOauth2 = await Utils.loadApi(google, 'oauth2', 'v2');
-    remoteUrlshortener = await Utils.loadApi(google, 'urlshortener', 'v1');
+    [remoteDrive, remoteOauth2, remoteUrlshortener] = await Promise.all([
+      Utils.loadApi(google, 'drive', 'v2'),
+      Utils.loadApi(google, 'oauth2', 'v2'),
+      Utils.loadApi(google, 'urlshortener', 'v1')
+    ]);
     nock.disableNetConnect();
   });
 

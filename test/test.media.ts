@@ -16,9 +16,7 @@ import * as fs from 'fs';
 import * as nock from 'nock';
 import * as path from 'path';
 import * as pify from 'pify';
-
 import {GoogleApis} from '../src';
-
 import {Utils} from './utils';
 
 const boundaryPrefix = 'multipart/related; boundary=';
@@ -75,8 +73,10 @@ describe('Media', () => {
     nock.cleanAll();
     const google = new GoogleApis();
     nock.enableNetConnect();
-    remoteDrive = await Utils.loadApi(google, 'drive', 'v2');
-    remoteGmail = await Utils.loadApi(google, 'gmail', 'v1');
+    [remoteDrive, remoteGmail] = await Promise.all([
+        Utils.loadApi(google, 'drive', 'v2'),
+        Utils.loadApi(google, 'gmail', 'v1')
+    ]);
     nock.disableNetConnect();
   });
 

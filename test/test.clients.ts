@@ -17,9 +17,7 @@ import * as nock from 'nock';
 import * as path from 'path';
 import * as pify from 'pify';
 import * as url from 'url';
-
 import {GoogleApis} from '../src';
-
 import {Utils} from './utils';
 
 function createNock(qs?: string) {
@@ -37,8 +35,10 @@ describe('Clients', () => {
     nock.cleanAll();
     const google = new GoogleApis();
     nock.enableNetConnect();
-    remotePlus = await Utils.loadApi(google, 'plus', 'v1');
-    remoteOauth2 = await Utils.loadApi(google, 'oauth2', 'v2');
+    [remotePlus, remoteOauth2] = await Promise.all([
+      Utils.loadApi(google, 'plus', 'v1'),
+      Utils.loadApi(google, 'oauth2', 'v2')
+    ]);
     nock.disableNetConnect();
   });
 
