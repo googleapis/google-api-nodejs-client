@@ -11,11 +11,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as async from 'async';
-import {AxiosResponse} from 'axios';
+import * as assert from 'assert';
 import * as nock from 'nock';
 import * as pify from 'pify';
-import * as assert from 'power-assert';
 import * as url from 'url';
 
 import {google, GoogleApis} from '../src';
@@ -27,32 +25,14 @@ describe('Query params', () => {
   let localDrive, remoteDrive;
   let localGmail, remoteGmail;
 
-  before((done) => {
+  before(async () => {
     nock.cleanAll();
     const google = new GoogleApis();
     nock.enableNetConnect();
-    async.parallel(
-        [
-          (cb) => {
-            Utils.loadApi(google, 'compute', 'v1', {}, cb);
-          },
-          (cb) => {
-            Utils.loadApi(google, 'drive', 'v2', {}, cb);
-          },
-          (cb) => {
-            Utils.loadApi(google, 'gmail', 'v1', {}, cb);
-          }
-        ],
-        (err, apis) => {
-          if (err) {
-            return done(err);
-          }
-          remoteCompute = apis[0];
-          remoteDrive = apis[1];
-          remoteGmail = apis[2];
-          nock.disableNetConnect();
-          done();
-        });
+    remoteCompute = await Utils.loadApi(google, 'compute', 'v1');
+    remoteDrive = await Utils.loadApi(google, 'drive', 'v2');
+    remoteGmail = await Utils.loadApi(google, 'gmail', 'v1');
+    nock.disableNetConnect();
   });
 
   beforeEach(() => {

@@ -11,12 +11,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as async from 'async';
+import * as assert from 'assert';
 import {OAuth2Client} from 'google-auth-library';
 import * as nock from 'nock';
 import * as pify from 'pify';
-import * as assert from 'power-assert';
+
 import {GoogleApis} from '../src';
+
 import {Utils} from './utils';
 
 const googleapis = new GoogleApis();
@@ -102,28 +103,13 @@ describe('OAuth2 client', () => {
   let localDrive, remoteDrive;
   let localUrlshortener, remoteUrlshortener;
 
-  before((done) => {
+  before(async () => {
     nock.cleanAll();
     const google = new GoogleApis();
     nock.enableNetConnect();
-    async.parallel(
-        [
-          (cb) => {
-            Utils.loadApi(google, 'drive', 'v2', {}, cb);
-          },
-          (cb) => {
-            Utils.loadApi(google, 'urlshortener', 'v1', {}, cb);
-          }
-        ],
-        (err, apis) => {
-          if (err) {
-            return done(err);
-          }
-          remoteDrive = apis[0];
-          remoteUrlshortener = apis[1];
-          nock.disableNetConnect();
-          done();
-        });
+    remoteDrive = await Utils.loadApi(google, 'drive', 'v2');
+    remoteUrlshortener = await Utils.loadApi(google, 'urlshortener', 'v1');
+    nock.disableNetConnect();
   });
 
   beforeEach(() => {

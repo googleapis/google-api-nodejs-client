@@ -14,6 +14,7 @@
 import {AxiosResponse} from 'axios';
 import * as url from 'url';
 import {GoogleApis} from '../src/index';
+import {Endpoint} from '../src/lib/endpoint';
 
 export abstract class Utils {
   static getQs(res: AxiosResponse) {
@@ -26,14 +27,9 @@ export abstract class Utils {
         version + '/rest';
   }
 
-  static loadApi(
-      google: GoogleApis, name: string, version: string, options, cb) {
-    if (typeof options === 'function') {
-      cb = options;
-      options = {};
-    }
-    return google.discoverAPI(
-        Utils.getDiscoveryUrl(name, version), options, cb);
+  static async loadApi(
+      google: GoogleApis, name: string, version: string, options = {}) {
+    return google.discoverAPI(Utils.getDiscoveryUrl(name, version), options);
   }
 
   static readonly noop = () => undefined;
