@@ -12,22 +12,27 @@
 // limitations under the License.
 
 import * as async from 'async';
+import {AxiosRequestConfig, AxiosResponse} from 'axios';
 import * as fs from 'fs';
 import {DefaultTransporter} from 'google-auth-library';
+import {Schema} from 'inspector';
 import * as url from 'url';
 import * as util from 'util';
 
 import {buildurl, handleError} from '../scripts/generator_utils';
 
-import {APIRequestParams, createAPIRequest} from './apirequest';
+import {APIRequestMethodParams, APIRequestParams, createAPIRequest} from './apirequest';
+import {Endpoint} from './endpoint';
+
+export type EndpointCreator = (options: {}) => Endpoint;
 
 interface DiscoverAPIsResponse {
   items: API[];
 }
 
-interface API {
+export interface API {
   discoveryRestUrl: string;
-  api;
+  api: EndpointCreator;
 }
 
 interface DiscoveryOptions {
@@ -35,123 +40,36 @@ interface DiscoveryOptions {
   debug?: boolean;
 }
 
+export interface APIRequest {
+  auth: {};
+  basePath: string;
+  baseUrl: string;
+  batchPath: string;
+  description: string;
+  discoveryVersion: string;
+  documentationLink: string;
+  etag: string;
+  icons: {};
+  id: string;
+  kind: string;
+  name: string;
+  ownerDomain: string;
+  ownerName: string;
+  parameters: {};
+  protocol: string;
+  resources: {};
+  revision: string;
+  rootUrl: string;
+  schemas: {};
+  servicePath: string;
+  title: string;
+  version: string;
+}
+
 export class Discovery {
   private transporter = new DefaultTransporter();
   private options: DiscoveryOptions;
 
-  private getPathParams(params) {
-    const pathParams = new Array<string>();
-    if (typeof params !== 'object') {
-      params = {};
-    }
-    Object.keys(params).forEach(key => {
-      if (params[key].location === 'path') {
-        pathParams.push(key);
-      }
-    });
-    return pathParams;
-  }
-
-  /**
-   * Given a method schema, add a method to a target.
-   *
-   * @param {object} target The target to which to add the method.
-   * @param {object} schema The top-level schema that contains the rootUrl, etc.
-   * @param {object} method The method schema from which to generate the method.
-   * @param {object} context The context to add to the method.
-   */
-  private makeMethod(schema, method, context) {
-    return (params, callback) => {
-      const schemaUrl =
-          buildurl(schema.rootUrl + schema.servicePath + method.path);
-
-      const parameters = {
-        options: {
-          url: schemaUrl.substring(1, schemaUrl.length - 1),
-          method: method.httpMethod
-        },
-        params,
-        requiredParams: method.parameterOrder || [],
-        pathParams: this.getPathParams(method.parameters),
-        context,
-        mediaUrl: null
-      } as APIRequestParams;
-
-      if (method.mediaUpload && method.mediaUpload.protocols &&
-          method.mediaUpload.protocols.simple &&
-          method.mediaUpload.protocols.simple.path) {
-        const mediaUrl =
-            buildurl(schema.rootUrl + method.mediaUpload.protocols.simple.path);
-        parameters.mediaUrl = mediaUrl.substring(1, mediaUrl.length - 1);
-      }
-
-      return createAPIRequest(parameters, callback);
-    };
-  }
-
-  /**
-   * Given a schema, add methods to a target.
-   *
-   * @param {object} target The target to which to apply the methods.
-   * @param {object} rootSchema The top-level schema, so we don't lose track of it
-   * during recursion.
-   * @param {object} schema The current schema from which to extract methods.
-   * @param {object} context The context to add to each method.
-   */
-  private applyMethodsFromSchema(target, rootSchema, schema, context) {
-    if (schema.methods) {
-      for (const name in schema.methods) {
-        if (schema.methods.hasOwnProperty(name)) {
-          const method = schema.methods[name];
-          target[name] = this.makeMethod(rootSchema, method, context);
-        }
-      }
-    }
-  }
-
-  /**
-   * Given a schema, add methods and resources to a target.
-   *
-   * @param {object} target The target to which to apply the schema.
-   * @param {object} rootSchema The top-level schema, so we don't lose track of it
-   * during recursion.
-   * @param {object} schema The current schema from which to extract methods and
-   * resources.
-   * @param {object} context The context to add to each method.
-   */
-  private applySchema(target, rootSchema, schema, context) {
-    this.applyMethodsFromSchema(target, rootSchema, schema, context);
-
-    if (schema.resources) {
-      for (const resourceName in schema.resources) {
-        if (schema.resources.hasOwnProperty(resourceName)) {
-          const resource = schema.resources[resourceName];
-          if (!target[resourceName]) {
-            target[resourceName] = {};
-          }
-          this.applySchema(target[resourceName], rootSchema, resource, context);
-        }
-      }
-    }
-  }
-
-  /**
-   * Generate and Endpoint from an endpoint schema object.
-   *
-   * @param {object} schema The schema from which to generate the Endpoint.
-   * @return Function The Endpoint.
-   */
-  private makeEndpoint(schema) {
-    // Creating an object, so Pascal case is appropriate.
-    const that = this;
-    // tslint:disable-next-line
-    const Endpoint = function(options) {
-      const self = this;
-      self._options = options || {};
-      that.applySchema(self, schema.data, schema.data, self);
-    };
-    return Endpoint;
-  }
 
   /**
    * Discovery for discovering API endpoints
@@ -160,6 +78,29 @@ export class Discovery {
    */
   constructor(options) {
     this.options = options || {};
+  }
+
+  /**
+   * Generate and Endpoint from an endpoint schema object.
+   *
+   * @param schema The schema from which to generate the Endpoint.
+   * @return A function that creates an endpoint.
+   */
+  private makeEndpoint(schema: APIRequest): EndpointCreator {
+    // // Creating an object, so Pascal case is appropriate.
+    // const that = this;
+    // // tslint:disable-next-line
+    // const Endpoint = function(options) {
+    //   const self = this;
+    //   self._options = options || {};
+    //   that.applySchema(self, schema.data, schema.data, self);
+    // };
+    // return Endpoint;
+    return (options: {}) => {
+      const ep = new Endpoint(options);
+      ep.applySchema(ep, schema, schema, ep);
+      return ep;
+    };
   }
 
   /**
@@ -173,18 +114,18 @@ export class Discovery {
 
   /**
    * Generate all APIs and return as in-memory object.
-   *
-   * @param {function} callback Callback when all APIs have been generated
-   * @throws {Error} If there is an error generating any of the APIs
+   * @param discoveryUrl
+   * @param callback Callback when all APIs have been generated
    */
-  discoverAllAPIs(discoveryUrl, callback) {
+  discoverAllAPIs(
+      discoveryUrl: string, callback: (err: Error|null, api?: {}) => void) {
     const headers = this.options.includePrivate ? {} : {'X-User-Ip': '0.0.0.0'};
     this.transporter.request<DiscoverAPIsResponse>({url: discoveryUrl, headers})
         .then(res => {
           const items = res.data.items;
           async.parallel(
               items.map(api => {
-                return (cb) => {
+                return (cb: (err: Error|null, api?: API) => void) => {
                   this.discoverAPI(api.discoveryRestUrl, (e, newApi) => {
                     if (e) {
                       return cb(e);
@@ -194,7 +135,7 @@ export class Discovery {
                   });
                 };
               }),
-              (e, apis) => {
+              (e: Error|null, apis) => {
                 if (e) {
                   return callback(e);
                 }
@@ -207,7 +148,7 @@ export class Discovery {
                     versionIndex[api.name] = {};
                     apisIndex[api.name] = (options) => {
                       const type = typeof options;
-                      let version;
+                      let version: string;
                       if (type === 'string') {
                         version = options;
                         options = {};
@@ -219,10 +160,9 @@ export class Discovery {
                             'Argument error: Accepts only string or object');
                       }
                       try {
-                        // Creating an object, so Pascal case is appropriate.
-                        // tslint:disable-next-line
-                        const Endpoint = versionIndex[api.name][version];
-                        const ep = new Endpoint(options);
+                        const endpointCreator: EndpointCreator =
+                            versionIndex[api.name][version];
+                        const ep = endpointCreator(options);
                         ep.google = this;  // for drive.google.transporter
                         return Object.freeze(ep);  // create new & freeze
                       } catch (e) {
@@ -246,16 +186,17 @@ export class Discovery {
   /**
    * Generate API file given discovery URL
    *
-   * @param  {String} apiDiscoveryUrl URL or filename of discovery doc for API
-   * @param {function} callback Callback when successful write of API
-   * @throws {Error} If there is an error generating the API.
+   * @param apiDiscoveryUrl URL or filename of discovery doc for API
+   * @param callback Callback when successful write of API
    */
-  async discoverAPI(apiDiscoveryUrl, callback) {
-    const _generate = (err, resp) => {
+  async discoverAPI(
+      apiDiscoveryUrl: string|APIRequestMethodParams,
+      callback: (err: Error|null, endpointCreator: EndpointCreator) => void) {
+    const _generate = (err: Error|null, res?: APIRequest) => {
       if (err) {
         return handleError(err, callback);
       }
-      return callback(null, this.makeEndpoint(resp));
+      return callback(null, this.makeEndpoint(res!));
     };
 
     if (typeof apiDiscoveryUrl === 'string') {
@@ -273,7 +214,13 @@ export class Discovery {
         }
       } else {
         this.log('Requesting ' + apiDiscoveryUrl);
-        this.transporter.request({url: apiDiscoveryUrl}, _generate);
+        this.transporter.request<APIRequest>(
+            {url: apiDiscoveryUrl}, (err, res) => {
+              if (err || (res && !res.data)) {
+                return _generate(err);
+              }
+              return _generate(err, res!.data);
+            });
       }
     } else {
       const options = apiDiscoveryUrl;
@@ -287,7 +234,15 @@ export class Discovery {
         params: options,
         context: {google: {_options: {}}, _options: {}}
       };
-      createAPIRequest(parameters, _generate);
+      createAPIRequest<APIRequest>(parameters, (err, res) => {
+        if (err) {
+          return _generate(err);
+        } else {
+          if (res) {
+            return _generate(null, res.data);
+          }
+        }
+      });
     }
   }
 }

@@ -12,10 +12,14 @@
 // limitations under the License.
 
 import * as async from 'async';
+import {OAuth2Client} from 'google-auth-library';
 import * as nock from 'nock';
 import * as pify from 'pify';
 import * as assert from 'power-assert';
+
 import {GoogleApis} from '../src';
+import {google} from '../src';
+
 import {Utils} from './utils';
 
 async function testGet(drive) {
@@ -46,9 +50,11 @@ async function testAuthKey(urlshortener) {
 }
 
 describe('API key', () => {
-  let localDrive, remoteDrive;
-  let localUrlshortener, remoteUrlshortener;
-  let authClient;
+  let localDrive;
+  let remoteDrive;
+  let localUrlshortener;
+  let remoteUrlshortener;
+  let authClient: OAuth2Client;
 
   before((done) => {
     nock.cleanAll();

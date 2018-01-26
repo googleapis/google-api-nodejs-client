@@ -14,9 +14,7 @@
 import * as nock from 'nock';
 import * as pify from 'pify';
 import * as assert from 'power-assert';
-
 import {GoogleApis} from '../src';
-
 import {Utils} from './utils';
 
 const googleapis = new GoogleApis();
