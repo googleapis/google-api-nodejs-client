@@ -13,6 +13,7 @@
 
 import {AxiosResponse} from 'axios';
 import * as url from 'url';
+import {GoogleApis} from '../src/index';
 
 export abstract class Utils {
   static getQs(res: AxiosResponse) {
@@ -25,7 +26,8 @@ export abstract class Utils {
         version + '/rest';
   }
 
-  static loadApi(google, name, version, options, cb) {
+  static loadApi(
+      google: GoogleApis, name: string, version: string, options, cb) {
     if (typeof options === 'function') {
       cb = options;
       options = {};

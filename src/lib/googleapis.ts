@@ -14,6 +14,7 @@
 import {Compute, GoogleAuth, JWT, OAuth2Client} from 'google-auth-library';
 import * as apis from '../apis';
 import {Discovery} from './discovery';
+import {Endpoint} from './endpoint';
 
 export class AuthPlus extends GoogleAuth {
   // tslint:disable-next-line: variable-name
@@ -28,7 +29,7 @@ export class GoogleApis extends apis.GeneratedAPIs {
   private _discovery = new Discovery({debug: false, includePrivate: false});
   auth = new AuthPlus();
   // tslint:disable-next-line: no-any
-  _options: any;
+  _options: {};
 
   /**
    * GoogleApis constructor.
@@ -40,7 +41,7 @@ export class GoogleApis extends apis.GeneratedAPIs {
    * @class GoogleApis
    * @param {Object} [options] Configuration options.
    */
-  constructor(options?) {
+  constructor(options?: {}) {
     super();
     this.options(options);
     this.addAPIs(apis);
@@ -51,7 +52,7 @@ export class GoogleApis extends apis.GeneratedAPIs {
    *
    * @param  {Object} [options] Configuration options.
    */
-  options(options) {
+  options(options?: {}) {
     this._options = options || {};
   }
 
@@ -77,7 +78,7 @@ export class GoogleApis extends apis.GeneratedAPIs {
    * the discovered APIs.
    *
    * @example
-   * const google = require('googleapis');
+   * const {google} = require('googleapis');
    * const discoveryUrl =
    * 'https://myapp.appspot.com/_ah/api/discovery/v1/apis/';
    * google.discover(discoveryUrl, function (err) {
@@ -86,18 +87,16 @@ export class GoogleApis extends apis.GeneratedAPIs {
    *
    * @name GoogleApis#discover
    * @method
-   * @param {string} url Url to the discovery service for a set of APIs. e.g.,
+   * @param url Url to the discovery service for a set of APIs. e.g.,
    * https://www.googleapis.com/discovery/v1/apis
    * @param {Function} callback Callback function.
    */
-  discover(url, callback) {
-    const self = this;
-
+  discover(url: string, callback: (err?: Error) => void) {
     this._discovery.discoverAllAPIs(url, (err, allApis) => {
       if (err) {
         return callback(err);
       }
-      self.addAPIs(allApis);
+      this.addAPIs(allApis);
       callback();
     });
   }
@@ -120,23 +119,22 @@ export class GoogleApis extends apis.GeneratedAPIs {
    * from the discovery doc.
    * @param {Function} callback Callback function.
    */
-  discoverAPI(apiPath, options, callback) {
-    const self = this;
+  discoverAPI(
+      apiPath: string, options: {},
+      callback: (err: Error|null, endpoint?: Readonly<Endpoint>) => void) {
     if (typeof options === 'function') {
       callback = options;
       options = {};
     }
-    if (!options) {
-      options = {};
-    }
+    options = options || {};
     // Creating an object, so Pascal case is appropriate.
     // tslint:disable-next-line
-    this._discovery.discoverAPI(apiPath, (err, Endpoint) => {
+    this._discovery.discoverAPI(apiPath, (err, endpointCreator) => {
       if (err) {
         return callback(err);
       }
-      const ep = new Endpoint(options);
-      ep.google = self;                          // for drive.google.transporter
+      const ep = endpointCreator(options);
+      ep.google = this;                          // for drive.google.transporter
       return callback(null, Object.freeze(ep));  // create new & freeze
     });
   }

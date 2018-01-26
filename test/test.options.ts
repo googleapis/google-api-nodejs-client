@@ -48,7 +48,8 @@ describe('Options', () => {
   it('should expose _options values', () => {
     const google = new GoogleApis();
     google.options({hello: 'world'});
-    assert.equal(google._options.hello, 'world');
+    // tslint:disable-next-line no-any
+    assert.equal((google._options as any).hello, 'world');
   });
 
   it('should promote endpoint options over global options', async () => {

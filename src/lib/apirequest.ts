@@ -18,6 +18,7 @@ import * as qs from 'qs';
 import * as stream from 'stream';
 import * as parseString from 'string-template';
 import * as uuid from 'uuid';
+import {APIRequest} from './discovery';
 
 export interface APIRequestParams {
   options: AxiosRequestConfig;
@@ -42,6 +43,7 @@ export interface APIRequestContextOptions {
 }
 
 export interface APIRequestMethodParams {
+  url?: string;
   media?: {body?: string|stream.Readable; mimeType?: string;};
   resource?: {mimeType?: string;};
   key?: string;
@@ -56,7 +58,7 @@ function isReadableStream(obj: any) {
   return obj instanceof stream.Readable && typeof obj._read === 'function';
 }
 
-function createCallback(callback: BodyResponseCallback<{}>) {
+function createCallback<T>(callback: BodyResponseCallback<T>) {
   return typeof callback === 'function' ? callback : (err: Error|null) => {
     if (err) {
       console.error(err);
@@ -82,12 +84,11 @@ function getMissingParams(params, required) {
 
 /**
  * Create and send request to Google API
- * @param  {object}   parameters Parameters used to form request
- * @param  {Function} callback   Callback when request finished or error found
- * @return {Request}             Returns Request object or null
+ * @param parameters Parameters used to form request
+ * @param callback   Callback when request finished or error found
  */
-export function createAPIRequest(
-    parameters: APIRequestParams, callback: BodyResponseCallback<{}>): void {
+export function createAPIRequest<T>(
+    parameters: APIRequestParams, callback: BodyResponseCallback<T>): void {
   let missingParams;
   let params = parameters.params;
   let options = Object.assign({}, parameters.options);
@@ -135,7 +136,7 @@ export function createAPIRequest(
   });
 
   // Normalize callback
-  callback = createCallback(callback);
+  callback = createCallback<T>(callback);
 
   // Check for missing required parameters in the API request
   missingParams = getMissingParams(params, parameters.requiredParams);
