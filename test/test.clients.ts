@@ -36,8 +36,7 @@ describe('Clients', () => {
     const google = new GoogleApis();
     nock.enableNetConnect();
     [remotePlus, remoteOauth2] = await Promise.all([
-      Utils.loadApi(google, 'plus', 'v1'),
-      Utils.loadApi(google, 'oauth2', 'v2')
+      Utils.loadApi(google, 'plus', 'v1'), Utils.loadApi(google, 'oauth2', 'v2')
     ]);
     nock.disableNetConnect();
   });

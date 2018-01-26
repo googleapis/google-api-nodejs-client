@@ -28,9 +28,8 @@ describe('Query params', () => {
     const google = new GoogleApis();
     nock.enableNetConnect();
     [remoteCompute, remoteDrive, remoteGmail] = await Promise.all([
-        Utils.loadApi(google, 'compute', 'v1'),
-        Utils.loadApi(google, 'drive', 'v2'),
-        Utils.loadApi(google, 'gmail', 'v1')
+      Utils.loadApi(google, 'compute', 'v1'),
+      Utils.loadApi(google, 'drive', 'v2'), Utils.loadApi(google, 'gmail', 'v1')
     ]);
     nock.disableNetConnect();
   });
