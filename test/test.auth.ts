@@ -12,13 +12,11 @@
 // limitations under the License.
 
 import * as async from 'async';
-import {OAuth2Client} from 'google-auth-library/build/src/auth/oauth2client';
+import {OAuth2Client} from 'google-auth-library';
 import * as nock from 'nock';
 import * as pify from 'pify';
 import * as assert from 'power-assert';
-
 import {GoogleApis} from '../src';
-
 import {Utils} from './utils';
 
 const googleapis = new GoogleApis();
@@ -38,7 +36,7 @@ describe('JWT client', () => {
   });
   it('should create scoped JWT', () => {
     const jwt = new googleapis.auth.JWT(
-        'someone@somewhere.com', 'file1', 'key1', null, 'subject1');
+        'someone@somewhere.com', 'file1', 'key1', undefined, 'subject1');
     assert.equal(jwt.scopes, null);
     assert.equal(jwt.createScopedRequired(), true);
 
@@ -81,6 +79,7 @@ async function testExpired(drive, oauth2client: OAuth2Client, now: number) {
   await pify(drive.files.get)({fileId: 'wat', auth: oauth2client});
   const expiryDate = oauth2client.credentials.expiry_date;
   assert.notEqual(expiryDate, undefined);
+  if (!expiryDate) return;
   assert(expiryDate > now);
   assert(expiryDate < now + 5000);
   assert.equal(oauth2client.credentials.refresh_token, 'abc');
@@ -93,8 +92,8 @@ async function testNoAccessToken(
   await pify(drive.files.get)({fileId: 'wat', auth: oauth2client});
   const expiryDate = oauth2client.credentials.expiry_date;
   assert.notEqual(expiryDate, undefined);
-  assert(expiryDate > now);
-  assert(expiryDate < now + 4000);
+  assert(expiryDate! > now);
+  assert(expiryDate! < now + 4000);
   assert.equal(oauth2client.credentials.refresh_token, 'abc');
   assert.equal(oauth2client.credentials.access_token, 'abc123');
 }
@@ -302,8 +301,8 @@ describe('OAuth2 client', () => {
       const oauth2client =
           new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
       const res = await oauth2client.getToken('code here');
-      assert(res.tokens.expiry_date >= now + (10 * 1000));
-      assert(res.tokens.expiry_date <= now + (15 * 1000));
+      assert(res.tokens.expiry_date! >= now + (10 * 1000));
+      assert(res.tokens.expiry_date! <= now + (15 * 1000));
     });
   });
 

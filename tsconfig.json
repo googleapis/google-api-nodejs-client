@@ -4,7 +4,6 @@
     "rootDir": ".",
     "outDir": "build",
     "noImplicitAny": false,
-    "strictNullChecks": false,
     "noImplicitThis": false
   },
   "include": [
