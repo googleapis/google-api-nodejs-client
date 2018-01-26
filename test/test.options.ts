@@ -11,9 +11,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import * as assert from 'assert';
 import * as nock from 'nock';
 import * as pify from 'pify';
-import * as assert from 'power-assert';
 import * as url from 'url';
 
 import {GoogleApis} from '../src';
@@ -77,10 +77,11 @@ describe('Options', () => {
     // won't work unless I call `nock.cleanAll()` first.
     nock.cleanAll();
     nock.enableNetConnect();
-    const d = await pify(Utils.loadApi)(google, 'drive', 'v2', {});
+    const d = await Utils.loadApi(google, 'drive', 'v2');
     nock.disableNetConnect();
     nock(Utils.baseUrl).get('/drive/v2/files/123?myParam=123').reply(200);
-    const res3 = await pify(d.files.get)({fileId: '123'});
+    // tslint:disable-next-line no-any
+    const res3 = await pify((d as any).files.get)({fileId: '123'});
     // If the default param handling is broken, query might be undefined,
     // thus concealing the assertion message with some generic "cannot
     // call .indexOf of undefined"

@@ -11,13 +11,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as async from 'async';
+import * as assert from 'assert';
 import * as nock from 'nock';
 import * as pify from 'pify';
-import * as assert from 'power-assert';
-
 import {GoogleApis} from '../src';
-
 import {Utils} from './utils';
 
 async function testHeaders(drive) {
@@ -82,32 +79,16 @@ describe('Transporters', () => {
   let localOauth2, remoteOauth2;
   let localUrlshortener, remoteUrlshortener;
 
-  before((done) => {
+  before(async () => {
     nock.cleanAll();
     const google = new GoogleApis();
     nock.enableNetConnect();
-    async.parallel(
-        [
-          (cb) => {
-            Utils.loadApi(google, 'drive', 'v2', {}, cb);
-          },
-          (cb) => {
-            Utils.loadApi(google, 'oauth2', 'v2', {}, cb);
-          },
-          (cb) => {
-            Utils.loadApi(google, 'urlshortener', 'v1', {}, cb);
-          }
-        ],
-        (err, apis) => {
-          if (err) {
-            return done(err);
-          }
-          remoteDrive = apis[0];
-          remoteOauth2 = apis[1];
-          remoteUrlshortener = apis[2];
-          nock.disableNetConnect();
-          done();
-        });
+    [remoteDrive, remoteOauth2, remoteUrlshortener] = await Promise.all([
+      Utils.loadApi(google, 'drive', 'v2'),
+      Utils.loadApi(google, 'oauth2', 'v2'),
+      Utils.loadApi(google, 'urlshortener', 'v1')
+    ]);
+    nock.disableNetConnect();
   });
 
   beforeEach(() => {

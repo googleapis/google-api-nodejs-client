@@ -11,15 +11,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as async from 'async';
+import * as assert from 'assert';
 import * as fs from 'fs';
 import * as nock from 'nock';
 import * as path from 'path';
 import * as pify from 'pify';
-import * as assert from 'power-assert';
-
 import {GoogleApis} from '../src';
-
 import {Utils} from './utils';
 
 const boundaryPrefix = 'multipart/related; boundary=';
@@ -72,28 +69,14 @@ describe('Media', () => {
   let localDrive, remoteDrive;
   let localGmail, remoteGmail;
 
-  before((done) => {
+  before(async () => {
     nock.cleanAll();
     const google = new GoogleApis();
     nock.enableNetConnect();
-    async.parallel(
-        [
-          (cb) => {
-            Utils.loadApi(google, 'drive', 'v2', {}, cb);
-          },
-          (cb) => {
-            Utils.loadApi(google, 'gmail', 'v1', {}, cb);
-          }
-        ],
-        (err, apis) => {
-          if (err) {
-            return done(err);
-          }
-          remoteDrive = apis[0];
-          remoteGmail = apis[1];
-          nock.disableNetConnect();
-          done();
-        });
+    [remoteDrive, remoteGmail] = await Promise.all([
+      Utils.loadApi(google, 'drive', 'v2'), Utils.loadApi(google, 'gmail', 'v1')
+    ]);
+    nock.disableNetConnect();
   });
 
   beforeEach(() => {

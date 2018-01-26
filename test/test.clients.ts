@@ -11,16 +11,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as async from 'async';
+import * as assert from 'assert';
 import * as fs from 'fs';
 import * as nock from 'nock';
 import * as path from 'path';
 import * as pify from 'pify';
-import * as assert from 'power-assert';
 import * as url from 'url';
-
 import {GoogleApis} from '../src';
-
 import {Utils} from './utils';
 
 function createNock(qs?: string) {
@@ -34,28 +31,14 @@ describe('Clients', () => {
   let localPlus, remotePlus;
   let localOauth2, remoteOauth2;
 
-  before((done) => {
+  before(async () => {
     nock.cleanAll();
     const google = new GoogleApis();
     nock.enableNetConnect();
-    async.parallel(
-        [
-          (cb) => {
-            Utils.loadApi(google, 'plus', 'v1', {}, cb);
-          },
-          (cb) => {
-            Utils.loadApi(google, 'oauth2', 'v2', {}, cb);
-          }
-        ],
-        (err, apis) => {
-          if (err) {
-            return done(err);
-          }
-          remotePlus = apis[0];
-          remoteOauth2 = apis[1];
-          nock.disableNetConnect();
-          done();
-        });
+    [remotePlus, remoteOauth2] = await Promise.all([
+      Utils.loadApi(google, 'plus', 'v1'), Utils.loadApi(google, 'oauth2', 'v2')
+    ]);
+    nock.disableNetConnect();
   });
 
   beforeEach(() => {
@@ -157,12 +140,14 @@ describe('Clients', () => {
     const query = Utils.getQs(res) || '';
     assert.notEqual(query.indexOf('myParam=123'), -1, 'Default param in query');
     nock.enableNetConnect();
-    const datastore2 = await pify(Utils.loadApi)(
+    const datastore2 = await Utils.loadApi(
         google, 'datastore', 'v1beta3', {params: {myParam: '123'}});
     nock.disableNetConnect();
     createNock('myParam=123');
     const res2 =
-        await pify(datastore2.projects.lookup)({projectId: 'test-project-id'});
+        // tslint:disable-next-line no-any
+        await pify((datastore2 as any).projects.lookup)(
+            {projectId: 'test-project-id'});
     const query2 = Utils.getQs(res2) || '';
     assert.notEqual(
         query2.indexOf('myParam=123'), -1, 'Default param in query');
@@ -183,12 +168,13 @@ describe('Clients', () => {
     assert.notEqual(
         query.indexOf('myParam=456'), -1, 'Default param not found in query');
     nock.enableNetConnect();
-    const datastore2 = await pify(Utils.loadApi)(
+    const datastore2 = await Utils.loadApi(
         google, 'datastore', 'v1beta3', {params: {myParam: '123'}});
     nock.disableNetConnect();
     // Override the default datasetId param for this particular API call
     createNock('myParam=456');
-    const res2 = await pify(datastore2.projects.lookup)(
+    // tslint:disable-next-line no-any
+    const res2 = await pify((datastore2 as any).projects.lookup)(
         {projectId: 'test-project-id', myParam: '456'});
     // If the default param handling is broken, query might be undefined,
     // thus concealing the assertion message with some generic "cannot
@@ -222,20 +208,20 @@ describe('Clients', () => {
            'Default param not found in query');
 
        nock.enableNetConnect();
-       const datastore2 =
-           await pify(Utils.loadApi)(google, 'datastore', 'v1beta3', {
-             params: {
-               projectId: 'test-project-id',  // We must set this here - it is a
-               // required param
-               myParam: '123'
-             }
-           });
+       const datastore2 = await Utils.loadApi(google, 'datastore', 'v1beta3', {
+         params: {
+           projectId: 'test-project-id',  // We must set this here - it is a
+           // required param
+           myParam: '123'
+         }
+       });
 
        nock.disableNetConnect();
 
        // No params given - only callback
        createNock('myParam=123');
-       const res3 = await pify(datastore2.projects.lookup)();
+       // tslint:disable-next-line no-any
+       const res3 = await pify((datastore2 as any).projects.lookup)();
        // If the default param handling is broken, req or query might be
        // undefined, thus concealing the assertion message with some
        // generic "cannot call .indexOf of undefined"

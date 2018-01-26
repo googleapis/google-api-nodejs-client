@@ -16,6 +16,9 @@ import * as apis from '../apis';
 import {Discovery} from './discovery';
 import {Endpoint} from './endpoint';
 
+export type DiscoverApiCallback =
+    (err: Error|null, endpoint?: Readonly<Endpoint>) => void;
+
 export class AuthPlus extends GoogleAuth {
   // tslint:disable-next-line: variable-name
   JWT = JWT;
@@ -28,7 +31,6 @@ export class AuthPlus extends GoogleAuth {
 export class GoogleApis extends apis.GeneratedAPIs {
   private _discovery = new Discovery({debug: false, includePrivate: false});
   auth = new AuthPlus();
-  // tslint:disable-next-line: no-any
   _options: {};
 
   /**
@@ -91,14 +93,19 @@ export class GoogleApis extends apis.GeneratedAPIs {
    * https://www.googleapis.com/discovery/v1/apis
    * @param {Function} callback Callback function.
    */
-  discover(url: string, callback: (err?: Error) => void) {
-    this._discovery.discoverAllAPIs(url, (err, allApis) => {
-      if (err) {
-        return callback(err);
-      }
-      this.addAPIs(allApis);
-      callback();
-    });
+  discover(url: string): Promise<void>;
+  discover(url: string, callback: (err?: Error) => void): void;
+  discover(url: string, callback?: (err?: Error) => void): void|Promise<void> {
+    if (callback) {
+      this.discoverAsync(url).then(() => callback()).catch(callback);
+    } else {
+      return this.discoverAsync(url);
+    }
+  }
+
+  private async discoverAsync(url: string) {
+    const allApis = await this._discovery.discoverAllAPIs(url);
+    this.addAPIs(allApis);
   }
 
   /**
@@ -119,23 +126,32 @@ export class GoogleApis extends apis.GeneratedAPIs {
    * from the discovery doc.
    * @param {Function} callback Callback function.
    */
+  discoverAPI(apiPath: string, options?: {}): Promise<Readonly<Endpoint>>;
   discoverAPI(
-      apiPath: string, options: {},
-      callback: (err: Error|null, endpoint?: Readonly<Endpoint>) => void) {
-    if (typeof options === 'function') {
-      callback = options;
+      apiPath: string, optionsOrCallback: {}|DiscoverApiCallback,
+      callback?: DiscoverApiCallback): void;
+  discoverAPI(
+      apiPath: string, optionsOrCallback?: {}|DiscoverApiCallback,
+      callback?: DiscoverApiCallback): void|Promise<Readonly<Endpoint>> {
+    let options: {};
+    if (typeof optionsOrCallback === 'function') {
+      callback = optionsOrCallback;
       options = {};
     }
-    options = options || {};
-    // Creating an object, so Pascal case is appropriate.
-    // tslint:disable-next-line
-    this._discovery.discoverAPI(apiPath, (err, endpointCreator) => {
-      if (err) {
-        return callback(err);
-      }
-      const ep = endpointCreator(options);
-      ep.google = this;                          // for drive.google.transporter
-      return callback(null, Object.freeze(ep));  // create new & freeze
-    });
+    options = optionsOrCallback || {};
+    if (callback) {
+      this.discoverAPIAsync(apiPath, options)
+          .then(r => callback!(null, r))
+          .catch(callback);
+    } else {
+      return this.discoverAPIAsync(apiPath, options);
+    }
+  }
+
+  private async discoverAPIAsync(apiPath: string, options: {}) {
+    const endpointCreator = await this._discovery.discoverAPI(apiPath);
+    const ep = endpointCreator(options);
+    ep.google = this;  // for drive.google.transporter
+    return Object.freeze(ep);
   }
 }

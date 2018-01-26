@@ -11,10 +11,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import * as assert from 'assert';
 import * as nock from 'nock';
 import * as path from 'path';
 import * as pify from 'pify';
-import * as assert from 'power-assert';
 import * as url from 'url';
 
 import {GoogleApis} from '../src';
@@ -52,18 +52,12 @@ async function testInsert(urlshortener) {
 describe('Urlshortener', () => {
   let localUrlshortener, remoteUrlshortener;
 
-  before((done) => {
+  before(async () => {
     nock.cleanAll();
     const google = new GoogleApis();
     nock.enableNetConnect();
-    Utils.loadApi(google, 'urlshortener', 'v1', {}, (err, urlshortener) => {
-      nock.disableNetConnect();
-      if (err) {
-        return done(err);
-      }
-      remoteUrlshortener = urlshortener;
-      done();
-    });
+    remoteUrlshortener = await Utils.loadApi(google, 'urlshortener', 'v1');
+    nock.disableNetConnect();
   });
 
   beforeEach(() => {
