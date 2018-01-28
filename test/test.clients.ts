@@ -17,7 +17,10 @@ import * as nock from 'nock';
 import * as path from 'path';
 import * as pify from 'pify';
 import * as url from 'url';
+
 import {GoogleApis} from '../src';
+import {APIEndpoint} from '../src/lib/api';
+
 import {Utils} from './utils';
 
 function createNock(qs?: string) {
@@ -28,8 +31,8 @@ function createNock(qs?: string) {
 }
 
 describe('Clients', () => {
-  let localPlus, remotePlus;
-  let localOauth2, remoteOauth2;
+  let localPlus: APIEndpoint, remotePlus: APIEndpoint;
+  let localOauth2: APIEndpoint, remoteOauth2: APIEndpoint;
 
   before(async () => {
     nock.cleanAll();

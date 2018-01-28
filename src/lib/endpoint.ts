@@ -11,15 +11,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import {BodyResponseCallback} from 'google-auth-library/build/src/transporters';
+
 import {GoogleApis} from '../index';
 import {buildurl} from '../scripts/generator_utils';
 
-import {APIRequestParams, createAPIRequest} from './apirequest';
+import {APIRequestContext, APIRequestContextOptions, APIRequestMethodParams, APIRequestParams} from './api';
+import {createAPIRequest} from './apirequest';
 import {Discovery} from './discovery';
+import {Schema, SchemaMethod, SchemaParameters, SchemaResource} from './schema';
 
-export class Endpoint {
-  private _options: {};
-  google: GoogleApis|Discovery;
+export interface Target { [index: string]: {}; }
+
+export class Endpoint implements Target, APIRequestContext {
+  _options: APIRequestContextOptions;
+  google: GoogleApis;
+  [index: string]: {};
 
   constructor(options: {}) {
     this._options = options || {};
@@ -35,7 +42,9 @@ export class Endpoint {
    * resources.
    * @param {object} context The context to add to each method.
    */
-  applySchema(target, rootSchema, schema, context) {
+  applySchema(
+      target: Target, rootSchema: Schema, schema: SchemaResource,
+      context: APIRequestContext) {
     this.applyMethodsFromSchema(target, rootSchema, schema, context);
     if (schema.resources) {
       for (const resourceName in schema.resources) {
@@ -59,7 +68,9 @@ export class Endpoint {
    * @param {object} schema The current schema from which to extract methods.
    * @param {object} context The context to add to each method.
    */
-  private applyMethodsFromSchema(target, rootSchema, schema, context) {
+  private applyMethodsFromSchema(
+      target: Target, rootSchema: Schema, schema: SchemaResource,
+      context: APIRequestContext) {
     if (schema.methods) {
       for (const name in schema.methods) {
         if (schema.methods.hasOwnProperty(name)) {
@@ -73,17 +84,19 @@ export class Endpoint {
   /**
    * Given a method schema, add a method to a target.
    *
-   * @param {object} target The target to which to add the method.
-   * @param {object} schema The top-level schema that contains the rootUrl, etc.
-   * @param {object} method The method schema from which to generate the method.
-   * @param {object} context The context to add to the method.
+   * @param target The target to which to add the method.
+   * @param schema The top-level schema that contains the rootUrl, etc.
+   * @param method The method schema from which to generate the method.
+   * @param context The context to add to the method.
    */
-  private makeMethod(schema, method, context) {
-    return (params, callback) => {
+  private makeMethod(
+      schema: Schema, method: SchemaMethod, context: APIRequestContext) {
+    return (params: APIRequestMethodParams,
+            callback: BodyResponseCallback<{}>) => {
       const schemaUrl =
           buildurl(schema.rootUrl + schema.servicePath + method.path);
 
-      const parameters = {
+      const parameters: APIRequestParams = {
         options: {
           url: schemaUrl.substring(1, schemaUrl.length - 1),
           method: method.httpMethod
@@ -91,9 +104,8 @@ export class Endpoint {
         params,
         requiredParams: method.parameterOrder || [],
         pathParams: this.getPathParams(method.parameters),
-        context,
-        mediaUrl: null
-      } as APIRequestParams;
+        context
+      };
 
       if (method.mediaUpload && method.mediaUpload.protocols &&
           method.mediaUpload.protocols.simple &&
@@ -107,13 +119,13 @@ export class Endpoint {
     };
   }
 
-  private getPathParams(params) {
+  private getPathParams(params?: SchemaParameters) {
     const pathParams = new Array<string>();
     if (typeof params !== 'object') {
       params = {};
     }
     Object.keys(params).forEach(key => {
-      if (params[key].location === 'path') {
+      if (params![key].location === 'path') {
         pathParams.push(key);
       }
     });

@@ -12,15 +12,18 @@
 // limitations under the License.
 
 import * as assert from 'assert';
+import {AxiosResponse} from 'axios';
 import * as nock from 'nock';
 import * as url from 'url';
 
 import {GoogleApis} from '../src';
+import {APIEndpoint} from '../src/lib/api';
 
 import {Utils} from './utils';
 
 describe('Path params', () => {
-  let localDrive, remoteDrive;
+  let localDrive: APIEndpoint;
+  let remoteDrive: APIEndpoint;
 
   before(async () => {
     nock.cleanAll();
@@ -46,9 +49,9 @@ describe('Path params', () => {
   });
 
   it('should return an err object if not included and required', (done) => {
-    localDrive.files.get({}, (err) => {
+    localDrive.files.get({}, (err: Error) => {
       assert.notEqual(err, null);
-      remoteDrive.files.get({}, e => {
+      remoteDrive.files.get({}, (e: Error) => {
         assert.notEqual(e, null);
         done();
       });
@@ -56,11 +59,11 @@ describe('Path params', () => {
   });
 
   it('should be mentioned in err.message when missing', (done) => {
-    localDrive.files.get({}, (err) => {
+    localDrive.files.get({}, (err: Error) => {
       assert.notEqual(
           err.message.indexOf('fileId'), -1,
           'Missing param not mentioned in error');
-      remoteDrive.files.get({}, e => {
+      remoteDrive.files.get({}, (e: Error) => {
         assert.notEqual(
             e.message.indexOf('fileId'), -1,
             'Missing param not mentioned in error');
@@ -71,10 +74,10 @@ describe('Path params', () => {
 
   it('should return null response object if not included and required',
      (done) => {
-       localDrive.files.get({}, (err, resp) => {
+       localDrive.files.get({}, (err: Error, resp: {}) => {
          assert(err);
          assert.equal(resp, null);
-         remoteDrive.files.get({}, (e, resp2) => {
+         remoteDrive.files.get({}, (e: Error, resp2: {}) => {
            assert(e);
            assert.equal(resp2, null);
            done();
@@ -111,99 +114,110 @@ describe('Path params', () => {
   it('should be put in URL of path', (done) => {
     const p = '/drive/v2/files/abc123';
     nock(Utils.baseUrl).get(p).reply(200);
-    localDrive.files.get({fileId: 'abc123'}, (err, res) => {
-      if (err) {
-        return done(err);
-      }
-      assert.equal(res.config.url, Utils.baseUrl + p);
-      nock(Utils.baseUrl).get(p).reply(200);
-      remoteDrive.files.get({fileId: 'abc123'}, (err2, res2) => {
-        if (err2) {
-          return done(err2);
-        }
-        assert.equal(res2.config.url, Utils.baseUrl + p);
-        done();
-      });
-    });
+    localDrive.files.get(
+        {fileId: 'abc123'}, (err: Error, res: AxiosResponse) => {
+          if (err) {
+            return done(err);
+          }
+          assert.equal(res.config.url, Utils.baseUrl + p);
+          nock(Utils.baseUrl).get(p).reply(200);
+          remoteDrive.files.get(
+              {fileId: 'abc123'}, (err2: Error, res2: AxiosResponse) => {
+                if (err2) {
+                  return done(err2);
+                }
+                assert.equal(res2.config.url, Utils.baseUrl + p);
+                done();
+              });
+        });
   });
 
   it('should be put in URL of pathname', (done) => {
     const p = '/drive/v2/files/123abc';
     nock(Utils.baseUrl).get(p).reply(200);
-    localDrive.files.get({fileId: '123abc'}, (err, res) => {
-      if (err) {
-        return done(err);
-      }
-      assert.equal(url.parse(res.config.url).path, p);
-      nock(Utils.baseUrl).get(p).reply(200);
-      remoteDrive.files.get({fileId: '123abc'}, (err2, res2) => {
-        if (err2) {
-          return done(err2);
-        }
-        assert.equal(url.parse(res.config.url).path, p);
-        done();
-      });
-    });
+    localDrive.files.get(
+        {fileId: '123abc'}, (err: Error, res: AxiosResponse) => {
+          if (err) {
+            return done(err);
+          }
+          assert.equal(Utils.getPath(res), p);
+          nock(Utils.baseUrl).get(p).reply(200);
+          remoteDrive.files.get(
+              {fileId: '123abc'}, (err2: Error, res2: AxiosResponse) => {
+                if (err2) {
+                  return done(err2);
+                }
+                assert.equal(Utils.getPath(res), p);
+                done();
+              });
+        });
   });
 
   it('should not be urlencoded', (done) => {
     const p = '/drive/v2/files/p@ram';
     nock(Utils.baseUrl).get(p).reply(200);
-    localDrive.files.get({fileId: 'p@ram'}, (err, res) => {
-      if (err) {
-        return done(err);
-      }
-      const parm = url.parse(res.config.url).path!.split('/').pop();
-      assert.equal(parm, 'p@ram');
-      nock(Utils.baseUrl).get(p).reply(200);
-      remoteDrive.files.get({fileId: 'p@ram'}, (err2, res2) => {
-        if (err2) {
-          return done(err2);
-        }
-        const parm = url.parse(res.config.url).path!.split('/').pop();
-        assert.equal(parm, 'p@ram');
-        done();
-      });
-    });
+    localDrive.files.get(
+        {fileId: 'p@ram'}, (err: Error, res: AxiosResponse) => {
+          if (err) {
+            return done(err);
+          }
+          const parm = Utils.getPath(res).split('/').pop();
+          assert.equal(parm, 'p@ram');
+          nock(Utils.baseUrl).get(p).reply(200);
+          remoteDrive.files.get(
+              {fileId: 'p@ram'}, (err2: Error, res2: AxiosResponse) => {
+                if (err2) {
+                  return done(err2);
+                }
+                const parm = Utils.getPath(res).split('/').pop();
+                assert.equal(parm, 'p@ram');
+                done();
+              });
+        });
   });
 
   it('should keep query params null if only path params', (done) => {
     const p = '/drive/v2/files/123abc';
     nock(Utils.baseUrl).get(p).reply(200);
-    localDrive.files.get({fileId: '123abc'}, (err, res) => {
-      if (err) {
-        return done(err);
-      }
-      assert.equal(Utils.getQs(res), null);
-      nock(Utils.baseUrl).get(p).reply(200);
-      remoteDrive.files.get({fileId: '123abc'}, (err2, res2) => {
-        if (err2) {
-          return done(err2);
-        }
-        assert.equal(Utils.getQs(res2), null);
-        done();
-      });
-    });
+    localDrive.files.get(
+        {fileId: '123abc'}, (err: Error, res: AxiosResponse) => {
+          if (err) {
+            return done(err);
+          }
+          assert.equal(Utils.getQs(res), null);
+          nock(Utils.baseUrl).get(p).reply(200);
+          remoteDrive.files.get(
+              {fileId: '123abc'}, (err2: Error, res2: AxiosResponse) => {
+                if (err2) {
+                  return done(err2);
+                }
+                assert.equal(Utils.getQs(res2), null);
+                done();
+              });
+        });
   });
 
   it('should keep query params as is', (done) => {
     const p = '/drive/v2/files/123abc?hello=world';
     nock(Utils.baseUrl).get(p).reply(200);
-    localDrive.files.get({fileId: '123abc', hello: 'world'}, (err, res) => {
-      if (err) {
-        return done(err);
-      }
-      assert.equal(Utils.getQs(res), 'hello=world');
-      nock(Utils.baseUrl).get(p).reply(200);
-      remoteDrive.files.get(
-          {fileId: '123abc', hello: 'world'}, (err2, res2) => {
-            if (err2) {
-              return done(err2);
-            }
-            assert.equal(Utils.getQs(res), 'hello=world');
-            done();
-          });
-    });
+    localDrive.files.get(
+        {fileId: '123abc', hello: 'world'},
+        (err: Error, res: AxiosResponse) => {
+          if (err) {
+            return done(err);
+          }
+          assert.equal(Utils.getQs(res), 'hello=world');
+          nock(Utils.baseUrl).get(p).reply(200);
+          remoteDrive.files.get(
+              {fileId: '123abc', hello: 'world'},
+              (err2: Error, res2: AxiosResponse) => {
+                if (err2) {
+                  return done(err2);
+                }
+                assert.equal(Utils.getQs(res), 'hello=world');
+                done();
+              });
+        });
   });
 
   after(() => {

@@ -16,13 +16,14 @@ import * as nock from 'nock';
 import * as pify from 'pify';
 
 import {GoogleApis} from '../src';
+import {APIEndpoint} from '../src/lib/api';
 
 import {Utils} from './utils';
 
 const googleapis = new GoogleApis();
 
 describe('drive:v2', () => {
-  let localDrive, remoteDrive;
+  let localDrive: APIEndpoint, remoteDrive: APIEndpoint;
 
   before(async () => {
     nock.cleanAll();

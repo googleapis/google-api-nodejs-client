@@ -15,13 +15,19 @@ import * as assert from 'assert';
 import * as nock from 'nock';
 import * as pify from 'pify';
 import * as url from 'url';
+
 import {google, GoogleApis} from '../src';
+import {APIEndpoint} from '../src/lib/api';
+
 import {Utils} from './utils';
 
 describe('Query params', () => {
-  let localCompute, remoteCompute;
-  let localDrive, remoteDrive;
-  let localGmail, remoteGmail;
+  let localCompute: APIEndpoint;
+  let remoteCompute: APIEndpoint;
+  let localDrive: APIEndpoint;
+  let remoteDrive: APIEndpoint;
+  let localGmail: APIEndpoint;
+  let remoteGmail: APIEndpoint;
 
   before(async () => {
     nock.cleanAll();

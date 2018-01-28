@@ -15,8 +15,8 @@
  * Build a string used to create a URL from the discovery doc provided URL.
  *
  * @private
- * @param  {String} input URL to build from
- * @return {String}       Resulting built URL
+ * @param  input URL to build from
+ * @return Resulting built URL
  */
 export function buildurl(input?: string) {
   return input ?
@@ -30,17 +30,4 @@ export function buildurl(input?: string) {
           // No {/ symbols
           .replace(/\{\//g, '/{') :
       '';
-}
-
-/**
- * Handle error object with callback
- *
- * @private
- * @param  {Error}   err      Error object to return in callback
- * @param  {Function=} callback Optional callback function
- */
-export function handleError(err: Error, callback: Function) {
-  if (callback && typeof callback === 'function') {
-    callback(err, null);
-  }
 }

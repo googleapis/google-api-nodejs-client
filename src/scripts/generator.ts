@@ -22,7 +22,10 @@ import * as path from 'path';
 import * as pify from 'pify';
 import * as url from 'url';
 import * as util from 'util';
-import {buildurl, handleError} from './generator_utils';
+
+import {FragmentResponse, Schema, SchemaParameters, SchemaResource, Schemas} from '../lib/schema';
+
+import {buildurl} from './generator_utils';
 
 const argv = minimist(process.argv.slice(2));
 const cliArgs = argv._;
@@ -44,29 +47,6 @@ const RESERVED_PARAMS = ['resource', 'media', 'auth'];
 export interface GeneratorOptions {
   debug?: boolean;
   includePrivate?: boolean;
-}
-
-interface Api {
-  discoveryRestUrl: string;
-  id: string;
-}
-
-interface ApiResponse {
-  items: Api[];
-}
-
-interface FragmentResponse {
-  // tslint:disable-next-line no-any
-  codeFragment: any;
-}
-
-interface Schema {
-  name: string;
-  version: string;
-  // tslint:disable-next-line no-any
-  methods: any[];
-  // tslint:disable-next-line no-any
-  resources: any[];
 }
 
 export class Generator {
@@ -93,8 +73,7 @@ export class Generator {
     return str ? str.replace(/\*\//g, 'x/').replace(/\/\*/g, '/x') : '';
   }
 
-  // tslint:disable-next-line no-any
-  private getPathParams(params: any) {
+  private getPathParams(params: SchemaParameters) {
     const pathParams = new Array<string>();
     if (typeof params !== 'object') {
       params = {};
@@ -172,7 +151,7 @@ export class Generator {
    */
   async generateAllAPIs() {
     const headers = this.options.includePrivate ? {} : {'X-User-Ip': '0.0.0.0'};
-    const res = await this.request<ApiResponse>({url: DISCOVERY_URL, headers});
+    const res = await this.request<Schemas>({url: DISCOVERY_URL, headers});
     const apis = res.data.items;
     const queue = new Q({concurrency: 10});
     console.log(`Generating ${apis.length} APIs...`);
@@ -207,8 +186,7 @@ export class Generator {
   }
 
   async generateIndex() {
-    // tslint:disable-next-line no-any
-    const apis: any = {};
+    const apis: {[index: string]: {[index: string]: string}} = {};
     const apisPath = path.join(srcPath, 'apis');
     const indexPath = path.join(apisPath, 'index.ts');
 
@@ -237,7 +215,7 @@ export class Generator {
    * embedded links.
    */
   private getFragmentsForSchema(
-      apiDiscoveryUrl: string, schema: Schema, apiPath: string,
+      apiDiscoveryUrl: string, schema: SchemaResource, apiPath: string,
       tasks: Array<(() => Promise<void>)>) {
     if (schema.methods) {
       for (const methodName in schema.methods) {
@@ -253,8 +231,7 @@ export class Generator {
               this.logResult(apiDiscoveryUrl, `Fragment request complete.`);
               if (res.data && res.data.codeFragment &&
                   res.data.codeFragment['Node.js']) {
-                let fragment: string =
-                    res.data.codeFragment['Node.js'].fragment;
+                let fragment = res.data.codeFragment['Node.js'].fragment;
                 fragment = fragment.replace(/\/\*/gi, '/<');
                 fragment = fragment.replace(/\*\//gi, '>/');
                 fragment = fragment.replace(/`\*/gi, '`<');
@@ -312,7 +289,7 @@ export class Generator {
     const tasks = new Array<() => Promise<void>>();
     this.getFragmentsForSchema(
         apiDiscoveryUrl, schema,
-        FRAGMENT_URL + schema.name + '/' + schema.version + '/0/' + schema.name,
+        `${FRAGMENT_URL}${schema.name}/${schema.version}/0/${schema.name}`,
         tasks);
 
     // e.g. apis/drive/v2.js
