@@ -108,6 +108,7 @@
     "@types/qs": "^6.5.1",
     "@types/rimraf": "^2.0.2",
     "@types/source-map-support": "^0.4.0",
+    "@types/string-template": "^1.0.2",
     "@types/tmp": "0.0.33",
     "@types/uuid": "^3.4.3",
     "axios": "^0.17.1",

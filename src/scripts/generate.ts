@@ -19,7 +19,6 @@ import * as path from 'path';
 import * as pify from 'pify';
 import * as rimraf from 'rimraf';
 import {install} from 'source-map-support';
-
 import {Generator} from './generator';
 
 // enable source map support

@@ -17,53 +17,24 @@ import * as pify from 'pify';
 import * as url from 'url';
 import * as util from 'util';
 
-import {APIRequestMethodParams, createAPIRequest} from './apirequest';
-import {Endpoint} from './endpoint';
+import {GeneratedAPIs} from '../apis/index';
 
-const fsp = pify(fs);
+import {APIRequestMethodParams} from './api';
+import {createAPIRequest} from './apirequest';
+import {Endpoint} from './endpoint';
+import {Schema, Schemas} from './schema';
+
+interface Versionable {
+  version?: string;
+}
 
 export type EndpointCreator = (options: {}) => Endpoint;
 
-interface DiscoverAPIsResponse {
-  items: API[];
-}
-
-export interface API {
-  discoveryRestUrl: string;
-  api: EndpointCreator;
-  name: string;
-  version: string;
-}
+const fsp = pify(fs);
 
 export interface DiscoveryOptions {
   includePrivate?: boolean;
   debug?: boolean;
-}
-
-export interface APIRequest {
-  auth: {};
-  basePath: string;
-  baseUrl: string;
-  batchPath: string;
-  description: string;
-  discoveryVersion: string;
-  documentationLink: string;
-  etag: string;
-  icons: {};
-  id: string;
-  kind: string;
-  name: string;
-  ownerDomain: string;
-  ownerName: string;
-  parameters: {};
-  protocol: string;
-  resources: {};
-  revision: string;
-  rootUrl: string;
-  schemas: {};
-  servicePath: string;
-  title: string;
-  version: string;
 }
 
 export class Discovery {
@@ -85,7 +56,7 @@ export class Discovery {
    * @param schema The schema from which to generate the Endpoint.
    * @return A function that creates an endpoint.
    */
-  private makeEndpoint(schema: APIRequest): EndpointCreator {
+  private makeEndpoint(schema: Schema) {
     return (options: {}) => {
       const ep = new Endpoint(options);
       ep.applySchema(ep, schema, schema, ep);
@@ -106,50 +77,50 @@ export class Discovery {
    * Generate all APIs and return as in-memory object.
    * @param discoveryUrl
    */
-  async discoverAllAPIs(discoveryUrl: string) {
+  async discoverAllAPIs(discoveryUrl: string): Promise<GeneratedAPIs> {
     const headers = this.options.includePrivate ? {} : {'X-User-Ip': '0.0.0.0'};
-    const res = await this.transporter.request<DiscoverAPIsResponse>(
-        {url: discoveryUrl, headers});
+    const res =
+        await this.transporter.request<Schemas>({url: discoveryUrl, headers});
     const items = res.data.items;
     const apis = await Promise.all(items.map(async api => {
-      const newApi = await this.discoverAPI(api.discoveryRestUrl);
-      api.api = newApi;
-      return api;
+      const endpointCreator = await this.discoverAPI(api.discoveryRestUrl);
+      return {api, endpointCreator};
     }));
 
-    const versionIndex = {};
+    const versionIndex:
+        {[index: string]: {[index: string]: EndpointCreator}} = {};
     const apisIndex = {};
-    for (const api of apis) {
-      if (!apisIndex[api.name]) {
-        versionIndex[api.name] = {};
-        apisIndex[api.name] = (options) => {
+    for (const set of apis) {
+      if (!apisIndex[set.api.name]) {
+        versionIndex[set.api.name] = {};
+        apisIndex[set.api.name] = (options: Versionable|string) => {
           const type = typeof options;
           let version: string;
           if (type === 'string') {
-            version = options;
+            version = options as string;
             options = {};
           } else if (type === 'object') {
-            version = options.version;
-            delete options.version;
+            version = (options as Versionable).version!;
+            delete (options as Versionable).version;
           } else {
             throw new Error('Argument error: Accepts only string or object');
           }
           try {
-            const endpointCreator: EndpointCreator =
-                versionIndex[api.name][version];
-            const ep = endpointCreator(options);
-            ep.google = this;          // for drive.google.transporter
-            return Object.freeze(ep);  // create new & freeze
+            const endpointCreator = versionIndex[set.api.name][version];
+            const ep = set.endpointCreator(options);
+            // tslint:disable-next-line: no-any
+            (ep as any).google = this;  // for drive.google.transporter
+            return Object.freeze(ep);   // create new & freeze
           } catch (e) {
             throw new Error(util.format(
-                'Unable to load endpoint %s("%s"): %s', api.name, version,
+                'Unable to load endpoint %s("%s"): %s', set.api.name, version,
                 e.message));
           }
         };
       }
-      versionIndex[api.name][api.version] = api.api;
+      versionIndex[set.api.name][set.api.version] = set.endpointCreator;
     }
-    return apisIndex;
+    return apisIndex as GeneratedAPIs;
   }
 
   /**
@@ -169,7 +140,7 @@ export class Discovery {
       } else {
         this.log('Requesting ' + apiDiscoveryUrl);
         const res =
-            await this.transporter.request<APIRequest>({url: apiDiscoveryUrl});
+            await this.transporter.request<Schema>({url: apiDiscoveryUrl});
         return this.makeEndpoint(res.data);
       }
     } else {

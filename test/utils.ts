@@ -22,7 +22,11 @@ export abstract class Utils {
     return query ? query.toString() : null;
   }
 
-  static getDiscoveryUrl(name, version) {
+  static getPath(res: AxiosResponse) {
+    return url.parse(res.config.url!).path!;
+  }
+
+  static getDiscoveryUrl(name: string, version: string) {
     return 'https://www.googleapis.com/discovery/v1/apis/' + name + '/' +
         version + '/rest';
   }

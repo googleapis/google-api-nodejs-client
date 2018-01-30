@@ -15,30 +15,33 @@ import * as assert from 'assert';
 import {OAuth2Client} from 'google-auth-library';
 import * as nock from 'nock';
 import * as pify from 'pify';
+
 import {GoogleApis} from '../src';
 import {google} from '../src';
+import {APIEndpoint} from '../src/lib/api';
+
 import {Utils} from './utils';
 
-async function testGet(drive) {
+async function testGet(drive: APIEndpoint) {
   nock(Utils.baseUrl).get('/drive/v2/files/123?key=APIKEY').reply(200);
   const res = await pify(drive.files.get)({fileId: '123', auth: 'APIKEY'});
   assert.equal(Utils.getQs(res), 'key=APIKEY');
 }
 
-async function testParams2(drive) {
+async function testParams2(drive: APIEndpoint) {
   nock(Utils.baseUrl).get('/drive/v2/files/123?key=API%20KEY').reply(200);
   const res = await pify(drive.files.get)({fileId: '123', auth: 'API KEY'});
   assert.equal(Utils.getQs(res), 'key=API%20KEY');
 }
 
-async function testKeyParam(drive) {
+async function testKeyParam(drive: APIEndpoint) {
   nock(Utils.baseUrl).get('/drive/v2/files/123?key=abc123').reply(200);
   const res = await pify(drive.files.get)(
       {fileId: '123', auth: 'API KEY', key: 'abc123'});
   assert.equal(Utils.getQs(res), 'key=abc123');
 }
 
-async function testAuthKey(urlshortener) {
+async function testAuthKey(urlshortener: APIEndpoint) {
   nock(Utils.baseUrl)
       .get('/urlshortener/v1/url/history?key=YOUR%20API%20KEY')
       .reply(200);
@@ -47,10 +50,10 @@ async function testAuthKey(urlshortener) {
 }
 
 describe('API key', () => {
-  let localDrive;
-  let remoteDrive;
-  let localUrlshortener;
-  let remoteUrlshortener;
+  let localDrive: APIEndpoint;
+  let remoteDrive: APIEndpoint;
+  let localUrlshortener: APIEndpoint;
+  let remoteUrlshortener: APIEndpoint;
   let authClient: OAuth2Client;
 
   before(async () => {

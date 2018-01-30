@@ -11,50 +11,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {AxiosRequestConfig} from 'axios';
-import {DefaultTransporter, OAuth2Client} from 'google-auth-library';
+import {DefaultTransporter} from 'google-auth-library';
 import {BodyResponseCallback} from 'google-auth-library/build/src/transporters';
 import * as qs from 'qs';
 import * as stream from 'stream';
 import * as parseString from 'string-template';
 import * as uuid from 'uuid';
-import {APIRequest} from './discovery';
 
-export interface APIRequestParams {
-  options: AxiosRequestConfig;
-  params: APIRequestMethodParams;
-  // tslint:disable-next-line no-any
-  requiredParams: any[];
-  // tslint:disable-next-line no-any
-  pathParams: any[];
-  context: APIRequestContext;
-  mediaUrl?: string|null;
-}
+import {APIRequestParams} from './api';
+import {SchemaParameters} from './schema';
 
-export interface APIRequestContext {
-  google: {_options: APIRequestContextOptions;};
-  _options: APIRequestContextOptions;
-}
-
-export interface APIRequestContextOptions {
-  // tslint:disable-next-line no-any
-  params?: any;
-  auth?: OAuth2Client|string|null;
-}
-
-export interface APIRequestMethodParams {
-  url?: string;
-  media?: {body?: string|stream.Readable; mimeType?: string;};
-  resource?: {mimeType?: string;};
-  key?: string;
-  uploadType?: string;
-  auth?: OAuth2Client|string|null;
-  // tslint:disable-next-line no-any
-  headers?: any;
-}
-
-// tslint:disable-next-line: no-any
-function isReadableStream(obj: any) {
+function isReadableStream(obj: stream.Readable|string) {
   return obj instanceof stream.Readable && typeof obj._read === 'function';
 }
 
@@ -66,10 +33,8 @@ function createCallback<T>(callback: BodyResponseCallback<T>) {
   };
 }
 
-function getMissingParams(params, required) {
-  // tslint:disable-next-line no-any
-  const missing = new Array<any>();
-
+function getMissingParams(params: SchemaParameters, required: string[]) {
+  const missing = new Array<string>();
   required.forEach(param => {
     // Is the required param in the params object?
     if (params[param] === undefined) {
@@ -89,9 +54,8 @@ function getMissingParams(params, required) {
  */
 export function createAPIRequest<T>(
     parameters: APIRequestParams, callback: BodyResponseCallback<T>): void {
-  let missingParams;
   let params = parameters.params;
-  let options = Object.assign({}, parameters.options);
+  const options = Object.assign({}, parameters.options);
 
   // If the params are not present, and callback was passed instead,
   // use params as the callback and create empty params.
@@ -139,7 +103,7 @@ export function createAPIRequest<T>(
   callback = createCallback<T>(callback);
 
   // Check for missing required parameters in the API request
-  missingParams = getMissingParams(params, parameters.requiredParams);
+  const missingParams = getMissingParams(params, parameters.requiredParams);
   if (missingParams) {
     // Some params are missing - stop further operations and inform the
     // developer which required params are not included in the request
@@ -226,15 +190,22 @@ export function createAPIRequest<T>(
 
   options.headers = headers;
   options.params = params;
-  options = Object.assign(
+
+  // Combine the AxiosRequestConfig options passed with this specific
+  // API call witht the global options configured at the API Context
+  // level, or at the global level.
+  const mergedOptions = Object.assign(
       {}, parameters.context.google._options, parameters.context._options,
       options);
-  delete options.auth;  // is overridden by our auth code
+  delete mergedOptions.auth;  // is overridden by our auth code
 
-  // create request (using authClient or otherwise and return request obj)
+  // Perform the HTTP request.  NOTE: this function used to return a
+  // mikeal/request object. Since the transition to Axios, the method is
+  // now void.  This may be a source of confusion for users upgrading from
+  // version 24.0 -> 25.0 or up.
   if (authClient && typeof authClient === 'object') {
-    authClient.request(options, callback);
+    authClient.request(mergedOptions, callback);
   } else {
-    (new DefaultTransporter()).request(options, callback);
+    (new DefaultTransporter()).request(mergedOptions, callback);
   }
 }

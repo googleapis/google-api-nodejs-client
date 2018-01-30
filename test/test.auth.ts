@@ -15,7 +15,10 @@ import * as assert from 'assert';
 import {OAuth2Client} from 'google-auth-library';
 import * as nock from 'nock';
 import * as pify from 'pify';
+
 import {GoogleApis} from '../src';
+import {APIEndpoint} from '../src/lib/api';
+
 import {Utils} from './utils';
 
 const googleapis = new GoogleApis();
@@ -59,7 +62,8 @@ describe('Compute client', () => {
   });
 });
 
-async function testNoTokens(urlshortener, oauth2client: OAuth2Client) {
+async function testNoTokens(
+    urlshortener: APIEndpoint, oauth2client: OAuth2Client) {
   try {
     await pify(urlshortener.url.get)({shortUrl: '123', auth: oauth2client});
     assert.fail('expected to throw');
@@ -68,12 +72,14 @@ async function testNoTokens(urlshortener, oauth2client: OAuth2Client) {
   }
 }
 
-async function testNoBearer(urlshortener, oauth2client: OAuth2Client) {
+async function testNoBearer(
+    urlshortener: APIEndpoint, oauth2client: OAuth2Client) {
   await pify(urlshortener.url.list)({auth: oauth2client});
   assert.equal(oauth2client.credentials.token_type, 'Bearer');
 }
 
-async function testExpired(drive, oauth2client: OAuth2Client, now: number) {
+async function testExpired(
+    drive: APIEndpoint, oauth2client: OAuth2Client, now: number) {
   nock(Utils.baseUrl).get('/drive/v2/files/wat').reply(200);
   await pify(drive.files.get)({fileId: 'wat', auth: oauth2client});
   const expiryDate = oauth2client.credentials.expiry_date;
@@ -86,7 +92,7 @@ async function testExpired(drive, oauth2client: OAuth2Client, now: number) {
 }
 
 async function testNoAccessToken(
-    drive, oauth2client: OAuth2Client, now: number) {
+    drive: APIEndpoint, oauth2client: OAuth2Client, now: number) {
   nock(Utils.baseUrl).get('/drive/v2/files/wat').reply(200);
   await pify(drive.files.get)({fileId: 'wat', auth: oauth2client});
   const expiryDate = oauth2client.credentials.expiry_date;
@@ -98,8 +104,8 @@ async function testNoAccessToken(
 }
 
 describe('OAuth2 client', () => {
-  let localDrive, remoteDrive;
-  let localUrlshortener, remoteUrlshortener;
+  let localDrive: APIEndpoint, remoteDrive: APIEndpoint;
+  let localUrlshortener: APIEndpoint, remoteUrlshortener: APIEndpoint;
 
   before(async () => {
     nock.cleanAll();
