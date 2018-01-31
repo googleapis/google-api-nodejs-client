@@ -98,7 +98,7 @@
   "devDependencies": {
     "@types/minimist": "1.2.0",
     "@types/mkdirp": "0.5.2",
-    "@types/mocha": "2.2.47",
+    "@types/mocha": "2.2.48",
     "@types/ncp": "^2.0.1",
     "@types/nock": "^9.1.2",
     "@types/node": "9.4.0",
