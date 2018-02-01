@@ -192,6 +192,7 @@ function Slides(options) {
           * slides.presentations.pages.getThumbnail
           * @desc Generates a thumbnail of the latest version of the specified
           * page in the presentation and returns a URL to the thumbnail image.
+          * This request counts as an expensive read request for quota purposes.
           * @alias slides.presentations.pages.getThumbnail
           * @memberOf! slides(v1)
           *
@@ -773,9 +774,10 @@ function Slides(options) {
  * @memberOf! slides(v1)
  * @type object
  * @property {slides(v1).SubstringMatchCriteria} containsText If set, this request will replace all of the shapes that contain the given text.
+ * @property {string} imageReplaceMethod The image replace method.  If you specify both a `replace_method` and an `image_replace_method`, the `image_replace_method` takes precedence.  If you do not specify a value for `image_replace_method`, but specify a value for `replace_method`, then the specified `replace_method` value is used.  If you do not specify either, then CENTER_INSIDE is used.
  * @property {string} imageUrl The image URL.  The image is fetched once at insertion time and a copy is stored for display inside the presentation. Images must be less than 50MB in size, cannot exceed 25 megapixels, and must be in either in PNG, JPEG, or GIF format.  The provided URL can be at most 2 kB in length.
  * @property {string[]} pageObjectIds If non-empty, limits the matches to page elements only on the given pages.  Returns a 400 bad request error if given the page object ID of a notes page or a notes master, or if a page with that object ID doesn&#39;t exist in the presentation.
- * @property {string} replaceMethod The replace method.
+ * @property {string} replaceMethod The replace method. Deprecated: use `image_replace_method` instead.  If you specify both a `replace_method` and an `image_replace_method`, the `image_replace_method` takes precedence.
  */
 /**
  * @typedef ReplaceAllShapesWithImageResponse
@@ -1104,7 +1106,7 @@ function Slides(options) {
  * @property {slides(v1).Dimension} fontSize The size of the text&#39;s font. When read, the `font_size` will specified in points.
  * @property {slides(v1).OptionalColor} foregroundColor The color of the text itself. If set, the color is either opaque or transparent, depending on if the `opaque_color` field in it is set.
  * @property {boolean} italic Whether or not the text is italicized.
- * @property {slides(v1).Link} link The hyperlink destination of the text. If unset, there is no link. Links are not inherited from parent text.  Changing the link in an update request causes some other changes to the text style of the range:  * When setting a link, the text foreground color will be set to   ThemeColorType.HYPERLINK and the text will   be underlined. If these fields are modified in the same   request, those values will be used instead of the link defaults. * Setting a link on a text range that overlaps with an existing link will   also update the existing link to point to the new URL. * Links are not settable on newline characters. As a result, setting a link   on a text range that crosses a paragraph boundary, such as `&quot;ABC\n123&quot;`,   will separate the newline character(s) into their own text runs. The   link will be applied separately to the runs before and after the newline. * Removing a link will update the text style of the range to match the   style of the preceding text (or the default text styles if the preceding   text is another link) unless different styles are being set in the same   request.
+ * @property {slides(v1).Link} link The hyperlink destination of the text. If unset, there is no link. Links are not inherited from parent text.  Changing the link in an update request causes some other changes to the text style of the range:  * When setting a link, the text foreground color will be set to   ThemeColorType.HYPERLINK and the text will   be underlined. If these fields are modified in the same   request, those values will be used instead of the link defaults. * Setting a link on a text range that overlaps with an existing link will   also update the existing link to point to the new URL. * Links are not settable on newline characters. As a result, setting a link   on a text range that crosses a paragraph boundary, such as `&quot;ABCx/123&quot;`,   will separate the newline character(s) into their own text runs. The   link will be applied separately to the runs before and after the newline. * Removing a link will update the text style of the range to match the   style of the preceding text (or the default text styles if the preceding   text is another link) unless different styles are being set in the same   request.
  * @property {boolean} smallCaps Whether or not the text is in small capital letters.
  * @property {boolean} strikethrough Whether or not the text is struck through.
  * @property {boolean} underline Whether or not the text is underlined.

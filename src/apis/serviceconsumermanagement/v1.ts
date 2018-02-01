@@ -239,8 +239,9 @@ function Serviceconsumermanagement(options) {
     tenancyUnits: {
       /**
        * serviceconsumermanagement.services.tenancyUnits.addProject
-       * @desc Add a new tenant project to the tenancy unit. If there are
-       * previously failed AddTenantProject calls, you might need to call
+       * @desc Add a new tenant project to the tenancy unit. There can be at
+       * most 512 tenant projects in a tenancy units. If there are previously
+       * failed AddTenantProject calls, you might need to call
        * RemoveTenantProject first to clean them before you can make another
        * AddTenantProject with the same tag. Operation<response: Empty>.
        * @alias serviceconsumermanagement.services.tenancyUnits.addProject
@@ -681,7 +682,6 @@ function Serviceconsumermanagement(options) {
  * @property {string} patch Used for updating a resource.
  * @property {string} post Used for creating a resource.
  * @property {string} put Used for updating a resource.
- * @property {string} responseBody The name of the response field whose value is mapped to the HTTP body of response. Other response fields are ignored. This field is optional. When not set, the response message will be used as HTTP body of response. NOTE: the referred field must be not a repeated field and must be present at the top-level of response message type.
  * @property {string} restCollection DO NOT USE. This is an experimental field.  Optional. The REST collection name is by default derived from the URL pattern. If specified, this field overrides the default collection name. Example:      rpc AddressesAggregatedList(AddressesAggregatedListRequest)         returns (AddressesAggregatedListResponse) {       option (google.api.http) = {         get: &quot;/v1/projects/{project_id}/aggregated/addresses&quot;         rest_collection: &quot;projects.addresses&quot;       };     }  This method has the automatically derived collection name &quot;projects.aggregated&quot;. Because, semantically, this rpc is actually an operation on the &quot;projects.addresses&quot; collection, the `rest_collection` field is configured to override the derived collection name.
  * @property {string} restMethodName DO NOT USE. This is an experimental field.  Optional. The rest method name is by default derived from the URL pattern. If specified, this field overrides the default method name. Example:      rpc CreateResource(CreateResourceRequest)         returns (CreateResourceResponse) {       option (google.api.http) = {         post: &quot;/v1/resources&quot;,         body: &quot;resource&quot;,         rest_method_name: &quot;insert&quot;       };     }  This method has the automatically derived rest method name &quot;create&quot;, but for backwards compatibility with apiary, it is specified as insert.
  * @property {string} selector Selects methods to which this rule applies.  Refer to selector for syntax details.
@@ -981,7 +981,7 @@ function Serviceconsumermanagement(options) {
  * @property {string} createTime @OutputOnly The time this tenancy unit was created.
  * @property {string} name Globally unique identifier of this tenancy unit &quot;services/{service}/{collection id}/{resource id}/tenancyUnits/{unit}&quot;
  * @property {string} service @OutputOnly Google Cloud API name of the service owning this tenancy unit. For example &#39;serviceconsumermanagement.googleapis.com&#39;.
- * @property {serviceconsumermanagement(v1).TenantResource[]} tenantResources Resources constituting the tenancy unit.
+ * @property {serviceconsumermanagement(v1).TenantResource[]} tenantResources Resources constituting the tenancy unit. There can be at most 512 tenant resources in a tenancy units.
  */
 /**
  * @typedef TenantProjectConfig

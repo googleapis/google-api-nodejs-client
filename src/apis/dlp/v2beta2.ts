@@ -118,7 +118,7 @@ function Dlp(options) {
           * @memberOf! dlp(v2beta2)
           *
           * @param {object} params Parameters for request
-          * @param {string} params.name Resource name of the organization and deidentify template to be deleted, for example `organizations/433245324/deidentifyTemplates/432452342`.
+          * @param {string} params.name Resource name of the organization and deidentify template to be deleted, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
@@ -151,7 +151,7 @@ function Dlp(options) {
           * @memberOf! dlp(v2beta2)
           *
           * @param {object} params Parameters for request
-          * @param {string} params.name Resource name of the organization and deidentify template to be read, for example `organizations/433245324/deidentifyTemplates/432452342`.
+          * @param {string} params.name Resource name of the organization and deidentify template to be read, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
@@ -219,7 +219,7 @@ function Dlp(options) {
           * @memberOf! dlp(v2beta2)
           *
           * @param {object} params Parameters for request
-          * @param {string} params.name Resource name of organization and deidentify template to be updated, for example `organizations/433245324/deidentifyTemplates/432452342`.
+          * @param {string} params.name Resource name of organization and deidentify template to be updated, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
           * @param {dlp(v2beta2).GooglePrivacyDlpV2beta2UpdateDeidentifyTemplateRequest} params.resource Request body data
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
           * @param {callback} callback The callback that handles the response.
@@ -292,7 +292,7 @@ function Dlp(options) {
           * @memberOf! dlp(v2beta2)
           *
           * @param {object} params Parameters for request
-          * @param {string} params.name Resource name of the organization and inspectTemplate to be deleted, for example `organizations/433245324/inspectTemplates/432452342`.
+          * @param {string} params.name Resource name of the organization and inspectTemplate to be deleted, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
@@ -325,7 +325,7 @@ function Dlp(options) {
           * @memberOf! dlp(v2beta2)
           *
           * @param {object} params Parameters for request
-          * @param {string} params.name Resource name of the organization and inspectTemplate to be read, for example `organizations/433245324/inspectTemplates/432452342`.
+          * @param {string} params.name Resource name of the organization and inspectTemplate to be read, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
@@ -393,7 +393,7 @@ function Dlp(options) {
           * @memberOf! dlp(v2beta2)
           *
           * @param {object} params Parameters for request
-          * @param {string} params.name Resource name of organization and inspectTemplate to be updated, for example `organizations/433245324/inspectTemplates/432452342`.
+          * @param {string} params.name Resource name of organization and inspectTemplate to be updated, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
           * @param {dlp(v2beta2).GooglePrivacyDlpV2beta2UpdateInspectTemplateRequest} params.resource Request body data
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
           * @param {callback} callback The callback that handles the response.
@@ -541,7 +541,7 @@ function Dlp(options) {
        * dlp.projects.dataSource.analyze
        * @desc Schedules a job to compute risk analysis metrics over content in
        * a Google Cloud Platform repository. [How-to
-       * guide}(/dlp/docs/compute-risk-analysis)
+       * guide](/dlp/docs/compute-risk-analysis)
        * @alias dlp.projects.dataSource.analyze
        * @memberOf! dlp(v2beta2)
        *
@@ -654,7 +654,7 @@ function Dlp(options) {
           * @memberOf! dlp(v2beta2)
           *
           * @param {object} params Parameters for request
-          * @param {string} params.name Resource name of the organization and deidentify template to be deleted, for example `organizations/433245324/deidentifyTemplates/432452342`.
+          * @param {string} params.name Resource name of the organization and deidentify template to be deleted, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
@@ -687,7 +687,7 @@ function Dlp(options) {
           * @memberOf! dlp(v2beta2)
           *
           * @param {object} params Parameters for request
-          * @param {string} params.name Resource name of the organization and deidentify template to be read, for example `organizations/433245324/deidentifyTemplates/432452342`.
+          * @param {string} params.name Resource name of the organization and deidentify template to be read, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
@@ -755,7 +755,7 @@ function Dlp(options) {
           * @memberOf! dlp(v2beta2)
           *
           * @param {object} params Parameters for request
-          * @param {string} params.name Resource name of organization and deidentify template to be updated, for example `organizations/433245324/deidentifyTemplates/432452342`.
+          * @param {string} params.name Resource name of organization and deidentify template to be updated, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
           * @param {dlp(v2beta2).GooglePrivacyDlpV2beta2UpdateDeidentifyTemplateRequest} params.resource Request body data
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
           * @param {callback} callback The callback that handles the response.
@@ -1013,7 +1013,7 @@ function Dlp(options) {
           * @memberOf! dlp(v2beta2)
           *
           * @param {object} params Parameters for request
-          * @param {string} params.name Resource name of the organization and inspectTemplate to be deleted, for example `organizations/433245324/inspectTemplates/432452342`.
+          * @param {string} params.name Resource name of the organization and inspectTemplate to be deleted, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
@@ -1046,7 +1046,7 @@ function Dlp(options) {
           * @memberOf! dlp(v2beta2)
           *
           * @param {object} params Parameters for request
-          * @param {string} params.name Resource name of the organization and inspectTemplate to be read, for example `organizations/433245324/inspectTemplates/432452342`.
+          * @param {string} params.name Resource name of the organization and inspectTemplate to be read, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
@@ -1114,7 +1114,7 @@ function Dlp(options) {
           * @memberOf! dlp(v2beta2)
           *
           * @param {object} params Parameters for request
-          * @param {string} params.name Resource name of organization and inspectTemplate to be updated, for example `organizations/433245324/inspectTemplates/432452342`.
+          * @param {string} params.name Resource name of organization and inspectTemplate to be updated, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
           * @param {dlp(v2beta2).GooglePrivacyDlpV2beta2UpdateInspectTemplateRequest} params.resource Request body data
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
           * @param {callback} callback The callback that handles the response.
@@ -1808,7 +1808,7 @@ function Dlp(options) {
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2InfoType} infoType The type of content that might have been found. Provided if requested by the `InspectConfig`.
  * @property {string} likelihood Estimate of how likely it is that the `info_type` is correct.
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2Location} location Where the content was found.
- * @property {string} quote The content that was found. Even if the content is not textual, it may be converted to a textual representation here. Provided if requested by the `InspectConfig`.
+ * @property {string} quote The content that was found. Even if the content is not textual, it may be converted to a textual representation here. Provided if requested by the `InspectConfig` and the finding is less than or equal to 4096 bytes long. If the finding exceeds 4096 bytes in length, the quote may be omitted.
  */
 /**
  * @typedef GooglePrivacyDlpV2beta2FindingLimits
@@ -2314,7 +2314,7 @@ function Dlp(options) {
  * @property {string} customTag A column can be tagged with a custom tag. In this case, the user must indicate an auxiliary table that contains statistical information on the possible values of this column (below).
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2FieldId} field Identifies the column. [required]
  * @property {dlp(v2beta2).GoogleProtobufEmpty} inferred If no semantic tag is indicated, we infer the statistical model from the distribution of values in the input data
- * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2InfoType} infoType A column can be tagged with a InfoType to use the relevant public dataset as a statistical model of population, if available. We currently support US ZIP codes, region codes, ages and genders.
+ * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2InfoType} infoType A column can be tagged with a InfoType to use the relevant public dataset as a statistical model of population, if available. We currently support US ZIP codes, region codes, ages and genders. To programmatically obtain the list of supported InfoTypes, use ListInfoTypes with the supported_by=RISK_ANALYSIS filter.
  */
 /**
  * @typedef GooglePrivacyDlpV2beta2TimePartConfig

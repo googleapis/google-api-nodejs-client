@@ -38,13 +38,13 @@ function Androiddeviceprovisioning(options) {
   self.customers = {
     /**
      * androiddeviceprovisioning.customers.list
-     * @desc List the user's customer accounts.
+     * @desc Lists the user's customer accounts.
      * @alias androiddeviceprovisioning.customers.list
      * @memberOf! androiddeviceprovisioning(v1)
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of items to return.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
+     * @param {integer=} params.pageSize The maximum number of customers to show in a page of results. A number between 1 and 1000 (inclusive).
+     * @param {string=} params.pageToken A token specifying which result page to return.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -326,7 +326,7 @@ function Androiddeviceprovisioning(options) {
           * @memberOf! androiddeviceprovisioning(v1)
           *
           * @param {object} params Parameters for request
-          * @param {string=} params.pageSize The maximum number of devices to show in a page of results. The default value returns all the devices in a single page.
+          * @param {string=} params.pageSize The maximum number of devices to show in a page of results. Must be between 1 and 100 inclusive.
           * @param {string=} params.pageToken A token specifying which result page to return.
           * @param {string} params.parent Required. The customer managing the devices. An API resource name in the format `customers/[CUSTOMER_ID]`.
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -986,8 +986,8 @@ function Androiddeviceprovisioning(options) {
  * @typedef CustomerListCustomersResponse
  * @memberOf! androiddeviceprovisioning(v1)
  * @type object
- * @property {androiddeviceprovisioning(v1).Company[]} customers Customers the current user can act as.
- * @property {string} nextPageToken Token to retrieve the next page of results, or empty if there are no more results in the list.
+ * @property {androiddeviceprovisioning(v1).Company[]} customers The customer accounts the calling user is a member of.
+ * @property {string} nextPageToken A token used to access the next page of results. Omitted if no further results are available.
  */
 /**
  * @typedef CustomerListDevicesResponse

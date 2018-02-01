@@ -2580,6 +2580,14 @@ function Sheets(options) {
  * @property {boolean} showItemDividers Whether horizontal divider lines should be displayed between items in each column.
  */
 /**
+ * @typedef HistogramRule
+ * @memberOf! sheets(v4)
+ * @type object
+ * @property {number} end Optional. The maximum value at which items will be placed into buckets of constant size. Values above end will be lumped into a single bucket.
+ * @property {number} interval Required. The size of the buckets that will be created. Must be positive.
+ * @property {number} start Optional. The minimum value at which items will be placed into buckets of constant size. Values below start will be lumped into a single bucket.
+ */
+/**
  * @typedef HistogramSeries
  * @memberOf! sheets(v4)
  * @type object
@@ -2621,6 +2629,19 @@ function Sheets(options) {
  * @type object
  * @property {string} type The dash type of the line.
  * @property {integer} width The thickness of the line, in px.
+ */
+/**
+ * @typedef ManualRule
+ * @memberOf! sheets(v4)
+ * @type object
+ * @property {sheets(v4).ManualRuleGroup[]} groups The list of group names and the corresponding items from the source data that map to each group name.
+ */
+/**
+ * @typedef ManualRuleGroup
+ * @memberOf! sheets(v4)
+ * @type object
+ * @property {sheets(v4).ExtendedValue} groupName The group name, which must be a string. Each group in a given ManualRule must have a unique group name.
+ * @property {sheets(v4).ExtendedValue[]} items The items in the source data that should be placed into this group. Each item may be a string, number, or boolean. Items may appear in at most one group within a given ManualRule. Items that do not appear in any group will appear on their own.
  */
 /**
  * @typedef MatchedDeveloperMetadata
@@ -2725,11 +2746,21 @@ function Sheets(options) {
  * @typedef PivotGroup
  * @memberOf! sheets(v4)
  * @type object
+ * @property {sheets(v4).PivotGroupRule} groupRule The group rule to apply to this row/column group.
+ * @property {string} label The labels to use for the row/column groups which can be customized. For example, in the following pivot table, the row label is `Region` (which could be renamed to `State`) and the column label is `Product` (which could be renamed `Item`). Pivot tables created before December 2017 do not have header labels. If you&#39;d like to add header labels to an existing pivot table, please delete the existing pivot table and then create a new pivot table with same parameters.      +--------------+---------+-------+     | SUM of Units | Product |       |     | Region       | Pen     | Paper |     +--------------+---------+-------+     | New York     |     345 |    98 |     | Oregon       |     234 |   123 |     | Tennessee    |     531 |   415 |     +--------------+---------+-------+     | Grand Total  |    1110 |   636 |     +--------------+---------+-------+
+ * @property {boolean} repeatHeadings True if the headings in this pivot group should be repeated. This is only valid for row groupings and will be ignored by columns.  By default, we minimize repitition of headings by not showing higher level headings where they are the same. For example, even though the third row below corresponds to &quot;Q1 Mar&quot;, &quot;Q1&quot; is not shown because it is redundant with previous rows. Setting repeat_headings to true would cause &quot;Q1&quot; to be repeated for &quot;Feb&quot; and &quot;Mar&quot;.      +--------------+     | Q1     | Jan |     |        | Feb |     |        | Mar |     +--------+-----+     | Q1 Total     |     +--------------+
  * @property {boolean} showTotals True if the pivot table should include the totals for this grouping.
  * @property {string} sortOrder The order the values in this group should be sorted.
  * @property {integer} sourceColumnOffset The column offset of the source range that this grouping is based on.  For example, if the source was `C10:E15`, a `sourceColumnOffset` of `0` means this group refers to column `C`, whereas the offset `1` would refer to column `D`.
  * @property {sheets(v4).PivotGroupSortValueBucket} valueBucket The bucket of the opposite pivot group to sort by. If not specified, sorting is alphabetical by this group&#39;s values.
  * @property {sheets(v4).PivotGroupValueMetadata[]} valueMetadata Metadata about values in the grouping.
+ */
+/**
+ * @typedef PivotGroupRule
+ * @memberOf! sheets(v4)
+ * @type object
+ * @property {sheets(v4).HistogramRule} histogramRule A HistogramRule.
+ * @property {sheets(v4).ManualRule} manualRule A ManualRule.
  */
 /**
  * @typedef PivotGroupSortValueBucket
@@ -2760,6 +2791,7 @@ function Sheets(options) {
  * @typedef PivotValue
  * @memberOf! sheets(v4)
  * @type object
+ * @property {string} calculatedDisplayType If specified, indicates that pivot values should be displayed as the result of a calculation with another pivot value. For example, if calculated_display_type is specified as PERCENT_OF_GRAND_TOTAL, all the pivot values will be displayed as the percentage of the grand total. In the Sheets UI, this is referred to as &quot;Show As&quot; in the value section of a pivot table.
  * @property {string} formula A custom formula to calculate the value.  The formula must start with an `=` character.
  * @property {string} name A name to use for the value.
  * @property {integer} sourceColumnOffset The column offset of the source range that this value reads from.  For example, if the source was `C10:E15`, a `sourceColumnOffset` of `0` means this value refers to column `C`, whereas the offset `1` would refer to column `D`.

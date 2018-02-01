@@ -359,6 +359,44 @@ function Content(options) {
       };
       return createAPIRequest(parameters, callback);
     }, /**
+        * content.orders.instorerefundlineitem
+        * @desc Notifies that item return and refund was handled directly in
+        * store.
+        * @alias content.orders.instorerefundlineitem
+        * @memberOf! content(v2sandbox)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string} params.orderId The ID of the order.
+        * @param {content(v2sandbox).OrdersInStoreRefundLineItemRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    instorerefundlineitem(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2sandbox/{merchantId}/orders/{orderId}/inStoreRefundLineItem')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'orderId'],
+        pathParams: ['merchantId', 'orderId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
         * content.orders.list
         * @desc Lists the orders in your Merchant Center account.
         * @alias content.orders.list
@@ -435,6 +473,43 @@ function Content(options) {
       };
       return createAPIRequest(parameters, callback);
     }, /**
+        * content.orders.rejectreturnlineitem
+        * @desc Rejects return on an line item.
+        * @alias content.orders.rejectreturnlineitem
+        * @memberOf! content(v2sandbox)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string} params.orderId The ID of the order.
+        * @param {content(v2sandbox).OrdersRejectReturnLineItemRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    rejectreturnlineitem(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2sandbox/{merchantId}/orders/{orderId}/rejectReturnLineItem')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'orderId'],
+        pathParams: ['merchantId', 'orderId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
         * content.orders.returnlineitem
         * @desc Returns a line item.
         * @alias content.orders.returnlineitem
@@ -461,6 +536,44 @@ function Content(options) {
               url:
                   (rootUrl +
                    '/content/v2sandbox/{merchantId}/orders/{orderId}/returnLineItem')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'orderId'],
+        pathParams: ['merchantId', 'orderId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * content.orders.returnrefundlineitem
+        * @desc Returns and refunds a line item. Note that this method can only
+        * be called on fully shipped orders.
+        * @alias content.orders.returnrefundlineitem
+        * @memberOf! content(v2sandbox)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string} params.orderId The ID of the order.
+        * @param {content(v2sandbox).OrdersReturnRefundLineItemRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    returnrefundlineitem(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2sandbox/{merchantId}/orders/{orderId}/returnRefundLineItem')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -953,13 +1066,16 @@ function Content(options) {
  * @property {integer} batchId An entry ID, unique within the batch request.
  * @property {content(v2sandbox).OrdersCustomBatchRequestEntryCancel} cancel Required for cancel method.
  * @property {content(v2sandbox).OrdersCustomBatchRequestEntryCancelLineItem} cancelLineItem Required for cancelLineItem method.
+ * @property {content(v2sandbox).OrdersCustomBatchRequestEntryInStoreRefundLineItem} inStoreRefundLineItem Required for inStoreReturnLineItem method.
  * @property {string} merchantId The ID of the managing account.
  * @property {string} merchantOrderId The merchant order id. Required for updateMerchantOrderId and getByMerchantOrderId methods.
  * @property {string} method The method to apply.
  * @property {string} operationId The ID of the operation. Unique across all operations for a given order. Required for all methods beside get and getByMerchantOrderId.
  * @property {string} orderId The ID of the order. Required for all methods beside getByMerchantOrderId.
  * @property {content(v2sandbox).OrdersCustomBatchRequestEntryRefund} refund Required for refund method.
+ * @property {content(v2sandbox).OrdersCustomBatchRequestEntryRejectReturnLineItem} rejectReturnLineItem Required for rejectReturnLineItem method.
  * @property {content(v2sandbox).OrdersCustomBatchRequestEntryReturnLineItem} returnLineItem Required for returnLineItem method.
+ * @property {content(v2sandbox).OrdersCustomBatchRequestEntryReturnRefundLineItem} returnRefundLineItem Required for returnRefundLineItem method.
  * @property {content(v2sandbox).OrdersCustomBatchRequestEntrySetLineItemMetadata} setLineItemMetadata Required for setLineItemMetadata method.
  * @property {content(v2sandbox).OrdersCustomBatchRequestEntryShipLineItems} shipLineItems Required for shipLineItems method.
  * @property {content(v2sandbox).OrdersCustomBatchRequestEntryUpdateLineItemShippingDetails} updateLineItemShippingDetails Required for updateLineItemShippingDate method.
@@ -986,6 +1102,18 @@ function Content(options) {
  * @property {string} reasonText The explanation of the reason.
  */
 /**
+ * @typedef OrdersCustomBatchRequestEntryInStoreRefundLineItem
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {content(v2sandbox).Price} amountPretax The amount that is refunded. Required.
+ * @property {content(v2sandbox).Price} amountTax Tax amount that correspond to refund amount in amountPretax. Required.
+ * @property {string} lineItemId The ID of the line item to return. Either lineItemId or productId is required.
+ * @property {string} productId The ID of the product to return. This is the REST ID used in the products service. Either lineItemId or productId is required.
+ * @property {integer} quantity The quantity to return and refund.
+ * @property {string} reason The reason for the return.
+ * @property {string} reasonText The explanation of the reason.
+ */
+/**
  * @typedef OrdersCustomBatchRequestEntryRefund
  * @memberOf! content(v2sandbox)
  * @type object
@@ -996,12 +1124,34 @@ function Content(options) {
  * @property {string} reasonText The explanation of the reason.
  */
 /**
+ * @typedef OrdersCustomBatchRequestEntryRejectReturnLineItem
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} lineItemId The ID of the line item to return. Either lineItemId or productId is required.
+ * @property {string} productId The ID of the product to return. This is the REST ID used in the products service. Either lineItemId or productId is required.
+ * @property {integer} quantity The quantity to return and refund.
+ * @property {string} reason The reason for the return.
+ * @property {string} reasonText The explanation of the reason.
+ */
+/**
  * @typedef OrdersCustomBatchRequestEntryReturnLineItem
  * @memberOf! content(v2sandbox)
  * @type object
  * @property {string} lineItemId The ID of the line item to return. Either lineItemId or productId is required.
  * @property {string} productId The ID of the product to return. This is the REST ID used in the products service. Either lineItemId or productId is required.
  * @property {integer} quantity The quantity to return.
+ * @property {string} reason The reason for the return.
+ * @property {string} reasonText The explanation of the reason.
+ */
+/**
+ * @typedef OrdersCustomBatchRequestEntryReturnRefundLineItem
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {content(v2sandbox).Price} amountPretax The amount that is refunded. Optional, but if filled then both amountPretax and amountTax must be set.
+ * @property {content(v2sandbox).Price} amountTax Tax amount that correspond to refund amount in amountPretax.
+ * @property {string} lineItemId The ID of the line item to return. Either lineItemId or productId is required.
+ * @property {string} productId The ID of the product to return. This is the REST ID used in the products service. Either lineItemId or productId is required.
+ * @property {integer} quantity The quantity to return and refund.
  * @property {string} reason The reason for the return.
  * @property {string} reasonText The explanation of the reason.
  */
@@ -1101,6 +1251,26 @@ function Content(options) {
  * @property {integer} quantity The quantity that is shipped.
  */
 /**
+ * @typedef OrdersInStoreRefundLineItemRequest
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {content(v2sandbox).Price} amountPretax The amount that is refunded. Required.
+ * @property {content(v2sandbox).Price} amountTax Tax amount that correspond to refund amount in amountPretax. Required.
+ * @property {string} lineItemId The ID of the line item to return. Either lineItemId or productId is required.
+ * @property {string} operationId The ID of the operation. Unique across all operations for a given order.
+ * @property {string} productId The ID of the product to return. This is the REST ID used in the products service. Either lineItemId or productId is required.
+ * @property {integer} quantity The quantity to return and refund.
+ * @property {string} reason The reason for the return.
+ * @property {string} reasonText The explanation of the reason.
+ */
+/**
+ * @typedef OrdersInStoreRefundLineItemResponse
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} executionStatus The status of the execution.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersInStoreRefundLineItemResponse&quot;.
+ */
+/**
  * @typedef OrdersListResponse
  * @memberOf! content(v2sandbox)
  * @type object
@@ -1127,6 +1297,24 @@ function Content(options) {
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersRefundResponse&quot;.
  */
 /**
+ * @typedef OrdersRejectReturnLineItemRequest
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} lineItemId The ID of the line item to return. Either lineItemId or productId is required.
+ * @property {string} operationId The ID of the operation. Unique across all operations for a given order.
+ * @property {string} productId The ID of the product to return. This is the REST ID used in the products service. Either lineItemId or productId is required.
+ * @property {integer} quantity The quantity to return and refund.
+ * @property {string} reason The reason for the return.
+ * @property {string} reasonText The explanation of the reason.
+ */
+/**
+ * @typedef OrdersRejectReturnLineItemResponse
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} executionStatus The status of the execution.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersRejectReturnLineItemResponse&quot;.
+ */
+/**
  * @typedef OrdersReturnLineItemRequest
  * @memberOf! content(v2sandbox)
  * @type object
@@ -1143,6 +1331,26 @@ function Content(options) {
  * @type object
  * @property {string} executionStatus The status of the execution.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersReturnLineItemResponse&quot;.
+ */
+/**
+ * @typedef OrdersReturnRefundLineItemRequest
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {content(v2sandbox).Price} amountPretax The amount that is refunded. Optional, but if filled then both amountPretax and amountTax must be set.
+ * @property {content(v2sandbox).Price} amountTax Tax amount that correspond to refund amount in amountPretax.
+ * @property {string} lineItemId The ID of the line item to return. Either lineItemId or productId is required.
+ * @property {string} operationId The ID of the operation. Unique across all operations for a given order.
+ * @property {string} productId The ID of the product to return. This is the REST ID used in the products service. Either lineItemId or productId is required.
+ * @property {integer} quantity The quantity to return and refund.
+ * @property {string} reason The reason for the return.
+ * @property {string} reasonText The explanation of the reason.
+ */
+/**
+ * @typedef OrdersReturnRefundLineItemResponse
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} executionStatus The status of the execution.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersReturnRefundLineItemResponse&quot;.
  */
 /**
  * @typedef OrdersSetLineItemMetadataRequest

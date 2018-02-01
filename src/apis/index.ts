@@ -124,7 +124,6 @@ const APIS = {
   },
   cloudiot: {
     'v1': require('./cloudiot/v1'),
-    'v1beta1': require('./cloudiot/v1beta1'),
   },
   cloudkms: {
     'v1': require('./cloudkms/v1'),

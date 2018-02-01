@@ -3300,226 +3300,6 @@ function Androidenterprise(options) {
     }
 
   };
-  self.webapps = {
-    /**
-     * androidenterprise.webapps.delete
-     * @desc Deletes an existing web app.
-     * @alias androidenterprise.webapps.delete
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.webAppId The ID of the web app.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/webapps/{webAppId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
-        params,
-        requiredParams: ['enterpriseId', 'webAppId'],
-        pathParams: ['enterpriseId', 'webAppId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback);
-    }, /**
-        * androidenterprise.webapps.get
-        * @desc Gets an existing web app.
-        * @alias androidenterprise.webapps.get
-        * @memberOf! androidenterprise(v1)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.enterpriseId The ID of the enterprise.
-        * @param {string} params.webAppId The ID of the web app.
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    get(params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/webapps/{webAppId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['enterpriseId', 'webAppId'],
-        pathParams: ['enterpriseId', 'webAppId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback);
-    }, /**
-        * androidenterprise.webapps.insert
-        * @desc Creates a new web app for the enterprise.
-        * @alias androidenterprise.webapps.insert
-        * @memberOf! androidenterprise(v1)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.enterpriseId The ID of the enterprise.
-        * @param {androidenterprise(v1).WebApp} params.resource Request body data
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    insert(params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/androidenterprise/v1/enterprises/{enterpriseId}/webapps')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['enterpriseId'],
-        pathParams: ['enterpriseId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback);
-    }, /**
-        * androidenterprise.webapps.list
-        * @desc Retrieves the details of all web apps for a given enterprise.
-        * @alias androidenterprise.webapps.list
-        * @memberOf! androidenterprise(v1)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.enterpriseId The ID of the enterprise.
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    list(params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/androidenterprise/v1/enterprises/{enterpriseId}/webapps')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['enterpriseId'],
-        pathParams: ['enterpriseId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback);
-    }, /**
-        * androidenterprise.webapps.patch
-        * @desc Updates an existing web app. This method supports patch
-        * semantics.
-        * @alias androidenterprise.webapps.patch
-        * @memberOf! androidenterprise(v1)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.enterpriseId The ID of the enterprise.
-        * @param {string} params.webAppId The ID of the web app.
-        * @param {androidenterprise(v1).WebApp} params.resource Request body data
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    patch(params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/webapps/{webAppId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
-        params,
-        requiredParams: ['enterpriseId', 'webAppId'],
-        pathParams: ['enterpriseId', 'webAppId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback);
-    }, /**
-        * androidenterprise.webapps.update
-        * @desc Updates an existing web app.
-        * @alias androidenterprise.webapps.update
-        * @memberOf! androidenterprise(v1)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.enterpriseId The ID of the enterprise.
-        * @param {string} params.webAppId The ID of the web app.
-        * @param {androidenterprise(v1).WebApp} params.resource Request body data
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    update(params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/webapps/{webAppId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
-        params,
-        requiredParams: ['enterpriseId', 'webAppId'],
-        pathParams: ['enterpriseId', 'webAppId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
 }
 /**
  * @typedef Administrator
@@ -3811,6 +3591,7 @@ function Androidenterprise(options) {
  * @memberOf! androidenterprise(v1)
  * @type object
  * @property {string} deviceId The Android ID of the device. This field will always be present.
+ * @property {string} dpcPackageName Policy app on the device.
  * @property {string} managementType Identifies the extent to which the device is controlled by an Android EMM in various deployment configurations.  Possible values include:  - &quot;managedDevice&quot;, a device where the DPC is set as device owner,  - &quot;managedProfile&quot;, a device where the DPC is set as profile owner.
  * @property {string} userId The ID of the user. This field will always be present.
  */
@@ -3879,14 +3660,14 @@ function Androidenterprise(options) {
  * @property {string[]} availableTracks The tracks that are visible to the enterprise.
  * @property {string} category The app category (e.g. RACING, SOCIAL, etc.)
  * @property {string} contentRating The content rating for this app.
- * @property {string} description A localized promotional description, if available.
+ * @property {string} description The localized promotional description, if available.
  * @property {string} detailsUrl A link to the (consumer) Google Play details page for the product.
  * @property {string} distributionChannel How and to whom the package is made available. The value publicGoogleHosted means that the package is available through the Play store and not restricted to a specific enterprise. The value privateGoogleHosted means that the package is a private app (restricted to an enterprise) but hosted by Google. The value privateSelfHosted means that the package is a private app (restricted to an enterprise) and is privately hosted.
  * @property {string} iconUrl A link to an image that can be used as an icon for the product. This image is suitable for use at up to 512px x 512px.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#product&quot;.
- * @property {string} lastUpdatedTimestampMillis The time (in milliseconds since epoch) when application was last published. (Timestamp is approximate within 7 days of actual publish time.)
+ * @property {string} lastUpdatedTimestampMillis The approximate time (within 7 days) the app was last published, expressed in milliseconds since epoch.
  * @property {integer} minAndroidSdkVersion The minimum Android SDK necessary to run the app.
- * @property {androidenterprise(v1).ProductPermission[]} permissions The permissions required for this app.
+ * @property {androidenterprise(v1).ProductPermission[]} permissions A list of permissions required by the app.
  * @property {string} productId A string of the form app:&lt;package name&gt;. For example, app:com.google.android.gm represents the Gmail app.
  * @property {string} productPricing Whether this product is free, free with in-app purchases, or paid. If the pricing is unknown, this means the product is not generally available anymore (even though it might still be available to people who own it).
  * @property {string} recentChanges A description of the recent changes made to the app.
@@ -4092,29 +3873,6 @@ function Androidenterprise(options) {
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#variableSet&quot;.
  * @property {string} placeholder The placeholder string; defined by EMM.
  * @property {string} userValue The value of the placeholder, specific to the user.
- */
-/**
- * @typedef WebApp
- * @memberOf! androidenterprise(v1)
- * @type object
- * @property {androidenterprise(v1).WebAppImage[]} icons A list of icons representing this website. Must have at least one element.
- * @property {string} name The name of the web application as it is usually displayed to the user (e.g., amongst a list of other applications, or as a label for an icon). Required.
- * @property {string} startUrl String that represents the start URL, i.e. the URL that should load when the user opens the application. Required.
- * @property {string} webAppId The ID of the application.
- */
-/**
- * @typedef WebAppImage
- * @memberOf! androidenterprise(v1)
- * @type object
- * @property {string} imageData The actual bytes of the image.
- * @property {string[]} purposes The purposes this image may be used for. Optional.
- */
-/**
- * @typedef WebAppsListResponse
- * @memberOf! androidenterprise(v1)
- * @type object
- * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#webAppsListResponse&quot;.
- * @property {androidenterprise(v1).WebApp[]} webApp The manifest describing a web app.
  */
 
 export = Androidenterprise;

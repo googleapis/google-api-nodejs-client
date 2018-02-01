@@ -1128,65 +1128,65 @@ function Androidmanagement(options) {
  * @typedef Policy
  * @memberOf! androidmanagement(v1)
  * @type object
- * @property {string[]} accountTypesWithManagementDisabled Account types that cannot be managed by the user. &lt;i&gt;Requires the beta version of the Android Device Policy app.&lt;/i&gt;
+ * @property {string[]} accountTypesWithManagementDisabled Account types that cannot be managed by the user.
  * @property {boolean} addUserDisabled Whether adding new users and profiles is disabled.
  * @property {boolean} adjustVolumeDisabled Whether adjusting the master volume is disabled.
- * @property {androidmanagement(v1).AlwaysOnVpnPackage} alwaysOnVpnPackage Configuration for an always-on VPN connection. Use with vpn_config_disabled to prevent modification of this setting. &lt;i&gt;Requires the beta version of the Android Device Policy app.&lt;/i&gt;
+ * @property {androidmanagement(v1).AlwaysOnVpnPackage} alwaysOnVpnPackage Configuration for an always-on VPN connection. Use with vpn_config_disabled to prevent modification of this setting.
  * @property {androidmanagement(v1).ApplicationPolicy[]} applications Policy applied to apps.
  * @property {boolean} autoTimeRequired Whether auto time is required, which prevents the user from manually setting the date and time.
  * @property {boolean} blockApplicationsEnabled Whether applications other than the ones configured in applications are blocked from being installed. When set, applications that were installed under a previous policy but no longer appear in the policy are automatically uninstalled.
- * @property {boolean} bluetoothConfigDisabled Whether configuring bluetooth is disabled. &lt;i&gt;Requires the beta version of the Android Device Policy app.&lt;/i&gt;
- * @property {boolean} bluetoothContactSharingDisabled Whether bluetooth contact sharing is disabled. &lt;i&gt;Requires the beta version of the Android Device Policy app.&lt;/i&gt;
- * @property {boolean} bluetoothDisabled Whether bluetooth is disabled. Prefer this setting over bluetooth_config_disabled because bluetooth_config_disabled can be bypassed by the user. &lt;i&gt;Requires the beta version of the Android Device Policy app.&lt;/i&gt;
+ * @property {boolean} bluetoothConfigDisabled Whether configuring bluetooth is disabled.
+ * @property {boolean} bluetoothContactSharingDisabled Whether bluetooth contact sharing is disabled.
+ * @property {boolean} bluetoothDisabled Whether bluetooth is disabled. Prefer this setting over bluetooth_config_disabled because bluetooth_config_disabled can be bypassed by the user.
  * @property {boolean} cameraDisabled Whether all cameras on the device are disabled.
- * @property {boolean} cellBroadcastsConfigDisabled Whether configuring cell broadcast is disabled. &lt;i&gt;Requires the beta version of the Android Device Policy app.&lt;/i&gt;
+ * @property {boolean} cellBroadcastsConfigDisabled Whether configuring cell broadcast is disabled.
  * @property {androidmanagement(v1).ComplianceRule[]} complianceRules Rules declaring which mitigating actions to take when a device is not compliant with its policy. When the conditions for multiple rules are satisfied, all of the mitigating actions for the rules are taken. There is a maximum limit of 100 rules.
- * @property {boolean} createWindowsDisabled Whether creating windows besides app windows is disabled. &lt;i&gt;Requires the beta version of the Android Device Policy app.&lt;/i&gt;
- * @property {boolean} credentialsConfigDisabled Whether configuring user credentials is disabled. &lt;i&gt;Requires the beta version of the Android Device Policy app.&lt;/i&gt;
- * @property {boolean} dataRoamingDisabled Whether roaming data services are disabled. &lt;i&gt;Requires the beta version of the Android Device Policy app.&lt;/i&gt;
+ * @property {boolean} createWindowsDisabled Whether creating windows besides app windows is disabled.
+ * @property {boolean} credentialsConfigDisabled Whether configuring user credentials is disabled.
+ * @property {boolean} dataRoamingDisabled Whether roaming data services are disabled.
  * @property {boolean} debuggingFeaturesAllowed Whether the user is allowed to enable debugging features.
  * @property {string} defaultPermissionPolicy The default permission policy for requests for runtime permissions.
- * @property {boolean} ensureVerifyAppsEnabled Whether application verification is forced to be enabled. &lt;i&gt;Requires the beta version of the Android Device Policy app.&lt;/i&gt;
+ * @property {boolean} ensureVerifyAppsEnabled Whether application verification is forced to be enabled.
  * @property {boolean} factoryResetDisabled Whether factory resetting from settings is disabled.
  * @property {string[]} frpAdminEmails Email addresses of device administrators for factory reset protection. When the device is factory reset, it will require one of these admins to log in with the Google account email and password to unlock the device. If no admins are specified, the device will not provide factory reset protection.
  * @property {boolean} funDisabled Whether the user is allowed to have fun. Controls whether the Easter egg game in Settings is disabled.
- * @property {boolean} installAppsDisabled Whether user installation of apps is disabled. &lt;i&gt;Requires the beta version of the Android Device Policy app.&lt;/i&gt;
+ * @property {boolean} installAppsDisabled Whether user installation of apps is disabled.
  * @property {boolean} installUnknownSourcesAllowed Whether the user is allowed to enable the &quot;Unknown Sources&quot; setting, which allows installation of apps from unknown sources.
  * @property {boolean} keyguardDisabled Whether the keyguard is disabled.
- * @property {string[]} keyguardDisabledFeatures Disabled keyguard customizations, such as widgets. &lt;i&gt;Requires the beta version of the Android Device Policy app.&lt;/i&gt;
- * @property {boolean} kioskCustomLauncherEnabled Flag to specify if kiosk custom launcher is enabled. If it is enabled the value for receiver_activity in PersistentPreferredActivity related to home intent will be ignored. When custom launcher is enabled, the kiosk will start in launcher mode and not locked to a specific application.
- * @property {androidmanagement(v1).UserFacingMessage} longSupportMessage A message displayed to the user in the device administators settings screen. &lt;i&gt;Requires the beta version of the Android Device Policy app.&lt;/i&gt;
+ * @property {string[]} keyguardDisabledFeatures Disabled keyguard customizations, such as widgets.
+ * @property {boolean} kioskCustomLauncherEnabled Whether the kiosk custom launcher is enabled. This replaces the home screen with a launcher that locks down the device to the apps installed via the applications setting. The apps appear on a single page in alphabetical order. It is recommended to also use status_bar_disabled to block access to device settings.
+ * @property {androidmanagement(v1).UserFacingMessage} longSupportMessage A message displayed to the user in the device administators settings screen.
  * @property {string} maximumTimeToLock Maximum time in milliseconds for user activity until the device will lock. A value of 0 means there is no restriction.
- * @property {boolean} mobileNetworksConfigDisabled Whether configuring mobile networks is disabled. &lt;i&gt;Requires the beta version of the Android Device Policy app.&lt;/i&gt;
+ * @property {boolean} mobileNetworksConfigDisabled Whether configuring mobile networks is disabled.
  * @property {boolean} modifyAccountsDisabled Whether adding or removing accounts is disabled.
- * @property {boolean} mountPhysicalMediaDisabled Whether the user mounting physical external media is disabled. &lt;i&gt;Requires the beta version of the Android Device Policy app.&lt;/i&gt;
+ * @property {boolean} mountPhysicalMediaDisabled Whether the user mounting physical external media is disabled.
  * @property {string} name The name of the policy in the form enterprises/{enterpriseId}/policies/{policyId}
  * @property {boolean} networkEscapeHatchEnabled Whether the network escape hatch is enabled. If a network connection can&#39;t be made at boot time, the escape hatch prompts the user to temporarily connect to a network in order to refresh the device policy. After applying policy, the temporary network will be forgotten and the device will continue booting. This prevents being unable to connect to a network if there is no suitable network in the last policy and the device boots into an app in lock task mode, or the user is otherwise unable to reach device settings.
- * @property {boolean} networkResetDisabled Whether resetting network settings is disabled. &lt;i&gt;Requires the beta version of the Android Device Policy app.&lt;/i&gt;
+ * @property {boolean} networkResetDisabled Whether resetting network settings is disabled.
  * @property {object} openNetworkConfiguration Network configuration for the device. See configure networks for more information.
- * @property {boolean} outgoingBeamDisabled Whether using NFC to beam out data from apps is disabled. &lt;i&gt;Requires the beta version of the Android Device Policy app.&lt;/i&gt;
- * @property {boolean} outgoingCallsDisabled Whether outgoing calls are disabled. &lt;i&gt;Requires the beta version of the Android Device Policy app.&lt;/i&gt;
+ * @property {boolean} outgoingBeamDisabled Whether using NFC to beam out data from apps is disabled.
+ * @property {boolean} outgoingCallsDisabled Whether outgoing calls are disabled.
  * @property {androidmanagement(v1).PasswordRequirements} passwordRequirements Password requirements.
- * @property {androidmanagement(v1).PackageNameList} permittedInputMethods If present, only input methods provided by packages in this list are permitted. If this field is present, but the list is empty, then only system input methods are permitted. &lt;i&gt;Requires the beta version of the Android Device Policy app.&lt;/i&gt;
+ * @property {androidmanagement(v1).PackageNameList} permittedInputMethods If present, only input methods provided by packages in this list are permitted. If this field is present, but the list is empty, then only system input methods are permitted.
  * @property {androidmanagement(v1).PersistentPreferredActivity[]} persistentPreferredActivities Default intent handler activities.
- * @property {androidmanagement(v1).ProxyInfo} recommendedGlobalProxy The network-independent global HTTP proxy. Typically proxies should be configured per-network in open_network_configuration. However for unusual configurations like general internal filtering a global HTTP proxy may be useful. If the proxy is not accessible, network access may break. The global proxy is only a recommendation and some apps may ignore it. &lt;i&gt;Requires the beta version of the Android Device Policy app.&lt;/i&gt;
+ * @property {androidmanagement(v1).ProxyInfo} recommendedGlobalProxy The network-independent global HTTP proxy. Typically proxies should be configured per-network in open_network_configuration. However for unusual configurations like general internal filtering a global HTTP proxy may be useful. If the proxy is not accessible, network access may break. The global proxy is only a recommendation and some apps may ignore it.
  * @property {boolean} removeUserDisabled Whether removing other users is disabled.
  * @property {boolean} safeBootDisabled Whether rebooting the device into safe boot is disabled.
  * @property {boolean} screenCaptureDisabled Whether screen capture is disabled.
- * @property {boolean} setUserIconDisabled Whether changing the user icon is disabled. &lt;i&gt;Requires the beta version of the Android Device Policy app.&lt;/i&gt;
- * @property {boolean} setWallpaperDisabled Whether changing the wallpaper is disabled. &lt;i&gt;Requires the beta version of the Android Device Policy app.&lt;/i&gt;
- * @property {androidmanagement(v1).UserFacingMessage} shortSupportMessage A message displayed to the user in the settings screen wherever functionality has been disabled by the admin. &lt;i&gt;Requires the beta version of the Android Device Policy app.&lt;/i&gt;
- * @property {boolean} smsDisabled Whether sending or receiving SMS messages is disabled. &lt;i&gt;Requires the beta version of the Android Device Policy app.&lt;/i&gt;
+ * @property {boolean} setUserIconDisabled Whether changing the user icon is disabled.
+ * @property {boolean} setWallpaperDisabled Whether changing the wallpaper is disabled.
+ * @property {androidmanagement(v1).UserFacingMessage} shortSupportMessage A message displayed to the user in the settings screen wherever functionality has been disabled by the admin.
+ * @property {boolean} smsDisabled Whether sending or receiving SMS messages is disabled.
  * @property {boolean} statusBarDisabled Whether the status bar is disabled. This disables notifications, quick settings and other screen overlays that allow escape from full-screen mode.
  * @property {androidmanagement(v1).StatusReportingSettings} statusReportingSettings Status reporting settings
  * @property {string[]} stayOnPluggedModes The battery plugged in modes for which the device stays on. When using this setting, it is recommended to clear maximum_time_to_lock so that the device doesn&#39;t lock itself while it stays on.
  * @property {androidmanagement(v1).SystemUpdate} systemUpdate The system update policy, which controls how OS updates are applied. If the update type is WINDOWED, the update window will automatically apply to Play app updates as well.
- * @property {boolean} tetheringConfigDisabled Whether configuring tethering and portable hotspots is disabled. &lt;i&gt;Requires the beta version of the Android Device Policy app.&lt;/i&gt;
- * @property {boolean} uninstallAppsDisabled Whether user uninstallation of applications is disabled. &lt;i&gt;Requires the beta version of the Android Device Policy app.&lt;/i&gt;
+ * @property {boolean} tetheringConfigDisabled Whether configuring tethering and portable hotspots is disabled.
+ * @property {boolean} uninstallAppsDisabled Whether user uninstallation of applications is disabled.
  * @property {boolean} unmuteMicrophoneDisabled Whether the microphone is muted and adjusting microphone volume is disabled.
- * @property {boolean} usbFileTransferDisabled Whether transferring files over USB is disabled. &lt;i&gt;Requires the beta version of the Android Device Policy app.&lt;/i&gt;
+ * @property {boolean} usbFileTransferDisabled Whether transferring files over USB is disabled.
  * @property {string} version The version of the policy. This is a read-only field. The version is incremented each time the policy is updated.
- * @property {boolean} vpnConfigDisabled Whether configuring VPN is disabled. &lt;i&gt;Requires the beta version of the Android Device Policy app.&lt;/i&gt;
+ * @property {boolean} vpnConfigDisabled Whether configuring VPN is disabled.
  * @property {boolean} wifiConfigDisabled Whether configuring WiFi access points is disabled.
  * @property {boolean} wifiConfigsLockdownEnabled Whether WiFi networks defined in Open Network Configuration are locked so they cannot be edited by the user.
  */

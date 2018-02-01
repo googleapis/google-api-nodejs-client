@@ -788,7 +788,8 @@ function Content(options) {
       return createAPIRequest(parameters, callback);
     }, /**
         * content.datafeeds.list
-        * @desc Lists the datafeeds in your Merchant Center account.
+        * @desc Lists the configurations for datafeeds in your Merchant Center
+        * account.
         * @alias content.datafeeds.list
         * @memberOf! content(v2)
         *
@@ -1408,6 +1409,44 @@ function Content(options) {
       };
       return createAPIRequest(parameters, callback);
     }, /**
+        * content.orders.instorerefundlineitem
+        * @desc Notifies that item return and refund was handled directly in
+        * store.
+        * @alias content.orders.instorerefundlineitem
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string} params.orderId The ID of the order.
+        * @param {content(v2).OrdersInStoreRefundLineItemRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    instorerefundlineitem(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2/{merchantId}/orders/{orderId}/inStoreRefundLineItem')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'orderId'],
+        pathParams: ['merchantId', 'orderId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
         * content.orders.list
         * @desc Lists the orders in your Merchant Center account.
         * @alias content.orders.list
@@ -1484,6 +1523,43 @@ function Content(options) {
       };
       return createAPIRequest(parameters, callback);
     }, /**
+        * content.orders.rejectreturnlineitem
+        * @desc Rejects return on an line item.
+        * @alias content.orders.rejectreturnlineitem
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string} params.orderId The ID of the order.
+        * @param {content(v2).OrdersRejectReturnLineItemRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    rejectreturnlineitem(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2/{merchantId}/orders/{orderId}/rejectReturnLineItem')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'orderId'],
+        pathParams: ['merchantId', 'orderId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
         * content.orders.returnlineitem
         * @desc Returns a line item.
         * @alias content.orders.returnlineitem
@@ -1510,6 +1586,44 @@ function Content(options) {
               url: (rootUrl +
                     '/content/v2/{merchantId}/orders/{orderId}/returnLineItem')
                        .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'orderId'],
+        pathParams: ['merchantId', 'orderId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * content.orders.returnrefundlineitem
+        * @desc Returns and refunds a line item. Note that this method can only
+        * be called on fully shipped orders.
+        * @alias content.orders.returnrefundlineitem
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string} params.orderId The ID of the order.
+        * @param {content(v2).OrdersReturnRefundLineItemRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    returnrefundlineitem(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2/{merchantId}/orders/{orderId}/returnRefundLineItem')
+                      .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
             options),
@@ -2104,6 +2218,39 @@ function Content(options) {
       };
       return createAPIRequest(parameters, callback);
     }, /**
+        * content.shippingsettings.getsupportedholidays
+        * @desc Retrieves supported holidays for an account.
+        * @alias content.shippingsettings.getsupportedholidays
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account for which to retrieve the supported holidays.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    getsupportedholidays(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/content/v2/{merchantId}/supportedHolidays')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
         * content.shippingsettings.list
         * @desc Lists the shipping settings of the sub-accounts in your Merchant
         * Center account.
@@ -2647,6 +2794,7 @@ function Content(options) {
  * @typedef DeliveryTime
  * @memberOf! content(v2)
  * @type object
+ * @property {content(v2).HolidayCutoff[]} holidayCutoffs Holiday cutoff definitions. If configured, they specify order cutoff times for holiday-specific shipping.
  * @property {integer} maxTransitTimeInDays Maximum number of business days that is spent in transit. 0 means same day delivery, 1 means next day delivery. Must be greater than or equal to minTransitTimeInDays. Required.
  * @property {integer} minTransitTimeInDays Minimum number of business days that is spent in transit. 0 means same day delivery, 1 means next day delivery. Required.
  */
@@ -2675,6 +2823,27 @@ function Content(options) {
  * @property {string[]} postalCodeGroupNames A list of postal group names. The last value can be &quot;all other locations&quot;. Example: [&quot;zone 1&quot;, &quot;zone 2&quot;, &quot;all other locations&quot;]. The referred postal code groups must match the delivery country of the service. Must be non-empty. Can only be set if all other fields are not set.
  * @property {content(v2).Price[]} prices A list of inclusive order price upper bounds. The last price&#39;s value can be &quot;infinity&quot;. For example [{&quot;value&quot;: &quot;10&quot;, &quot;currency&quot;: &quot;USD&quot;}, {&quot;value&quot;: &quot;500&quot;, &quot;currency&quot;: &quot;USD&quot;}, {&quot;value&quot;: &quot;infinity&quot;, &quot;currency&quot;: &quot;USD&quot;}] represents the headers &quot;&lt;= $10&quot;, &quot; $500&quot;. All prices within a service must have the same currency. Must be non-empty. Can only be set if all other fields are not set.
  * @property {content(v2).Weight[]} weights A list of inclusive order weight upper bounds. The last weight&#39;s value can be &quot;infinity&quot;. For example [{&quot;value&quot;: &quot;10&quot;, &quot;unit&quot;: &quot;kg&quot;}, {&quot;value&quot;: &quot;50&quot;, &quot;unit&quot;: &quot;kg&quot;}, {&quot;value&quot;: &quot;infinity&quot;, &quot;unit&quot;: &quot;kg&quot;}] represents the headers &quot;&lt;= 10kg&quot;, &quot; 50kg&quot;. All weights within a service must have the same unit. Must be non-empty. Can only be set if all other fields are not set.
+ */
+/**
+ * @typedef HolidayCutoff
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} deadlineDate Date of the order deadline, in ISO 8601 format. E.g. &quot;2016-11-29&quot; for 29th November 2016. Required.
+ * @property {integer} deadlineHour Hour of the day on the deadline date until which the order has to be placed to qualify for the delivery guarantee. Possible values are: 0 (midnight), 1, ..., 12 (noon), 13, ..., 23. Required.
+ * @property {string} deadlineTimezone Timezone identifier for the deadline hour. A list of identifiers can be found in  the AdWords API documentation. E.g. &quot;Europe/Zurich&quot;. Required.
+ * @property {string} holidayId Unique identifier for the holiday. Required.
+ * @property {string} visibleFromDate Date on which the deadline will become visible to consumers in ISO 8601 format. E.g. &quot;2016-10-31&quot; for 31st October 2016. Required.
+ */
+/**
+ * @typedef HolidaysHoliday
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} countryCode The CLDR territory code of the country in which the holiday is available. E.g. &quot;US&quot;, &quot;DE&quot;, &quot;GB&quot;. A holiday cutoff can only be configured in a shipping settings service with matching delivery country. Always present.
+ * @property {string} date Date of the holiday, in ISO 8601 format. E.g. &quot;2016-12-25&quot; for Christmas 2016. Always present.
+ * @property {string} deliveryGuaranteeDate Date on which the order has to arrive at the customer&#39;s, in ISO 8601 format. E.g. &quot;2016-12-24&quot; for 24th December 2016. Always present.
+ * @property {string} deliveryGuaranteeHour Hour of the day in the delivery location&#39;s timezone on the guaranteed delivery date by which the order has to arrive at the customer&#39;s. Possible values are: 0 (midnight), 1, ..., 12 (noon), 13, ..., 23. Always present.
+ * @property {string} id Unique identifier for the holiday to be used when configuring holiday cutoffs. Always present.
+ * @property {string} type The holiday type. Always present.
  */
 /**
  * @typedef Installment
@@ -3047,13 +3216,16 @@ function Content(options) {
  * @property {integer} batchId An entry ID, unique within the batch request.
  * @property {content(v2).OrdersCustomBatchRequestEntryCancel} cancel Required for cancel method.
  * @property {content(v2).OrdersCustomBatchRequestEntryCancelLineItem} cancelLineItem Required for cancelLineItem method.
+ * @property {content(v2).OrdersCustomBatchRequestEntryInStoreRefundLineItem} inStoreRefundLineItem Required for inStoreReturnLineItem method.
  * @property {string} merchantId The ID of the managing account.
  * @property {string} merchantOrderId The merchant order id. Required for updateMerchantOrderId and getByMerchantOrderId methods.
  * @property {string} method The method to apply.
  * @property {string} operationId The ID of the operation. Unique across all operations for a given order. Required for all methods beside get and getByMerchantOrderId.
  * @property {string} orderId The ID of the order. Required for all methods beside getByMerchantOrderId.
  * @property {content(v2).OrdersCustomBatchRequestEntryRefund} refund Required for refund method.
+ * @property {content(v2).OrdersCustomBatchRequestEntryRejectReturnLineItem} rejectReturnLineItem Required for rejectReturnLineItem method.
  * @property {content(v2).OrdersCustomBatchRequestEntryReturnLineItem} returnLineItem Required for returnLineItem method.
+ * @property {content(v2).OrdersCustomBatchRequestEntryReturnRefundLineItem} returnRefundLineItem Required for returnRefundLineItem method.
  * @property {content(v2).OrdersCustomBatchRequestEntrySetLineItemMetadata} setLineItemMetadata Required for setLineItemMetadata method.
  * @property {content(v2).OrdersCustomBatchRequestEntryShipLineItems} shipLineItems Required for shipLineItems method.
  * @property {content(v2).OrdersCustomBatchRequestEntryUpdateLineItemShippingDetails} updateLineItemShippingDetails Required for updateLineItemShippingDate method.
@@ -3080,6 +3252,18 @@ function Content(options) {
  * @property {string} reasonText The explanation of the reason.
  */
 /**
+ * @typedef OrdersCustomBatchRequestEntryInStoreRefundLineItem
+ * @memberOf! content(v2)
+ * @type object
+ * @property {content(v2).Price} amountPretax The amount that is refunded. Required.
+ * @property {content(v2).Price} amountTax Tax amount that correspond to refund amount in amountPretax. Required.
+ * @property {string} lineItemId The ID of the line item to return. Either lineItemId or productId is required.
+ * @property {string} productId The ID of the product to return. This is the REST ID used in the products service. Either lineItemId or productId is required.
+ * @property {integer} quantity The quantity to return and refund.
+ * @property {string} reason The reason for the return.
+ * @property {string} reasonText The explanation of the reason.
+ */
+/**
  * @typedef OrdersCustomBatchRequestEntryRefund
  * @memberOf! content(v2)
  * @type object
@@ -3090,12 +3274,34 @@ function Content(options) {
  * @property {string} reasonText The explanation of the reason.
  */
 /**
+ * @typedef OrdersCustomBatchRequestEntryRejectReturnLineItem
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} lineItemId The ID of the line item to return. Either lineItemId or productId is required.
+ * @property {string} productId The ID of the product to return. This is the REST ID used in the products service. Either lineItemId or productId is required.
+ * @property {integer} quantity The quantity to return and refund.
+ * @property {string} reason The reason for the return.
+ * @property {string} reasonText The explanation of the reason.
+ */
+/**
  * @typedef OrdersCustomBatchRequestEntryReturnLineItem
  * @memberOf! content(v2)
  * @type object
  * @property {string} lineItemId The ID of the line item to return. Either lineItemId or productId is required.
  * @property {string} productId The ID of the product to return. This is the REST ID used in the products service. Either lineItemId or productId is required.
  * @property {integer} quantity The quantity to return.
+ * @property {string} reason The reason for the return.
+ * @property {string} reasonText The explanation of the reason.
+ */
+/**
+ * @typedef OrdersCustomBatchRequestEntryReturnRefundLineItem
+ * @memberOf! content(v2)
+ * @type object
+ * @property {content(v2).Price} amountPretax The amount that is refunded. Optional, but if filled then both amountPretax and amountTax must be set.
+ * @property {content(v2).Price} amountTax Tax amount that correspond to refund amount in amountPretax.
+ * @property {string} lineItemId The ID of the line item to return. Either lineItemId or productId is required.
+ * @property {string} productId The ID of the product to return. This is the REST ID used in the products service. Either lineItemId or productId is required.
+ * @property {integer} quantity The quantity to return and refund.
  * @property {string} reason The reason for the return.
  * @property {string} reasonText The explanation of the reason.
  */
@@ -3195,6 +3401,26 @@ function Content(options) {
  * @property {integer} quantity The quantity that is shipped.
  */
 /**
+ * @typedef OrdersInStoreRefundLineItemRequest
+ * @memberOf! content(v2)
+ * @type object
+ * @property {content(v2).Price} amountPretax The amount that is refunded. Required.
+ * @property {content(v2).Price} amountTax Tax amount that correspond to refund amount in amountPretax. Required.
+ * @property {string} lineItemId The ID of the line item to return. Either lineItemId or productId is required.
+ * @property {string} operationId The ID of the operation. Unique across all operations for a given order.
+ * @property {string} productId The ID of the product to return. This is the REST ID used in the products service. Either lineItemId or productId is required.
+ * @property {integer} quantity The quantity to return and refund.
+ * @property {string} reason The reason for the return.
+ * @property {string} reasonText The explanation of the reason.
+ */
+/**
+ * @typedef OrdersInStoreRefundLineItemResponse
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} executionStatus The status of the execution.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersInStoreRefundLineItemResponse&quot;.
+ */
+/**
  * @typedef OrdersListResponse
  * @memberOf! content(v2)
  * @type object
@@ -3221,6 +3447,24 @@ function Content(options) {
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersRefundResponse&quot;.
  */
 /**
+ * @typedef OrdersRejectReturnLineItemRequest
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} lineItemId The ID of the line item to return. Either lineItemId or productId is required.
+ * @property {string} operationId The ID of the operation. Unique across all operations for a given order.
+ * @property {string} productId The ID of the product to return. This is the REST ID used in the products service. Either lineItemId or productId is required.
+ * @property {integer} quantity The quantity to return and refund.
+ * @property {string} reason The reason for the return.
+ * @property {string} reasonText The explanation of the reason.
+ */
+/**
+ * @typedef OrdersRejectReturnLineItemResponse
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} executionStatus The status of the execution.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersRejectReturnLineItemResponse&quot;.
+ */
+/**
  * @typedef OrdersReturnLineItemRequest
  * @memberOf! content(v2)
  * @type object
@@ -3237,6 +3481,26 @@ function Content(options) {
  * @type object
  * @property {string} executionStatus The status of the execution.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersReturnLineItemResponse&quot;.
+ */
+/**
+ * @typedef OrdersReturnRefundLineItemRequest
+ * @memberOf! content(v2)
+ * @type object
+ * @property {content(v2).Price} amountPretax The amount that is refunded. Optional, but if filled then both amountPretax and amountTax must be set.
+ * @property {content(v2).Price} amountTax Tax amount that correspond to refund amount in amountPretax.
+ * @property {string} lineItemId The ID of the line item to return. Either lineItemId or productId is required.
+ * @property {string} operationId The ID of the operation. Unique across all operations for a given order.
+ * @property {string} productId The ID of the product to return. This is the REST ID used in the products service. Either lineItemId or productId is required.
+ * @property {integer} quantity The quantity to return and refund.
+ * @property {string} reason The reason for the return.
+ * @property {string} reasonText The explanation of the reason.
+ */
+/**
+ * @typedef OrdersReturnRefundLineItemResponse
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} executionStatus The status of the execution.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersReturnRefundLineItemResponse&quot;.
  */
 /**
  * @typedef OrdersSetLineItemMetadataRequest
@@ -3526,6 +3790,7 @@ function Content(options) {
  * @property {content(v2).ProductStatusDataQualityIssue[]} dataQualityIssues A list of data quality issues associated with the product.
  * @property {content(v2).ProductStatusDestinationStatus[]} destinationStatuses The intended destinations for the product.
  * @property {string} googleExpirationDate Date on which the item expires in Google Shopping, in ISO 8601 format.
+ * @property {content(v2).ProductStatusItemLevelIssue[]} itemLevelIssues A list of all issues associated with the product.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#productStatus&quot;.
  * @property {string} lastUpdateDate Date on which the item has been last updated, in ISO 8601 format.
  * @property {string} link The link to the product.
@@ -3550,9 +3815,10 @@ function Content(options) {
  * @typedef ProductStatusDestinationStatus
  * @memberOf! content(v2)
  * @type object
+ * @property {boolean} approvalPending Whether the approval status might change due to further processing.
  * @property {string} approvalStatus The destination&#39;s approval status.
  * @property {string} destination The name of the destination
- * @property {string} intention Whether the destination is required, excluded, selected by default or should be validated.
+ * @property {string} intention Provided for backward compatibility only. Always set to &quot;required&quot;.
  */
 /**
  * @typedef ProductstatusesCustomBatchRequest
@@ -3593,6 +3859,16 @@ function Content(options) {
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#productstatusesListResponse&quot;.
  * @property {string} nextPageToken The token for the retrieval of the next page of products statuses.
  * @property {content(v2).ProductStatus[]} resources
+ */
+/**
+ * @typedef ProductStatusItemLevelIssue
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} attributeName The attribute&#39;s name, if the issue is caused by a single attribute.
+ * @property {string} code The error code of the issue.
+ * @property {string} destination The destination the issue applies to.
+ * @property {string} resolution Whether the issue can be resolved by the merchant.
+ * @property {string} servability How this issue affects serving of the offer.
  */
 /**
  * @typedef ProductTax
@@ -3693,6 +3969,13 @@ function Content(options) {
  * @type object
  * @property {content(v2).CarriersCarrier[]} carriers A list of supported carriers. May be empty.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#shippingsettingsGetSupportedCarriersResponse&quot;.
+ */
+/**
+ * @typedef ShippingsettingsGetSupportedHolidaysResponse
+ * @memberOf! content(v2)
+ * @type object
+ * @property {content(v2).HolidaysHoliday[]} holidays A list of holidays applicable for delivery guarantees. May be empty.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#shippingsettingsGetSupportedHolidaysResponse&quot;.
  */
 /**
  * @typedef ShippingsettingsListResponse

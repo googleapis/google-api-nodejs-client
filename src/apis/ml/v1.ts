@@ -1198,6 +1198,7 @@ function Ml(options) {
  * @property {ml(v1).GoogleCloudMlV1_HyperparameterOutput_HyperparameterMetric[]} allMetrics All recorded object metrics for this trial. This field is not currently populated.
  * @property {ml(v1).GoogleCloudMlV1_HyperparameterOutput_HyperparameterMetric} finalMetric The final objective metric seen for this trial.
  * @property {object} hyperparameters The hyperparameters given to this trial.
+ * @property {boolean} isTrialStoppedEarly True if the trial is stopped early.
  * @property {string} trialId The trial id for these results.
  */
 /**
@@ -1389,25 +1390,10 @@ function Ml(options) {
  * @property {string} state Output only. The state of a version.
  */
 /**
- * @typedef GoogleIamV1__AuditConfig
- * @memberOf! ml(v1)
- * @type object
- * @property {ml(v1).GoogleIamV1__AuditLogConfig[]} auditLogConfigs The configuration for logging of each type of permission. Next ID: 4
- * @property {string[]} exemptedMembers
- * @property {string} service Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
- */
-/**
- * @typedef GoogleIamV1__AuditLogConfig
- * @memberOf! ml(v1)
- * @type object
- * @property {string[]} exemptedMembers Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
- * @property {string} logType The log type that this config enables.
- */
-/**
  * @typedef GoogleIamV1__Binding
  * @memberOf! ml(v1)
  * @type object
- * @property {ml(v1).GoogleType__Expr} condition The condition that is associated with this binding. NOTE: an unsatisfied condition will not allow user access via current binding. Different bindings, including their conditions, are examined independently. This field is GOOGLE_INTERNAL.
+ * @property {ml(v1).GoogleType__Expr} condition The condition that is associated with this binding. NOTE: an unsatisfied condition will not allow user access via current binding. Different bindings, including their conditions, are examined independently. This field is only visible as GOOGLE_INTERNAL or CONDITION_TRUSTED_TESTER.
  * @property {string[]} members Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@gmail.com` or `joe@example.com`.   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: A Google Apps domain name that represents all the    users of that domain. For example, `google.com` or `example.com`.
  * @property {string} role Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. Required
  */
@@ -1415,10 +1401,8 @@ function Ml(options) {
  * @typedef GoogleIamV1__Policy
  * @memberOf! ml(v1)
  * @type object
- * @property {ml(v1).GoogleIamV1__AuditConfig[]} auditConfigs Specifies cloud audit logging configuration for this policy.
  * @property {ml(v1).GoogleIamV1__Binding[]} bindings Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
  * @property {string} etag `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
- * @property {boolean} iamOwned
  * @property {integer} version Deprecated.
  */
 /**

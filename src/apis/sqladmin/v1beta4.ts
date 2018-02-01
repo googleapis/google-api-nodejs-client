@@ -534,8 +534,7 @@ function Sqladmin(options) {
       return createAPIRequest(parameters, callback);
     }, /**
         * sql.instances.demoteMaster
-        * @desc Demotes the standalone instance to be a read replica Cloud SQL
-        * instance of an on-premises master.
+        * @desc Reserved for future use.
         * @alias sql.instances.demoteMaster
         * @memberOf! sqladmin(v1beta4)
         *
@@ -1611,6 +1610,7 @@ function Sqladmin(options) {
  * @property {boolean} binaryLogEnabled Whether binary log is enabled. If backup configuration is disabled, binary log must be disabled as well.
  * @property {boolean} enabled Whether this configuration is enabled.
  * @property {string} kind This is always sql#backupConfiguration.
+ * @property {boolean} replicationLogArchivingEnabled Whether replication log archiving is enabled. Replication log archiving is required for the point-in-time recovery (PITR) feature. PostgreSQL instances only.
  * @property {string} startTime Start time for the daily backup configuration in UTC timezone in the 24 hour format - HH:MM.
  */
 /**
@@ -1653,6 +1653,7 @@ function Sqladmin(options) {
  * @property {sqladmin(v1beta4).BinLogCoordinates} binLogCoordinates Binary log coordinates, if specified, indentify the the position up to which the source instance should be cloned. If not specified, the source instance is cloned up to the most recent binary log coordintes.
  * @property {string} destinationInstanceName Name of the Cloud SQL instance to be created as a clone.
  * @property {string} kind This is always sql#cloneContext.
+ * @property {string} pitrTimestampMs The epoch timestamp, in milliseconds, of the time to which a point-in-time recovery (PITR) is performed. PostgreSQL instances only. For MySQL instances, use the binLogCoordinates property.
  */
 /**
  * @typedef Database
@@ -1684,7 +1685,7 @@ function Sqladmin(options) {
  * @property {string} databaseVersion The database engine type and version. The databaseVersion field can not be changed after instance creation. MySQL Second Generation instances: MYSQL_5_7 (default) or MYSQL_5_6. PostgreSQL instances: POSTGRES_9_6 MySQL First Generation instances: MYSQL_5_6 (default) or MYSQL_5_5
  * @property {string} etag HTTP 1.1 Entity tag for the resource.
  * @property {object} failoverReplica The name and status of the failover replica. This property is applicable only to Second Generation instances.
- * @property {string} gceZone The GCE zone that the instance is serving from. In case when the instance is failed over to standby zone, this value may be different with what user specified in the settings.
+ * @property {string} gceZone The Compute Engine zone that the instance is currently serving from. This value could be different from the zone that was specified when the instance was created if the instance has failed over to its secondary zone.
  * @property {string} instanceType The instance type. This can be one of the following. CLOUD_SQL_INSTANCE: A Cloud SQL instance that is not replicating from a master. ON_PREMISES_INSTANCE: An instance running on the customer&#39;s premises. READ_REPLICA_INSTANCE: A Cloud SQL instance configured as a read-replica.
  * @property {sqladmin(v1beta4).IpMapping[]} ipAddresses The assigned IP addresses for the instance.
  * @property {string} ipv6Address The IPv6 address assigned to the instance. This property is applicable only to First Generation instances.
@@ -1746,7 +1747,7 @@ function Sqladmin(options) {
  * @property {string} fileType The file type for the specified uri. SQL: The file contains SQL statements. CSV: The file contains CSV data.
  * @property {string} kind This is always sql#exportContext.
  * @property {object} sqlExportOptions Options for exporting data as SQL statements.
- * @property {string} uri The path to the file in Google Cloud Storage where the export will be stored. The URI is in the form gs://bucketName/fileName. If the file already exists, the operation fails. If fileType is SQL and the filename ends with .gz, the contents are compressed.
+ * @property {string} uri The path to the file in Google Cloud Storage where the export will be stored. The URI is in the form gs://bucketName/fileName. If the file already exists, the requests succeeds, but the operation fails. If fileType is SQL and the filename ends with .gz, the contents are compressed.
  */
 /**
  * @typedef FailoverContext
@@ -1867,7 +1868,7 @@ function Sqladmin(options) {
  * @property {integer} day day of week (1-7), starting on Monday.
  * @property {integer} hour hour of day - 0 to 23.
  * @property {string} kind This is always sql#maintenanceWindow.
- * @property {string} updateTrack
+ * @property {string} updateTrack Maintenance timing setting: canary (Earlier) or stable (Later).  Learn more.
  */
 /**
  * @typedef MySqlReplicaConfiguration
@@ -1955,9 +1956,9 @@ function Sqladmin(options) {
  * @typedef Settings
  * @memberOf! sqladmin(v1beta4)
  * @type object
- * @property {string} activationPolicy The activation policy specifies when the instance is activated; it is applicable only when the instance state is RUNNABLE. The activation policy cannot be updated together with other settings for Second Generation instances. Valid values: ALWAYS: The instance is on; it is not deactivated by inactivity. NEVER: The instance is off; it is not activated, even if a connection request arrives. ON_DEMAND: The instance responds to incoming requests, and turns itself off when not in use. Instances with PER_USE pricing turn off after 15 minutes of inactivity. Instances with PER_PACKAGE pricing turn off after 12 hours of inactivity.
+ * @property {string} activationPolicy The activation policy specifies when the instance is activated; it is applicable only when the instance state is RUNNABLE. Valid values: ALWAYS: The instance is on, and remains so even in the absence of connection requests. NEVER: The instance is off; it is not activated, even if a connection request arrives. ON_DEMAND: First Generation instances only. The instance responds to incoming requests, and turns itself off when not in use. Instances with PER_USE pricing turn off after 15 minutes of inactivity. Instances with PER_PACKAGE pricing turn off after 12 hours of inactivity.
  * @property {string[]} authorizedGaeApplications The App Engine app IDs that can access this instance. This property is only applicable to First Generation instances.
- * @property {string} availabilityType Reserved for future use.
+ * @property {string} availabilityType Availability type (PostgreSQL instances only). Potential values: ZONAL: The instance serves data from only one zone. Outages in that zone affect data accessibility. REGIONAL: The instance can serve data from more than one zone in a region (it is highly available). For more information, see Overview of the High Availability Configuration.
  * @property {sqladmin(v1beta4).BackupConfiguration} backupConfiguration The daily backup configuration for the instance.
  * @property {boolean} crashSafeReplicationEnabled Configuration specific to read replica instances. Indicates whether database flags for crash-safe replication are enabled. This property is only applicable to First Generation instances.
  * @property {sqladmin(v1beta4).DatabaseFlags[]} databaseFlags The database flags passed to the instance at startup.
@@ -1966,7 +1967,7 @@ function Sqladmin(options) {
  * @property {string} dataDiskType The type of data disk. Only supported for Second Generation instances. The default type is PD_SSD. Applies only to Second Generation instances.
  * @property {sqladmin(v1beta4).IpConfiguration} ipConfiguration The settings for IP Management. This allows to enable or disable the instance IP and manage which external networks can connect to the instance. The IPv4 address cannot be disabled for Second Generation instances.
  * @property {string} kind This is always sql#settings.
- * @property {sqladmin(v1beta4).LocationPreference} locationPreference The location preference settings. This allows the instance to be located as near as possible to either an App Engine app or GCE zone for better performance. App Engine co-location is only applicable to First Generation instances.
+ * @property {sqladmin(v1beta4).LocationPreference} locationPreference The location preference settings. This allows the instance to be located as near as possible to either an App Engine app or Compute Engine zone for better performance. App Engine co-location is only applicable to First Generation instances.
  * @property {sqladmin(v1beta4).MaintenanceWindow} maintenanceWindow The maintenance window for this instance. This specifies when the instance may be restarted for maintenance purposes. Applies only to Second Generation instances.
  * @property {string} pricingPlan The pricing plan for this instance. This can be either PER_USE or PACKAGE. Only PER_USE is supported for Second Generation instances.
  * @property {string} replicationType The type of replication this instance uses. This can be either ASYNCHRONOUS or SYNCHRONOUS. This property is only applicable to First Generation instances.
@@ -2013,7 +2014,7 @@ function Sqladmin(options) {
  * @typedef SslCertsInsertResponse
  * @memberOf! sqladmin(v1beta4)
  * @type object
- * @property {sqladmin(v1beta4).SslCertDetail} clientCert The new client certificate and private key. The new certificate will not work until the instance is restarted for First Generation instances.
+ * @property {sqladmin(v1beta4).SslCertDetail} clientCert The new client certificate and private key. For First Generation instances, the new certificate does not take effect until the instance is restarted.
  * @property {string} kind This is always sql#sslCertsInsert.
  * @property {sqladmin(v1beta4).Operation} operation The operation to track the ssl certs insert request.
  * @property {sqladmin(v1beta4).SslCert} serverCaCert The server Certificate Authority&#39;s certificate. If this is missing you can force a new one to be generated by calling resetSslConfig method on instances resource.

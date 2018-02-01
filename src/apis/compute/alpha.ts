@@ -8014,11 +8014,9 @@ function Compute(options) {
   self.instanceTemplates = {
     /**
      * compute.instanceTemplates.delete
-     * @desc Deletes the specified instance template. If you delete an instance
-     * template that is being referenced from another instance group, the
-     * instance group will not be able to create or recreate virtual machine
-     * instances. Deleting an instance template is permanent and cannot be
-     * undone.
+     * @desc Deletes the specified instance template. Deleting an instance
+     * template is permanent and cannot be undone. It's not possible to delete
+     * templates which are in use by an instance group.
      * @alias compute.instanceTemplates.delete
      * @memberOf! compute(alpha)
      *
@@ -18791,7 +18789,7 @@ function Compute(options) {
  * @memberOf! compute(alpha)
  * @type object
  * @property {integer} acceleratorCount The number of the guest accelerator cards exposed to this instance.
- * @property {string} acceleratorType Full or partial URL of the accelerator type resource to expose to this instance.
+ * @property {string} acceleratorType Full or partial URL of the accelerator type resource to attach to this instance. If you are creating an instance template, specify only the accelerator name.
  */
 /**
  * @typedef AcceleratorType
@@ -18935,6 +18933,7 @@ function Compute(options) {
  * @property {string} diskSizeGb Specifies the size of the disk in base-2 GB.
  * @property {string} diskStorageType [Deprecated] Storage type of the disk.
  * @property {string} diskType Specifies the disk type to use to create the instance. If not specified, the default is pd-standard, specified using the full URL. For example:  https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/pd-standard   Other values include pd-ssd and local-ssd. If you define this field, you can provide either the full or partial URL. For example, the following are valid values:   - https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType  - projects/project/zones/zone/diskTypes/diskType  - zones/zone/diskTypes/diskType  Note that for InstanceTemplate, this is the name of the disk type, not URL.
+ * @property {object} labels Labels to apply to this disk. These can be later modified by the disks.setLabels method. This field is only applicable for persistent disks.
  * @property {string} sourceImage The source image to create this disk. When creating a new instance, one of initializeParams.sourceImage or disks.source is required except for local SSD.  To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-8 to use the latest Debian 8 image:  projects/debian-cloud/global/images/family/debian-8   Alternatively, use a specific version of a public operating system image:  projects/debian-cloud/global/images/debian-8-jessie-vYYYYMMDD   To create a disk with a custom image that you created, specify the image name in the following format:  global/images/my-custom-image   You can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name:  global/images/family/my-image-family   If the source image is deleted later, this field will not be set.
  * @property {compute(alpha).CustomerEncryptionKey} sourceImageEncryptionKey The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.  Instance templates do not store customer-supplied encryption keys, so you cannot create disks for instances in a managed instance group if the source images are encrypted with your own keys.
  */
@@ -19399,9 +19398,9 @@ function Compute(options) {
  * @memberOf! compute(alpha)
  * @type object
  * @property {boolean} autoDelete Specifies whether the disk will be auto-deleted when the instance is deleted (but not when the disk is detached from the instance).
+ * @property {string} customImage The custom source image to be used to restore this disk when instantiating this instance template.
  * @property {string} deviceName Specifies the device name of the disk to which the configurations apply to.
  * @property {string} instantiateFrom Specifies whether to include the disk and what image to use.
- * @property {string} sourceImage The custom source image to be used to restore this disk when instantiating this instance template.
  */
 /**
  * @typedef DiskList
@@ -19954,6 +19953,7 @@ function Compute(options) {
  * @property {string} minCpuPlatform Specifies a minimum CPU platform for the VM instance. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: &quot;Intel Haswell&quot; or minCpuPlatform: &quot;Intel Sandy Bridge&quot;.
  * @property {string} name The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {compute(alpha).NetworkInterface[]} networkInterfaces An array of network configurations for this instance. These specify how interfaces are configured to interact with other network services, such as connecting to the internet. Multiple interfaces are supported per instance.
+ * @property {string} preservedStateSizeGb Total amount of preserved state for SUSPENDED instances. Read-only in the api.
  * @property {compute(alpha).Scheduling} scheduling Sets the scheduling options for this instance.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  * @property {compute(alpha).ServiceAccount[]} serviceAccounts A list of service accounts, with their specified scopes, authorized for this instance. Only one service account per VM instance is supported.  Service accounts generate access tokens that can be accessed through the metadata server and used to authenticate applications on the instance. See Service Accounts for more information.
@@ -20803,7 +20803,8 @@ function Compute(options) {
  * @typedef ManagedInstanceOverride
  * @memberOf! compute(alpha)
  * @type object
- * @property {compute(alpha).ManagedInstanceOverrideDiskOverride[]} disks Disk overrides defined for this instance
+ * @property {compute(alpha).ManagedInstanceOverrideDiskOverride[]} disks Disk overrides defined for this instance. According to documentation the maximum number of disks attached to an instance is 128: https://cloud.google.com/compute/docs/disks/ However, compute API defines the limit at 140, so this is what we check.
+ * @property {object[]} metadata Metadata overrides defined for this instance. TODO(b/69785416) validate the total length is &lt;9 KB
  * @property {string} origin [Output Only] Indicates where does the override come from.
  */
 /**
@@ -21711,11 +21712,16 @@ function Compute(options) {
  * @property {string} certificate A local certificate file. The certificate must be in PEM format. The certificate chain must be no greater than 5 certs long. The chain must include at least one intermediate cert.
  * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+ * @property {string} expiryTime [Output Only] Expiry time of the certificate. RFC3339
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of the resource. Always compute#sslCertificate for SSL certificates.
+ * @property {compute(alpha).SslCertificateManagedSslCertificate} managed Configuration and status of a managed SSL certificate.
  * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} privateKey A write-only private key in PEM format. Only insert requests will include this field.
  * @property {string} selfLink [Output only] Server-defined URL for the resource.
+ * @property {compute(alpha).SslCertificateSelfManagedSslCertificate} selfManaged Configuration and status of a self-managed SSL certificate.
+ * @property {string[]} subjectAlternativeNames [Output Only] Domains associated with the certificate via Subject Alternative Name.
+ * @property {string} type (Optional) Specifies the type of SSL certificate, either &quot;SELF_MANAGED&quot; or &quot;MANAGED&quot;. If not specified, the certificate is self-managed and the fields certificate and private_key are used.
  */
 /**
  * @typedef SslCertificateList
@@ -21727,6 +21733,21 @@ function Compute(options) {
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  * @property {object} warning [Output Only] Informational warning message.
+ */
+/**
+ * @typedef SslCertificateManagedSslCertificate
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string[]} domains The domains for which a managed SSL certificate will be generated. Currently only single-domain certs are supported.
+ * @property {object} domainStatus [Output only] Detailed statuses of the domains specified for managed certificate resource.
+ * @property {string} status [Output only] Status of the managed certificate resource.
+ */
+/**
+ * @typedef SslCertificateSelfManagedSslCertificate
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} certificate A local certificate file. The certificate must be in PEM format. The certificate chain must be no greater than 5 certs long. The chain must include at least one intermediate cert.
+ * @property {string} privateKey A write-only private key in PEM format. Only insert requests will include this field.
  */
 /**
  * @typedef SSLHealthCheck

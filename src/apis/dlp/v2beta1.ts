@@ -919,7 +919,7 @@ function Dlp(options) {
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1InfoType} infoType The type of content that might have been found. Provided if requested by the `InspectConfig`.
  * @property {string} likelihood Estimate of how likely it is that the `info_type` is correct.
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Location} location Where the content was found.
- * @property {string} quote The content that was found. Even if the content is not textual, it may be converted to a textual representation here. Provided if requested by the `InspectConfig`.
+ * @property {string} quote The content that was found. Even if the content is not textual, it may be converted to a textual representation here. Provided if requested by the `InspectConfig` and the finding is less than or equal to 4096 bytes long. If the finding exceeds 4096 bytes in length, the quote may be omitted.
  */
 /**
  * @typedef GooglePrivacyDlpV2beta1FixedSizeBucketingConfig

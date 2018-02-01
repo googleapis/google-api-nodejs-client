@@ -419,7 +419,6 @@ function Serviceuser(options) {
  * @property {string} patch Used for updating a resource.
  * @property {string} post Used for creating a resource.
  * @property {string} put Used for updating a resource.
- * @property {string} responseBody The name of the response field whose value is mapped to the HTTP body of response. Other response fields are ignored. This field is optional. When not set, the response message will be used as HTTP body of response. NOTE: the referred field must be not a repeated field and must be present at the top-level of response message type.
  * @property {string} selector Selects methods to which this rule applies.  Refer to selector for syntax details.
  */
 /**

@@ -2155,6 +2155,7 @@ function Appengine(options) {
  * @property {appengine(v1).Resources} resources Machine resources for this version. Only applicable for VM runtimes.
  * @property {string} runtime Desired runtime. Example: python27.
  * @property {string} runtimeApiVersion The version of the API in the given runtime environment. Please see the app.yaml reference for valid values at https://cloud.google.com/appengine/docs/standard/&lt;language&gt;/config/appref
+ * @property {string} runtimeChannel The channel of the runtime to use. Only available for some runtimes. Defaults to the default channel.
  * @property {string} servingStatus Current serving status of this version. Only the versions with a SERVING status create instances and can be billed.SERVING_STATUS_UNSPECIFIED is an invalid value. Defaults to SERVING.
  * @property {boolean} threadsafe Whether multiple requests can be dispatched to this version at once.
  * @property {string} versionUrl Serving URL for this version. Example: &quot;https://myversion-dot-myservice-dot-myapp.appspot.com&quot;@OutputOnly
