@@ -1320,7 +1320,7 @@ function Monitoring(options) {
               * @param {string=} params.interval.endTime Required. The end of the time interval.
               * @param {string=} params.interval.startTime Optional. The beginning of the time interval. The default value for the start time is the end time. The start time must not be later than the end time.
               * @param {string} params.name The project on which to execute the request. The format is "projects/{project_id_or_number}".
-              * @param {string=} params.orderBy Specifies the order in which the points of the time series should be returned. By default, results are not ordered. Currently, this field must be left blank.
+              * @param {string=} params.orderBy Unsupported: must be left blank. The points in each time series are returned in reverse time order.
               * @param {integer=} params.pageSize A positive number that is the maximum number of results to return. When view field sets to FULL, it limits the number of Points server will return; if view field is HEADERS, it limits the number of TimeSeries server will return.
               * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
               * @param {string=} params.view Specifies which information is returned about the time series.
@@ -1361,7 +1361,7 @@ function Monitoring(options) {
            * @memberOf! monitoring(v3)
            *
            * @param {object} params Parameters for request
-           * @param {string} params.parent The project in which to create the uptime check. The format is:projects/[PROJECT_ID].
+           * @param {string} params.parent The project in which to create the uptime check. The formatis projects/[PROJECT_ID].
            * @param {monitoring(v3).UptimeCheckConfig} params.resource Request body data
            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
            * @param {callback} callback The callback that handles the response.
@@ -1399,7 +1399,7 @@ function Monitoring(options) {
               * @memberOf! monitoring(v3)
               *
               * @param {object} params Parameters for request
-              * @param {string} params.name The uptime check configuration to delete. The format isprojects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].
+              * @param {string} params.name The uptime check configuration to delete. The formatis projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].
               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
@@ -1432,7 +1432,7 @@ function Monitoring(options) {
               * @memberOf! monitoring(v3)
               *
               * @param {object} params Parameters for request
-              * @param {string} params.name The uptime check configuration to retrieve. The format isprojects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].
+              * @param {string} params.name The uptime check configuration to retrieve. The formatis projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].
               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
@@ -1468,7 +1468,7 @@ function Monitoring(options) {
               * @param {object} params Parameters for request
               * @param {integer=} params.pageSize The maximum number of results to return in a single response. The server may further constrain the maximum number of results returned in a single page. If the page_size is <=0, the server will decide the number of results to be returned.
               * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return more results from the previous method call.
-              * @param {string} params.parent The project whose uptime check configurations are listed. The format isprojects/[PROJECT_ID].
+              * @param {string} params.parent The project whose uptime check configurations are listed. The formatis projects/[PROJECT_ID].
               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
@@ -1902,7 +1902,7 @@ function Monitoring(options) {
  * @property {monitoring(v3).MonitoredResourceMetadata} metadata Output only. The associated monitored resource metadata. When reading a a timeseries, this field will include metadata labels that are explicitly named in the reduction. When creating a timeseries, this field is ignored.
  * @property {monitoring(v3).Metric} metric The associated metric. A fully-specified metric used to identify the time series.
  * @property {string} metricKind The metric kind of the time series. When listing time series, this metric kind might be different from the metric kind of the associated metric if this time series is an alignment or reduction of other time series.When creating a time series, this field is optional. If present, it must be the same as the metric kind of the associated metric. If the associated metric&#39;s descriptor must be auto-created, then this field specifies the metric kind of the new descriptor and must be either GAUGE (the default) or CUMULATIVE.
- * @property {monitoring(v3).Point[]} points The data points of this time series. When listing time series, the order of the points is specified by the list method.When creating a time series, this field must contain exactly one point and the point&#39;s type must be the same as the value type of the associated metric. If the associated metric&#39;s descriptor must be auto-created, then the value type of the descriptor is determined by the point&#39;s type, which must be BOOL, INT64, DOUBLE, or DISTRIBUTION.
+ * @property {monitoring(v3).Point[]} points The data points of this time series. When listing time series, points are returned in reverse time order.When creating a time series, this field must contain exactly one point and the point&#39;s type must be the same as the value type of the associated metric. If the associated metric&#39;s descriptor must be auto-created, then the value type of the descriptor is determined by the point&#39;s type, which must be BOOL, INT64, DOUBLE, or DISTRIBUTION.
  * @property {monitoring(v3).MonitoredResource} resource The associated monitored resource. Custom metrics can use only certain monitored resource types in their time series data.
  * @property {string} valueType The value type of the time series. When listing time series, this value type might be different from the value type of the associated metric if this time series is an alignment or reduction of other time series.When creating a time series, this field is optional. If present, it must be the same as the type of the data in the points field.
  */

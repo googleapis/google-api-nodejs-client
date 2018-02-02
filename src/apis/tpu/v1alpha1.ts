@@ -246,7 +246,7 @@ function Tpu(options) {
           return createAPIRequest(parameters, callback);
         }, /**
             * tpu.projects.locations.nodes.reimage
-            * @desc Reimage a node's OS.
+            * @desc Reimages a node's OS.
             * @alias tpu.projects.locations.nodes.reimage
             * @memberOf! tpu(v1alpha1)
             *
@@ -302,6 +302,74 @@ function Tpu(options) {
             options: Object.assign(
                 {
                   url: (rootUrl + '/v1alpha1/{name}:reset')
+                           .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'POST'
+                },
+                options),
+            params,
+            requiredParams: ['name'],
+            pathParams: ['name'],
+            context: self
+          };
+          return createAPIRequest(parameters, callback);
+        }, /**
+            * tpu.projects.locations.nodes.start
+            * @desc Starts a node.
+            * @alias tpu.projects.locations.nodes.start
+            * @memberOf! tpu(v1alpha1)
+            *
+            * @param {object} params Parameters for request
+            * @param {string} params.name The resource name.
+            * @param {tpu(v1alpha1).StartNodeRequest} params.resource Request body data
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        start(params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url: (rootUrl + '/v1alpha1/{name}:start')
+                           .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'POST'
+                },
+                options),
+            params,
+            requiredParams: ['name'],
+            pathParams: ['name'],
+            context: self
+          };
+          return createAPIRequest(parameters, callback);
+        }, /**
+            * tpu.projects.locations.nodes.stop
+            * @desc Stops a node.
+            * @alias tpu.projects.locations.nodes.stop
+            * @memberOf! tpu(v1alpha1)
+            *
+            * @param {object} params Parameters for request
+            * @param {string} params.name The resource name.
+            * @param {tpu(v1alpha1).StopNodeRequest} params.resource Request body data
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        stop(params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url: (rootUrl + '/v1alpha1/{name}:stop')
                            .replace(/([^:]\/)\/+/g, '$1'),
                   method: 'POST'
                 },
@@ -476,6 +544,80 @@ function Tpu(options) {
           return createAPIRequest(parameters, callback);
         }
 
+      },
+      tensorflowVersions: {
+        /**
+         * tpu.projects.locations.tensorflowVersions.get
+         * @desc Gets TensorFlow Version.
+         * @alias tpu.projects.locations.tensorflowVersions.get
+         * @memberOf! tpu(v1alpha1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.name The resource name.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        get(params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url: (rootUrl + '/v1alpha1/{name}')
+                           .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'GET'
+                },
+                options),
+            params,
+            requiredParams: ['name'],
+            pathParams: ['name'],
+            context: self
+          };
+          return createAPIRequest(parameters, callback);
+        }, /**
+            * tpu.projects.locations.tensorflowVersions.list
+            * @desc Lists TensorFlow versions supported by this API.
+            * @alias tpu.projects.locations.tensorflowVersions.list
+            * @memberOf! tpu(v1alpha1)
+            *
+            * @param {object} params Parameters for request
+            * @param {string=} params.filter List filter.
+            * @param {string=} params.orderBy Sort results.
+            * @param {integer=} params.pageSize The maximum number of items to return.
+            * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
+            * @param {string} params.parent The parent resource name.
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        list(params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url: (rootUrl + '/v1alpha1/{parent}/tensorflowVersions')
+                           .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'GET'
+                },
+                options),
+            params,
+            requiredParams: ['parent'],
+            pathParams: ['parent'],
+            context: self
+          };
+          return createAPIRequest(parameters, callback);
+        }
+
       }
     }
   };
@@ -507,6 +649,13 @@ function Tpu(options) {
  * @property {tpu(v1alpha1).Operation[]} operations A list of operations that matches the specified filter in the request.
  */
 /**
+ * @typedef ListTensorFlowVersionsResponse
+ * @memberOf! tpu(v1alpha1)
+ * @type object
+ * @property {string} nextPageToken The next page token or empty if none.
+ * @property {tpu(v1alpha1).TensorFlowVersion[]} tensorflowVersions The listed nodes.
+ */
+/**
  * @typedef Location
  * @memberOf! tpu(v1alpha1)
  * @type object
@@ -527,16 +676,17 @@ function Tpu(options) {
  * @memberOf! tpu(v1alpha1)
  * @type object
  * @property {string} acceleratorType The type of hardware accelerators associated with this node. Required.
- * @property {string} cidrBlock The CIDR block that the TPU node will use when selecting //an IP address. This CIDR block must be a /29 block; the GCE networks API forbids a smaller block, and using a larger block would be wasteful (a node can only consume one IP address). Errors will occur if the CIDR block has already been used for a currently existing TPU node, the CIDR block conflicts with any subnetworks in the user&#39;s provided network, or the provided network is peered with another network that is using that CIDR block. Required.
+ * @property {string} cidrBlock The CIDR block that the TPU node will use when selecting an IP address. This CIDR block must be a /29 block; the Compute Engine networks API forbids a smaller block, and using a larger block would be wasteful (a node can only consume one IP address). Errors will occur if the CIDR block has already been used for a currently existing TPU node, the CIDR block conflicts with any subnetworks in the user&#39;s provided network, or the provided network is peered with another network that is using that CIDR block. Required.
  * @property {string} createTime Output only. The time when the node was created.
  * @property {string} description The user-supplied description of the TPU. Maximum of 512 characters.
  * @property {string} health The health status of the TPU node.
  * @property {string} healthDescription Output only. If this field is populated, it contains a description of why the TPU Node is unhealthy.
- * @property {string} ipAddress Output only. DEPRECATED! Use network_endpoints instead. The network address for the TPU Node as visible to GCE instances.
+ * @property {string} ipAddress Output only. DEPRECATED! Use network_endpoints instead. The network address for the TPU Node as visible to Compute Engine instances.
+ * @property {object} labels Resource labels to represent user-provided metadata.
  * @property {string} name Output only. The immutable name of the TPU
- * @property {string} network The name of a network they wish to peer the TPU node to. It must be a preexisting GCE network inside of the project on which this API has been activated. If none is provided, &quot;default&quot; will be used.
+ * @property {string} network The name of a network they wish to peer the TPU node to. It must be a preexisting Compute Engine network inside of the project on which this API has been activated. If none is provided, &quot;default&quot; will be used.
  * @property {tpu(v1alpha1).NetworkEndpoint[]} networkEndpoints Output only. The network endpoints where TPU workers can be accessed and sent work. It is recommended that Tensorflow clients of the node reach out to the 0th entry in this map first.
- * @property {string} port Output only. DEPRECATED! Use network_endpoints instead. The network port for the TPU Node as visible to GCE instances.
+ * @property {string} port Output only. DEPRECATED! Use network_endpoints instead. The network port for the TPU Node as visible to Compute Engine instances.
  * @property {string} serviceAccount Output only. The service account used to run the tensor flow services within the node. To share resources, including Google Cloud Storage data, with the Tensorflow job running in the Node, this account must have permissions to that data.
  * @property {string} state Output only. The current state for the TPU Node.
  * @property {string} tensorflowVersion The version of Tensorflow running in the Node. Required.
@@ -575,12 +725,29 @@ function Tpu(options) {
  * @type object
  */
 /**
+ * @typedef StartNodeRequest
+ * @memberOf! tpu(v1alpha1)
+ * @type object
+ */
+/**
  * @typedef Status
  * @memberOf! tpu(v1alpha1)
  * @type object
  * @property {integer} code The status code, which should be an enum value of google.rpc.Code.
  * @property {object[]} details A list of messages that carry the error details.  There is a common set of message types for APIs to use.
  * @property {string} message A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
+ */
+/**
+ * @typedef StopNodeRequest
+ * @memberOf! tpu(v1alpha1)
+ * @type object
+ */
+/**
+ * @typedef TensorFlowVersion
+ * @memberOf! tpu(v1alpha1)
+ * @type object
+ * @property {string} name The resource name.
+ * @property {string} version the tensorflow version.
  */
 
 export = Tpu;

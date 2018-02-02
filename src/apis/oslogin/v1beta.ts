@@ -263,10 +263,9 @@ function Oslogin(options) {
  * @typedef LoginProfile
  * @memberOf! oslogin(v1beta)
  * @type object
- * @property {string} name The primary email address that uniquely identifies the user.
+ * @property {string} name A unique user ID.
  * @property {oslogin(v1beta).PosixAccount[]} posixAccounts The list of POSIX accounts associated with the user.
  * @property {object} sshPublicKeys A map from SSH public key fingerprint to the associated key object.
- * @property {boolean} suspended Indicates if the user is suspended. A suspended user cannot log in but their profile information is retained.
  */
 /**
  * @typedef PosixAccount

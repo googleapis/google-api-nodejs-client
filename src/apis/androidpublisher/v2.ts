@@ -1348,7 +1348,7 @@ function Androidpublisher(options) {
        * @param {object} params Parameters for request
        * @param {string} params.editId Unique identifier for this edit.
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param {string} params.track
+       * @param {string} params.track The track to read or modify. Acceptable values are: "alpha", "beta", "production" or "rollout".
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -1384,7 +1384,7 @@ function Androidpublisher(options) {
           * @param {object} params Parameters for request
           * @param {string} params.editId Unique identifier for this edit.
           * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-          * @param {string} params.track
+          * @param {string} params.track The track to read or modify. Acceptable values are: "alpha", "beta", "production" or "rollout".
           * @param {androidpublisher(v2).Testers} params.resource Request body data
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
           * @param {callback} callback The callback that handles the response.
@@ -1421,7 +1421,7 @@ function Androidpublisher(options) {
           * @param {object} params Parameters for request
           * @param {string} params.editId Unique identifier for this edit.
           * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-          * @param {string} params.track
+          * @param {string} params.track The track to read or modify. Acceptable values are: "alpha", "beta", "production" or "rollout".
           * @param {androidpublisher(v2).Testers} params.resource Request body data
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
           * @param {callback} callback The callback that handles the response.
@@ -1464,7 +1464,7 @@ function Androidpublisher(options) {
        * @param {object} params Parameters for request
        * @param {string} params.editId Unique identifier for this edit.
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param {string} params.track The track type to read or modify.
+       * @param {string} params.track The track to read or modify. Acceptable values are: "alpha", "beta", "production" or "rollout".
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -1540,7 +1540,7 @@ function Androidpublisher(options) {
           * @param {object} params Parameters for request
           * @param {string} params.editId Unique identifier for this edit.
           * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-          * @param {string} params.track The track type to read or modify.
+          * @param {string} params.track The track to read or modify. Acceptable values are: "alpha", "beta", "production" or "rollout".
           * @param {androidpublisher(v2).Track} params.resource Request body data
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
           * @param {callback} callback The callback that handles the response.
@@ -1580,7 +1580,7 @@ function Androidpublisher(options) {
           * @param {object} params Parameters for request
           * @param {string} params.editId Unique identifier for this edit.
           * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-          * @param {string} params.track The track type to read or modify.
+          * @param {string} params.track The track to read or modify. Acceptable values are: "alpha", "beta", "production" or "rollout".
           * @param {androidpublisher(v2).Track} params.resource Request body data
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
           * @param {callback} callback The callback that handles the response.
@@ -2672,7 +2672,7 @@ function Androidpublisher(options) {
  * @typedef Track
  * @memberOf! androidpublisher(v2)
  * @type object
- * @property {string} track
+ * @property {string} track Identifier for this track. One of &quot;alpha&quot;, &quot;beta&quot;, &quot;production&quot; or &quot;rollout&quot;.
  * @property {number} userFraction
  * @property {integer[]} versionCodes
  */

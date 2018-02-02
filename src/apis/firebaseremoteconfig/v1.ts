@@ -137,7 +137,7 @@ function Firebaseremoteconfig(options) {
  * @typedef RemoteConfigCondition
  * @memberOf! firebaseremoteconfig(v1)
  * @type object
- * @property {string} description Optional. A description for this Condition. Length must be less than or equal to 100 characters (or more precisely, unicode code points, which is defined in java/com/google/wireless/android/config/ConstsExporter.java). A description may contain any Unicode characters
+ * @property {string} description DO NOT USE. Implementation removed and will not be added unless requested. A description for this Condition. Length must be less than or equal to 100 characters (or more precisely, unicode code points, which is defined in java/com/google/wireless/android/config/ConstsExporter.java). A description may contain any Unicode characters
  * @property {string} expression Required.
  * @property {string} name Required. A non empty and unique name of this condition.
  * @property {string} tagColor Optional. The display (tag) color of this condition. This serves as part of a tag (in the future, we may add tag text as well as tag color, but that is not yet implemented in the UI). This value has no affect on the semantics of the delivered config and it is ignored by the backend, except for passing it through write/read requests. Not having this value or having the &quot;CONDITION_DISPLAY_COLOR_UNSPECIFIED&quot; value (0) have the same meaning:  Let the UI choose any valid color when displaying the condition.

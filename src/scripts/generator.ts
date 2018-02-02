@@ -111,7 +111,11 @@ export class Generator {
     this.env.addFilter('getPathParams', this.getPathParams);
     this.env.addFilter('getSafeParamName', this.getSafeParamName);
     this.env.addFilter('cleanPaths', (str) => {
-      return str ? str.replace(/\/\*\//gi, '/x/').replace(/\/\*`/gi, '/x') : '';
+      return str ? str.replace(/\/\*\//gi, '/x/')
+                       .replace(/\/\*`/gi, '/x')
+                       .replace(/\*\//gi, 'x/')
+                       .replace(/\\n/gi, 'x/') :
+                   '';
     });
   }
 

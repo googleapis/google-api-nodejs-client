@@ -150,15 +150,12 @@ function Dataproc(options) {
                 * dataproc.projects.locations.workflowTemplates.instantiate
                 * @desc Instantiates a template and begins execution.The
                 * returned Operation can be used to track execution of workflow
-                * by polling
-                * google.cloud.dataproc.v1beta2.OperationService.GetOperation.
-                * The Operation will complete when entire workflow is
-                * finished.The running workflow can be aborted via
-                * google.cloud.dataproc.v1beta2.OperationService.CancelOperation.The
-                * google.cloud.dataproc.v1beta2.Operation.metadata will always
-                * be google.cloud.dataproc.v1beta2.WorkflowMetadata.The
-                * google.cloud.dataproc.v1beta2.Operation.result will always be
-                * google.protobuf.Empty.
+                * by polling operations.get. The Operation will complete when
+                * entire workflow is finished.The running workflow can be
+                * aborted via operations.cancel. This will cause any inflight
+                * jobs to be cancelled and workflow-owned clusters to be
+                * deleted.The Operation.metadata will be WorkflowMetadata.On
+                * successful completion, Operation.response will be Empty.
                 * @alias
                 * dataproc.projects.locations.workflowTemplates.instantiate
                 * @memberOf! dataproc(v1beta2)
@@ -189,6 +186,55 @@ function Dataproc(options) {
                 params,
                 requiredParams: ['name'],
                 pathParams: ['name'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dataproc.projects.locations.workflowTemplates.instantiateInline
+                * @desc Instantiates a template and begins execution.This method
+                * is equivalent to executing the sequence
+                * CreateWorkflowTemplate, InstantiateWorkflowTemplate,
+                * DeleteWorkflowTemplate.The returned Operation can be used to
+                * track execution of workflow by polling operations.get. The
+                * Operation will complete when entire workflow is finished.The
+                * running workflow can be aborted via operations.cancel. This
+                * will cause any inflight jobs to be cancelled and
+                * workflow-owned clusters to be deleted.The Operation.metadata
+                * will be WorkflowMetadata.On successful completion,
+                * Operation.response will be Empty.
+                * @alias
+                * dataproc.projects.locations.workflowTemplates.instantiateInline
+                * @memberOf! dataproc(v1beta2)
+                *
+                * @param {object} params Parameters for request
+                * @param {string=} params.instanceId Optional. A tag that prevents multiple concurrent workflow instances with the same tag from running. This mitigates risk of concurrent instances started due to retries.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+                * @param {string} params.parent Required. The "resource name" of the workflow template region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+                * @param {dataproc(v1beta2).WorkflowTemplate} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            instantiateInline(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta2/{parent}/workflowTemplates:instantiateInline')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['parent'],
+                pathParams: ['parent'],
                 context: self
               };
               return createAPIRequest(parameters, callback);
@@ -270,1018 +316,1050 @@ function Dataproc(options) {
 
           }
         },
-        regions:
-            {
-              clusters: {
-                /**
-                 * dataproc.projects.regions.clusters.create
-                 * @desc Creates a cluster in a project.
-                 * @alias dataproc.projects.regions.clusters.create
-                 * @memberOf! dataproc(v1beta2)
-                 *
-                 * @param {object} params Parameters for request
-                 * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the cluster belongs to.
-                 * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
-                 * @param {dataproc(v1beta2).Cluster} params.resource Request body data
-                 * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                 * @param {callback} callback The callback that handles the response.
-                 * @return {object} Request object
-                 */
-                create(params, options, callback) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://dataproc.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url:
-                              (rootUrl +
-                               '/v1beta2/projects/{projectId}/regions/{region}/clusters')
-                                  .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'POST'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['projectId', 'region'],
-                    pathParams: ['projectId', 'region'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback);
-                }, /**
-                    * dataproc.projects.regions.clusters.delete
-                    * @desc Deletes a cluster in a project.
-                    * @alias dataproc.projects.regions.clusters.delete
-                    * @memberOf! dataproc(v1beta2)
-                    *
-                    * @param {object} params Parameters for request
-                    * @param {string} params.clusterName Required. The cluster name.
-                    * @param {string=} params.clusterUuid Optional. Specifying the cluster_uuid means the RPC should fail (with error NOT_FOUND) if cluster with specified UUID does not exist.
-                    * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the cluster belongs to.
-                    * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
-                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                    * @param {callback} callback The callback that handles the response.
-                    * @return {object} Request object
-                    */
-                delete (params, options, callback) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://dataproc.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url:
-                              (rootUrl +
-                               '/v1beta2/projects/{projectId}/regions/{region}/clusters/{clusterName}')
-                                  .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'DELETE'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['projectId', 'region', 'clusterName'],
-                    pathParams: ['clusterName', 'projectId', 'region'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback);
-                }, /**
-                    * dataproc.projects.regions.clusters.diagnose
-                    * @desc Gets cluster diagnostic information. After the
-                    * operation completes, the Operation.response field contains
-                    * DiagnoseClusterOutputLocation.
-                    * @alias dataproc.projects.regions.clusters.diagnose
-                    * @memberOf! dataproc(v1beta2)
-                    *
-                    * @param {object} params Parameters for request
-                    * @param {string} params.clusterName Required. The cluster name.
-                    * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the cluster belongs to.
-                    * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
-                    * @param {dataproc(v1beta2).DiagnoseClusterRequest} params.resource Request body data
-                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                    * @param {callback} callback The callback that handles the response.
-                    * @return {object} Request object
-                    */
-                diagnose(params, options, callback) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://dataproc.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url:
-                              (rootUrl +
-                               '/v1beta2/projects/{projectId}/regions/{region}/clusters/{clusterName}:diagnose')
-                                  .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'POST'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['projectId', 'region', 'clusterName'],
-                    pathParams: ['clusterName', 'projectId', 'region'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback);
-                }, /**
-                    * dataproc.projects.regions.clusters.get
-                    * @desc Gets the resource representation for a cluster in a
-                    * project.
-                    * @alias dataproc.projects.regions.clusters.get
-                    * @memberOf! dataproc(v1beta2)
-                    *
-                    * @param {object} params Parameters for request
-                    * @param {string} params.clusterName Required. The cluster name.
-                    * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the cluster belongs to.
-                    * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
-                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                    * @param {callback} callback The callback that handles the response.
-                    * @return {object} Request object
-                    */
-                get(params, options, callback) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://dataproc.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url:
-                              (rootUrl +
-                               '/v1beta2/projects/{projectId}/regions/{region}/clusters/{clusterName}')
-                                  .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'GET'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['projectId', 'region', 'clusterName'],
-                    pathParams: ['clusterName', 'projectId', 'region'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback);
-                }, /**
-                    * dataproc.projects.regions.clusters.getIamPolicy
-                    * @desc Gets the access control policy for a resource.
-                    * Returns an empty policy if the resource exists and does
-                    * not have a policy set.
-                    * @alias dataproc.projects.regions.clusters.getIamPolicy
-                    * @memberOf! dataproc(v1beta2)
-                    *
-                    * @param {object} params Parameters for request
-                    * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                    * @param {callback} callback The callback that handles the response.
-                    * @return {object} Request object
-                    */
-                getIamPolicy(params, options, callback) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://dataproc.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url: (rootUrl + '/v1beta2/{resource}:getIamPolicy')
-                                   .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'GET'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['resource'],
-                    pathParams: ['resource'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback);
-                }, /**
-                    * dataproc.projects.regions.clusters.list
-                    * @desc Lists all regions/{region}/clusters in a project.
-                    * @alias dataproc.projects.regions.clusters.list
-                    * @memberOf! dataproc(v1beta2)
-                    *
-                    * @param {object} params Parameters for request
-                    * @param {string=} params.filter Optional. A filter constraining the clusters to list. Filters are case-sensitive and have the following syntax:field = value AND field = value ...where field is one of status.state, clusterName, or labels.[KEY], and [KEY] is a label key. value can be * to match all values. status.state can be one of the following: ACTIVE, INACTIVE, CREATING, RUNNING, ERROR, DELETING, or UPDATING. ACTIVE contains the CREATING, UPDATING, and RUNNING states. INACTIVE contains the DELETING and ERROR states. clusterName is the name of the cluster provided at creation time. Only the logical AND operator is supported; space-separated items are treated as having an implicit AND operator.Example filter:status.state = ACTIVE AND clusterName = mycluster AND labels.env = staging AND labels.starred = *
-                    * @param {integer=} params.pageSize Optional. The standard List page size.
-                    * @param {string=} params.pageToken Optional. The standard List page token.
-                    * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the cluster belongs to.
-                    * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
-                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                    * @param {callback} callback The callback that handles the response.
-                    * @return {object} Request object
-                    */
-                list(params, options, callback) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://dataproc.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url:
-                              (rootUrl +
-                               '/v1beta2/projects/{projectId}/regions/{region}/clusters')
-                                  .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'GET'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['projectId', 'region'],
-                    pathParams: ['projectId', 'region'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback);
-                }, /**
-                    * dataproc.projects.regions.clusters.patch
-                    * @desc Updates a cluster in a project.
-                    * @alias dataproc.projects.regions.clusters.patch
-                    * @memberOf! dataproc(v1beta2)
-                    *
-                    * @param {object} params Parameters for request
-                    * @param {string} params.clusterName Required. The cluster name.
-                    * @param {string=} params.gracefulDecommissionTimeout Optional. Timeout for graceful YARN decomissioning. Graceful decommissioning allows removing nodes from the cluster without interrupting jobs in progress. Timeout specifies how long to wait for jobs in progress to finish before forcefully removing nodes (and potentially interrupting jobs). Default timeout is 0 (for forceful decommission), and the maximum allowed timeout is 1 day.Only supported on Dataproc image versions 1.2 and higher.
-                    * @param {string} params.projectId Required. The ID of the Google Cloud Platform project the cluster belongs to.
-                    * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
-                    * @param {string=} params.updateMask Required. Specifies the path, relative to <code>Cluster</code>, of the field to update. For example, to change the number of workers in a cluster to 5, the <code>update_mask</code> parameter would be specified as <code>config.worker_config.num_instances</code>, and the PATCH request body would specify the new value, as follows: {   "config":{     "workerConfig":{       "numInstances":"5"     }   } } Similarly, to change the number of preemptible workers in a cluster to 5, the <code>update_mask</code> parameter would be <code>config.secondary_worker_config.num_instances</code>, and the PATCH request body would be set as follows: {   "config":{     "secondaryWorkerConfig":{       "numInstances":"5"     }   } } <strong>Note:</strong> currently only some fields can be updated: |Mask|Purpose| |labels|Updates labels| |config.worker_config.num_instances|Resize primary worker group| |config.secondary_worker_config.num_instances|Resize secondary worker group|
-                    * @param {dataproc(v1beta2).Cluster} params.resource Request body data
-                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                    * @param {callback} callback The callback that handles the response.
-                    * @return {object} Request object
-                    */
-                patch(params, options, callback) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://dataproc.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url:
-                              (rootUrl +
-                               '/v1beta2/projects/{projectId}/regions/{region}/clusters/{clusterName}')
-                                  .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'PATCH'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['projectId', 'region', 'clusterName'],
-                    pathParams: ['clusterName', 'projectId', 'region'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback);
-                }, /**
-                    * dataproc.projects.regions.clusters.setIamPolicy
-                    * @desc Sets the access control policy on the specified
-                    * resource. Replaces any existing policy.
-                    * @alias dataproc.projects.regions.clusters.setIamPolicy
-                    * @memberOf! dataproc(v1beta2)
-                    *
-                    * @param {object} params Parameters for request
-                    * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-                    * @param {dataproc(v1beta2).SetIamPolicyRequest} params.resource Request body data
-                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                    * @param {callback} callback The callback that handles the response.
-                    * @return {object} Request object
-                    */
-                setIamPolicy(params, options, callback) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://dataproc.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url: (rootUrl + '/v1beta2/{resource}:setIamPolicy')
-                                   .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'POST'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['resource'],
-                    pathParams: ['resource'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback);
-                }, /**
-                    * dataproc.projects.regions.clusters.testIamPermissions
-                    * @desc Returns permissions that a caller has on the
-                    * specified resource. If the resource does not exist, this
-                    * will return an empty set of permissions, not a NOT_FOUND
-                    * error.Note: This operation is designed to be used for
-                    * building permission-aware UIs and command-line tools, not
-                    * for authorization checking. This operation may "fail open"
-                    * without warning.
-                    * @alias
-                    * dataproc.projects.regions.clusters.testIamPermissions
-                    * @memberOf! dataproc(v1beta2)
-                    *
-                    * @param {object} params Parameters for request
-                    * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-                    * @param {dataproc(v1beta2).TestIamPermissionsRequest} params.resource Request body data
-                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                    * @param {callback} callback The callback that handles the response.
-                    * @return {object} Request object
-                    */
-                testIamPermissions(params, options, callback) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://dataproc.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url: (rootUrl +
-                                '/v1beta2/{resource}:testIamPermissions')
-                                   .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'POST'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['resource'],
-                    pathParams: ['resource'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback);
-                }
-
-              },
-              jobs: {
-                /**
-                 * dataproc.projects.regions.jobs.cancel
-                 * @desc Starts a job cancellation request. To access the job
-                 * resource after cancellation, call regions/{region}/jobs.list
-                 * or regions/{region}/jobs.get.
-                 * @alias dataproc.projects.regions.jobs.cancel
-                 * @memberOf! dataproc(v1beta2)
-                 *
-                 * @param {object} params Parameters for request
-                 * @param {string} params.jobId Required. The job ID.
-                 * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
-                 * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
-                 * @param {dataproc(v1beta2).CancelJobRequest} params.resource Request body data
-                 * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                 * @param {callback} callback The callback that handles the response.
-                 * @return {object} Request object
-                 */
-                cancel(params, options, callback) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://dataproc.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url:
-                              (rootUrl +
-                               '/v1beta2/projects/{projectId}/regions/{region}/jobs/{jobId}:cancel')
-                                  .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'POST'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['projectId', 'region', 'jobId'],
-                    pathParams: ['jobId', 'projectId', 'region'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback);
-                }, /**
-                    * dataproc.projects.regions.jobs.delete
-                    * @desc Deletes the job from the project. If the job is
-                    * active, the delete fails, and the response returns
-                    * FAILED_PRECONDITION.
-                    * @alias dataproc.projects.regions.jobs.delete
-                    * @memberOf! dataproc(v1beta2)
-                    *
-                    * @param {object} params Parameters for request
-                    * @param {string} params.jobId Required. The job ID.
-                    * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
-                    * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
-                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                    * @param {callback} callback The callback that handles the response.
-                    * @return {object} Request object
-                    */
-                delete (params, options, callback) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://dataproc.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url:
-                              (rootUrl +
-                               '/v1beta2/projects/{projectId}/regions/{region}/jobs/{jobId}')
-                                  .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'DELETE'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['projectId', 'region', 'jobId'],
-                    pathParams: ['jobId', 'projectId', 'region'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback);
-                }, /**
-                    * dataproc.projects.regions.jobs.get
-                    * @desc Gets the resource representation for a job in a
-                    * project.
-                    * @alias dataproc.projects.regions.jobs.get
-                    * @memberOf! dataproc(v1beta2)
-                    *
-                    * @param {object} params Parameters for request
-                    * @param {string} params.jobId Required. The job ID.
-                    * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
-                    * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
-                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                    * @param {callback} callback The callback that handles the response.
-                    * @return {object} Request object
-                    */
-                get(params, options, callback) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://dataproc.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url:
-                              (rootUrl +
-                               '/v1beta2/projects/{projectId}/regions/{region}/jobs/{jobId}')
-                                  .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'GET'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['projectId', 'region', 'jobId'],
-                    pathParams: ['jobId', 'projectId', 'region'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback);
-                }, /**
-                    * dataproc.projects.regions.jobs.list
-                    * @desc Lists regions/{region}/jobs in a project.
-                    * @alias dataproc.projects.regions.jobs.list
-                    * @memberOf! dataproc(v1beta2)
-                    *
-                    * @param {object} params Parameters for request
-                    * @param {string=} params.clusterName Optional. If set, the returned jobs list includes only jobs that were submitted to the named cluster.
-                    * @param {string=} params.filter Optional. A filter constraining the jobs to list. Filters are case-sensitive and have the following syntax:field = value AND field = value ...where field is status.state or labels.[KEY], and [KEY] is a label key. value can be * to match all values. status.state can be either ACTIVE or NON_ACTIVE. Only the logical AND operator is supported; space-separated items are treated as having an implicit AND operator.Example filter:status.state = ACTIVE AND labels.env = staging AND labels.starred = *
-                    * @param {string=} params.jobStateMatcher Optional. Specifies enumerated categories of jobs to list. (default = match ALL jobs).If filter is provided, jobStateMatcher will be ignored.
-                    * @param {integer=} params.pageSize Optional. The number of results to return in each response.
-                    * @param {string=} params.pageToken Optional. The page token, returned by a previous call, to request the next page of results.
-                    * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
-                    * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
-                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                    * @param {callback} callback The callback that handles the response.
-                    * @return {object} Request object
-                    */
-                list(params, options, callback) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://dataproc.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url:
-                              (rootUrl +
-                               '/v1beta2/projects/{projectId}/regions/{region}/jobs')
-                                  .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'GET'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['projectId', 'region'],
-                    pathParams: ['projectId', 'region'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback);
-                }, /**
-                    * dataproc.projects.regions.jobs.patch
-                    * @desc Updates a job in a project.
-                    * @alias dataproc.projects.regions.jobs.patch
-                    * @memberOf! dataproc(v1beta2)
-                    *
-                    * @param {object} params Parameters for request
-                    * @param {string} params.jobId Required. The job ID.
-                    * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
-                    * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
-                    * @param {string=} params.updateMask Required. Specifies the path, relative to <code>Job</code>, of the field to update. For example, to update the labels of a Job the <code>update_mask</code> parameter would be specified as <code>labels</code>, and the PATCH request body would specify the new value. <strong>Note:</strong> Currently, <code>labels</code> is the only field that can be updated.
-                    * @param {dataproc(v1beta2).Job} params.resource Request body data
-                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                    * @param {callback} callback The callback that handles the response.
-                    * @return {object} Request object
-                    */
-                patch(params, options, callback) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://dataproc.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url:
-                              (rootUrl +
-                               '/v1beta2/projects/{projectId}/regions/{region}/jobs/{jobId}')
-                                  .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'PATCH'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['projectId', 'region', 'jobId'],
-                    pathParams: ['jobId', 'projectId', 'region'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback);
-                }, /**
-                    * dataproc.projects.regions.jobs.submit
-                    * @desc Submits a job to a cluster.
-                    * @alias dataproc.projects.regions.jobs.submit
-                    * @memberOf! dataproc(v1beta2)
-                    *
-                    * @param {object} params Parameters for request
-                    * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
-                    * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
-                    * @param {dataproc(v1beta2).SubmitJobRequest} params.resource Request body data
-                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                    * @param {callback} callback The callback that handles the response.
-                    * @return {object} Request object
-                    */
-                submit(params, options, callback) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://dataproc.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url:
-                              (rootUrl +
-                               '/v1beta2/projects/{projectId}/regions/{region}/jobs:submit')
-                                  .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'POST'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['projectId', 'region'],
-                    pathParams: ['projectId', 'region'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback);
-                }
-
-              },
-              operations: {
-                /**
-                 * dataproc.projects.regions.operations.cancel
-                 * @desc Starts asynchronous cancellation on a long-running
-                 * operation. The server makes a best effort to cancel the
-                 * operation, but success is not guaranteed. If the server
-                 * doesn't support this method, it returns
-                 * google.rpc.Code.UNIMPLEMENTED. Clients can use
-                 * Operations.GetOperation or other methods to check whether the
-                 * cancellation succeeded or whether the operation completed
-                 * despite cancellation. On successful cancellation, the
-                 * operation is not deleted; instead, it becomes an operation
-                 * with an Operation.error value with a google.rpc.Status.code
-                 * of 1, corresponding to Code.CANCELLED.
-                 * @alias dataproc.projects.regions.operations.cancel
-                 * @memberOf! dataproc(v1beta2)
-                 *
-                 * @param {object} params Parameters for request
-                 * @param {string} params.name The name of the operation resource to be cancelled.
-                 * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                 * @param {callback} callback The callback that handles the response.
-                 * @return {object} Request object
-                 */
-                cancel(params, options, callback) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://dataproc.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url: (rootUrl + '/v1beta2/{name}:cancel')
-                                   .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'POST'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['name'],
-                    pathParams: ['name'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback);
-                }, /**
-                    * dataproc.projects.regions.operations.delete
-                    * @desc Deletes a long-running operation. This method
-                    * indicates that the client is no longer interested in the
-                    * operation result. It does not cancel the operation. If the
-                    * server doesn't support this method, it returns
-                    * google.rpc.Code.UNIMPLEMENTED.
-                    * @alias dataproc.projects.regions.operations.delete
-                    * @memberOf! dataproc(v1beta2)
-                    *
-                    * @param {object} params Parameters for request
-                    * @param {string} params.name The name of the operation resource to be deleted.
-                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                    * @param {callback} callback The callback that handles the response.
-                    * @return {object} Request object
-                    */
-                delete (params, options, callback) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://dataproc.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url: (rootUrl + '/v1beta2/{name}')
-                                   .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'DELETE'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['name'],
-                    pathParams: ['name'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback);
-                }, /**
-                    * dataproc.projects.regions.operations.get
-                    * @desc Gets the latest state of a long-running operation.
-                    * Clients can use this method to poll the operation result
-                    * at intervals as recommended by the API service.
-                    * @alias dataproc.projects.regions.operations.get
-                    * @memberOf! dataproc(v1beta2)
-                    *
-                    * @param {object} params Parameters for request
-                    * @param {string} params.name The name of the operation resource.
-                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                    * @param {callback} callback The callback that handles the response.
-                    * @return {object} Request object
-                    */
-                get(params, options, callback) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://dataproc.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url: (rootUrl + '/v1beta2/{name}')
-                                   .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'GET'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['name'],
-                    pathParams: ['name'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback);
-                }, /**
-                    * dataproc.projects.regions.operations.list
-                    * @desc Lists operations that match the specified filter in
-                    * the request. If the server doesn't support this method, it
-                    * returns UNIMPLEMENTED.NOTE: the name binding allows API
-                    * services to override the binding to use different resource
-                    * name schemes, such as users/x/operations. To override the
-                    * binding, API services can add a binding such as
-                    * "/v1/{name=users/x}/operations" to their service
-                    * configuration. For backwards compatibility, the default
-                    * name includes the operations collection id, however
-                    * overriding users must ensure the name binding is the
-                    * parent resource, without the operations collection id.
-                    * @alias dataproc.projects.regions.operations.list
-                    * @memberOf! dataproc(v1beta2)
-                    *
-                    * @param {object} params Parameters for request
-                    * @param {string=} params.filter The standard list filter.
-                    * @param {string} params.name The name of the operation's parent resource.
-                    * @param {integer=} params.pageSize The standard list page size.
-                    * @param {string=} params.pageToken The standard list page token.
-                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                    * @param {callback} callback The callback that handles the response.
-                    * @return {object} Request object
-                    */
-                list(params, options, callback) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://dataproc.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url: (rootUrl + '/v1beta2/{name}')
-                                   .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'GET'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['name'],
-                    pathParams: ['name'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback);
-                }
-
-              },
-              workflowTemplates:
-                  {
-                    /**
-                     * dataproc.projects.regions.workflowTemplates.create
-                     * @desc Creates new workflow template.
-                     * @alias dataproc.projects.regions.workflowTemplates.create
-                     * @memberOf! dataproc(v1beta2)
-                     *
-                     * @param {object} params Parameters for request
-                     * @param {string} params.parent Required. The "resource name" of the region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
-                     * @param {dataproc(v1beta2).WorkflowTemplate} params.resource Request body data
-                     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                     * @param {callback} callback The callback that handles the response.
-                     * @return {object} Request object
-                     */
-                    create(params, options, callback) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl =
-                          options.rootUrl || 'https://dataproc.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url: (rootUrl +
-                                    '/v1beta2/{parent}/workflowTemplates')
-                                       .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'POST'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['parent'],
-                        pathParams: ['parent'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback);
-                    }, /**
-                        * dataproc.projects.regions.workflowTemplates.delete
-                        * @desc Deletes a workflow template. It does not cancel
-                        * in-progress workflows.
-                        * @alias
-                        * dataproc.projects.regions.workflowTemplates.delete
-                        * @memberOf! dataproc(v1beta2)
-                        *
-                        * @param {object} params Parameters for request
-                        * @param {string} params.name Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
-                        * @param {integer=} params.version Optional. The version of workflow template to delete. If specified, will only delete the template if the current server version matches specified version.
-                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                        * @param {callback} callback The callback that handles the response.
-                        * @return {object} Request object
-                        */
-                    delete (params, options, callback) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl =
-                          options.rootUrl || 'https://dataproc.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url: (rootUrl + '/v1beta2/{name}')
-                                       .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'DELETE'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['name'],
-                        pathParams: ['name'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback);
-                    }, /**
-                        * dataproc.projects.regions.workflowTemplates.get
-                        * @desc Retrieves the latest workflow template.Can
-                        * retrieve previously instantiated template by
-                        * specifying optional version parameter.
-                        * @alias dataproc.projects.regions.workflowTemplates.get
-                        * @memberOf! dataproc(v1beta2)
-                        *
-                        * @param {object} params Parameters for request
-                        * @param {string} params.name Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
-                        * @param {integer=} params.version Optional. The version of workflow template to retrieve. Only previously instatiated versions can be retrieved.If unspecified, retrieves the current version.
-                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                        * @param {callback} callback The callback that handles the response.
-                        * @return {object} Request object
-                        */
-                    get(params, options, callback) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl =
-                          options.rootUrl || 'https://dataproc.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url: (rootUrl + '/v1beta2/{name}')
-                                       .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'GET'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['name'],
-                        pathParams: ['name'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback);
-                    }, /**
-                        * dataproc.projects.regions.workflowTemplates.instantiate
-                        * @desc Instantiates a template and begins execution.The
-                        * returned Operation can be used to track execution of
-                        * workflow by polling
-                        * google.cloud.dataproc.v1beta2.OperationService.GetOperation.
-                        * The Operation will complete when entire workflow is
-                        * finished.The running workflow can be aborted via
-                        * google.cloud.dataproc.v1beta2.OperationService.CancelOperation.The
-                        * google.cloud.dataproc.v1beta2.Operation.metadata will
-                        * always be
-                        * google.cloud.dataproc.v1beta2.WorkflowMetadata.The
-                        * google.cloud.dataproc.v1beta2.Operation.result will
-                        * always be google.protobuf.Empty.
-                        * @alias
-                        * dataproc.projects.regions.workflowTemplates.instantiate
-                        * @memberOf! dataproc(v1beta2)
-                        *
-                        * @param {object} params Parameters for request
-                        * @param {string} params.name Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
-                        * @param {dataproc(v1beta2).InstantiateWorkflowTemplateRequest} params.resource Request body data
-                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                        * @param {callback} callback The callback that handles the response.
-                        * @return {object} Request object
-                        */
-                    instantiate(params, options, callback) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl =
-                          options.rootUrl || 'https://dataproc.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url: (rootUrl + '/v1beta2/{name}:instantiate')
-                                       .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'POST'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['name'],
-                        pathParams: ['name'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback);
-                    }, /**
-                        * dataproc.projects.regions.workflowTemplates.list
-                        * @desc Lists workflows that match the specified filter
-                        * in the request.
-                        * @alias
-                        * dataproc.projects.regions.workflowTemplates.list
-                        * @memberOf! dataproc(v1beta2)
-                        *
-                        * @param {object} params Parameters for request
-                        * @param {integer=} params.pageSize Optional. The maximum number of results to return in each response.
-                        * @param {string=} params.pageToken Optional. The page token, returned by a previous call, to request the next page of results.
-                        * @param {string} params.parent Required. The "resource name" of the region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
-                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                        * @param {callback} callback The callback that handles the response.
-                        * @return {object} Request object
-                        */
-                    list(params, options, callback) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl =
-                          options.rootUrl || 'https://dataproc.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url: (rootUrl +
-                                    '/v1beta2/{parent}/workflowTemplates')
-                                       .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'GET'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['parent'],
-                        pathParams: ['parent'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback);
-                    }, /**
-                        * dataproc.projects.regions.workflowTemplates.update
-                        * @desc Updates (replaces) workflow template. The
-                        * updated template must contain version that matches the
-                        * current server version.
-                        * @alias
-                        * dataproc.projects.regions.workflowTemplates.update
-                        * @memberOf! dataproc(v1beta2)
-                        *
-                        * @param {object} params Parameters for request
-                        * @param {string} params.name Output only. The "resource name" of the template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
-                        * @param {dataproc(v1beta2).WorkflowTemplate} params.resource Request body data
-                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                        * @param {callback} callback The callback that handles the response.
-                        * @return {object} Request object
-                        */
-                    update(params, options, callback) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl =
-                          options.rootUrl || 'https://dataproc.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url: (rootUrl + '/v1beta2/{name}')
-                                       .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'PUT'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['name'],
-                        pathParams: ['name'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback);
-                    }
-
-                  }
+        regions: {
+          clusters: {
+            /**
+             * dataproc.projects.regions.clusters.create
+             * @desc Creates a cluster in a project.
+             * @alias dataproc.projects.regions.clusters.create
+             * @memberOf! dataproc(v1beta2)
+             *
+             * @param {object} params Parameters for request
+             * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the cluster belongs to.
+             * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+             * @param {dataproc(v1beta2).Cluster} params.resource Request body data
+             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+             * @param {callback} callback The callback that handles the response.
+             * @return {object} Request object
+             */
+            create(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta2/projects/{projectId}/regions/{region}/clusters')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['projectId', 'region'],
+                pathParams: ['projectId', 'region'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dataproc.projects.regions.clusters.delete
+                * @desc Deletes a cluster in a project.
+                * @alias dataproc.projects.regions.clusters.delete
+                * @memberOf! dataproc(v1beta2)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.clusterName Required. The cluster name.
+                * @param {string=} params.clusterUuid Optional. Specifying the cluster_uuid means the RPC should fail (with error NOT_FOUND) if cluster with specified UUID does not exist.
+                * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the cluster belongs to.
+                * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            delete (params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta2/projects/{projectId}/regions/{region}/clusters/{clusterName}')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'DELETE'
+                    },
+                    options),
+                params,
+                requiredParams: ['projectId', 'region', 'clusterName'],
+                pathParams: ['clusterName', 'projectId', 'region'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dataproc.projects.regions.clusters.diagnose
+                * @desc Gets cluster diagnostic information. After the operation
+                * completes, the Operation.response field contains
+                * DiagnoseClusterOutputLocation.
+                * @alias dataproc.projects.regions.clusters.diagnose
+                * @memberOf! dataproc(v1beta2)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.clusterName Required. The cluster name.
+                * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the cluster belongs to.
+                * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+                * @param {dataproc(v1beta2).DiagnoseClusterRequest} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            diagnose(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta2/projects/{projectId}/regions/{region}/clusters/{clusterName}:diagnose')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['projectId', 'region', 'clusterName'],
+                pathParams: ['clusterName', 'projectId', 'region'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dataproc.projects.regions.clusters.get
+                * @desc Gets the resource representation for a cluster in a
+                * project.
+                * @alias dataproc.projects.regions.clusters.get
+                * @memberOf! dataproc(v1beta2)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.clusterName Required. The cluster name.
+                * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the cluster belongs to.
+                * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            get(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta2/projects/{projectId}/regions/{region}/clusters/{clusterName}')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'GET'
+                    },
+                    options),
+                params,
+                requiredParams: ['projectId', 'region', 'clusterName'],
+                pathParams: ['clusterName', 'projectId', 'region'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dataproc.projects.regions.clusters.getIamPolicy
+                * @desc Gets the access control policy for a resource. Returns
+                * an empty policy if the resource exists and does not have a
+                * policy set.
+                * @alias dataproc.projects.regions.clusters.getIamPolicy
+                * @memberOf! dataproc(v1beta2)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            getIamPolicy(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v1beta2/{resource}:getIamPolicy')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'GET'
+                    },
+                    options),
+                params,
+                requiredParams: ['resource'],
+                pathParams: ['resource'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dataproc.projects.regions.clusters.list
+                * @desc Lists all regions/{region}/clusters in a project.
+                * @alias dataproc.projects.regions.clusters.list
+                * @memberOf! dataproc(v1beta2)
+                *
+                * @param {object} params Parameters for request
+                * @param {string=} params.filter Optional. A filter constraining the clusters to list. Filters are case-sensitive and have the following syntax:field = value AND field = value ...where field is one of status.state, clusterName, or labels.[KEY], and [KEY] is a label key. value can be * to match all values. status.state can be one of the following: ACTIVE, INACTIVE, CREATING, RUNNING, ERROR, DELETING, or UPDATING. ACTIVE contains the CREATING, UPDATING, and RUNNING states. INACTIVE contains the DELETING and ERROR states. clusterName is the name of the cluster provided at creation time. Only the logical AND operator is supported; space-separated items are treated as having an implicit AND operator.Example filter:status.state = ACTIVE AND clusterName = mycluster AND labels.env = staging AND labels.starred = *
+                * @param {integer=} params.pageSize Optional. The standard List page size.
+                * @param {string=} params.pageToken Optional. The standard List page token.
+                * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the cluster belongs to.
+                * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            list(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta2/projects/{projectId}/regions/{region}/clusters')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'GET'
+                    },
+                    options),
+                params,
+                requiredParams: ['projectId', 'region'],
+                pathParams: ['projectId', 'region'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dataproc.projects.regions.clusters.patch
+                * @desc Updates a cluster in a project.
+                * @alias dataproc.projects.regions.clusters.patch
+                * @memberOf! dataproc(v1beta2)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.clusterName Required. The cluster name.
+                * @param {string=} params.gracefulDecommissionTimeout Optional. Timeout for graceful YARN decomissioning. Graceful decommissioning allows removing nodes from the cluster without interrupting jobs in progress. Timeout specifies how long to wait for jobs in progress to finish before forcefully removing nodes (and potentially interrupting jobs). Default timeout is 0 (for forceful decommission), and the maximum allowed timeout is 1 day.Only supported on Dataproc image versions 1.2 and higher.
+                * @param {string} params.projectId Required. The ID of the Google Cloud Platform project the cluster belongs to.
+                * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+                * @param {string=} params.updateMask Required. Specifies the path, relative to <code>Cluster</code>, of the field to update. For example, to change the number of workers in a cluster to 5, the <code>update_mask</code> parameter would be specified as <code>config.worker_config.num_instances</code>, and the PATCH request body would specify the new value, as follows: {   "config":{     "workerConfig":{       "numInstances":"5"     }   } } Similarly, to change the number of preemptible workers in a cluster to 5, the <code>update_mask</code> parameter would be <code>config.secondary_worker_config.num_instances</code>, and the PATCH request body would be set as follows: {   "config":{     "secondaryWorkerConfig":{       "numInstances":"5"     }   } } <strong>Note:</strong> currently only some fields can be updated: |Mask|Purpose| |labels|Updates labels| |config.worker_config.num_instances|Resize primary worker group| |config.secondary_worker_config.num_instances|Resize secondary worker group|
+                * @param {dataproc(v1beta2).Cluster} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            patch(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta2/projects/{projectId}/regions/{region}/clusters/{clusterName}')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'PATCH'
+                    },
+                    options),
+                params,
+                requiredParams: ['projectId', 'region', 'clusterName'],
+                pathParams: ['clusterName', 'projectId', 'region'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dataproc.projects.regions.clusters.setIamPolicy
+                * @desc Sets the access control policy on the specified
+                * resource. Replaces any existing policy.
+                * @alias dataproc.projects.regions.clusters.setIamPolicy
+                * @memberOf! dataproc(v1beta2)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+                * @param {dataproc(v1beta2).SetIamPolicyRequest} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            setIamPolicy(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v1beta2/{resource}:setIamPolicy')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['resource'],
+                pathParams: ['resource'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dataproc.projects.regions.clusters.testIamPermissions
+                * @desc Returns permissions that a caller has on the specified
+                * resource. If the resource does not exist, this will return an
+                * empty set of permissions, not a NOT_FOUND error.Note: This
+                * operation is designed to be used for building permission-aware
+                * UIs and command-line tools, not for authorization checking.
+                * This operation may "fail open" without warning.
+                * @alias dataproc.projects.regions.clusters.testIamPermissions
+                * @memberOf! dataproc(v1beta2)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+                * @param {dataproc(v1beta2).TestIamPermissionsRequest} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            testIamPermissions(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v1beta2/{resource}:testIamPermissions')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['resource'],
+                pathParams: ['resource'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
             }
+
+          },
+          jobs: {
+            /**
+             * dataproc.projects.regions.jobs.cancel
+             * @desc Starts a job cancellation request. To access the job
+             * resource after cancellation, call regions/{region}/jobs.list or
+             * regions/{region}/jobs.get.
+             * @alias dataproc.projects.regions.jobs.cancel
+             * @memberOf! dataproc(v1beta2)
+             *
+             * @param {object} params Parameters for request
+             * @param {string} params.jobId Required. The job ID.
+             * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
+             * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+             * @param {dataproc(v1beta2).CancelJobRequest} params.resource Request body data
+             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+             * @param {callback} callback The callback that handles the response.
+             * @return {object} Request object
+             */
+            cancel(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta2/projects/{projectId}/regions/{region}/jobs/{jobId}:cancel')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['projectId', 'region', 'jobId'],
+                pathParams: ['jobId', 'projectId', 'region'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dataproc.projects.regions.jobs.delete
+                * @desc Deletes the job from the project. If the job is active,
+                * the delete fails, and the response returns
+                * FAILED_PRECONDITION.
+                * @alias dataproc.projects.regions.jobs.delete
+                * @memberOf! dataproc(v1beta2)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.jobId Required. The job ID.
+                * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
+                * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            delete (params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta2/projects/{projectId}/regions/{region}/jobs/{jobId}')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'DELETE'
+                    },
+                    options),
+                params,
+                requiredParams: ['projectId', 'region', 'jobId'],
+                pathParams: ['jobId', 'projectId', 'region'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dataproc.projects.regions.jobs.get
+                * @desc Gets the resource representation for a job in a project.
+                * @alias dataproc.projects.regions.jobs.get
+                * @memberOf! dataproc(v1beta2)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.jobId Required. The job ID.
+                * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
+                * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            get(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta2/projects/{projectId}/regions/{region}/jobs/{jobId}')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'GET'
+                    },
+                    options),
+                params,
+                requiredParams: ['projectId', 'region', 'jobId'],
+                pathParams: ['jobId', 'projectId', 'region'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dataproc.projects.regions.jobs.list
+                * @desc Lists regions/{region}/jobs in a project.
+                * @alias dataproc.projects.regions.jobs.list
+                * @memberOf! dataproc(v1beta2)
+                *
+                * @param {object} params Parameters for request
+                * @param {string=} params.clusterName Optional. If set, the returned jobs list includes only jobs that were submitted to the named cluster.
+                * @param {string=} params.filter Optional. A filter constraining the jobs to list. Filters are case-sensitive and have the following syntax:field = value AND field = value ...where field is status.state or labels.[KEY], and [KEY] is a label key. value can be * to match all values. status.state can be either ACTIVE or NON_ACTIVE. Only the logical AND operator is supported; space-separated items are treated as having an implicit AND operator.Example filter:status.state = ACTIVE AND labels.env = staging AND labels.starred = *
+                * @param {string=} params.jobStateMatcher Optional. Specifies enumerated categories of jobs to list. (default = match ALL jobs).If filter is provided, jobStateMatcher will be ignored.
+                * @param {integer=} params.pageSize Optional. The number of results to return in each response.
+                * @param {string=} params.pageToken Optional. The page token, returned by a previous call, to request the next page of results.
+                * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
+                * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            list(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta2/projects/{projectId}/regions/{region}/jobs')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'GET'
+                    },
+                    options),
+                params,
+                requiredParams: ['projectId', 'region'],
+                pathParams: ['projectId', 'region'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dataproc.projects.regions.jobs.patch
+                * @desc Updates a job in a project.
+                * @alias dataproc.projects.regions.jobs.patch
+                * @memberOf! dataproc(v1beta2)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.jobId Required. The job ID.
+                * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
+                * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+                * @param {string=} params.updateMask Required. Specifies the path, relative to <code>Job</code>, of the field to update. For example, to update the labels of a Job the <code>update_mask</code> parameter would be specified as <code>labels</code>, and the PATCH request body would specify the new value. <strong>Note:</strong> Currently, <code>labels</code> is the only field that can be updated.
+                * @param {dataproc(v1beta2).Job} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            patch(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta2/projects/{projectId}/regions/{region}/jobs/{jobId}')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'PATCH'
+                    },
+                    options),
+                params,
+                requiredParams: ['projectId', 'region', 'jobId'],
+                pathParams: ['jobId', 'projectId', 'region'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dataproc.projects.regions.jobs.submit
+                * @desc Submits a job to a cluster.
+                * @alias dataproc.projects.regions.jobs.submit
+                * @memberOf! dataproc(v1beta2)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
+                * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+                * @param {dataproc(v1beta2).SubmitJobRequest} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            submit(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta2/projects/{projectId}/regions/{region}/jobs:submit')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['projectId', 'region'],
+                pathParams: ['projectId', 'region'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }
+
+          },
+          operations: {
+            /**
+             * dataproc.projects.regions.operations.cancel
+             * @desc Starts asynchronous cancellation on a long-running
+             * operation. The server makes a best effort to cancel the
+             * operation, but success is not guaranteed. If the server doesn't
+             * support this method, it returns google.rpc.Code.UNIMPLEMENTED.
+             * Clients can use Operations.GetOperation or other methods to check
+             * whether the cancellation succeeded or whether the operation
+             * completed despite cancellation. On successful cancellation, the
+             * operation is not deleted; instead, it becomes an operation with
+             * an Operation.error value with a google.rpc.Status.code of 1,
+             * corresponding to Code.CANCELLED.
+             * @alias dataproc.projects.regions.operations.cancel
+             * @memberOf! dataproc(v1beta2)
+             *
+             * @param {object} params Parameters for request
+             * @param {string} params.name The name of the operation resource to be cancelled.
+             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+             * @param {callback} callback The callback that handles the response.
+             * @return {object} Request object
+             */
+            cancel(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v1beta2/{name}:cancel')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['name'],
+                pathParams: ['name'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dataproc.projects.regions.operations.delete
+                * @desc Deletes a long-running operation. This method indicates
+                * that the client is no longer interested in the operation
+                * result. It does not cancel the operation. If the server
+                * doesn't support this method, it returns
+                * google.rpc.Code.UNIMPLEMENTED.
+                * @alias dataproc.projects.regions.operations.delete
+                * @memberOf! dataproc(v1beta2)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.name The name of the operation resource to be deleted.
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            delete (params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v1beta2/{name}')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'DELETE'
+                    },
+                    options),
+                params,
+                requiredParams: ['name'],
+                pathParams: ['name'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dataproc.projects.regions.operations.get
+                * @desc Gets the latest state of a long-running operation.
+                * Clients can use this method to poll the operation result at
+                * intervals as recommended by the API service.
+                * @alias dataproc.projects.regions.operations.get
+                * @memberOf! dataproc(v1beta2)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.name The name of the operation resource.
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            get(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v1beta2/{name}')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'GET'
+                    },
+                    options),
+                params,
+                requiredParams: ['name'],
+                pathParams: ['name'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dataproc.projects.regions.operations.list
+                * @desc Lists operations that match the specified filter in the
+                * request. If the server doesn't support this method, it returns
+                * UNIMPLEMENTED.NOTE: the name binding allows API services to
+                * override the binding to use different resource name schemes,
+                * such as users/x/operations. To override the binding, API
+                * services can add a binding such as
+                * "/v1/{name=users/x}/operations" to their service
+                * configuration. For backwards compatibility, the default name
+                * includes the operations collection id, however overriding
+                * users must ensure the name binding is the parent resource,
+                * without the operations collection id.
+                * @alias dataproc.projects.regions.operations.list
+                * @memberOf! dataproc(v1beta2)
+                *
+                * @param {object} params Parameters for request
+                * @param {string=} params.filter The standard list filter.
+                * @param {string} params.name The name of the operation's parent resource.
+                * @param {integer=} params.pageSize The standard list page size.
+                * @param {string=} params.pageToken The standard list page token.
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            list(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v1beta2/{name}')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'GET'
+                    },
+                    options),
+                params,
+                requiredParams: ['name'],
+                pathParams: ['name'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }
+
+          },
+          workflowTemplates: {
+            /**
+             * dataproc.projects.regions.workflowTemplates.create
+             * @desc Creates new workflow template.
+             * @alias dataproc.projects.regions.workflowTemplates.create
+             * @memberOf! dataproc(v1beta2)
+             *
+             * @param {object} params Parameters for request
+             * @param {string} params.parent Required. The "resource name" of the region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+             * @param {dataproc(v1beta2).WorkflowTemplate} params.resource Request body data
+             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+             * @param {callback} callback The callback that handles the response.
+             * @return {object} Request object
+             */
+            create(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v1beta2/{parent}/workflowTemplates')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['parent'],
+                pathParams: ['parent'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dataproc.projects.regions.workflowTemplates.delete
+                * @desc Deletes a workflow template. It does not cancel
+                * in-progress workflows.
+                * @alias dataproc.projects.regions.workflowTemplates.delete
+                * @memberOf! dataproc(v1beta2)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.name Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+                * @param {integer=} params.version Optional. The version of workflow template to delete. If specified, will only delete the template if the current server version matches specified version.
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            delete (params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v1beta2/{name}')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'DELETE'
+                    },
+                    options),
+                params,
+                requiredParams: ['name'],
+                pathParams: ['name'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dataproc.projects.regions.workflowTemplates.get
+                * @desc Retrieves the latest workflow template.Can retrieve
+                * previously instantiated template by specifying optional
+                * version parameter.
+                * @alias dataproc.projects.regions.workflowTemplates.get
+                * @memberOf! dataproc(v1beta2)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.name Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+                * @param {integer=} params.version Optional. The version of workflow template to retrieve. Only previously instatiated versions can be retrieved.If unspecified, retrieves the current version.
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            get(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v1beta2/{name}')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'GET'
+                    },
+                    options),
+                params,
+                requiredParams: ['name'],
+                pathParams: ['name'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dataproc.projects.regions.workflowTemplates.instantiate
+                * @desc Instantiates a template and begins execution.The
+                * returned Operation can be used to track execution of workflow
+                * by polling operations.get. The Operation will complete when
+                * entire workflow is finished.The running workflow can be
+                * aborted via operations.cancel. This will cause any inflight
+                * jobs to be cancelled and workflow-owned clusters to be
+                * deleted.The Operation.metadata will be WorkflowMetadata.On
+                * successful completion, Operation.response will be Empty.
+                * @alias dataproc.projects.regions.workflowTemplates.instantiate
+                * @memberOf! dataproc(v1beta2)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.name Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+                * @param {dataproc(v1beta2).InstantiateWorkflowTemplateRequest} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            instantiate(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v1beta2/{name}:instantiate')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['name'],
+                pathParams: ['name'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dataproc.projects.regions.workflowTemplates.instantiateInline
+                * @desc Instantiates a template and begins execution.This method
+                * is equivalent to executing the sequence
+                * CreateWorkflowTemplate, InstantiateWorkflowTemplate,
+                * DeleteWorkflowTemplate.The returned Operation can be used to
+                * track execution of workflow by polling operations.get. The
+                * Operation will complete when entire workflow is finished.The
+                * running workflow can be aborted via operations.cancel. This
+                * will cause any inflight jobs to be cancelled and
+                * workflow-owned clusters to be deleted.The Operation.metadata
+                * will be WorkflowMetadata.On successful completion,
+                * Operation.response will be Empty.
+                * @alias
+                * dataproc.projects.regions.workflowTemplates.instantiateInline
+                * @memberOf! dataproc(v1beta2)
+                *
+                * @param {object} params Parameters for request
+                * @param {string=} params.instanceId Optional. A tag that prevents multiple concurrent workflow instances with the same tag from running. This mitigates risk of concurrent instances started due to retries.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+                * @param {string} params.parent Required. The "resource name" of the workflow template region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+                * @param {dataproc(v1beta2).WorkflowTemplate} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            instantiateInline(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta2/{parent}/workflowTemplates:instantiateInline')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['parent'],
+                pathParams: ['parent'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dataproc.projects.regions.workflowTemplates.list
+                * @desc Lists workflows that match the specified filter in the
+                * request.
+                * @alias dataproc.projects.regions.workflowTemplates.list
+                * @memberOf! dataproc(v1beta2)
+                *
+                * @param {object} params Parameters for request
+                * @param {integer=} params.pageSize Optional. The maximum number of results to return in each response.
+                * @param {string=} params.pageToken Optional. The page token, returned by a previous call, to request the next page of results.
+                * @param {string} params.parent Required. The "resource name" of the region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            list(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v1beta2/{parent}/workflowTemplates')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'GET'
+                    },
+                    options),
+                params,
+                requiredParams: ['parent'],
+                pathParams: ['parent'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dataproc.projects.regions.workflowTemplates.update
+                * @desc Updates (replaces) workflow template. The updated
+                * template must contain version that matches the current server
+                * version.
+                * @alias dataproc.projects.regions.workflowTemplates.update
+                * @memberOf! dataproc(v1beta2)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.name Output only. The "resource name" of the template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+                * @param {dataproc(v1beta2).WorkflowTemplate} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            update(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v1beta2/{name}')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'PUT'
+                    },
+                    options),
+                params,
+                requiredParams: ['name'],
+                pathParams: ['name'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }
+
+          }
+        }
       };
 }
 /**
@@ -1308,13 +1386,13 @@ function Dataproc(options) {
  * @memberOf! dataproc(v1beta2)
  * @type object
  * @property {string} clusterName Required. The cluster name. Cluster names within a project must be unique. Names of deleted clusters can be reused.
- * @property {string} clusterUuid Output-only. A cluster UUID (Unique Universal Identifier). Cloud Dataproc generates this value when it creates the cluster.
+ * @property {string} clusterUuid Output only. A cluster UUID (Unique Universal Identifier). Cloud Dataproc generates this value when it creates the cluster.
  * @property {dataproc(v1beta2).ClusterConfig} config Required. The cluster config. Note that Cloud Dataproc may set default values, and values may change when clusters are updated.
  * @property {object} labels Optional. The labels to associate with this cluster. Label keys must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). Label values may be empty, but, if present, must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be associated with a cluster.
  * @property {dataproc(v1beta2).ClusterMetrics} metrics Contains cluster daemon metrics such as HDFS and YARN stats.Beta Feature: This report is available for testing purposes only. It may be changed before final release.
  * @property {string} projectId Required. The Google Cloud Platform project ID that the cluster belongs to.
- * @property {dataproc(v1beta2).ClusterStatus} status Output-only. Cluster status.
- * @property {dataproc(v1beta2).ClusterStatus[]} statusHistory Output-only. The previous cluster status.
+ * @property {dataproc(v1beta2).ClusterStatus} status Output only. Cluster status.
+ * @property {dataproc(v1beta2).ClusterStatus[]} statusHistory Output only. The previous cluster status.
  */
 /**
  * @typedef ClusterConfig
@@ -1348,23 +1426,23 @@ function Dataproc(options) {
  * @typedef ClusterOperationMetadata
  * @memberOf! dataproc(v1beta2)
  * @type object
- * @property {string} clusterName Output-only. Name of the cluster for the operation.
- * @property {string} clusterUuid Output-only. Cluster UUID for the operation.
- * @property {string} description Output-only. Short description of operation.
- * @property {object} labels Output-only. Labels associated with the operation
- * @property {string} operationType Output-only. The operation type.
- * @property {dataproc(v1beta2).ClusterOperationStatus} status Output-only. Current operation status.
- * @property {dataproc(v1beta2).ClusterOperationStatus[]} statusHistory Output-only. The previous operation status.
- * @property {string[]} warnings Output-only. Errors encountered during operation execution.
+ * @property {string} clusterName Output only. Name of the cluster for the operation.
+ * @property {string} clusterUuid Output only. Cluster UUID for the operation.
+ * @property {string} description Output only. Short description of operation.
+ * @property {object} labels Output only. Labels associated with the operation
+ * @property {string} operationType Output only. The operation type.
+ * @property {dataproc(v1beta2).ClusterOperationStatus} status Output only. Current operation status.
+ * @property {dataproc(v1beta2).ClusterOperationStatus[]} statusHistory Output only. The previous operation status.
+ * @property {string[]} warnings Output only. Errors encountered during operation execution.
  */
 /**
  * @typedef ClusterOperationStatus
  * @memberOf! dataproc(v1beta2)
  * @type object
- * @property {string} details Output-only.A message containing any operation metadata details.
- * @property {string} innerState Output-only. A message containing the detailed operation state.
- * @property {string} state Output-only. A message containing the operation state.
- * @property {string} stateStartTime Output-only. The time this state was entered.
+ * @property {string} details Output only. A message containing any operation metadata details.
+ * @property {string} innerState Output only. A message containing the detailed operation state.
+ * @property {string} state Output only. A message containing the operation state.
+ * @property {string} stateStartTime Output only. The time this state was entered.
  */
 /**
  * @typedef ClusterSelector
@@ -1377,10 +1455,10 @@ function Dataproc(options) {
  * @typedef ClusterStatus
  * @memberOf! dataproc(v1beta2)
  * @type object
- * @property {string} detail Output-only. Optional details of cluster&#39;s state.
- * @property {string} state Output-only. The cluster&#39;s state.
- * @property {string} stateStartTime Output-only. Time when this state was entered.
- * @property {string} substate Output-only. Additional state information that includes status reported by the agent.
+ * @property {string} detail Output only. Optional details of cluster&#39;s state.
+ * @property {string} state Output only. The cluster&#39;s state.
+ * @property {string} stateStartTime Output only. Time when this state was entered.
+ * @property {string} substate Output only. Additional state information that includes status reported by the agent.
  */
 /**
  * @typedef DiagnoseClusterRequest
@@ -1391,14 +1469,14 @@ function Dataproc(options) {
  * @typedef DiagnoseClusterResults
  * @memberOf! dataproc(v1beta2)
  * @type object
- * @property {string} outputUri Output-only. The Google Cloud Storage URI of the diagnostic output. The output report is a plain text file with a summary of collected diagnostics.
+ * @property {string} outputUri Output only. The Google Cloud Storage URI of the diagnostic output. The output report is a plain text file with a summary of collected diagnostics.
  */
 /**
  * @typedef DiskConfig
  * @memberOf! dataproc(v1beta2)
  * @type object
  * @property {integer} bootDiskSizeGb Optional. Size in GB of the boot disk (default is 500GB).
- * @property {string} bootDiskType Optional. Type of the boot disk (default is &#39;pd-standard&#39;). Valid values: &#39;pd-ssd&#39;, &#39;pd-standard&#39;
+ * @property {string} bootDiskType Optional. Type of the boot disk (default is &quot;pd-standard&quot;). Valid values: &quot;pd-ssd&quot; (Persistent Disk Solid State Drive) or &quot;pd-standard&quot; (Persistent Disk Hard Disk Drive).
  * @property {integer} numLocalSsds Optional. Number of attached SSDs, from 0 to 4 (default is 0). If SSDs are not attached, the boot disk is used to store runtime logs and HDFS (https://hadoop.apache.org/docs/r1.2.1/hdfs_user_guide.html) data. If one or more SSDs are attached, this runtime bulk data is spread across them, and the boot disk contains only basic config and installed binaries.
  */
 /**
@@ -1449,12 +1527,12 @@ function Dataproc(options) {
  * @type object
  * @property {dataproc(v1beta2).AcceleratorConfig[]} accelerators Optional. The Google Compute Engine accelerator configuration for these instances.Beta Feature: This feature is still under development. It may be changed before final release.
  * @property {dataproc(v1beta2).DiskConfig} diskConfig Optional. Disk option config settings.
- * @property {string} imageUri Output-only. The Google Compute Engine image resource used for cluster instances. Inferred from SoftwareConfig.image_version.
+ * @property {string} imageUri Output only. The Google Compute Engine image resource used for cluster instances. Inferred from SoftwareConfig.image_version.
  * @property {string[]} instanceNames Optional. The list of instance names. Cloud Dataproc derives the names from cluster_name, num_instances, and the instance group if not set by user (recommended practice is to let Cloud Dataproc derive the name).
  * @property {boolean} isPreemptible Optional. Specifies that this instance group contains preemptible instances.
  * @property {string} machineTypeUri Optional. The Google Compute Engine machine type used for cluster instances.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2 projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2 n1-standard-2
- * @property {dataproc(v1beta2).ManagedGroupConfig} managedGroupConfig Output-only. The config for Google Compute Engine Instance Group Manager that manages this group. This is only used for preemptible instance groups.
- * @property {string} minCpuPlatform Optional. Specifies the minimum cpu platform for the Instance Group. Examples: * https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform
+ * @property {dataproc(v1beta2).ManagedGroupConfig} managedGroupConfig Output only. The config for Google Compute Engine Instance Group Manager that manages this group. This is only used for preemptible instance groups.
+ * @property {string} minCpuPlatform Optional. Specifies the minimum cpu platform for the Instance Group. See Cloud Dataproc&amp;rarr;Minimum CPU Platform.
  * @property {integer} numInstances Optional. The number of VM instances in the instance group. For master instance groups, must be set to 1.
  */
 /**
@@ -1468,8 +1546,8 @@ function Dataproc(options) {
  * @typedef Job
  * @memberOf! dataproc(v1beta2)
  * @type object
- * @property {string} driverControlFilesUri Output-only. If present, the location of miscellaneous control files which may be used as part of job setup and handling. If not present, control files may be placed in the same location as driver_output_uri.
- * @property {string} driverOutputResourceUri Output-only. A URI pointing to the location of the stdout of the job&#39;s driver program.
+ * @property {string} driverControlFilesUri Output only. If present, the location of miscellaneous control files which may be used as part of job setup and handling. If not present, control files may be placed in the same location as driver_output_uri.
+ * @property {string} driverOutputResourceUri Output only. A URI pointing to the location of the stdout of the job&#39;s driver program.
  * @property {dataproc(v1beta2).HadoopJob} hadoopJob Job is a Hadoop job.
  * @property {dataproc(v1beta2).HiveJob} hiveJob Job is a Hive job.
  * @property {object} labels Optional. The labels to associate with this job. Label keys must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). Label values may be empty, but, if present, must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be associated with a job.
@@ -1480,16 +1558,16 @@ function Dataproc(options) {
  * @property {dataproc(v1beta2).JobScheduling} scheduling Optional. Job scheduling configuration.
  * @property {dataproc(v1beta2).SparkJob} sparkJob Job is a Spark job.
  * @property {dataproc(v1beta2).SparkSqlJob} sparkSqlJob Job is a SparkSql job.
- * @property {dataproc(v1beta2).JobStatus} status Output-only. The job status. Additional application-specific status information may be contained in the &lt;code&gt;type_job&lt;/code&gt; and &lt;code&gt;yarn_applications&lt;/code&gt; fields.
- * @property {dataproc(v1beta2).JobStatus[]} statusHistory Output-only. The previous job status.
- * @property {dataproc(v1beta2).YarnApplication[]} yarnApplications Output-only. The collection of YARN applications spun up by this job.Beta Feature: This report is available for testing purposes only. It may be changed before final release.
+ * @property {dataproc(v1beta2).JobStatus} status Output only. The job status. Additional application-specific status information may be contained in the &lt;code&gt;type_job&lt;/code&gt; and &lt;code&gt;yarn_applications&lt;/code&gt; fields.
+ * @property {dataproc(v1beta2).JobStatus[]} statusHistory Output only. The previous job status.
+ * @property {dataproc(v1beta2).YarnApplication[]} yarnApplications Output only. The collection of YARN applications spun up by this job.Beta Feature: This report is available for testing purposes only. It may be changed before final release.
  */
 /**
  * @typedef JobPlacement
  * @memberOf! dataproc(v1beta2)
  * @type object
  * @property {string} clusterName Required. The name of the cluster where the job will be submitted.
- * @property {string} clusterUuid Output-only. A cluster UUID generated by the Cloud Dataproc service when the job is submitted.
+ * @property {string} clusterUuid Output only. A cluster UUID generated by the Cloud Dataproc service when the job is submitted.
  */
 /**
  * @typedef JobReference
@@ -1508,10 +1586,10 @@ function Dataproc(options) {
  * @typedef JobStatus
  * @memberOf! dataproc(v1beta2)
  * @type object
- * @property {string} details Output-only. Optional job state details, such as an error description if the state is &lt;code&gt;ERROR&lt;/code&gt;.
- * @property {string} state Output-only. A state message specifying the overall job state.
- * @property {string} stateStartTime Output-only. The time when this state was entered.
- * @property {string} substate Output-only. Additional state information, which includes status reported by the agent.
+ * @property {string} details Output only. Optional job state details, such as an error description if the state is &lt;code&gt;ERROR&lt;/code&gt;.
+ * @property {string} state Output only. A state message specifying the overall job state.
+ * @property {string} stateStartTime Output only. The time when this state was entered.
+ * @property {string} substate Output only. Additional state information, which includes status reported by the agent.
  */
 /**
  * @typedef LifecycleConfig
@@ -1525,14 +1603,14 @@ function Dataproc(options) {
  * @typedef ListClustersResponse
  * @memberOf! dataproc(v1beta2)
  * @type object
- * @property {dataproc(v1beta2).Cluster[]} clusters Output-only. The clusters in the project.
- * @property {string} nextPageToken Output-only. This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent &lt;code&gt;ListClustersRequest&lt;/code&gt;.
+ * @property {dataproc(v1beta2).Cluster[]} clusters Output only. The clusters in the project.
+ * @property {string} nextPageToken Output only. This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent &lt;code&gt;ListClustersRequest&lt;/code&gt;.
  */
 /**
  * @typedef ListJobsResponse
  * @memberOf! dataproc(v1beta2)
  * @type object
- * @property {dataproc(v1beta2).Job[]} jobs Output-only. Jobs list.
+ * @property {dataproc(v1beta2).Job[]} jobs Output only. Jobs list.
  * @property {string} nextPageToken Optional. This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent &lt;code&gt;ListJobsRequest&lt;/code&gt;.
  */
 /**
@@ -1567,8 +1645,8 @@ function Dataproc(options) {
  * @typedef ManagedGroupConfig
  * @memberOf! dataproc(v1beta2)
  * @type object
- * @property {string} instanceGroupManagerName Output-only. The name of the Instance Group Manager for this group.
- * @property {string} instanceTemplateName Output-only. The name of the Instance Template used for the Managed Instance Group.
+ * @property {string} instanceGroupManagerName Output only. The name of the Instance Group Manager for this group.
+ * @property {string} instanceTemplateName Output only. The name of the Instance Template used for the Managed Instance Group.
  */
 /**
  * @typedef NodeInitializationAction
@@ -1620,7 +1698,7 @@ function Dataproc(options) {
  * @type object
  * @property {dataproc(v1beta2).Binding[]} bindings Associates a list of members to a role. bindings with no members will result in an error.
  * @property {string} etag etag is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the etag in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An etag is returned in the response to getIamPolicy, and systems are expected to put that etag in the request to setIamPolicy to ensure that their change will be applied to the same version of the policy.If no etag is provided in the call to setIamPolicy, then the existing policy is overwritten blindly.
- * @property {integer} version Version of the Policy. The default version is 0.
+ * @property {integer} version Deprecated.
  */
 /**
  * @typedef PySparkJob

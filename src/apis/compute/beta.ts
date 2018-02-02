@@ -5456,9 +5456,9 @@ function Compute(options) {
         }, /**
             * compute.firewalls.update
             * @desc Updates the specified firewall rule with the data included
-            * in the request. Using PUT method, can only update following fields
-            * of firewall rule: allowed, description, sourceRanges, sourceTags,
-            * targetTags.
+            * in the request. The PUT method can only update the following
+            * fields of firewall rule: allowed, description, sourceRanges,
+            * sourceTags, targetTags.
             * @example
             * // BEFORE RUNNING:
             * // ---------------
@@ -16657,11 +16657,9 @@ function Compute(options) {
   self.instanceTemplates = {
     /**
      * compute.instanceTemplates.delete
-     * @desc Deletes the specified instance template. If you delete an instance
-     * template that is being referenced from another instance group, the
-     * instance group will not be able to create or recreate virtual machine
-     * instances. Deleting an instance template is permanent and cannot be
-     * undone.
+     * @desc Deletes the specified instance template. Deleting an instance
+     * template is permanent and cannot be undone. It's not possible to delete
+     * templates which are in use by an instance group.
      * @example
      * // BEFORE RUNNING:
      * // ---------------
@@ -17654,6 +17652,46 @@ function Compute(options) {
       };
       return createAPIRequest(parameters, callback);
     }, /**
+        * compute.interconnectAttachments.setLabels
+        * @desc Sets the labels on an InterconnectAttachment. To learn more
+        * about labels, read the Labeling Resources documentation.
+        * @alias compute.interconnectAttachments.setLabels
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project Project ID for this request.
+        * @param {string} params.region The region for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {string} params.resource_ Name of the resource for this request.
+        * @param {compute(beta).RegionSetLabelsRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    setLabels(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/regions/{region}/interconnectAttachments/{resource}/setLabels')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
         * compute.interconnectAttachments.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
         * @example
@@ -18448,6 +18486,44 @@ function Compute(options) {
             params,
             requiredParams: ['project', 'interconnect'],
             pathParams: ['interconnect', 'project'],
+            context: self
+          };
+          return createAPIRequest(parameters, callback);
+        }, /**
+            * compute.interconnects.setLabels
+            * @desc Sets the labels on an Interconnect. To learn more about
+            * labels, read the Labeling Resources documentation.
+            * @alias compute.interconnects.setLabels
+            * @memberOf! compute(beta)
+            *
+            * @param {object} params Parameters for request
+            * @param {string} params.project Project ID for this request.
+            * @param {string} params.resource_ Name of the resource for this request.
+            * @param {compute(beta).GlobalSetLabelsRequest} params.resource Request body data
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        setLabels(params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url:
+                      (rootUrl +
+                       '/compute/beta/projects/{project}/global/interconnects/{resource}/setLabels')
+                          .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'POST'
+                },
+                options),
+            params,
+            requiredParams: ['project', 'resource'],
+            pathParams: ['project', 'resource'],
             context: self
           };
           return createAPIRequest(parameters, callback);
@@ -22091,7 +22167,7 @@ function Compute(options) {
         * @memberOf! compute(beta)
         *
         * @param {object} params Parameters for request
-        * @param {string} params.backendService Name of the BackendService resource to which the queried instance belongs.
+        * @param {string} params.backendService Name of the BackendService resource for which to get health.
         * @param {string} params.project
         * @param {string} params.region Name of the region scoping this request.
         * @param {compute(beta).ResourceGroupReference} params.resource Request body data
@@ -37582,7 +37658,7 @@ function Compute(options) {
  * @memberOf! compute(beta)
  * @type object
  * @property {integer} acceleratorCount The number of the guest accelerator cards exposed to this instance.
- * @property {string} acceleratorType Full or partial URL of the accelerator type resource to expose to this instance.
+ * @property {string} acceleratorType Full or partial URL of the accelerator type resource to attach to this instance. If you are creating an instance template, specify only the accelerator name.
  */
 /**
  * @typedef AcceleratorType
@@ -37596,7 +37672,7 @@ function Compute(options) {
  * @property {integer} maximumCardsPerInstance [Output Only] Maximum accelerator cards allowed per instance.
  * @property {string} name [Output Only] Name of the resource.
  * @property {string} selfLink [Output Only] Server-defined fully-qualified URL for this resource.
- * @property {string} zone [Output Only] The name of the zone where the accelerator type resides, such as us-central1-a.
+ * @property {string} zone [Output Only] The name of the zone where the accelerator type resides, such as us-central1-a. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
  */
 /**
  * @typedef AcceleratorTypeAggregatedList
@@ -37652,7 +37728,7 @@ function Compute(options) {
  * @property {string} labelFingerprint A fingerprint for the labels being applied to this Address, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels.  To see the latest fingerprint, make a get() request to retrieve an Address.
  * @property {object} labels Labels to apply to this Address resource. These can be later modified by the setLabels method. Each label key/value must comply with RFC1035. Label values may be empty.
  * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
- * @property {string} region [Output Only] URL of the region where the regional address resides. This field is not applicable to global addresses.
+ * @property {string} region [Output Only] URL of the region where the regional address resides. This field is not applicable to global addresses. You must specify this field as part of the HTTP request URL. You cannot set this field in the request body.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} status [Output Only] The status of the address, which can be one of RESERVING, RESERVED, or IN_USE. An address that is RESERVING is currently in the process of being reserved. A RESERVED address is currently reserved and available to use. An IN_USE address is currently being used by another resource and is not available.
  * @property {string} subnetwork The URL of the subnetwork in which to reserve the address. If an IP address is specified, it must be within the subnetwork&#39;s IP range. This field can only be used with INTERNAL type with GCE_ENDPOINT/DNS_RESOLVER purposes.
@@ -37702,6 +37778,7 @@ function Compute(options) {
  * @property {boolean} boot Indicates that this is a boot disk. The virtual machine will use the first partition of the disk for its root filesystem.
  * @property {string} deviceName Specifies a unique device name of your choice that is reflected into the /dev/disk/by-id/google-* tree of a Linux operating system running within the instance. This name can be used to reference the device for mounting, resizing, and so on, from within the instance.  If not specified, the server chooses a default device name to apply to this disk, in the form persistent-disks-x, where x is a number assigned by Google Compute Engine. This field is only applicable for persistent disks.
  * @property {compute(beta).CustomerEncryptionKey} diskEncryptionKey Encrypts or decrypts a disk using a customer-supplied encryption key.  If you are creating a new disk, this field encrypts the new disk using an encryption key that you provide. If you are attaching an existing disk that is already encrypted, this field decrypts the disk using the customer-supplied encryption key.  If you encrypt a disk using a customer-supplied key, you must provide the same key again when you attempt to use this resource at a later time. For example, you must provide the key when you create a snapshot or an image from the disk or when you attach the disk to a virtual machine instance.  If you do not provide an encryption key, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the disk later.  Instance templates do not store customer-supplied encryption keys, so you cannot use your own keys to encrypt disks in a managed instance group.
+ * @property {compute(beta).GuestOsFeature[]} guestOsFeatures A list of features to enable on the guest operating system. Applicable only for bootable images. Read  Enabling guest operating system features to see a list of available options.
  * @property {integer} index [Output Only] A zero-based index to this disk, where 0 is reserved for the boot disk. If you have many disks attached to an instance, each disk would have a unique index number.
  * @property {compute(beta).AttachedDiskInitializeParams} initializeParams [Input Only] Specifies the parameters for a new disk that will be created alongside the new instance. Use initialization parameters to create boot disks or local SSDs attached to the new instance.  This property is mutually exclusive with the source property; you can only define one or the other, but not both.
  * @property {string} interface Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. Persistent disks must always use SCSI and the request will fail if you attempt to attach a persistent disk in any other format than SCSI. Local SSDs can use either NVME or SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance.
@@ -37718,8 +37795,9 @@ function Compute(options) {
  * @property {string} diskName Specifies the disk name. If not specified, the default is to use the name of the instance.
  * @property {string} diskSizeGb Specifies the size of the disk in base-2 GB.
  * @property {string} diskStorageType [Deprecated] Storage type of the disk.
- * @property {string} diskType Specifies the disk type to use to create the instance. If not specified, the default is pd-standard, specified using the full URL. For example:  https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/pd-standard   Other values include pd-ssd and local-ssd. If you define this field, you can provide either the full or partial URL. For example, the following are valid values:   - https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType  - projects/project/zones/zone/diskTypes/diskType  - zones/zone/diskTypes/diskType  Note that for InstanceTemplate, this is the name of the disk type, not URL.
- * @property {string} sourceImage The source image to create this disk. When creating a new instance, one of initializeParams.sourceImage or disks.source is required except for local SSD.  To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-8 to use the latest Debian 8 image:  projects/debian-cloud/global/images/family/debian-8   Alternatively, use a specific version of a public operating system image:  projects/debian-cloud/global/images/debian-8-jessie-vYYYYMMDD   To create a disk with a custom image that you created, specify the image name in the following format:  global/images/my-custom-image   You can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name:  global/images/family/my-image-family   If the source image is deleted later, this field will not be set.
+ * @property {string} diskType Specifies the disk type to use to create the instance. If not specified, the default is pd-standard, specified using the full URL. For example: https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/pd-standard   Other values include pd-ssd and local-ssd. If you define this field, you can provide either the full or partial URL. For example, the following are valid values:   - https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType  - projects/project/zones/zone/diskTypes/diskType  - zones/zone/diskTypes/diskType  Note that for InstanceTemplate, this is the name of the disk type, not URL.
+ * @property {object} labels Labels to apply to this disk. These can be later modified by the disks.setLabels method. This field is only applicable for persistent disks.
+ * @property {string} sourceImage The source image to create this disk. When creating a new instance, one of initializeParams.sourceImage or disks.source is required except for local SSD.  To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-8 to use the latest Debian 8 image: projects/debian-cloud/global/images/family/debian-8   Alternatively, use a specific version of a public operating system image: projects/debian-cloud/global/images/debian-8-jessie-vYYYYMMDD   To create a disk with a custom image that you created, specify the image name in the following format: global/images/my-custom-image   You can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name: global/images/family/my-image-family   If the source image is deleted later, this field will not be set.
  * @property {compute(beta).CustomerEncryptionKey} sourceImageEncryptionKey The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.  Instance templates do not store customer-supplied encryption keys, so you cannot create disks for instances in a managed instance group if the source images are encrypted with your own keys.
  */
 /**
@@ -37896,7 +37974,7 @@ function Compute(options) {
  * @property {integer} port Deprecated in favor of portName. The TCP port to connect on the backend. The default value is 80.  This cannot be used for internal load balancing.
  * @property {string} portName Name of backend port. The same name should appear in the instance groups referenced by this service. Required when the load balancing scheme is EXTERNAL.  When the load balancing scheme is INTERNAL, this field is not used.
  * @property {string} protocol The protocol this BackendService uses to communicate with backends.  Possible values are HTTP, HTTPS, TCP, and SSL. The default is HTTP.  For internal load balancing, the possible values are TCP and UDP, and the default is TCP.
- * @property {string} region [Output Only] URL of the region where the regional backend service resides. This field is not applicable to global backend services.
+ * @property {string} region [Output Only] URL of the region where the regional backend service resides. This field is not applicable to global backend services. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
  * @property {string} securityPolicy [Output Only] The resource URL for the security policy associated with this backend service.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} sessionAffinity Type of session affinity to use. The default is NONE.  When the load balancing scheme is EXTERNAL, can be NONE, CLIENT_IP, or GENERATED_COOKIE.  When the load balancing scheme is INTERNAL, can be NONE, CLIENT_IP, CLIENT_IP_PROTO, or CLIENT_IP_PORT_PROTO.  When the protocol is UDP, this field is not used.
@@ -37959,7 +38037,7 @@ function Compute(options) {
  * @typedef Binding
  * @memberOf! compute(beta)
  * @type object
- * @property {compute(beta).Expr} condition The condition that is associated with this binding. NOTE: an unsatisfied condition will not allow user access via current binding. Different bindings, including their conditions, are examined independently. This field is GOOGLE_INTERNAL.
+ * @property {compute(beta).Expr} condition The condition that is associated with this binding. NOTE: an unsatisfied condition will not allow user access via current binding. Different bindings, including their conditions, are examined independently. This field is only visible as GOOGLE_INTERNAL or CONDITION_TRUSTED_TESTER.
  * @property {string[]} members Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@gmail.com` or `joe@example.com`.    * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`.    * `domain:{domain}`: A Google Apps domain name that represents all the users of that domain. For example, `google.com` or `example.com`.
  * @property {string} role Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
  */
@@ -38076,6 +38154,7 @@ function Compute(options) {
  * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
  * @property {compute(beta).CustomerEncryptionKey} diskEncryptionKey Encrypts the disk using a customer-supplied encryption key.  After you encrypt a disk with a customer-supplied key, you must provide the same key if you use the disk later (e.g. to create a disk snapshot or an image, or to attach the disk to a virtual machine).  Customer-supplied encryption keys do not protect access to metadata of the disk.  If you do not provide an encryption key when creating the disk, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the disk later.
+ * @property {compute(beta).GuestOsFeature[]} guestOsFeatures A list of features to enable on the guest operating system. Applicable only for bootable images. Read  Enabling guest operating system features to see a list of available options.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of the resource. Always compute#disk for disks.
  * @property {string} labelFingerprint A fingerprint for the labels being applied to this disk, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels.  To see the latest fingerprint, make a get() request to retrieve a disk.
@@ -38088,7 +38167,7 @@ function Compute(options) {
  * @property {string} options Internal use only.
  * @property {string} selfLink [Output Only] Server-defined fully-qualified URL for this resource.
  * @property {string} sizeGb Size of the persistent disk, specified in GB. You can specify this field when creating a persistent disk using the sourceImage or sourceSnapshot parameter, or specify it alone to create an empty persistent disk.  If you specify this field along with sourceImage or sourceSnapshot, the value of sizeGb must not be less than the size of the sourceImage or the size of the snapshot. Acceptable values are 1 to 65536, inclusive.
- * @property {string} sourceImage The source image used to create this disk. If the source image is deleted, this field will not be set.  To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-8 to use the latest Debian 8 image:  projects/debian-cloud/global/images/family/debian-8   Alternatively, use a specific version of a public operating system image:  projects/debian-cloud/global/images/debian-8-jessie-vYYYYMMDD   To create a disk with a custom image that you created, specify the image name in the following format:  global/images/my-custom-image   You can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name:  global/images/family/my-image-family
+ * @property {string} sourceImage The source image used to create this disk. If the source image is deleted, this field will not be set.  To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-8 to use the latest Debian 8 image: projects/debian-cloud/global/images/family/debian-8   Alternatively, use a specific version of a public operating system image: projects/debian-cloud/global/images/debian-8-jessie-vYYYYMMDD   To create a disk with a custom image that you created, specify the image name in the following format: global/images/my-custom-image   You can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name: global/images/family/my-image-family
  * @property {compute(beta).CustomerEncryptionKey} sourceImageEncryptionKey The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.
  * @property {string} sourceImageId [Output Only] The ID value of the image used to create this disk. This value identifies the exact image that was used to create this persistent disk. For example, if you created the persistent disk from an image that was later deleted and recreated under the same name, the source image ID would identify the exact version of the image that was used.
  * @property {string} sourceSnapshot The source snapshot used to create this disk. You can provide this as a partial or full URL to the resource. For example, the following are valid values:   - https://www.googleapis.com/compute/v1/projects/project/global/snapshots/snapshot  - projects/project/global/snapshots/snapshot  - global/snapshots/snapshot
@@ -38098,7 +38177,7 @@ function Compute(options) {
  * @property {string} storageType [Deprecated] Storage type of the persistent disk.
  * @property {string} type URL of the disk type resource describing which disk type to use to create the disk. Provide this when creating the disk.
  * @property {string[]} users [Output Only] Links to the users of the disk (attached instances) in form: project/zones/zone/instances/instance
- * @property {string} zone [Output Only] URL of the zone where the disk resides.
+ * @property {string} zone [Output Only] URL of the zone where the disk resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
  */
 /**
  * @typedef DiskAggregatedList
@@ -38116,9 +38195,9 @@ function Compute(options) {
  * @memberOf! compute(beta)
  * @type object
  * @property {boolean} autoDelete Specifies whether the disk will be auto-deleted when the instance is deleted (but not when the disk is detached from the instance).
+ * @property {string} customImage The custom source image to be used to restore this disk when instantiating this instance template.
  * @property {string} deviceName Specifies the device name of the disk to which the configurations apply to.
  * @property {string} instantiateFrom Specifies whether to include the disk and what image to use.
- * @property {string} sourceImage The custom source image to be used to restore this disk when instantiating this instance template.
  */
 /**
  * @typedef DiskList
@@ -38164,7 +38243,7 @@ function Compute(options) {
  * @property {string} name [Output Only] Name of the resource.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} validDiskSize [Output Only] An optional textual description of the valid disk size, such as &quot;10GB-10TB&quot;.
- * @property {string} zone [Output Only] URL of the zone where the disk type resides.
+ * @property {string} zone [Output Only] URL of the zone where the disk type resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
  */
 /**
  * @typedef DiskTypeAggregatedList
@@ -38222,7 +38301,7 @@ function Compute(options) {
  * @type object
  * @property {object[]} allowed The list of ALLOW rules specified by this firewall. Each rule specifies a protocol and port-range tuple that describes a permitted connection.
  * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
- * @property {object[]} denied The list of DENY rules specified by this firewall. Each rule specifies a protocol and port-range tuple that describes a permitted connection.
+ * @property {object[]} denied The list of DENY rules specified by this firewall. Each rule specifies a protocol and port-range tuple that describes a denied connection.
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
  * @property {string[]} destinationRanges If destination ranges are specified, the firewall will apply only to traffic that has destination IP address in these ranges. These ranges must be expressed in CIDR format. Only IPv4 is supported.
  * @property {string} direction Direction of traffic to which this firewall applies; default is INGRESS. Note: For INGRESS traffic, it is NOT supported to specify destinationRanges; For EGRESS traffic, it is NOT supported to specify sourceRanges OR sourceTags.
@@ -38274,14 +38353,14 @@ function Compute(options) {
  * @property {string} loadBalancingScheme This signifies what the ForwardingRule will be used for and can only take the following values: INTERNAL, EXTERNAL The value of INTERNAL means that this will be used for Internal Network Load Balancing (TCP, UDP). The value of EXTERNAL means that this will be used for External Load Balancing (HTTP(S) LB, External TCP/UDP LB, SSL Proxy)
  * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} network This field is not used for external load balancing.  For internal load balancing, this field identifies the network that the load balanced IP should belong to for this Forwarding Rule. If this field is not specified, the default network will be used.
- * @property {string} portRange This field is used along with the target field for TargetHttpProxy, TargetHttpsProxy, TargetSslProxy, TargetTcpProxy, TargetVpnGateway, TargetPool, TargetInstance.  Applicable only when IPProtocol is TCP, UDP, or SCTP, only packets addressed to ports in the specified range will be forwarded to target. Forwarding rules with the same [IPAddress, IPProtocol] pair must have disjoint port ranges.  Some types of forwarding target have constraints on the acceptable ports:   - TargetHttpProxy: 80, 8080  - TargetHttpsProxy: 443  - TargetTcpProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1883, 5222  - TargetSslProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1883, 5222  - TargetVpnGateway: 500, 4500 -
+ * @property {string} portRange This field is used along with the target field for TargetHttpProxy, TargetHttpsProxy, TargetSslProxy, TargetTcpProxy, TargetVpnGateway, TargetPool, TargetInstance.  Applicable only when IPProtocol is TCP, UDP, or SCTP, only packets addressed to ports in the specified range will be forwarded to target. Forwarding rules with the same [IPAddress, IPProtocol] pair must have disjoint port ranges.  Some types of forwarding target have constraints on the acceptable ports:   - TargetHttpProxy: 80, 8080  - TargetHttpsProxy: 443  - TargetTcpProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1883, 5222  - TargetSslProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1883, 5222  - TargetVpnGateway: 500, 4500
  * @property {string[]} ports This field is used along with the backend_service field for internal load balancing.  When the load balancing scheme is INTERNAL, a single port or a comma separated list of ports can be configured. Only packets addressed to these ports will be forwarded to the backends configured with this forwarding rule.  You may specify a maximum of up to 5 ports.
- * @property {string} region [Output Only] URL of the region where the regional forwarding rule resides. This field is not applicable to global forwarding rules.
+ * @property {string} region [Output Only] URL of the region where the regional forwarding rule resides. This field is not applicable to global forwarding rules. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} serviceLabel An optional prefix to the service name for this Forwarding Rule. If specified, will be the first label of the fully qualified service name.  The label must be 1-63 characters long, and comply with RFC1035. Specifically, the label must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.  This field is only used for internal load balancing.
  * @property {string} serviceName [Output Only] The internal fully qualified service name for this Forwarding Rule.  This field is only used for internal load balancing.
  * @property {string} subnetwork This field is not used for external load balancing.  For internal load balancing, this field identifies the subnetwork that the load balanced IP should belong to for this Forwarding Rule.  If the network specified is in auto subnet mode, this field is optional. However, if the network is in custom subnet mode, a subnetwork must be specified.
- * @property {string} target The URL of the target resource to receive the matched traffic. For regional forwarding rules, this target must live in the same region as the forwarding rule. For global forwarding rules, this target must be a global load balancing resource. The forwarded traffic must be of a type appropriate to the target object.  This field is not used for internal load balancing.
+ * @property {string} target The URL of the target resource to receive the matched traffic. For regional forwarding rules, this target must live in the same region as the forwarding rule. For global forwarding rules, this target must be a global load balancing resource. The forwarded traffic must be of a type appropriate to the target object.
  */
 /**
  * @typedef ForwardingRuleAggregatedList
@@ -38487,6 +38566,9 @@ function Compute(options) {
  * @property {string} sourceImage URL of the source image used to create this image. This can be a full or valid partial URL. You must provide exactly one of:   - this property, or   - the rawDisk.source property, or   - the sourceDisk property   in order to create an image.
  * @property {compute(beta).CustomerEncryptionKey} sourceImageEncryptionKey The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.
  * @property {string} sourceImageId [Output Only] The ID value of the image used to create this image. This value may be used to determine whether the image was taken from the current or a previous instance of a given image name.
+ * @property {string} sourceSnapshot URL of the source snapshot used to create this image. This can be a full or valid partial URL. You must provide exactly one of:   - this property, or   - the sourceImage property, or   - the rawDisk.source property, or   - the sourceDisk property   in order to create an image.
+ * @property {compute(beta).CustomerEncryptionKey} sourceSnapshotEncryptionKey The customer-supplied encryption key of the source snapshot. Required if the source snapshot is protected by a customer-supplied encryption key.
+ * @property {string} sourceSnapshotId [Output Only] The ID value of the snapshot used to create this image. This value may be used to determine whether the snapshot was taken from the current or a previous instance of a given snapshot name.
  * @property {string} sourceType The type of the image used to create this disk. The default and only value is RAW
  * @property {string} status [Output Only] The status of the image. An image can be used to create other resources, such as instances, only after the image has been successfully created and the status is set to READY. Possible values are FAILED, PENDING, or READY.
  */
@@ -38516,7 +38598,7 @@ function Compute(options) {
  * @property {string} kind [Output Only] Type of the resource. Always compute#instance for instances.
  * @property {string} labelFingerprint A fingerprint for this request, which is essentially a hash of the metadata&#39;s contents and used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update metadata. You must always provide an up-to-date fingerprint hash in order to update or change metadata.  To see the latest fingerprint, make get() request to the instance.
  * @property {object} labels Labels to apply to this instance. These can be later modified by the setLabels method.
- * @property {string} machineType Full or partial URL of the machine type resource to use for this instance, in the format: zones/zone/machineTypes/machine-type. This is provided by the client when the instance is created. For example, the following is a valid partial url to a predefined machine type:  zones/us-central1-f/machineTypes/n1-standard-1   To create a custom machine type, provide a URL to a machine type in the following format, where CPUS is 1 or an even number up to 32 (2, 4, 6, ... 24, etc), and MEMORY is the total memory for this instance. Memory must be a multiple of 256 MB and must be supplied in MB (e.g. 5 GB of memory is 5120 MB):  zones/zone/machineTypes/custom-CPUS-MEMORY   For example: zones/us-central1-f/machineTypes/custom-4-5120   For a full list of restrictions, read the Specifications for custom machine types.
+ * @property {string} machineType Full or partial URL of the machine type resource to use for this instance, in the format: zones/zone/machineTypes/machine-type. This is provided by the client when the instance is created. For example, the following is a valid partial url to a predefined machine type: zones/us-central1-f/machineTypes/n1-standard-1   To create a custom machine type, provide a URL to a machine type in the following format, where CPUS is 1 or an even number up to 32 (2, 4, 6, ... 24, etc), and MEMORY is the total memory for this instance. Memory must be a multiple of 256 MB and must be supplied in MB (e.g. 5 GB of memory is 5120 MB): zones/zone/machineTypes/custom-CPUS-MEMORY   For example: zones/us-central1-f/machineTypes/custom-4-5120   For a full list of restrictions, read the Specifications for custom machine types.
  * @property {compute(beta).Metadata} metadata The metadata key/value pairs assigned to this instance. This includes custom metadata and predefined keys.
  * @property {string} minCpuPlatform Specifies a minimum CPU platform for the VM instance. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: &quot;Intel Haswell&quot; or minCpuPlatform: &quot;Intel Sandy Bridge&quot;.
  * @property {string} name The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
@@ -38528,7 +38610,7 @@ function Compute(options) {
  * @property {string} status [Output Only] The status of the instance. One of the following values: PROVISIONING, STAGING, RUNNING, STOPPING, STOPPED, SUSPENDING, SUSPENDED, and TERMINATED.
  * @property {string} statusMessage [Output Only] An optional, human-readable explanation of the status.
  * @property {compute(beta).Tags} tags A list of tags to apply to this instance. Tags are used to identify valid sources or targets for network firewalls and are specified by the client during instance creation. The tags can be later modified by the setTags method. Each tag within the list must comply with RFC1035.
- * @property {string} zone [Output Only] URL of the zone where the instance resides.
+ * @property {string} zone [Output Only] URL of the zone where the instance resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
  */
 /**
  * @typedef InstanceAggregatedList
@@ -38621,7 +38703,7 @@ function Compute(options) {
  * @property {integer} recreating [Output Only] The number of instances in the managed instance group that are scheduled to be recreated or are currently being being recreated. Recreating an instance deletes the existing root persistent disk and creates a new disk from the image that is defined in the instance template.
  * @property {integer} refreshing [Output Only] The number of instances in the managed instance group that are being reconfigured with properties that do not require a restart or a recreate action. For example, setting or removing target pools for the instance.
  * @property {integer} restarting [Output Only] The number of instances in the managed instance group that are scheduled to be restarted or are currently being restarted.
- * @property {integer} verifying [Output Only] The number of instances in the managed instance group that are being verified. More details regarding verification process are covered in the documentation of ManagedInstance.InstanceAction.VERIFYING enum field.
+ * @property {integer} verifying [Output Only] The number of instances in the managed instance group that are being verified. See the managedInstances[].currentAction property in the listManagedInstances method documentation.
  */
 /**
  * @typedef InstanceGroupManagerAggregatedList
@@ -38926,6 +39008,8 @@ function Compute(options) {
  * @property {string[]} interconnectAttachments [Output Only] A list of the URLs of all InterconnectAttachments configured to use this Interconnect.
  * @property {string} interconnectType Type of interconnect. Note that &quot;IT_PRIVATE&quot; has been deprecated in favor of &quot;DEDICATED&quot;
  * @property {string} kind [Output Only] Type of the resource. Always compute#interconnect for interconnects.
+ * @property {string} labelFingerprint A fingerprint for the labels being applied to this Interconnect, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels.  To see the latest fingerprint, make a get() request to retrieve an Interconnect.
+ * @property {object} labels Labels to apply to this Interconnect resource. These can be later modified by the setLabels method. Each label key/value must comply with RFC1035. Label values may be empty.
  * @property {string} linkType Type of link requested. This field indicates speed of each of the links in the bundle, not the entire bundle. Only 10G per link is allowed for a dedicated interconnect. Options: Ethernet_10G_LR
  * @property {string} location URL of the InterconnectLocation object that represents where this connection is to be provisioned.
  * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
@@ -38948,10 +39032,12 @@ function Compute(options) {
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} interconnect URL of the underlying Interconnect object that this attachment&#39;s traffic will traverse through.
  * @property {string} kind [Output Only] Type of the resource. Always compute#interconnectAttachment for interconnect attachments.
+ * @property {string} labelFingerprint A fingerprint for the labels being applied to this InterconnectAttachment, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels.  To see the latest fingerprint, make a get() request to retrieve an InterconnectAttachment.
+ * @property {object} labels Labels to apply to this InterconnectAttachment resource. These can be later modified by the setLabels method. Each label key/value must comply with RFC1035. Label values may be empty.
  * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} operationalStatus [Output Only] The current status of whether or not this interconnect attachment is functional.
  * @property {compute(beta).InterconnectAttachmentPrivateInfo} privateInterconnectInfo [Output Only] Information specific to an InterconnectAttachment. This property is populated if the interconnect that this is attached to is of type DEDICATED.
- * @property {string} region [Output Only] URL of the region where the regional interconnect attachment resides.
+ * @property {string} region [Output Only] URL of the region where the regional interconnect attachment resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
  * @property {string} router URL of the cloud router to be used for dynamic routing. This router must be in the same region as this InterconnectAttachment. The InterconnectAttachment will automatically connect the Interconnect to the network &amp; region within which the Cloud Router is configured.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  */
@@ -39192,7 +39278,7 @@ function Compute(options) {
  * @typedef ManagedInstance
  * @memberOf! compute(beta)
  * @type object
- * @property {string} currentAction [Output Only] The current action that the managed instance group has scheduled for the instance. Possible values:  - NONE The instance is running, and the managed instance group does not have any scheduled actions for this instance.  - CREATING The managed instance group is creating this instance. If the group fails to create this instance, it will try again until it is successful.  - CREATING_WITHOUT_RETRIES The managed instance group is attempting to create this instance only once. If the group fails to create this instance, it does not try again and the group&#39;s targetSize value is decreased instead.  - RECREATING The managed instance group is recreating this instance.  - DELETING The managed instance group is permanently deleting this instance.  - ABANDONING The managed instance group is abandoning this instance. The instance will be removed from the instance group and from any target pools that are associated with this group.  - RESTARTING The managed instance group is restarting the instance.  - REFRESHING The managed instance group is applying configuration changes to the instance without stopping it. For example, the group can update the target pool list for an instance without stopping that instance.
+ * @property {string} currentAction [Output Only] The current action that the managed instance group has scheduled for the instance. Possible values:  - NONE The instance is running, and the managed instance group does not have any scheduled actions for this instance.  - CREATING The managed instance group is creating this instance. If the group fails to create this instance, it will try again until it is successful.  - CREATING_WITHOUT_RETRIES The managed instance group is attempting to create this instance only once. If the group fails to create this instance, it does not try again and the group&#39;s targetSize value is decreased instead.  - RECREATING The managed instance group is recreating this instance.  - DELETING The managed instance group is permanently deleting this instance.  - ABANDONING The managed instance group is abandoning this instance. The instance will be removed from the instance group and from any target pools that are associated with this group.  - RESTARTING The managed instance group is restarting the instance.  - REFRESHING The managed instance group is applying configuration changes to the instance without stopping it. For example, the group can update the target pool list for an instance without stopping that instance.  - VERIFYING The managed instance group has created the instance and it is in the process of being verified.
  * @property {string} id [Output only] The unique identifier for this resource. This field is empty when instance does not exist.
  * @property {string} instance [Output Only] The URL of the instance. The URL can exist even if the instance has not yet been created.
  * @property {string} instanceStatus [Output Only] The status of the instance. This field is empty when the instance does not exist.
@@ -39315,7 +39401,7 @@ function Compute(options) {
  * @property {string} name [Output Only] Name of the resource.
  * @property {string} operationType [Output Only] The type of operation, such as insert, update, or delete, and so on.
  * @property {integer} progress [Output Only] An optional progress indicator that ranges from 0 to 100. There is no requirement that this be linear or support any granularity of operations. This should not be used to guess when the operation will be complete. This number should monotonically increase as the operation progresses.
- * @property {string} region [Output Only] The URL of the region where the operation resides. Only available when performing regional operations.
+ * @property {string} region [Output Only] The URL of the region where the operation resides. Only available when performing regional operations. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} startTime [Output Only] The time that this operation was started by the server. This value is in RFC3339 text format.
  * @property {string} status [Output Only] The status of the operation, which can be one of the following: PENDING, RUNNING, or DONE.
@@ -39324,7 +39410,7 @@ function Compute(options) {
  * @property {string} targetLink [Output Only] The URL of the resource that the operation modifies. For operations related to creating a snapshot, this points to the persistent disk that the snapshot was created from.
  * @property {string} user [Output Only] User who requested the operation, for example: user@example.com.
  * @property {object[]} warnings [Output Only] If warning messages are generated during processing of the operation, this field will be populated.
- * @property {string} zone [Output Only] The URL of the zone where the operation resides. Only available when performing per-zone operations.
+ * @property {string} zone [Output Only] The URL of the zone where the operation resides. Only available when performing per-zone operations. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
  */
 /**
  * @typedef OperationAggregatedList
@@ -39375,12 +39461,12 @@ function Compute(options) {
  * @typedef Policy
  * @memberOf! compute(beta)
  * @type object
- * @property {compute(beta).AuditConfig[]} auditConfigs Specifies cloud audit logging configuration for this policy.
+ * @property {compute(beta).AuditConfig[]} auditConfigs Specifies cloud audit logging configuration for this policy. This field is only visible as GOOGLE_INTERNAL or IAM_AUDIT_CONFIG.
  * @property {compute(beta).Binding[]} bindings Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
  * @property {string} etag `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
  * @property {boolean} iamOwned
  * @property {compute(beta).Rule[]} rules If more than one rule is specified, the rules are applied in the following manner: - All matching LOG rules are always applied. - If any DENY/DENY_WITH_LOG rule matches, permission is denied. Logging will be applied if one or more matching rule requires logging. - Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is granted. Logging will be applied if one or more matching rule requires logging. - Otherwise, if no rule applies, permission is denied.
- * @property {integer} version Version of the `Policy`. The default version is 0.
+ * @property {integer} version Deprecated.
  */
 /**
  * @typedef Project
@@ -39636,7 +39722,7 @@ function Compute(options) {
  * @property {string} kind [Output Only] Type of resource. Always compute#router for routers.
  * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} network URI of the network to which this router belongs.
- * @property {string} region [Output Only] URI of the region where the router resides.
+ * @property {string} region [Output Only] URI of the region where the router resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  */
 /**
@@ -39964,7 +40050,7 @@ function Compute(options) {
  * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
  * @property {string} description An optional description of this resource. Provide this property when you create the resource. This field can be set only at resource creation time.
  * @property {string} fingerprint Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a Subnetwork. An up-to-date fingerprint must be provided in order to update the Subnetwork.
- * @property {string} gatewayAddress [Output Only] The gateway address for default routes to reach destination addresses outside this subnetwork. This field can be set only at resource creation time.
+ * @property {string} gatewayAddress [Output Only] The gateway address for default routes to reach destination addresses outside this subnetwork.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} ipCidrRange The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork. For example, 10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and non-overlapping within a network. Only IPv4 is supported. This field can be set only at resource creation time.
  * @property {string} kind [Output Only] Type of the resource. Always compute#subnetwork for Subnetwork resources.
@@ -40103,7 +40189,7 @@ function Compute(options) {
  * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} natPolicy NAT option controlling how IPs are NAT&#39;ed to the instance. Currently only NO_NAT (default value) is supported.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
- * @property {string} zone [Output Only] URL of the zone where the target instance resides.
+ * @property {string} zone [Output Only] URL of the zone where the target instance resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
  */
 /**
  * @typedef TargetInstanceAggregatedList
@@ -40310,7 +40396,7 @@ function Compute(options) {
  * @property {object} labels Labels to apply to this TargetVpnGateway resource. These can be later modified by the setLabels method. Each label key/value must comply with RFC1035. Label values may be empty.
  * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} network URL of the network to which this VPN gateway is attached. Provided by the client when the VPN gateway is created.
- * @property {string} region [Output Only] URL of the region where the target VPN gateway resides.
+ * @property {string} region [Output Only] URL of the region where the target VPN gateway resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} status [Output Only] The status of the VPN gateway.
  * @property {string[]} tunnels [Output Only] A list of URLs to VpnTunnel resources. VpnTunnels are created using compute.vpntunnels.insert method and associated to a VPN gateway.
@@ -40398,7 +40484,7 @@ function Compute(options) {
  * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {compute(beta).PathMatcher[]} pathMatchers The list of named PathMatchers to use against the URL.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
- * @property {compute(beta).UrlMapTest[]} tests The list of expected URL mappings. Request to update this UrlMap will succeed only if all of the test cases pass.
+ * @property {compute(beta).UrlMapTest[]} tests The list of expected URL mapping tests. Request to update this UrlMap will succeed only if all of the test cases pass. You can specify a maximum of 100 tests per UrlMap.
  */
 /**
  * @typedef UrlMapList
@@ -40469,14 +40555,14 @@ function Compute(options) {
  * @property {string[]} localTrafficSelector Local traffic selector to use when establishing the VPN tunnel with peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges should be disjoint. Only IPv4 is supported.
  * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} peerIp IP address of the peer VPN gateway. Only IPv4 is supported.
- * @property {string} region [Output Only] URL of the region where the VPN tunnel resides.
+ * @property {string} region [Output Only] URL of the region where the VPN tunnel resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
  * @property {string[]} remoteTrafficSelector Remote traffic selectors to use when establishing the VPN tunnel with peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges should be disjoint. Only IPv4 is supported.
  * @property {string} router URL of router resource to be used for dynamic routing.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} sharedSecret Shared secret used to set the secure session between the Cloud VPN gateway and the peer VPN gateway.
  * @property {string} sharedSecretHash Hash of the shared secret.
  * @property {string} status [Output Only] The status of the VPN tunnel.
- * @property {string} targetVpnGateway URL of the VPN gateway with which this VPN tunnel is associated. Provided by the client when the VPN tunnel is created.
+ * @property {string} targetVpnGateway URL of the Target VPN gateway with which this VPN tunnel is associated. Provided by the client when the VPN tunnel is created.
  */
 /**
  * @typedef VpnTunnelAggregatedList

@@ -36,6 +36,44 @@ import {createAPIRequest} from '../../lib/apirequest';
 function Iam(options) {
   const self = this;
   self._options = options || {};
+  self.iamPolicies = {
+    /**
+     * iam.iamPolicies.queryAuditableServices
+     * @desc Returns a list of services that support service level audit logging
+     * configuration for the given resource.
+     * @alias iam.iamPolicies.queryAuditableServices
+     * @memberOf! iam(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {iam(v1).QueryAuditableServicesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    queryAuditableServices(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/iamPolicies:queryAuditableServices')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
   self.organizations = {
     roles: {
       /**
@@ -1101,6 +1139,12 @@ function Iam(options) {
   };
 }
 /**
+ * @typedef AuditableService
+ * @memberOf! iam(v1)
+ * @type object
+ * @property {string} name Public name of the service. For example, the service name for Cloud IAM is &#39;iam.googleapis.com&#39;.
+ */
+/**
  * @typedef AuditData
  * @memberOf! iam(v1)
  * @type object
@@ -1171,6 +1215,7 @@ function Iam(options) {
  * @typedef Permission
  * @memberOf! iam(v1)
  * @type object
+ * @property {boolean} apiDisabled The service API associated with the permission is not enabled.
  * @property {string} customRolesSupportLevel The current custom role support level.
  * @property {string} description A brief description of what this Permission is used for.
  * @property {string} name The name of this Permission.
@@ -1191,6 +1236,18 @@ function Iam(options) {
  * @memberOf! iam(v1)
  * @type object
  * @property {iam(v1).BindingDelta[]} bindingDeltas The delta for Bindings between two policies.
+ */
+/**
+ * @typedef QueryAuditableServicesRequest
+ * @memberOf! iam(v1)
+ * @type object
+ * @property {string} fullResourceName Required. The full resource name to query from the list of auditable services.  The name follows the Google Cloud Platform resource format. For example, a Cloud Platform project with id `my-project` will be named `//cloudresourcemanager.googleapis.com/projects/my-project`.
+ */
+/**
+ * @typedef QueryAuditableServicesResponse
+ * @memberOf! iam(v1)
+ * @type object
+ * @property {iam(v1).AuditableService[]} services The auditable services for a resource.
  */
 /**
  * @typedef QueryGrantableRolesRequest

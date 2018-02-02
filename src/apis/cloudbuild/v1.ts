@@ -599,7 +599,7 @@ function Cloudbuild(options) {
  * @property {object} substitutions Substitutions data for Build resource.
  * @property {string[]} tags Tags for annotation of a Build. These are not docker tags.
  * @property {string} timeout Amount of time that this build should be allowed to run, to second granularity. If this amount of time elapses, work on the build will cease and the build status will be TIMEOUT.  Default time is ten minutes.
- * @property {object} timing Stores timing information for phases of the build. Valid keys are:  * BUILD: time to execute all build steps * PUSH: time to push all specified images. * FETCHSOURCE: time to fetch source.  If the build does not specify source, or does not specify images, these keys will not be included.
+ * @property {object} timing Stores timing information for phases of the build. Valid keys are:  * BUILD: time to execute all build steps * PUSH: time to push all specified images. * FETCHSOURCE: time to fetch source.  If the build does not specify source, or does not specify images, these keys will not be included. @OutputOnly
  */
 /**
  * @typedef BuildOperationMetadata
@@ -623,13 +623,13 @@ function Cloudbuild(options) {
  * @memberOf! cloudbuild(v1)
  * @type object
  * @property {string[]} args A list of arguments that will be presented to the step when it is started.  If the image used to run the step&#39;s container has an entrypoint, these args will be used as arguments to that entrypoint. If the image does not define an entrypoint, the first element in args will be used as the entrypoint, and the remainder will be used as arguments.
- * @property {string} dir Working directory (relative to project source root) to use when running this operation&#39;s container.
+ * @property {string} dir Working directory to use when running this step&#39;s container.  If this value is a relative path, it is relative to the build&#39;s working directory. If this value is absolute, it may be outside the build&#39;s working directory, in which case the contents of the path may not be persisted across build step executions, unless a volume for that path is specified.  If the build specifies a RepoSource with dir and a step with a dir which specifies an absolute path, the RepoSource dir is ignored for the step&#39;s execution.
  * @property {string} entrypoint Optional entrypoint to be used instead of the build step image&#39;s default If unset, the image&#39;s default will be used.
  * @property {string[]} env A list of environment variable definitions to be used when running a step.  The elements are of the form &quot;KEY=VALUE&quot; for the environment variable &quot;KEY&quot; being given the value &quot;VALUE&quot;.
  * @property {string} id Optional unique identifier for this build step, used in wait_for to reference this build step as a dependency.
  * @property {string} name The name of the container image that will run this particular build step.  If the image is already available in the host&#39;s Docker daemon&#39;s cache, it will be run directly. If not, the host will attempt to pull the image first, using the builder service account&#39;s credentials if necessary.  The Docker daemon&#39;s cache will already have the latest versions of all of the officially supported build steps ([https://github.com/GoogleCloudPlatform/cloud-builders](https://github.com/GoogleCloudPlatform/cloud-builders)). The Docker daemon will also have cached many of the layers for some popular images, like &quot;ubuntu&quot;, &quot;debian&quot;, but they will be refreshed at the time you attempt to use them.  If you built an image in a previous build step, it will be stored in the host&#39;s Docker daemon&#39;s cache and is available to use as the name for a later build step.
  * @property {string[]} secretEnv A list of environment variables which are encrypted using a Cloud KMS crypto key. These values must be specified in the build&#39;s secrets.
- * @property {cloudbuild(v1).TimeSpan} timing Stores timing information for executing this build step.
+ * @property {cloudbuild(v1).TimeSpan} timing Stores timing information for executing this build step. @OutputOnly
  * @property {cloudbuild(v1).Volume[]} volumes List of volumes to mount into the build step.  Each volume will be created as an empty volume prior to execution of the build step. Upon completion of the build, volumes and their contents will be discarded.  Using a named volume in only one step is not valid as it is indicative of a mis-configured build request.
  * @property {string[]} waitFor The ID(s) of the step(s) that this build step depends on. This build step will not start until all the build steps in wait_for have completed successfully. If wait_for is empty, this build step will start when all previous build steps in the Build.Steps list have completed successfully.
  */
@@ -652,7 +652,7 @@ function Cloudbuild(options) {
  * @type object
  * @property {string} digest Docker Registry 2.0 digest.
  * @property {string} name Name used to push the container image to Google Container Registry, as presented to `docker push`.
- * @property {cloudbuild(v1).TimeSpan} pushTiming Stores timing information for pushing the specified image.
+ * @property {cloudbuild(v1).TimeSpan} pushTiming Stores timing information for pushing the specified image. @OutputOnly
  */
 /**
  * @typedef CancelBuildRequest
@@ -718,7 +718,7 @@ function Cloudbuild(options) {
  * @type object
  * @property {string} branchName Name of the branch to build.
  * @property {string} commitSha Explicit commit SHA to build.
- * @property {string} dir Directory, relative to the source root, in which to run the build.
+ * @property {string} dir Directory, relative to the source root, in which to run the build.  This must be a relative path. If a step&#39;s dir is specified and is an absolute path, this value is ignored for that step&#39;s execution.
  * @property {string} projectId ID of the project that owns the repo. If omitted, the project ID requesting the build is assumed.
  * @property {string} repoName Name of the repo. If omitted, the name &quot;default&quot; is assumed.
  * @property {string} tagName Name of the tag to build.

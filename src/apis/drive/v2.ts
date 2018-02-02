@@ -2546,6 +2546,7 @@ function Drive(options) {
  * @memberOf! drive(v2)
  * @type object
  * @property {object[]} additionalRoleInfo Information about supported additional roles per file type. The most specific type takes precedence.
+ * @property {boolean} canCreateTeamDrives Whether the user can create Team Drives.
  * @property {string} domainSharingPolicy The domain sharing policy for the current user. Possible values are:   - allowed  - allowedWithWarning  - incomingOnly  - disallowed
  * @property {string} etag The ETag of the item.
  * @property {object[]} exportFormats The allowable export formats.
@@ -2773,7 +2774,7 @@ function Drive(options) {
  * @property {boolean} ownedByMe Whether the file is owned by the current user. Not populated for Team Drive files.
  * @property {string[]} ownerNames Name(s) of the owner(s) of this file. Not populated for Team Drive files.
  * @property {drive(v2).User[]} owners The owner(s) of this file. Not populated for Team Drive files.
- * @property {drive(v2).ParentReference[]} parents Collection of parent folders which contain this file. Setting this field will put the file in all of the provided folders. On insert, if no folders are provided, the file will be placed in the default root folder.
+ * @property {drive(v2).ParentReference[]} parents Collection of parent folders which contain this file. If not specified as part of an insert request, the file will be placed directly in the user&#39;s My Drive folder. If not specified as part of a copy request, the file will inherit any discoverable parents of the source file. Update requests can also use the addParents and removeParents parameters to modify the parents list.
  * @property {string[]} permissionIds List of permission IDs for users with access to this file.
  * @property {drive(v2).Permission[]} permissions The list of permissions for users with access to this file. Not populated for Team Drive files.
  * @property {drive(v2).Property[]} properties The list of properties.
@@ -2847,7 +2848,7 @@ function Drive(options) {
  * @property {string} domain The domain name of the entity this permission refers to. This is an output-only field which is present when the permission type is user, group or domain.
  * @property {string} emailAddress The email address of the user or group this permission refers to. This is an output-only field which is present when the permission type is user or group.
  * @property {string} etag The ETag of the permission.
- * @property {string} expirationDate The time at which this permission will expire (RFC 3339 date-time). Expiration dates have the following restrictions:   - They can only be set on user and group permissions  - The date must be in the future  - The date cannot be more than a year in the future  - The date can only be set on drive.permissions.update requests
+ * @property {string} expirationDate The time at which this permission will expire (RFC 3339 date-time). Expiration dates have the following restrictions:   - They can only be set on user and group permissions  - The date must be in the future  - The date cannot be more than a year in the future  - The date can only be set on drive.permissions.update or drive.permissions.patch requests
  * @property {string} id The ID of the user this permission refers to, and identical to the permissionId in the About and Files resources. When making a drive.permissions.insert request, exactly one of the id or value fields must be specified unless the permission type is anyone, in which case both id and value are ignored.
  * @property {string} kind This is always drive#permission.
  * @property {string} name The name for this permission.

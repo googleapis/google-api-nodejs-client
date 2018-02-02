@@ -36,97 +36,19 @@ function Speech(options) {
   self._options = options || {};
   self.operations = {
     /**
-     * speech.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation.  The
-     * server makes a best effort to cancel the operation, but success is not
-     * guaranteed.  If the server doesn't support this method, it returns
-     * `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation
-     * or other methods to check whether the cancellation succeeded or whether
-     * the operation completed despite cancellation. On successful cancellation,
-     * the operation is not deleted; instead, it becomes an operation with an
-     * Operation.error value with a google.rpc.Status.code of 1, corresponding
-     * to `Code.CANCELLED`.
-     * @alias speech.operations.cancel
+     * speech.operations.get
+     * @desc Gets the latest state of a long-running operation.  Clients can use
+     * this method to poll the operation result at intervals as recommended by
+     * the API service.
+     * @alias speech.operations.get
      * @memberOf! speech(v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {speech(v1).CancelOperationRequest} params.resource Request body data
+     * @param {string} params.name The name of the operation resource.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1/operations/{name}:cancel')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback);
-    }, /**
-        * speech.operations.delete
-        * @desc Deletes a long-running operation. This method indicates that the
-        * client is no longer interested in the operation result. It does not
-        * cancel the operation. If the server doesn't support this method, it
-        * returns `google.rpc.Code.UNIMPLEMENTED`.
-        * @alias speech.operations.delete
-        * @memberOf! speech(v1)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.name The name of the operation resource to be deleted.
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    delete (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1/operations/{name}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback);
-    }, /**
-        * speech.operations.get
-        * @desc Gets the latest state of a long-running operation.  Clients can
-        * use this method to poll the operation result at intervals as
-        * recommended by the API service.
-        * @alias speech.operations.get
-        * @memberOf! speech(v1)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.name The name of the operation resource.
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
     get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
@@ -145,49 +67,6 @@ function Speech(options) {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback);
-    }, /**
-        * speech.operations.list
-        * @desc Lists operations that match the specified filter in the request.
-        * If the server doesn't support this method, it returns `UNIMPLEMENTED`.
-        * NOTE: the `name` binding allows API services to override the binding
-        * to use different resource name schemes, such as `users/x/operations`.
-        * To override the binding, API services can add a binding such as
-        * `"/v1/{name=users/x}/operations"` to their service configuration. For
-        * backwards compatibility, the default name includes the operations
-        * collection id, however overriding users must ensure the name binding
-        * is the parent resource, without the operations collection id.
-        * @alias speech.operations.list
-        * @memberOf! speech(v1)
-        *
-        * @param {object} params Parameters for request
-        * @param {string=} params.filter The standard list filter.
-        * @param {string=} params.name The name of the operation's parent resource.
-        * @param {integer=} params.pageSize The standard list page size.
-        * @param {string=} params.pageToken The standard list page token.
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    list(params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1/operations').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: [],
-        pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
@@ -270,23 +149,6 @@ function Speech(options) {
   };
 }
 /**
- * @typedef CancelOperationRequest
- * @memberOf! speech(v1)
- * @type object
- */
-/**
- * @typedef Empty
- * @memberOf! speech(v1)
- * @type object
- */
-/**
- * @typedef ListOperationsResponse
- * @memberOf! speech(v1)
- * @type object
- * @property {string} nextPageToken The standard List next-page token.
- * @property {speech(v1).Operation[]} operations A list of operations that matches the specified filter in the request.
- */
-/**
  * @typedef LongRunningRecognizeRequest
  * @memberOf! speech(v1)
  * @type object
@@ -314,6 +176,7 @@ function Speech(options) {
  * @typedef RecognitionConfig
  * @memberOf! speech(v1)
  * @type object
+ * @property {boolean} enableWordConfidence *Optional* If `true`, the top result includes a list of words and the confidence for those words. If `false`, no word-level confidence information is returned. The default is `false`.
  * @property {boolean} enableWordTimeOffsets *Optional* If `true`, the top result includes a list of words and the start and end time offsets (timestamps) for those words. If `false`, no word-level time offset information is returned. The default is `false`.
  * @property {string} encoding *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
  * @property {string} languageCode *Required* The language of the supplied audio as a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. Example: &quot;en-US&quot;. See [Language Support](https://cloud.google.com/speech/docs/languages) for a list of the currently supported language codes.
@@ -345,7 +208,7 @@ function Speech(options) {
  * @typedef SpeechRecognitionAlternative
  * @memberOf! speech(v1)
  * @type object
- * @property {number} confidence *Output-only* The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is typically provided only for the top hypothesis, and only for `is_final=true` results. Clients should not rely on the `confidence` field as it is not guaranteed to be accurate, or even set, in any of the results. The default of 0.0 is a sentinel value indicating `confidence` was not set.
+ * @property {number} confidence *Output-only* The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is set only for the top alternative of a non-streaming result or, of a streaming result where `is_final=true`. This field is not guaranteed to be accurate and users should not rely on it to be always provided. The default of 0.0 is a sentinel value indicating `confidence` was not set.
  * @property {string} transcript *Output-only* Transcript text representing the words that the user spoke.
  * @property {speech(v1).WordInfo[]} words *Output-only* A list of word-specific information for each recognized word.
  */
@@ -354,7 +217,6 @@ function Speech(options) {
  * @memberOf! speech(v1)
  * @type object
  * @property {speech(v1).SpeechRecognitionAlternative[]} alternatives *Output-only* May contain one or more recognition hypotheses (up to the maximum specified in `max_alternatives`). These alternatives are ordered in terms of accuracy, with the top (first) alternative being the most probable, as ranked by the recognizer.
- * @property {integer} channelTag For multi-channel audio, this is the channel number corresponding to the recognized result for the audio from that channel. For audio_channel_count = N, its output values can range from &#39;0&#39; to &#39;N-1&#39;.
  */
 /**
  * @typedef Status

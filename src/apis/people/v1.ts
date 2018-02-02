@@ -488,10 +488,10 @@ function People(options) {
        * @param {string=} params.pageToken The token of the page to be returned.
        * @param {string=} params.personFields **Required.** A field mask to restrict which fields on each person are returned. Valid values are:  * addresses * ageRanges * biographies * birthdays * braggingRights * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * relationshipInterests * relationshipStatuses * residences * skills * taglines * urls
        * @param {string=} params.requestMask.includeField **Required.** Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.
-       * @param {boolean=} params.requestSyncToken Whether the response should include a sync token, which can be used to get all changes since the last request.
+       * @param {boolean=} params.requestSyncToken Whether the response should include a sync token, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial sync requests that specify `request_sync_token` have an additional rate limit.
        * @param {string} params.resourceName The resource name to return connections for. Only `people/me` is valid.
        * @param {string=} params.sortOrder The order in which the connections should be sorted. Defaults to `LAST_MODIFIED_ASCENDING`.
-       * @param {string=} params.syncToken A sync token, returned by a previous call to `people.connections.list`. Only resources changed since the sync token was created will be returned.
+       * @param {string=} params.syncToken A sync token returned by a previous call to `people.connections.list`. Only resources changed since the sync token was created will be returned. Sync requests that specify `sync_token` have an additional rate limit.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object

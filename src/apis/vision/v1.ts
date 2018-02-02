@@ -170,6 +170,7 @@ function Vision(options) {
  * @type object
  * @property {string} blockType Detected block type (text, image etc) for this block.
  * @property {vision(v1).BoundingPoly} boundingBox The bounding box for the block. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example:  * when the text is horizontal it might look like:          0----1         |    |         3----2  * when it&#39;s rotated 180 degrees around the top-left corner it becomes:          2----3         |    |         1----0    and the vertice order will still be (0, 1, 2, 3).
+ * @property {number} confidence Confidence of the OCR results on the block. Range [0, 1].
  * @property {vision(v1).Paragraph[]} paragraphs List of paragraphs in this block (if this blocks is of type text).
  * @property {vision(v1).TextProperty} property Additional information detected for the block.
  */
@@ -275,6 +276,7 @@ function Vision(options) {
  * @memberOf! vision(v1)
  * @type object
  * @property {integer} maxResults Maximum number of results of this type. Does not apply to `TEXT_DETECTION`, `DOCUMENT_TEXT_DETECTION`, or `CROP_HINTS`.
+ * @property {string} model Model to use for the feature. Supported values: &quot;builtin/stable&quot; (the default if unset) and &quot;builtin/latest&quot;.
  * @property {string} type The feature type.
  */
 /**
@@ -291,6 +293,7 @@ function Vision(options) {
  * @property {vision(v1).CropHintsParams} cropHintsParams Parameters for crop hints annotation request.
  * @property {string[]} languageHints List of languages to use for TEXT_DETECTION. In most cases, an empty value yields the best results since it enables automatic language detection. For languages based on the Latin alphabet, setting `language_hints` is not needed. In rare cases, when the language of the text in the image is known, setting a hint will help get better results (although it will be a significant hindrance if the hint is wrong). Text detection returns an error if one or more of the specified languages is not one of the [supported languages](/vision/docs/languages).
  * @property {vision(v1).LatLongRect} latLongRect lat/long rectangle that specifies the location of the image.
+ * @property {vision(v1).WebDetectionParams} webDetectionParams Parameters for web detection.
  */
 /**
  * @typedef ImageProperties
@@ -337,6 +340,7 @@ function Vision(options) {
  * @memberOf! vision(v1)
  * @type object
  * @property {vision(v1).Block[]} blocks List of blocks of text, images etc on this page.
+ * @property {number} confidence Confidence of the OCR results on the page. Range [0, 1].
  * @property {integer} height Page height in pixels.
  * @property {vision(v1).TextProperty} property Additional information detected on the page.
  * @property {integer} width Page width in pixels.
@@ -346,6 +350,7 @@ function Vision(options) {
  * @memberOf! vision(v1)
  * @type object
  * @property {vision(v1).BoundingPoly} boundingBox The bounding box for the paragraph. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example:   * when the text is horizontal it might look like:      0----1      |    |      3----2   * when it&#39;s rotated 180 degrees around the top-left corner it becomes:      2----3      |    |      1----0   and the vertice order will still be (0, 1, 2, 3).
+ * @property {number} confidence Confidence of the OCR results for the paragraph. Range [0, 1].
  * @property {vision(v1).TextProperty} property Additional information detected for the paragraph.
  * @property {vision(v1).Word[]} words List of words in this paragraph.
  */
@@ -371,6 +376,7 @@ function Vision(options) {
  * @type object
  * @property {string} adult Represents the adult content likelihood for the image. Adult content may contain elements such as nudity, pornographic images or cartoons, or sexual activities.
  * @property {string} medical Likelihood that this is a medical image.
+ * @property {string} racy Likelihood that the request image contains racy content. Racy content may include (but is not limited to) skimpy or sheer clothing, strategically covered nudity, lewd or provocative poses, or close-ups of sensitive body areas.
  * @property {string} spoof Spoof likelihood. The likelihood that an modification was made to the image&#39;s canonical version to make it appear funny or offensive.
  * @property {string} violence Likelihood that this image contains violent content.
  */
@@ -387,6 +393,7 @@ function Vision(options) {
  * @memberOf! vision(v1)
  * @type object
  * @property {vision(v1).BoundingPoly} boundingBox The bounding box for the symbol. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example:   * when the text is horizontal it might look like:      0----1      |    |      3----2   * when it&#39;s rotated 180 degrees around the top-left corner it becomes:      2----3      |    |      1----0   and the vertice order will still be (0, 1, 2, 3).
+ * @property {number} confidence Confidence of the OCR results for the symbol. Range [0, 1].
  * @property {vision(v1).TextProperty} property Additional information detected for the symbol.
  * @property {string} text The actual UTF-8 representation of the symbol.
  */
@@ -415,11 +422,18 @@ function Vision(options) {
  * @typedef WebDetection
  * @memberOf! vision(v1)
  * @type object
+ * @property {vision(v1).WebLabel[]} bestGuessLabels Best guess text labels for the request image.
  * @property {vision(v1).WebImage[]} fullMatchingImages Fully matching images from the Internet. Can include resized copies of the query image.
  * @property {vision(v1).WebPage[]} pagesWithMatchingImages Web pages containing the matching images from the Internet.
  * @property {vision(v1).WebImage[]} partialMatchingImages Partial matching images from the Internet. Those images are similar enough to share some key-point features. For example an original image will likely have partial matching for its crops.
  * @property {vision(v1).WebImage[]} visuallySimilarImages The visually similar image results.
  * @property {vision(v1).WebEntity[]} webEntities Deduced entities from similar images on the Internet.
+ */
+/**
+ * @typedef WebDetectionParams
+ * @memberOf! vision(v1)
+ * @type object
+ * @property {boolean} includeGeoResults Whether to include results derived from the geo information in the image.
  */
 /**
  * @typedef WebEntity
@@ -437,9 +451,19 @@ function Vision(options) {
  * @property {string} url The result image URL.
  */
 /**
+ * @typedef WebLabel
+ * @memberOf! vision(v1)
+ * @type object
+ * @property {string} label Label for extra metadata.
+ * @property {string} languageCode The BCP-47 language code for `label`, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+ */
+/**
  * @typedef WebPage
  * @memberOf! vision(v1)
  * @type object
+ * @property {vision(v1).WebImage[]} fullMatchingImages Fully matching images on the page. Can include resized copies of the query image.
+ * @property {string} pageTitle Title for the web page, may contain HTML markups.
+ * @property {vision(v1).WebImage[]} partialMatchingImages Partial matching images on the page. Those images are similar enough to share some key-point features. For example an original image will likely have partial matching for its crops.
  * @property {number} score (Deprecated) Overall relevancy score for the web page.
  * @property {string} url The result web page URL.
  */
@@ -448,6 +472,7 @@ function Vision(options) {
  * @memberOf! vision(v1)
  * @type object
  * @property {vision(v1).BoundingPoly} boundingBox The bounding box for the word. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example:   * when the text is horizontal it might look like:      0----1      |    |      3----2   * when it&#39;s rotated 180 degrees around the top-left corner it becomes:      2----3      |    |      1----0   and the vertice order will still be (0, 1, 2, 3).
+ * @property {number} confidence Confidence of the OCR results for the word. Range [0, 1].
  * @property {vision(v1).TextProperty} property Additional information detected for the word.
  * @property {vision(v1).Symbol[]} symbols List of symbols in the word. The order of the symbols follows the natural reading order.
  */

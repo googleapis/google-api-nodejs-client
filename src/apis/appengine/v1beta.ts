@@ -1648,6 +1648,7 @@ function Appengine(options) {
  * @type object
  * @property {string} coolDownPeriod Amount of time that the Autoscaler (https://cloud.google.com/compute/docs/autoscaler/) should wait between changes to the number of virtual machines. Only applicable in the App Engine flexible environment.
  * @property {appengine(v1beta).CpuUtilization} cpuUtilization Target scaling by CPU usage.
+ * @property {appengine(v1beta).CustomMetric[]} customMetrics Target scaling by user-provided metrics.
  * @property {appengine(v1beta).DiskUtilization} diskUtilization Target scaling by disk usage.
  * @property {integer} maxConcurrentRequests Number of concurrent requests an automatic scaling instance can accept before the scheduler spawns a new instance.Defaults to a runtime-specific value.
  * @property {integer} maxIdleInstances Maximum number of idle instances that should be maintained for this version.
@@ -1725,6 +1726,16 @@ function Appengine(options) {
  * @property {string} cloudBuildId The Cloud Build ID if one was created as part of the version create. @OutputOnly
  */
 /**
+ * @typedef CustomMetric
+ * @memberOf! appengine(v1beta)
+ * @type object
+ * @property {string} filter Allows filtering on the metric&#39;s fields.
+ * @property {string} metricName The name of the metric.
+ * @property {number} singleInstanceAssignment May be used instead of target_utilization when an instance can handle a specific amount of work/resources and the metric value is equal to the current amount of work remaining. The autoscaler will try to keep the number of instances equal to the metric value divided by single_instance_assignment.
+ * @property {string} targetType The type of the metric. Must be a string representing a Stackdriver metric type e.g. GAGUE, DELTA_PER_SECOND, etc.
+ * @property {number} targetUtilization The target value for the metric.
+ */
+/**
  * @typedef DebugInstanceRequest
  * @memberOf! appengine(v1beta)
  * @type object
@@ -1734,7 +1745,7 @@ function Appengine(options) {
  * @typedef Deployment
  * @memberOf! appengine(v1beta)
  * @type object
- * @property {appengine(v1beta).BuildInfo} build Google Cloud Container Builder build information.
+ * @property {appengine(v1beta).BuildInfo} build Google Cloud Container Builder build information. Only applicable for instances running in the App Engine flexible environment.
  * @property {appengine(v1beta).CloudBuildOptions} cloudBuildOptions Options for any Google Cloud Container Builder builds created as a part of this deployment.Note that this is orthogonal to the build parameter, where the deployment depends on an already existing cloud build. These options will only be used if a new build is created, such as when deploying to the App Engine flexible environment using files or zip.
  * @property {appengine(v1beta).ContainerInfo} container The Docker image for the container that runs the version. Only applicable for instances running in the App Engine flexible environment.
  * @property {object} files Manifest of the files stored in Google Cloud Storage that are included as part of this version. All files must be readable using the credentials supplied with this call.
@@ -2194,6 +2205,7 @@ function Appengine(options) {
  * @property {appengine(v1beta).Resources} resources Machine resources for this version. Only applicable for VM runtimes.
  * @property {string} runtime Desired runtime. Example: python27.
  * @property {string} runtimeApiVersion The version of the API in the given runtime environment. Please see the app.yaml reference for valid values at https://cloud.google.com/appengine/docs/standard/&lt;language&gt;/config/appref
+ * @property {string} runtimeChannel The channel of the runtime to use. Only available for some runtimes. Defaults to the default channel.
  * @property {string} servingStatus Current serving status of this version. Only the versions with a SERVING status create instances and can be billed.SERVING_STATUS_UNSPECIFIED is an invalid value. Defaults to SERVING.
  * @property {boolean} threadsafe Whether multiple requests can be dispatched to this version at once.
  * @property {string} versionUrl Serving URL for this version. Example: &quot;https://myversion-dot-myservice-dot-myapp.appspot.com&quot;@OutputOnly

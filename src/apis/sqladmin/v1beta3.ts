@@ -951,6 +951,7 @@ function Sqladmin(options) {
  * @property {boolean} enabled Whether this configuration is enabled.
  * @property {string} id Identifier for this configuration. This gets generated automatically when a backup configuration is created.
  * @property {string} kind This is always sql#backupConfiguration.
+ * @property {boolean} replicationLogArchivingEnabled Whether replication log archiving is enabled. Replication log archiving is required for the point-in-time recovery (PITR) feature. PostgreSQL instances only.
  * @property {string} startTime Start time for the daily backup configuration in UTC timezone in the 24 hour format - HH:MM.
  */
 /**
@@ -990,6 +991,7 @@ function Sqladmin(options) {
  * @property {sqladmin(v1beta3).BinLogCoordinates} binLogCoordinates Binary log coordinates, if specified, indentify the position up to which the source instance should be cloned. If not specified, the source instance is cloned up to the most recent binary log coordinates.
  * @property {string} destinationInstanceName Name of the Cloud SQL instance to be created as a clone.
  * @property {string} kind This is always sql#cloneContext.
+ * @property {string} pitrTimestampMs The epoch timestamp, in milliseconds, of the time to which a point-in-time recovery (PITR) is performed. PostgreSQL instances only. For MySQL instances, use the binLogCoordinates property.
  * @property {string} sourceInstanceName Name of the Cloud SQL instance to be cloned.
  */
 /**

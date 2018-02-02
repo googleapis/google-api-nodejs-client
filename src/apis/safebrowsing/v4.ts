@@ -313,6 +313,8 @@ function Safebrowsing(options) {
  * @typedef Constraints
  * @memberOf! safebrowsing(v4)
  * @type object
+ * @property {string} deviceLocation A client&#39;s physical location, expressed as a ISO 31166-1 alpha-2 region code.
+ * @property {string} language Requests the lists for a specific language. Expects ISO 639 alpha-2 format.
  * @property {integer} maxDatabaseEntries Sets the maximum number of entries that the client is willing to have in the local database. This should be a power of 2 between 2**10 and 2**20. If zero, no database size limit is set.
  * @property {integer} maxUpdateEntries The maximum size in number of entries. The update will not contain more entries than this value.  This should be a power of 2 between 2**10 and 2**20.  If zero, no update size limit is set.
  * @property {string} region Requests the list for a specific geographic location. If not set the server may pick that value based on the user&#39;s IP address. Expects ISO 3166-1 alpha-2 format.

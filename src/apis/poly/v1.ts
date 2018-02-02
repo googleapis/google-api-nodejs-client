@@ -215,6 +215,7 @@ function Poly(options) {
  * @property {poly(v1).Format[]} formats A list of Formats where each format describes one representation of the asset.
  * @property {boolean} isCurated Whether this asset has been curated by the Poly team.
  * @property {string} license The license under which the author has made the asset available for use, if any.
+ * @property {string} metadata Application-defined opaque metadata for this asset. This field is only returned when querying for the signed-in user&#39;s own assets, not for public assets. This string is limited to 1K chars. It is up to the creator of the asset to define the format for this string (for example, JSON).
  * @property {string} name The unique identifier for the asset in the form: `assets/{ASSET_ID}`.
  * @property {poly(v1).PresentationParams} presentationParams Hints for displaying the asset. Note that these parameters are not immutable; the author of an asset may change them post-publication.
  * @property {poly(v1).File} thumbnail The thumbnail image for the asset.

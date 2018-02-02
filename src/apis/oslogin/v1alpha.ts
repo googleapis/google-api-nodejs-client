@@ -267,10 +267,9 @@ function Oslogin(options) {
  * @typedef LoginProfile
  * @memberOf! oslogin(v1alpha)
  * @type object
- * @property {string} name A unique user ID for identifying the user.
- * @property {oslogin(v1alpha).PosixAccount[]} posixAccounts The list of POSIX accounts associated with the Directory API user.
+ * @property {string} name A unique user ID.
+ * @property {oslogin(v1alpha).PosixAccount[]} posixAccounts The list of POSIX accounts associated with the user.
  * @property {object} sshPublicKeys A map from SSH public key fingerprint to the associated key object.
- * @property {boolean} suspended Indicates if the user is suspended.
  */
 /**
  * @typedef PosixAccount
