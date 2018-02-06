@@ -59,9 +59,9 @@ This client library is supported but in maintenance mode only.  We are fixing ne
 
 This library is in Alpha. We will make an effort to support the library, but we reserve the right to make incompatible changes when necessary.
 
-### Migrating to version `25.x` of this library
+### Release Notes & Breaking Changes
 
-If you've used this library before `25.x`, see our [Migration Guide][migrating] to learn about migrating your code from `24.x.x` to `25.x.x`. It's pretty easy :)
+You can find a detailed list of breaking changes and new features in our [Release Notes][releasenotes]. If you've used this library before `25.x`, see our [Release Notes][releasenotes] to learn about migrating your code from `24.x.x` to `25.x.x`. It's pretty easy :)
 
 ### Supported APIs
 
@@ -598,7 +598,7 @@ See [CONTRIBUTING][contributing].
 [axios]: https://github.com/axios/axios
 [requestopts]: https://github.com/axios/axios#request-config
 [stream]: http://nodejs.org/api/stream.html#stream_class_stream_readable
-[migrating]: https://github.com/google/google-api-nodejs-client/tree/master/MIGRATING.md
+[releasenotes]: https://github.com/google/google-api-nodejs-client/releases
 [stability]: http://nodejs.org/api/stream.html#stream_stream
 [devconsole]: https://console.developer.google.com
 [oauth]: https://developers.google.com/identity/protocols/OAuth2
