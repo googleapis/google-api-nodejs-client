@@ -63,7 +63,7 @@
       "name": "Justin Beckwith"
     }
   ],
-  "version": "25.0.0",
+  "version": "26.0.1",
   "scripts": {
     "posttest": "npm run check && npm run license-check",
     "test": "npm run cover",
