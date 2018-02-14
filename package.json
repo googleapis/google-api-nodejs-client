@@ -79,7 +79,8 @@
     "check": "gts check && npm run check-samples",
     "fix": "gts fix && npm run fix-samples",
     "fix-samples": "semistandard --fix \"samples/**/*.js\"",
-    "license-check": "jsgl --local ."
+    "license-check": "jsgl --local .",
+    "lint": "tslint -p . -c tslint.json"
   },
   "author": "Google Inc.",
   "keywords": [
@@ -134,6 +135,7 @@
     "semistandard": "12.0.0",
     "source-map-support": "0.5.3",
     "tmp": "0.0.33",
+    "tslint": "^5.9.1",
     "typescript": "2.6.2"
   }
 }
