@@ -111,7 +111,7 @@
     "@types/string-template": "^1.0.2",
     "@types/tmp": "0.0.33",
     "@types/uuid": "^3.4.3",
-    "axios": "^0.17.1",
+    "axios": "^0.18.0",
     "clang-format": "^1.2.2",
     "codecov": "^3.0.0",
     "gts": "0.5.3",
