@@ -12,6 +12,7 @@
 // limitations under the License.
 
 import * as assert from 'assert';
+import {AxiosResponse} from 'axios';
 import * as nock from 'nock';
 import * as pify from 'pify';
 import * as url from 'url';
@@ -40,25 +41,23 @@ describe('Options', () => {
 
   it('should expose _options', () => {
     const google = new GoogleApis();
-    google.options({hello: 'world'});
-    assert.equal(
-        JSON.stringify(google._options), JSON.stringify({hello: 'world'}));
+    google.options({params: {hello: 'world'}});
+    assert.deepEqual(google._options, {params: {hello: 'world'}});
   });
 
   it('should expose _options values', () => {
     const google = new GoogleApis();
-    google.options({hello: 'world'});
-    // tslint:disable-next-line no-any
-    assert.equal((google._options as any).hello, 'world');
+    google.options({params: {hello: 'world'}});
+    assert.deepEqual(google._options.params.hello, 'world');
   });
 
   it('should promote endpoint options over global options', async () => {
     const google = new GoogleApis();
-    google.options({hello: 'world'});
-    const drive = google.drive({version: 'v2', hello: 'changed'});
-    createNock('/drive/v2/files/123');
-    const res = await pify(drive.files.get)({fileId: '123'});
-    assert.equal(res.config.hello, 'changed');
+    google.options({params: {hello: 'world'}});
+    const drive = google.drive({version: 'v2', params: {hello: 'changed'}});
+    createNock('/drive/v2/files/123?hello=changed');
+    const res: AxiosResponse = await pify(drive.files.get)({fileId: '123'});
+    assert.equal(res.config.params.hello, 'changed');
   });
 
   it('should support global request params', async () => {

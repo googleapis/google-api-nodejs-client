@@ -137,7 +137,7 @@ export function createAPIRequest<T>(
   // if authClient is actually a string, use it as an API KEY
   if (typeof authClient === 'string') {
     params.key = params.key || authClient;
-    authClient = null;
+    authClient = undefined;
   }
 
   if (parameters.mediaUrl && media.body) {
