@@ -16,7 +16,7 @@ import {BodyResponseCallback} from 'google-auth-library/build/src/transporters';
 import {GoogleApis} from '../index';
 import {buildurl} from '../scripts/generator_utils';
 
-import {APIRequestContext, APIRequestContextOptions, APIRequestMethodParams, APIRequestParams} from './api';
+import {APIRequestContext, APIRequestMethodParams, APIRequestParams, GlobalOptions} from './api';
 import {createAPIRequest} from './apirequest';
 import {Discovery} from './discovery';
 import {Schema, SchemaMethod, SchemaParameters, SchemaResource} from './schema';
@@ -24,8 +24,9 @@ import {Schema, SchemaMethod, SchemaParameters, SchemaResource} from './schema';
 export interface Target { [index: string]: {}; }
 
 export class Endpoint implements Target, APIRequestContext {
-  _options: APIRequestContextOptions;
-  google: GoogleApis;
+  _options: GlobalOptions;
+  // tslint:disable-next-line no-any
+  google: any;
   [index: string]: {};
 
   constructor(options: {}) {

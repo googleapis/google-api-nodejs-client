@@ -11,7 +11,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {AxiosRequestConfig} from 'axios';
+import {AxiosAdapter, AxiosProxyConfig, AxiosRequestConfig, AxiosTransformer, CancelToken} from 'axios';
 import {OAuth2Client} from 'google-auth-library/build/src/auth/oauth2client';
 import {OutgoingHttpHeaders} from 'http';
 import * as stream from 'stream';
@@ -29,13 +29,50 @@ export interface APIRequestParams {
 }
 
 export interface APIRequestContext {
-  google: {_options: APIRequestContextOptions;};
-  _options: APIRequestContextOptions;
+  google: {_options: GlobalOptions;};
+  _options: GlobalOptions;
 }
 
-export interface APIRequestContextOptions {
-  params?: SchemaParameters;
-  auth?: OAuth2Client|string|null;
+/**
+ * This interface is a mix of the AxiosRequestConfig options
+ * and our `auth: OAuth2Client|string` options.  We need to redefine
+ * the interface here because the `auth` property already exists
+ * on AxiosRequestConfig, and uses an entirely different type.
+ */
+export interface GlobalOptions {
+  url?: string;
+  method?: string;
+  baseURL?: string;
+  transformRequest?: AxiosTransformer|AxiosTransformer[];
+  transformResponse?: AxiosTransformer|AxiosTransformer[];
+  // tslint:disable-next-line no-any
+  headers?: any;
+  // tslint:disable-next-line no-any
+  params?: any;
+  // tslint:disable-next-line no-any
+  paramsSerializer?: (params: any) => string;
+  // tslint:disable-next-line no-any
+  data?: any;
+  timeout?: number;
+  withCredentials?: boolean;
+  adapter?: AxiosAdapter;
+  auth?: OAuth2Client|string;
+  responseType?: string;
+  xsrfCookieName?: string;
+  xsrfHeaderName?: string;
+  // tslint:disable-next-line no-any
+  onUploadProgress?: (progressEvent: any) => void;
+  // tslint:disable-next-line no-any
+  onDownloadProgress?: (progressEvent: any) => void;
+  maxContentLength?: number;
+  validateStatus?: (status: number) => boolean;
+  maxRedirects?: number;
+  // tslint:disable-next-line no-any
+  httpAgent?: any;
+  // tslint:disable-next-line no-any
+  httpsAgent?: any;
+  proxy?: AxiosProxyConfig|false;
+  cancelToken?: CancelToken;
 }
 
 export interface APIRequestMethodParams {
@@ -46,7 +83,7 @@ export interface APIRequestMethodParams {
   resource?: {mimeType?: string;};
   key?: string;
   uploadType?: string;
-  auth?: OAuth2Client|string|null;
+  auth?: OAuth2Client|string;
   headers?: OutgoingHttpHeaders;
 }
 
