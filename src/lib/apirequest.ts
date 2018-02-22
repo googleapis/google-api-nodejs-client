@@ -190,6 +190,10 @@ export function createAPIRequest<T>(
 
   options.headers = headers;
   options.params = params;
+  // We need to set a default content size, or the max defaults
+  // to 10MB.  Setting to 2GB by default.
+  // https://github.com/google/google-api-nodejs-client/issues/991
+  options.maxContentLength = options.maxContentLength || Math.pow(2, 31);
 
   // Combine the AxiosRequestConfig options passed with this specific
   // API call witht the global options configured at the API Context
