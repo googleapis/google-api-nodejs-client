@@ -178,6 +178,12 @@ describe('Transporters', () => {
     });
   });
 
+  it('should return 304 responses as success', async () => {
+    const scope = nock(Utils.baseUrl).get('/drive/v2/files').reply(304);
+    const res = await pify(localDrive.files.list)();
+    assert.equal(res.status, 304);
+  });
+
   it('should handle 5xx responses that include errors', (done) => {
     const scope =
         nock(Utils.baseUrl).post('/urlshortener/v1/url').times(2).reply(500, {

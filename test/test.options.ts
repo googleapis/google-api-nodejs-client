@@ -169,6 +169,18 @@ describe('Options', () => {
         'Request used overridden rootUrl.');
   });
 
+  it('should allow overriding validateStatus', async () => {
+    const scope = nock(Utils.baseUrl).get('/drive/v2/files').reply(500);
+    const google = new GoogleApis();
+    const drive = google.drive('v2');
+    const res = await pify(drive.files.list)({}, {
+      validateStatus: status => {
+        return true;
+      }
+    });
+    assert.equal(res.status, 500);
+  });
+
   after(() => {
     nock.cleanAll();
     nock.enableNetConnect();
