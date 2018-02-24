@@ -197,6 +197,15 @@ export function createAPIRequest<T>(
   // https://github.com/google/google-api-nodejs-client/issues/991
   options.maxContentLength = options.maxContentLength || maxContentLength;
 
+  // By default Axios treats any 2xx as valid, and all non 2xx status
+  // codes as errors.  This is a problem for HTTP 304s when used along
+  // with an eTag.
+  if (!options.validateStatus) {
+    options.validateStatus = (status) => {
+      return (status >= 200 && status < 300) || status === 304;
+    };
+  }
+
   // Combine the AxiosRequestConfig options passed with this specific
   // API call witht the global options configured at the API Context
   // level, or at the global level.

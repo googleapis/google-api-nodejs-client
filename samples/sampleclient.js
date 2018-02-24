@@ -26,10 +26,14 @@ const querystring = require('querystring');
 const opn = require('opn');
 const nconf = require('nconf');
 const path = require('path');
+const destroyer = require('server-destroy');
 
 nconf.argv().env()
   .file(path.join(__dirname, 'oauth2.keys.json'));
-const keys = nconf.get('web');
+let keys = nconf.get('web');
+if (typeof keys === 'string') {
+  keys = JSON.parse(keys);
+}
 
 class SampleClient {
   constructor (options) {
@@ -55,21 +59,23 @@ class SampleClient {
     const server = http.createServer((req, res) => {
       if (req.url.indexOf('/oauth2callback') > -1) {
         const qs = querystring.parse(url.parse(req.url).query);
+        res.end('Authentication successful! Please return to the console.');
+        server.destroy();
         this.oAuth2Client.getToken(qs.code, (err, tokens) => {
           if (err) {
             console.error('Error getting oAuth tokens: ' + err);
-            return callback(err);
+            callback(err);
+            return;
           }
           this.oAuth2Client.credentials = tokens;
-          res.end('Authentication successful! Please return to the console.');
           callback(null, this.oAuth2Client);
-          server.close();
         });
       }
     }).listen(3000, () => {
       // open the browser to the authorize url to start the workflow
-      opn(this.authorizeUrl);
+      opn(this.authorizeUrl, {wait: false}).then(cp => cp.unref());
     });
+    destroyer(server);
   }
 }
 
