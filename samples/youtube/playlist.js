@@ -25,15 +25,16 @@ const youtube = google.youtube({
 // a very simple example of getting data from a playlist
 function runSamples () {
   // the first query will return data with an etag
-  getPlaylistData(null, (err, data, res) => {
+  getPlaylistData(null, (err, res) => {
     if (err) {
       throw err;
     }
-    const etag = data.etag;
+    const etag = res.data.etag;
+    console.log(`etag: ${etag}`);
 
     // the second query will (likely) return no data, and an HTTP 304
     // since the If-None-Match header was set with a matching eTag
-    getPlaylistData(etag, (err, data, res) => {
+    getPlaylistData(etag, (err, res) => {
       if (err) {
         throw err;
       }
@@ -53,15 +54,15 @@ function getPlaylistData (etag, callback) {
     part: 'id,snippet',
     id: 'PLIivdWyY5sqIij_cgINUHZDMnGjVx3rxi',
     headers: headers
-  }, (err, data, res) => {
+  }, (err, res) => {
     if (err) {
       throw err;
     }
     if (res) {
-      console.log('Status code: ' + res.statusCode);
+      console.log('Status code: ' + res.status);
     }
-    console.log(data);
-    callback(err, data, res);
+    console.log(res.data);
+    callback(err, res);
   });
 }
 
