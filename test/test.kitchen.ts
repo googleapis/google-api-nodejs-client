@@ -16,27 +16,17 @@
 
 import * as cp from 'child_process';
 import * as fs from 'fs';
+import * as mv from 'mv';
 import {ncp} from 'ncp';
 import * as pify from 'pify';
 import * as tmp from 'tmp';
 
-const unlink = pify(fs.unlink);
+const mvp = pify(mv);
 const ncpp = pify(ncp);
 const keep = !!process.env.GANC_KEEP_TEMPDIRS;
 const stagingDir = tmp.dirSync({keep, unsafeCleanup: true});
 const stagingPath = stagingDir.name;
 const pkg = require('../../package.json');
-
-const copyFile = (src: string, dst: string): Promise<void> => {
-  return new Promise((resolve, reject) => {
-    const reader = fs.createReadStream(src);
-    const writer = fs.createWriteStream(dst);
-    reader.on('error', reject);
-    writer.on('error', reject);
-    writer.on('finish', resolve);
-    reader.pipe(writer);
-  });
-};
 
 const spawnp = (command: string, args: string[], options: cp.SpawnOptions = {}):
     Promise<void> => {
@@ -69,8 +59,7 @@ describe('kitchen sink', async () => {
     console.log(`${__filename} staging area: ${stagingPath}`);
     await spawnp('npm', ['pack']);
     const tarball = `${pkg.name}-${pkg.version}.tgz`;
-    await copyFile(tarball, `${stagingPath}/googleapis.tgz`);
-    await unlink(tarball);
+    await mvp(tarball, `${stagingPath}/googleapis.tgz`);
     await ncpp('test/fixtures/kitchen', `${stagingPath}/`);
     await spawnp('npm', ['install'], {cwd: `${stagingPath}/`});
   }).timeout(40000);
