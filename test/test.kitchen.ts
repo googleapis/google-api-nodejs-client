@@ -27,7 +27,7 @@ const stagingDir = tmp.dirSync({keep, unsafeCleanup: true});
 const stagingPath = stagingDir.name;
 const pkg = require('../../package.json');
 
-function copyFile(src, dst) {
+const copyFile = (src: string, dst: string): Promise<void> => {
   return new Promise((resolve, reject) => {
     const reader = fs.createReadStream(src);
     const writer = fs.createWriteStream(dst);
@@ -36,7 +36,7 @@ function copyFile(src, dst) {
     writer.on('finish', resolve);
     reader.pipe(writer);
   });
-}
+};
 
 const spawnp = (command: string, args: string[], options: cp.SpawnOptions = {}):
     Promise<void> => {
