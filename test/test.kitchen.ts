@@ -56,14 +56,14 @@ const spawnp = (command: string, args: string[], options: cp.SpawnOptions = {}):
 
 describe('kitchen sink', async () => {
   it('should be able to use the d.ts', async () => {
-      console.log(`${__filename} staging area: ${stagingPath}`);
-      await spawnp('npm', ['pack']);
-      const tarball = `${pkg.name}-${pkg.version}.tgz`;
-      await copyFile(tarball, `${stagingPath}/googleapis.tgz`);
-      await unlink(tarball);
-      await ncpp('test/fixtures/kitchen', `${stagingPath}/`);
-      await spawnp('npm', ['install'], {cwd: `${stagingPath}/`});
-    }).timeout(40000);
+    console.log(`${__filename} staging area: ${stagingPath}`);
+    await spawnp('npm', ['pack']);
+    const tarball = `${pkg.name}-${pkg.version}.tgz`;
+    await copyFile(tarball, `${stagingPath}/googleapis.tgz`);
+    await unlink(tarball);
+    await ncpp('test/fixtures/kitchen', `${stagingPath}/`);
+    await spawnp('npm', ['install'], {cwd: `${stagingPath}/`});
+  }).timeout(40000);
 });
 
 /**
