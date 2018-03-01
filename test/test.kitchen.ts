@@ -20,13 +20,23 @@ import {ncp} from 'ncp';
 import * as pify from 'pify';
 import * as tmp from 'tmp';
 
-const copyFile = pify(fs.copyFile);
 const unlink = pify(fs.unlink);
 const ncpp = pify(ncp);
 const keep = !!process.env.GANC_KEEP_TEMPDIRS;
 const stagingDir = tmp.dirSync({keep, unsafeCleanup: true});
 const stagingPath = stagingDir.name;
 const pkg = require('../../package.json');
+
+function copyFile(src, dst) {
+  return new Promise((resolve, reject) => {
+    const reader = fs.createReadStream(src);
+    const writer = fs.createWriteStream(dst);
+    reader.on('error', reject);
+    writer.on('error', reject);
+    writer.on('finish', resolve);
+    reader.pipe(writer);
+  });
+}
 
 const spawnp = (command: string, args: string[], options: cp.SpawnOptions = {}):
     Promise<void> => {
