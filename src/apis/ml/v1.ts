@@ -284,41 +284,6 @@ function Ml(options) {
         };
         return createAPIRequest(parameters, callback);
       }, /**
-          * ml.projects.jobs.patch
-          * @desc Updates a specific job resource.  Currently the only supported
-          * fields to update are `labels`.
-          * @alias ml.projects.jobs.patch
-          * @memberOf! ml(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.name Required. The job name.
-          * @param {string=} params.updateMask Required. Specifies the path, relative to `Job`, of the field to update. To adopt etag mechanism, include `etag` field in the mask, and include the `etag` value in your job resource.  For example, to change the labels of a job, the `update_mask` parameter would be specified as `labels`, `etag`, and the `PATCH` request body would specify the new value, as follows:     {       "labels": {          "owner": "Google",          "color": "Blue"       }       "etag": "33a64df551425fcc55e4d42a148795d9f25f89d4"     } If `etag` matches the one on the server, the labels of the job will be replaced with the given ones, and the server end `etag` will be recalculated.  Currently the only supported update masks are `labels` and `etag`.
-          * @param {ml(v1).GoogleCloudMlV1__Job} params.resource Request body data
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      patch(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }, /**
           * ml.projects.jobs.setIamPolicy
           * @desc Sets the access control policy on the specified resource.
           * Replaces any existing policy.
@@ -657,7 +622,7 @@ function Ml(options) {
           *
           * @param {object} params Parameters for request
           * @param {string} params.name Required. The project name.
-          * @param {string=} params.updateMask Required. Specifies the path, relative to `Model`, of the field to update.  For example, to change the description of a model to "foo" and set its default version to "version_1", the `update_mask` parameter would be specified as `description`, `default_version.name`, and the `PATCH` request body would specify the new value, as follows:     {       "description": "foo",       "defaultVersion": {         "name":"version_1"       }     } In this example, the model is blindly overwritten since no etag is given.  To adopt etag mechanism, include `etag` field in the mask, and include the `etag` value in your model resource.  Currently the supported update masks are `description`, `default_version.name`, `labels`, and `etag`.
+          * @param {string=} params.updateMask Required. Specifies the path, relative to `Model`, of the field to update.  For example, to change the description of a model to "foo" and set its default version to "version_1", the `update_mask` parameter would be specified as `description`, `default_version.name`, and the `PATCH` request body would specify the new value, as follows:     {       "description": "foo",       "defaultVersion": {         "name":"version_1"       }     }  Currently the supported update masks are `description` and `default_version.name`.
           * @param {ml(v1).GoogleCloudMlV1__Model} params.resource Request body data
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
           * @param {callback} callback The callback that handles the response.
@@ -921,7 +886,7 @@ function Ml(options) {
             *
             * @param {object} params Parameters for request
             * @param {string} params.name Required. The name of the model.
-            * @param {string=} params.updateMask Required. Specifies the path, relative to `Version`, of the field to update. Must be present and non-empty.  For example, to change the description of a version to "foo", the `update_mask` parameter would be specified as `description`, and the `PATCH` request body would specify the new value, as follows:     {       "description": "foo"     } In this example, the version is blindly overwritten since no etag is given.  To adopt etag mechanism, include `etag` field in the mask, and include the `etag` value in your version resource.  Currently the only supported update masks are `description`, `labels`, and `etag`, and `expire_time`.
+            * @param {string=} params.updateMask Required. Specifies the path, relative to `Version`, of the field to update. Must be present and non-empty.  For example, to change the description of a version to "foo", the `update_mask` parameter would be specified as `description`, and the `PATCH` request body would specify the new value, as follows:     {       "description": "foo"     }  Currently the only supported update mask is`description`.
             * @param {ml(v1).GoogleCloudMlV1__Version} params.resource Request body data
             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
             * @param {callback} callback The callback that handles the response.
@@ -1185,9 +1150,16 @@ function Ml(options) {
  * @property {string} type
  */
 /**
+ * @typedef GoogleCloudMlV1__Config
+ * @memberOf! ml(v1)
+ * @type object
+ * @property {string} tpuServiceAccount The service account Cloud ML uses to run on TPU node.
+ */
+/**
  * @typedef GoogleCloudMlV1__GetConfigResponse
  * @memberOf! ml(v1)
  * @type object
+ * @property {ml(v1).GoogleCloudMlV1__Config} config
  * @property {string} serviceAccount The service account Cloud ML uses to access resources in the project.
  * @property {string} serviceAccountProject The project number for `service_account`.
  */
@@ -1205,11 +1177,13 @@ function Ml(options) {
  * @typedef GoogleCloudMlV1__HyperparameterSpec
  * @memberOf! ml(v1)
  * @type object
+ * @property {boolean} enableTrialEarlyStopping Optional. Indicates if the hyperparameter tuning job enables auto trial early stopping.
  * @property {string} goal Required. The type of goal to use for tuning. Available types are `MAXIMIZE` and `MINIMIZE`.  Defaults to `MAXIMIZE`.
  * @property {string} hyperparameterMetricTag Optional. The Tensorflow summary tag name to use for optimizing trials. For current versions of Tensorflow, this tag name should exactly match what is shown in Tensorboard, including all scopes.  For versions of Tensorflow prior to 0.12, this should be only the tag passed to tf.Summary. By default, &quot;training/hptuning/metric&quot; will be used.
  * @property {integer} maxParallelTrials Optional. The number of training trials to run concurrently. You can reduce the time it takes to perform hyperparameter tuning by adding trials in parallel. However, each trail only benefits from the information gained in completed trials. That means that a trial does not get access to the results of trials running at the same time, which could reduce the quality of the overall optimization.  Each trial will use the same scale tier and machine types.  Defaults to one.
  * @property {integer} maxTrials Optional. How many training trials should be attempted to optimize the specified hyperparameters.  Defaults to one.
  * @property {ml(v1).GoogleCloudMlV1__ParameterSpec[]} params Required. The set of parameters to tune.
+ * @property {string} resumePreviousJobId Optional. The prior hyperparameter tuning job id that users hope to continue with. The job id will be used to find the corresponding vizier study guid and resume the study.
  */
 /**
  * @typedef GoogleCloudMlV1__Job
@@ -1218,9 +1192,7 @@ function Ml(options) {
  * @property {string} createTime Output only. When the job was created.
  * @property {string} endTime Output only. When the job processing was completed.
  * @property {string} errorMessage Output only. The details of a failure or a cancellation.
- * @property {string} etag `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a job from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform job updates in order to avoid race conditions: An `etag` is returned in the response to `GetJob`, and systems are expected to put that etag in the request to `UpdateJob` to ensure that their change will be applied to the same version of the job.
  * @property {string} jobId Required. The user-specified id of the job.
- * @property {object} labels Optional. One or more labels that you can add, to organize your jobs. Each label is a key-value pair, where both the key and the value are arbitrary strings that you supply. For more information, see the documentation on &lt;a href=&quot;/ml-engine/docs/how-tos/resource-labels&quot;&gt;using labels&lt;/a&gt;.
  * @property {ml(v1).GoogleCloudMlV1__PredictionInput} predictionInput Input parameters to create a prediction job.
  * @property {ml(v1).GoogleCloudMlV1__PredictionOutput} predictionOutput The current prediction job result.
  * @property {string} startTime Output only. When the job processing was started.
@@ -1275,8 +1247,6 @@ function Ml(options) {
  * @type object
  * @property {ml(v1).GoogleCloudMlV1__Version} defaultVersion Output only. The default version of the model. This version will be used to handle prediction requests that do not specify a version.  You can change the default version by calling [projects.methods.versions.setDefault](/ml-engine/reference/rest/v1/projects.models.versions/setDefault).
  * @property {string} description Optional. The description specified for the model when it was created.
- * @property {string} etag `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a model from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform model updates in order to avoid race conditions: An `etag` is returned in the response to `GetModel`, and systems are expected to put that etag in the request to `UpdateModel` to ensure that their change will be applied to the model as intended.
- * @property {object} labels Optional. One or more labels that you can add, to organize your models. Each label is a key-value pair, where both the key and the value are arbitrary strings that you supply. For more information, see the documentation on &lt;a href=&quot;/ml-engine/docs/how-tos/resource-labels&quot;&gt;using labels&lt;/a&gt;.
  * @property {string} name Required. The name specified for the model when it was created.  The model name must be unique within the project it is created in.
  * @property {boolean} onlinePredictionLogging Optional. If true, enables StackDriver Logging for online prediction. Default is false.
  * @property {string[]} regions Optional. The list of regions where the model is going to be deployed. Currently only one region per model is supported. Defaults to &#39;us-central1&#39; if nothing is set. See the &lt;a href=&quot;/ml-engine/docs/regions&quot;&gt;available regions&lt;/a&gt; for ML Engine services. Note: *   No matter where a model is deployed, it can always be accessed by     users from anywhere, both for online and batch prediction. *   The region for a batch prediction job is set by the region field when     submitting the batch prediction job and does not take its value from     this field.
@@ -1288,7 +1258,6 @@ function Ml(options) {
  * @property {string} createTime The time the operation was submitted.
  * @property {string} endTime The time operation processing completed.
  * @property {boolean} isCancellationRequested Indicates whether a request to cancel this operation has been made.
- * @property {object} labels The user labels, inherited from the model or the model version being operated on.
  * @property {string} modelName Contains the name of the model associated with the operation.
  * @property {string} operationType The operation type.
  * @property {string} projectNumber Contains the project number associated with the operation.
@@ -1380,9 +1349,7 @@ function Ml(options) {
  * @property {string} deploymentUri Required. The Google Cloud Storage location of the trained model used to create the version. See the [overview of model deployment](/ml-engine/docs/concepts/deployment-overview) for more information.  When passing Version to [projects.models.versions.create](/ml-engine/reference/rest/v1/projects.models.versions/create) the model service uses the specified location as the source of the model. Once deployed, the model version is hosted by the prediction service, so this location is useful only as a historical record. The total number of model files can&#39;t exceed 1000.
  * @property {string} description Optional. The description specified for the version when it was created.
  * @property {string} errorMessage Output only. The details of a failure or a cancellation.
- * @property {string} etag `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a model from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform model updates in order to avoid race conditions: An `etag` is returned in the response to `GetVersion`, and systems are expected to put that etag in the request to `UpdateVersion` to ensure that their change will be applied to the model as intended.
  * @property {boolean} isDefault Output only. If true, this version will be used to handle prediction requests that do not specify a version.  You can change the default version by calling [projects.methods.versions.setDefault](/ml-engine/reference/rest/v1/projects.models.versions/setDefault).
- * @property {object} labels Optional. One or more labels that you can add, to organize your model versions. Each label is a key-value pair, where both the key and the value are arbitrary strings that you supply. For more information, see the documentation on &lt;a href=&quot;/ml-engine/docs/how-tos/resource-labels&quot;&gt;using labels&lt;/a&gt;.
  * @property {string} lastUseTime Output only. The time the version was last used for prediction.
  * @property {ml(v1).GoogleCloudMlV1__ManualScaling} manualScaling Manually select the number of nodes to use for serving the model. You should generally use `auto_scaling` with an appropriate `min_nodes` instead, but this option is available if you want more predictable billing. Beware that latency and error rates will increase if the traffic exceeds that capability of the system to serve it based on the selected number of nodes.
  * @property {string} name Required.The name specified for the version when it was created.  The version name must be unique within the model it is created in.
@@ -1390,10 +1357,23 @@ function Ml(options) {
  * @property {string} state Output only. The state of a version.
  */
 /**
+ * @typedef GoogleIamV1__AuditConfig
+ * @memberOf! ml(v1)
+ * @type object
+ * @property {ml(v1).GoogleIamV1__AuditLogConfig[]} auditLogConfigs The configuration for logging of each type of permission. Next ID: 4
+ * @property {string} service Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
+ */
+/**
+ * @typedef GoogleIamV1__AuditLogConfig
+ * @memberOf! ml(v1)
+ * @type object
+ * @property {string[]} exemptedMembers Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
+ * @property {string} logType The log type that this config enables.
+ */
+/**
  * @typedef GoogleIamV1__Binding
  * @memberOf! ml(v1)
  * @type object
- * @property {ml(v1).GoogleType__Expr} condition The condition that is associated with this binding. NOTE: an unsatisfied condition will not allow user access via current binding. Different bindings, including their conditions, are examined independently. This field is only visible as GOOGLE_INTERNAL or CONDITION_TRUSTED_TESTER.
  * @property {string[]} members Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@gmail.com` or `joe@example.com`.   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: A Google Apps domain name that represents all the    users of that domain. For example, `google.com` or `example.com`.
  * @property {string} role Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. Required
  */
@@ -1401,6 +1381,7 @@ function Ml(options) {
  * @typedef GoogleIamV1__Policy
  * @memberOf! ml(v1)
  * @type object
+ * @property {ml(v1).GoogleIamV1__AuditConfig[]} auditConfigs Specifies cloud audit logging configuration for this policy.
  * @property {ml(v1).GoogleIamV1__Binding[]} bindings Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
  * @property {string} etag `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
  * @property {integer} version Deprecated.
@@ -1453,15 +1434,6 @@ function Ml(options) {
  * @property {integer} code The status code, which should be an enum value of google.rpc.Code.
  * @property {object[]} details A list of messages that carry the error details.  There is a common set of message types for APIs to use.
  * @property {string} message A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
- */
-/**
- * @typedef GoogleType__Expr
- * @memberOf! ml(v1)
- * @type object
- * @property {string} description An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
- * @property {string} expression Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
- * @property {string} location An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
- * @property {string} title An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
  */
 
 export = Ml;

@@ -985,16 +985,16 @@ function Runtimeconfig(options) {
  * @property {string} name The name of the variable resource, in the format:      projects/[PROJECT_ID]/configs/[CONFIG_NAME]/variables/[VARIABLE_NAME]  The `[PROJECT_ID]` must be a valid project ID, `[CONFIG_NAME]` must be a valid RuntimeConfig reource and `[VARIABLE_NAME]` follows Unix file system file path naming.  The `[VARIABLE_NAME]` can contain ASCII letters, numbers, slashes and dashes. Slashes are used as path element separators and are not part of the `[VARIABLE_NAME]` itself, so `[VARIABLE_NAME]` must contain at least one non-slash character. Multiple slashes are coalesced into single slash character. Each path segment should match [0-9A-Za-z](?:[_.A-Za-z0-9-]{0,62}[_.A-Za-z0-9])? regular expression. The length of a `[VARIABLE_NAME]` must be less than 256 characters.  Once you create a variable, you cannot change the variable name.
  * @property {string} state [Ouput only] The current state of the variable. The variable state indicates the outcome of the `variables().watch` call and is visible through the `get` and `list` calls.
  * @property {string} text The string value of the variable. The length of the value must be less than 4096 bytes. Empty values are also accepted. For example, `text: &quot;my text value&quot;`. The string must be valid UTF-8.
- * @property {string} updateTime [Output Only] The time of the last variable update.
+ * @property {string} updateTime Output only. The time of the last variable update.
  * @property {string} value The binary value of the variable. The length of the value must be less than 4096 bytes. Empty values are also accepted. The value must be base64 encoded. Only one of `value` or `text` can be set.
  */
 /**
  * @typedef Waiter
  * @memberOf! runtimeconfig(v1beta1)
  * @type object
- * @property {string} createTime [Output Only] The instant at which this Waiter resource was created. Adding the value of `timeout` to this instant yields the timeout deadline for the waiter.
- * @property {boolean} done [Output Only] If the value is `false`, it means the waiter is still waiting for one of its conditions to be met.  If true, the waiter has finished. If the waiter finished due to a timeout or failure, `error` will be set.
- * @property {runtimeconfig(v1beta1).Status} error [Output Only] If the waiter ended due to a failure or timeout, this value will be set.
+ * @property {string} createTime Output only. The instant at which this Waiter resource was created. Adding the value of `timeout` to this instant yields the timeout deadline for the waiter.
+ * @property {boolean} done Output only. If the value is `false`, it means the waiter is still waiting for one of its conditions to be met.  If true, the waiter has finished. If the waiter finished due to a timeout or failure, `error` will be set.
+ * @property {runtimeconfig(v1beta1).Status} error Output only. If the waiter ended due to a failure or timeout, this value will be set.
  * @property {runtimeconfig(v1beta1).EndCondition} failure [Optional] The failure condition of this waiter. If this condition is met, `done` will be set to `true` and the `error` code will be set to `ABORTED`. The failure condition takes precedence over the success condition. If both conditions are met, a failure will be indicated. This value is optional; if no failure condition is set, the only failure scenario will be a timeout.
  * @property {string} name The name of the Waiter resource, in the format:      projects/[PROJECT_ID]/configs/[CONFIG_NAME]/waiters/[WAITER_NAME]  The `[PROJECT_ID]` must be a valid Google Cloud project ID, the `[CONFIG_NAME]` must be a valid RuntimeConfig resource, the `[WAITER_NAME]` must match RFC 1035 segment specification, and the length of `[WAITER_NAME]` must be less than 64 bytes.  After you create a Waiter resource, you cannot change the resource name.
  * @property {runtimeconfig(v1beta1).EndCondition} success [Required] The success condition. If this condition is met, `done` will be set to `true` and the `error` value will remain unset. The failure condition takes precedence over the success condition. If both conditions are met, a failure will be indicated.

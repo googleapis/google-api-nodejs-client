@@ -17,7 +17,7 @@
 import {createAPIRequest} from '../../lib/apirequest';
 
 /**
- * Google Cloud Natural Language API
+ * Cloud Natural Language API
  *
  * Provides natural language understanding technologies to developers. Examples
  * include sentiment analysis, entity recognition, entity sentiment analysis,

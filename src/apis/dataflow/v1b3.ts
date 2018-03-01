@@ -17,7 +17,7 @@
 import {createAPIRequest} from '../../lib/apirequest';
 
 /**
- * Google Dataflow API
+ * Dataflow API
  *
  * Manages Google Cloud Dataflow projects on Google Cloud Platform.
  *
@@ -1847,7 +1847,9 @@ function Dataflow(options) {
  * @property {boolean} bypassTempDirValidation Whether to bypass the safety checks for the job&#39;s temporary directory. Use with caution.
  * @property {string} machineType The machine type to use for the job. Defaults to the value from the template if not specified.
  * @property {integer} maxWorkers The maximum number of Google Compute Engine instances to be made available to your pipeline during execution, from 1 to 1000.
+ * @property {string} network Network to which VMs will be assigned.  If empty or unspecified, the service will use the network &quot;default&quot;.
  * @property {string} serviceAccountEmail The email address of the service account to run the job as.
+ * @property {string} subnetwork Subnetwork to which VMs will be assigned, if desired.  Expected to be of the form &quot;regions/REGION/subnetworks/SUBNETWORK&quot;.
  * @property {string} tempLocation The Cloud Storage path to use for temporary files. Must be a valid Cloud Storage URL, beginning with `gs://`.
  * @property {string} zone The Compute Engine [availability zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones) for launching worker instances to run your pipeline.
  */
@@ -2190,12 +2192,21 @@ function Dataflow(options) {
  * @property {string} reportInterval A positive value indicates the worker should change its reporting interval to the specified value.  The default value of zero means no change in report rate is requested by the server.
  */
 /**
+ * @typedef WorkerLifecycleEvent
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {string} containerStartTime The start time of this container. All events will report this so that events can be grouped together across container/VM restarts.
+ * @property {string} event The event being reported.
+ * @property {object} metadata Other stats that can accompany an event. E.g. { &quot;downloaded_bytes&quot; : &quot;123456&quot; }
+ */
+/**
  * @typedef WorkerMessage
  * @memberOf! dataflow(v1b3)
  * @type object
  * @property {object} labels Labels are used to group WorkerMessages. For example, a worker_message about a particular container might have the labels: { &quot;JOB_ID&quot;: &quot;2015-04-22&quot;,   &quot;WORKER_ID&quot;: &quot;wordcount-vm-2015…&quot;   &quot;CONTAINER_TYPE&quot;: &quot;worker&quot;,   &quot;CONTAINER_ID&quot;: &quot;ac1234def&quot;} Label tags typically correspond to Label enum values. However, for ease of development other strings can be used as tags. LABEL_UNSPECIFIED should not be used here.
  * @property {string} time The timestamp of the worker_message.
  * @property {dataflow(v1b3).WorkerHealthReport} workerHealthReport The health of a worker.
+ * @property {dataflow(v1b3).WorkerLifecycleEvent} workerLifecycleEvent Record of worker lifecycle events.
  * @property {dataflow(v1b3).WorkerMessageCode} workerMessageCode A worker message code.
  * @property {dataflow(v1b3).ResourceUtilizationReport} workerMetrics Resource metrics reported by workers.
  * @property {dataflow(v1b3).WorkerShutdownNotice} workerShutdownNotice Shutdown notice by workers.

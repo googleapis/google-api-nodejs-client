@@ -3981,6 +3981,19 @@ function Youtube(options) {
  * @property {boolean} enableMonitorStream This value determines whether the monitor stream is enabled for the broadcast. If the monitor stream is enabled, then YouTube will broadcast the event content on a special stream intended only for the broadcaster&#39;s consumption. The broadcaster can use the stream to review the event content and also to identify the optimal times to insert cuepoints.  You need to set this value to true if you intend to have a broadcast delay for your event.  Note: This property cannot be updated once the broadcast is in the testing or live state.
  */
 /**
+ * @typedef Nonprofit
+ * @memberOf! youtube(v3)
+ * @type object
+ * @property {youtube(v3).NonprofitId} nonprofitId Id of the nonprofit.
+ * @property {string} nonprofitLegalName Legal name of the nonprofit.
+ */
+/**
+ * @typedef NonprofitId
+ * @memberOf! youtube(v3)
+ * @type object
+ * @property {string} value
+ */
+/**
  * @typedef PageInfo
  * @memberOf! youtube(v3)
  * @type object
@@ -4294,7 +4307,9 @@ function Youtube(options) {
  * @property {string} createdAt The date and time when the event occurred. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
  * @property {string} currency The currency in which the purchase was made. ISO 4217.
  * @property {string} displayString A rendered string that displays the purchase amount and currency (e.g., &quot;$1.00&quot;). The string is rendered for the given language.
+ * @property {boolean} isSuperChatForGood True if this event is a Super Chat for Good purchase.
  * @property {integer} messageType The tier for the paid message, which is based on the amount of money spent to purchase the message.
+ * @property {youtube(v3).Nonprofit} nonprofit If this event is a Super Chat for Good purchase, this field will contain information about the charity the purchase is donated to.
  * @property {youtube(v3).ChannelProfileDetails} supporterDetails Details about the supporter.
  */
 /**

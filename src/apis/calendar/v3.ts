@@ -1542,7 +1542,20 @@ function Calendar(options) {
  * @property {calendar(v3).CreateConferenceRequest} createRequest A request to generate a new conference and attach it to the event. The data is generated asynchronously. To see whether the data is present check the status field. Either conferenceSolution and at least one entryPoint, or createRequest is required.
  * @property {calendar(v3).EntryPoint[]} entryPoints Information about individual conference entry points, such as URLs or phone numbers. All of them must belong to the same conference. Either conferenceSolution and at least one entryPoint, or createRequest is required.
  * @property {string} notes Additional notes (such as instructions from the domain administrator, legal notices) to display to the user. Can contain HTML. The maximum length is 2048 characters. Optional.
+ * @property {calendar(v3).ConferenceParameters} parameters Additional properties related to a conference. An example would be a solution-specific setting for enabling video streaming.
  * @property {string} signature The signature of the conference data. Genereated on server side. Must be preserved while copying the conference data between events, otherwise the conference data will not be copied. Unset for a conference with a failed create request. Optional for a conference with a pending create request.
+ */
+/**
+ * @typedef ConferenceParameters
+ * @memberOf! calendar(v3)
+ * @type object
+ * @property {calendar(v3).ConferenceParametersAddOnParameters} addOnParameters Additional add-on specific data.
+ */
+/**
+ * @typedef ConferenceParametersAddOnParameters
+ * @memberOf! calendar(v3)
+ * @type object
+ * @property {object} parameters
  */
 /**
  * @typedef ConferenceProperties

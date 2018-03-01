@@ -1433,6 +1433,7 @@ function Adexchangebuyer(options) {
  * @typedef Account
  * @memberOf! adexchangebuyer(v1.4)
  * @type object
+ * @property {boolean} applyPretargetingToNonGuaranteedDeals When this is false, bid requests that include a deal ID for a private auction or preferred deal are always sent to your bidder. When true, all active pretargeting configs will be applied to private auctions and preferred deals. Programmatic Guaranteed deals (when enabled) are always sent to your bidder.
  * @property {object[]} bidderLocation Your bidder locations that have distinct URLs.
  * @property {string} cookieMatchingNid The nid parameter value used in cookie match requests. Please contact your technical account manager if you need to change this.
  * @property {string} cookieMatchingUrl The base URL used in cookie match requests.
@@ -1547,11 +1548,11 @@ function Adexchangebuyer(options) {
  * @property {string[]} detectedDomains Detected domains for this creative. Read-only. This field should not be set in requests.
  * @property {object} filteringReasons The filtering reasons for the creative. Read-only. This field should not be set in requests.
  * @property {integer} height Ad height.
- * @property {string} HTMLSnippet The HTML snippet that displays the ad when inserted in the web page. If set, videoURL should not be set.
+ * @property {string} HTMLSnippet The HTML snippet that displays the ad when inserted in the web page. If set, videoURL, videoVastXML, and nativeAd should not be set.
  * @property {string[]} impressionTrackingUrl The set of urls to be called to record an impression.
  * @property {string} kind Resource type.
  * @property {string[]} languages Detected languages for this creative. Read-only. This field should not be set in requests.
- * @property {object} nativeAd If nativeAd is set, HTMLSnippet and the videoURL outside of nativeAd should not be set. (The videoURL inside nativeAd can be set.)
+ * @property {object} nativeAd If nativeAd is set, HTMLSnippet, videoVastXML, and the videoURL outside of nativeAd should not be set. (The videoURL inside nativeAd can be set.)
  * @property {string} openAuctionStatus Top-level open auction status. Read-only. This field should not be set in requests. If disapproved, an entry for auctionType=OPEN_AUCTION (or ALL) in servingRestrictions will also exist. Note that this may be nuanced with other contextual restrictions, in which case it may be preferable to read from ServingRestrictions directly.
  * @property {integer[]} productCategories Detected product categories, if any. Each category is represented by an integer as defined in  ad-product-categories.txt. Read-only. This field should not be set in requests.
  * @property {integer[]} restrictedCategories All restricted categories for the ads that may be shown from this snippet. Each category is represented by an integer as defined in the  ad-restricted-categories.txt.
@@ -1559,7 +1560,8 @@ function Adexchangebuyer(options) {
  * @property {object[]} servingRestrictions The granular status of this ad in specific contexts. A context here relates to where something ultimately serves (for example, a physical location, a platform, an HTTPS vs HTTP request, or the type of auction). Read-only. This field should not be set in requests. See the examples in the Creatives guide for more details.
  * @property {integer[]} vendorType List of vendor types for the ads that may be shown from this snippet. Each vendor type is represented by an integer as defined in vendors.txt.
  * @property {integer} version The version for this creative. Read-only. This field should not be set in requests.
- * @property {string} videoURL The URL to fetch a video ad. If set, HTMLSnippet and the nativeAd should not be set. Note, this is different from resource.native_ad.video_url above.
+ * @property {string} videoURL The URL to fetch a video ad. If set, HTMLSnippet, videoVastXML, and nativeAd should not be set. Note, this is different from resource.native_ad.video_url above.
+ * @property {string} videoVastXML The contents of a VAST document for a video ad. This document should conform to the VAST 2.0 or 3.0 standard. If set, HTMLSnippet, videoURL, and nativeAd and should not be set.
  * @property {integer} width Ad width.
  */
 /**
@@ -2013,6 +2015,8 @@ function Adexchangebuyer(options) {
  * @type object
  * @property {adexchangebuyer(v1.4).TargetingValueCreativeSize} creativeSizeValue The creative size value to exclude/include.
  * @property {adexchangebuyer(v1.4).TargetingValueDayPartTargeting} dayPartTargetingValue The daypart targeting to include / exclude. Filled in when the key is GOOG_DAYPART_TARGETING.
+ * @property {adexchangebuyer(v1.4).TargetingValueDemogAgeCriteria} demogAgeCriteriaValue
+ * @property {adexchangebuyer(v1.4).TargetingValueDemogGenderCriteria} demogGenderCriteriaValue
  * @property {string} longValue The long value to exclude/include.
  * @property {string} stringValue The string value to exclude/include.
  */
@@ -2020,6 +2024,7 @@ function Adexchangebuyer(options) {
  * @typedef TargetingValueCreativeSize
  * @memberOf! adexchangebuyer(v1.4)
  * @type object
+ * @property {string[]} allowedFormats The formats allowed by the publisher.
  * @property {adexchangebuyer(v1.4).TargetingValueSize[]} companionSizes For video size type, the list of companion sizes.
  * @property {string} creativeSizeType The Creative size type.
  * @property {string} nativeTemplate The native template for native ad.
@@ -2042,6 +2047,18 @@ function Adexchangebuyer(options) {
  * @property {integer} endMinute
  * @property {integer} startHour
  * @property {integer} startMinute
+ */
+/**
+ * @typedef TargetingValueDemogAgeCriteria
+ * @memberOf! adexchangebuyer(v1.4)
+ * @type object
+ * @property {string[]} demogAgeCriteriaIds
+ */
+/**
+ * @typedef TargetingValueDemogGenderCriteria
+ * @memberOf! adexchangebuyer(v1.4)
+ * @type object
+ * @property {string[]} demogGenderCriteriaIds
  */
 /**
  * @typedef TargetingValueSize

@@ -417,6 +417,7 @@ function Deploymentmanager(options) {
         * @memberOf! deploymentmanager(v2beta)
         *
         * @param {object} params Parameters for request
+        * @param {string=} params.createPolicy
         * @param {boolean=} params.preview If set to true, creates a deployment and creates "shell" resources but does not actually instantiate these resources. This allows you to preview what your deployment looks like. After previewing a deployment, you can deploy your resources by making a request with the update() method or you can use the cancelPreview() method to cancel the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.
         * @param {string} params.project The project ID for this request.
         * @param {deploymentmanager(v2beta).Deployment} params.resource Request body data
@@ -1272,6 +1273,13 @@ function Deploymentmanager(options) {
   };
 }
 /**
+ * @typedef AsyncOptions
+ * @memberOf! deploymentmanager(v2beta)
+ * @type object
+ * @property {string} methodMatch Method regex where this policy will apply.
+ * @property {deploymentmanager(v2beta).PollingOptions} pollingOptions Deployment manager will poll instances for this API resource setting a RUNNING state, and blocking until polling conditions tell whether the resource is completed or failed.
+ */
+/**
  * @typedef AuditConfig
  * @memberOf! deploymentmanager(v2beta)
  * @type object
@@ -1434,6 +1442,13 @@ function Deploymentmanager(options) {
  * @property {string} value
  */
 /**
+ * @typedef Diagnostic
+ * @memberOf! deploymentmanager(v2beta)
+ * @type object
+ * @property {string} field JsonPath expression on the resource that if non empty, indicates that this field needs to be extracted as a diagnostic.
+ * @property {string} level Level to record this diagnostic.
+ */
+/**
  * @typedef Expr
  * @memberOf! deploymentmanager(v2beta)
  * @type object
@@ -1545,6 +1560,7 @@ function Deploymentmanager(options) {
  * @typedef Options
  * @memberOf! deploymentmanager(v2beta)
  * @type object
+ * @property {deploymentmanager(v2beta).AsyncOptions[]} asyncOptions Options regarding how to thread async requests.
  * @property {deploymentmanager(v2beta).InputMapping[]} inputMappings The mappings that apply for requests.
  * @property {deploymentmanager(v2beta).ValidationOptions} validationOptions Options for how to validate and process properties on a resource.
  * @property {string} virtualProperties Additional properties block described as a jsonSchema, these properties will never be part of the json payload, but they can be consumed by InputMappings, this must be a valid json schema draft-04. The properties specified here will be decouple in a different section. This schema will be merged to the schema validation, and properties here will be extracted From the payload and consumed explicitly by InputMappings. ex: field1: type: string field2: type: number
@@ -1559,6 +1575,16 @@ function Deploymentmanager(options) {
  * @property {boolean} iamOwned
  * @property {deploymentmanager(v2beta).Rule[]} rules If more than one rule is specified, the rules are applied in the following manner: - All matching LOG rules are always applied. - If any DENY/DENY_WITH_LOG rule matches, permission is denied. Logging will be applied if one or more matching rule requires logging. - Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is granted. Logging will be applied if one or more matching rule requires logging. - Otherwise, if no rule applies, permission is denied.
  * @property {integer} version Deprecated.
+ */
+/**
+ * @typedef PollingOptions
+ * @memberOf! deploymentmanager(v2beta)
+ * @type object
+ * @property {deploymentmanager(v2beta).Diagnostic[]} diagnostics An array of diagnostics to be collected by Deployment Manager, these diagnostics will be displayed to the user.
+ * @property {string} failCondition JsonPath expression that determines if the request failed.
+ * @property {string} finishCondition JsonPath expression that determines if the request is completed.
+ * @property {string} pollingLink JsonPath expression that evaluates to string, it indicates where to poll.
+ * @property {string} targetLink JsonPath expression, after polling is completed, indicates where to fetch the resource.
  */
 /**
  * @typedef Resource
