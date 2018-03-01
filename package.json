@@ -71,22 +71,7 @@
   ],
   "version": "27.0.0",
   "scripts": {
-    "posttest": "npm run check && npm run license-check",
-    "test": "npm run cover",
-    "test-samples": "npm link && npm link googleapis && mocha build/test/samples",
-    "doc": "jsdoc -c jsdoc-conf.json",
-    "prepare": "npm run compile",
-    "build-tools": "tsc -p tsconfig.tools.json",
-    "compile": "tsc -p .",
-    "check-samples": "semistandard 'samples/**/*.js'",
-    "generate-apis": "npm run build-tools && node build/src/scripts/generate.js && clang-format -i -style='{Language: JavaScript, BasedOnStyle: Google, ColumnLimit: 80}' src/apis/**/*.ts",
-    "cover": "nyc --cache mocha build/test -t 10000 -S -R spec --require intelli-espower-loader && nyc report --reporter=html",
-    "pretest": "npm run compile",
-    "clean": "gts clean",
-    "check": "gts check && npm run check-samples",
-    "fix": "gts fix && npm run fix-samples",
-    "fix-samples": "semistandard --fix \"samples/**/*.js\"",
-    "license-check": "jsgl --local ."
+    "test": "make test -j 4"
   },
   "author": "Google Inc.",
   "keywords": [
