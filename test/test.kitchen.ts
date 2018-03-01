@@ -20,7 +20,8 @@ import {ncp} from 'ncp';
 import * as pify from 'pify';
 import * as tmp from 'tmp';
 
-const rename = pify(fs.rename);
+const copyFile = pify(fs.copyFile);
+const unlink = pify(fs.unlink);
 const ncpp = pify(ncp);
 const keep = !!process.env.GANC_KEEP_TEMPDIRS;
 const stagingDir = tmp.dirSync({keep, unsafeCleanup: true});
@@ -55,13 +56,14 @@ const spawnp = (command: string, args: string[], options: cp.SpawnOptions = {}):
 
 describe('kitchen sink', async () => {
   it('should be able to use the d.ts', async () => {
-    console.log(`${__filename} staging area: ${stagingPath}`);
-    await spawnp('npm', ['pack']);
-    const tarball = `${pkg.name}-${pkg.version}.tgz`;
-    await rename(tarball, `${stagingPath}/googleapis.tgz`);
-    await ncpp('test/fixtures/kitchen', `${stagingPath}/`);
-    await spawnp('npm', ['install'], {cwd: `${stagingPath}/`});
-  }).timeout(40000);
+      console.log(`${__filename} staging area: ${stagingPath}`);
+      await spawnp('npm', ['pack']);
+      const tarball = `${pkg.name}-${pkg.version}.tgz`;
+      await copyFile(tarball, `${stagingPath}/googleapis.tgz`);
+      await unlink(tarball);
+      await ncpp('test/fixtures/kitchen', `${stagingPath}/`);
+      await spawnp('npm', ['install'], {cwd: `${stagingPath}/`});
+    }).timeout(40000);
 });
 
 /**
