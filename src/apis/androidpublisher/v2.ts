@@ -2127,8 +2127,7 @@ function Androidpublisher(options) {
     voidedpurchases: {
       /**
        * androidpublisher.purchases.voidedpurchases.list
-       * @desc Lists the purchases that were cancelled, refunded or
-       * charged-back.
+       * @desc Lists the purchases that were canceled, refunded or charged-back.
        * @alias androidpublisher.purchases.voidedpurchases.list
        * @memberOf! androidpublisher(v2)
        *
@@ -2555,9 +2554,9 @@ function Androidpublisher(options) {
  * @property {string} developerPayload A developer-specified string that contains supplemental information about an order.
  * @property {string} kind This kind represents an inappPurchase object in the androidpublisher service.
  * @property {string} orderId The order id associated with the purchase of the inapp product.
- * @property {integer} purchaseState The purchase state of the order. Possible values are:   - Purchased  - Cancelled
+ * @property {integer} purchaseState The purchase state of the order. Possible values are:   - Purchased  - Canceled
  * @property {string} purchaseTimeMillis The time the product was purchased, in milliseconds since the epoch (Jan 1, 1970).
- * @property {integer} purchaseType The type of purchase of the inapp product. This field is only set if this purchase was not made using the standard in-app billing flow. Possible values are:   - Test (i.e. purchased from a license testing account)
+ * @property {integer} purchaseType The type of purchase of the inapp product. This field is only set if this purchase was not made using the standard in-app billing flow. Possible values are:   - Test (i.e. purchased from a license testing account)  - Promo (i.e. purchased using a promo code)
  */
 /**
  * @typedef Prorate
@@ -2621,7 +2620,7 @@ function Androidpublisher(options) {
  * @memberOf! androidpublisher(v2)
  * @type object
  * @property {boolean} autoRenewing Whether the subscription will automatically be renewed when it reaches its current expiry time.
- * @property {integer} cancelReason The reason why a subscription was cancelled or is not auto-renewing. Possible values are:   - User cancelled the subscription  - Subscription was cancelled by the system, for example because of a billing problem  - Subscription was replaced with a new subscription  - Subscription was cancelled by the developer
+ * @property {integer} cancelReason The reason why a subscription was canceled or is not auto-renewing. Possible values are:   - User canceled the subscription  - Subscription was canceled by the system, for example because of a billing problem  - Subscription was replaced with a new subscription  - Subscription was canceled by the developer
  * @property {string} countryCode ISO 3166-1 alpha-2 billing country/region code of the user at the time the subscription was granted.
  * @property {string} developerPayload A developer-specified string that contains supplemental information about an order.
  * @property {string} expiryTimeMillis Time at which the subscription will expire, in milliseconds since the Epoch.
@@ -2707,7 +2706,7 @@ function Androidpublisher(options) {
  * @property {string} kind This kind represents a voided purchase object in the androidpublisher service.
  * @property {string} purchaseTimeMillis The time at which the purchase was made, in milliseconds since the epoch (Jan 1, 1970).
  * @property {string} purchaseToken The token that was generated when a purchase was made. This uniquely identifies a purchase.
- * @property {string} voidedTimeMillis The time at which the purchase was cancelled/refunded/charged-back, in milliseconds since the epoch (Jan 1, 1970).
+ * @property {string} voidedTimeMillis The time at which the purchase was canceled/refunded/charged-back, in milliseconds since the epoch (Jan 1, 1970).
  */
 /**
  * @typedef VoidedPurchasesListResponse

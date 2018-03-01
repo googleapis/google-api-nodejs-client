@@ -17,7 +17,7 @@
 import {createAPIRequest} from '../../lib/apirequest';
 
 /**
- * Google Cloud Container Builder API
+ * Cloud Container Builder API
  *
  * Builds container images in the cloud.
  *
@@ -161,7 +161,7 @@ function Cloudbuild(options) {
     builds: {
       /**
        * cloudbuild.projects.builds.cancel
-       * @desc Cancels a requested build in progress.
+       * @desc Cancels a build in progress.
        * @alias cloudbuild.projects.builds.cancel
        * @memberOf! cloudbuild(v1)
        *
@@ -196,10 +196,10 @@ function Cloudbuild(options) {
         return createAPIRequest(parameters, callback);
       }, /**
           * cloudbuild.projects.builds.create
-          * @desc Starts a build with the specified configuration.  The
-          * long-running Operation returned by this method will include the ID
-          * of the build, which can be passed to GetBuild to determine its
-          * status (e.g., success or failure).
+          * @desc Starts a build with the specified configuration.  This method
+          * returns a long-running `Operation`, which includes the build ID.
+          * Pass the build ID to `GetBuild` to determine the build status (such
+          * as `SUCCESS` or `FAILURE`).
           * @alias cloudbuild.projects.builds.create
           * @memberOf! cloudbuild(v1)
           *
@@ -234,8 +234,8 @@ function Cloudbuild(options) {
       }, /**
           * cloudbuild.projects.builds.get
           * @desc Returns information about a previously requested build.  The
-          * Build that is returned includes its status (e.g., success or
-          * failure, or in-progress), and timing information.
+          * `Build` that is returned includes its status (such as `SUCCESS`,
+          * `FAILURE`, or `WORKING`), and timing information.
           * @alias cloudbuild.projects.builds.get
           * @memberOf! cloudbuild(v1)
           *
@@ -307,24 +307,24 @@ function Cloudbuild(options) {
         return createAPIRequest(parameters, callback);
       }, /**
           * cloudbuild.projects.builds.retry
-          * @desc Creates a new build based on the given build.  This API
-          * creates a new build using the original build request,  which may or
+          * @desc Creates a new build based on the specified build.  This method
+          * creates a new build using the original build request, which may or
           * may not result in an identical build.  For triggered builds:  *
-          * Triggered builds resolve to a precise revision, so a retry of a
-          * triggered build will result in a build that uses the same revision.
-          * For non-triggered builds that specify RepoSource:  * If the original
-          * build built from the tip of a branch, the retried build will build
-          * from the tip of that branch, which may not be the same revision as
-          * the original build. * If the original build specified a commit sha
-          * or revision ID, the retried build will use the identical source.
-          * For builds that specify StorageSource:  * If the original build
-          * pulled source from Cloud Storage without specifying the generation
-          * of the object, the new build will use the current object, which may
-          * be different from the original build source. * If the original build
-          * pulled source from Cloud Storage and specified the generation of the
-          * object, the new build will attempt to use the same object, which may
-          * or may not be available depending on the bucket's lifecycle
-          * management settings.
+          * Triggered builds resolve to a precise revision; therefore a retry of
+          * a triggered build will result in a build that uses the same
+          * revision.  For non-triggered builds that specify `RepoSource`:  * If
+          * the original build built from the tip of a branch, the retried build
+          * will build from the tip of that branch, which may not be the same
+          * revision as the original build. * If the original build specified a
+          * commit sha or revision ID, the retried build will use the identical
+          * source.  For builds that specify `StorageSource`:  * If the original
+          * build pulled source from Google Cloud Storage without specifying the
+          * generation of the object, the new build will use the current object,
+          * which may be different from the original build source. * If the
+          * original build pulled source from Cloud Storage and specified the
+          * generation of the object, the new build will attempt to use the same
+          * object, which may or may not be available depending on the bucket's
+          * lifecycle management settings.
           * @alias cloudbuild.projects.builds.retry
           * @memberOf! cloudbuild(v1)
           *
@@ -363,7 +363,7 @@ function Cloudbuild(options) {
     triggers: {
       /**
        * cloudbuild.projects.triggers.create
-       * @desc Creates a new BuildTrigger.  This API is experimental.
+       * @desc Creates a new `BuildTrigger`.  This API is experimental.
        * @alias cloudbuild.projects.triggers.create
        * @memberOf! cloudbuild(v1)
        *
@@ -397,14 +397,14 @@ function Cloudbuild(options) {
         return createAPIRequest(parameters, callback);
       }, /**
           * cloudbuild.projects.triggers.delete
-          * @desc Deletes an BuildTrigger by its project ID and trigger ID.
+          * @desc Deletes a `BuildTrigger` by its project ID and trigger ID.
           * This API is experimental.
           * @alias cloudbuild.projects.triggers.delete
           * @memberOf! cloudbuild(v1)
           *
           * @param {object} params Parameters for request
           * @param {string} params.projectId ID of the project that owns the trigger.
-          * @param {string} params.triggerId ID of the BuildTrigger to delete.
+          * @param {string} params.triggerId ID of the `BuildTrigger` to delete.
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
@@ -432,14 +432,14 @@ function Cloudbuild(options) {
         return createAPIRequest(parameters, callback);
       }, /**
           * cloudbuild.projects.triggers.get
-          * @desc Gets information about a BuildTrigger.  This API is
+          * @desc Returns information about a `BuildTrigger`.  This API is
           * experimental.
           * @alias cloudbuild.projects.triggers.get
           * @memberOf! cloudbuild(v1)
           *
           * @param {object} params Parameters for request
           * @param {string} params.projectId ID of the project that owns the trigger.
-          * @param {string} params.triggerId ID of the BuildTrigger to get.
+          * @param {string} params.triggerId ID of the `BuildTrigger` to get.
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
@@ -467,7 +467,7 @@ function Cloudbuild(options) {
         return createAPIRequest(parameters, callback);
       }, /**
           * cloudbuild.projects.triggers.list
-          * @desc Lists existing BuildTrigger.  This API is experimental.
+          * @desc Lists existing `BuildTrigger`s.  This API is experimental.
           * @alias cloudbuild.projects.triggers.list
           * @memberOf! cloudbuild(v1)
           *
@@ -500,14 +500,14 @@ function Cloudbuild(options) {
         return createAPIRequest(parameters, callback);
       }, /**
           * cloudbuild.projects.triggers.patch
-          * @desc Updates an BuildTrigger by its project ID and trigger ID.
+          * @desc Updates a `BuildTrigger` by its project ID and trigger ID.
           * This API is experimental.
           * @alias cloudbuild.projects.triggers.patch
           * @memberOf! cloudbuild(v1)
           *
           * @param {object} params Parameters for request
           * @param {string} params.projectId ID of the project that owns the trigger.
-          * @param {string} params.triggerId ID of the BuildTrigger to update.
+          * @param {string} params.triggerId ID of the `BuildTrigger` to update.
           * @param {cloudbuild(v1).BuildTrigger} params.resource Request body data
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
           * @param {callback} callback The callback that handles the response.
@@ -536,7 +536,7 @@ function Cloudbuild(options) {
         return createAPIRequest(parameters, callback);
       }, /**
           * cloudbuild.projects.triggers.run
-          * @desc Runs a BuildTrigger at a particular source revision.
+          * @desc Runs a `BuildTrigger` at a particular source revision.
           * @alias cloudbuild.projects.triggers.run
           * @memberOf! cloudbuild(v1)
           *
@@ -579,27 +579,27 @@ function Cloudbuild(options) {
  * @typedef Build
  * @memberOf! cloudbuild(v1)
  * @type object
- * @property {string} buildTriggerId The ID of the BuildTrigger that triggered this build, if it was triggered automatically. @OutputOnly
+ * @property {string} buildTriggerId The ID of the `BuildTrigger` that triggered this build, if it was triggered automatically. @OutputOnly
  * @property {string} createTime Time at which the request to create the build was received. @OutputOnly
  * @property {string} finishTime Time at which execution of the build was finished.  The difference between finish_time and start_time is the duration of the build&#39;s execution. @OutputOnly
  * @property {string} id Unique identifier of the build. @OutputOnly
- * @property {string[]} images A list of images to be pushed upon the successful completion of all build steps.  The images will be pushed using the builder service account&#39;s credentials.  The digests of the pushed images will be stored in the Build resource&#39;s results field.  If any of the images fail to be pushed, the build is marked FAILURE.
+ * @property {string[]} images A list of images to be pushed upon the successful completion of all build steps.  The images are pushed using the builder service account&#39;s credentials.  The digests of the pushed images will be stored in the `Build` resource&#39;s results field.  If any of the images fail to be pushed, the build status is marked `FAILURE`.
  * @property {string} logsBucket Google Cloud Storage bucket where logs should be written (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)). Logs file names will be of the format `${logs_bucket}/log-${build_id}.txt`.
- * @property {string} logUrl URL to logs for this build in Google Cloud Logging. @OutputOnly
+ * @property {string} logUrl URL to logs for this build in Google Cloud Console. @OutputOnly
  * @property {cloudbuild(v1).BuildOptions} options Special options for this build.
  * @property {string} projectId ID of the project. @OutputOnly.
  * @property {cloudbuild(v1).Results} results Results of the build. @OutputOnly
- * @property {cloudbuild(v1).Secret[]} secrets Secrets to decrypt using Cloud KMS.
- * @property {cloudbuild(v1).Source} source Describes where to find the source files to build.
+ * @property {cloudbuild(v1).Secret[]} secrets Secrets to decrypt using Cloud Key Management Service.
+ * @property {cloudbuild(v1).Source} source The location of the source files to build.
  * @property {cloudbuild(v1).SourceProvenance} sourceProvenance A permanent fixed identifier for source. @OutputOnly
  * @property {string} startTime Time at which execution of the build was started. @OutputOnly
  * @property {string} status Status of the build. @OutputOnly
  * @property {string} statusDetail Customer-readable message about the current status. @OutputOnly
- * @property {cloudbuild(v1).BuildStep[]} steps Describes the operations to be performed on the workspace.
- * @property {object} substitutions Substitutions data for Build resource.
- * @property {string[]} tags Tags for annotation of a Build. These are not docker tags.
- * @property {string} timeout Amount of time that this build should be allowed to run, to second granularity. If this amount of time elapses, work on the build will cease and the build status will be TIMEOUT.  Default time is ten minutes.
- * @property {object} timing Stores timing information for phases of the build. Valid keys are:  * BUILD: time to execute all build steps * PUSH: time to push all specified images. * FETCHSOURCE: time to fetch source.  If the build does not specify source, or does not specify images, these keys will not be included. @OutputOnly
+ * @property {cloudbuild(v1).BuildStep[]} steps Required. The operations to be performed on the workspace.
+ * @property {object} substitutions Substitutions data for `Build` resource.
+ * @property {string[]} tags Tags for annotation of a `Build`. These are not docker tags.
+ * @property {string} timeout Amount of time that this build should be allowed to run, to second granularity. If this amount of time elapses, work on the build will cease and the build status will be `TIMEOUT`.  Default time is ten minutes.
+ * @property {object} timing Stores timing information for phases of the build. Valid keys are:  * BUILD: time to execute all build steps * PUSH: time to push all specified images. * FETCHSOURCE: time to fetch source.  If the build does not specify source or images, these keys will not be included. @OutputOnly
  */
 /**
  * @typedef BuildOperationMetadata
@@ -612,26 +612,28 @@ function Cloudbuild(options) {
  * @memberOf! cloudbuild(v1)
  * @type object
  * @property {string} diskSizeGb Requested disk size for the VM that runs the build. Note that this is *NOT* &quot;disk free&quot;; some of the space will be used by the operating system and build utilities. Also note that this is the minimum disk size that will be allocated for the build -- the build may run with a larger disk than requested. At present, the maximum disk size is 1000GB; builds that request more than the maximum are rejected with an error.
- * @property {string} logStreamingOption LogStreamingOption to define build log streaming behavior to Google Cloud Storage.
+ * @property {string} logStreamingOption Option to define build log streaming behavior to Google Cloud Storage.
  * @property {string} machineType Compute Engine machine type on which to run the build.
  * @property {string} requestedVerifyOption Requested verifiability options.
  * @property {string[]} sourceProvenanceHash Requested hash for SourceProvenance.
- * @property {string} substitutionOption SubstitutionOption to allow unmatch substitutions.
+ * @property {string} substitutionOption Option to specify behavior when there is an error in the substitution checks.
  */
 /**
  * @typedef BuildStep
  * @memberOf! cloudbuild(v1)
  * @type object
- * @property {string[]} args A list of arguments that will be presented to the step when it is started.  If the image used to run the step&#39;s container has an entrypoint, these args will be used as arguments to that entrypoint. If the image does not define an entrypoint, the first element in args will be used as the entrypoint, and the remainder will be used as arguments.
- * @property {string} dir Working directory to use when running this step&#39;s container.  If this value is a relative path, it is relative to the build&#39;s working directory. If this value is absolute, it may be outside the build&#39;s working directory, in which case the contents of the path may not be persisted across build step executions, unless a volume for that path is specified.  If the build specifies a RepoSource with dir and a step with a dir which specifies an absolute path, the RepoSource dir is ignored for the step&#39;s execution.
- * @property {string} entrypoint Optional entrypoint to be used instead of the build step image&#39;s default If unset, the image&#39;s default will be used.
+ * @property {string[]} args A list of arguments that will be presented to the step when it is started.  If the image used to run the step&#39;s container has an entrypoint, the `args` are used as arguments to that entrypoint. If the image does not define an entrypoint, the first element in args is used as the entrypoint, and the remainder will be used as arguments.
+ * @property {string} dir Working directory to use when running this step&#39;s container.  If this value is a relative path, it is relative to the build&#39;s working directory. If this value is absolute, it may be outside the build&#39;s working directory, in which case the contents of the path may not be persisted across build step executions, unless a `volume` for that path is specified.  If the build specifies a `RepoSource` with `dir` and a step with a `dir`, which specifies an absolute path, the `RepoSource` `dir` is ignored for the step&#39;s execution.
+ * @property {string} entrypoint Entrypoint to be used instead of the build step image&#39;s default entrypoint. If unset, the image&#39;s default entrypoint is used.
  * @property {string[]} env A list of environment variable definitions to be used when running a step.  The elements are of the form &quot;KEY=VALUE&quot; for the environment variable &quot;KEY&quot; being given the value &quot;VALUE&quot;.
- * @property {string} id Optional unique identifier for this build step, used in wait_for to reference this build step as a dependency.
- * @property {string} name The name of the container image that will run this particular build step.  If the image is already available in the host&#39;s Docker daemon&#39;s cache, it will be run directly. If not, the host will attempt to pull the image first, using the builder service account&#39;s credentials if necessary.  The Docker daemon&#39;s cache will already have the latest versions of all of the officially supported build steps ([https://github.com/GoogleCloudPlatform/cloud-builders](https://github.com/GoogleCloudPlatform/cloud-builders)). The Docker daemon will also have cached many of the layers for some popular images, like &quot;ubuntu&quot;, &quot;debian&quot;, but they will be refreshed at the time you attempt to use them.  If you built an image in a previous build step, it will be stored in the host&#39;s Docker daemon&#39;s cache and is available to use as the name for a later build step.
- * @property {string[]} secretEnv A list of environment variables which are encrypted using a Cloud KMS crypto key. These values must be specified in the build&#39;s secrets.
+ * @property {string} id Unique identifier for this build step, used in `wait_for` to reference this build step as a dependency.
+ * @property {string} name Required. The name of the container image that will run this particular build step.  If the image is available in the host&#39;s Docker daemon&#39;s cache, it will be run directly. If not, the host will attempt to pull the image first, using the builder service account&#39;s credentials if necessary.  The Docker daemon&#39;s cache will already have the latest versions of all of the officially supported build steps ([https://github.com/GoogleCloudPlatform/cloud-builders](https://github.com/GoogleCloudPlatform/cloud-builders)). The Docker daemon will also have cached many of the layers for some popular images, like &quot;ubuntu&quot;, &quot;debian&quot;, but they will be refreshed at the time you attempt to use them.  If you built an image in a previous build step, it will be stored in the host&#39;s Docker daemon&#39;s cache and is available to use as the name for a later build step.
+ * @property {string[]} secretEnv A list of environment variables which are encrypted using a Cloud Key Management Service crypto key. These values must be specified in the build&#39;s `Secret`.
+ * @property {string} status Status of the build step. At this time, build step status is only updated on build completion; step status is not updated in real-time as the build progresses. @OutputOnly
+ * @property {string} timeout Time limit for executing this build step. If not defined, the step has no time limit and will be allowed to continue to run until either it completes or the build itself times out.
  * @property {cloudbuild(v1).TimeSpan} timing Stores timing information for executing this build step. @OutputOnly
  * @property {cloudbuild(v1).Volume[]} volumes List of volumes to mount into the build step.  Each volume will be created as an empty volume prior to execution of the build step. Upon completion of the build, volumes and their contents will be discarded.  Using a named volume in only one step is not valid as it is indicative of a mis-configured build request.
- * @property {string[]} waitFor The ID(s) of the step(s) that this build step depends on. This build step will not start until all the build steps in wait_for have completed successfully. If wait_for is empty, this build step will start when all previous build steps in the Build.Steps list have completed successfully.
+ * @property {string[]} waitFor The ID(s) of the step(s) that this build step depends on. This build step will not start until all the build steps in `wait_for` have completed successfully. If `wait_for` is empty, this build step will start when all previous build steps in the `Build.Steps` list have completed successfully.
  */
 /**
  * @typedef BuildTrigger
@@ -686,14 +688,14 @@ function Cloudbuild(options) {
  * @typedef ListBuildsResponse
  * @memberOf! cloudbuild(v1)
  * @type object
- * @property {cloudbuild(v1).Build[]} builds Builds will be sorted by create_time, descending.
+ * @property {cloudbuild(v1).Build[]} builds Builds will be sorted by `create_time`, descending.
  * @property {string} nextPageToken Token to receive the next page of results.
  */
 /**
  * @typedef ListBuildTriggersResponse
  * @memberOf! cloudbuild(v1)
  * @type object
- * @property {cloudbuild(v1).BuildTrigger[]} triggers BuildTriggers for the project, sorted by create_time descending.
+ * @property {cloudbuild(v1).BuildTrigger[]} triggers `BuildTriggers` for the project, sorted by `create_time` descending.
  */
 /**
  * @typedef ListOperationsResponse
@@ -718,17 +720,17 @@ function Cloudbuild(options) {
  * @type object
  * @property {string} branchName Name of the branch to build.
  * @property {string} commitSha Explicit commit SHA to build.
- * @property {string} dir Directory, relative to the source root, in which to run the build.  This must be a relative path. If a step&#39;s dir is specified and is an absolute path, this value is ignored for that step&#39;s execution.
- * @property {string} projectId ID of the project that owns the repo. If omitted, the project ID requesting the build is assumed.
- * @property {string} repoName Name of the repo. If omitted, the name &quot;default&quot; is assumed.
+ * @property {string} dir Directory, relative to the source root, in which to run the build.  This must be a relative path. If a step&#39;s `dir` is specified and is an absolute path, this value is ignored for that step&#39;s execution.
+ * @property {string} projectId ID of the project that owns the Cloud Source Repository. If omitted, the project ID requesting the build is assumed.
+ * @property {string} repoName Name of the Cloud Source Repository. If omitted, the name &quot;default&quot; is assumed.
  * @property {string} tagName Name of the tag to build.
  */
 /**
  * @typedef Results
  * @memberOf! cloudbuild(v1)
  * @type object
- * @property {string[]} buildStepImages List of build step digests, in order corresponding to build step indices.
- * @property {cloudbuild(v1).BuiltImage[]} images Images that were built as a part of the build.
+ * @property {string[]} buildStepImages List of build step digests, in the order corresponding to build step indices.
+ * @property {cloudbuild(v1).BuiltImage[]} images Container images that were built as a part of the build.
  */
 /**
  * @typedef RetryBuildRequest
@@ -746,16 +748,16 @@ function Cloudbuild(options) {
  * @typedef Source
  * @memberOf! cloudbuild(v1)
  * @type object
- * @property {cloudbuild(v1).RepoSource} repoSource If provided, get source from this location in a Cloud Repo.
+ * @property {cloudbuild(v1).RepoSource} repoSource If provided, get the source from this location in a Cloud Source Repository.
  * @property {cloudbuild(v1).StorageSource} storageSource If provided, get the source from this location in Google Cloud Storage.
  */
 /**
  * @typedef SourceProvenance
  * @memberOf! cloudbuild(v1)
  * @type object
- * @property {object} fileHashes Hash(es) of the build source, which can be used to verify that the original source integrity was maintained in the build. Note that FileHashes will only be populated if BuildOptions has requested a SourceProvenanceHash.  The keys to this map are file paths used as build source and the values contain the hash values for those files.  If the build source came in a single package such as a gzipped tarfile (.tar.gz), the FileHash will be for the single path to that file. @OutputOnly
- * @property {cloudbuild(v1).RepoSource} resolvedRepoSource A copy of the build&#39;s source.repo_source, if exists, with any revisions resolved.
- * @property {cloudbuild(v1).StorageSource} resolvedStorageSource A copy of the build&#39;s source.storage_source, if exists, with any generations resolved.
+ * @property {object} fileHashes Hash(es) of the build source, which can be used to verify that the original source integrity was maintained in the build. Note that `FileHashes` will only be populated if `BuildOptions` has requested a `SourceProvenanceHash`.  The keys to this map are file paths used as build source and the values contain the hash values for those files.  If the build source came in a single package such as a gzipped tarfile (`.tar.gz`), the `FileHash` will be for the single path to that file. @OutputOnly
+ * @property {cloudbuild(v1).RepoSource} resolvedRepoSource A copy of the build&#39;s `source.repo_source`, if exists, with any revisions resolved.
+ * @property {cloudbuild(v1).StorageSource} resolvedStorageSource A copy of the build&#39;s `source.storage_source`, if exists, with any generations resolved.
  */
 /**
  * @typedef Status
@@ -769,9 +771,9 @@ function Cloudbuild(options) {
  * @typedef StorageSource
  * @memberOf! cloudbuild(v1)
  * @type object
- * @property {string} bucket Google Cloud Storage bucket containing source (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
+ * @property {string} bucket Google Cloud Storage bucket containing the source (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
  * @property {string} generation Google Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.
- * @property {string} object Google Cloud Storage object containing source.  This object must be a gzipped archive file (.tar.gz) containing source to build.
+ * @property {string} object Google Cloud Storage object containing the source.  This object must be a gzipped archive file (`.tar.gz`) containing source to build.
  */
 /**
  * @typedef TimeSpan

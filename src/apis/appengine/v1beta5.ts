@@ -1104,8 +1104,8 @@ function Appengine(options) {
  * @typedef LocationMetadata
  * @memberOf! appengine(v1beta5)
  * @type object
- * @property {boolean} flexibleEnvironmentAvailable App Engine Flexible Environment is available in the given location.@OutputOnly
- * @property {boolean} standardEnvironmentAvailable App Engine Standard Environment is available in the given location.@OutputOnly
+ * @property {boolean} flexibleEnvironmentAvailable App Engine flexible environment is available in the given location.@OutputOnly
+ * @property {boolean} standardEnvironmentAvailable App Engine standard environment is available in the given location.@OutputOnly
  */
 /**
  * @typedef ManualScaling

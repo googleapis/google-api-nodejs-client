@@ -37,7 +37,8 @@ function Doubleclickbidmanager(options) {
   self.lineitems = {
     /**
      * doubleclickbidmanager.lineitems.downloadlineitems
-     * @desc Retrieves line items in CSV format.
+     * @desc Retrieves line items in CSV format. TrueView line items are not
+     * supported.
      * @alias doubleclickbidmanager.lineitems.downloadlineitems
      * @memberOf! doubleclickbidmanager(v1)
      *
@@ -71,7 +72,8 @@ function Doubleclickbidmanager(options) {
       return createAPIRequest(parameters, callback);
     }, /**
         * doubleclickbidmanager.lineitems.uploadlineitems
-        * @desc Uploads line items in CSV format.
+        * @desc Uploads line items in CSV format. TrueView line items are not
+        * supported.
         * @alias doubleclickbidmanager.lineitems.uploadlineitems
         * @memberOf! doubleclickbidmanager(v1)
         *
@@ -381,6 +383,7 @@ function Doubleclickbidmanager(options) {
  * @type object
  * @property {string} adGroups Retrieved ad groups in SDF format.
  * @property {string} ads Retrieved ads in SDF format.
+ * @property {string} campaigns Retrieved campaigns in SDF format.
  * @property {string} insertionOrders Retrieved insertion orders in SDF format.
  * @property {string} lineItems Retrieved line items in SDF format.
  */

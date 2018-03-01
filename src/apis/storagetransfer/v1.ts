@@ -17,7 +17,7 @@
 import {createAPIRequest} from '../../lib/apirequest';
 
 /**
- * Google Storage Transfer API
+ * Storage Transfer API
  *
  * Transfers data from external data sources to a Google Cloud Storage bucket or
  * between Google Cloud Storage buckets.

@@ -17,7 +17,7 @@
 import {createAPIRequest} from '../../lib/apirequest';
 
 /**
- * Google Cloud Resource Manager API
+ * Cloud Resource Manager API
  *
  * The Google Cloud Resource Manager API provides methods for creating, reading,
  * and updating project metadata.
@@ -3874,7 +3874,7 @@ function Cloudresourcemanager(options) {
  * @memberOf! cloudresourcemanager(v1)
  * @type object
  * @property {string} creationTime Timestamp when the Organization was created. Assigned by the server. @OutputOnly
- * @property {string} displayName A friendly string to be used to refer to the Organization in the UI. Assigned by the server, set to the primary domain of the G Suite customer that owns the organization. @OutputOnly
+ * @property {string} displayName A human-readable string that refers to the Organization in the GCP Console UI. This string is set by the server and cannot be changed. The string will be set to the primary domain (for example, &quot;google.com&quot;) of the G Suite customer that owns the organization. @OutputOnly
  * @property {string} lifecycleState The organization&#39;s current lifecycle state. Assigned by the server. @OutputOnly
  * @property {string} name Output Only. The resource name of the organization. This is the organization&#39;s relative path in the API. Its format is &quot;organizations/[organization_id]&quot;. For example, &quot;organizations/1234&quot;.
  * @property {cloudresourcemanager(v1).OrganizationOwner} owner The owner of this Organization. The owner should be specified on creation. Once set, it cannot be changed. This field is required.

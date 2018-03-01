@@ -45,7 +45,7 @@ function Appengine(options) {
          * (https://cloud.google.com/appengine/docs/locations) where you want
          * the App Engine application located.For more information about App
          * Engine applications, see Managing Projects, Applications, and Billing
-         * (https://cloud.google.com/appengine/docs/python/console/).
+         * (https://cloud.google.com/appengine/docs/standard/python/console/).
          * @alias appengine.apps.create
          * @memberOf! appengine(v1)
          *
@@ -1342,19 +1342,19 @@ function Appengine(options) {
                 * automatic_scaling.min_total_instances
                 * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling):
                 * For Version resources that use automatic scaling and run in
-                * the App  Engine Flexible environment.
+                * the App  Engine flexible environment.
                 * automatic_scaling.max_total_instances
                 * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling):
                 * For Version resources that use automatic scaling and run in
-                * the App  Engine Flexible environment.
+                * the App  Engine flexible environment.
                 * automatic_scaling.cool_down_period_sec
                 * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling):
                 * For Version resources that use automatic scaling and run in
-                * the App  Engine Flexible environment.
+                * the App  Engine flexible environment.
                 * automatic_scaling.cpu_utilization.target_utilization
                 * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling):
                 * For Version resources that use automatic scaling and run in
-                * the App  Engine Flexible environment.
+                * the App  Engine flexible environment.
                 * @alias appengine.apps.services.versions.patch
                 * @memberOf! appengine(v1)
                 *
@@ -1604,7 +1604,7 @@ function Appengine(options) {
  * @property {string} gcrDomain The Google Container Registry domain used for storing managed build docker images for this application.
  * @property {appengine(v1).IdentityAwareProxy} iap
  * @property {string} id Identifier of the Application resource. This identifier is equivalent to the project ID of the Google Cloud Platform project where you want to deploy your application. Example: myapp.
- * @property {string} locationId Location from which this application will be run. Application instances will run out of data centers in the chosen location, which is also where all of the application&#39;s end user content is stored.Defaults to us-central.Options are:us-central - Central USeurope-west - Western Europeus-east1 - Eastern US
+ * @property {string} locationId Location from which this application runs. Application instances run out of the data centers in the specified location, which is also where all of the application&#39;s end user content is stored.Defaults to us-central1.View the list of supported locations (https://cloud.google.com/appengine/docs/locations).
  * @property {string} name Full path to the Application resource in the API. Example: apps/myapp.@OutputOnly
  * @property {string} servingStatus Serving status of this application.
  */
@@ -1638,10 +1638,10 @@ function Appengine(options) {
  * @property {integer} maxConcurrentRequests Number of concurrent requests an automatic scaling instance can accept before the scheduler spawns a new instance.Defaults to a runtime-specific value.
  * @property {integer} maxIdleInstances Maximum number of idle instances that should be maintained for this version.
  * @property {string} maxPendingLatency Maximum amount of time that a request should wait in the pending queue before starting a new instance to handle it.
- * @property {integer} maxTotalInstances Maximum number of instances that should be started to handle requests.
+ * @property {integer} maxTotalInstances Maximum number of instances that should be started to handle requests for this version.
  * @property {integer} minIdleInstances Minimum number of idle instances that should be maintained for this version. Only applicable for the default version of a service.
  * @property {string} minPendingLatency Minimum amount of time a request should wait in the pending queue before starting a new instance to handle it.
- * @property {integer} minTotalInstances Minimum number of instances that should be maintained for this version.
+ * @property {integer} minTotalInstances Minimum number of running instances that should be maintained for this version.
  * @property {appengine(v1).NetworkUtilization} networkUtilization Target scaling by network usage.
  * @property {appengine(v1).RequestUtilization} requestUtilization Target scaling by request utilization.
  * @property {appengine(v1).StandardSchedulerSettings} standardSchedulerSettings Scheduler settings for standard environment.
@@ -1909,8 +1909,8 @@ function Appengine(options) {
  * @typedef LocationMetadata
  * @memberOf! appengine(v1)
  * @type object
- * @property {boolean} flexibleEnvironmentAvailable App Engine Flexible Environment is available in the given location.@OutputOnly
- * @property {boolean} standardEnvironmentAvailable App Engine Standard Environment is available in the given location.@OutputOnly
+ * @property {boolean} flexibleEnvironmentAvailable App Engine flexible environment is available in the given location.@OutputOnly
+ * @property {boolean} standardEnvironmentAvailable App Engine standard environment is available in the given location.@OutputOnly
  */
 /**
  * @typedef ManualScaling
@@ -1923,9 +1923,9 @@ function Appengine(options) {
  * @memberOf! appengine(v1)
  * @type object
  * @property {string[]} forwardedPorts List of ports, or port pairs, to forward from the virtual machine to the application container. Only applicable in the App Engine flexible environment.
- * @property {string} instanceTag Tag to apply to the VM instance during creation. for Only applicable in the App Engine flexible environment.
+ * @property {string} instanceTag Tag to apply to the instance during creation. Only applicable in the App Engine flexible environment.
  * @property {string} name Google Compute Engine network where the virtual machines are created. Specify the short name, not the resource path.Defaults to default.
- * @property {string} subnetworkName Google Cloud Platform sub-network where the virtual machines are created. Specify the short name, not the resource path.If a subnetwork name is specified, a network name will also be required unless it is for the default network. If the network the VM instance is being created in is a Legacy network, then the IP address is allocated from the IPv4Range. If the network the VM instance is being created in is an auto Subnet Mode Network, then only network name should be specified (not the subnetwork_name) and the IP address is created from the IPCidrRange of the subnetwork that exists in that zone for that network. If the network the VM instance is being created in is a custom Subnet Mode Network, then the subnetwork_name must be specified and the IP address is created from the IPCidrRange of the subnetwork.If specified, the subnetwork must exist in the same region as the App Engine flexible environment application.
+ * @property {string} subnetworkName Google Cloud Platform sub-network where the virtual machines are created. Specify the short name, not the resource path.If a subnetwork name is specified, a network name will also be required unless it is for the default network. If the network that the instance is being created in is a Legacy network, then the IP address is allocated from the IPv4Range. If the network that the instance is being created in is an auto Subnet Mode Network, then only network name should be specified (not the subnetwork_name) and the IP address is created from the IPCidrRange of the subnetwork that exists in that zone for that network. If the network that the instance is being created in is a custom Subnet Mode Network, then the subnetwork_name must be specified and the IP address is created from the IPCidrRange of the subnetwork.If specified, the subnetwork must exist in the same region as the App Engine flexible environment application.
  */
 /**
  * @typedef NetworkUtilization
@@ -2070,8 +2070,8 @@ function Appengine(options) {
  * @typedef StandardSchedulerSettings
  * @memberOf! appengine(v1)
  * @type object
- * @property {integer} maxInstances Maximum number of instances for an app version. Set to zero to disable max_instances configuration.
- * @property {integer} minInstances Minimum number of instances for an app version. Set to zero to disable min_instances configuration.
+ * @property {integer} maxInstances Maximum number of instances to run for this version. Set to zero to disable max_instances configuration.
+ * @property {integer} minInstances Minimum number of instances to run for this version. Set to zero to disable min_instances configuration.
  * @property {number} targetCpuUtilization Target CPU utilization ratio to maintain when scaling.
  * @property {number} targetThroughputUtilization Target throughput utilization ratio to maintain when scaling
  */
@@ -2141,18 +2141,18 @@ function Appengine(options) {
  * @property {object} envVariables Environment variables available to the application.Only returned in GET requests if view=FULL is set.
  * @property {appengine(v1).ErrorHandler[]} errorHandlers Custom static error pages. Limited to 10KB per page.Only returned in GET requests if view=FULL is set.
  * @property {appengine(v1).UrlMap[]} handlers An ordered list of URL-matching patterns that should be applied to incoming requests. The first matching URL handles the request and other request handlers are not attempted.Only returned in GET requests if view=FULL is set.
- * @property {appengine(v1).HealthCheck} healthCheck Configures health checking for VM instances. Unhealthy instances are stopped and replaced with new instances. Only applicable in the App Engine flexible environment.Only returned in GET requests if view=FULL is set.
+ * @property {appengine(v1).HealthCheck} healthCheck Configures health checking for instances. Unhealthy instances are stopped and replaced with new instances. Only applicable in the App Engine flexible environment.Only returned in GET requests if view=FULL is set.
  * @property {string} id Relative name of the version within the service. Example: v1. Version names can contain only lowercase letters, numbers, or hyphens. Reserved names: &quot;default&quot;, &quot;latest&quot;, and any name with the prefix &quot;ah-&quot;.
  * @property {string[]} inboundServices Before an application can receive email or XMPP messages, the application must be configured to enable the service.
  * @property {string} instanceClass Instance class that is used to run this version. Valid values are: AutomaticScaling: F1, F2, F4, F4_1G ManualScaling or BasicScaling: B1, B2, B4, B8, B4_1GDefaults to F1 for AutomaticScaling and B1 for ManualScaling or BasicScaling.
  * @property {appengine(v1).Library[]} libraries Configuration for third-party Python runtime libraries that are required by the application.Only returned in GET requests if view=FULL is set.
- * @property {appengine(v1).LivenessCheck} livenessCheck Configures liveness health checking for VM instances. Unhealthy instances are stopped and replaced with new instancesOnly returned in GET requests if view=FULL is set.
+ * @property {appengine(v1).LivenessCheck} livenessCheck Configures liveness health checking for instances. Unhealthy instances are stopped and replaced with new instancesOnly returned in GET requests if view=FULL is set.
  * @property {appengine(v1).ManualScaling} manualScaling A service with manual scaling runs continuously, allowing you to perform complex initialization and rely on the state of its memory over time.
  * @property {string} name Full path to the Version resource in the API. Example: apps/myapp/services/default/versions/v1.@OutputOnly
  * @property {appengine(v1).Network} network Extra network settings. Only applicable in the App Engine flexible environment.
  * @property {string} nobuildFilesRegex Files that match this pattern will not be built into this version. Only applicable for Go runtimes.Only returned in GET requests if view=FULL is set.
- * @property {appengine(v1).ReadinessCheck} readinessCheck Configures readiness health checking for VM instances. Unhealthy instances are not put into the backend traffic rotation.Only returned in GET requests if view=FULL is set.
- * @property {appengine(v1).Resources} resources Machine resources for this version. Only applicable for VM runtimes.
+ * @property {appengine(v1).ReadinessCheck} readinessCheck Configures readiness health checking for instances. Unhealthy instances are not put into the backend traffic rotation.Only returned in GET requests if view=FULL is set.
+ * @property {appengine(v1).Resources} resources Machine resources for this version. Only applicable in the App Engine flexible environment.
  * @property {string} runtime Desired runtime. Example: python27.
  * @property {string} runtimeApiVersion The version of the API in the given runtime environment. Please see the app.yaml reference for valid values at https://cloud.google.com/appengine/docs/standard/&lt;language&gt;/config/appref
  * @property {string} runtimeChannel The channel of the runtime to use. Only available for some runtimes. Defaults to the default channel.
@@ -2160,7 +2160,7 @@ function Appengine(options) {
  * @property {boolean} threadsafe Whether multiple requests can be dispatched to this version at once.
  * @property {string} versionUrl Serving URL for this version. Example: &quot;https://myversion-dot-myservice-dot-myapp.appspot.com&quot;@OutputOnly
  * @property {boolean} vm Whether to deploy this version in a container on a virtual machine.
- * @property {string[]} zones The choice of gce zones to use for this App Engine Flexible version.
+ * @property {string[]} zones The Google Compute Engine zones that are supported by this version in the App Engine flexible environment.
  */
 /**
  * @typedef Volume
