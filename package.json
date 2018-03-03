@@ -122,7 +122,7 @@
     "clang-format": "^1.2.2",
     "codecov": "^3.0.0",
     "express": "^4.16.2",
-    "gts": "0.5.3",
+    "gts": "0.5.4",
     "ink-docstrap": "1.3.2",
     "intelli-espower-loader": "1.0.1",
     "js-green-licenses": "^0.4.0",
