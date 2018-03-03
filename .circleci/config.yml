@@ -55,18 +55,7 @@ jobs:
     docker:
       - image: node:4
         user: node
-    steps:
-      - checkout
-      - run:
-          name: Install modules and dependencies.
-          command: npm install --unsafe-perm
-      - run:
-          name: Run unit tests.
-          command: npm test
-      - run:
-          name: Submit coverage data to codecov.
-          command: node_modules/.bin/codecov
-          when: always
+    <<: *unit_tests
   node6:
     docker:
       - image: node:6
