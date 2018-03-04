@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Play EMM API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Androidenterprise
  */
-function Androidenterprise(options) {
+function Androidenterprise(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.devices = {
@@ -49,7 +56,8 @@ function Androidenterprise(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -71,7 +79,7 @@ function Androidenterprise(options) {
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.devices.getState
         * @desc Retrieves whether a device's access to Google services is
@@ -91,7 +99,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getState(params, options, callback) {
+    getState(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -113,7 +123,7 @@ function Androidenterprise(options) {
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.devices.list
         * @desc Retrieves the IDs of all of a user's devices.
@@ -127,7 +137,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -149,7 +161,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.devices.patch
         * @desc Updates the device policy. This method supports patch semantics.
@@ -166,7 +178,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -188,7 +202,7 @@ function Androidenterprise(options) {
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.devices.setState
         * @desc Sets whether a device's access to Google services is enabled or
@@ -208,7 +222,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setState(params, options, callback) {
+    setState(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -230,7 +246,7 @@ function Androidenterprise(options) {
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.devices.update
         * @desc Updates the device policy
@@ -247,7 +263,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -269,7 +287,7 @@ function Androidenterprise(options) {
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -288,7 +306,9 @@ function Androidenterprise(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    acknowledgeNotificationSet(params, options, callback) {
+    acknowledgeNotificationSet(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -310,7 +330,7 @@ function Androidenterprise(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.completeSignup
         * @desc Completes the signup flow, by specifying the Completion token
@@ -326,7 +346,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    completeSignup(params, options, callback) {
+    completeSignup(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -347,7 +369,7 @@ function Androidenterprise(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.createWebToken
         * @desc Returns a unique token to access an embeddable UI. To generate a
@@ -364,7 +386,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    createWebToken(params, options, callback) {
+    createWebToken(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -386,7 +410,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.delete
         * @desc Deletes the binding between the EMM and enterprise. This is now
@@ -402,7 +426,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -423,7 +449,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.enroll
         * @desc Enrolls an enterprise with the calling EMM.
@@ -437,7 +463,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    enroll(params, options, callback) {
+    enroll(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -457,7 +485,7 @@ function Androidenterprise(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.generateSignupUrl
         * @desc Generates a sign-up URL.
@@ -470,7 +498,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    generateSignupUrl(params, options, callback) {
+    generateSignupUrl(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -490,7 +520,7 @@ function Androidenterprise(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.get
         * @desc Retrieves the name and domain of an enterprise.
@@ -503,7 +533,8 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -524,7 +555,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.getAndroidDevicePolicyConfig
         * @desc Returns the Android Device Policy config resource.
@@ -537,7 +568,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getAndroidDevicePolicyConfig(params, options, callback) {
+    getAndroidDevicePolicyConfig(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -559,7 +592,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.getServiceAccount
         * @desc Returns a service account and credentials. The service account
@@ -583,7 +616,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getServiceAccount(params, options, callback) {
+    getServiceAccount(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -605,7 +640,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.getStoreLayout
         * @desc Returns the store layout for the enterprise. If the store layout
@@ -620,7 +655,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getStoreLayout(params, options, callback) {
+    getStoreLayout(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -642,7 +679,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.insert
         * @desc Establishes the binding between the EMM and an enterprise. This
@@ -657,7 +694,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -677,7 +716,7 @@ function Androidenterprise(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.list
         * @desc Looks up an enterprise by domain name. This is only supported
@@ -694,7 +733,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -714,7 +755,7 @@ function Androidenterprise(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.pullNotificationSet
         * @desc Pulls and returns a notification set for the enterprises
@@ -741,7 +782,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    pullNotificationSet(params, options, callback) {
+    pullNotificationSet(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -762,7 +805,7 @@ function Androidenterprise(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.sendTestPushNotification
         * @desc Sends a test notification to validate the EMM integration with
@@ -776,7 +819,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    sendTestPushNotification(params, options, callback) {
+    sendTestPushNotification(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -798,7 +843,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.setAccount
         * @desc Sets the account that will be used to authenticate to the API as
@@ -813,7 +858,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setAccount(params, options, callback) {
+    setAccount(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -834,7 +881,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.setAndroidDevicePolicyConfig
         * @desc Sets the Android Device Policy config resource. EMM may use this
@@ -851,7 +898,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setAndroidDevicePolicyConfig(params, options, callback) {
+    setAndroidDevicePolicyConfig(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -873,7 +922,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.setStoreLayout
         * @desc Sets the store layout for the enterprise. By default,
@@ -894,7 +943,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setStoreLayout(params, options, callback) {
+    setStoreLayout(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -916,7 +967,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.unenroll
         * @desc Unenrolls an enterprise from the calling EMM.
@@ -929,7 +980,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    unenroll(params, options, callback) {
+    unenroll(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -950,7 +1003,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -969,7 +1022,9 @@ function Androidenterprise(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -991,7 +1046,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'entitlementId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.entitlements.get
         * @desc Retrieves details of an entitlement.
@@ -1006,7 +1061,8 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1028,7 +1084,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'entitlementId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.entitlements.list
         * @desc Lists all entitlements for the specified user. Only the ID is
@@ -1043,7 +1099,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1065,7 +1123,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.entitlements.patch
         * @desc Adds or updates an entitlement to an app for a user. This method
@@ -1083,7 +1141,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1105,7 +1165,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'entitlementId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.entitlements.update
         * @desc Adds or updates an entitlement to an app for a user.
@@ -1122,7 +1182,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1144,7 +1206,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'entitlementId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1162,7 +1224,8 @@ function Androidenterprise(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1184,7 +1247,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'groupLicenseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.grouplicenses.list
         * @desc Retrieves IDs of all products for which the enterprise has a
@@ -1198,7 +1261,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1220,7 +1285,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1239,7 +1304,9 @@ function Androidenterprise(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1261,7 +1328,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'groupLicenseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1283,7 +1350,9 @@ function Androidenterprise(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1305,7 +1374,7 @@ function Androidenterprise(options) {
         pathParams: ['deviceId', 'enterpriseId', 'installId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.installs.get
         * @desc Retrieves details of an installation of an app on a device.
@@ -1321,7 +1390,8 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1343,7 +1413,7 @@ function Androidenterprise(options) {
         pathParams: ['deviceId', 'enterpriseId', 'installId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.installs.list
         * @desc Retrieves the details of all apps installed on the specified
@@ -1359,7 +1429,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1381,7 +1453,7 @@ function Androidenterprise(options) {
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.installs.patch
         * @desc Requests to install the latest version of an app to a device. If
@@ -1400,7 +1472,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1422,7 +1496,7 @@ function Androidenterprise(options) {
         pathParams: ['deviceId', 'enterpriseId', 'installId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.installs.update
         * @desc Requests to install the latest version of an app to a device. If
@@ -1441,7 +1515,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1463,7 +1539,7 @@ function Androidenterprise(options) {
         pathParams: ['deviceId', 'enterpriseId', 'installId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1484,7 +1560,9 @@ function Androidenterprise(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1512,7 +1590,7 @@ function Androidenterprise(options) {
         ],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.managedconfigurationsfordevice.get
         * @desc Retrieves details of a per-device managed configuration.
@@ -1528,7 +1606,8 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1556,7 +1635,7 @@ function Androidenterprise(options) {
         ],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.managedconfigurationsfordevice.list
         * @desc Lists all the per-device managed configurations for the
@@ -1572,7 +1651,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1594,7 +1675,7 @@ function Androidenterprise(options) {
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.managedconfigurationsfordevice.patch
         * @desc Adds or updates a per-device managed configuration for an app
@@ -1612,7 +1693,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1640,7 +1723,7 @@ function Androidenterprise(options) {
         ],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.managedconfigurationsfordevice.update
         * @desc Adds or updates a per-device managed configuration for an app
@@ -1658,7 +1741,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1686,7 +1771,7 @@ function Androidenterprise(options) {
         ],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1706,7 +1791,9 @@ function Androidenterprise(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1729,7 +1816,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.managedconfigurationsforuser.get
         * @desc Retrieves details of a per-user managed configuration for an app
@@ -1745,7 +1832,8 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1768,7 +1856,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.managedconfigurationsforuser.list
         * @desc Lists all the per-user managed configurations for the specified
@@ -1783,7 +1871,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1805,7 +1895,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.managedconfigurationsforuser.patch
         * @desc Adds or updates the managed configuration settings for an app
@@ -1827,7 +1917,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1850,7 +1942,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.managedconfigurationsforuser.update
         * @desc Adds or updates the managed configuration settings for an app
@@ -1871,7 +1963,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1894,7 +1988,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1913,7 +2007,9 @@ function Androidenterprise(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1935,7 +2031,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'productId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1954,7 +2050,8 @@ function Androidenterprise(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1975,7 +2072,7 @@ function Androidenterprise(options) {
         pathParams: ['permissionId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1998,7 +2095,9 @@ function Androidenterprise(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    approve(params, options, callback) {
+    approve(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2020,7 +2119,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'productId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.products.generateApprovalUrl
         * @desc Generates a URL that can be rendered in an iframe to display the
@@ -2043,7 +2142,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    generateApprovalUrl(params, options, callback) {
+    generateApprovalUrl(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2065,7 +2166,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'productId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.products.get
         * @desc Retrieves details of a product for display to an enterprise
@@ -2081,7 +2182,8 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2103,7 +2205,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'productId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.products.getAppRestrictionsSchema
         * @desc Retrieves the schema that defines the configurable properties
@@ -2123,7 +2225,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getAppRestrictionsSchema(params, options, callback) {
+    getAppRestrictionsSchema(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2145,7 +2249,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'productId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.products.getPermissions
         * @desc Retrieves the Android app permissions required by this app.
@@ -2159,7 +2263,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getPermissions(params, options, callback) {
+    getPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2181,7 +2287,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'productId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.products.list
         * @desc Finds approved products that match a query, or all approved
@@ -2200,7 +2306,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2221,7 +2329,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.products.unapprove
         * @desc Unapproves the specified product (and the relevant app
@@ -2236,7 +2344,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    unapprove(params, options, callback) {
+    unapprove(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2258,7 +2368,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'productId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -2280,7 +2390,9 @@ function Androidenterprise(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2302,7 +2414,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'keyId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.serviceaccountkeys.insert
         * @desc Generates new credentials for the service account associated
@@ -2321,7 +2433,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2343,7 +2457,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.serviceaccountkeys.list
         * @desc Lists all active credentials for the service account associated
@@ -2360,7 +2474,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2382,7 +2498,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -2401,7 +2517,9 @@ function Androidenterprise(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2423,7 +2541,7 @@ function Androidenterprise(options) {
         pathParams: ['clusterId', 'enterpriseId', 'pageId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.storelayoutclusters.get
         * @desc Retrieves details of a cluster.
@@ -2438,7 +2556,8 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2460,7 +2579,7 @@ function Androidenterprise(options) {
         pathParams: ['clusterId', 'enterpriseId', 'pageId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.storelayoutclusters.insert
         * @desc Inserts a new cluster in a page.
@@ -2475,7 +2594,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2497,7 +2618,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'pageId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.storelayoutclusters.list
         * @desc Retrieves the details of all clusters on the specified page.
@@ -2511,7 +2632,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2533,7 +2656,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'pageId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.storelayoutclusters.patch
         * @desc Updates a cluster. This method supports patch semantics.
@@ -2549,7 +2672,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2571,7 +2696,7 @@ function Androidenterprise(options) {
         pathParams: ['clusterId', 'enterpriseId', 'pageId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.storelayoutclusters.update
         * @desc Updates a cluster.
@@ -2587,7 +2712,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2609,7 +2736,7 @@ function Androidenterprise(options) {
         pathParams: ['clusterId', 'enterpriseId', 'pageId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -2627,7 +2754,9 @@ function Androidenterprise(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2649,7 +2778,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'pageId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.storelayoutpages.get
         * @desc Retrieves details of a store page.
@@ -2663,7 +2792,8 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2685,7 +2815,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'pageId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.storelayoutpages.insert
         * @desc Inserts a new store page.
@@ -2699,7 +2829,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2721,7 +2853,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.storelayoutpages.list
         * @desc Retrieves the details of all pages in the store.
@@ -2734,7 +2866,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2756,7 +2890,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.storelayoutpages.patch
         * @desc Updates the content of a store page. This method supports patch
@@ -2772,7 +2906,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2794,7 +2930,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'pageId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.storelayoutpages.update
         * @desc Updates the content of a store page.
@@ -2809,7 +2945,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2831,7 +2969,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'pageId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -2849,7 +2987,9 @@ function Androidenterprise(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2871,7 +3011,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.users.generateAuthenticationToken
         * @desc Generates an authentication token which the device policy client
@@ -2888,7 +3028,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    generateAuthenticationToken(params, options, callback) {
+    generateAuthenticationToken(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2910,7 +3052,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.users.generateToken
         * @desc Generates a token (activation code) to allow this user to
@@ -2927,7 +3069,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    generateToken(params, options, callback) {
+    generateToken(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2949,7 +3093,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.users.get
         * @desc Retrieves a user's details.
@@ -2963,7 +3107,8 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2985,7 +3130,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.users.getAvailableProductSet
         * @desc Retrieves the set of products a user is entitled to access.
@@ -2999,7 +3144,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getAvailableProductSet(params, options, callback) {
+    getAvailableProductSet(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3021,7 +3168,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.users.insert
         * @desc Creates a new EMM-managed user.  The Users resource passed in
@@ -3039,7 +3186,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3060,7 +3209,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.users.list
         * @desc Looks up a user by primary email address. This is only supported
@@ -3077,7 +3226,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3098,7 +3249,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.users.patch
         * @desc Updates the details of an EMM-managed user.  Can be used with
@@ -3117,7 +3268,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3139,7 +3292,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.users.revokeDeviceAccess
         * @desc Revokes access to all devices currently provisioned to the user.
@@ -3156,7 +3309,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    revokeDeviceAccess(params, options, callback) {
+    revokeDeviceAccess(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3178,7 +3333,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.users.revokeToken
         * @desc Revokes a previously generated token (activation code) for the
@@ -3193,7 +3348,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    revokeToken(params, options, callback) {
+    revokeToken(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3215,7 +3372,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.users.setAvailableProductSet
         * @desc Modifies the set of products that a user is entitled to access
@@ -3233,7 +3390,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setAvailableProductSet(params, options, callback) {
+    setAvailableProductSet(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3255,7 +3414,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.users.update
         * @desc Updates the details of an EMM-managed user.  Can be used with
@@ -3274,7 +3433,9 @@ function Androidenterprise(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3296,7 +3457,7 @@ function Androidenterprise(options) {
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Cloud Tasks API
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2beta2
  * @param {object=} options Options for Cloudtasks
  */
-function Cloudtasks(options) {
+function Cloudtasks(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.projects = {
@@ -103,7 +110,8 @@ function Cloudtasks(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -123,7 +131,7 @@ function Cloudtasks(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * cloudtasks.projects.locations.list
           * @desc Lists information about the supported locations for this
@@ -208,7 +216,9 @@ function Cloudtasks(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -228,7 +238,7 @@ function Cloudtasks(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       },
       queues: {
         /**
@@ -311,7 +321,9 @@ function Cloudtasks(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create(params, options, callback) {
+        create(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -332,7 +344,7 @@ function Cloudtasks(options) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * cloudtasks.projects.locations.queues.delete
             * @desc Deletes a queue.  This command will delete the queue even if
@@ -404,7 +416,9 @@ function Cloudtasks(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -425,7 +439,7 @@ function Cloudtasks(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * cloudtasks.projects.locations.queues.get
             * @desc Gets a queue.
@@ -493,7 +507,8 @@ function Cloudtasks(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -514,7 +529,7 @@ function Cloudtasks(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * cloudtasks.projects.locations.queues.getIamPolicy
             * @desc Gets the access control policy for a Queue. Returns an empty
@@ -591,7 +606,9 @@ function Cloudtasks(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        getIamPolicy(params, options, callback) {
+        getIamPolicy(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -612,7 +629,7 @@ function Cloudtasks(options) {
             pathParams: ['resource'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * cloudtasks.projects.locations.queues.list
             * @desc Lists queues.  Queues are returned in lexicographical order.
@@ -698,7 +715,9 @@ function Cloudtasks(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -719,7 +738,7 @@ function Cloudtasks(options) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * cloudtasks.projects.locations.queues.patch
             * @desc Updates a queue.  This method creates the queue if it does
@@ -815,7 +834,9 @@ function Cloudtasks(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        patch(params, options, callback) {
+        patch(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -836,7 +857,7 @@ function Cloudtasks(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * cloudtasks.projects.locations.queues.pause
             * @desc Pauses the queue.  If a queue is paused then the system will
@@ -912,7 +933,9 @@ function Cloudtasks(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        pause(params, options, callback) {
+        pause(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -933,7 +956,7 @@ function Cloudtasks(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * cloudtasks.projects.locations.queues.purge
             * @desc Purges a queue by deleting all of its tasks.  All tasks
@@ -1010,7 +1033,9 @@ function Cloudtasks(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        purge(params, options, callback) {
+        purge(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -1031,7 +1056,7 @@ function Cloudtasks(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * cloudtasks.projects.locations.queues.resume
             * @desc Resume a queue.  This method resumes a queue after it has
@@ -1111,7 +1136,9 @@ function Cloudtasks(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        resume(params, options, callback) {
+        resume(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -1132,7 +1159,7 @@ function Cloudtasks(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * cloudtasks.projects.locations.queues.setIamPolicy
             * @desc Sets the access control policy for a Queue. Replaces any
@@ -1210,7 +1237,9 @@ function Cloudtasks(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setIamPolicy(params, options, callback) {
+        setIamPolicy(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -1231,7 +1260,7 @@ function Cloudtasks(options) {
             pathParams: ['resource'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * cloudtasks.projects.locations.queues.testIamPermissions
             * @desc Returns permissions that a caller has on a Queue. If the
@@ -1309,7 +1338,9 @@ function Cloudtasks(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        testIamPermissions(params, options, callback) {
+        testIamPermissions(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -1330,7 +1361,7 @@ function Cloudtasks(options) {
             pathParams: ['resource'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         },
         tasks: {
           /**
@@ -1413,7 +1444,9 @@ function Cloudtasks(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          acknowledge(params, options, callback) {
+          acknowledge(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1434,7 +1467,7 @@ function Cloudtasks(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * cloudtasks.projects.locations.queues.tasks.cancelLease
               * @desc Cancel a pull task's lease.  The worker can use this
@@ -1511,7 +1544,9 @@ function Cloudtasks(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          cancelLease(params, options, callback) {
+          cancelLease(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1532,7 +1567,7 @@ function Cloudtasks(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * cloudtasks.projects.locations.queues.tasks.create
               * @desc Creates a task and adds it to a queue.  To add multiple
@@ -1617,7 +1652,9 @@ function Cloudtasks(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          create(params, options, callback) {
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1638,7 +1675,7 @@ function Cloudtasks(options) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * cloudtasks.projects.locations.queues.tasks.delete
               * @desc Deletes a task.  A task can be deleted if it is scheduled
@@ -1706,7 +1743,9 @@ function Cloudtasks(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          delete (params, options, callback) {
+          delete (
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1727,7 +1766,7 @@ function Cloudtasks(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * cloudtasks.projects.locations.queues.tasks.get
               * @desc Gets a task.
@@ -1797,7 +1836,8 @@ function Cloudtasks(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1818,7 +1858,7 @@ function Cloudtasks(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * cloudtasks.projects.locations.queues.tasks.lease
               * @desc Leases tasks from a pull queue for lease_duration.  This
@@ -1841,7 +1881,9 @@ function Cloudtasks(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          lease(params, options, callback) {
+          lease(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1862,7 +1904,7 @@ function Cloudtasks(options) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * cloudtasks.projects.locations.queues.tasks.list
               * @desc Lists the tasks in a queue.  By default, only the BASIC
@@ -1955,7 +1997,9 @@ function Cloudtasks(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1976,7 +2020,7 @@ function Cloudtasks(options) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * cloudtasks.projects.locations.queues.tasks.renewLease
               * @desc Renew the current lease of a pull task.  The worker can
@@ -2053,7 +2097,9 @@ function Cloudtasks(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          renewLease(params, options, callback) {
+          renewLease(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -2074,7 +2120,7 @@ function Cloudtasks(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * cloudtasks.projects.locations.queues.tasks.run
               * @desc Forces a task to run now.  This command is meant to be
@@ -2164,7 +2210,8 @@ function Cloudtasks(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          run(params, options, callback) {
+          run(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -2185,7 +2232,7 @@ function Cloudtasks(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }
 
         }

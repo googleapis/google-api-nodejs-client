@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Spectrum Database API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1explorer
  * @param {object=} options Options for Spectrum
  */
-function Spectrum(options) {
+function Spectrum(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.paws = {
@@ -49,7 +56,9 @@ function Spectrum(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getSpectrum(params, options, callback) {
+    getSpectrum(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -69,7 +78,7 @@ function Spectrum(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * spectrum.paws.getSpectrumBatch
         * @desc The Google Spectrum Database does not support batch requests, so
@@ -83,7 +92,9 @@ function Spectrum(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getSpectrumBatch(params, options, callback) {
+    getSpectrumBatch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -103,7 +114,7 @@ function Spectrum(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * spectrum.paws.init
         * @desc Initializes the connection between a white space device and the
@@ -117,7 +128,9 @@ function Spectrum(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    init(params, options, callback) {
+    init(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -137,7 +150,7 @@ function Spectrum(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * spectrum.paws.notifySpectrumUse
         * @desc Notifies the database that the device has selected certain
@@ -154,7 +167,9 @@ function Spectrum(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    notifySpectrumUse(params, options, callback) {
+    notifySpectrumUse(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -174,7 +189,7 @@ function Spectrum(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * spectrum.paws.register
         * @desc The Google Spectrum Database implements registration in the
@@ -189,7 +204,9 @@ function Spectrum(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    register(params, options, callback) {
+    register(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -209,7 +226,7 @@ function Spectrum(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * spectrum.paws.verifyDevice
         * @desc Validates a device for white space use in accordance with
@@ -225,7 +242,9 @@ function Spectrum(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    verifyDevice(params, options, callback) {
+    verifyDevice(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -245,7 +264,7 @@ function Spectrum(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

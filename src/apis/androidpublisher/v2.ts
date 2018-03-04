@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Play Developer API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2
  * @param {object=} options Options for Androidpublisher
  */
-function Androidpublisher(options) {
+function Androidpublisher(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.edits = {
@@ -48,7 +55,9 @@ function Androidpublisher(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    commit(params, options, callback) {
+    commit(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -70,7 +79,7 @@ function Androidpublisher(options) {
         pathParams: ['editId', 'packageName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidpublisher.edits.delete
         * @desc Deletes an edit for an app. Creating a new edit will
@@ -86,7 +95,9 @@ function Androidpublisher(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -108,7 +119,7 @@ function Androidpublisher(options) {
         pathParams: ['editId', 'packageName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidpublisher.edits.get
         * @desc Returns information about the edit specified. Calls will fail if
@@ -124,7 +135,8 @@ function Androidpublisher(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -146,7 +158,7 @@ function Androidpublisher(options) {
         pathParams: ['editId', 'packageName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidpublisher.edits.insert
         * @desc Creates a new edit for an app, populated with the app's current
@@ -161,7 +173,9 @@ function Androidpublisher(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -182,7 +196,7 @@ function Androidpublisher(options) {
         pathParams: ['packageName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidpublisher.edits.validate
         * @desc Checks that the edit can be successfully committed. The edit's
@@ -197,7 +211,9 @@ function Androidpublisher(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    validate(params, options, callback) {
+    validate(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -219,7 +235,7 @@ function Androidpublisher(options) {
         pathParams: ['editId', 'packageName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     },
     apklistings: {
       /**
@@ -238,7 +254,9 @@ function Androidpublisher(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete (params, options, callback) {
+      delete (
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -261,7 +279,7 @@ function Androidpublisher(options) {
           pathParams: ['apkVersionCode', 'editId', 'language', 'packageName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androidpublisher.edits.apklistings.deleteall
           * @desc Deletes all the APK-specific localized listings for a
@@ -277,7 +295,9 @@ function Androidpublisher(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      deleteall(params, options, callback) {
+      deleteall(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -299,7 +319,7 @@ function Androidpublisher(options) {
           pathParams: ['apkVersionCode', 'editId', 'packageName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androidpublisher.edits.apklistings.get
           * @desc Fetches the APK-specific localized listing for a specified APK
@@ -316,7 +336,8 @@ function Androidpublisher(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -339,7 +360,7 @@ function Androidpublisher(options) {
           pathParams: ['apkVersionCode', 'editId', 'language', 'packageName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androidpublisher.edits.apklistings.list
           * @desc Lists all the APK-specific localized listings for a specified
@@ -355,7 +376,9 @@ function Androidpublisher(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -377,7 +400,7 @@ function Androidpublisher(options) {
           pathParams: ['apkVersionCode', 'editId', 'packageName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androidpublisher.edits.apklistings.patch
           * @desc Updates or creates the APK-specific localized listing for a
@@ -396,7 +419,9 @@ function Androidpublisher(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      patch(params, options, callback) {
+      patch(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -419,7 +444,7 @@ function Androidpublisher(options) {
           pathParams: ['apkVersionCode', 'editId', 'language', 'packageName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androidpublisher.edits.apklistings.update
           * @desc Updates or creates the APK-specific localized listing for a
@@ -437,7 +462,9 @@ function Androidpublisher(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      update(params, options, callback) {
+      update(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -460,7 +487,7 @@ function Androidpublisher(options) {
           pathParams: ['apkVersionCode', 'editId', 'language', 'packageName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -482,7 +509,9 @@ function Androidpublisher(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      addexternallyhosted(params, options, callback) {
+      addexternallyhosted(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -504,7 +533,7 @@ function Androidpublisher(options) {
           pathParams: ['editId', 'packageName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androidpublisher.edits.apks.list
           * @alias androidpublisher.edits.apks.list
@@ -517,7 +546,9 @@ function Androidpublisher(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -539,7 +570,7 @@ function Androidpublisher(options) {
           pathParams: ['editId', 'packageName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androidpublisher.edits.apks.upload
           * @alias androidpublisher.edits.apks.upload
@@ -555,7 +586,9 @@ function Androidpublisher(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      upload(params, options, callback) {
+      upload(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -581,7 +614,7 @@ function Androidpublisher(options) {
           pathParams: ['editId', 'packageName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -605,7 +638,9 @@ function Androidpublisher(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      upload(params, options, callback) {
+      upload(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -635,7 +670,7 @@ function Androidpublisher(options) {
           ],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -654,7 +689,8 @@ function Androidpublisher(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -676,7 +712,7 @@ function Androidpublisher(options) {
           pathParams: ['editId', 'packageName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androidpublisher.edits.details.patch
           * @desc Updates app details for this edit. This method supports patch
@@ -692,7 +728,9 @@ function Androidpublisher(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      patch(params, options, callback) {
+      patch(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -714,7 +752,7 @@ function Androidpublisher(options) {
           pathParams: ['editId', 'packageName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androidpublisher.edits.details.update
           * @desc Updates app details for this edit.
@@ -729,7 +767,9 @@ function Androidpublisher(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      update(params, options, callback) {
+      update(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -751,7 +791,7 @@ function Androidpublisher(options) {
           pathParams: ['editId', 'packageName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -773,7 +813,8 @@ function Androidpublisher(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -799,7 +840,7 @@ function Androidpublisher(options) {
               ],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * androidpublisher.edits.expansionfiles.patch
               * @desc Updates the APK's Expansion File configuration to
@@ -819,7 +860,9 @@ function Androidpublisher(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          patch(params, options, callback) {
+          patch(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -845,7 +888,7 @@ function Androidpublisher(options) {
               ],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * androidpublisher.edits.expansionfiles.update
               * @desc Updates the APK's Expansion File configuration to
@@ -864,7 +907,9 @@ function Androidpublisher(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          update(params, options, callback) {
+          update(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -890,7 +935,7 @@ function Androidpublisher(options) {
               ],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * androidpublisher.edits.expansionfiles.upload
               * @desc Uploads and attaches a new Expansion File to the APK
@@ -910,7 +955,9 @@ function Androidpublisher(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          upload(params, options, callback) {
+          upload(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -940,7 +987,7 @@ function Androidpublisher(options) {
               ],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }
 
         },
@@ -961,7 +1008,9 @@ function Androidpublisher(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete (params, options, callback) {
+      delete (
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -985,7 +1034,7 @@ function Androidpublisher(options) {
               ['editId', 'imageId', 'imageType', 'language', 'packageName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androidpublisher.edits.images.deleteall
           * @desc Deletes all images for the specified language and image type.
@@ -1001,7 +1050,9 @@ function Androidpublisher(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      deleteall(params, options, callback) {
+      deleteall(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1023,7 +1074,7 @@ function Androidpublisher(options) {
           pathParams: ['editId', 'imageType', 'language', 'packageName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androidpublisher.edits.images.list
           * @desc Lists all images for the specified language and image type.
@@ -1039,7 +1090,9 @@ function Androidpublisher(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1061,7 +1114,7 @@ function Androidpublisher(options) {
           pathParams: ['editId', 'imageType', 'language', 'packageName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androidpublisher.edits.images.upload
           * @desc Uploads a new image and adds it to the list of images for the
@@ -1081,7 +1134,9 @@ function Androidpublisher(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      upload(params, options, callback) {
+      upload(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1107,7 +1162,7 @@ function Androidpublisher(options) {
           pathParams: ['editId', 'imageType', 'language', 'packageName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -1126,7 +1181,9 @@ function Androidpublisher(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete (params, options, callback) {
+      delete (
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1148,7 +1205,7 @@ function Androidpublisher(options) {
           pathParams: ['editId', 'language', 'packageName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androidpublisher.edits.listings.deleteall
           * @desc Deletes all localized listings from an edit.
@@ -1162,7 +1219,9 @@ function Androidpublisher(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      deleteall(params, options, callback) {
+      deleteall(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1184,7 +1243,7 @@ function Androidpublisher(options) {
           pathParams: ['editId', 'packageName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androidpublisher.edits.listings.get
           * @desc Fetches information about a localized store listing.
@@ -1199,7 +1258,8 @@ function Androidpublisher(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1221,7 +1281,7 @@ function Androidpublisher(options) {
           pathParams: ['editId', 'language', 'packageName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androidpublisher.edits.listings.list
           * @desc Returns all of the localized store listings attached to this
@@ -1236,7 +1296,9 @@ function Androidpublisher(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1258,7 +1320,7 @@ function Androidpublisher(options) {
           pathParams: ['editId', 'packageName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androidpublisher.edits.listings.patch
           * @desc Creates or updates a localized store listing. This method
@@ -1275,7 +1337,9 @@ function Androidpublisher(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      patch(params, options, callback) {
+      patch(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1297,7 +1361,7 @@ function Androidpublisher(options) {
           pathParams: ['editId', 'language', 'packageName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androidpublisher.edits.listings.update
           * @desc Creates or updates a localized store listing.
@@ -1313,7 +1377,9 @@ function Androidpublisher(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      update(params, options, callback) {
+      update(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1335,7 +1401,7 @@ function Androidpublisher(options) {
           pathParams: ['editId', 'language', 'packageName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -1353,7 +1419,8 @@ function Androidpublisher(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1375,7 +1442,7 @@ function Androidpublisher(options) {
           pathParams: ['editId', 'packageName', 'track'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androidpublisher.edits.testers.patch
           * @alias androidpublisher.edits.testers.patch
@@ -1390,7 +1457,9 @@ function Androidpublisher(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      patch(params, options, callback) {
+      patch(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1412,7 +1481,7 @@ function Androidpublisher(options) {
           pathParams: ['editId', 'packageName', 'track'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androidpublisher.edits.testers.update
           * @alias androidpublisher.edits.testers.update
@@ -1427,7 +1496,9 @@ function Androidpublisher(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      update(params, options, callback) {
+      update(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1449,7 +1520,7 @@ function Androidpublisher(options) {
           pathParams: ['editId', 'packageName', 'track'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -1469,7 +1540,8 @@ function Androidpublisher(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1491,7 +1563,7 @@ function Androidpublisher(options) {
           pathParams: ['editId', 'packageName', 'track'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androidpublisher.edits.tracks.list
           * @desc Lists all the track configurations for this edit.
@@ -1505,7 +1577,9 @@ function Androidpublisher(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1527,7 +1601,7 @@ function Androidpublisher(options) {
           pathParams: ['editId', 'packageName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androidpublisher.edits.tracks.patch
           * @desc Updates the track configuration for the specified track type.
@@ -1546,7 +1620,9 @@ function Androidpublisher(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      patch(params, options, callback) {
+      patch(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1568,7 +1644,7 @@ function Androidpublisher(options) {
           pathParams: ['editId', 'packageName', 'track'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androidpublisher.edits.tracks.update
           * @desc Updates the track configuration for the specified track type.
@@ -1586,7 +1662,9 @@ function Androidpublisher(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      update(params, options, callback) {
+      update(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1608,7 +1686,7 @@ function Androidpublisher(options) {
           pathParams: ['editId', 'packageName', 'track'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }
@@ -1630,7 +1708,9 @@ function Androidpublisher(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1652,7 +1732,7 @@ function Androidpublisher(options) {
         pathParams: ['packageName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1670,7 +1750,9 @@ function Androidpublisher(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1692,7 +1774,7 @@ function Androidpublisher(options) {
         pathParams: ['packageName', 'sku'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidpublisher.inappproducts.get
         * @desc Returns information about the in-app product specified.
@@ -1706,7 +1788,8 @@ function Androidpublisher(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1728,7 +1811,7 @@ function Androidpublisher(options) {
         pathParams: ['packageName', 'sku'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidpublisher.inappproducts.insert
         * @desc Creates a new in-app product for an app.
@@ -1743,7 +1826,9 @@ function Androidpublisher(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1765,7 +1850,7 @@ function Androidpublisher(options) {
         pathParams: ['packageName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidpublisher.inappproducts.list
         * @desc List all the in-app products for an Android app, both
@@ -1782,7 +1867,9 @@ function Androidpublisher(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1804,7 +1891,7 @@ function Androidpublisher(options) {
         pathParams: ['packageName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidpublisher.inappproducts.patch
         * @desc Updates the details of an in-app product. This method supports
@@ -1821,7 +1908,9 @@ function Androidpublisher(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1843,7 +1932,7 @@ function Androidpublisher(options) {
         pathParams: ['packageName', 'sku'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidpublisher.inappproducts.update
         * @desc Updates the details of an in-app product.
@@ -1859,7 +1948,9 @@ function Androidpublisher(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1881,7 +1972,7 @@ function Androidpublisher(options) {
         pathParams: ['packageName', 'sku'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1901,7 +1992,8 @@ function Androidpublisher(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1923,7 +2015,7 @@ function Androidpublisher(options) {
           pathParams: ['packageName', 'productId', 'token'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -1943,7 +2035,9 @@ function Androidpublisher(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      cancel(params, options, callback) {
+      cancel(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1965,7 +2059,7 @@ function Androidpublisher(options) {
           pathParams: ['packageName', 'subscriptionId', 'token'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androidpublisher.purchases.subscriptions.defer
           * @desc Defers a user's subscription purchase until a specified future
@@ -1982,7 +2076,9 @@ function Androidpublisher(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      defer(params, options, callback) {
+      defer(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -2004,7 +2100,7 @@ function Androidpublisher(options) {
           pathParams: ['packageName', 'subscriptionId', 'token'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androidpublisher.purchases.subscriptions.get
           * @desc Checks whether a user's subscription purchase is valid and
@@ -2020,7 +2116,8 @@ function Androidpublisher(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -2042,7 +2139,7 @@ function Androidpublisher(options) {
           pathParams: ['packageName', 'subscriptionId', 'token'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androidpublisher.purchases.subscriptions.refund
           * @desc Refunds a user's subscription purchase, but the subscription
@@ -2059,7 +2156,9 @@ function Androidpublisher(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      refund(params, options, callback) {
+      refund(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -2081,7 +2180,7 @@ function Androidpublisher(options) {
           pathParams: ['packageName', 'subscriptionId', 'token'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androidpublisher.purchases.subscriptions.revoke
           * @desc Refunds and immediately revokes a user's subscription
@@ -2098,7 +2197,9 @@ function Androidpublisher(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      revoke(params, options, callback) {
+      revoke(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -2120,7 +2221,7 @@ function Androidpublisher(options) {
           pathParams: ['packageName', 'subscriptionId', 'token'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -2142,7 +2243,9 @@ function Androidpublisher(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -2164,7 +2267,7 @@ function Androidpublisher(options) {
           pathParams: ['packageName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }
@@ -2184,7 +2287,8 @@ function Androidpublisher(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2206,7 +2310,7 @@ function Androidpublisher(options) {
         pathParams: ['packageName', 'reviewId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidpublisher.reviews.list
         * @desc Returns a list of reviews. Only reviews from last week will be
@@ -2224,7 +2328,9 @@ function Androidpublisher(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2245,7 +2351,7 @@ function Androidpublisher(options) {
         pathParams: ['packageName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidpublisher.reviews.reply
         * @desc Reply to a single review, or update an existing reply.
@@ -2260,7 +2366,9 @@ function Androidpublisher(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    reply(params, options, callback) {
+    reply(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2282,7 +2390,7 @@ function Androidpublisher(options) {
         pathParams: ['packageName', 'reviewId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

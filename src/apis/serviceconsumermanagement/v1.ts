@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Service Consumer Management API
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Serviceconsumermanagement
  */
-function Serviceconsumermanagement(options) {
+function Serviceconsumermanagement(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.operations = {
@@ -57,7 +64,9 @@ function Serviceconsumermanagement(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params, options, callback) {
+    cancel(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -78,7 +87,7 @@ function Serviceconsumermanagement(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * serviceconsumermanagement.operations.delete
         * @desc Deletes a long-running operation. This method indicates that the
@@ -94,7 +103,9 @@ function Serviceconsumermanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -114,7 +125,7 @@ function Serviceconsumermanagement(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * serviceconsumermanagement.operations.get
         * @desc Gets the latest state of a long-running operation.  Clients can
@@ -129,7 +140,8 @@ function Serviceconsumermanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -149,7 +161,7 @@ function Serviceconsumermanagement(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * serviceconsumermanagement.operations.list
         * @desc Lists operations that match the specified filter in the request.
@@ -173,7 +185,9 @@ function Serviceconsumermanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -193,7 +207,7 @@ function Serviceconsumermanagement(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -213,7 +227,9 @@ function Serviceconsumermanagement(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search(params, options, callback) {
+    search(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -234,7 +250,7 @@ function Serviceconsumermanagement(options) {
         pathParams: ['parent'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     },
     tenancyUnits: {
       /**
@@ -254,7 +270,9 @@ function Serviceconsumermanagement(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      addProject(params, options, callback) {
+      addProject(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -275,7 +293,7 @@ function Serviceconsumermanagement(options) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * serviceconsumermanagement.services.tenancyUnits.create
           * @desc Creates a tenancy unit with no tenant resources.
@@ -289,7 +307,9 @@ function Serviceconsumermanagement(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      create(params, options, callback) {
+      create(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -310,7 +330,7 @@ function Serviceconsumermanagement(options) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * serviceconsumermanagement.services.tenancyUnits.delete
           * @desc Delete tenancy unit.  Before the tenancy unit is deleted,
@@ -325,7 +345,9 @@ function Serviceconsumermanagement(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (params, options, callback) {
+      delete (
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -345,7 +367,7 @@ function Serviceconsumermanagement(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * serviceconsumermanagement.services.tenancyUnits.list
           * @desc Find tenancy unit for a service and consumer. This method
@@ -364,7 +386,9 @@ function Serviceconsumermanagement(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -385,7 +409,7 @@ function Serviceconsumermanagement(options) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * serviceconsumermanagement.services.tenancyUnits.removeProject
           * @desc Removes specified project resource identified by tenant
@@ -403,7 +427,9 @@ function Serviceconsumermanagement(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      removeProject(params, options, callback) {
+      removeProject(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -424,7 +450,7 @@ function Serviceconsumermanagement(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }

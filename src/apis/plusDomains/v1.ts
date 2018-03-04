@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google+ Domains API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Plusdomains
  */
-function Plusdomains(options) {
+function Plusdomains(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.activities = {
@@ -47,7 +54,8 @@ function Plusdomains(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -67,7 +75,7 @@ function Plusdomains(options) {
         pathParams: ['activityId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * plusDomains.activities.insert
         * @desc Create a new activity for the authenticated user.
@@ -82,7 +90,9 @@ function Plusdomains(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -102,7 +112,7 @@ function Plusdomains(options) {
         pathParams: ['userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * plusDomains.activities.list
         * @desc List all of the activities in the specified collection for a
@@ -119,7 +129,9 @@ function Plusdomains(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -140,7 +152,7 @@ function Plusdomains(options) {
         pathParams: ['collection', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -159,7 +171,9 @@ function Plusdomains(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -179,7 +193,7 @@ function Plusdomains(options) {
         pathParams: ['userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -199,7 +213,9 @@ function Plusdomains(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addPeople(params, options, callback) {
+    addPeople(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -219,7 +235,7 @@ function Plusdomains(options) {
         pathParams: ['circleId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * plusDomains.circles.get
         * @desc Get a circle.
@@ -232,7 +248,8 @@ function Plusdomains(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -252,7 +269,7 @@ function Plusdomains(options) {
         pathParams: ['circleId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * plusDomains.circles.insert
         * @desc Create a new circle for the authenticated user.
@@ -266,7 +283,9 @@ function Plusdomains(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -286,7 +305,7 @@ function Plusdomains(options) {
         pathParams: ['userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * plusDomains.circles.list
         * @desc List all of the circles for a user.
@@ -301,7 +320,9 @@ function Plusdomains(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -321,7 +342,7 @@ function Plusdomains(options) {
         pathParams: ['userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * plusDomains.circles.patch
         * @desc Update a circle's description. This method supports patch
@@ -336,7 +357,9 @@ function Plusdomains(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -356,7 +379,7 @@ function Plusdomains(options) {
         pathParams: ['circleId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * plusDomains.circles.remove
         * @desc Delete a circle.
@@ -369,7 +392,9 @@ function Plusdomains(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    remove(params, options, callback) {
+    remove(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -389,7 +414,7 @@ function Plusdomains(options) {
         pathParams: ['circleId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * plusDomains.circles.removePeople
         * @desc Remove a person from a circle.
@@ -404,7 +429,9 @@ function Plusdomains(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    removePeople(params, options, callback) {
+    removePeople(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -424,7 +451,7 @@ function Plusdomains(options) {
         pathParams: ['circleId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * plusDomains.circles.update
         * @desc Update a circle's description.
@@ -438,7 +465,9 @@ function Plusdomains(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -458,7 +487,7 @@ function Plusdomains(options) {
         pathParams: ['circleId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -475,7 +504,8 @@ function Plusdomains(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -495,7 +525,7 @@ function Plusdomains(options) {
         pathParams: ['commentId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * plusDomains.comments.insert
         * @desc Create a new comment in reply to an activity.
@@ -509,7 +539,9 @@ function Plusdomains(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -530,7 +562,7 @@ function Plusdomains(options) {
         pathParams: ['activityId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * plusDomains.comments.list
         * @desc List all of the comments for an activity.
@@ -546,7 +578,9 @@ function Plusdomains(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -567,7 +601,7 @@ function Plusdomains(options) {
         pathParams: ['activityId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -592,7 +626,9 @@ function Plusdomains(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -616,7 +652,7 @@ function Plusdomains(options) {
         pathParams: ['collection', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -633,7 +669,8 @@ function Plusdomains(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -653,7 +690,7 @@ function Plusdomains(options) {
         pathParams: ['userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * plusDomains.people.list
         * @desc List all of the people in the specified collection.
@@ -670,7 +707,9 @@ function Plusdomains(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -691,7 +730,7 @@ function Plusdomains(options) {
         pathParams: ['collection', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * plusDomains.people.listByActivity
         * @desc List all of the people in the specified collection for a
@@ -708,7 +747,9 @@ function Plusdomains(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    listByActivity(params, options, callback) {
+    listByActivity(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -730,7 +771,7 @@ function Plusdomains(options) {
         pathParams: ['activityId', 'collection'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * plusDomains.people.listByCircle
         * @desc List all of the people who are members of a circle.
@@ -745,7 +786,9 @@ function Plusdomains(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    listByCircle(params, options, callback) {
+    listByCircle(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -765,7 +808,7 @@ function Plusdomains(options) {
         pathParams: ['circleId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

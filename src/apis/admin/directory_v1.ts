@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Admin Directory API
@@ -33,7 +40,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation directory_v1
  * @param {object=} options Options for Admin
  */
-function Admin(options) {
+function Admin(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.asps = {
@@ -50,7 +57,9 @@ function Admin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -71,7 +80,7 @@ function Admin(options) {
         pathParams: ['codeId', 'userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.asps.get
         * @desc Get information about an ASP issued by a user.
@@ -85,7 +94,8 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -106,7 +116,7 @@ function Admin(options) {
         pathParams: ['codeId', 'userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.asps.list
         * @desc List the ASPs issued by a user.
@@ -119,7 +129,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -139,7 +151,7 @@ function Admin(options) {
         pathParams: ['userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -156,7 +168,9 @@ function Admin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop(params, options, callback) {
+    stop(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -177,7 +191,7 @@ function Admin(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -196,7 +210,9 @@ function Admin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    action(params, options, callback) {
+    action(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -218,7 +234,7 @@ function Admin(options) {
         pathParams: ['customerId', 'resourceId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.chromeosdevices.get
         * @desc Retrieve Chrome OS Device
@@ -233,7 +249,8 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -255,7 +272,7 @@ function Admin(options) {
         pathParams: ['customerId', 'deviceId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.chromeosdevices.list
         * @desc Retrieve all Chrome OS Devices of a customer (paginated)
@@ -275,7 +292,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -297,7 +316,7 @@ function Admin(options) {
         pathParams: ['customerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.chromeosdevices.moveDevicesToOu
         * @desc Move or insert multiple Chrome OS Devices to organizational unit
@@ -312,7 +331,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    moveDevicesToOu(params, options, callback) {
+    moveDevicesToOu(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -334,7 +355,7 @@ function Admin(options) {
         pathParams: ['customerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.chromeosdevices.patch
         * @desc Update Chrome OS Device. This method supports patch semantics.
@@ -350,7 +371,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -372,7 +395,7 @@ function Admin(options) {
         pathParams: ['customerId', 'deviceId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.chromeosdevices.update
         * @desc Update Chrome OS Device
@@ -388,7 +411,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -410,7 +435,7 @@ function Admin(options) {
         pathParams: ['customerId', 'deviceId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -427,7 +452,8 @@ function Admin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -447,7 +473,7 @@ function Admin(options) {
         pathParams: ['customerKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.customers.patch
         * @desc Updates a customer. This method supports patch semantics.
@@ -461,7 +487,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -481,7 +509,7 @@ function Admin(options) {
         pathParams: ['customerKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.customers.update
         * @desc Updates a customer.
@@ -495,7 +523,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -515,7 +545,7 @@ function Admin(options) {
         pathParams: ['customerKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -533,7 +563,9 @@ function Admin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -555,7 +587,7 @@ function Admin(options) {
         pathParams: ['customer', 'domainAliasName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.domainAliases.get
         * @desc Retrieves a domain alias of the customer.
@@ -569,7 +601,8 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -591,7 +624,7 @@ function Admin(options) {
         pathParams: ['customer', 'domainAliasName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.domainAliases.insert
         * @desc Inserts a Domain alias of the customer.
@@ -605,7 +638,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -626,7 +661,7 @@ function Admin(options) {
         pathParams: ['customer'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.domainAliases.list
         * @desc Lists the domain aliases of the customer.
@@ -640,7 +675,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -661,7 +698,7 @@ function Admin(options) {
         pathParams: ['customer'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -679,7 +716,9 @@ function Admin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -701,7 +740,7 @@ function Admin(options) {
         pathParams: ['customer', 'domainName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.domains.get
         * @desc Retrieves a domain of the customer.
@@ -715,7 +754,8 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -737,7 +777,7 @@ function Admin(options) {
         pathParams: ['customer', 'domainName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.domains.insert
         * @desc Inserts a domain of the customer.
@@ -751,7 +791,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -771,7 +813,7 @@ function Admin(options) {
         pathParams: ['customer'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.domains.list
         * @desc Lists the domains of the customer.
@@ -784,7 +826,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -804,7 +848,7 @@ function Admin(options) {
         pathParams: ['customer'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -821,7 +865,9 @@ function Admin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -841,7 +887,7 @@ function Admin(options) {
         pathParams: ['groupKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.groups.get
         * @desc Retrieve Group
@@ -854,7 +900,8 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -874,7 +921,7 @@ function Admin(options) {
         pathParams: ['groupKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.groups.insert
         * @desc Create Group
@@ -887,7 +934,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -907,7 +956,7 @@ function Admin(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.groups.list
         * @desc Retrieve all groups in a domain (paginated)
@@ -924,7 +973,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -944,7 +995,7 @@ function Admin(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.groups.patch
         * @desc Update Group. This method supports patch semantics.
@@ -958,7 +1009,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -978,7 +1031,7 @@ function Admin(options) {
         pathParams: ['groupKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.groups.update
         * @desc Update Group
@@ -992,7 +1045,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1012,7 +1067,7 @@ function Admin(options) {
         pathParams: ['groupKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     },
     aliases: {
       /**
@@ -1028,7 +1083,9 @@ function Admin(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete (params, options, callback) {
+      delete (
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1049,7 +1106,7 @@ function Admin(options) {
           pathParams: ['alias', 'groupKey'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * directory.groups.aliases.insert
           * @desc Add a alias for the group
@@ -1063,7 +1120,9 @@ function Admin(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      insert(params, options, callback) {
+      insert(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1083,7 +1142,7 @@ function Admin(options) {
           pathParams: ['groupKey'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * directory.groups.aliases.list
           * @desc List all aliases for a group
@@ -1096,7 +1155,9 @@ function Admin(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1116,7 +1177,7 @@ function Admin(options) {
           pathParams: ['groupKey'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }
@@ -1135,7 +1196,9 @@ function Admin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1156,7 +1219,7 @@ function Admin(options) {
         pathParams: ['groupKey', 'memberKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.members.get
         * @desc Retrieve Group Member
@@ -1170,7 +1233,8 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1191,7 +1255,7 @@ function Admin(options) {
         pathParams: ['groupKey', 'memberKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.members.hasMember
         * @desc Checks Membership of an user within a Group
@@ -1205,7 +1269,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    hasMember(params, options, callback) {
+    hasMember(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1227,7 +1293,7 @@ function Admin(options) {
         pathParams: ['groupKey', 'memberKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.members.insert
         * @desc Add user to the specified group.
@@ -1241,7 +1307,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1261,7 +1329,7 @@ function Admin(options) {
         pathParams: ['groupKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.members.list
         * @desc Retrieve all members in a group (paginated)
@@ -1277,7 +1345,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1297,7 +1367,7 @@ function Admin(options) {
         pathParams: ['groupKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.members.patch
         * @desc Update membership of a user in the specified group. This method
@@ -1313,7 +1383,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1334,7 +1406,7 @@ function Admin(options) {
         pathParams: ['groupKey', 'memberKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.members.update
         * @desc Update membership of a user in the specified group.
@@ -1349,7 +1421,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1370,7 +1444,7 @@ function Admin(options) {
         pathParams: ['groupKey', 'memberKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1389,7 +1463,9 @@ function Admin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    action(params, options, callback) {
+    action(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1411,7 +1487,7 @@ function Admin(options) {
         pathParams: ['customerId', 'resourceId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.mobiledevices.delete
         * @desc Delete Mobile Device
@@ -1425,7 +1501,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1447,7 +1525,7 @@ function Admin(options) {
         pathParams: ['customerId', 'resourceId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.mobiledevices.get
         * @desc Retrieve Mobile Device
@@ -1462,7 +1540,8 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1484,7 +1563,7 @@ function Admin(options) {
         pathParams: ['customerId', 'resourceId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.mobiledevices.list
         * @desc Retrieve all Mobile Devices of a customer (paginated)
@@ -1503,7 +1582,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1524,7 +1605,7 @@ function Admin(options) {
         pathParams: ['customerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1542,7 +1623,9 @@ function Admin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1564,7 +1647,7 @@ function Admin(options) {
         pathParams: ['customer', 'notificationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.notifications.get
         * @desc Retrieves a notification.
@@ -1578,7 +1661,8 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1600,7 +1684,7 @@ function Admin(options) {
         pathParams: ['customer', 'notificationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.notifications.list
         * @desc Retrieves a list of notifications.
@@ -1616,7 +1700,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1637,7 +1723,7 @@ function Admin(options) {
         pathParams: ['customer'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.notifications.patch
         * @desc Updates a notification. This method supports patch semantics.
@@ -1652,7 +1738,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1674,7 +1762,7 @@ function Admin(options) {
         pathParams: ['customer', 'notificationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.notifications.update
         * @desc Updates a notification.
@@ -1689,7 +1777,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1711,7 +1801,7 @@ function Admin(options) {
         pathParams: ['customer', 'notificationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1729,7 +1819,9 @@ function Admin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1751,7 +1843,7 @@ function Admin(options) {
         pathParams: ['customerId', 'orgUnitPath'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.orgunits.get
         * @desc Retrieve organizational unit
@@ -1765,7 +1857,8 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1787,7 +1880,7 @@ function Admin(options) {
         pathParams: ['customerId', 'orgUnitPath'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.orgunits.insert
         * @desc Add organizational unit
@@ -1801,7 +1894,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1822,7 +1917,7 @@ function Admin(options) {
         pathParams: ['customerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.orgunits.list
         * @desc Retrieve all organizational units
@@ -1837,7 +1932,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1858,7 +1955,7 @@ function Admin(options) {
         pathParams: ['customerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.orgunits.patch
         * @desc Update organizational unit. This method supports patch
@@ -1874,7 +1971,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1896,7 +1995,7 @@ function Admin(options) {
         pathParams: ['customerId', 'orgUnitPath'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.orgunits.update
         * @desc Update organizational unit
@@ -1911,7 +2010,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1933,7 +2034,7 @@ function Admin(options) {
         pathParams: ['customerId', 'orgUnitPath'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1950,7 +2051,9 @@ function Admin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1972,7 +2075,7 @@ function Admin(options) {
         pathParams: ['customer'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1988,7 +2091,9 @@ function Admin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    GetSettings(params, options, callback) {
+    GetSettings(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2008,7 +2113,7 @@ function Admin(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.resolvedAppAccessSettings.ListTrustedApps
         * @desc Retrieves the list of apps trusted by the admin of the logged in
@@ -2021,7 +2126,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    ListTrustedApps(params, options, callback) {
+    ListTrustedApps(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2041,7 +2148,7 @@ function Admin(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -2061,7 +2168,9 @@ function Admin(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          delete (params, options, callback) {
+          delete (
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -2083,7 +2192,7 @@ function Admin(options) {
               pathParams: ['buildingId', 'customer'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * directory.resources.buildings.get
               * @desc Retrieves a building.
@@ -2097,7 +2206,8 @@ function Admin(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -2119,7 +2229,7 @@ function Admin(options) {
               pathParams: ['buildingId', 'customer'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * directory.resources.buildings.insert
               * @desc Inserts a building.
@@ -2133,7 +2243,9 @@ function Admin(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          insert(params, options, callback) {
+          insert(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -2155,7 +2267,7 @@ function Admin(options) {
               pathParams: ['customer'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * directory.resources.buildings.list
               * @desc Retrieves a list of buildings for an account.
@@ -2168,7 +2280,9 @@ function Admin(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -2190,7 +2304,7 @@ function Admin(options) {
               pathParams: ['customer'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * directory.resources.buildings.patch
               * @desc Updates a building. This method supports patch semantics.
@@ -2205,7 +2319,9 @@ function Admin(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          patch(params, options, callback) {
+          patch(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -2227,7 +2343,7 @@ function Admin(options) {
               pathParams: ['buildingId', 'customer'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * directory.resources.buildings.update
               * @desc Updates a building.
@@ -2242,7 +2358,9 @@ function Admin(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          update(params, options, callback) {
+          update(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -2264,7 +2382,7 @@ function Admin(options) {
               pathParams: ['buildingId', 'customer'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }
 
         },
@@ -2282,7 +2400,9 @@ function Admin(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          delete (params, options, callback) {
+          delete (
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -2304,7 +2424,7 @@ function Admin(options) {
               pathParams: ['calendarResourceId', 'customer'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * directory.resources.calendars.get
               * @desc Retrieves a calendar resource.
@@ -2318,7 +2438,8 @@ function Admin(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -2340,7 +2461,7 @@ function Admin(options) {
               pathParams: ['calendarResourceId', 'customer'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * directory.resources.calendars.insert
               * @desc Inserts a calendar resource.
@@ -2354,7 +2475,9 @@ function Admin(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          insert(params, options, callback) {
+          insert(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -2376,7 +2499,7 @@ function Admin(options) {
               pathParams: ['customer'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * directory.resources.calendars.list
               * @desc Retrieves a list of calendar resources for an account.
@@ -2393,7 +2516,9 @@ function Admin(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -2415,7 +2540,7 @@ function Admin(options) {
               pathParams: ['customer'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * directory.resources.calendars.patch
               * @desc Updates a calendar resource.  This method supports patch
@@ -2433,7 +2558,9 @@ function Admin(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          patch(params, options, callback) {
+          patch(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -2455,7 +2582,7 @@ function Admin(options) {
               pathParams: ['calendarResourceId', 'customer'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * directory.resources.calendars.update
               * @desc Updates a calendar resource.  This method supports patch
@@ -2473,7 +2600,9 @@ function Admin(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          update(params, options, callback) {
+          update(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -2495,7 +2624,7 @@ function Admin(options) {
               pathParams: ['calendarResourceId', 'customer'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }
 
         },
@@ -2514,7 +2643,9 @@ function Admin(options) {
                * @param {callback} callback The callback that handles the response.
                * @return {object} Request object
                */
-              delete (params, options, callback) {
+              delete (
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -2537,7 +2668,7 @@ function Admin(options) {
                   pathParams: ['customer', 'featureKey'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * directory.resources.features.get
                   * @desc Retrieves a feature.
@@ -2551,7 +2682,8 @@ function Admin(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              get(params, options, callback) {
+              get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -2574,7 +2706,7 @@ function Admin(options) {
                   pathParams: ['customer', 'featureKey'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * directory.resources.features.insert
                   * @desc Inserts a feature.
@@ -2588,7 +2720,9 @@ function Admin(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              insert(params, options, callback) {
+              insert(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -2611,7 +2745,7 @@ function Admin(options) {
                   pathParams: ['customer'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * directory.resources.features.list
                   * @desc Retrieves a list of features for an account.
@@ -2625,7 +2759,9 @@ function Admin(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              list(params, options, callback) {
+              list(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -2648,7 +2784,7 @@ function Admin(options) {
                   pathParams: ['customer'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * directory.resources.features.patch
                   * @desc Updates a feature. This method supports patch
@@ -2664,7 +2800,9 @@ function Admin(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              patch(params, options, callback) {
+              patch(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -2687,7 +2825,7 @@ function Admin(options) {
                   pathParams: ['customer', 'featureKey'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * directory.resources.features.rename
                   * @desc Renames a feature.
@@ -2702,7 +2840,9 @@ function Admin(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              rename(params, options, callback) {
+              rename(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -2725,7 +2865,7 @@ function Admin(options) {
                   pathParams: ['customer', 'oldName'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * directory.resources.features.update
                   * @desc Updates a feature.
@@ -2740,7 +2880,9 @@ function Admin(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              update(params, options, callback) {
+              update(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -2763,7 +2905,7 @@ function Admin(options) {
                   pathParams: ['customer', 'featureKey'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }
 
             }
@@ -2782,7 +2924,9 @@ function Admin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2804,7 +2948,7 @@ function Admin(options) {
         pathParams: ['customer', 'roleAssignmentId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.roleAssignments.get
         * @desc Retrieve a role assignment.
@@ -2818,7 +2962,8 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2840,7 +2985,7 @@ function Admin(options) {
         pathParams: ['customer', 'roleAssignmentId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.roleAssignments.insert
         * @desc Creates a role assignment.
@@ -2854,7 +2999,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2875,7 +3022,7 @@ function Admin(options) {
         pathParams: ['customer'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.roleAssignments.list
         * @desc Retrieves a paginated list of all roleAssignments.
@@ -2892,7 +3039,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2913,7 +3062,7 @@ function Admin(options) {
         pathParams: ['customer'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -2931,7 +3080,9 @@ function Admin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2952,7 +3103,7 @@ function Admin(options) {
         pathParams: ['customer', 'roleId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.roles.get
         * @desc Retrieves a role.
@@ -2966,7 +3117,8 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2987,7 +3139,7 @@ function Admin(options) {
         pathParams: ['customer', 'roleId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.roles.insert
         * @desc Creates a role.
@@ -3001,7 +3153,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3021,7 +3175,7 @@ function Admin(options) {
         pathParams: ['customer'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.roles.list
         * @desc Retrieves a paginated list of all the roles in a domain.
@@ -3036,7 +3190,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3056,7 +3212,7 @@ function Admin(options) {
         pathParams: ['customer'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.roles.patch
         * @desc Updates a role. This method supports patch semantics.
@@ -3071,7 +3227,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3092,7 +3250,7 @@ function Admin(options) {
         pathParams: ['customer', 'roleId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.roles.update
         * @desc Updates a role.
@@ -3107,7 +3265,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3128,7 +3288,7 @@ function Admin(options) {
         pathParams: ['customer', 'roleId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -3146,7 +3306,9 @@ function Admin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3168,7 +3330,7 @@ function Admin(options) {
         pathParams: ['customerId', 'schemaKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.schemas.get
         * @desc Retrieve schema
@@ -3182,7 +3344,8 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3204,7 +3367,7 @@ function Admin(options) {
         pathParams: ['customerId', 'schemaKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.schemas.insert
         * @desc Create schema.
@@ -3218,7 +3381,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3239,7 +3404,7 @@ function Admin(options) {
         pathParams: ['customerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.schemas.list
         * @desc Retrieve all schemas for a customer
@@ -3252,7 +3417,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3273,7 +3440,7 @@ function Admin(options) {
         pathParams: ['customerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.schemas.patch
         * @desc Update schema. This method supports patch semantics.
@@ -3288,7 +3455,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3310,7 +3479,7 @@ function Admin(options) {
         pathParams: ['customerId', 'schemaKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.schemas.update
         * @desc Update schema
@@ -3325,7 +3494,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3347,7 +3518,7 @@ function Admin(options) {
         pathParams: ['customerId', 'schemaKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -3365,7 +3536,9 @@ function Admin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3386,7 +3559,7 @@ function Admin(options) {
         pathParams: ['clientId', 'userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.tokens.get
         * @desc Get information about an access token issued by a user.
@@ -3400,7 +3573,8 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3421,7 +3595,7 @@ function Admin(options) {
         pathParams: ['clientId', 'userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.tokens.list
         * @desc Returns the set of tokens specified user has issued to 3rd party
@@ -3435,7 +3609,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3455,7 +3631,7 @@ function Admin(options) {
         pathParams: ['userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -3472,7 +3648,9 @@ function Admin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3492,7 +3670,7 @@ function Admin(options) {
         pathParams: ['userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.users.get
         * @desc retrieve user
@@ -3508,7 +3686,8 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3528,7 +3707,7 @@ function Admin(options) {
         pathParams: ['userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.users.insert
         * @desc create user.
@@ -3541,7 +3720,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3561,7 +3742,7 @@ function Admin(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.users.list
         * @desc Retrieve either deleted users or all users in a domain
@@ -3586,7 +3767,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3606,7 +3789,7 @@ function Admin(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.users.makeAdmin
         * @desc change admin status of a user
@@ -3620,7 +3803,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    makeAdmin(params, options, callback) {
+    makeAdmin(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3640,7 +3825,7 @@ function Admin(options) {
         pathParams: ['userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.users.patch
         * @desc update user. This method supports patch semantics.
@@ -3654,7 +3839,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3674,7 +3861,7 @@ function Admin(options) {
         pathParams: ['userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.users.undelete
         * @desc Undelete a deleted user
@@ -3688,7 +3875,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    undelete(params, options, callback) {
+    undelete(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3708,7 +3897,7 @@ function Admin(options) {
         pathParams: ['userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.users.update
         * @desc update user
@@ -3722,7 +3911,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3742,7 +3933,7 @@ function Admin(options) {
         pathParams: ['userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.users.watch
         * @desc Watch for changes in users list
@@ -3767,7 +3958,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    watch(params, options, callback) {
+    watch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3787,7 +3980,7 @@ function Admin(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     },
     aliases: {
       /**
@@ -3803,7 +3996,9 @@ function Admin(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete (params, options, callback) {
+      delete (
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -3824,7 +4019,7 @@ function Admin(options) {
           pathParams: ['alias', 'userKey'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * directory.users.aliases.insert
           * @desc Add a alias for the user
@@ -3838,7 +4033,9 @@ function Admin(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      insert(params, options, callback) {
+      insert(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -3858,7 +4055,7 @@ function Admin(options) {
           pathParams: ['userKey'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * directory.users.aliases.list
           * @desc List all aliases for a user
@@ -3872,7 +4069,9 @@ function Admin(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -3892,7 +4091,7 @@ function Admin(options) {
           pathParams: ['userKey'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * directory.users.aliases.watch
           * @desc Watch for changes in user aliases list
@@ -3907,7 +4106,9 @@ function Admin(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      watch(params, options, callback) {
+      watch(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -3928,7 +4129,7 @@ function Admin(options) {
           pathParams: ['userKey'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -3945,7 +4146,9 @@ function Admin(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete (params, options, callback) {
+      delete (
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -3966,7 +4169,7 @@ function Admin(options) {
           pathParams: ['userKey'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * directory.users.photos.get
           * @desc Retrieve photo of a user
@@ -3979,7 +4182,8 @@ function Admin(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -4000,7 +4204,7 @@ function Admin(options) {
           pathParams: ['userKey'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * directory.users.photos.patch
           * @desc Add a photo for the user. This method supports patch
@@ -4015,7 +4219,9 @@ function Admin(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      patch(params, options, callback) {
+      patch(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -4036,7 +4242,7 @@ function Admin(options) {
           pathParams: ['userKey'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * directory.users.photos.update
           * @desc Add a photo for the user
@@ -4050,7 +4256,9 @@ function Admin(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      update(params, options, callback) {
+      update(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -4071,7 +4279,7 @@ function Admin(options) {
           pathParams: ['userKey'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }
@@ -4089,7 +4297,9 @@ function Admin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    generate(params, options, callback) {
+    generate(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4111,7 +4321,7 @@ function Admin(options) {
         pathParams: ['userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.verificationCodes.invalidate
         * @desc Invalidate the current backup verification codes for the user.
@@ -4124,7 +4334,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    invalidate(params, options, callback) {
+    invalidate(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4146,7 +4358,7 @@ function Admin(options) {
         pathParams: ['userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * directory.verificationCodes.list
         * @desc Returns the current set of valid backup verification codes for
@@ -4160,7 +4372,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4181,7 +4395,7 @@ function Admin(options) {
         pathParams: ['userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

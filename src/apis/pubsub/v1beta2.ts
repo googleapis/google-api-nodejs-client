@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Cloud Pub/Sub API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta2
  * @param {object=} options Options for Pubsub
  */
-function Pubsub(options) {
+function Pubsub(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.projects = {
@@ -54,7 +61,9 @@ function Pubsub(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      acknowledge(params, options, callback) {
+      acknowledge(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -74,7 +83,7 @@ function Pubsub(options) {
           pathParams: ['subscription'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.subscriptions.create
           * @desc Creates a subscription to a given topic. If the subscription
@@ -93,7 +102,9 @@ function Pubsub(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      create(params, options, callback) {
+      create(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -113,7 +124,7 @@ function Pubsub(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.subscriptions.delete
           * @desc Deletes an existing subscription. All pending messages in the
@@ -131,7 +142,9 @@ function Pubsub(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (params, options, callback) {
+      delete (
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -151,7 +164,7 @@ function Pubsub(options) {
           pathParams: ['subscription'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.subscriptions.get
           * @desc Gets the configuration details of a subscription.
@@ -164,7 +177,8 @@ function Pubsub(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -184,7 +198,7 @@ function Pubsub(options) {
           pathParams: ['subscription'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.subscriptions.getIamPolicy
           * @desc Gets the access control policy for a resource. Returns an
@@ -198,7 +212,9 @@ function Pubsub(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      getIamPolicy(params, options, callback) {
+      getIamPolicy(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -218,7 +234,7 @@ function Pubsub(options) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.subscriptions.list
           * @desc Lists matching subscriptions.
@@ -233,7 +249,9 @@ function Pubsub(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -253,7 +271,7 @@ function Pubsub(options) {
           pathParams: ['project'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.subscriptions.modifyAckDeadline
           * @desc Modifies the ack deadline for a specific message. This method
@@ -272,7 +290,9 @@ function Pubsub(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      modifyAckDeadline(params, options, callback) {
+      modifyAckDeadline(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -292,7 +312,7 @@ function Pubsub(options) {
           pathParams: ['subscription'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.subscriptions.modifyPushConfig
           * @desc Modifies the `PushConfig` for a specified subscription.  This
@@ -311,7 +331,9 @@ function Pubsub(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      modifyPushConfig(params, options, callback) {
+      modifyPushConfig(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -331,7 +353,7 @@ function Pubsub(options) {
           pathParams: ['subscription'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.subscriptions.pull
           * @desc Pulls messages from the server. Returns an empty list if there
@@ -348,7 +370,9 @@ function Pubsub(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      pull(params, options, callback) {
+      pull(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -368,7 +392,7 @@ function Pubsub(options) {
           pathParams: ['subscription'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.subscriptions.setIamPolicy
           * @desc Sets the access control policy on the specified resource.
@@ -383,7 +407,9 @@ function Pubsub(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      setIamPolicy(params, options, callback) {
+      setIamPolicy(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -403,7 +429,7 @@ function Pubsub(options) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.subscriptions.testIamPermissions
           * @desc Returns permissions that a caller has on the specified
@@ -422,7 +448,9 @@ function Pubsub(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      testIamPermissions(params, options, callback) {
+      testIamPermissions(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -442,7 +470,7 @@ function Pubsub(options) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -460,7 +488,9 @@ function Pubsub(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create(params, options, callback) {
+      create(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -480,7 +510,7 @@ function Pubsub(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.topics.delete
           * @desc Deletes the topic with the given name. Returns `NOT_FOUND` if
@@ -498,7 +528,9 @@ function Pubsub(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (params, options, callback) {
+      delete (
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -518,7 +550,7 @@ function Pubsub(options) {
           pathParams: ['topic'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.topics.get
           * @desc Gets the configuration of a topic.
@@ -531,7 +563,8 @@ function Pubsub(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -551,7 +584,7 @@ function Pubsub(options) {
           pathParams: ['topic'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.topics.getIamPolicy
           * @desc Gets the access control policy for a resource. Returns an
@@ -565,7 +598,9 @@ function Pubsub(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      getIamPolicy(params, options, callback) {
+      getIamPolicy(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -585,7 +620,7 @@ function Pubsub(options) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.topics.list
           * @desc Lists matching topics.
@@ -600,7 +635,9 @@ function Pubsub(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -620,7 +657,7 @@ function Pubsub(options) {
           pathParams: ['project'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.topics.publish
           * @desc Adds one or more messages to the topic. Returns `NOT_FOUND` if
@@ -637,7 +674,9 @@ function Pubsub(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      publish(params, options, callback) {
+      publish(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -657,7 +696,7 @@ function Pubsub(options) {
           pathParams: ['topic'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.topics.setIamPolicy
           * @desc Sets the access control policy on the specified resource.
@@ -672,7 +711,9 @@ function Pubsub(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      setIamPolicy(params, options, callback) {
+      setIamPolicy(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -692,7 +733,7 @@ function Pubsub(options) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.topics.testIamPermissions
           * @desc Returns permissions that a caller has on the specified
@@ -711,7 +752,9 @@ function Pubsub(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      testIamPermissions(params, options, callback) {
+      testIamPermissions(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -731,7 +774,7 @@ function Pubsub(options) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       },
       subscriptions: {
         /**
@@ -748,7 +791,9 @@ function Pubsub(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -768,7 +813,7 @@ function Pubsub(options) {
             pathParams: ['topic'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       }

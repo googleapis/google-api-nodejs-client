@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Dataflow API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1b3
  * @param {object=} options Options for Dataflow
  */
-function Dataflow(options) {
+function Dataflow(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.projects =
@@ -49,7 +56,9 @@ function Dataflow(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        workerMessages(params, options, callback) {
+        workerMessages(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -69,7 +78,7 @@ function Dataflow(options) {
             pathParams: ['projectId'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         },
         jobs: {
           /**
@@ -89,7 +98,9 @@ function Dataflow(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          aggregated(params, options, callback) {
+          aggregated(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -111,7 +122,7 @@ function Dataflow(options) {
               pathParams: ['projectId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * dataflow.projects.jobs.create
               * @desc Creates a Cloud Dataflow job.
@@ -128,7 +139,9 @@ function Dataflow(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          create(params, options, callback) {
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -149,7 +162,7 @@ function Dataflow(options) {
               pathParams: ['projectId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * dataflow.projects.jobs.get
               * @desc Gets the state of the specified Cloud Dataflow job.
@@ -165,7 +178,8 @@ function Dataflow(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -186,7 +200,7 @@ function Dataflow(options) {
               pathParams: ['jobId', 'projectId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * dataflow.projects.jobs.getMetrics
               * @desc Request the job status.
@@ -202,7 +216,9 @@ function Dataflow(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          getMetrics(params, options, callback) {
+          getMetrics(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -224,7 +240,7 @@ function Dataflow(options) {
               pathParams: ['jobId', 'projectId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * dataflow.projects.jobs.list
               * @desc List the jobs of a project in a given region.
@@ -242,7 +258,9 @@ function Dataflow(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -263,7 +281,7 @@ function Dataflow(options) {
               pathParams: ['projectId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * dataflow.projects.jobs.update
               * @desc Updates the state of an existing Cloud Dataflow job.
@@ -279,7 +297,9 @@ function Dataflow(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          update(params, options, callback) {
+          update(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -300,7 +320,7 @@ function Dataflow(options) {
               pathParams: ['jobId', 'projectId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           },
           debug: {
             /**
@@ -318,7 +338,9 @@ function Dataflow(options) {
              * @param {callback} callback The callback that handles the response.
              * @return {object} Request object
              */
-            getConfig(params, options, callback) {
+            getConfig(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -341,7 +363,7 @@ function Dataflow(options) {
                 pathParams: ['jobId', 'projectId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * dataflow.projects.jobs.debug.sendCapture
                 * @desc Send encoded debug capture data for component.
@@ -356,7 +378,9 @@ function Dataflow(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            sendCapture(params, options, callback) {
+            sendCapture(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -379,7 +403,7 @@ function Dataflow(options) {
                 pathParams: ['jobId', 'projectId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }
 
           },
@@ -403,7 +427,9 @@ function Dataflow(options) {
              * @param {callback} callback The callback that handles the response.
              * @return {object} Request object
              */
-            list(params, options, callback) {
+            list(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -425,7 +451,7 @@ function Dataflow(options) {
                 pathParams: ['jobId', 'projectId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }
 
           },
@@ -444,7 +470,9 @@ function Dataflow(options) {
              * @param {callback} callback The callback that handles the response.
              * @return {object} Request object
              */
-            lease(params, options, callback) {
+            lease(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -467,7 +495,7 @@ function Dataflow(options) {
                 pathParams: ['jobId', 'projectId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * dataflow.projects.jobs.workItems.reportStatus
                 * @desc Reports the status of dataflow WorkItems leased by a
@@ -483,7 +511,9 @@ function Dataflow(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            reportStatus(params, options, callback) {
+            reportStatus(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -506,7 +536,7 @@ function Dataflow(options) {
                 pathParams: ['jobId', 'projectId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }
 
           }
@@ -527,7 +557,9 @@ function Dataflow(options) {
                * @param {callback} callback The callback that handles the response.
                * @return {object} Request object
                */
-              workerMessages(params, options, callback) {
+              workerMessages(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -550,7 +582,7 @@ function Dataflow(options) {
                   pathParams: ['location', 'projectId'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               },
               jobs:
                   {
@@ -570,7 +602,10 @@ function Dataflow(options) {
                      * @param {callback} callback The callback that handles the response.
                      * @return {object} Request object
                      */
-                    create(params, options, callback) {
+                    create(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
                       if (typeof options === 'function') {
                         callback = options;
                         options = {};
@@ -593,7 +628,7 @@ function Dataflow(options) {
                         pathParams: ['location', 'projectId'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback);
+                      return createAPIRequest(parameters, callback!);
                     }, /**
                         * dataflow.projects.locations.jobs.get
                         * @desc Gets the state of the specified Cloud Dataflow
@@ -610,7 +645,9 @@ function Dataflow(options) {
                         * @param {callback} callback The callback that handles the response.
                         * @return {object} Request object
                         */
-                    get(params, options, callback) {
+                    get(params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
                       if (typeof options === 'function') {
                         callback = options;
                         options = {};
@@ -633,7 +670,7 @@ function Dataflow(options) {
                         pathParams: ['jobId', 'location', 'projectId'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback);
+                      return createAPIRequest(parameters, callback!);
                     }, /**
                         * dataflow.projects.locations.jobs.getMetrics
                         * @desc Request the job status.
@@ -649,7 +686,10 @@ function Dataflow(options) {
                         * @param {callback} callback The callback that handles the response.
                         * @return {object} Request object
                         */
-                    getMetrics(params, options, callback) {
+                    getMetrics(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
                       if (typeof options === 'function') {
                         callback = options;
                         options = {};
@@ -672,7 +712,7 @@ function Dataflow(options) {
                         pathParams: ['jobId', 'location', 'projectId'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback);
+                      return createAPIRequest(parameters, callback!);
                     }, /**
                         * dataflow.projects.locations.jobs.list
                         * @desc List the jobs of a project in a given region.
@@ -690,7 +730,10 @@ function Dataflow(options) {
                         * @param {callback} callback The callback that handles the response.
                         * @return {object} Request object
                         */
-                    list(params, options, callback) {
+                    list(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
                       if (typeof options === 'function') {
                         callback = options;
                         options = {};
@@ -713,7 +756,7 @@ function Dataflow(options) {
                         pathParams: ['location', 'projectId'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback);
+                      return createAPIRequest(parameters, callback!);
                     }, /**
                         * dataflow.projects.locations.jobs.update
                         * @desc Updates the state of an existing Cloud Dataflow
@@ -730,7 +773,10 @@ function Dataflow(options) {
                         * @param {callback} callback The callback that handles the response.
                         * @return {object} Request object
                         */
-                    update(params, options, callback) {
+                    update(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
                       if (typeof options === 'function') {
                         callback = options;
                         options = {};
@@ -753,7 +799,7 @@ function Dataflow(options) {
                         pathParams: ['jobId', 'location', 'projectId'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback);
+                      return createAPIRequest(parameters, callback!);
                     },
                     debug: {
                       /**
@@ -772,7 +818,10 @@ function Dataflow(options) {
                        * @param {callback} callback The callback that handles the response.
                        * @return {object} Request object
                        */
-                      getConfig(params, options, callback) {
+                      getConfig(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
                         if (typeof options === 'function') {
                           callback = options;
                           options = {};
@@ -795,7 +844,7 @@ function Dataflow(options) {
                           pathParams: ['jobId', 'location', 'projectId'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback);
+                        return createAPIRequest(parameters, callback!);
                       }, /**
                           * dataflow.projects.locations.jobs.debug.sendCapture
                           * @desc Send encoded debug capture data for component.
@@ -812,7 +861,10 @@ function Dataflow(options) {
                           * @param {callback} callback The callback that handles the response.
                           * @return {object} Request object
                           */
-                      sendCapture(params, options, callback) {
+                      sendCapture(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
                         if (typeof options === 'function') {
                           callback = options;
                           options = {};
@@ -835,7 +887,7 @@ function Dataflow(options) {
                           pathParams: ['jobId', 'location', 'projectId'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback);
+                        return createAPIRequest(parameters, callback!);
                       }
 
                     },
@@ -859,7 +911,10 @@ function Dataflow(options) {
                        * @param {callback} callback The callback that handles the response.
                        * @return {object} Request object
                        */
-                      list(params, options, callback) {
+                      list(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
                         if (typeof options === 'function') {
                           callback = options;
                           options = {};
@@ -882,7 +937,7 @@ function Dataflow(options) {
                           pathParams: ['jobId', 'location', 'projectId'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback);
+                        return createAPIRequest(parameters, callback!);
                       }
 
                     },
@@ -902,7 +957,10 @@ function Dataflow(options) {
                        * @param {callback} callback The callback that handles the response.
                        * @return {object} Request object
                        */
-                      lease(params, options, callback) {
+                      lease(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
                         if (typeof options === 'function') {
                           callback = options;
                           options = {};
@@ -925,7 +983,7 @@ function Dataflow(options) {
                           pathParams: ['jobId', 'location', 'projectId'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback);
+                        return createAPIRequest(parameters, callback!);
                       }, /**
                           * dataflow.projects.locations.jobs.workItems.reportStatus
                           * @desc Reports the status of dataflow WorkItems
@@ -943,7 +1001,10 @@ function Dataflow(options) {
                           * @param {callback} callback The callback that handles the response.
                           * @return {object} Request object
                           */
-                      reportStatus(params, options, callback) {
+                      reportStatus(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
                         if (typeof options === 'function') {
                           callback = options;
                           options = {};
@@ -966,7 +1027,7 @@ function Dataflow(options) {
                           pathParams: ['jobId', 'location', 'projectId'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback);
+                        return createAPIRequest(parameters, callback!);
                       }
 
                     }
@@ -986,7 +1047,10 @@ function Dataflow(options) {
                  * @param {callback} callback The callback that handles the response.
                  * @return {object} Request object
                  */
-                create(params, options, callback) {
+                create(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1009,7 +1073,7 @@ function Dataflow(options) {
                     pathParams: ['location', 'projectId'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * dataflow.projects.locations.templates.get
                     * @desc Get the template associated with a template.
@@ -1025,7 +1089,9 @@ function Dataflow(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                get(params, options, callback) {
+                get(params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1048,7 +1114,7 @@ function Dataflow(options) {
                     pathParams: ['location', 'projectId'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * dataflow.projects.locations.templates.launch
                     * @desc Launch a template.
@@ -1065,7 +1131,10 @@ function Dataflow(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                launch(params, options, callback) {
+                launch(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1088,7 +1157,7 @@ function Dataflow(options) {
                     pathParams: ['location', 'projectId'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }
 
               }
@@ -1107,7 +1176,9 @@ function Dataflow(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          create(params, options, callback) {
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1128,7 +1199,7 @@ function Dataflow(options) {
               pathParams: ['projectId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * dataflow.projects.templates.get
               * @desc Get the template associated with a template.
@@ -1144,7 +1215,8 @@ function Dataflow(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1165,7 +1237,7 @@ function Dataflow(options) {
               pathParams: ['projectId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * dataflow.projects.templates.launch
               * @desc Launch a template.
@@ -1182,7 +1254,9 @@ function Dataflow(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          launch(params, options, callback) {
+          launch(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1204,7 +1278,7 @@ function Dataflow(options) {
               pathParams: ['projectId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }
 
         }

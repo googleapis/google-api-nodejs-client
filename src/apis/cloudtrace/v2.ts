@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Stackdriver Trace API
@@ -33,7 +40,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2
  * @param {object=} options Options for Cloudtrace
  */
-function Cloudtrace(options) {
+function Cloudtrace(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.projects = {
@@ -52,7 +59,9 @@ function Cloudtrace(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      batchWrite(params, options, callback) {
+      batchWrite(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -72,7 +81,7 @@ function Cloudtrace(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       },
       spans: {
         /**
@@ -88,7 +97,9 @@ function Cloudtrace(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        createSpan(params, options, callback) {
+        createSpan(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -108,7 +119,7 @@ function Cloudtrace(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       }

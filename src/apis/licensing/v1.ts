@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Enterprise License Manager API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Licensing
  */
-function Licensing(options) {
+function Licensing(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.licenseAssignments = {
@@ -49,7 +56,9 @@ function Licensing(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -71,7 +80,7 @@ function Licensing(options) {
         pathParams: ['productId', 'skuId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * licensing.licenseAssignments.get
         * @desc Get license assignment of a particular product and sku for a
@@ -87,7 +96,8 @@ function Licensing(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -109,7 +119,7 @@ function Licensing(options) {
         pathParams: ['productId', 'skuId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * licensing.licenseAssignments.insert
         * @desc Assign License.
@@ -124,7 +134,9 @@ function Licensing(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -145,7 +157,7 @@ function Licensing(options) {
         pathParams: ['productId', 'skuId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * licensing.licenseAssignments.listForProduct
         * @desc List license assignments for given product of the customer.
@@ -161,7 +173,9 @@ function Licensing(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    listForProduct(params, options, callback) {
+    listForProduct(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -181,7 +195,7 @@ function Licensing(options) {
         pathParams: ['productId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * licensing.licenseAssignments.listForProductAndSku
         * @desc List license assignments for given product and sku of the
@@ -199,7 +213,9 @@ function Licensing(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    listForProductAndSku(params, options, callback) {
+    listForProductAndSku(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -220,7 +236,7 @@ function Licensing(options) {
         pathParams: ['productId', 'skuId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * licensing.licenseAssignments.patch
         * @desc Assign License. This method supports patch semantics.
@@ -236,7 +252,9 @@ function Licensing(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -258,7 +276,7 @@ function Licensing(options) {
         pathParams: ['productId', 'skuId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * licensing.licenseAssignments.update
         * @desc Assign License.
@@ -274,7 +292,9 @@ function Licensing(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -296,7 +316,7 @@ function Licensing(options) {
         pathParams: ['productId', 'skuId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

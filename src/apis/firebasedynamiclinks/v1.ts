@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Firebase Dynamic Links API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Firebasedynamiclinks
  */
-function Firebasedynamiclinks(options) {
+function Firebasedynamiclinks(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.shortLinks = {
@@ -52,7 +59,9 @@ function Firebasedynamiclinks(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params, options, callback) {
+    create(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -72,7 +81,7 @@ function Firebasedynamiclinks(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -92,7 +101,9 @@ function Firebasedynamiclinks(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getLinkStats(params, options, callback) {
+    getLinkStats(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -113,7 +124,7 @@ function Firebasedynamiclinks(options) {
         pathParams: ['dynamicLink'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * firebasedynamiclinks.installAttribution
         * @desc Get iOS strong/weak-match info for post-install attribution.
@@ -126,7 +137,9 @@ function Firebasedynamiclinks(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    installAttribution(params, options, callback) {
+    installAttribution(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -147,7 +160,7 @@ function Firebasedynamiclinks(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
