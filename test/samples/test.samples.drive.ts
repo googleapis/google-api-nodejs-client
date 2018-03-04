@@ -16,14 +16,14 @@ import * as fs from 'fs';
 import * as nock from 'nock';
 import * as os from 'os';
 
-import {Utils} from './utils';
+import {Utils} from './../utils';
 
 nock.disableNetConnect();
 
 const samples = {
-  download: require('../../samples/drive/download'),
-  export: require('../../samples/drive/export'),
-  list: require('../../samples/drive/list')
+  download: require('../../../samples/drive/download'),
+  export: require('../../../samples/drive/export'),
+  list: require('../../../samples/drive/list')
 };
 
 for (const p in samples) {
@@ -32,7 +32,7 @@ for (const p in samples) {
   }
 }
 
-const someFile = 'test/fixtures/public.pem';
+const someFile = '../test/fixtures/public.pem';
 
 describe('Drive samples', () => {
   afterEach(() => {
