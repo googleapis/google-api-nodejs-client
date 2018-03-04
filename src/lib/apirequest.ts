@@ -18,7 +18,7 @@ import * as stream from 'stream';
 import * as parseString from 'string-template';
 import * as uuid from 'uuid';
 
-import {APIRequestParams} from './api';
+import {APIRequestParams, GlobalOptions} from './api';
 import {SchemaParameters} from './schema';
 
 const maxContentLength = Math.pow(2, 31);
@@ -222,5 +222,12 @@ export function createAPIRequest<T>(
     authClient.request(mergedOptions, callback);
   } else {
     (new DefaultTransporter()).request(mergedOptions, callback);
+  }
+}
+
+export class BaseAPI {
+  protected _options: GlobalOptions;
+  constructor(options: GlobalOptions) {
+    this._options = options || {};
   }
 }

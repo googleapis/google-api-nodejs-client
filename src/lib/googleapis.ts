@@ -43,7 +43,7 @@ export class GoogleApis extends apis.GeneratedAPIs {
    * @class GoogleApis
    * @param {Object} [options] Configuration options.
    */
-  constructor(options?: {}) {
+  constructor(options?: GlobalOptions) {
     super();
     this.options(options);
     // tslint:disable-next-line: no-any
