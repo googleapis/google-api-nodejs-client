@@ -15,6 +15,7 @@ import * as assert from 'assert';
 import * as fs from 'fs';
 import * as nock from 'nock';
 import * as os from 'os';
+import * as path from 'path';
 
 import {Utils} from './../utils';
 
@@ -32,7 +33,7 @@ for (const p in samples) {
   }
 }
 
-const someFile = '../test/fixtures/public.pem';
+const someFile = path.resolve('test/fixtures/public.pem');
 
 describe('Drive samples', () => {
   afterEach(() => {
