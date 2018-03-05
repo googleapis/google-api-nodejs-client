@@ -2,19 +2,25 @@
 
 # Google APIs Node.js Client
 
+[![CircleCI][circleimg]][circle]
+[![Greenkeeper][greenkeeperimg]][greenkeeper]
 [![npm version][npmimg]][npm]
-[![Build Status][travisimg]][travis]
 [![Code Coverage][codecovimg]][codecov]
 [![Downloads][downloadsimg]][downloads]
+[![Dependency Status][david-image]][david-url]
+[![devDependency Status][david-dev-image]][david-dev-url]
+[![Known Vulnerabilities][snyk-image]][snyk-url]
 
-Google's officially supported [Node.js][node] client library for using Google
-APIs. Support for authorization and authentication with OAuth 2.0, API Keys and
-JWT (Service Tokens) is included.
+[Node.js][node] client library for using Google APIs. Support for authorization and authentication with OAuth 2.0, API Keys and JWT (Service Tokens) is included.
+
+## Library maintenance
+
+This client library is supported but in maintenance mode only.  We are fixing necessary bugs and adding essential features to ensure this library continues to meet your needs for accessing Google APIs.  Non-critical issues will be closed.  Any issue may be reopened if it is causing ongoing problems.
 
 ## Table of Contents
 
 * [Alpha](#alpha)
-* [Migrating to version `2.x` of this library](#migrating-to-version-2x-of-this-library)
+* [Migrating to version `25.x` of this library](#migrating-to-version-25x-of-this-library)
 * [Supported APIs](#supported-apis)
 * [Questions/problems?](#questionsproblems)
 * [Working with Google Cloud Platform APIs?](#working-with-google-cloud-platform-apis)
@@ -40,12 +46,13 @@ JWT (Service Tokens) is included.
   * [Options](#options)
     * [Available options](#available-options)
     * [Global options](#global-options)
-      * [Example: Specifying a default proxy and `auth` to be used for each request](#example-specifying-a-default-proxy-and-auth-to-be-used-for-each-request)
+      * [Example: Specifying a default `timeout` and `auth` to be used for each request](#example-specifying-a-default-timeout-and-auth-to-be-used-for-each-request)
       * [Example: Specifying global request parameters](#example-specifying-global-request-parameters)
     * [Service-client options](#service-client-options)
       * [Example: Specifying a default `auth` option (API key or OAuth2 client)](#example-specifying-a-default-auth-option-api-key-or-oauth2-client)
       * [Example: Specifying default service client query parameters](#example-specifying-default-service-client-query-parameters)
     * [Request-level options](#request-level-options)
+* [Using a Proxy](#using-a-proxy)
 * [License](#license)
 * [Contributing](#contributing)
 
@@ -53,14 +60,9 @@ JWT (Service Tokens) is included.
 
 This library is in Alpha. We will make an effort to support the library, but we reserve the right to make incompatible changes when necessary.
 
-### Migrating to version `2.x` of this library
+### Release Notes & Breaking Changes
 
-If you've used this library before `1.x`, see our [Migration Guide][migrating]
-to learn about migrating your code from `0.x.x` to `1.x`. It's pretty easy :)
-
-If your code already works with a `1.x` version of this library, no work is required
-to move to `2.x`. However, note that return data of getToken has become an array. Furthermore, it is recommended that you update any direct links in your code,
-as explained in the [Migration Guide][migrating].
+You can find a detailed list of breaking changes and new features in our [Release Notes][releasenotes]. If you've used this library before `25.x`, see our [Release Notes][releasenotes] to learn about migrating your code from `24.x.x` to `25.x.x`. It's pretty easy :)
 
 ### Supported APIs
 
@@ -68,17 +70,14 @@ The full list of supported APIs can be found [here][supported-list]. The API end
 
 ### Questions/problems?
 
-* Ask your development related questions on [![Ask a question on Stackoverflow][overflowimg]][stackoverflow]
+* Ask your development related questions on [Ask a question on Stackoverflow][stackoverflow]
 * If you've found an bug/issue, please [file it on GitHub][bugs].
 
 ### Working with Google Cloud Platform APIs?
 
-If you're working with [Google Cloud Platform][cloudplatform] APIs such as
-Datastore, Cloud Storage or Pub/Sub, consider using [`gcloud`][gcloud], an
-idiomatic Node.js client for Google Cloud Platform services.
+If you're working with [Google Cloud Platform][cloudplatform] APIs such as Datastore, Cloud Storage or Pub/Sub, consider using the [`google-cloud`][googlecloud] package, an idiomatic Node.js client for Google Cloud Platform services.
 
-You can find the list of Google Cloud Platform APIs supported by gcloud in the
-[gcloud docs][gcloudapis].
+You can find the list of Google Cloud Platform APIs supported by google-cloud in the [google-cloud docs][googlecloudapis].
 
 ## Installation
 
@@ -91,11 +90,10 @@ $ npm install googleapis --save
 
 ## Usage
 
-Example: Creates a URL Shortener client and retrieves the long url of the
-given short url:
+**Example** Creates a URL Shortener client and retrieves the long url of the given short url:
 
 ``` js
-var google = require('googleapis');
+var {google} = require('googleapis');
 var urlshortener = google.urlshortener('v1');
 
 var params = {
@@ -112,15 +110,31 @@ urlshortener.url.get(params, function (err, response) {
 });
 ```
 
+**Example** Updates an email message's labels, using the `resource`
+parameter to specify the request body.
+
+```
+gmail.users.messages.modify({
+  id: Number,
+  resource: {
+    addLabelIds: Array,
+    removeLabelIds: Array
+  },
+  userId: 'me',
+}, (err, response) => {
+  // ...
+});
+```
+
+
 ### Create a service client
 
-To interact with the various Google APIs you need to create a service client
-for that particular API. These are immutable objects you use to make API calls.
+To interact with the various Google APIs you need to create a service client for that particular API. These are immutable objects you use to make API calls.
 
 Example: Creating a `urlshortener` client with version `v1` of the API.
 
 ``` js
-var google = require('googleapis');
+var {google} = require('googleapis');
 var urlshortener = google.urlshortener('v1');
 ```
 
@@ -130,27 +144,21 @@ Supported APIs are listed on the [Google APIs Explorer][apiexplorer].
 
 #### OAuth2 client
 
-This client comes with an [OAuth2][oauth] client that allows you to retrieve an
-access token and refreshes the token and retry the request seamlessly if you
-also provide an `expiry_date` and the token is expired. The basics of Google's
-OAuth2 implementation is explained on [Google Authorization and Authentication documentation][authdocs].
+This client comes with an [OAuth2][oauth] client that allows you to retrieve an access token and refreshes the token and retry the request seamlessly if you
+also provide an `expiry_date` and the token is expired. The basics of Google's OAuth2 implementation is explained on [Google Authorization and Authentication documentation][authdocs].
 
-In the following examples, you may need a `CLIENT_ID`, `CLIENT_SECRET` and
-`REDIRECT_URL`. You can find these pieces of information by going to the
-[Developer Console][devconsole], clicking your project --> APIs & auth --> credentials.
+In the following examples, you may need a `CLIENT_ID`, `CLIENT_SECRET` and `REDIRECT_URL`. You can find these pieces of information by going to the [Developer Console][devconsole], clicking your project --> APIs & auth --> credentials.
 
 For more information about OAuth2 and how it works, [see here][oauth].
 
-A complete sample application that authorizes and authenticates with the OAuth2
-client is available at [`samples/oauth2.js`][oauthexample].
+A complete sample application that authorizes and authenticates with the OAuth2 client is available at [`samples/oauth2.js`][oauthexample].
 
 ##### Generating an authentication URL
 
-To ask for permissions from a user to retrieve an access token, you
-redirect them to a consent page. To create a consent page URL:
+To ask for permissions from a user to retrieve an access token, you redirect them to a consent page. To create a consent page URL:
 
 ``` js
-var google = require('googleapis');
+var {google} = require('googleapis');
 var OAuth2 = google.auth.OAuth2;
 
 var oauth2Client = new OAuth2(
@@ -169,15 +177,19 @@ var url = oauth2Client.generateAuthUrl({
   // 'online' (default) or 'offline' (gets refresh_token)
   access_type: 'offline',
 
-  // If you only need one scope you can pass it as string
-  scope: scopes
+  // If you only need one scope you can pass it as a string
+  scope: scopes,
+
+  // Optional property that passes state parameters to redirect URI
+  // state: 'foo'
 });
 ```
+##### IMPORTANT NOTE
+`refresh_token` is only returned on the first authorization. More details [here](https://github.com/google/google-api-nodejs-client/issues/750#issuecomment-304521450)
 
 ##### Retrieve authorization code
 
-Once a user has given permissions on the consent page, Google will redirect
-the page to the redirect URL you have provided with a code query parameter.
+Once a user has given permissions on the consent page, Google will redirect the page to the redirect URL you have provided with a code query parameter.
 
     GET /oauthcallback?code={authorizationCode}
 
@@ -196,13 +208,12 @@ oauth2Client.getToken(code, function (err, tokens) {
 
 ##### Setting global or service-level auth
 
-You can set the `auth` as a global or service-level option so you don't need to
-specify it every request.
+You can set the `auth` as a global or service-level option so you don't need to specify it every request.
 
 Example: Setting a global `auth` option.
 
 ``` js
-var google = require('googleapis');
+var {google} = require('googleapis');
 var OAuth2 = google.auth.OAuth2;
 var oauth2Client = new OAuth2(
   YOUR_CLIENT_ID,
@@ -219,7 +230,7 @@ google.options({
 Example: Setting a service-level `auth` option.
 
 ``` js
-var google = require('googleapis');
+var {google} = require('googleapis');
 var OAuth2 = google.auth.OAuth2;
 var oauth2Client = new OAuth2(
   YOUR_CLIENT_ID,
@@ -237,18 +248,12 @@ See the [Options section][options] for more information.
 
 ##### Making authenticated requests
 
-You can start using OAuth2 to authorize and authenticate your
-requests to Google APIs with the retrieved tokens. If you provide a
-`refresh_token` and `expiry_date` (milliseconds since the Unix Epoch) and the
-`access_token` has expired, the `access_token` will be automatically refreshed
-and the request is replayed (with the except of requests with a media body, as
-we cannot reliably restart your media stream). Set `expiry_date` to `true` to
-force a refresh.
+You can start using OAuth2 to authorize and authenticate your requests to Google APIs with the retrieved tokens. If you provide a `refresh_token` and `expiry_date` (milliseconds since the Unix Epoch) and the `access_token` has expired, the `access_token` will be automatically refreshed and the request is replayed (with the except of requests with a media body, as we cannot reliably restart your media stream). Set `expiry_date` to `true` to force a refresh.
 
 The following sample retrieves Google+ profile of the authenticated user.
 
 ``` js
-var google = require('googleapis');
+var {google} = require('googleapis');
 var plus = google.plus('v1');
 var OAuth2 = google.auth.OAuth2;
 var oauth2Client = new OAuth2(
@@ -275,9 +280,7 @@ plus.people.get({
 
 ##### Manually refreshing access token
 
-If you need to manually refresh the `access_token` associated with your OAuth2
-client, make sure you have a `refresh_token` set in your credentials first and
-then call:
+If you need to manually refresh the `access_token` associated with your OAuth2 client, make sure you have a `refresh_token` set in your credentials first and then call:
 
 ``` js
 oauth2Client.refreshAccessToken(function(err, tokens) {
@@ -288,12 +291,10 @@ oauth2Client.refreshAccessToken(function(err, tokens) {
 
 #### Using API keys
 
-You may need to send an API key with the request you are going to make.
-The following uses an API key to make a request to the Google+ API service to
-retrieve a person's profile given a userId:
+You may need to send an API key with the request you are going to make. The following uses an API key to make a request to the Google+ API service to retrieve a person's profile given a userId:
 
 ``` js
-var google = require('googleapis');
+var {google} = require('googleapis');
 var plus = google.plus('v1');
 
 var API_KEY = 'ABC123'; // specify your API key here
@@ -321,15 +322,18 @@ To learn more about API keys, please see the [documentation][usingkeys].
 
 #### Using JWT (Service Tokens)
 
-The Google Developers Console provides `.json` file that you can use to configure a JWT auth client and authenticate your requests.
+The Google Developers Console provides `.json` file that you can use to configure a JWT auth client and authenticate your requests, for example when using a service account.
 
 ``` js
+var {google} = require('googleapis');
+var drive = google.drive('v2');
+
 var key = require('/path/to/key.json');
 var jwtClient = new google.auth.JWT(
   key.client_email,
   null,
   key.private_key,
-  [scope1, scope2],
+  ['https://www.googleapis.com/auth/drive'], // an array of auth scopes
   null
 );
 
@@ -348,23 +352,15 @@ jwtClient.authorize(function (err, tokens) {
 });
 ```
 
-The parameters for the JWT auth client including how to use it with a `.pem`
-file are explained in [samples/jwt.js](samples/jwt.js).
+The parameters for the JWT auth client including how to use it with a `.pem` file are explained in [samples/jwt.js](samples/jwt.js).
 
 #### Choosing the correct credential type automatically
 
-Rather than manually creating an OAuth2 client, JWT client, or Compute client,
-the auth library can create the correct credential type for you, depending upon
-the environment your code is running under.
+Rather than manually creating an OAuth2 client, JWT client, or Compute client, the auth library can create the correct credential type for you, depending upon the environment your code is running under.
 
-For example, a JWT auth client will be created when your code is running on your
-local developer machine, and a Compute client will be created when the same code
-is running on a configured instance of Google Compute Engine.
+For example, a JWT auth client will be created when your code is running on your local developer machine, and a Compute client will be created when the same code is running on a configured instance of Google Compute Engine.
 
-The code below shows how to retrieve a default credential type, depending upon
-the runtime environment. The createScopedRequired must be called to determine
-when you need to pass in the scopes manually, and when they have been set for
-you automatically based on the configured runtime environment.
+The code below shows how to retrieve a default credential type, depending upon the runtime environment. The createScopedRequired must be called to determine when you need to pass in the scopes manually, and when they have been set for you automatically based on the configured runtime environment.
 
 ```js
 // This method looks for the GCLOUD_PROJECT and GOOGLE_APPLICATION_CREDENTIALS
@@ -404,21 +400,15 @@ google.auth.getApplicationDefault(function (err, authClient, projectId) {
 
 ### Specifying request body
 
-The body of the request is specified in the `resource` parameter object of the
-request. The resource/body is specified as a JavaScript object with key/value
-pairs. See the example in the next section below for an example on how it is
-specified.
+The body of the request is specified in the `resource` parameter object of the request. The resource/body is specified as a JavaScript object with key/value pairs. See the example in the next section below for an example on how it is specified.
 
 ### Media uploads
 
-This client supports multipart media uploads. The resource parameters are
-specified in the `resource` parameter object, and the media itself is
-specified in the `media.body` parameter with mime-type specified in `media.mimeType`.
+This client supports multipart media uploads. The resource parameters are specified in the `resource` parameter object, and the media itself is specified in the `media.body` parameter with mime-type specified in `media.mimeType`.
 
 ##### Example: Upload a plain text file to Google Drive
 
-This example uploads a plain text file to Google Drive with the title "Test" and
-contents "Hello World".
+This example uploads a plain text file to Google Drive with the title "Test" and contents "Hello World".
 
 ``` js
 var drive = google.drive({ version: 'v3', auth: oauth2Client });
@@ -435,8 +425,7 @@ drive.files.create({
 }, callback);
 ```
 
-You can also upload media by specifying `media.body` as a [Readable stream][stream].
-This can allow you to upload very large files that cannot fit into memory.
+You can also upload media by specifying `media.body` as a [Readable stream][stream]. This can allow you to upload very large files that cannot fit into memory.
 
 Note: Your readable stream may be [unstable][stability]. Use at your own risk.
 
@@ -458,43 +447,30 @@ drive.files.create({
 }, callback);
 ```
 
-For more examples of creation and modification requests with media attachments,
-take a look at the `samples/mediaupload.js` sample.
-
-### Exposing request object
-
-Every request to the API returns a [`request`][request] object, allowing you to
-track the request's progress or general information about the request.
-
-```js
-var req = drive.files.create(/* ... */);
-console.log(req.uri.href); // print out the request's URL.
-```
+For more examples of creation and modification requests with media attachments, take a look at the `samples/mediaupload.js` sample.
 
 ### Options
 
-For more fine-tuned control over how your API calls are made,
-we provide you with the ability to specify additional options that can
-be applied directly to the [`mikeal/request`][request] object used in
-this library to make network calls to the API.
+For more fine-tuned control over how your API calls are made, we provide you with the ability to specify additional options that can be applied directly to the ['axios'][axios] object used in this library to make network calls to the API.
 
-You may specify additional options either in the global `google` object or on a
-service client basis.
+You may specify additional options either in the global `google` object or on a service client basis.
 
 #### Available options
 
-The options you specify are attached to the `request` object so whatever
-`request` supports, this library supports. You may also specify global or per-service request parameters that will be attached to all API calls you make.
+The options you specify are attached to the `axios` object so whatever `axios` supports, this library supports. You may also specify global or per-service request parameters that will be attached to all API calls you make.
 
 A full list of supported options can be [found here][requestopts].
 
 #### Global options
 
-##### Example: Specifying a default proxy and `auth` to be used for each request
+##### Example: Specifying a default `timeout` and `auth` to be used for each request
+
+You can choose default options that will be sent with each request.  For a list
+of available options, see the [Axios Request Options][requestopts].
 
 ```js
-var google = require('googleapis');
-google.options({ proxy: 'http://proxy.example.com', auth: auth });
+var {google} = require('googleapis');
+google.options({ timeout: 1000, auth: auth });
 
 // All requests made with this object will use these settings unless overridden.
 ```
@@ -502,7 +478,7 @@ google.options({ proxy: 'http://proxy.example.com', auth: auth });
 ##### Example: Specifying global request parameters
 
 ```js
-var google = require('googleapis');
+var {google} = require('googleapis');
 google.options({ params: { quotaUser: 'user123@example.com' } });
 
 // All requests from all services will contain the above query parameter
@@ -522,11 +498,9 @@ var urlshortener = google.urlshortener({ version: 'v1', auth: auth });
 // All requests made with this object will use the specified auth.
 ```
 
-By doing this, every API call made with this service client will use `'API KEY'`
-to authenticate.
+By doing this, every API call made with this service client will use `'API KEY'` to authenticate.
 
-**Note:** Created clients are **immutable** so you must create a new one if you
-want to specify different options.
+**Note:** Created clients are **immutable** so you must create a new one if you want to specify different options.
 
 ##### Example: Specifying default service client query parameters
 
@@ -544,13 +518,12 @@ var drive = google.drive('v2');
 
 #### Request-level options
 
-You can specify an `auth` object to be used per request. Each request also
-inherits the options specified at the service level and global level.
+You can specify an `auth` object to be used per request. Each request also inherits the options specified at the service level and global level.
 
 For example:
 
 ```js
-var google = require('googleapis');
+var {google} = require('googleapis');
 var bigquery = google.bigquery('v2');
 
 // This method looks for the GCLOUD_PROJECT and GOOGLE_APPLICATION_CREDENTIALS
@@ -583,8 +556,7 @@ google.auth.getApplicationDefault(function (err, authClient, projectId) {
 });
 ```
 
-You can also override *request* options per request, such as `url`, `method`,
-and `encoding`.
+You can also override *axios* options per request, such as `url`, `method`, and `encoding`.
 
 For example:
 
@@ -599,22 +571,35 @@ drive.files.export({
 });
 ```
 
+## Using a Proxy
+You can use the following environment variables to proxy HTTP and HTTPS requests:
+
+- `HTTP_PROXY` / `http_proxy`
+- `HTTPS_PROXY` / `https_proxy`
+
+When HTTP_PROXY / http_proxy are set, they will be used to proxy non-SSL requests that do not have an explicit proxy configuration option present. Similarly, HTTPS_PROXY / https_proxy will be respected for SSL requests that do not have an explicit proxy configuration option. It is valid to define a proxy in one of the environment variables, but then override it for a specific request, using the proxy configuration option.
+
 ## License
 
-This library is licensed under Apache 2.0. Full license text is
-available in [COPYING][copying].
+This library is licensed under Apache 2.0. Full license text is available in [COPYING][copying].
 
 ## Contributing
 
 See [CONTRIBUTING][contributing].
 
+[snyk-image]: https://snyk.io/test/github/google/google-api-nodejs-client/badge.svg
+[snyk-url]: https://snyk.io/test/github/google/google-api-nodejs-client
+[david-image]: https://david-dm.org/google/google-api-nodejs-client.svg
+[david-url]: https://david-dm.org/google/google-api-nodejs-client
+[david-dev-image]: https://david-dm.org/google/google-api-nodejs-client/dev-status.svg
+[david-dev-url]: https://david-dm.org/google/google-api-nodejs-client?type=dev
 [npmimg]: https://img.shields.io/npm/v/googleapis.svg
 [npm]: https://www.npmjs.org/package/googleapis
-[travisimg]: https://api.travis-ci.org/google/google-api-nodejs-client.svg
+[circle]: https://circleci.com/gh/google/google-auth-library-nodejs
+[circleimg]: https://circleci.com/gh/google/google-auth-library-nodejs.svg?style=svg
 [supported-list]: https://developers.google.com/apis-explorer/
 [bugs]: https://github.com/google/google-api-nodejs-client/issues
 [node]: http://nodejs.org/
-[travis]: https://travis-ci.org/google/google-api-nodejs-client
 [stackoverflow]: http://stackoverflow.com/questions/tagged/google-api-nodejs-client
 [apiexplorer]: https://developers.google.com/apis-explorer
 [urlshort]: https://developers.google.com/url-shortener/
@@ -622,20 +607,21 @@ See [CONTRIBUTING][contributing].
 [contributing]: https://github.com/google/google-api-nodejs-client/blob/master/.github/CONTRIBUTING.md
 [copying]: https://github.com/google/google-api-nodejs-client/tree/master/COPYING
 [authdocs]: https://developers.google.com/identity/protocols/OpenIDConnect
-[request]: https://github.com/request/request
-[requestopts]: https://github.com/request/request#requestoptions-callback
+[axios]: https://github.com/axios/axios
+[requestopts]: https://github.com/axios/axios#request-config
 [stream]: http://nodejs.org/api/stream.html#stream_class_stream_readable
-[migrating]: https://github.com/google/google-api-nodejs-client/tree/master/MIGRATING.md
+[releasenotes]: https://github.com/google/google-api-nodejs-client/releases
 [stability]: http://nodejs.org/api/stream.html#stream_stream
-[overflowimg]: https://googledrive.com/host/0ByfSjdPVs9MZbkhjeUhMYzRTeEE/stackoveflow-tag.png
 [devconsole]: https://console.developer.google.com
 [oauth]: https://developers.google.com/identity/protocols/OAuth2
 [oauthexample]: https://github.com/google/google-api-nodejs-client/tree/master/samples/oauth2.js
 [options]: https://github.com/google/google-api-nodejs-client/tree/master#options
-[gcloud]: https://github.com/GoogleCloudPlatform/gcloud-node
-[gcloudapis]: https://googlecloudplatform.github.io/gcloud-node/#/docs/gcloud
+[googlecloud]: https://github.com/GoogleCloudPlatform/google-cloud-node
+[googlecloudapis]: https://cloud.google.com/nodejs/docs/reference/apis
 [cloudplatform]: https://cloud.google.com/docs/
 [codecovimg]: https://codecov.io/github/google/google-api-nodejs-client/coverage.svg?branch=master
 [codecov]: https://codecov.io/github/google/google-api-nodejs-client?branch=master
 [downloadsimg]: https://img.shields.io/npm/dm/googleapis.svg
 [downloads]: https://nodei.co/npm/googleapis/
+[greenkeeperimg]: https://badges.greenkeeper.io/google/google-api-nodejs-client.svg
+[greenkeeper]: https://greenkeeper.io/

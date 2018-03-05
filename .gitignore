@@ -1,4 +1,4 @@
-node_modules/*
+node_modules
 .idea
 doc/
 npm-debug.log
@@ -7,3 +7,9 @@ coverage
 # Empty API
 apis/iam/v1alpha1.js
 .nyc_output
+**/*.js
+**/*.js.map
+!samples/**/*.js
+.vscode
+**/*.d.ts
+**/credentials.json

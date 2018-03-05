@@ -1,0 +1,16 @@
+{% import "method-partial.njk" as method %}
+{% macro render(r, api, globalmethods) %}
+{% if r.methods %}
+{% for mname, m in r.methods|dictsort %}
+  {{ method.render(m, mname, api, globalmethods) }}
+  {% if globalmethods %};{% elif not loop.last %},{% endif %}
+{% endfor %}
+{% endif %}{% if r.methods and r.resources %},{% endif %}
+{% if r.resources %}
+{% for rname, sr in r.resources|dictsort %}
+  {{ rname }}: {
+    {{ render(sr, api, globalmethods) }}
+  }{% if not loop.last %},{% endif %}
+{% endfor %}
+{% endif %}
+{% endmacro %}
