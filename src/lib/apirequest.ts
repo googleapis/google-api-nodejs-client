@@ -11,31 +11,32 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {AxiosRequestConfig} from 'axios';
 import {DefaultTransporter} from 'google-auth-library';
+import {BodyResponseCallback} from 'google-auth-library/build/src/transporters';
 import * as qs from 'qs';
 import * as stream from 'stream';
 import * as parseString from 'string-template';
 import * as uuid from 'uuid';
 
-// tslint:disable-next-line: no-any
-function isReadableStream(obj: any) {
+import {APIRequestParams} from './api';
+import {SchemaParameters} from './schema';
+
+const maxContentLength = Math.pow(2, 31);
+
+function isReadableStream(obj: stream.Readable|string) {
   return obj instanceof stream.Readable && typeof obj._read === 'function';
 }
 
-function logError(err) {
-  if (err) {
-    console.error(err);
-  }
+function createCallback<T>(callback: BodyResponseCallback<T>) {
+  return typeof callback === 'function' ? callback : (err: Error|null) => {
+    if (err) {
+      console.error(err);
+    }
+  };
 }
 
-function createCallback(callback) {
-  return typeof callback === 'function' ? callback : logError;
-}
-
-function getMissingParams(params, required) {
-  const missing = [];
-
+function getMissingParams(params: SchemaParameters, required: string[]) {
+  const missing = new Array<string>();
   required.forEach(param => {
     // Is the required param in the params object?
     if (params[param] === undefined) {
@@ -50,14 +51,13 @@ function getMissingParams(params, required) {
 
 /**
  * Create and send request to Google API
- * @param  {object}   parameters Parameters used to form request
- * @param  {Function} callback   Callback when request finished or error found
- * @return {Request}             Returns Request object or null
+ * @param parameters Parameters used to form request
+ * @param callback   Callback when request finished or error found
  */
-export function createAPIRequest(parameters, callback): void {
-  let missingParams;
+export function createAPIRequest<T>(
+    parameters: APIRequestParams, callback: BodyResponseCallback<T>): void {
   let params = parameters.params;
-  let options: AxiosRequestConfig = Object.assign({}, parameters.options);
+  const options = Object.assign({}, parameters.options);
 
   // If the params are not present, and callback was passed instead,
   // use params as the callback and create empty params.
@@ -102,17 +102,15 @@ export function createAPIRequest(parameters, callback): void {
   });
 
   // Normalize callback
-  callback = createCallback(callback);
+  callback = createCallback<T>(callback);
 
   // Check for missing required parameters in the API request
-  missingParams = getMissingParams(params, parameters.requiredParams);
+  const missingParams = getMissingParams(params, parameters.requiredParams);
   if (missingParams) {
     // Some params are missing - stop further operations and inform the
     // developer which required params are not included in the request
-    callback(
+    return callback(
         new Error('Missing required parameters: ' + missingParams.join(', ')));
-
-    return null;
   }
 
   // Parse urls
@@ -141,7 +139,7 @@ export function createAPIRequest(parameters, callback): void {
   // if authClient is actually a string, use it as an API KEY
   if (typeof authClient === 'string') {
     params.key = params.key || authClient;
-    authClient = null;
+    authClient = undefined;
   }
 
   if (parameters.mediaUrl && media.body) {
@@ -194,15 +192,35 @@ export function createAPIRequest(parameters, callback): void {
 
   options.headers = headers;
   options.params = params;
-  options = Object.assign(
+  // We need to set a default content size, or the max defaults
+  // to 10MB.  Setting to 2GB by default.
+  // https://github.com/google/google-api-nodejs-client/issues/991
+  options.maxContentLength = options.maxContentLength || maxContentLength;
+
+  // By default Axios treats any 2xx as valid, and all non 2xx status
+  // codes as errors.  This is a problem for HTTP 304s when used along
+  // with an eTag.
+  if (!options.validateStatus) {
+    options.validateStatus = (status) => {
+      return (status >= 200 && status < 300) || status === 304;
+    };
+  }
+
+  // Combine the AxiosRequestConfig options passed with this specific
+  // API call witht the global options configured at the API Context
+  // level, or at the global level.
+  const mergedOptions = Object.assign(
       {}, parameters.context.google._options, parameters.context._options,
       options);
-  delete options.auth;  // is overridden by our auth code
+  delete mergedOptions.auth;  // is overridden by our auth code
 
-  // create request (using authClient or otherwise and return request obj)
-  if (authClient) {
-    authClient.request(options, callback);
+  // Perform the HTTP request.  NOTE: this function used to return a
+  // mikeal/request object. Since the transition to Axios, the method is
+  // now void.  This may be a source of confusion for users upgrading from
+  // version 24.0 -> 25.0 or up.
+  if (authClient && typeof authClient === 'object') {
+    authClient.request(mergedOptions, callback);
   } else {
-    (new DefaultTransporter()).request(options, callback);
+    (new DefaultTransporter()).request(mergedOptions, callback);
   }
 }

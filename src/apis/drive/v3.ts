@@ -1501,6 +1501,7 @@ function Drive(options) {
  * @memberOf! drive(v3)
  * @type object
  * @property {boolean} appInstalled Whether the user has installed the requesting app.
+ * @property {boolean} canCreateTeamDrives Whether the user can create Team Drives.
  * @property {object} exportFormats A map of source MIME type to possible targets for all supported exports.
  * @property {string[]} folderColorPalette The currently supported folder colors as RGB hex strings.
  * @property {object} importFormats A map of source MIME type to possible targets for all supported imports.
@@ -1604,7 +1605,7 @@ function Drive(options) {
  * @property {string} originalFilename The original filename of the uploaded content if available, or else the original value of the name field. This is only available for files with binary content in Drive.
  * @property {boolean} ownedByMe Whether the user owns the file. Not populated for Team Drive files.
  * @property {drive(v3).User[]} owners The owners of the file. Currently, only certain legacy files may have more than one owner. Not populated for Team Drive files.
- * @property {string[]} parents The IDs of the parent folders which contain the file. If not specified as part of a create request, the file will be placed directly in the My Drive folder. Update requests must use the addParents and removeParents parameters to modify the values.
+ * @property {string[]} parents The IDs of the parent folders which contain the file. If not specified as part of a create request, the file will be placed directly in the user&#39;s My Drive folder. If not specified as part of a copy request, the file will inherit any discoverable parents of the source file. Update requests must use the addParents and removeParents parameters to modify the parents list.
  * @property {string[]} permissionIds List of permission IDs for users with access to this file.
  * @property {drive(v3).Permission[]} permissions The full list of permissions for the file. This is only available if the requesting user can share the file. Not populated for Team Drive files.
  * @property {object} properties A collection of arbitrary key-value pairs which are visible to all apps. Entries with null values are cleared in update and copy requests.

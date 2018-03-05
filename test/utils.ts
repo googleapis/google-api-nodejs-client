@@ -13,6 +13,8 @@
 
 import {AxiosResponse} from 'axios';
 import * as url from 'url';
+import {GoogleApis} from '../src/index';
+import {Endpoint} from '../src/lib/endpoint';
 
 export abstract class Utils {
   static getQs(res: AxiosResponse) {
@@ -20,18 +22,18 @@ export abstract class Utils {
     return query ? query.toString() : null;
   }
 
-  static getDiscoveryUrl(name, version) {
+  static getPath(res: AxiosResponse) {
+    return url.parse(res.config.url!).path!;
+  }
+
+  static getDiscoveryUrl(name: string, version: string) {
     return 'https://www.googleapis.com/discovery/v1/apis/' + name + '/' +
         version + '/rest';
   }
 
-  static loadApi(google, name, version, options, cb) {
-    if (typeof options === 'function') {
-      cb = options;
-      options = {};
-    }
-    return google.discoverAPI(
-        Utils.getDiscoveryUrl(name, version), options, cb);
+  static loadApi(
+      google: GoogleApis, name: string, version: string, options = {}) {
+    return google.discoverAPI(Utils.getDiscoveryUrl(name, version), options);
   }
 
   static readonly noop = () => undefined;

@@ -46,12 +46,13 @@ This client library is supported but in maintenance mode only.  We are fixing ne
   * [Options](#options)
     * [Available options](#available-options)
     * [Global options](#global-options)
-      * [Example: Specifying a default proxy and `auth` to be used for each request](#example-specifying-a-default-proxy-and-auth-to-be-used-for-each-request)
+      * [Example: Specifying a default `timeout` and `auth` to be used for each request](#example-specifying-a-default-timeout-and-auth-to-be-used-for-each-request)
       * [Example: Specifying global request parameters](#example-specifying-global-request-parameters)
     * [Service-client options](#service-client-options)
       * [Example: Specifying a default `auth` option (API key or OAuth2 client)](#example-specifying-a-default-auth-option-api-key-or-oauth2-client)
       * [Example: Specifying default service client query parameters](#example-specifying-default-service-client-query-parameters)
     * [Request-level options](#request-level-options)
+* [Using a Proxy](#using-a-proxy)
 * [License](#license)
 * [Contributing](#contributing)
 
@@ -59,9 +60,9 @@ This client library is supported but in maintenance mode only.  We are fixing ne
 
 This library is in Alpha. We will make an effort to support the library, but we reserve the right to make incompatible changes when necessary.
 
-### Migrating to version `25.x` of this library
+### Release Notes & Breaking Changes
 
-If you've used this library before `25.x`, see our [Migration Guide][migrating] to learn about migrating your code from `24.x.x` to `25.x.x`. It's pretty easy :)
+You can find a detailed list of breaking changes and new features in our [Release Notes][releasenotes]. If you've used this library before `25.x`, see our [Release Notes][releasenotes] to learn about migrating your code from `24.x.x` to `25.x.x`. It's pretty easy :)
 
 ### Supported APIs
 
@@ -466,11 +467,14 @@ A full list of supported options can be [found here][requestopts].
 
 #### Global options
 
-##### Example: Specifying a default proxy and `auth` to be used for each request
+##### Example: Specifying a default `timeout` and `auth` to be used for each request
+
+You can choose default options that will be sent with each request.  For a list
+of available options, see the [Axios Request Options][requestopts].
 
 ```js
 var {google} = require('googleapis');
-google.options({ proxy: 'http://proxy.example.com', auth: auth });
+google.options({ timeout: 1000, auth: auth });
 
 // All requests made with this object will use these settings unless overridden.
 ```
@@ -571,6 +575,14 @@ drive.files.export({
 });
 ```
 
+## Using a Proxy
+You can use the following environment variables to proxy HTTP and HTTPS requests:
+
+- `HTTP_PROXY` / `http_proxy`
+- `HTTPS_PROXY` / `https_proxy`
+
+When HTTP_PROXY / http_proxy are set, they will be used to proxy non-SSL requests that do not have an explicit proxy configuration option present. Similarly, HTTPS_PROXY / https_proxy will be respected for SSL requests that do not have an explicit proxy configuration option. It is valid to define a proxy in one of the environment variables, but then override it for a specific request, using the proxy configuration option.
+
 ## License
 
 This library is licensed under Apache 2.0. Full license text is available in [COPYING][copying].
@@ -602,7 +614,7 @@ See [CONTRIBUTING][contributing].
 [axios]: https://github.com/axios/axios
 [requestopts]: https://github.com/axios/axios#request-config
 [stream]: http://nodejs.org/api/stream.html#stream_class_stream_readable
-[migrating]: https://github.com/google/google-api-nodejs-client/tree/master/MIGRATING.md
+[releasenotes]: https://github.com/google/google-api-nodejs-client/releases
 [stability]: http://nodejs.org/api/stream.html#stream_stream
 [devconsole]: https://console.developer.google.com
 [oauth]: https://developers.google.com/identity/protocols/OAuth2

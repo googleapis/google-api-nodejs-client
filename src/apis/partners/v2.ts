@@ -260,51 +260,6 @@ function Partners(options) {
 
     }
   };
-  self.exams = {
-    /**
-     * partners.exams.getToken
-     * @desc Gets an Exam Token for a Partner's user to take an exam in the
-     * Exams System
-     * @alias partners.exams.getToken
-     * @memberOf! partners(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.examType The exam type we are requesting a token for.
-     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
-     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
-     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
-     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getToken(params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://partners.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v2/exams/{examType}/token')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['examType'],
-        pathParams: ['examType'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
   self.leads = {
     /**
      * partners.leads.list
@@ -1002,14 +957,6 @@ function Partners(options) {
  * @property {boolean} passed Whether this exam has been passed and not expired.
  * @property {string} taken The date the user last taken this exam.
  * @property {boolean} warning Whether this exam is in the state of warning.
- */
-/**
- * @typedef ExamToken
- * @memberOf! partners(v2)
- * @type object
- * @property {string} examId The id of the exam the token is for.
- * @property {string} examType The type of the exam the token belongs to.
- * @property {string} token The token, only present if the user has access to the exam.
  */
 /**
  * @typedef GetCompanyResponse

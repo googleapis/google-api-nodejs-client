@@ -12,8 +12,11 @@
 // limitations under the License.
 
 import {Compute, GoogleAuth, JWT, OAuth2Client} from 'google-auth-library';
-import * as apis from '../apis';
+
+import * as apis from './../apis';
+import {APIEndpoint, GlobalOptions} from './api';
 import {Discovery} from './discovery';
+import {Endpoint} from './endpoint';
 
 export class AuthPlus extends GoogleAuth {
   // tslint:disable-next-line: variable-name
@@ -27,8 +30,8 @@ export class AuthPlus extends GoogleAuth {
 export class GoogleApis extends apis.GeneratedAPIs {
   private _discovery = new Discovery({debug: false, includePrivate: false});
   auth = new AuthPlus();
-  // tslint:disable-next-line: no-any
-  _options: any;
+  _options: GlobalOptions = {};
+  [index: string]: APIEndpoint;
 
   /**
    * GoogleApis constructor.
@@ -40,10 +43,11 @@ export class GoogleApis extends apis.GeneratedAPIs {
    * @class GoogleApis
    * @param {Object} [options] Configuration options.
    */
-  constructor(options?) {
+  constructor(options?: {}) {
     super();
     this.options(options);
-    this.addAPIs(apis);
+    // tslint:disable-next-line: no-any
+    this.addAPIs(apis as any);
   }
 
   /**
@@ -51,7 +55,7 @@ export class GoogleApis extends apis.GeneratedAPIs {
    *
    * @param  {Object} [options] Configuration options.
    */
-  options(options) {
+  options(options?: GlobalOptions) {
     this._options = options || {};
   }
 
@@ -64,7 +68,7 @@ export class GoogleApis extends apis.GeneratedAPIs {
    * @param {Object} apis Apis to be added to this GoogleApis instance.
    * @private
    */
-  private addAPIs(apisToAdd) {
+  private addAPIs(apisToAdd: apis.GeneratedAPIs) {
     for (const apiName in apisToAdd) {
       if (apisToAdd.hasOwnProperty(apiName)) {
         this[apiName] = apisToAdd[apiName].bind(this);
@@ -77,7 +81,7 @@ export class GoogleApis extends apis.GeneratedAPIs {
    * the discovered APIs.
    *
    * @example
-   * const google = require('googleapis');
+   * const {google} = require('googleapis');
    * const discoveryUrl =
    * 'https://myapp.appspot.com/_ah/api/discovery/v1/apis/';
    * google.discover(discoveryUrl, function (err) {
@@ -86,58 +90,38 @@ export class GoogleApis extends apis.GeneratedAPIs {
    *
    * @name GoogleApis#discover
    * @method
-   * @param {string} url Url to the discovery service for a set of APIs. e.g.,
+   * @param url Url to the discovery service for a set of APIs. e.g.,
    * https://www.googleapis.com/discovery/v1/apis
    * @param {Function} callback Callback function.
    */
-  discover(url, callback) {
-    const self = this;
+  discover(url: string): Promise<void>;
+  discover(url: string, callback: (err?: Error) => void): void;
+  discover(url: string, callback?: (err?: Error) => void): void|Promise<void> {
+    if (callback) {
+      this.discoverAsync(url).then(() => callback()).catch(callback);
+    } else {
+      return this.discoverAsync(url);
+    }
+  }
 
-    this._discovery.discoverAllAPIs(url, (err, allApis) => {
-      if (err) {
-        return callback(err);
-      }
-      self.addAPIs(allApis);
-      callback();
-    });
+  private async discoverAsync(url: string) {
+    const allApis = await this._discovery.discoverAllAPIs(url);
+    this.addAPIs(allApis);
   }
 
   /**
    * Dynamically generate an Endpoint object from a discovery doc.
    *
-   * @example
-   * const google = require('google');
-   * const discoveryDocUrl =
-   * 'https://myapp.appspot.com/_ah/api/discovery/v1/apis/someapi/v1/rest';
-   * google.discoverApi(discoveryDocUrl, function (err, someapi) {
-   *   // use someapi
-   * });
-   *
-   * @name GoogleApis#discoverAPI
-   * @method
-   * @param {string} path Url or file path to discover doc for a single API.
-   * @param {object} [options] Options to configure the Endpoint object generated
-   * from the discovery doc.
-   * @param {Function} callback Callback function.
+   * @param path Url or file path to discover doc for a single API.
+   * @param Options to configure the Endpoint object generated from the
+   * discovery doc.
+   * @returns A promise that resolves with the configured endpoint.
    */
-  discoverAPI(apiPath, options, callback) {
-    const self = this;
-    if (typeof options === 'function') {
-      callback = options;
-      options = {};
-    }
-    if (!options) {
-      options = {};
-    }
-    // Creating an object, so Pascal case is appropriate.
-    // tslint:disable-next-line
-    this._discovery.discoverAPI(apiPath, (err, Endpoint) => {
-      if (err) {
-        return callback(err);
-      }
-      const ep = new Endpoint(options);
-      ep.google = self;                          // for drive.google.transporter
-      return callback(null, Object.freeze(ep));  // create new & freeze
-    });
+  async discoverAPI(apiPath: string, options: {} = {}):
+      Promise<Readonly<Endpoint>> {
+    const endpointCreator = await this._discovery.discoverAPI(apiPath);
+    const ep = endpointCreator(options);
+    ep.google = this;  // for drive.google.transporter
+    return Object.freeze(ep);
   }
 }

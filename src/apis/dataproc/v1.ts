@@ -105,6 +105,7 @@ function Dataproc(options) {
          * @param {object} params Parameters for request
          * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the cluster belongs to.
          * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+         * @param {string=} params.requestId Optional. A unique id used to identify the request. If the server receives two CreateClusterRequest requests with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
          * @param {dataproc(v1).Cluster} params.resource Request body data
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
@@ -199,8 +200,10 @@ function Dataproc(options) {
             *
             * @param {object} params Parameters for request
             * @param {string} params.clusterName Required. The cluster name.
+            * @param {string=} params.clusterUuid Optional. Specifying the cluster_uuid means the RPC should fail (with error NOT_FOUND) if cluster with specified UUID does not exist.
             * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the cluster belongs to.
             * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+            * @param {string=} params.requestId Optional. A unique id used to identify the request. If the server receives two DeleteClusterRequest requests with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
@@ -613,6 +616,7 @@ function Dataproc(options) {
             * @param {string=} params.gracefulDecommissionTimeout Optional. Timeout for graceful YARN decomissioning. Graceful decommissioning allows removing nodes from the cluster without interrupting jobs in progress. Timeout specifies how long to wait for jobs in progress to finish before forcefully removing nodes (and potentially interrupting jobs). Default timeout is 0 (for forceful decommission), and the maximum allowed timeout is 1 day.Only supported on Dataproc image versions 1.2 and higher.
             * @param {string} params.projectId Required. The ID of the Google Cloud Platform project the cluster belongs to.
             * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+            * @param {string=} params.requestId Optional. A unique id used to identify the request. If the server receives two UpdateClusterRequest requests with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
             * @param {string=} params.updateMask Required. Specifies the path, relative to Cluster, of the field to update. For example, to change the number of workers in a cluster to 5, the update_mask parameter would be specified as config.worker_config.num_instances, and the PATCH request body would specify the new value, as follows: {   "config":{     "workerConfig":{       "numInstances":"5"     }   } } Similarly, to change the number of preemptible workers in a cluster to 5, the update_mask parameter would be config.secondary_worker_config.num_instances, and the PATCH request body would be set as follows: {   "config":{     "secondaryWorkerConfig":{       "numInstances":"5"     }   } } <strong>Note:</strong> Currently, only the following fields can be updated:<table>  <tbody>  <tr>  <td><strong>Mask</strong></td>  <td><strong>Purpose</strong></td>  </tr>  <tr>  <td><strong><em>labels</em></strong></td>  <td>Update labels</td>  </tr>  <tr>  <td><strong><em>config.worker_config.num_instances</em></strong></td>  <td>Resize primary worker group</td>  </tr>  <tr>  <td><strong><em>config.secondary_worker_config.num_instances</em></strong></td>  <td>Resize secondary worker group</td>  </tr>  </tbody>  </table>
             * @param {dataproc(v1).Cluster} params.resource Request body data
             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1638,7 +1642,7 @@ function Dataproc(options) {
  * @memberOf! dataproc(v1)
  * @type object
  * @property {integer} acceleratorCount The number of the accelerator cards of this type exposed to this instance.
- * @property {string} acceleratorTypeUri Full URL, partial URI, or short name of the accelerator type resource to expose to this instance. See Google Compute Engine AcceleratorTypes( /compute/docs/reference/beta/acceleratorTypes)Examples * https://www.googleapis.com/compute/beta/projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80 * projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80 * nvidia-tesla-k80
+ * @property {string} acceleratorTypeUri Full URL, partial URI, or short name of the accelerator type resource to expose to this instance. See Google Compute Engine AcceleratorTypes.Examples: https://www.googleapis.com/compute/beta/projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80 projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80 nvidia-tesla-k80
  */
 /**
  * @typedef CancelJobRequest
@@ -1650,13 +1654,13 @@ function Dataproc(options) {
  * @memberOf! dataproc(v1)
  * @type object
  * @property {string} clusterName Required. The cluster name. Cluster names within a project must be unique. Names of deleted clusters can be reused.
- * @property {string} clusterUuid Output-only. A cluster UUID (Unique Universal Identifier). Cloud Dataproc generates this value when it creates the cluster.
+ * @property {string} clusterUuid Output only. A cluster UUID (Unique Universal Identifier). Cloud Dataproc generates this value when it creates the cluster.
  * @property {dataproc(v1).ClusterConfig} config Required. The cluster config. Note that Cloud Dataproc may set default values, and values may change when clusters are updated.
  * @property {object} labels Optional. The labels to associate with this cluster. Label keys must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). Label values may be empty, but, if present, must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be associated with a cluster.
  * @property {dataproc(v1).ClusterMetrics} metrics Contains cluster daemon metrics such as HDFS and YARN stats.Beta Feature: This report is available for testing purposes only. It may be changed before final release.
  * @property {string} projectId Required. The Google Cloud Platform project ID that the cluster belongs to.
- * @property {dataproc(v1).ClusterStatus} status Output-only. Cluster status.
- * @property {dataproc(v1).ClusterStatus[]} statusHistory Output-only. The previous cluster status.
+ * @property {dataproc(v1).ClusterStatus} status Output only. Cluster status.
+ * @property {dataproc(v1).ClusterStatus[]} statusHistory Output only. The previous cluster status.
  */
 /**
  * @typedef ClusterConfig
@@ -1681,32 +1685,32 @@ function Dataproc(options) {
  * @typedef ClusterOperationMetadata
  * @memberOf! dataproc(v1)
  * @type object
- * @property {string} clusterName Output-only. Name of the cluster for the operation.
- * @property {string} clusterUuid Output-only. Cluster UUID for the operation.
- * @property {string} description Output-only. Short description of operation.
- * @property {object} labels Output-only. Labels associated with the operation
- * @property {string} operationType Output-only. The operation type.
- * @property {dataproc(v1).ClusterOperationStatus} status Output-only. Current operation status.
- * @property {dataproc(v1).ClusterOperationStatus[]} statusHistory Output-only. The previous operation status.
- * @property {string[]} warnings Output-only. Errors encountered during operation execution.
+ * @property {string} clusterName Output only. Name of the cluster for the operation.
+ * @property {string} clusterUuid Output only. Cluster UUID for the operation.
+ * @property {string} description Output only. Short description of operation.
+ * @property {object} labels Output only. Labels associated with the operation
+ * @property {string} operationType Output only. The operation type.
+ * @property {dataproc(v1).ClusterOperationStatus} status Output only. Current operation status.
+ * @property {dataproc(v1).ClusterOperationStatus[]} statusHistory Output only. The previous operation status.
+ * @property {string[]} warnings Output only. Errors encountered during operation execution.
  */
 /**
  * @typedef ClusterOperationStatus
  * @memberOf! dataproc(v1)
  * @type object
- * @property {string} details Output-only.A message containing any operation metadata details.
- * @property {string} innerState Output-only. A message containing the detailed operation state.
- * @property {string} state Output-only. A message containing the operation state.
- * @property {string} stateStartTime Output-only. The time this state was entered.
+ * @property {string} details Output only. A message containing any operation metadata details.
+ * @property {string} innerState Output only. A message containing the detailed operation state.
+ * @property {string} state Output only. A message containing the operation state.
+ * @property {string} stateStartTime Output only. The time this state was entered.
  */
 /**
  * @typedef ClusterStatus
  * @memberOf! dataproc(v1)
  * @type object
- * @property {string} detail Output-only. Optional details of cluster&#39;s state.
- * @property {string} state Output-only. The cluster&#39;s state.
- * @property {string} stateStartTime Output-only. Time when this state was entered.
- * @property {string} substate Output-only. Additional state information that includes status reported by the agent.
+ * @property {string} detail Output only. Optional details of cluster&#39;s state.
+ * @property {string} state Output only. The cluster&#39;s state.
+ * @property {string} stateStartTime Output only. Time when this state was entered.
+ * @property {string} substate Output only. Additional state information that includes status reported by the agent.
  */
 /**
  * @typedef DiagnoseClusterRequest
@@ -1717,7 +1721,7 @@ function Dataproc(options) {
  * @typedef DiagnoseClusterResults
  * @memberOf! dataproc(v1)
  * @type object
- * @property {string} outputUri Output-only. The Google Cloud Storage URI of the diagnostic output. The output report is a plain text file with a summary of collected diagnostics.
+ * @property {string} outputUri Output only. The Google Cloud Storage URI of the diagnostic output. The output report is a plain text file with a summary of collected diagnostics.
  */
 /**
  * @typedef DiskConfig
@@ -1774,19 +1778,19 @@ function Dataproc(options) {
  * @type object
  * @property {dataproc(v1).AcceleratorConfig[]} accelerators Optional. The Google Compute Engine accelerator configuration for these instances.Beta Feature: This feature is still under development. It may be changed before final release.
  * @property {dataproc(v1).DiskConfig} diskConfig Optional. Disk option config settings.
- * @property {string} imageUri Output-only. The Google Compute Engine image resource used for cluster instances. Inferred from SoftwareConfig.image_version.
+ * @property {string} imageUri Output only. The Google Compute Engine image resource used for cluster instances. Inferred from SoftwareConfig.image_version.
  * @property {string[]} instanceNames Optional. The list of instance names. Cloud Dataproc derives the names from cluster_name, num_instances, and the instance group if not set by user (recommended practice is to let Cloud Dataproc derive the name).
  * @property {boolean} isPreemptible Optional. Specifies that this instance group contains preemptible instances.
  * @property {string} machineTypeUri Optional. The Google Compute Engine machine type used for cluster instances.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2 projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2 n1-standard-2
- * @property {dataproc(v1).ManagedGroupConfig} managedGroupConfig Output-only. The config for Google Compute Engine Instance Group Manager that manages this group. This is only used for preemptible instance groups.
+ * @property {dataproc(v1).ManagedGroupConfig} managedGroupConfig Output only. The config for Google Compute Engine Instance Group Manager that manages this group. This is only used for preemptible instance groups.
  * @property {integer} numInstances Optional. The number of VM instances in the instance group. For master instance groups, must be set to 1.
  */
 /**
  * @typedef Job
  * @memberOf! dataproc(v1)
  * @type object
- * @property {string} driverControlFilesUri Output-only. If present, the location of miscellaneous control files which may be used as part of job setup and handling. If not present, control files may be placed in the same location as driver_output_uri.
- * @property {string} driverOutputResourceUri Output-only. A URI pointing to the location of the stdout of the job&#39;s driver program.
+ * @property {string} driverControlFilesUri Output only. If present, the location of miscellaneous control files which may be used as part of job setup and handling. If not present, control files may be placed in the same location as driver_output_uri.
+ * @property {string} driverOutputResourceUri Output only. A URI pointing to the location of the stdout of the job&#39;s driver program.
  * @property {dataproc(v1).HadoopJob} hadoopJob Job is a Hadoop job.
  * @property {dataproc(v1).HiveJob} hiveJob Job is a Hive job.
  * @property {object} labels Optional. The labels to associate with this job. Label keys must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). Label values may be empty, but, if present, must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be associated with a job.
@@ -1797,16 +1801,16 @@ function Dataproc(options) {
  * @property {dataproc(v1).JobScheduling} scheduling Optional. Job scheduling configuration.
  * @property {dataproc(v1).SparkJob} sparkJob Job is a Spark job.
  * @property {dataproc(v1).SparkSqlJob} sparkSqlJob Job is a SparkSql job.
- * @property {dataproc(v1).JobStatus} status Output-only. The job status. Additional application-specific status information may be contained in the &lt;code&gt;type_job&lt;/code&gt; and &lt;code&gt;yarn_applications&lt;/code&gt; fields.
- * @property {dataproc(v1).JobStatus[]} statusHistory Output-only. The previous job status.
- * @property {dataproc(v1).YarnApplication[]} yarnApplications Output-only. The collection of YARN applications spun up by this job.Beta Feature: This report is available for testing purposes only. It may be changed before final release.
+ * @property {dataproc(v1).JobStatus} status Output only. The job status. Additional application-specific status information may be contained in the &lt;code&gt;type_job&lt;/code&gt; and &lt;code&gt;yarn_applications&lt;/code&gt; fields.
+ * @property {dataproc(v1).JobStatus[]} statusHistory Output only. The previous job status.
+ * @property {dataproc(v1).YarnApplication[]} yarnApplications Output only. The collection of YARN applications spun up by this job.Beta Feature: This report is available for testing purposes only. It may be changed before final release.
  */
 /**
  * @typedef JobPlacement
  * @memberOf! dataproc(v1)
  * @type object
  * @property {string} clusterName Required. The name of the cluster where the job will be submitted.
- * @property {string} clusterUuid Output-only. A cluster UUID generated by the Cloud Dataproc service when the job is submitted.
+ * @property {string} clusterUuid Output only. A cluster UUID generated by the Cloud Dataproc service when the job is submitted.
  */
 /**
  * @typedef JobReference
@@ -1825,23 +1829,23 @@ function Dataproc(options) {
  * @typedef JobStatus
  * @memberOf! dataproc(v1)
  * @type object
- * @property {string} details Output-only. Optional job state details, such as an error description if the state is &lt;code&gt;ERROR&lt;/code&gt;.
- * @property {string} state Output-only. A state message specifying the overall job state.
- * @property {string} stateStartTime Output-only. The time when this state was entered.
- * @property {string} substate Output-only. Additional state information, which includes status reported by the agent.
+ * @property {string} details Output only. Optional job state details, such as an error description if the state is &lt;code&gt;ERROR&lt;/code&gt;.
+ * @property {string} state Output only. A state message specifying the overall job state.
+ * @property {string} stateStartTime Output only. The time when this state was entered.
+ * @property {string} substate Output only. Additional state information, which includes status reported by the agent.
  */
 /**
  * @typedef ListClustersResponse
  * @memberOf! dataproc(v1)
  * @type object
- * @property {dataproc(v1).Cluster[]} clusters Output-only. The clusters in the project.
- * @property {string} nextPageToken Output-only. This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent ListClustersRequest.
+ * @property {dataproc(v1).Cluster[]} clusters Output only. The clusters in the project.
+ * @property {string} nextPageToken Output only. This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent ListClustersRequest.
  */
 /**
  * @typedef ListJobsResponse
  * @memberOf! dataproc(v1)
  * @type object
- * @property {dataproc(v1).Job[]} jobs Output-only. Jobs list.
+ * @property {dataproc(v1).Job[]} jobs Output only. Jobs list.
  * @property {string} nextPageToken Optional. This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent &lt;code&gt;ListJobsRequest&lt;/code&gt;.
  */
 /**
@@ -1861,8 +1865,8 @@ function Dataproc(options) {
  * @typedef ManagedGroupConfig
  * @memberOf! dataproc(v1)
  * @type object
- * @property {string} instanceGroupManagerName Output-only. The name of the Instance Group Manager for this group.
- * @property {string} instanceTemplateName Output-only. The name of the Instance Template used for the Managed Instance Group.
+ * @property {string} instanceGroupManagerName Output only. The name of the Instance Group Manager for this group.
+ * @property {string} instanceTemplateName Output only. The name of the Instance Template used for the Managed Instance Group.
  */
 /**
  * @typedef NodeInitializationAction
@@ -1956,6 +1960,7 @@ function Dataproc(options) {
  * @memberOf! dataproc(v1)
  * @type object
  * @property {dataproc(v1).Job} job Required. The job resource.
+ * @property {string} requestId Optional. A unique id used to identify the request. If the server receives two SubmitJobRequest requests with the same id, then the second request will be ignored and the first Job created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
  */
 /**
  * @typedef YarnApplication

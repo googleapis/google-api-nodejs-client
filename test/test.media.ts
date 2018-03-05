@@ -11,20 +11,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as async from 'async';
+import * as assert from 'assert';
 import * as fs from 'fs';
 import * as nock from 'nock';
 import * as path from 'path';
 import * as pify from 'pify';
-import * as assert from 'power-assert';
 
 import {GoogleApis} from '../src';
+import {APIEndpoint} from '../src/lib/api';
 
 import {Utils} from './utils';
 
 const boundaryPrefix = 'multipart/related; boundary=';
 
-async function testMultpart(drive) {
+async function testMultpart(drive: APIEndpoint) {
   const resource = {title: 'title', mimeType: 'text/plain'};
   const media = {body: 'hey'};
   let expectedResp = fs.readFileSync(
@@ -46,7 +46,7 @@ async function testMultpart(drive) {
   assert.strictEqual(expectedResp, res.data);
 }
 
-async function testMediaBody(drive) {
+async function testMediaBody(drive: APIEndpoint) {
   const resource = {title: 'title'};
   const media = {body: 'hey'};
   let expectedResp = fs.readFileSync(
@@ -54,6 +54,7 @@ async function testMediaBody(drive) {
       {encoding: 'utf8'});
   const res = await pify(drive.files.insert)({resource, media});
   assert.equal(res.config.method.toLowerCase(), 'post');
+  assert.equal(res.config.maxContentLength, Math.pow(2, 31));
   assert.equal(res.request.path, '/upload/drive/v2/files?uploadType=multipart');
   assert.equal(
       res.request.headers['content-type'].indexOf('multipart/related;'), 0);
@@ -69,31 +70,17 @@ async function testMediaBody(drive) {
 }
 
 describe('Media', () => {
-  let localDrive, remoteDrive;
-  let localGmail, remoteGmail;
+  let localDrive: APIEndpoint, remoteDrive: APIEndpoint;
+  let localGmail: APIEndpoint, remoteGmail: APIEndpoint;
 
-  before((done) => {
+  before(async () => {
     nock.cleanAll();
     const google = new GoogleApis();
     nock.enableNetConnect();
-    async.parallel(
-        [
-          (cb) => {
-            Utils.loadApi(google, 'drive', 'v2', {}, cb);
-          },
-          (cb) => {
-            Utils.loadApi(google, 'gmail', 'v1', {}, cb);
-          }
-        ],
-        (err, apis) => {
-          if (err) {
-            return done(err);
-          }
-          remoteDrive = apis[0];
-          remoteGmail = apis[1];
-          nock.disableNetConnect();
-          done();
-        });
+    [remoteDrive, remoteGmail] = await Promise.all([
+      Utils.loadApi(google, 'drive', 'v2'), Utils.loadApi(google, 'gmail', 'v1')
+    ]);
+    nock.disableNetConnect();
   });
 
   beforeEach(() => {
@@ -142,7 +129,7 @@ describe('Media', () => {
        nock(Utils.baseUrl)
            .post('/upload/drive/v2/files?uploadType=media')
            .times(2)
-           .reply(201, (uri, reqBody) => {
+           .reply(201, (uri: string, reqBody: {}) => {
              return reqBody;  // return request body as response
                               // for testing purposes
            });
@@ -164,7 +151,7 @@ describe('Media', () => {
        nock(Utils.baseUrl)
            .post('/upload/drive/v2/files?uploadType=multipart')
            .times(2)
-           .reply(201, (uri, reqBody) => {
+           .reply(201, (uri: string, reqBody: {}) => {
              return reqBody;  // return request body as response
                               // for testing purposes
            });
@@ -200,7 +187,7 @@ describe('Media', () => {
     nock(Utils.baseUrl)
         .post('/upload/drive/v2/files?uploadType=multipart')
         .times(2)
-        .reply(201, (uri, reqBody) => {
+        .reply(201, (uri: string, reqBody: {}) => {
           return reqBody;  // return request body as response for
                            // testing purposes
         });
@@ -213,7 +200,7 @@ describe('Media', () => {
     nock(Utils.baseUrl)
         .post('/gmail/v1/users/me/drafts')
         .times(2)
-        .reply(201, (uri, reqBody) => {
+        .reply(201, (uri: string, reqBody: {}) => {
           return reqBody;  // return request body as response for
                            // testing purposes
         });
@@ -237,7 +224,7 @@ describe('Media', () => {
        nock(Utils.baseUrl)
            .post('/upload/gmail/v1/users/me/drafts?uploadType=media')
            .times(2)
-           .reply(201, (uri, reqBody) => {
+           .reply(201, (uri: string, reqBody: {}) => {
              return reqBody;  // return request body as response for
                               // testing purposes
            });
@@ -261,7 +248,7 @@ describe('Media', () => {
     nock(Utils.baseUrl)
         .post('/upload/gmail/v1/users/me/drafts?uploadType=multipart')
         .times(2)
-        .reply(201, (uri, reqBody) => {
+        .reply(201, (uri: string, reqBody: {}) => {
           return reqBody;  // return request body as response for testing
                            // purposes
         });

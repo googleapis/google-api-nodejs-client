@@ -1180,7 +1180,7 @@ function Toolresults(options) {
  * @typedef AndroidTest
  * @memberOf! toolresults(v1beta3)
  * @type object
- * @property {toolresults(v1beta3).AndroidAppInfo} androidAppInfo Infomation about the application under test.
+ * @property {toolresults(v1beta3).AndroidAppInfo} androidAppInfo Information about the application under test.
  * @property {toolresults(v1beta3).AndroidInstrumentationTest} androidInstrumentationTest An Android instrumentation test.
  * @property {toolresults(v1beta3).AndroidRoboTest} androidRoboTest An Android robo test.
  * @property {toolresults(v1beta3).Duration} testTimeout Max time a test is allowed to run before it is automatically cancelled.
@@ -1341,7 +1341,7 @@ function Toolresults(options) {
  * @typedef ListScreenshotClustersResponse
  * @memberOf! toolresults(v1beta3)
  * @type object
- * @property {toolresults(v1beta3).ScreenshotCluster[]} clusters The set of clustres associated with an execution Always set
+ * @property {toolresults(v1beta3).ScreenshotCluster[]} clusters The set of clusters associated with an execution Always set
  */
 /**
  * @typedef ListStepsResponse

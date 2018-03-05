@@ -266,9 +266,9 @@ function Vision(options) {
  * @type object
  * @property {vision(v1p1beta1).GoogleCloudVisionV1p1beta1Block[]} blocks List of blocks of text, images etc on this page.
  * @property {number} confidence Confidence of the OCR results on the page. Range [0, 1].
- * @property {integer} height Page height in pixels.
+ * @property {integer} height Page height. For PDFs the unit is points. For images (including TIFFs) the unit is pixels.
  * @property {vision(v1p1beta1).GoogleCloudVisionV1p1beta1TextAnnotationTextProperty} property Additional information detected on the page.
- * @property {integer} width Page width in pixels.
+ * @property {integer} width Page width. For PDFs the unit is points. For images (including TIFFs) the unit is pixels.
  */
 /**
  * @typedef GoogleCloudVisionV1p1beta1Paragraph
@@ -406,6 +406,39 @@ function Vision(options) {
  * @property {number} confidence Confidence of the OCR results for the word. Range [0, 1].
  * @property {vision(v1p1beta1).GoogleCloudVisionV1p1beta1TextAnnotationTextProperty} property Additional information detected for the word.
  * @property {vision(v1p1beta1).GoogleCloudVisionV1p1beta1Symbol[]} symbols List of symbols in the word. The order of the symbols follows the natural reading order.
+ */
+/**
+ * @typedef GoogleCloudVisionV1p2beta1AsyncAnnotateFileResponse
+ * @memberOf! vision(v1p1beta1)
+ * @type object
+ * @property {vision(v1p1beta1).GoogleCloudVisionV1p2beta1OutputConfig} outputConfig The output location and metadata from AsyncAnnotateFileRequest.
+ */
+/**
+ * @typedef GoogleCloudVisionV1p2beta1AsyncBatchAnnotateFilesResponse
+ * @memberOf! vision(v1p1beta1)
+ * @type object
+ * @property {vision(v1p1beta1).GoogleCloudVisionV1p2beta1AsyncAnnotateFileResponse[]} responses The list of file annotation responses, one for each request in AsyncBatchAnnotateFilesRequest.
+ */
+/**
+ * @typedef GoogleCloudVisionV1p2beta1GcsDestination
+ * @memberOf! vision(v1p1beta1)
+ * @type object
+ * @property {string} uri Google Cloud Storage URI where the results will be stored. Results will be in JSON format and preceded by its corresponding input URI. This field can either represent a single file, or a prefix for multiple outputs. Prefixes must end in a `/`.  Examples:  *    File: gs://bucket-name/filename.json *    Prefix: gs://bucket-name/prefix/here/ *    File: gs://bucket-name/prefix/here  If multiple outputs, each response is still AnnotateFileResponse, each of which contains some subset of the full list of AnnotateImageResponse. Multiple outputs can happen if, for example, the output JSON is too large and overflows into multiple sharded files.
+ */
+/**
+ * @typedef GoogleCloudVisionV1p2beta1OperationMetadata
+ * @memberOf! vision(v1p1beta1)
+ * @type object
+ * @property {string} createTime The time when the batch request was received.
+ * @property {string} state Current state of the batch operation.
+ * @property {string} updateTime The time when the operation result was last updated.
+ */
+/**
+ * @typedef GoogleCloudVisionV1p2beta1OutputConfig
+ * @memberOf! vision(v1p1beta1)
+ * @type object
+ * @property {integer} batchSize The max number of response protos to put into each output JSON file on GCS. The valid range is [1, 100]. If not specified, the default value is 20.  For example, for one pdf file with 100 pages, 100 response protos will be generated. If `batch_size` = 20, then 5 json files each containing 20 response protos will be written under the prefix `gcs_destination`.`uri`.  Currently, batch_size only applies to GcsDestination, with potential future support for other output configurations.
+ * @property {vision(v1p1beta1).GoogleCloudVisionV1p2beta1GcsDestination} gcsDestination The Google Cloud Storage location to write the output(s) to.
  */
 /**
  * @typedef LatLng

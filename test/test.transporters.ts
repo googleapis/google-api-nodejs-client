@@ -11,45 +11,45 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as async from 'async';
+import * as assert from 'assert';
 import * as nock from 'nock';
 import * as pify from 'pify';
-import * as assert from 'power-assert';
 
 import {GoogleApis} from '../src';
+import {APIEndpoint} from '../src/lib/api';
 
 import {Utils} from './utils';
 
-async function testHeaders(drive) {
+async function testHeaders(drive: APIEndpoint) {
   nock(Utils.baseUrl).post('/drive/v2/files/a/comments').reply(200);
   const res = await pify(drive.comments.insert)(
       {fileId: 'a', headers: {'If-None-Match': '12345'}});
   assert.equal(res.config.headers['If-None-Match'], '12345');
 }
 
-async function testContentType(drive) {
+async function testContentType(drive: APIEndpoint) {
   nock(Utils.baseUrl).post('/drive/v2/files/a/comments').reply(200);
   const res = await pify(drive.comments.insert)(
       {fileId: 'a', resource: {content: 'hello '}});
   assert(res.request.headers['content-type'].indexOf('application/json') === 0);
 }
 
-async function testBody(drive) {
+async function testBody(drive: APIEndpoint) {
   nock(Utils.baseUrl).get('/drive/v2/files').reply(200);
   const res = await pify(drive.files.list)();
   assert.equal(res.config.headers['content-type'], null);
   assert.equal(res.request.body, null);
 }
 
-async function testBodyDelete(drive) {
+async function testBodyDelete(drive: APIEndpoint) {
   nock(Utils.baseUrl).delete('/drive/v2/files/test').reply(200);
   const res = await pify(drive.files.delete)({fileId: 'test'});
   assert.equal(res.config.headers['content-type'], null);
   assert.equal(res.request.body, null);
 }
 
-function testResponseError(drive, cb) {
-  drive.files.list({q: 'hello'}, (err) => {
+function testResponseError(drive: APIEndpoint, cb: (err?: Error) => void) {
+  drive.files.list({q: 'hello'}, (err: NodeJS.ErrnoException) => {
     assert(err instanceof Error);
     assert.equal(err.message, 'Error!');
     assert.equal(err.code, 400);
@@ -57,8 +57,8 @@ function testResponseError(drive, cb) {
   });
 }
 
-function testNotObjectError(oauth2, cb) {
-  oauth2.tokeninfo({access_token: 'hello'}, (err) => {
+function testNotObjectError(oauth2: APIEndpoint, cb: (err?: Error) => void) {
+  oauth2.tokeninfo({access_token: 'hello'}, (err: NodeJS.ErrnoException) => {
     assert(err instanceof Error);
     assert.equal(err.message, 'invalid_grant');
     assert.equal(err.code, 400);
@@ -66,48 +66,36 @@ function testNotObjectError(oauth2, cb) {
   });
 }
 
-function testBackendError(urlshortener, cb) {
+function testBackendError(
+    urlshortener: APIEndpoint, cb: (err?: Error) => void) {
   const obj = {longUrl: 'http://google.com/'};
-  urlshortener.url.insert({resource: obj}, (err, result) => {
-    assert(err instanceof Error);
-    assert.equal(err.code, 500);
-    assert.equal(err.message, 'There was an error!');
-    assert.equal(result, null);
-    cb();
-  });
+  urlshortener.url.insert(
+      {resource: obj}, (err: NodeJS.ErrnoException, result: {}) => {
+        assert(err instanceof Error);
+        assert.equal(err.code, 500);
+        assert.equal(err.message, 'There was an error!');
+        assert.equal(result, null);
+        cb();
+      });
 }
 
 describe('Transporters', () => {
-  let localDrive, remoteDrive;
-  let localOauth2, remoteOauth2;
-  let localUrlshortener, remoteUrlshortener;
-
-  before((done) => {
+  let localDrive: APIEndpoint;
+  let remoteDrive: APIEndpoint;
+  let localOauth2: APIEndpoint;
+  let remoteOauth2: APIEndpoint;
+  let localUrlshortener: APIEndpoint;
+  let remoteUrlshortener: APIEndpoint;
+  before(async () => {
     nock.cleanAll();
     const google = new GoogleApis();
     nock.enableNetConnect();
-    async.parallel(
-        [
-          (cb) => {
-            Utils.loadApi(google, 'drive', 'v2', {}, cb);
-          },
-          (cb) => {
-            Utils.loadApi(google, 'oauth2', 'v2', {}, cb);
-          },
-          (cb) => {
-            Utils.loadApi(google, 'urlshortener', 'v1', {}, cb);
-          }
-        ],
-        (err, apis) => {
-          if (err) {
-            return done(err);
-          }
-          remoteDrive = apis[0];
-          remoteOauth2 = apis[1];
-          remoteUrlshortener = apis[2];
-          nock.disableNetConnect();
-          done();
-        });
+    [remoteDrive, remoteOauth2, remoteUrlshortener] = await Promise.all([
+      Utils.loadApi(google, 'drive', 'v2'),
+      Utils.loadApi(google, 'oauth2', 'v2'),
+      Utils.loadApi(google, 'urlshortener', 'v1')
+    ]);
+    nock.disableNetConnect();
   });
 
   beforeEach(() => {
@@ -188,6 +176,12 @@ describe('Transporters', () => {
         done();
       });
     });
+  });
+
+  it('should return 304 responses as success', async () => {
+    const scope = nock(Utils.baseUrl).get('/drive/v2/files').reply(304);
+    const res = await pify(localDrive.files.list)();
+    assert.equal(res.status, 304);
   });
 
   it('should handle 5xx responses that include errors', (done) => {

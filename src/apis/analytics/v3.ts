@@ -3444,6 +3444,39 @@ function Analytics(options) {
         context: self
       };
       return createAPIRequest(parameters, callback);
+    }, /**
+        * analytics.provisioning.createAccountTree
+        * @desc Provision account.
+        * @alias analytics.provisioning.createAccountTree
+        * @memberOf! analytics(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {analytics(v3).AccountTreeRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    createAccountTree(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/analytics/v3/provisioning/createAccount')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -3516,6 +3549,28 @@ function Analytics(options) {
  * @property {string} kind Resource type for account ticket.
  * @property {analytics(v3).Profile} profile View (Profile) for the account.
  * @property {string} redirectUri Redirect URI where the user will be sent after accepting Terms of Service. Must be configured in APIs console as a callback URL.
+ * @property {analytics(v3).Webproperty} webproperty Web property for the account.
+ */
+/**
+ * @typedef AccountTreeRequest
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {string} accountName
+ * @property {object} accountSettings
+ * @property {string} kind Resource type for account ticket.
+ * @property {string} profileName
+ * @property {string} timezone
+ * @property {string} webpropertyName
+ * @property {string} websiteUrl
+ */
+/**
+ * @typedef AccountTreeResponse
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {analytics(v3).Account} account The account created.
+ * @property {object} accountSettings
+ * @property {string} kind Resource type for account ticket.
+ * @property {analytics(v3).Profile} profile View (Profile) for the account.
  * @property {analytics(v3).Webproperty} webproperty Web property for the account.
  */
 /**

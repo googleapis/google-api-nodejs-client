@@ -11,13 +11,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as async from 'async';
-import {OAuth2Client} from 'google-auth-library/build/src/auth/oauth2client';
+import * as assert from 'assert';
+import {OAuth2Client} from 'google-auth-library';
 import * as nock from 'nock';
 import * as pify from 'pify';
-import * as assert from 'power-assert';
 
 import {GoogleApis} from '../src';
+import {APIEndpoint} from '../src/lib/api';
 
 import {Utils} from './utils';
 
@@ -38,7 +38,7 @@ describe('JWT client', () => {
   });
   it('should create scoped JWT', () => {
     const jwt = new googleapis.auth.JWT(
-        'someone@somewhere.com', 'file1', 'key1', null, 'subject1');
+        'someone@somewhere.com', 'file1', 'key1', undefined, 'subject1');
     assert.equal(jwt.scopes, null);
     assert.equal(jwt.createScopedRequired(), true);
 
@@ -62,7 +62,8 @@ describe('Compute client', () => {
   });
 });
 
-async function testNoTokens(urlshortener, oauth2client: OAuth2Client) {
+async function testNoTokens(
+    urlshortener: APIEndpoint, oauth2client: OAuth2Client) {
   try {
     await pify(urlshortener.url.get)({shortUrl: '123', auth: oauth2client});
     assert.fail('expected to throw');
@@ -71,16 +72,19 @@ async function testNoTokens(urlshortener, oauth2client: OAuth2Client) {
   }
 }
 
-async function testNoBearer(urlshortener, oauth2client: OAuth2Client) {
+async function testNoBearer(
+    urlshortener: APIEndpoint, oauth2client: OAuth2Client) {
   await pify(urlshortener.url.list)({auth: oauth2client});
   assert.equal(oauth2client.credentials.token_type, 'Bearer');
 }
 
-async function testExpired(drive, oauth2client: OAuth2Client, now: number) {
+async function testExpired(
+    drive: APIEndpoint, oauth2client: OAuth2Client, now: number) {
   nock(Utils.baseUrl).get('/drive/v2/files/wat').reply(200);
   await pify(drive.files.get)({fileId: 'wat', auth: oauth2client});
   const expiryDate = oauth2client.credentials.expiry_date;
   assert.notEqual(expiryDate, undefined);
+  if (!expiryDate) return;
   assert(expiryDate > now);
   assert(expiryDate < now + 5000);
   assert.equal(oauth2client.credentials.refresh_token, 'abc');
@@ -88,43 +92,30 @@ async function testExpired(drive, oauth2client: OAuth2Client, now: number) {
 }
 
 async function testNoAccessToken(
-    drive, oauth2client: OAuth2Client, now: number) {
+    drive: APIEndpoint, oauth2client: OAuth2Client, now: number) {
   nock(Utils.baseUrl).get('/drive/v2/files/wat').reply(200);
   await pify(drive.files.get)({fileId: 'wat', auth: oauth2client});
   const expiryDate = oauth2client.credentials.expiry_date;
   assert.notEqual(expiryDate, undefined);
-  assert(expiryDate > now);
-  assert(expiryDate < now + 4000);
+  assert(expiryDate! > now);
+  assert(expiryDate! < now + 4000);
   assert.equal(oauth2client.credentials.refresh_token, 'abc');
   assert.equal(oauth2client.credentials.access_token, 'abc123');
 }
 
 describe('OAuth2 client', () => {
-  let localDrive, remoteDrive;
-  let localUrlshortener, remoteUrlshortener;
+  let localDrive: APIEndpoint, remoteDrive: APIEndpoint;
+  let localUrlshortener: APIEndpoint, remoteUrlshortener: APIEndpoint;
 
-  before((done) => {
+  before(async () => {
     nock.cleanAll();
     const google = new GoogleApis();
     nock.enableNetConnect();
-    async.parallel(
-        [
-          (cb) => {
-            Utils.loadApi(google, 'drive', 'v2', {}, cb);
-          },
-          (cb) => {
-            Utils.loadApi(google, 'urlshortener', 'v1', {}, cb);
-          }
-        ],
-        (err, apis) => {
-          if (err) {
-            return done(err);
-          }
-          remoteDrive = apis[0];
-          remoteUrlshortener = apis[1];
-          nock.disableNetConnect();
-          done();
-        });
+    [remoteDrive, remoteUrlshortener] = await Promise.all([
+      Utils.loadApi(google, 'drive', 'v2'),
+      Utils.loadApi(google, 'urlshortener', 'v1')
+    ]);
+    nock.disableNetConnect();
   });
 
   beforeEach(() => {
@@ -302,8 +293,8 @@ describe('OAuth2 client', () => {
       const oauth2client =
           new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
       const res = await oauth2client.getToken('code here');
-      assert(res.tokens.expiry_date >= now + (10 * 1000));
-      assert(res.tokens.expiry_date <= now + (15 * 1000));
+      assert(res.tokens.expiry_date! >= now + (10 * 1000));
+      assert(res.tokens.expiry_date! <= now + (15 * 1000));
     });
   });
 

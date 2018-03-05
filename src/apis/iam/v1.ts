@@ -36,6 +36,44 @@ import {createAPIRequest} from '../../lib/apirequest';
 function Iam(options) {
   const self = this;
   self._options = options || {};
+  self.iamPolicies = {
+    /**
+     * iam.iamPolicies.queryAuditableServices
+     * @desc Returns a list of services that support service level audit logging
+     * configuration for the given resource.
+     * @alias iam.iamPolicies.queryAuditableServices
+     * @memberOf! iam(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {iam(v1).QueryAuditableServicesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    queryAuditableServices(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/iamPolicies:queryAuditableServices')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
   self.organizations = {
     roles: {
       /**
@@ -1101,10 +1139,30 @@ function Iam(options) {
   };
 }
 /**
+ * @typedef AuditableService
+ * @memberOf! iam(v1)
+ * @type object
+ * @property {string} name Public name of the service. For example, the service name for Cloud IAM is &#39;iam.googleapis.com&#39;.
+ */
+/**
+ * @typedef AuditConfig
+ * @memberOf! iam(v1)
+ * @type object
+ * @property {iam(v1).AuditLogConfig[]} auditLogConfigs The configuration for logging of each type of permission. Next ID: 4
+ * @property {string} service Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
+ */
+/**
  * @typedef AuditData
  * @memberOf! iam(v1)
  * @type object
  * @property {iam(v1).PolicyDelta} policyDelta Policy delta between the original policy and the newly set policy.
+ */
+/**
+ * @typedef AuditLogConfig
+ * @memberOf! iam(v1)
+ * @type object
+ * @property {string[]} exemptedMembers Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
+ * @property {string} logType The log type that this config enables.
  */
 /**
  * @typedef Binding
@@ -1171,6 +1229,7 @@ function Iam(options) {
  * @typedef Permission
  * @memberOf! iam(v1)
  * @type object
+ * @property {boolean} apiDisabled The service API associated with the permission is not enabled.
  * @property {string} customRolesSupportLevel The current custom role support level.
  * @property {string} description A brief description of what this Permission is used for.
  * @property {string} name The name of this Permission.
@@ -1182,6 +1241,7 @@ function Iam(options) {
  * @typedef Policy
  * @memberOf! iam(v1)
  * @type object
+ * @property {iam(v1).AuditConfig[]} auditConfigs Specifies cloud audit logging configuration for this policy.
  * @property {iam(v1).Binding[]} bindings Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
  * @property {string} etag `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
  * @property {integer} version Deprecated.
@@ -1191,6 +1251,18 @@ function Iam(options) {
  * @memberOf! iam(v1)
  * @type object
  * @property {iam(v1).BindingDelta[]} bindingDeltas The delta for Bindings between two policies.
+ */
+/**
+ * @typedef QueryAuditableServicesRequest
+ * @memberOf! iam(v1)
+ * @type object
+ * @property {string} fullResourceName Required. The full resource name to query from the list of auditable services.  The name follows the Google Cloud Platform resource format. For example, a Cloud Platform project with id `my-project` will be named `//cloudresourcemanager.googleapis.com/projects/my-project`.
+ */
+/**
+ * @typedef QueryAuditableServicesResponse
+ * @memberOf! iam(v1)
+ * @type object
+ * @property {iam(v1).AuditableService[]} services The auditable services for a resource.
  */
 /**
  * @typedef QueryGrantableRolesRequest
@@ -1253,7 +1325,7 @@ function Iam(options) {
  * @type object
  * @property {string} keyAlgorithm Specifies the algorithm (and possibly key size) for the key.
  * @property {string} name The resource name of the service account key in the following format `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}`.
- * @property {string} privateKeyData The private key data. Only provided in `CreateServiceAccountKey` responses. Make sure to keep the private key data secure because it allows for the assertion of the service account identity. When decoded, the private key data can be used to authenticate with Google API client libraries and with &lt;a href=&quot;/sdk/gcloud/reference/auth/activate-service-account&quot;&gt;gcloud auth activate-service-account&lt;/a&gt;.
+ * @property {string} privateKeyData The private key data. Only provided in `CreateServiceAccountKey` responses. Make sure to keep the private key data secure because it allows for the assertion of the service account identity. When base64 decoded, the private key data can be used to authenticate with Google API client libraries and with &lt;a href=&quot;/sdk/gcloud/reference/auth/activate-service-account&quot;&gt;gcloud auth activate-service-account&lt;/a&gt;.
  * @property {string} privateKeyType The output format for the private key. Only provided in `CreateServiceAccountKey` responses, not in `GetServiceAccountKey` or `ListServiceAccountKey` responses.  Google never exposes system-managed private keys, and never retains user-managed private keys.
  * @property {string} publicKeyData The public key data. Only provided in `GetServiceAccountKey` responses.
  * @property {string} validAfterTime The key can be used after this timestamp.
@@ -1264,6 +1336,7 @@ function Iam(options) {
  * @memberOf! iam(v1)
  * @type object
  * @property {iam(v1).Policy} policy REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them.
+ * @property {string} updateMask OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: paths: &quot;bindings, etag&quot; This field is only used by Cloud IAM.
  */
 /**
  * @typedef SignBlobRequest

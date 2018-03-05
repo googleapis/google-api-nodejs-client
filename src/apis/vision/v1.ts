@@ -127,6 +127,164 @@ function Vision(options) {
     }
 
   };
+  self.operations = {
+    /**
+     * vision.operations.cancel
+     * @desc Starts asynchronous cancellation on a long-running operation.  The
+     * server makes a best effort to cancel the operation, but success is not
+     * guaranteed.  If the server doesn't support this method, it returns
+     * `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation
+     * or other methods to check whether the cancellation succeeded or whether
+     * the operation completed despite cancellation. On successful cancellation,
+     * the operation is not deleted; instead, it becomes an operation with an
+     * Operation.error value with a google.rpc.Status.code of 1, corresponding
+     * to `Code.CANCELLED`.
+     * @alias vision.operations.cancel
+     * @memberOf! vision(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource to be cancelled.
+     * @param {vision(v1).CancelOperationRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    cancel(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl + '/v1/{name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * vision.operations.delete
+        * @desc Deletes a long-running operation. This method indicates that the
+        * client is no longer interested in the operation result. It does not
+        * cancel the operation. If the server doesn't support this method, it
+        * returns `google.rpc.Code.UNIMPLEMENTED`.
+        * @alias vision.operations.delete
+        * @memberOf! vision(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.name The name of the operation resource to be deleted.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    delete (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * vision.operations.get
+        * @desc Gets the latest state of a long-running operation.  Clients can
+        * use this method to poll the operation result at intervals as
+        * recommended by the API service.
+        * @alias vision.operations.get
+        * @memberOf! vision(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.name The name of the operation resource.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }, /**
+        * vision.operations.list
+        * @desc Lists operations that match the specified filter in the request.
+        * If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+        * NOTE: the `name` binding allows API services to override the binding
+        * to use different resource name schemes, such as `users/x/operations`.
+        * To override the binding, API services can add a binding such as
+        * `"/v1/{name=users/x}/operations"` to their service configuration. For
+        * backwards compatibility, the default name includes the operations
+        * collection id, however overriding users must ensure the name binding
+        * is the parent resource, without the operations collection id.
+        * @alias vision.operations.list
+        * @memberOf! vision(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.filter The standard list filter.
+        * @param {string} params.name The name of the operation's parent resource.
+        * @param {integer=} params.pageSize The standard list page size.
+        * @param {string=} params.pageToken The standard list page token.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
 }
 /**
  * @typedef AnnotateImageRequest
@@ -170,6 +328,7 @@ function Vision(options) {
  * @type object
  * @property {string} blockType Detected block type (text, image etc) for this block.
  * @property {vision(v1).BoundingPoly} boundingBox The bounding box for the block. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example:  * when the text is horizontal it might look like:          0----1         |    |         3----2  * when it&#39;s rotated 180 degrees around the top-left corner it becomes:          2----3         |    |         1----0    and the vertice order will still be (0, 1, 2, 3).
+ * @property {number} confidence Confidence of the OCR results on the block. Range [0, 1].
  * @property {vision(v1).Paragraph[]} paragraphs List of paragraphs in this block (if this blocks is of type text).
  * @property {vision(v1).TextProperty} property Additional information detected for the block.
  */
@@ -178,6 +337,11 @@ function Vision(options) {
  * @memberOf! vision(v1)
  * @type object
  * @property {vision(v1).Vertex[]} vertices The bounding polygon vertices.
+ */
+/**
+ * @typedef CancelOperationRequest
+ * @memberOf! vision(v1)
+ * @type object
  */
 /**
  * @typedef Color
@@ -237,6 +401,11 @@ function Vision(options) {
  * @property {vision(v1).ColorInfo[]} colors RGB color values with their score and pixel fraction.
  */
 /**
+ * @typedef Empty
+ * @memberOf! vision(v1)
+ * @type object
+ */
+/**
  * @typedef EntityAnnotation
  * @memberOf! vision(v1)
  * @type object
@@ -275,7 +444,41 @@ function Vision(options) {
  * @memberOf! vision(v1)
  * @type object
  * @property {integer} maxResults Maximum number of results of this type. Does not apply to `TEXT_DETECTION`, `DOCUMENT_TEXT_DETECTION`, or `CROP_HINTS`.
+ * @property {string} model Model to use for the feature. Supported values: &quot;builtin/stable&quot; (the default if unset) and &quot;builtin/latest&quot;.
  * @property {string} type The feature type.
+ */
+/**
+ * @typedef GoogleCloudVisionV1p2beta1AsyncAnnotateFileResponse
+ * @memberOf! vision(v1)
+ * @type object
+ * @property {vision(v1).GoogleCloudVisionV1p2beta1OutputConfig} outputConfig The output location and metadata from AsyncAnnotateFileRequest.
+ */
+/**
+ * @typedef GoogleCloudVisionV1p2beta1AsyncBatchAnnotateFilesResponse
+ * @memberOf! vision(v1)
+ * @type object
+ * @property {vision(v1).GoogleCloudVisionV1p2beta1AsyncAnnotateFileResponse[]} responses The list of file annotation responses, one for each request in AsyncBatchAnnotateFilesRequest.
+ */
+/**
+ * @typedef GoogleCloudVisionV1p2beta1GcsDestination
+ * @memberOf! vision(v1)
+ * @type object
+ * @property {string} uri Google Cloud Storage URI where the results will be stored. Results will be in JSON format and preceded by its corresponding input URI. This field can either represent a single file, or a prefix for multiple outputs. Prefixes must end in a `/`.  Examples:  *    File: gs://bucket-name/filename.json *    Prefix: gs://bucket-name/prefix/here/ *    File: gs://bucket-name/prefix/here  If multiple outputs, each response is still AnnotateFileResponse, each of which contains some subset of the full list of AnnotateImageResponse. Multiple outputs can happen if, for example, the output JSON is too large and overflows into multiple sharded files.
+ */
+/**
+ * @typedef GoogleCloudVisionV1p2beta1OperationMetadata
+ * @memberOf! vision(v1)
+ * @type object
+ * @property {string} createTime The time when the batch request was received.
+ * @property {string} state Current state of the batch operation.
+ * @property {string} updateTime The time when the operation result was last updated.
+ */
+/**
+ * @typedef GoogleCloudVisionV1p2beta1OutputConfig
+ * @memberOf! vision(v1)
+ * @type object
+ * @property {integer} batchSize The max number of response protos to put into each output JSON file on GCS. The valid range is [1, 100]. If not specified, the default value is 20.  For example, for one pdf file with 100 pages, 100 response protos will be generated. If `batch_size` = 20, then 5 json files each containing 20 response protos will be written under the prefix `gcs_destination`.`uri`.  Currently, batch_size only applies to GcsDestination, with potential future support for other output configurations.
+ * @property {vision(v1).GoogleCloudVisionV1p2beta1GcsDestination} gcsDestination The Google Cloud Storage location to write the output(s) to.
  */
 /**
  * @typedef Image
@@ -291,6 +494,7 @@ function Vision(options) {
  * @property {vision(v1).CropHintsParams} cropHintsParams Parameters for crop hints annotation request.
  * @property {string[]} languageHints List of languages to use for TEXT_DETECTION. In most cases, an empty value yields the best results since it enables automatic language detection. For languages based on the Latin alphabet, setting `language_hints` is not needed. In rare cases, when the language of the text in the image is known, setting a hint will help get better results (although it will be a significant hindrance if the hint is wrong). Text detection returns an error if one or more of the specified languages is not one of the [supported languages](/vision/docs/languages).
  * @property {vision(v1).LatLongRect} latLongRect lat/long rectangle that specifies the location of the image.
+ * @property {vision(v1).WebDetectionParams} webDetectionParams Parameters for web detection.
  */
 /**
  * @typedef ImageProperties
@@ -327,25 +531,44 @@ function Vision(options) {
  * @property {vision(v1).LatLng} minLatLng Min lat/long pair.
  */
 /**
+ * @typedef ListOperationsResponse
+ * @memberOf! vision(v1)
+ * @type object
+ * @property {string} nextPageToken The standard List next-page token.
+ * @property {vision(v1).Operation[]} operations A list of operations that matches the specified filter in the request.
+ */
+/**
  * @typedef LocationInfo
  * @memberOf! vision(v1)
  * @type object
  * @property {vision(v1).LatLng} latLng lat/long location coordinates.
  */
 /**
+ * @typedef Operation
+ * @memberOf! vision(v1)
+ * @type object
+ * @property {boolean} done If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
+ * @property {vision(v1).Status} error The error result of the operation in case of failure or cancellation.
+ * @property {object} metadata Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
+ * @property {string} name The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should have the format of `operations/some/unique/name`.
+ * @property {object} response The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+ */
+/**
  * @typedef Page
  * @memberOf! vision(v1)
  * @type object
  * @property {vision(v1).Block[]} blocks List of blocks of text, images etc on this page.
- * @property {integer} height Page height in pixels.
+ * @property {number} confidence Confidence of the OCR results on the page. Range [0, 1].
+ * @property {integer} height Page height. For PDFs the unit is points. For images (including TIFFs) the unit is pixels.
  * @property {vision(v1).TextProperty} property Additional information detected on the page.
- * @property {integer} width Page width in pixels.
+ * @property {integer} width Page width. For PDFs the unit is points. For images (including TIFFs) the unit is pixels.
  */
 /**
  * @typedef Paragraph
  * @memberOf! vision(v1)
  * @type object
  * @property {vision(v1).BoundingPoly} boundingBox The bounding box for the paragraph. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example:   * when the text is horizontal it might look like:      0----1      |    |      3----2   * when it&#39;s rotated 180 degrees around the top-left corner it becomes:      2----3      |    |      1----0   and the vertice order will still be (0, 1, 2, 3).
+ * @property {number} confidence Confidence of the OCR results for the paragraph. Range [0, 1].
  * @property {vision(v1).TextProperty} property Additional information detected for the paragraph.
  * @property {vision(v1).Word[]} words List of words in this paragraph.
  */
@@ -371,6 +594,7 @@ function Vision(options) {
  * @type object
  * @property {string} adult Represents the adult content likelihood for the image. Adult content may contain elements such as nudity, pornographic images or cartoons, or sexual activities.
  * @property {string} medical Likelihood that this is a medical image.
+ * @property {string} racy Likelihood that the request image contains racy content. Racy content may include (but is not limited to) skimpy or sheer clothing, strategically covered nudity, lewd or provocative poses, or close-ups of sensitive body areas.
  * @property {string} spoof Spoof likelihood. The likelihood that an modification was made to the image&#39;s canonical version to make it appear funny or offensive.
  * @property {string} violence Likelihood that this image contains violent content.
  */
@@ -387,6 +611,7 @@ function Vision(options) {
  * @memberOf! vision(v1)
  * @type object
  * @property {vision(v1).BoundingPoly} boundingBox The bounding box for the symbol. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example:   * when the text is horizontal it might look like:      0----1      |    |      3----2   * when it&#39;s rotated 180 degrees around the top-left corner it becomes:      2----3      |    |      1----0   and the vertice order will still be (0, 1, 2, 3).
+ * @property {number} confidence Confidence of the OCR results for the symbol. Range [0, 1].
  * @property {vision(v1).TextProperty} property Additional information detected for the symbol.
  * @property {string} text The actual UTF-8 representation of the symbol.
  */
@@ -415,11 +640,18 @@ function Vision(options) {
  * @typedef WebDetection
  * @memberOf! vision(v1)
  * @type object
+ * @property {vision(v1).WebLabel[]} bestGuessLabels Best guess text labels for the request image.
  * @property {vision(v1).WebImage[]} fullMatchingImages Fully matching images from the Internet. Can include resized copies of the query image.
  * @property {vision(v1).WebPage[]} pagesWithMatchingImages Web pages containing the matching images from the Internet.
  * @property {vision(v1).WebImage[]} partialMatchingImages Partial matching images from the Internet. Those images are similar enough to share some key-point features. For example an original image will likely have partial matching for its crops.
  * @property {vision(v1).WebImage[]} visuallySimilarImages The visually similar image results.
  * @property {vision(v1).WebEntity[]} webEntities Deduced entities from similar images on the Internet.
+ */
+/**
+ * @typedef WebDetectionParams
+ * @memberOf! vision(v1)
+ * @type object
+ * @property {boolean} includeGeoResults Whether to include results derived from the geo information in the image.
  */
 /**
  * @typedef WebEntity
@@ -437,9 +669,19 @@ function Vision(options) {
  * @property {string} url The result image URL.
  */
 /**
+ * @typedef WebLabel
+ * @memberOf! vision(v1)
+ * @type object
+ * @property {string} label Label for extra metadata.
+ * @property {string} languageCode The BCP-47 language code for `label`, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+ */
+/**
  * @typedef WebPage
  * @memberOf! vision(v1)
  * @type object
+ * @property {vision(v1).WebImage[]} fullMatchingImages Fully matching images on the page. Can include resized copies of the query image.
+ * @property {string} pageTitle Title for the web page, may contain HTML markups.
+ * @property {vision(v1).WebImage[]} partialMatchingImages Partial matching images on the page. Those images are similar enough to share some key-point features. For example an original image will likely have partial matching for its crops.
  * @property {number} score (Deprecated) Overall relevancy score for the web page.
  * @property {string} url The result web page URL.
  */
@@ -448,6 +690,7 @@ function Vision(options) {
  * @memberOf! vision(v1)
  * @type object
  * @property {vision(v1).BoundingPoly} boundingBox The bounding box for the word. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example:   * when the text is horizontal it might look like:      0----1      |    |      3----2   * when it&#39;s rotated 180 degrees around the top-left corner it becomes:      2----3      |    |      1----0   and the vertice order will still be (0, 1, 2, 3).
+ * @property {number} confidence Confidence of the OCR results for the word. Range [0, 1].
  * @property {vision(v1).TextProperty} property Additional information detected for the word.
  * @property {vision(v1).Symbol[]} symbols List of symbols in the word. The order of the symbols follows the natural reading order.
  */

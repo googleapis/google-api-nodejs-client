@@ -313,6 +313,8 @@ function Safebrowsing(options) {
  * @typedef Constraints
  * @memberOf! safebrowsing(v4)
  * @type object
+ * @property {string} deviceLocation A client&#39;s physical location, expressed as a ISO 31166-1 alpha-2 region code.
+ * @property {string} language Requests the lists for a specific language. Expects ISO 639 alpha-2 format.
  * @property {integer} maxDatabaseEntries Sets the maximum number of entries that the client is willing to have in the local database. This should be a power of 2 between 2**10 and 2**20. If zero, no database size limit is set.
  * @property {integer} maxUpdateEntries The maximum size in number of entries. The update will not contain more entries than this value.  This should be a power of 2 between 2**10 and 2**20.  If zero, no update size limit is set.
  * @property {string} region Requests the list for a specific geographic location. If not set the server may pick that value based on the user&#39;s IP address. Expects ISO 3166-1 alpha-2 format.
@@ -421,7 +423,7 @@ function Safebrowsing(options) {
  * @memberOf! safebrowsing(v4)
  * @type object
  * @property {string} encodedData The encoded deltas that are encoded using the Golomb-Rice coder.
- * @property {string} firstValue The offset of the first entry in the encoded data, or, if only a single integer was encoded, that single integer&#39;s value.
+ * @property {string} firstValue The offset of the first entry in the encoded data, or, if only a single integer was encoded, that single integer&#39;s value. If the field is empty or missing, assume zero.
  * @property {integer} numEntries The number of entries that are delta encoded in the encoded data. If only a single integer was encoded, this will be zero and the single value will be stored in `first_value`.
  * @property {integer} riceParameter The Golomb-Rice parameter, which is a number between 2 and 28. This field is missing (that is, zero) if `num_entries` is zero.
  */

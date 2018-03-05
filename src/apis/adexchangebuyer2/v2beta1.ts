@@ -2410,6 +2410,7 @@ function Adexchangebuyer2(options) {
  * @memberOf! adexchangebuyer2(v2beta1)
  * @type object
  * @property {string} videoUrl The URL to fetch a video ad.
+ * @property {string} videoVastXml The contents of a VAST document for a video ad. This document should conform to the VAST 2.0 or 3.0 standard.
  */
 /**
  * @typedef WatchCreativeRequest

@@ -11,15 +11,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import * as assert from 'assert';
 import * as fs from 'fs';
 import * as path from 'path';
-import * as assert from 'power-assert';
+
 import {GoogleApis} from '../src';
+import {APIEndpoint} from '../src/lib/api';
 
 describe('GoogleApis#discover', () => {
   it('should generate all apis', (done) => {
     const localApis = fs.readdirSync(path.join(__dirname, '../src/apis'));
     const google = new GoogleApis();
+    // tslint:disable-next-line no-any
+    const g2 = google as any;
     const localDrive = google.drive('v2');
 
     assert.equal(typeof google.drive, 'function');
@@ -31,9 +35,9 @@ describe('GoogleApis#discover', () => {
     localApis.splice(localApis.indexOf('index.js.map'), 1);
 
     localApis.forEach((name) => {
-      assert(google[name]);
+      assert(g2[name]);
       // Setting all APIs to null initially.
-      google[name] = null;
+      g2[name] = null;
     });
 
     assert.equal(google.drive, null);
@@ -45,12 +49,12 @@ describe('GoogleApis#discover', () => {
       }
       // APIs have all been re-added.
       localApis.forEach(name => {
-        if (google[name] === null) {
+        if (g2[name] === null) {
           // Warn if an API remains null (was not found during the discovery
           // process) to avoid failing the test.
           console.warn(name + ' was not found.');
         } else {
-          assert(google[name]);
+          assert(g2[name]);
         }
       });
 

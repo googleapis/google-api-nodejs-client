@@ -11,31 +11,26 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import * as assert from 'assert';
 import * as nock from 'nock';
 import * as pify from 'pify';
-import * as assert from 'power-assert';
 
 import {GoogleApis} from '../src';
+import {APIEndpoint} from '../src/lib/api';
 
 import {Utils} from './utils';
 
 const googleapis = new GoogleApis();
 
 describe('drive:v2', () => {
-  let localDrive, remoteDrive;
+  let localDrive: APIEndpoint, remoteDrive: APIEndpoint;
 
-  before((done) => {
+  before(async () => {
     nock.cleanAll();
     const google = new GoogleApis();
     nock.enableNetConnect();
-    Utils.loadApi(google, 'drive', 'v2', {}, (err, drive) => {
-      nock.disableNetConnect();
-      if (err) {
-        return done(err);
-      }
-      remoteDrive = drive;
-      done();
-    });
+    remoteDrive = await Utils.loadApi(google, 'drive', 'v2');
+    nock.disableNetConnect();
   });
 
   beforeEach(() => {

@@ -11,9 +11,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import * as assert from 'assert';
+import {AxiosResponse} from 'axios';
 import * as nock from 'nock';
 import * as pify from 'pify';
-import * as assert from 'power-assert';
 import * as url from 'url';
 
 import {GoogleApis} from '../src';
@@ -40,24 +41,23 @@ describe('Options', () => {
 
   it('should expose _options', () => {
     const google = new GoogleApis();
-    google.options({hello: 'world'});
-    assert.equal(
-        JSON.stringify(google._options), JSON.stringify({hello: 'world'}));
+    google.options({params: {hello: 'world'}});
+    assert.deepEqual(google._options, {params: {hello: 'world'}});
   });
 
   it('should expose _options values', () => {
     const google = new GoogleApis();
-    google.options({hello: 'world'});
-    assert.equal(google._options.hello, 'world');
+    google.options({params: {hello: 'world'}});
+    assert.deepEqual(google._options.params.hello, 'world');
   });
 
   it('should promote endpoint options over global options', async () => {
     const google = new GoogleApis();
-    google.options({hello: 'world'});
-    const drive = google.drive({version: 'v2', hello: 'changed'});
-    createNock('/drive/v2/files/123');
-    const res = await pify(drive.files.get)({fileId: '123'});
-    assert.equal(res.config.hello, 'changed');
+    google.options({params: {hello: 'world'}});
+    const drive = google.drive({version: 'v2', params: {hello: 'changed'}});
+    createNock('/drive/v2/files/123?hello=changed');
+    const res: AxiosResponse = await pify(drive.files.get)({fileId: '123'});
+    assert.equal(res.config.params.hello, 'changed');
   });
 
   it('should support global request params', async () => {
@@ -76,10 +76,11 @@ describe('Options', () => {
     // won't work unless I call `nock.cleanAll()` first.
     nock.cleanAll();
     nock.enableNetConnect();
-    const d = await pify(Utils.loadApi)(google, 'drive', 'v2', {});
+    const d = await Utils.loadApi(google, 'drive', 'v2');
     nock.disableNetConnect();
     nock(Utils.baseUrl).get('/drive/v2/files/123?myParam=123').reply(200);
-    const res3 = await pify(d.files.get)({fileId: '123'});
+    // tslint:disable-next-line no-any
+    const res3 = await pify((d as any).files.get)({fileId: '123'});
     // If the default param handling is broken, query might be undefined,
     // thus concealing the assertion message with some generic "cannot
     // call .indexOf of undefined"
@@ -166,6 +167,18 @@ describe('Options', () => {
     assert.equal(
         res.config.url, 'https://myrooturl.com/drive/v3/files/woot',
         'Request used overridden rootUrl.');
+  });
+
+  it('should allow overriding validateStatus', async () => {
+    const scope = nock(Utils.baseUrl).get('/drive/v2/files').reply(500);
+    const google = new GoogleApis();
+    const drive = google.drive('v2');
+    const res = await pify(drive.files.list)({}, {
+      validateStatus: status => {
+        return true;
+      }
+    });
+    assert.equal(res.status, 500);
   });
 
   after(() => {

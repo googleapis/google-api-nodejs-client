@@ -215,11 +215,21 @@ function Poly(options) {
  * @property {poly(v1).Format[]} formats A list of Formats where each format describes one representation of the asset.
  * @property {boolean} isCurated Whether this asset has been curated by the Poly team.
  * @property {string} license The license under which the author has made the asset available for use, if any.
+ * @property {string} metadata Application-defined opaque metadata for this asset. This field is only returned when querying for the signed-in user&#39;s own assets, not for public assets. This string is limited to 1K chars. It is up to the creator of the asset to define the format for this string (for example, JSON).
  * @property {string} name The unique identifier for the asset in the form: `assets/{ASSET_ID}`.
  * @property {poly(v1).PresentationParams} presentationParams Hints for displaying the asset. Note that these parameters are not immutable; the author of an asset may change them post-publication.
  * @property {poly(v1).File} thumbnail The thumbnail image for the asset.
  * @property {string} updateTime The time when the asset was last modified. For published assets, whose contents are immutable, the update time changes only when metadata properties, such as visibility, are updated.
  * @property {string} visibility The visibility of the asset and who can access it.
+ */
+/**
+ * @typedef AssetImportMessage
+ * @memberOf! poly(v1)
+ * @type object
+ * @property {string} code The code associated with this message.
+ * @property {string} filePath An optional file path. Only present for those error codes that specify it.
+ * @property {poly(v1).ImageError} imageError An optional image error. Only present for INVALID_IMAGE_FILE.
+ * @property {poly(v1).ObjParseError} objParseError An optional OBJ parse error. Only present for OBJ_PARSE_ERROR.
  */
 /**
  * @typedef File
@@ -246,6 +256,13 @@ function Poly(options) {
  * @property {string} triangleCount The estimated number of triangles.
  */
 /**
+ * @typedef ImageError
+ * @memberOf! poly(v1)
+ * @type object
+ * @property {string} code The type of image error encountered. Optional for older image errors.
+ * @property {string} filePath The file path in the import of the image that was rejected.
+ */
+/**
  * @typedef ListAssetsResponse
  * @memberOf! poly(v1)
  * @type object
@@ -270,6 +287,17 @@ function Poly(options) {
  * @property {poly(v1).UserAsset[]} userAssets A list of UserAssets matching the request.
  */
 /**
+ * @typedef ObjParseError
+ * @memberOf! poly(v1)
+ * @type object
+ * @property {string} code The type of problem found (required).
+ * @property {integer} endIndex The ending character index at which the problem was found.
+ * @property {string} filePath The file path in which the problem was found.
+ * @property {string} line The text of the line. Note that this may be truncated if the line was very long. This may not include the error if it occurs after line truncation.
+ * @property {integer} lineNumber Line number at which the problem was found.
+ * @property {integer} startIndex The starting character index at which the problem was found.
+ */
+/**
  * @typedef PresentationParams
  * @memberOf! poly(v1)
  * @type object
@@ -284,6 +312,15 @@ function Poly(options) {
  * @property {number} x The x component.
  * @property {number} y The y component.
  * @property {number} z The z component.
+ */
+/**
+ * @typedef StartAssetImportResponse
+ * @memberOf! poly(v1)
+ * @type object
+ * @property {string} assetId The id of newly created asset. If this is empty when the operation is complete it means the import failed. Please refer to the asset_import_message field to understand what went wrong.
+ * @property {string} assetImportId The id of the asset import.
+ * @property {poly(v1).AssetImportMessage[]} assetImportMessages The message from the asset import. This will contain any warnings (or - in the case of failure - errors) that occurred during import.
+ * @property {string} publishUrl The publish URL for the asset.
  */
 /**
  * @typedef UserAsset
