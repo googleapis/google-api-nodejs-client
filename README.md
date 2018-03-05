@@ -257,9 +257,7 @@ var {google} = require('googleapis');
 var plus = google.plus('v1');
 var OAuth2 = google.auth.OAuth2;
 
-// WARNING: it's important to keep filled  YOUR_CLIENT_ID,
-// YOUR_CLIENT_SECRET, YOUR_REDIRECT_URL for use automatically refreshed
-// access_token
+// WARNING: Make sure your CLIENT_SECRET is stored in a safe place.  
 var oauth2Client = new OAuth2(
   YOUR_CLIENT_ID,
   YOUR_CLIENT_SECRET,
