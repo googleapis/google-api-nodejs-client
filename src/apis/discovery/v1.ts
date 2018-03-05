@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * APIs Discovery Service
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Discovery
  */
-function Discovery(options) {
+function Discovery(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.apis = {
@@ -49,7 +56,9 @@ function Discovery(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getRest(params, options, callback) {
+    getRest(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -69,7 +78,7 @@ function Discovery(options) {
         pathParams: ['api', 'version'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * discovery.apis.list
         * @desc Retrieve the list of APIs supported at this endpoint.
@@ -83,7 +92,9 @@ function Discovery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -103,7 +114,7 @@ function Discovery(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

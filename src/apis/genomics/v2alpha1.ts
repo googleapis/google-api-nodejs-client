@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Genomics API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2alpha1
  * @param {object=} options Options for Genomics
  */
-function Genomics(options) {
+function Genomics(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.pipelines = {
@@ -52,7 +59,8 @@ function Genomics(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    run(params, options, callback) {
+    run(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -72,7 +80,7 @@ function Genomics(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -95,7 +103,9 @@ function Genomics(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      cancel(params, options, callback) {
+      cancel(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -115,7 +125,7 @@ function Genomics(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * genomics.projects.operations.get
           * @desc Gets the latest state of a long-running operation.  Clients
@@ -130,7 +140,8 @@ function Genomics(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -150,7 +161,7 @@ function Genomics(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * genomics.projects.operations.list
           * @desc Lists operations that match the specified filter in the
@@ -167,7 +178,9 @@ function Genomics(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -187,7 +200,7 @@ function Genomics(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }
@@ -207,7 +220,9 @@ function Genomics(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    checkIn(params, options, callback) {
+    checkIn(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -227,7 +242,7 @@ function Genomics(options) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

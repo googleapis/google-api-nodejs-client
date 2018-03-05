@@ -11,7 +11,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {AxiosAdapter, AxiosProxyConfig, AxiosRequestConfig, AxiosTransformer, CancelToken} from 'axios';
+import {AxiosAdapter, AxiosProxyConfig, AxiosRequestConfig, AxiosResponse, AxiosTransformer, CancelToken} from 'axios';
 import {OAuth2Client} from 'google-auth-library/build/src/auth/oauth2client';
 import {OutgoingHttpHeaders} from 'http';
 import * as stream from 'stream';
@@ -74,6 +74,11 @@ export interface GlobalOptions {
   proxy?: AxiosProxyConfig|false;
   cancelToken?: CancelToken;
 }
+
+export interface MethodOptions extends AxiosRequestConfig { rootUrl?: string; }
+
+export type BodyResponseCallback<T> =
+    (err: Error|null, res?: AxiosResponse<T>|null) => void;
 
 export interface APIRequestMethodParams {
   // tslint:disable-next-line: no-any

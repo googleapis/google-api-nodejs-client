@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * DCM/DFA Reporting And Trafficking API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v3.0
  * @param {object=} options Options for Dfareporting
  */
-function Dfareporting(options) {
+function Dfareporting(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.accountActiveAdSummaries = {
@@ -48,7 +55,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -70,7 +78,7 @@ function Dfareporting(options) {
         pathParams: ['profileId', 'summaryAccountId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -88,7 +96,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -110,7 +119,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.accountPermissionGroups.list
         * @desc Retrieves the list of account permission groups.
@@ -123,7 +132,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -145,7 +156,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -163,7 +174,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -185,7 +197,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.accountPermissions.list
         * @desc Retrieves the list of account permissions.
@@ -198,7 +210,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -220,7 +234,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -238,7 +252,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -259,7 +274,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.accounts.list
         * @desc Retrieves the list of accounts, possibly filtered. This method
@@ -280,7 +295,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -301,7 +318,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.accounts.patch
         * @desc Updates an existing account. This method supports patch
@@ -317,7 +334,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -338,7 +357,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.accounts.update
         * @desc Updates an existing account.
@@ -352,7 +371,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -373,7 +394,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -391,7 +412,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -413,7 +435,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.accountUserProfiles.insert
         * @desc Inserts a new account user profile.
@@ -427,7 +449,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -449,7 +473,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.accountUserProfiles.list
         * @desc Retrieves a list of account user profiles, possibly filtered.
@@ -472,7 +496,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -494,7 +520,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.accountUserProfiles.patch
         * @desc Updates an existing account user profile. This method supports
@@ -510,7 +536,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -532,7 +560,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.accountUserProfiles.update
         * @desc Updates an existing account user profile.
@@ -546,7 +574,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -568,7 +598,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -586,7 +616,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -607,7 +638,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.ads.insert
         * @desc Inserts a new ad.
@@ -621,7 +652,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -641,7 +674,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.ads.list
         * @desc Retrieves a list of ads, possibly filtered. This method supports
@@ -678,7 +711,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -698,7 +733,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.ads.patch
         * @desc Updates an existing ad. This method supports patch semantics.
@@ -713,7 +748,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -733,7 +770,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.ads.update
         * @desc Updates an existing ad.
@@ -747,7 +784,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -767,7 +806,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -785,7 +824,9 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -807,7 +848,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.advertiserGroups.get
         * @desc Gets one advertiser group by ID.
@@ -821,7 +862,8 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -843,7 +885,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.advertiserGroups.insert
         * @desc Inserts a new advertiser group.
@@ -857,7 +899,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -879,7 +923,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.advertiserGroups.list
         * @desc Retrieves a list of advertiser groups, possibly filtered. This
@@ -899,7 +943,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -921,7 +967,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.advertiserGroups.patch
         * @desc Updates an existing advertiser group. This method supports patch
@@ -937,7 +983,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -959,7 +1007,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.advertiserGroups.update
         * @desc Updates an existing advertiser group.
@@ -973,7 +1021,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -995,7 +1045,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1013,7 +1063,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1035,7 +1086,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.advertiserLandingPages.insert
         * @desc Inserts a new landing page.
@@ -1049,7 +1100,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1071,7 +1124,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.advertiserLandingPages.list
         * @desc Retrieves a list of landing pages.
@@ -1093,7 +1146,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1115,7 +1170,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.advertiserLandingPages.patch
         * @desc Updates an existing landing page. This method supports patch
@@ -1131,7 +1186,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1153,7 +1210,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.advertiserLandingPages.update
         * @desc Updates an existing landing page.
@@ -1167,7 +1224,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1189,7 +1248,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1207,7 +1266,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1229,7 +1289,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.advertisers.insert
         * @desc Inserts a new advertiser.
@@ -1243,7 +1303,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1264,7 +1326,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.advertisers.list
         * @desc Retrieves a list of advertisers, possibly filtered. This method
@@ -1290,7 +1352,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1311,7 +1375,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.advertisers.patch
         * @desc Updates an existing advertiser. This method supports patch
@@ -1327,7 +1391,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1348,7 +1414,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.advertisers.update
         * @desc Updates an existing advertiser.
@@ -1362,7 +1428,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1383,7 +1451,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1400,7 +1468,9 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1421,7 +1491,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1442,7 +1512,9 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1464,7 +1536,7 @@ function Dfareporting(options) {
         pathParams: ['campaignId', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.campaignCreativeAssociations.list
         * @desc Retrieves the list of creative IDs associated with the specified
@@ -1482,7 +1554,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1504,7 +1578,7 @@ function Dfareporting(options) {
         pathParams: ['campaignId', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1522,7 +1596,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1544,7 +1619,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.campaigns.insert
         * @desc Inserts a new campaign.
@@ -1558,7 +1633,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1579,7 +1656,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.campaigns.list
         * @desc Retrieves a list of campaigns, possibly filtered. This method
@@ -1606,7 +1683,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1627,7 +1706,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.campaigns.patch
         * @desc Updates an existing campaign. This method supports patch
@@ -1643,7 +1722,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1664,7 +1745,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.campaigns.update
         * @desc Updates an existing campaign.
@@ -1678,7 +1759,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1699,7 +1782,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1717,7 +1800,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1739,7 +1823,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.changeLogs.list
         * @desc Retrieves a list of change logs. This method supports paging.
@@ -1762,7 +1846,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1783,7 +1869,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1804,7 +1890,9 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1825,7 +1913,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1843,7 +1931,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1865,7 +1954,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.connectionTypes.list
         * @desc Retrieves a list of connection types.
@@ -1878,7 +1967,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1900,7 +1991,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1918,7 +2009,9 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1940,7 +2033,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.contentCategories.get
         * @desc Gets one content category by ID.
@@ -1954,7 +2047,8 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1976,7 +2070,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.contentCategories.insert
         * @desc Inserts a new content category.
@@ -1990,7 +2084,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2012,7 +2108,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.contentCategories.list
         * @desc Retrieves a list of content categories, possibly filtered. This
@@ -2032,7 +2128,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2054,7 +2152,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.contentCategories.patch
         * @desc Updates an existing content category. This method supports patch
@@ -2070,7 +2168,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2092,7 +2192,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.contentCategories.update
         * @desc Updates an existing content category.
@@ -2106,7 +2206,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2128,7 +2230,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -2146,7 +2248,9 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    batchinsert(params, options, callback) {
+    batchinsert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2168,7 +2272,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.conversions.batchupdate
         * @desc Updates existing conversions.
@@ -2182,7 +2286,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    batchupdate(params, options, callback) {
+    batchupdate(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2204,7 +2310,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -2222,7 +2328,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2244,7 +2351,7 @@ function Dfareporting(options) {
         pathParams: ['dartId', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.countries.list
         * @desc Retrieves a list of countries.
@@ -2257,7 +2364,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2278,7 +2387,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -2300,7 +2409,9 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2326,7 +2437,7 @@ function Dfareporting(options) {
         pathParams: ['advertiserId', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -2344,7 +2455,9 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2366,7 +2479,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.creativeFields.get
         * @desc Gets one creative field by ID.
@@ -2380,7 +2493,8 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2402,7 +2516,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.creativeFields.insert
         * @desc Inserts a new creative field.
@@ -2416,7 +2530,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2438,7 +2554,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.creativeFields.list
         * @desc Retrieves a list of creative fields, possibly filtered. This
@@ -2459,7 +2575,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2481,7 +2599,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.creativeFields.patch
         * @desc Updates an existing creative field. This method supports patch
@@ -2497,7 +2615,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2519,7 +2639,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.creativeFields.update
         * @desc Updates an existing creative field.
@@ -2533,7 +2653,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2555,7 +2677,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -2574,7 +2696,9 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2596,7 +2720,7 @@ function Dfareporting(options) {
         pathParams: ['creativeFieldId', 'id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.creativeFieldValues.get
         * @desc Gets one creative field value by ID.
@@ -2611,7 +2735,8 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2633,7 +2758,7 @@ function Dfareporting(options) {
         pathParams: ['creativeFieldId', 'id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.creativeFieldValues.insert
         * @desc Inserts a new creative field value.
@@ -2648,7 +2773,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2670,7 +2797,7 @@ function Dfareporting(options) {
         pathParams: ['creativeFieldId', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.creativeFieldValues.list
         * @desc Retrieves a list of creative field values, possibly filtered.
@@ -2691,7 +2818,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2713,7 +2842,7 @@ function Dfareporting(options) {
         pathParams: ['creativeFieldId', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.creativeFieldValues.patch
         * @desc Updates an existing creative field value. This method supports
@@ -2730,7 +2859,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2752,7 +2883,7 @@ function Dfareporting(options) {
         pathParams: ['creativeFieldId', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.creativeFieldValues.update
         * @desc Updates an existing creative field value.
@@ -2767,7 +2898,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2789,7 +2922,7 @@ function Dfareporting(options) {
         pathParams: ['creativeFieldId', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -2807,7 +2940,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2829,7 +2963,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.creativeGroups.insert
         * @desc Inserts a new creative group.
@@ -2843,7 +2977,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2865,7 +3001,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.creativeGroups.list
         * @desc Retrieves a list of creative groups, possibly filtered. This
@@ -2887,7 +3023,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2909,7 +3047,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.creativeGroups.patch
         * @desc Updates an existing creative group. This method supports patch
@@ -2925,7 +3063,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2947,7 +3087,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.creativeGroups.update
         * @desc Updates an existing creative group.
@@ -2961,7 +3101,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2983,7 +3125,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -3001,7 +3143,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3023,7 +3166,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.creatives.insert
         * @desc Inserts a new creative.
@@ -3037,7 +3180,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3058,7 +3203,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.creatives.list
         * @desc Retrieves a list of creatives, possibly filtered. This method
@@ -3088,7 +3233,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3109,7 +3256,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.creatives.patch
         * @desc Updates an existing creative. This method supports patch
@@ -3125,7 +3272,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3146,7 +3295,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.creatives.update
         * @desc Updates an existing creative.
@@ -3160,7 +3309,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3181,7 +3332,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -3201,7 +3352,9 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    query(params, options, callback) {
+    query(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3223,7 +3376,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -3241,7 +3394,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3263,7 +3417,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.directorySiteContacts.list
         * @desc Retrieves a list of directory site contacts, possibly filtered.
@@ -3284,7 +3438,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3306,7 +3462,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -3324,7 +3480,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3346,7 +3503,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.directorySites.insert
         * @desc Inserts a new directory site.
@@ -3360,7 +3517,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3382,7 +3541,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.directorySites.list
         * @desc Retrieves a list of directory sites, possibly filtered. This
@@ -3409,7 +3568,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3431,7 +3592,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -3451,7 +3612,9 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3473,7 +3636,7 @@ function Dfareporting(options) {
         pathParams: ['objectId', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.dynamicTargetingKeys.insert
         * @desc Inserts a new dynamic targeting key. Keys must be created at the
@@ -3491,7 +3654,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3513,7 +3678,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.dynamicTargetingKeys.list
         * @desc Retrieves a list of dynamic targeting keys.
@@ -3530,7 +3695,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3552,7 +3719,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -3570,7 +3737,9 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3592,7 +3761,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.eventTags.get
         * @desc Gets one event tag by ID.
@@ -3606,7 +3775,8 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3628,7 +3798,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.eventTags.insert
         * @desc Inserts a new event tag.
@@ -3642,7 +3812,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3663,7 +3835,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.eventTags.list
         * @desc Retrieves a list of event tags, possibly filtered.
@@ -3686,7 +3858,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3707,7 +3881,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.eventTags.patch
         * @desc Updates an existing event tag. This method supports patch
@@ -3723,7 +3897,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3744,7 +3920,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.eventTags.update
         * @desc Updates an existing event tag.
@@ -3758,7 +3934,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3779,7 +3957,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -3798,7 +3976,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3819,7 +3998,7 @@ function Dfareporting(options) {
         pathParams: ['fileId', 'reportId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.files.list
         * @desc Lists files for a user profile.
@@ -3837,7 +4016,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3858,7 +4039,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -3876,7 +4057,9 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3898,7 +4081,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.floodlightActivities.generatetag
         * @desc Generates a tag for a floodlight activity.
@@ -3912,7 +4095,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    generatetag(params, options, callback) {
+    generatetag(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3934,7 +4119,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.floodlightActivities.get
         * @desc Gets one floodlight activity by ID.
@@ -3948,7 +4133,8 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3970,7 +4156,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.floodlightActivities.insert
         * @desc Inserts a new floodlight activity.
@@ -3984,7 +4170,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4006,7 +4194,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.floodlightActivities.list
         * @desc Retrieves a list of floodlight activities, possibly filtered.
@@ -4033,7 +4221,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4055,7 +4245,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.floodlightActivities.patch
         * @desc Updates an existing floodlight activity. This method supports
@@ -4071,7 +4261,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4093,7 +4285,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.floodlightActivities.update
         * @desc Updates an existing floodlight activity.
@@ -4107,7 +4299,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4129,7 +4323,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -4147,7 +4341,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4169,7 +4364,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.floodlightActivityGroups.insert
         * @desc Inserts a new floodlight activity group.
@@ -4183,7 +4378,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4205,7 +4402,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.floodlightActivityGroups.list
         * @desc Retrieves a list of floodlight activity groups, possibly
@@ -4228,7 +4425,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4250,7 +4449,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.floodlightActivityGroups.patch
         * @desc Updates an existing floodlight activity group. This method
@@ -4266,7 +4465,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4288,7 +4489,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.floodlightActivityGroups.update
         * @desc Updates an existing floodlight activity group.
@@ -4302,7 +4503,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4324,7 +4527,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -4342,7 +4545,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4364,7 +4568,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.floodlightConfigurations.list
         * @desc Retrieves a list of floodlight configurations, possibly
@@ -4379,7 +4583,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4401,7 +4607,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.floodlightConfigurations.patch
         * @desc Updates an existing floodlight configuration. This method
@@ -4417,7 +4623,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4439,7 +4647,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.floodlightConfigurations.update
         * @desc Updates an existing floodlight configuration.
@@ -4453,7 +4661,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4475,7 +4685,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -4494,7 +4704,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4516,7 +4727,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId', 'projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.inventoryItems.list
         * @desc Retrieves a list of inventory items, possibly filtered. This
@@ -4540,7 +4751,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4562,7 +4775,7 @@ function Dfareporting(options) {
         pathParams: ['profileId', 'projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -4579,7 +4792,9 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4600,7 +4815,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -4617,7 +4832,9 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4638,7 +4855,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -4656,7 +4873,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4678,7 +4896,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.mobileCarriers.list
         * @desc Retrieves a list of mobile carriers.
@@ -4691,7 +4909,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4713,7 +4933,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -4731,7 +4951,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4753,7 +4974,7 @@ function Dfareporting(options) {
         pathParams: ['dartId', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.operatingSystems.list
         * @desc Retrieves a list of operating systems.
@@ -4766,7 +4987,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4788,7 +5011,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -4806,7 +5029,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4828,7 +5052,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.operatingSystemVersions.list
         * @desc Retrieves a list of operating system versions.
@@ -4841,7 +5065,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4863,7 +5089,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -4882,7 +5108,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4904,7 +5131,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId', 'projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.orderDocuments.list
         * @desc Retrieves a list of order documents, possibly filtered. This
@@ -4928,7 +5155,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4950,7 +5179,7 @@ function Dfareporting(options) {
         pathParams: ['profileId', 'projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -4969,7 +5198,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4991,7 +5221,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId', 'projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.orders.list
         * @desc Retrieves a list of orders, possibly filtered. This method
@@ -5013,7 +5243,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5035,7 +5267,7 @@ function Dfareporting(options) {
         pathParams: ['profileId', 'projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -5053,7 +5285,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5075,7 +5308,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.placementGroups.insert
         * @desc Inserts a new placement group.
@@ -5089,7 +5322,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5111,7 +5346,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.placementGroups.list
         * @desc Retrieves a list of placement groups, possibly filtered. This
@@ -5144,7 +5379,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5166,7 +5403,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.placementGroups.patch
         * @desc Updates an existing placement group. This method supports patch
@@ -5182,7 +5419,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5204,7 +5443,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.placementGroups.update
         * @desc Updates an existing placement group.
@@ -5218,7 +5457,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5240,7 +5481,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -5260,7 +5501,9 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    generatetags(params, options, callback) {
+    generatetags(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5282,7 +5525,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.placements.get
         * @desc Gets one placement by ID.
@@ -5296,7 +5539,8 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5318,7 +5562,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.placements.insert
         * @desc Inserts a new placement.
@@ -5332,7 +5576,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5353,7 +5599,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.placements.list
         * @desc Retrieves a list of placements, possibly filtered. This method
@@ -5389,7 +5635,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5410,7 +5658,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.placements.patch
         * @desc Updates an existing placement. This method supports patch
@@ -5426,7 +5674,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5447,7 +5697,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.placements.update
         * @desc Updates an existing placement.
@@ -5461,7 +5711,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5482,7 +5734,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -5500,7 +5752,9 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5522,7 +5776,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.placementStrategies.get
         * @desc Gets one placement strategy by ID.
@@ -5536,7 +5790,8 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5558,7 +5813,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.placementStrategies.insert
         * @desc Inserts a new placement strategy.
@@ -5572,7 +5827,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5594,7 +5851,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.placementStrategies.list
         * @desc Retrieves a list of placement strategies, possibly filtered.
@@ -5614,7 +5871,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5636,7 +5895,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.placementStrategies.patch
         * @desc Updates an existing placement strategy. This method supports
@@ -5652,7 +5911,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5674,7 +5935,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.placementStrategies.update
         * @desc Updates an existing placement strategy.
@@ -5688,7 +5949,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5710,7 +5973,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -5728,7 +5991,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5750,7 +6014,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.platformTypes.list
         * @desc Retrieves a list of platform types.
@@ -5763,7 +6027,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5784,7 +6050,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -5802,7 +6068,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5824,7 +6091,7 @@ function Dfareporting(options) {
         pathParams: ['code', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.postalCodes.list
         * @desc Retrieves a list of postal codes.
@@ -5837,7 +6104,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5858,7 +6127,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -5876,7 +6145,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5897,7 +6167,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.projects.list
         * @desc Retrieves a list of projects, possibly filtered. This method
@@ -5918,7 +6188,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5939,7 +6211,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -5956,7 +6228,9 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5977,7 +6251,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -5995,7 +6269,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6017,7 +6292,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.remarketingLists.insert
         * @desc Inserts a new remarketing list.
@@ -6031,7 +6306,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6053,7 +6330,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.remarketingLists.list
         * @desc Retrieves a list of remarketing lists, possibly filtered. This
@@ -6075,7 +6352,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6097,7 +6376,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.remarketingLists.patch
         * @desc Updates an existing remarketing list. This method supports patch
@@ -6113,7 +6392,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6135,7 +6416,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.remarketingLists.update
         * @desc Updates an existing remarketing list.
@@ -6149,7 +6430,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6171,7 +6454,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -6189,7 +6472,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6211,7 +6495,7 @@ function Dfareporting(options) {
         pathParams: ['profileId', 'remarketingListId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.remarketingListShares.patch
         * @desc Updates an existing remarketing list share. This method supports
@@ -6227,7 +6511,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6249,7 +6535,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.remarketingListShares.update
         * @desc Updates an existing remarketing list share.
@@ -6263,7 +6549,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6285,7 +6573,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -6303,7 +6591,9 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6325,7 +6615,7 @@ function Dfareporting(options) {
         pathParams: ['profileId', 'reportId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.reports.get
         * @desc Retrieves a report by its ID.
@@ -6339,7 +6629,8 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6361,7 +6652,7 @@ function Dfareporting(options) {
         pathParams: ['profileId', 'reportId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.reports.insert
         * @desc Creates a report.
@@ -6375,7 +6666,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6396,7 +6689,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.reports.list
         * @desc Retrieves list of reports.
@@ -6414,7 +6707,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6435,7 +6730,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.reports.patch
         * @desc Updates a report. This method supports patch semantics.
@@ -6450,7 +6745,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6472,7 +6769,7 @@ function Dfareporting(options) {
         pathParams: ['profileId', 'reportId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.reports.run
         * @desc Runs a report.
@@ -6487,7 +6784,8 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    run(params, options, callback) {
+    run(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6509,7 +6807,7 @@ function Dfareporting(options) {
         pathParams: ['profileId', 'reportId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.reports.update
         * @desc Updates a report.
@@ -6524,7 +6822,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6546,7 +6846,7 @@ function Dfareporting(options) {
         pathParams: ['profileId', 'reportId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     },
     compatibleFields: {
       /**
@@ -6564,7 +6864,9 @@ function Dfareporting(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      query(params, options, callback) {
+      query(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -6586,7 +6888,7 @@ function Dfareporting(options) {
           pathParams: ['profileId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -6605,7 +6907,8 @@ function Dfareporting(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -6627,7 +6930,7 @@ function Dfareporting(options) {
           pathParams: ['fileId', 'profileId', 'reportId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * dfareporting.reports.files.list
           * @desc Lists files for a report.
@@ -6645,7 +6948,9 @@ function Dfareporting(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -6667,7 +6972,7 @@ function Dfareporting(options) {
           pathParams: ['profileId', 'reportId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }
@@ -6686,7 +6991,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6707,7 +7013,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.sites.insert
         * @desc Inserts a new site.
@@ -6721,7 +7027,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6742,7 +7050,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.sites.list
         * @desc Retrieves a list of sites, possibly filtered. This method
@@ -6771,7 +7079,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6792,7 +7102,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.sites.patch
         * @desc Updates an existing site. This method supports patch semantics.
@@ -6807,7 +7117,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6828,7 +7140,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.sites.update
         * @desc Updates an existing site.
@@ -6842,7 +7154,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6863,7 +7177,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -6881,7 +7195,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6902,7 +7217,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.sizes.insert
         * @desc Inserts a new size.
@@ -6916,7 +7231,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6937,7 +7254,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.sizes.list
         * @desc Retrieves a list of sizes, possibly filtered.
@@ -6954,7 +7271,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6975,7 +7294,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -6993,7 +7312,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7015,7 +7335,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.subaccounts.insert
         * @desc Inserts a new subaccount.
@@ -7029,7 +7349,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7050,7 +7372,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.subaccounts.list
         * @desc Gets a list of subaccounts, possibly filtered. This method
@@ -7070,7 +7392,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7091,7 +7415,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.subaccounts.patch
         * @desc Updates an existing subaccount. This method supports patch
@@ -7107,7 +7431,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7128,7 +7454,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.subaccounts.update
         * @desc Updates an existing subaccount.
@@ -7142,7 +7468,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7163,7 +7491,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -7181,7 +7509,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7203,7 +7532,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.targetableRemarketingLists.list
         * @desc Retrieves a list of targetable remarketing lists, possibly
@@ -7224,7 +7553,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7246,7 +7577,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -7264,7 +7595,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7286,7 +7618,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.targetingTemplates.insert
         * @desc Inserts a new targeting template.
@@ -7300,7 +7632,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7322,7 +7656,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.targetingTemplates.list
         * @desc Retrieves a list of targeting templates, optionally filtered.
@@ -7343,7 +7677,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7365,7 +7701,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.targetingTemplates.patch
         * @desc Updates an existing targeting template. This method supports
@@ -7381,7 +7717,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7403,7 +7741,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.targetingTemplates.update
         * @desc Updates an existing targeting template.
@@ -7417,7 +7755,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7439,7 +7779,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -7456,7 +7796,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7476,7 +7817,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.userProfiles.list
         * @desc Retrieves list of user profiles for a user.
@@ -7488,7 +7829,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7508,7 +7851,7 @@ function Dfareporting(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -7526,7 +7869,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7548,7 +7892,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.userRolePermissionGroups.list
         * @desc Gets a list of all supported user role permission groups.
@@ -7561,7 +7905,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7583,7 +7929,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -7601,7 +7947,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7623,7 +7970,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.userRolePermissions.list
         * @desc Gets a list of user role permissions, possibly filtered.
@@ -7637,7 +7984,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7659,7 +8008,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -7677,7 +8026,9 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7699,7 +8050,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.userRoles.get
         * @desc Gets one user role by ID.
@@ -7713,7 +8064,8 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7735,7 +8087,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.userRoles.insert
         * @desc Inserts a new user role.
@@ -7749,7 +8101,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7770,7 +8124,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.userRoles.list
         * @desc Retrieves a list of user roles, possibly filtered. This method
@@ -7792,7 +8146,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7813,7 +8169,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.userRoles.patch
         * @desc Updates an existing user role. This method supports patch
@@ -7829,7 +8185,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7850,7 +8208,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.userRoles.update
         * @desc Updates an existing user role.
@@ -7864,7 +8222,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7885,7 +8245,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -7903,7 +8263,8 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7925,7 +8286,7 @@ function Dfareporting(options) {
         pathParams: ['id', 'profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * dfareporting.videoFormats.list
         * @desc Lists available video formats.
@@ -7938,7 +8299,9 @@ function Dfareporting(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7959,7 +8322,7 @@ function Dfareporting(options) {
         pathParams: ['profileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

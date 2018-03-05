@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Classroom API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Classroom
  */
-function Classroom(options) {
+function Classroom(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.courses =
@@ -56,7 +63,9 @@ function Classroom(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create(params, options, callback) {
+        create(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -76,7 +85,7 @@ function Classroom(options) {
             pathParams: [],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * classroom.courses.delete
             * @desc Deletes a course.  This method returns the following error
@@ -92,7 +101,9 @@ function Classroom(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -113,7 +124,7 @@ function Classroom(options) {
             pathParams: ['id'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * classroom.courses.get
             * @desc Returns a course.  This method returns the following error
@@ -129,7 +140,8 @@ function Classroom(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -150,7 +162,7 @@ function Classroom(options) {
             pathParams: ['id'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * classroom.courses.list
             * @desc Returns a list of courses that the requesting user is
@@ -174,7 +186,9 @@ function Classroom(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -194,7 +208,7 @@ function Classroom(options) {
             pathParams: [],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * classroom.courses.patch
             * @desc Updates one or more fields in a course.  This method returns
@@ -216,7 +230,9 @@ function Classroom(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        patch(params, options, callback) {
+        patch(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -237,7 +253,7 @@ function Classroom(options) {
             pathParams: ['id'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * classroom.courses.update
             * @desc Updates a course.  This method returns the following error
@@ -256,7 +272,9 @@ function Classroom(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        update(params, options, callback) {
+        update(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -277,7 +295,7 @@ function Classroom(options) {
             pathParams: ['id'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         },
         aliases: {
           /**
@@ -300,7 +318,9 @@ function Classroom(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          create(params, options, callback) {
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -321,7 +341,7 @@ function Classroom(options) {
               pathParams: ['courseId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * classroom.courses.aliases.delete
               * @desc Deletes an alias of a course.  This method returns the
@@ -341,7 +361,9 @@ function Classroom(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          delete (params, options, callback) {
+          delete (
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -362,7 +384,7 @@ function Classroom(options) {
               pathParams: ['alias', 'courseId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * classroom.courses.aliases.list
               * @desc Returns a list of aliases for a course.  This method
@@ -380,7 +402,9 @@ function Classroom(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -401,7 +425,7 @@ function Classroom(options) {
               pathParams: ['courseId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }
 
         },
@@ -426,7 +450,9 @@ function Classroom(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          create(params, options, callback) {
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -447,7 +473,7 @@ function Classroom(options) {
               pathParams: ['courseId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * classroom.courses.announcements.delete
               * @desc Deletes an announcement.  This request must be made by the
@@ -471,7 +497,9 @@ function Classroom(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          delete (params, options, callback) {
+          delete (
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -492,7 +520,7 @@ function Classroom(options) {
               pathParams: ['courseId', 'id'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * classroom.courses.announcements.get
               * @desc Returns an announcement.  This method returns the
@@ -511,7 +539,8 @@ function Classroom(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -532,7 +561,7 @@ function Classroom(options) {
               pathParams: ['courseId', 'id'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * classroom.courses.announcements.list
               * @desc Returns a list of announcements that the requester is
@@ -556,7 +585,9 @@ function Classroom(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -577,7 +608,7 @@ function Classroom(options) {
               pathParams: ['courseId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * classroom.courses.announcements.modifyAssignees
               * @desc Modifies assignee mode and options of an announcement.
@@ -599,7 +630,9 @@ function Classroom(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          modifyAssignees(params, options, callback) {
+          modifyAssignees(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -622,7 +655,7 @@ function Classroom(options) {
               pathParams: ['courseId', 'id'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * classroom.courses.announcements.patch
               * @desc Updates one or more fields of an announcement.  This
@@ -645,7 +678,9 @@ function Classroom(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          patch(params, options, callback) {
+          patch(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -666,7 +701,7 @@ function Classroom(options) {
               pathParams: ['courseId', 'id'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }
 
         },
@@ -697,7 +732,9 @@ function Classroom(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          create(params, options, callback) {
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -718,7 +755,7 @@ function Classroom(options) {
               pathParams: ['courseId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * classroom.courses.courseWork.delete
               * @desc Deletes a course work.  This request must be made by the
@@ -742,7 +779,9 @@ function Classroom(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          delete (params, options, callback) {
+          delete (
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -763,7 +802,7 @@ function Classroom(options) {
               pathParams: ['courseId', 'id'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * classroom.courses.courseWork.get
               * @desc Returns course work.  This method returns the following
@@ -782,7 +821,8 @@ function Classroom(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -803,7 +843,7 @@ function Classroom(options) {
               pathParams: ['courseId', 'id'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * classroom.courses.courseWork.list
               * @desc Returns a list of course work that the requester is
@@ -827,7 +867,9 @@ function Classroom(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -848,7 +890,7 @@ function Classroom(options) {
               pathParams: ['courseId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * classroom.courses.courseWork.modifyAssignees
               * @desc Modifies assignee mode and options of a coursework.  Only
@@ -869,7 +911,9 @@ function Classroom(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          modifyAssignees(params, options, callback) {
+          modifyAssignees(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -892,7 +936,7 @@ function Classroom(options) {
               pathParams: ['courseId', 'id'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * classroom.courses.courseWork.patch
               * @desc Updates one or more fields of a course work.  See
@@ -921,7 +965,9 @@ function Classroom(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          patch(params, options, callback) {
+          patch(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -942,7 +988,7 @@ function Classroom(options) {
               pathParams: ['courseId', 'id'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           },
           studentSubmissions:
               {
@@ -965,7 +1011,9 @@ function Classroom(options) {
                  * @param {callback} callback The callback that handles the response.
                  * @return {object} Request object
                  */
-                get(params, options, callback) {
+                get(params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -988,7 +1036,7 @@ function Classroom(options) {
                     pathParams: ['courseId', 'courseWorkId', 'id'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * classroom.courses.courseWork.studentSubmissions.list
                     * @desc Returns a list of student submissions that the
@@ -1019,7 +1067,10 @@ function Classroom(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                list(params, options, callback) {
+                list(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1042,7 +1093,7 @@ function Classroom(options) {
                     pathParams: ['courseId', 'courseWorkId'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * classroom.courses.courseWork.studentSubmissions.modifyAttachments
                     * @desc Modifies attachments of student submission.
@@ -1072,7 +1123,10 @@ function Classroom(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                modifyAttachments(params, options, callback) {
+                modifyAttachments(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1095,7 +1149,7 @@ function Classroom(options) {
                     pathParams: ['courseId', 'courseWorkId', 'id'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * classroom.courses.courseWork.studentSubmissions.patch
                     * @desc Updates one or more fields of a student submission.
@@ -1126,7 +1180,10 @@ function Classroom(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                patch(params, options, callback) {
+                patch(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1149,7 +1206,7 @@ function Classroom(options) {
                     pathParams: ['courseId', 'courseWorkId', 'id'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * classroom.courses.courseWork.studentSubmissions.reclaim
                     * @desc Reclaims a student submission on behalf of the
@@ -1183,7 +1240,10 @@ function Classroom(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                reclaim(params, options, callback) {
+                reclaim(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1206,7 +1266,7 @@ function Classroom(options) {
                     pathParams: ['courseId', 'courseWorkId', 'id'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * classroom.courses.courseWork.studentSubmissions.return
                     * @desc Returns a student submission.  Returning a student
@@ -1240,7 +1300,10 @@ function Classroom(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                return (params, options, callback) {
+                return (
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1263,7 +1326,7 @@ function Classroom(options) {
                     pathParams: ['courseId', 'courseWorkId', 'id'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * classroom.courses.courseWork.studentSubmissions.turnIn
                     * @desc Turns in a student submission.  Turning in a student
@@ -1294,7 +1357,10 @@ function Classroom(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                turnIn(params, options, callback) {
+                turnIn(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1317,7 +1383,7 @@ function Classroom(options) {
                     pathParams: ['courseId', 'courseWorkId', 'id'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }
 
               }
@@ -1345,7 +1411,9 @@ function Classroom(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          create(params, options, callback) {
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1366,7 +1434,7 @@ function Classroom(options) {
               pathParams: ['courseId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * classroom.courses.students.delete
               * @desc Deletes a student of a course.  This method returns the
@@ -1384,7 +1452,9 @@ function Classroom(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          delete (params, options, callback) {
+          delete (
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1405,7 +1475,7 @@ function Classroom(options) {
               pathParams: ['courseId', 'userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * classroom.courses.students.get
               * @desc Returns a student of a course.  This method returns the
@@ -1423,7 +1493,8 @@ function Classroom(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1444,7 +1515,7 @@ function Classroom(options) {
               pathParams: ['courseId', 'userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * classroom.courses.students.list
               * @desc Returns a list of students of this course that the
@@ -1462,7 +1533,9 @@ function Classroom(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1483,7 +1556,7 @@ function Classroom(options) {
               pathParams: ['courseId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }
 
         },
@@ -1510,7 +1583,9 @@ function Classroom(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          create(params, options, callback) {
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1531,7 +1606,7 @@ function Classroom(options) {
               pathParams: ['courseId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * classroom.courses.teachers.delete
               * @desc Deletes a teacher of a course.  This method returns the
@@ -1551,7 +1626,9 @@ function Classroom(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          delete (params, options, callback) {
+          delete (
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1572,7 +1649,7 @@ function Classroom(options) {
               pathParams: ['courseId', 'userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * classroom.courses.teachers.get
               * @desc Returns a teacher of a course.  This method returns the
@@ -1590,7 +1667,8 @@ function Classroom(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1611,7 +1689,7 @@ function Classroom(options) {
               pathParams: ['courseId', 'userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * classroom.courses.teachers.list
               * @desc Returns a list of teachers of this course that the
@@ -1629,7 +1707,9 @@ function Classroom(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1650,7 +1730,7 @@ function Classroom(options) {
               pathParams: ['courseId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }
 
         },
@@ -1672,7 +1752,8 @@ function Classroom(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1693,7 +1774,7 @@ function Classroom(options) {
               pathParams: ['courseId', 'id'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * classroom.courses.topics.list
               * @desc Returns the list of topics that the requester is permitted
@@ -1713,7 +1794,9 @@ function Classroom(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1734,7 +1817,7 @@ function Classroom(options) {
               pathParams: ['courseId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }
 
         }
@@ -1760,7 +1843,9 @@ function Classroom(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    accept(params, options, callback) {
+    accept(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1780,7 +1865,7 @@ function Classroom(options) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * classroom.invitations.create
         * @desc Creates an invitation. Only one invitation for a user and course
@@ -1801,7 +1886,9 @@ function Classroom(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    create(params, options, callback) {
+    create(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1820,7 +1907,7 @@ function Classroom(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * classroom.invitations.delete
         * @desc Deletes an invitation.  This method returns the following error
@@ -1836,7 +1923,9 @@ function Classroom(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1856,7 +1945,7 @@ function Classroom(options) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * classroom.invitations.get
         * @desc Returns an invitation.  This method returns the following error
@@ -1872,7 +1961,8 @@ function Classroom(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1892,7 +1982,7 @@ function Classroom(options) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * classroom.invitations.list
         * @desc Returns a list of invitations that the requesting user is
@@ -1912,7 +2002,9 @@ function Classroom(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1931,7 +2023,7 @@ function Classroom(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1967,7 +2059,9 @@ function Classroom(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params, options, callback) {
+    create(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1987,7 +2081,7 @@ function Classroom(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * classroom.registrations.delete
         * @desc Deletes a `Registration`, causing Classroom to stop sending
@@ -2001,7 +2095,9 @@ function Classroom(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2021,7 +2117,7 @@ function Classroom(options) {
         pathParams: ['registrationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -2041,7 +2137,8 @@ function Classroom(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2061,7 +2158,7 @@ function Classroom(options) {
         pathParams: ['userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     },
     guardianInvitations: {
       /**
@@ -2101,7 +2198,9 @@ function Classroom(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create(params, options, callback) {
+      create(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -2122,7 +2221,7 @@ function Classroom(options) {
           pathParams: ['studentId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * classroom.userProfiles.guardianInvitations.get
           * @desc Returns a specific guardian invitation.  This method returns
@@ -2146,7 +2245,8 @@ function Classroom(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -2168,7 +2268,7 @@ function Classroom(options) {
           pathParams: ['invitationId', 'studentId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * classroom.userProfiles.guardianInvitations.list
           * @desc Returns a list of guardian invitations that the requesting
@@ -2198,7 +2298,9 @@ function Classroom(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -2219,7 +2321,7 @@ function Classroom(options) {
           pathParams: ['studentId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * classroom.userProfiles.guardianInvitations.patch
           * @desc Modifies a guardian invitation.  Currently, the only valid
@@ -2249,7 +2351,9 @@ function Classroom(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      patch(params, options, callback) {
+      patch(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -2271,7 +2375,7 @@ function Classroom(options) {
           pathParams: ['invitationId', 'studentId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -2301,7 +2405,9 @@ function Classroom(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete (params, options, callback) {
+      delete (
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -2322,7 +2428,7 @@ function Classroom(options) {
           pathParams: ['guardianId', 'studentId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * classroom.userProfiles.guardians.get
           * @desc Returns a specific guardian.  This method returns the
@@ -2347,7 +2453,8 @@ function Classroom(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -2368,7 +2475,7 @@ function Classroom(options) {
           pathParams: ['guardianId', 'studentId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * classroom.userProfiles.guardians.list
           * @desc Returns a list of guardians that the requesting user is
@@ -2400,7 +2507,9 @@ function Classroom(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -2420,7 +2529,7 @@ function Classroom(options) {
           pathParams: ['studentId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }

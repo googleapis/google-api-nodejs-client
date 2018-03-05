@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Search Console API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v3
  * @param {object=} options Options for Webmasters
  */
-function Webmasters(options) {
+function Webmasters(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.searchanalytics = {
@@ -53,7 +60,9 @@ function Webmasters(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    query(params, options, callback) {
+    query(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -74,7 +83,7 @@ function Webmasters(options) {
         pathParams: ['siteUrl'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -92,7 +101,9 @@ function Webmasters(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -113,7 +124,7 @@ function Webmasters(options) {
         pathParams: ['feedpath', 'siteUrl'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * webmasters.sitemaps.get
         * @desc Retrieves information about a specific sitemap.
@@ -127,7 +138,8 @@ function Webmasters(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -148,7 +160,7 @@ function Webmasters(options) {
         pathParams: ['feedpath', 'siteUrl'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * webmasters.sitemaps.list
         * @desc Lists the sitemaps-entries submitted for this site, or included
@@ -164,7 +176,9 @@ function Webmasters(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -184,7 +198,7 @@ function Webmasters(options) {
         pathParams: ['siteUrl'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * webmasters.sitemaps.submit
         * @desc Submits a sitemap for a site.
@@ -198,7 +212,9 @@ function Webmasters(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    submit(params, options, callback) {
+    submit(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -219,7 +235,7 @@ function Webmasters(options) {
         pathParams: ['feedpath', 'siteUrl'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -236,7 +252,8 @@ function Webmasters(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    add(params, options, callback) {
+    add(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -256,7 +273,7 @@ function Webmasters(options) {
         pathParams: ['siteUrl'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * webmasters.sites.delete
         * @desc Removes a site from the set of the user's Search Console sites.
@@ -269,7 +286,9 @@ function Webmasters(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -289,7 +308,7 @@ function Webmasters(options) {
         pathParams: ['siteUrl'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * webmasters.sites.get
         * @desc Retrieves information about specific site.
@@ -302,7 +321,8 @@ function Webmasters(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -322,7 +342,7 @@ function Webmasters(options) {
         pathParams: ['siteUrl'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * webmasters.sites.list
         * @desc Lists the user's Search Console sites.
@@ -334,7 +354,9 @@ function Webmasters(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -354,7 +376,7 @@ function Webmasters(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -375,7 +397,9 @@ function Webmasters(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    query(params, options, callback) {
+    query(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -396,7 +420,7 @@ function Webmasters(options) {
         pathParams: ['siteUrl'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -416,7 +440,8 @@ function Webmasters(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -438,7 +463,7 @@ function Webmasters(options) {
         pathParams: ['siteUrl', 'url'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * webmasters.urlcrawlerrorssamples.list
         * @desc Lists a site's sample URLs for the specified crawl error
@@ -454,7 +479,9 @@ function Webmasters(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -475,7 +502,7 @@ function Webmasters(options) {
         pathParams: ['siteUrl'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * webmasters.urlcrawlerrorssamples.markAsFixed
         * @desc Marks the provided site's sample URL as fixed, and removes it
@@ -492,7 +519,9 @@ function Webmasters(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    markAsFixed(params, options, callback) {
+    markAsFixed(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -514,7 +543,7 @@ function Webmasters(options) {
         pathParams: ['siteUrl', 'url'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

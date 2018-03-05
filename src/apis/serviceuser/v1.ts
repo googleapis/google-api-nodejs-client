@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Service User API
@@ -33,7 +40,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Serviceuser
  */
-function Serviceuser(options) {
+function Serviceuser(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.projects = {
@@ -53,7 +60,9 @@ function Serviceuser(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      disable(params, options, callback) {
+      disable(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -74,7 +83,7 @@ function Serviceuser(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * serviceuser.projects.services.enable
           * @desc Enable a service so it can be used with a project. See [Cloud
@@ -90,7 +99,9 @@ function Serviceuser(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      enable(params, options, callback) {
+      enable(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -111,7 +122,7 @@ function Serviceuser(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * serviceuser.projects.services.list
           * @desc List enabled services for the specified consumer.
@@ -126,7 +137,9 @@ function Serviceuser(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -147,7 +160,7 @@ function Serviceuser(options) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }
@@ -169,7 +182,9 @@ function Serviceuser(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search(params, options, callback) {
+    search(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -189,7 +204,7 @@ function Serviceuser(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

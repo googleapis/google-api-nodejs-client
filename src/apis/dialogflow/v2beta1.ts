@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Dialogflow API
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2beta1
  * @param {object=} options Options for Dialogflow
  */
-function Dialogflow(options) {
+function Dialogflow(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.projects = {
@@ -48,7 +55,9 @@ function Dialogflow(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getAgent(params, options, callback) {
+    getAgent(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -68,7 +77,7 @@ function Dialogflow(options) {
         pathParams: ['parent'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     },
     agent:
         {
@@ -87,7 +96,9 @@ function Dialogflow(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          export(params, options, callback) {
+          export(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -108,7 +119,7 @@ function Dialogflow(options) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * dialogflow.projects.agent.import
               * @desc Imports the specified agent from a ZIP file.  Uploads new
@@ -127,7 +138,9 @@ function Dialogflow(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          import(params, options, callback) {
+          import(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -148,7 +161,7 @@ function Dialogflow(options) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * dialogflow.projects.agent.restore
               * @desc Restores the specified agent from a ZIP file.  Replaces
@@ -166,7 +179,9 @@ function Dialogflow(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          restore(params, options, callback) {
+          restore(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -187,7 +202,7 @@ function Dialogflow(options) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * dialogflow.projects.agent.search
               * @desc Returns the list of agents.  Since there is at most one
@@ -207,7 +222,9 @@ function Dialogflow(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          search(params, options, callback) {
+          search(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -228,7 +245,7 @@ function Dialogflow(options) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * dialogflow.projects.agent.train
               * @desc Trains the specified agent.   Operation <response:
@@ -244,7 +261,9 @@ function Dialogflow(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          train(params, options, callback) {
+          train(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -265,7 +284,7 @@ function Dialogflow(options) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           },
           entityTypes: {
             /**
@@ -283,7 +302,9 @@ function Dialogflow(options) {
              * @param {callback} callback The callback that handles the response.
              * @return {object} Request object
              */
-            batchDelete(params, options, callback) {
+            batchDelete(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -305,7 +326,7 @@ function Dialogflow(options) {
                 pathParams: ['parent'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * dialogflow.projects.agent.entityTypes.batchUpdate
                 * @desc Updates/Creates multiple entity types in the specified
@@ -321,7 +342,9 @@ function Dialogflow(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            batchUpdate(params, options, callback) {
+            batchUpdate(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -343,7 +366,7 @@ function Dialogflow(options) {
                 pathParams: ['parent'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * dialogflow.projects.agent.entityTypes.create
                 * @desc Creates an entity type in the specified agent.
@@ -358,7 +381,9 @@ function Dialogflow(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            create(params, options, callback) {
+            create(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -379,7 +404,7 @@ function Dialogflow(options) {
                 pathParams: ['parent'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * dialogflow.projects.agent.entityTypes.delete
                 * @desc Deletes the specified entity type.
@@ -392,7 +417,9 @@ function Dialogflow(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            delete (params, options, callback) {
+            delete (
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -413,7 +440,7 @@ function Dialogflow(options) {
                 pathParams: ['name'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * dialogflow.projects.agent.entityTypes.get
                 * @desc Retrieves the specified entity type.
@@ -427,7 +454,8 @@ function Dialogflow(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            get(params, options, callback) {
+            get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -448,7 +476,7 @@ function Dialogflow(options) {
                 pathParams: ['name'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * dialogflow.projects.agent.entityTypes.list
                 * @desc Returns the list of all entity types in the specified
@@ -465,7 +493,9 @@ function Dialogflow(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            list(params, options, callback) {
+            list(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -486,7 +516,7 @@ function Dialogflow(options) {
                 pathParams: ['parent'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * dialogflow.projects.agent.entityTypes.patch
                 * @desc Updates the specified entity type.
@@ -502,7 +532,9 @@ function Dialogflow(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            patch(params, options, callback) {
+            patch(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -523,7 +555,7 @@ function Dialogflow(options) {
                 pathParams: ['name'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             },
             entities: {
               /**
@@ -542,7 +574,9 @@ function Dialogflow(options) {
                * @param {callback} callback The callback that handles the response.
                * @return {object} Request object
                */
-              batchCreate(params, options, callback) {
+              batchCreate(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -564,7 +598,7 @@ function Dialogflow(options) {
                   pathParams: ['parent'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * dialogflow.projects.agent.entityTypes.entities.batchDelete
                   * @desc Deletes entities in the specified entity type.
@@ -581,7 +615,9 @@ function Dialogflow(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              batchDelete(params, options, callback) {
+              batchDelete(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -603,7 +639,7 @@ function Dialogflow(options) {
                   pathParams: ['parent'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * dialogflow.projects.agent.entityTypes.entities.batchUpdate
                   * @desc Updates entities in the specified entity type
@@ -621,7 +657,9 @@ function Dialogflow(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              batchUpdate(params, options, callback) {
+              batchUpdate(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -643,7 +681,7 @@ function Dialogflow(options) {
                   pathParams: ['parent'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }
 
             }
@@ -663,7 +701,9 @@ function Dialogflow(options) {
              * @param {callback} callback The callback that handles the response.
              * @return {object} Request object
              */
-            batchDelete(params, options, callback) {
+            batchDelete(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -684,7 +724,7 @@ function Dialogflow(options) {
                 pathParams: ['parent'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * dialogflow.projects.agent.intents.batchUpdate
                 * @desc Updates/Creates multiple intents in the specified agent.
@@ -699,7 +739,9 @@ function Dialogflow(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            batchUpdate(params, options, callback) {
+            batchUpdate(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -720,7 +762,7 @@ function Dialogflow(options) {
                 pathParams: ['parent'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * dialogflow.projects.agent.intents.create
                 * @desc Creates an intent in the specified agent.
@@ -736,7 +778,9 @@ function Dialogflow(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            create(params, options, callback) {
+            create(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -757,7 +801,7 @@ function Dialogflow(options) {
                 pathParams: ['parent'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * dialogflow.projects.agent.intents.delete
                 * @desc Deletes the specified intent.
@@ -770,7 +814,9 @@ function Dialogflow(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            delete (params, options, callback) {
+            delete (
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -791,7 +837,7 @@ function Dialogflow(options) {
                 pathParams: ['name'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * dialogflow.projects.agent.intents.get
                 * @desc Retrieves the specified intent.
@@ -806,7 +852,8 @@ function Dialogflow(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            get(params, options, callback) {
+            get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -827,7 +874,7 @@ function Dialogflow(options) {
                 pathParams: ['name'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * dialogflow.projects.agent.intents.list
                 * @desc Returns the list of all intents in the specified agent.
@@ -844,7 +891,9 @@ function Dialogflow(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            list(params, options, callback) {
+            list(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -865,7 +914,7 @@ function Dialogflow(options) {
                 pathParams: ['parent'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * dialogflow.projects.agent.intents.patch
                 * @desc Updates the specified intent.
@@ -882,7 +931,9 @@ function Dialogflow(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            patch(params, options, callback) {
+            patch(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -903,7 +954,7 @@ function Dialogflow(options) {
                 pathParams: ['name'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }
 
           },
@@ -922,7 +973,9 @@ function Dialogflow(options) {
                * @param {callback} callback The callback that handles the response.
                * @return {object} Request object
                */
-              deleteContexts(params, options, callback) {
+              deleteContexts(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -943,7 +996,7 @@ function Dialogflow(options) {
                   pathParams: ['parent'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * dialogflow.projects.agent.runtimes.sessions.detectIntent
                   * @desc Processes a natural language query and returns
@@ -962,7 +1015,9 @@ function Dialogflow(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              detectIntent(params, options, callback) {
+              detectIntent(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -983,7 +1038,7 @@ function Dialogflow(options) {
                   pathParams: ['session'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               },
               contexts: {
                 /**
@@ -1000,7 +1055,10 @@ function Dialogflow(options) {
                  * @param {callback} callback The callback that handles the response.
                  * @return {object} Request object
                  */
-                create(params, options, callback) {
+                create(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1021,7 +1079,7 @@ function Dialogflow(options) {
                     pathParams: ['parent'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * dialogflow.projects.agent.runtimes.sessions.contexts.delete
                     * @desc Deletes the specified context.
@@ -1035,7 +1093,10 @@ function Dialogflow(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                delete (params, options, callback) {
+                delete (
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1056,7 +1117,7 @@ function Dialogflow(options) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * dialogflow.projects.agent.runtimes.sessions.contexts.get
                     * @desc Retrieves the specified context.
@@ -1070,7 +1131,9 @@ function Dialogflow(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                get(params, options, callback) {
+                get(params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1091,7 +1154,7 @@ function Dialogflow(options) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * dialogflow.projects.agent.runtimes.sessions.contexts.list
                     * @desc Returns the list of all contexts in the specified
@@ -1108,7 +1171,10 @@ function Dialogflow(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                list(params, options, callback) {
+                list(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1129,7 +1195,7 @@ function Dialogflow(options) {
                     pathParams: ['parent'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * dialogflow.projects.agent.runtimes.sessions.contexts.patch
                     * @desc Updates the specified context.
@@ -1145,7 +1211,10 @@ function Dialogflow(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                patch(params, options, callback) {
+                patch(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1166,7 +1235,7 @@ function Dialogflow(options) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }
 
               },
@@ -1185,7 +1254,10 @@ function Dialogflow(options) {
                  * @param {callback} callback The callback that handles the response.
                  * @return {object} Request object
                  */
-                create(params, options, callback) {
+                create(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1206,7 +1278,7 @@ function Dialogflow(options) {
                     pathParams: ['parent'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * dialogflow.projects.agent.runtimes.sessions.entityTypes.delete
                     * @desc Deletes the specified session entity type.
@@ -1220,7 +1292,10 @@ function Dialogflow(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                delete (params, options, callback) {
+                delete (
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1241,7 +1316,7 @@ function Dialogflow(options) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * dialogflow.projects.agent.runtimes.sessions.entityTypes.get
                     * @desc Retrieves the specified session entity type.
@@ -1255,7 +1330,9 @@ function Dialogflow(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                get(params, options, callback) {
+                get(params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1276,7 +1353,7 @@ function Dialogflow(options) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * dialogflow.projects.agent.runtimes.sessions.entityTypes.list
                     * @desc Returns the list of all session entity types in the
@@ -1293,7 +1370,10 @@ function Dialogflow(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                list(params, options, callback) {
+                list(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1314,7 +1394,7 @@ function Dialogflow(options) {
                     pathParams: ['parent'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * dialogflow.projects.agent.runtimes.sessions.entityTypes.patch
                     * @desc Updates the specified session entity type.
@@ -1330,7 +1410,10 @@ function Dialogflow(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                patch(params, options, callback) {
+                patch(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1351,7 +1434,7 @@ function Dialogflow(options) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }
 
               }
@@ -1370,7 +1453,9 @@ function Dialogflow(options) {
              * @param {callback} callback The callback that handles the response.
              * @return {object} Request object
              */
-            deleteContexts(params, options, callback) {
+            deleteContexts(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -1391,7 +1476,7 @@ function Dialogflow(options) {
                 pathParams: ['parent'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * dialogflow.projects.agent.sessions.detectIntent
                 * @desc Processes a natural language query and returns
@@ -1409,7 +1494,9 @@ function Dialogflow(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            detectIntent(params, options, callback) {
+            detectIntent(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -1430,7 +1517,7 @@ function Dialogflow(options) {
                 pathParams: ['session'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             },
             contexts: {
               /**
@@ -1446,7 +1533,9 @@ function Dialogflow(options) {
                * @param {callback} callback The callback that handles the response.
                * @return {object} Request object
                */
-              create(params, options, callback) {
+              create(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -1467,7 +1556,7 @@ function Dialogflow(options) {
                   pathParams: ['parent'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * dialogflow.projects.agent.sessions.contexts.delete
                   * @desc Deletes the specified context.
@@ -1480,7 +1569,9 @@ function Dialogflow(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              delete (params, options, callback) {
+              delete (
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -1501,7 +1592,7 @@ function Dialogflow(options) {
                   pathParams: ['name'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * dialogflow.projects.agent.sessions.contexts.get
                   * @desc Retrieves the specified context.
@@ -1514,7 +1605,8 @@ function Dialogflow(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              get(params, options, callback) {
+              get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -1535,7 +1627,7 @@ function Dialogflow(options) {
                   pathParams: ['name'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * dialogflow.projects.agent.sessions.contexts.list
                   * @desc Returns the list of all contexts in the specified
@@ -1551,7 +1643,9 @@ function Dialogflow(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              list(params, options, callback) {
+              list(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -1572,7 +1666,7 @@ function Dialogflow(options) {
                   pathParams: ['parent'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * dialogflow.projects.agent.sessions.contexts.patch
                   * @desc Updates the specified context.
@@ -1587,7 +1681,9 @@ function Dialogflow(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              patch(params, options, callback) {
+              patch(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -1608,7 +1704,7 @@ function Dialogflow(options) {
                   pathParams: ['name'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }
 
             },
@@ -1626,7 +1722,9 @@ function Dialogflow(options) {
                * @param {callback} callback The callback that handles the response.
                * @return {object} Request object
                */
-              create(params, options, callback) {
+              create(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -1647,7 +1745,7 @@ function Dialogflow(options) {
                   pathParams: ['parent'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * dialogflow.projects.agent.sessions.entityTypes.delete
                   * @desc Deletes the specified session entity type.
@@ -1660,7 +1758,9 @@ function Dialogflow(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              delete (params, options, callback) {
+              delete (
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -1681,7 +1781,7 @@ function Dialogflow(options) {
                   pathParams: ['name'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * dialogflow.projects.agent.sessions.entityTypes.get
                   * @desc Retrieves the specified session entity type.
@@ -1694,7 +1794,8 @@ function Dialogflow(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              get(params, options, callback) {
+              get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -1715,7 +1816,7 @@ function Dialogflow(options) {
                   pathParams: ['name'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * dialogflow.projects.agent.sessions.entityTypes.list
                   * @desc Returns the list of all session entity types in the
@@ -1731,7 +1832,9 @@ function Dialogflow(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              list(params, options, callback) {
+              list(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -1752,7 +1855,7 @@ function Dialogflow(options) {
                   pathParams: ['parent'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * dialogflow.projects.agent.sessions.entityTypes.patch
                   * @desc Updates the specified session entity type.
@@ -1767,7 +1870,9 @@ function Dialogflow(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              patch(params, options, callback) {
+              patch(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -1788,7 +1893,7 @@ function Dialogflow(options) {
                   pathParams: ['name'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }
 
             }
@@ -1809,7 +1914,8 @@ function Dialogflow(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1829,7 +1935,7 @@ function Dialogflow(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }

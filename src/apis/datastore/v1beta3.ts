@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Cloud Datastore API
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta3
  * @param {object=} options Options for Datastore
  */
-function Datastore(options) {
+function Datastore(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.projects = {
@@ -50,7 +57,9 @@ function Datastore(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    allocateIds(params, options, callback) {
+    allocateIds(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -70,7 +79,7 @@ function Datastore(options) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * datastore.projects.beginTransaction
         * @desc Begins a new transaction.
@@ -84,7 +93,9 @@ function Datastore(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    beginTransaction(params, options, callback) {
+    beginTransaction(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -104,7 +115,7 @@ function Datastore(options) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * datastore.projects.commit
         * @desc Commits a transaction, optionally creating, deleting or
@@ -119,7 +130,9 @@ function Datastore(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    commit(params, options, callback) {
+    commit(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -139,7 +152,7 @@ function Datastore(options) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * datastore.projects.lookup
         * @desc Looks up entities by key.
@@ -153,7 +166,9 @@ function Datastore(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    lookup(params, options, callback) {
+    lookup(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -173,7 +188,7 @@ function Datastore(options) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * datastore.projects.reserveIds
         * @desc Prevents the supplied keys' IDs from being auto-allocated by
@@ -188,7 +203,9 @@ function Datastore(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    reserveIds(params, options, callback) {
+    reserveIds(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -208,7 +225,7 @@ function Datastore(options) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * datastore.projects.rollback
         * @desc Rolls back a transaction.
@@ -222,7 +239,9 @@ function Datastore(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    rollback(params, options, callback) {
+    rollback(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -242,7 +261,7 @@ function Datastore(options) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * datastore.projects.runQuery
         * @desc Queries for entities.
@@ -256,7 +275,9 @@ function Datastore(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    runQuery(params, options, callback) {
+    runQuery(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -276,7 +297,7 @@ function Datastore(options) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

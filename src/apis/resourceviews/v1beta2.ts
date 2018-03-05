@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Compute Engine Instance Groups API
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta2
  * @param {object=} options Options for Resourceviews
  */
-function Resourceviews(options) {
+function Resourceviews(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.zoneOperations = {
@@ -50,7 +57,8 @@ function Resourceviews(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -72,7 +80,7 @@ function Resourceviews(options) {
         pathParams: ['operation', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * resourceviews.zoneOperations.list
         * @desc Retrieves the list of operation resources contained within the
@@ -90,7 +98,9 @@ function Resourceviews(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -112,7 +122,7 @@ function Resourceviews(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -132,7 +142,9 @@ function Resourceviews(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addResources(params, options, callback) {
+    addResources(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -154,7 +166,7 @@ function Resourceviews(options) {
         pathParams: ['project', 'resourceView', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * resourceviews.zoneViews.delete
         * @desc Delete a resource view.
@@ -169,7 +181,9 @@ function Resourceviews(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -191,7 +205,7 @@ function Resourceviews(options) {
         pathParams: ['project', 'resourceView', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * resourceviews.zoneViews.get
         * @desc Get the information of a zonal resource view.
@@ -206,7 +220,8 @@ function Resourceviews(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -228,7 +243,7 @@ function Resourceviews(options) {
         pathParams: ['project', 'resourceView', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * resourceviews.zoneViews.getService
         * @desc Get the service information of a resource view or a resource.
@@ -244,7 +259,9 @@ function Resourceviews(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getService(params, options, callback) {
+    getService(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -266,7 +283,7 @@ function Resourceviews(options) {
         pathParams: ['project', 'resourceView', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * resourceviews.zoneViews.insert
         * @desc Create a resource view.
@@ -281,7 +298,9 @@ function Resourceviews(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -303,7 +322,7 @@ function Resourceviews(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * resourceviews.zoneViews.list
         * @desc List resource views.
@@ -319,7 +338,9 @@ function Resourceviews(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -341,7 +362,7 @@ function Resourceviews(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * resourceviews.zoneViews.listResources
         * @desc List the resources of the resource view.
@@ -361,7 +382,9 @@ function Resourceviews(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    listResources(params, options, callback) {
+    listResources(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -383,7 +406,7 @@ function Resourceviews(options) {
         pathParams: ['project', 'resourceView', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * resourceviews.zoneViews.removeResources
         * @desc Remove resources from the view.
@@ -399,7 +422,9 @@ function Resourceviews(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    removeResources(params, options, callback) {
+    removeResources(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -421,7 +446,7 @@ function Resourceviews(options) {
         pathParams: ['project', 'resourceView', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * resourceviews.zoneViews.setService
         * @desc Update the service information of a resource view or a resource.
@@ -437,7 +462,9 @@ function Resourceviews(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setService(params, options, callback) {
+    setService(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -459,7 +486,7 @@ function Resourceviews(options) {
         pathParams: ['project', 'resourceView', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Cloud Container Builder API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Cloudbuild
  */
-function Cloudbuild(options) {
+function Cloudbuild(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.operations = {
@@ -56,7 +63,9 @@ function Cloudbuild(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params, options, callback) {
+    cancel(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -76,7 +85,7 @@ function Cloudbuild(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * cloudbuild.operations.get
         * @desc Gets the latest state of a long-running operation.  Clients can
@@ -91,7 +100,8 @@ function Cloudbuild(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -110,7 +120,7 @@ function Cloudbuild(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * cloudbuild.operations.list
         * @desc Lists operations that match the specified filter in the request.
@@ -134,7 +144,9 @@ function Cloudbuild(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -153,7 +165,7 @@ function Cloudbuild(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -173,7 +185,9 @@ function Cloudbuild(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      cancel(params, options, callback) {
+      cancel(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -193,7 +207,7 @@ function Cloudbuild(options) {
           pathParams: ['id', 'projectId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * cloudbuild.projects.builds.create
           * @desc Starts a build with the specified configuration.  This method
@@ -210,7 +224,9 @@ function Cloudbuild(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      create(params, options, callback) {
+      create(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -230,7 +246,7 @@ function Cloudbuild(options) {
           pathParams: ['projectId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * cloudbuild.projects.builds.get
           * @desc Returns information about a previously requested build.  The
@@ -246,7 +262,8 @@ function Cloudbuild(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -266,7 +283,7 @@ function Cloudbuild(options) {
           pathParams: ['id', 'projectId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * cloudbuild.projects.builds.list
           * @desc Lists previously requested builds.  Previously requested
@@ -284,7 +301,9 @@ function Cloudbuild(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -304,7 +323,7 @@ function Cloudbuild(options) {
           pathParams: ['projectId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * cloudbuild.projects.builds.retry
           * @desc Creates a new build based on the specified build.  This method
@@ -336,7 +355,9 @@ function Cloudbuild(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      retry(params, options, callback) {
+      retry(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -356,7 +377,7 @@ function Cloudbuild(options) {
           pathParams: ['id', 'projectId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -374,7 +395,9 @@ function Cloudbuild(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create(params, options, callback) {
+      create(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -394,7 +417,7 @@ function Cloudbuild(options) {
           pathParams: ['projectId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * cloudbuild.projects.triggers.delete
           * @desc Deletes a `BuildTrigger` by its project ID and trigger ID.
@@ -409,7 +432,9 @@ function Cloudbuild(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (params, options, callback) {
+      delete (
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -429,7 +454,7 @@ function Cloudbuild(options) {
           pathParams: ['projectId', 'triggerId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * cloudbuild.projects.triggers.get
           * @desc Returns information about a `BuildTrigger`.  This API is
@@ -444,7 +469,8 @@ function Cloudbuild(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -464,7 +490,7 @@ function Cloudbuild(options) {
           pathParams: ['projectId', 'triggerId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * cloudbuild.projects.triggers.list
           * @desc Lists existing `BuildTrigger`s.  This API is experimental.
@@ -477,7 +503,9 @@ function Cloudbuild(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -497,7 +525,7 @@ function Cloudbuild(options) {
           pathParams: ['projectId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * cloudbuild.projects.triggers.patch
           * @desc Updates a `BuildTrigger` by its project ID and trigger ID.
@@ -513,7 +541,9 @@ function Cloudbuild(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      patch(params, options, callback) {
+      patch(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -533,7 +563,7 @@ function Cloudbuild(options) {
           pathParams: ['projectId', 'triggerId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * cloudbuild.projects.triggers.run
           * @desc Runs a `BuildTrigger` at a particular source revision.
@@ -548,7 +578,8 @@ function Cloudbuild(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      run(params, options, callback) {
+      run(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -569,7 +600,7 @@ function Cloudbuild(options) {
           pathParams: ['projectId', 'triggerId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }

@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Analytics Reporting API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v4
  * @param {object=} options Options for Analyticsreporting
  */
-function Analyticsreporting(options) {
+function Analyticsreporting(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.reports = {
@@ -47,7 +54,9 @@ function Analyticsreporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    batchGet(params, options, callback) {
+    batchGet(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -68,7 +77,7 @@ function Analyticsreporting(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

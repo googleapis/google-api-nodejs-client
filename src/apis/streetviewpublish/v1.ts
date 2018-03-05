@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Street View Publish API
@@ -33,7 +40,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Streetviewpublish
  */
-function Streetviewpublish(options) {
+function Streetviewpublish(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.photo = {
@@ -60,7 +67,9 @@ function Streetviewpublish(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params, options, callback) {
+    create(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -80,7 +89,7 @@ function Streetviewpublish(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * streetviewpublish.photo.delete
         * @desc Deletes a Photo and its metadata.  This method returns the
@@ -96,7 +105,9 @@ function Streetviewpublish(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -117,7 +128,7 @@ function Streetviewpublish(options) {
         pathParams: ['photoId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * streetviewpublish.photo.get
         * @desc Gets the metadata of the specified Photo.  This method returns
@@ -136,7 +147,8 @@ function Streetviewpublish(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -157,7 +169,7 @@ function Streetviewpublish(options) {
         pathParams: ['photoId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * streetviewpublish.photo.startUpload
         * @desc Creates an upload session to start uploading photo bytes. The
@@ -182,7 +194,9 @@ function Streetviewpublish(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    startUpload(params, options, callback) {
+    startUpload(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -203,7 +217,7 @@ function Streetviewpublish(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * streetviewpublish.photo.update
         * @desc Updates the metadata of a Photo, such as pose, place
@@ -229,7 +243,9 @@ function Streetviewpublish(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -249,7 +265,7 @@ function Streetviewpublish(options) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -272,7 +288,9 @@ function Streetviewpublish(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    batchDelete(params, options, callback) {
+    batchDelete(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -293,7 +311,7 @@ function Streetviewpublish(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * streetviewpublish.photos.batchGet
         * @desc Gets the metadata of the specified Photo batch.  Note that if
@@ -313,7 +331,9 @@ function Streetviewpublish(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    batchGet(params, options, callback) {
+    batchGet(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -334,7 +354,7 @@ function Streetviewpublish(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * streetviewpublish.photos.batchUpdate
         * @desc Updates the metadata of Photos, such as pose, place association,
@@ -358,7 +378,9 @@ function Streetviewpublish(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    batchUpdate(params, options, callback) {
+    batchUpdate(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -379,7 +401,7 @@ function Streetviewpublish(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * streetviewpublish.photos.list
         * @desc Lists all the Photos that belong to the user.  <aside
@@ -397,7 +419,9 @@ function Streetviewpublish(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -417,7 +441,7 @@ function Streetviewpublish(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

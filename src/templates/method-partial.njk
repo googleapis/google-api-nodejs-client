@@ -38,8 +38,8 @@
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
-{% if globalmethods %}this.{{ mname }} = (params, options, callback) => { {% endif %}
-{% if not globalmethods %}{{ mname }} (params, options, callback) { {% endif %}
+{% if globalmethods %}this.{{ mname }} = (params: any, options: MethodOptions|BodyResponseCallback<any>, callback?: BodyResponseCallback<any>) => { {% endif %}
+{% if not globalmethods %}{{ mname }} (params: any, options: MethodOptions|BodyResponseCallback<any>, callback?: BodyResponseCallback<any>) { {% endif %}
 
   if (typeof options === 'function') {
     callback = options;
@@ -58,5 +58,5 @@
     pathParams: [{% if pathParams.length %}'{{ pathParams|join("', '")|safe }}'{% endif %}],
     context: self
   };
-  return createAPIRequest(parameters, callback);
+  return createAPIRequest(parameters, callback!);
 }{% if globalmethods %};{% endif %}{% endmacro %}

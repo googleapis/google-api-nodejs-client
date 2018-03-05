@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Cloud Firestore API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta1
  * @param {object=} options Options for Firestore
  */
-function Firestore(options) {
+function Firestore(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.projects = {
@@ -52,7 +59,9 @@ function Firestore(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        batchGet(params, options, callback) {
+        batchGet(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -73,7 +82,7 @@ function Firestore(options) {
             pathParams: ['database'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * firestore.projects.databases.documents.beginTransaction
             * @desc Starts a new transaction.
@@ -87,7 +96,9 @@ function Firestore(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        beginTransaction(params, options, callback) {
+        beginTransaction(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -109,7 +120,7 @@ function Firestore(options) {
             pathParams: ['database'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * firestore.projects.databases.documents.commit
             * @desc Commits a transaction, while optionally updating documents.
@@ -123,7 +134,9 @@ function Firestore(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        commit(params, options, callback) {
+        commit(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -144,7 +157,7 @@ function Firestore(options) {
             pathParams: ['database'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * firestore.projects.databases.documents.createDocument
             * @desc Creates a new document.
@@ -161,7 +174,9 @@ function Firestore(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        createDocument(params, options, callback) {
+        createDocument(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -182,7 +197,7 @@ function Firestore(options) {
             pathParams: ['collectionId', 'parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * firestore.projects.databases.documents.delete
             * @desc Deletes a document.
@@ -197,7 +212,9 @@ function Firestore(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -218,7 +235,7 @@ function Firestore(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * firestore.projects.databases.documents.get
             * @desc Gets a single document.
@@ -234,7 +251,8 @@ function Firestore(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -255,7 +273,7 @@ function Firestore(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * firestore.projects.databases.documents.list
             * @desc Lists documents.
@@ -276,7 +294,9 @@ function Firestore(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -297,7 +317,7 @@ function Firestore(options) {
             pathParams: ['collectionId', 'parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * firestore.projects.databases.documents.listCollectionIds
             * @desc Lists all the collection IDs underneath a document.
@@ -311,7 +331,9 @@ function Firestore(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        listCollectionIds(params, options, callback) {
+        listCollectionIds(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -332,7 +354,7 @@ function Firestore(options) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * firestore.projects.databases.documents.listen
             * @desc Listens to changes.
@@ -346,7 +368,9 @@ function Firestore(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        listen(params, options, callback) {
+        listen(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -367,7 +391,7 @@ function Firestore(options) {
             pathParams: ['database'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * firestore.projects.databases.documents.patch
             * @desc Updates or inserts a document.
@@ -385,7 +409,9 @@ function Firestore(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        patch(params, options, callback) {
+        patch(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -406,7 +432,7 @@ function Firestore(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * firestore.projects.databases.documents.rollback
             * @desc Rolls back a transaction.
@@ -420,7 +446,9 @@ function Firestore(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        rollback(params, options, callback) {
+        rollback(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -441,7 +469,7 @@ function Firestore(options) {
             pathParams: ['database'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * firestore.projects.databases.documents.runQuery
             * @desc Runs a query.
@@ -455,7 +483,9 @@ function Firestore(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        runQuery(params, options, callback) {
+        runQuery(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -476,7 +506,7 @@ function Firestore(options) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * firestore.projects.databases.documents.write
             * @desc Streams batches of document updates and deletes, in order.
@@ -490,7 +520,9 @@ function Firestore(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        write(params, options, callback) {
+        write(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -511,7 +543,7 @@ function Firestore(options) {
             pathParams: ['database'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       },
@@ -537,7 +569,9 @@ function Firestore(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create(params, options, callback) {
+        create(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -558,7 +592,7 @@ function Firestore(options) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * firestore.projects.databases.indexes.delete
             * @desc Deletes an index.
@@ -571,7 +605,9 @@ function Firestore(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -592,7 +628,7 @@ function Firestore(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * firestore.projects.databases.indexes.get
             * @desc Gets an index.
@@ -605,7 +641,8 @@ function Firestore(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -626,7 +663,7 @@ function Firestore(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * firestore.projects.databases.indexes.list
             * @desc Lists the indexes that match the specified filters.
@@ -642,7 +679,9 @@ function Firestore(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -663,7 +702,7 @@ function Firestore(options) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       }

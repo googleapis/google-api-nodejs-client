@@ -19,6 +19,13 @@
  */
 
 import {createAPIRequest} from '../../lib/apirequest';
+import { MethodOptions, GlobalOptions, BodyResponseCallback } from '../../lib/api';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the interim we 
+// want to turn on no-implicit-any.  
+
+// tslint:disable: no-any
+
 {% set Name = api.name|capitalize %}
 {% if api.version %}
 {% set Version = api.version|replace('\.', '_')|capitalize %}
@@ -40,7 +47,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation {{ api.version }}
  * @param {object=} options Options for {{ Name }}
  */
-function {{ Name }} (options) {
+function {{ Name }} (options: GlobalOptions) {
   const self = this;
   self._options = options || {};
 {% if api.methods %}
