@@ -897,7 +897,7 @@ function Dlp(options) {
           * @memberOf! dlp(v2beta2)
           *
           * @param {object} params Parameters for request
-          * @param {string=} params.filter Optional. Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `<field> <operator> <value>`. * Supported fields/values for inspect jobs:     - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY * Supported fields for risk analysis jobs:     - `state` - RUNNING|CANCELED|FINISHED|FAILED * The operator must be `=` or `!=`.  Examples:  * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled)  The length of this field should be no more than 500 characters.
+          * @param {string=} params.filter Optional. Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `<field> <operator> <value>`. * Supported fields/values for inspect jobs:     - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - `trigger_name` - The resource name of the trigger that created job. * Supported fields for risk analysis jobs:     - `state` - RUNNING|CANCELED|FINISHED|FAILED * The operator must be `=` or `!=`.  Examples:  * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled)  The length of this field should be no more than 500 characters.
           * @param {integer=} params.pageSize The standard list page size.
           * @param {string=} params.pageToken The standard list page token.
           * @param {string} params.parent The parent resource name, for example projects/my-project-id.
@@ -1116,6 +1116,181 @@ function Dlp(options) {
           * @param {object} params Parameters for request
           * @param {string} params.name Resource name of organization and inspectTemplate to be updated, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
           * @param {dlp(v2beta2).GooglePrivacyDlpV2beta2UpdateInspectTemplateRequest} params.resource Request body data
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      patch(params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                method: 'PATCH'
+              },
+              options),
+          params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+        return createAPIRequest(parameters, callback);
+      }
+
+    },
+    jobTriggers: {
+      /**
+       * dlp.projects.jobTriggers.create
+       * @desc Creates a job to run DLP actions such as scanning storage for
+       * sensitive information on a set schedule.
+       * @alias dlp.projects.jobTriggers.create
+       * @memberOf! dlp(v2beta2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.parent The parent resource name, for example projects/my-project-id.
+       * @param {dlp(v2beta2).GooglePrivacyDlpV2beta2CreateJobTriggerRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      create(params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/v2beta2/{parent}/jobTriggers')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'POST'
+              },
+              options),
+          params,
+          requiredParams: ['parent'],
+          pathParams: ['parent'],
+          context: self
+        };
+        return createAPIRequest(parameters, callback);
+      }, /**
+          * dlp.projects.jobTriggers.delete
+          * @desc Deletes a job trigger.
+          * @alias dlp.projects.jobTriggers.delete
+          * @memberOf! dlp(v2beta2)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.name Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      delete (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                method: 'DELETE'
+              },
+              options),
+          params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+        return createAPIRequest(parameters, callback);
+      }, /**
+          * dlp.projects.jobTriggers.get
+          * @desc Gets a job trigger.
+          * @alias dlp.projects.jobTriggers.get
+          * @memberOf! dlp(v2beta2)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.name Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      get(params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+        return createAPIRequest(parameters, callback);
+      }, /**
+          * dlp.projects.jobTriggers.list
+          * @desc Lists job triggers.
+          * @alias dlp.projects.jobTriggers.list
+          * @memberOf! dlp(v2beta2)
+          *
+          * @param {object} params Parameters for request
+          * @param {string=} params.orderBy Optional comma separated list of triggeredJob fields to order by, followed by 'asc/desc' postfix, i.e. `"create_time asc,name desc,schedule_mode asc"`. This list is case-insensitive.  Example: `"name asc,schedule_mode desc, status desc"`  Supported filters keys and values are:  - `create_time`: corresponds to time the triggeredJob was created. - `update_time`: corresponds to time the triggeredJob was last updated. - `name`: corresponds to JobTrigger's display name. - `status`: corresponds to the triggeredJob status.
+          * @param {integer=} params.pageSize Optional size of the page, can be limited by a server.
+          * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to ListJobTriggers. `order_by` and `filter` should not change for subsequent calls, but can be omitted if token is specified.
+          * @param {string} params.parent The parent resource name, for example projects/my-project-id.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      list(params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/v2beta2/{parent}/jobTriggers')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: ['parent'],
+          pathParams: ['parent'],
+          context: self
+        };
+        return createAPIRequest(parameters, callback);
+      }, /**
+          * dlp.projects.jobTriggers.patch
+          * @desc Updates a job trigger.
+          * @alias dlp.projects.jobTriggers.patch
+          * @memberOf! dlp(v2beta2)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.name Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
+          * @param {dlp(v2beta2).GooglePrivacyDlpV2beta2UpdateJobTriggerRequest} params.resource Request body data
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
@@ -1511,6 +1686,13 @@ function Dlp(options) {
  * @property {string[]} words Words or phrases defining the dictionary. The dictionary must contain at least one phrase and every phrase must contain at least 2 characters that are letters or digits. [required]
  */
 /**
+ * @typedef GooglePrivacyDlpV2beta2Action
+ * @memberOf! dlp(v2beta2)
+ * @type object
+ * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2PublishToPubSub} pubSub Publish a notification to a pubsub topic.
+ * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2SaveFindings} saveFindings Save resulting findings in a provided location.
+ */
+/**
  * @typedef GooglePrivacyDlpV2beta2AnalyzeDataSourceRiskDetails
  * @memberOf! dlp(v2beta2)
  * @type object
@@ -1527,6 +1709,7 @@ function Dlp(options) {
  * @memberOf! dlp(v2beta2)
  * @type object
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2RiskAnalysisJobConfig} jobConfig Configuration for this risk analysis job.
+ * @property {string} jobId Optional job ID to use for the created job. If not provided, a job ID will automatically be generated. Must be unique within the project. The job ID can contain uppercase and lowercase letters, numbers, and hyphens; that is, it must match the regular expression: `[a-zA-Z\\d-]+`. The maximum length is 100 characters. Can be empty to allow the system to generate one.
  */
 /**
  * @typedef GooglePrivacyDlpV2beta2AuxiliaryTable
@@ -1535,6 +1718,13 @@ function Dlp(options) {
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2QuasiIdField[]} quasiIds Quasi-identifier columns. [required]
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2FieldId} relativeFrequency The relative frequency column must contain a floating-point number between 0 and 1 (inclusive). Null values are assumed to be zero. [required]
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2BigQueryTable} table Auxiliary table location. [required]
+ */
+/**
+ * @typedef GooglePrivacyDlpV2beta2BigQueryKey
+ * @memberOf! dlp(v2beta2)
+ * @type object
+ * @property {string} rowNumber Absolute number of the row from the beginning of the table at the time of scanning.
+ * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2BigQueryTable} tableReference Complete BigQuery table reference.
  */
 /**
  * @typedef GooglePrivacyDlpV2beta2BigQueryOptions
@@ -1618,6 +1808,7 @@ function Dlp(options) {
  * @typedef GooglePrivacyDlpV2beta2CloudStorageOptions
  * @memberOf! dlp(v2beta2)
  * @type object
+ * @property {string} bytesLimitPerFile Max number of bytes to scan from a file. If a scanned file&#39;s size is bigger than this value then the rest of the bytes are omitted.
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2FileSet} fileSet
  */
 /**
@@ -1666,6 +1857,13 @@ function Dlp(options) {
  * @property {string} templateId The template id can contain uppercase and lowercase letters, numbers, and hyphens; that is, it must match the regular expression: `[a-zA-Z\\d-]+`. The maximum length is 100 characters. Can be empty to allow the system to generate one.
  */
 /**
+ * @typedef GooglePrivacyDlpV2beta2CreateJobTriggerRequest
+ * @memberOf! dlp(v2beta2)
+ * @type object
+ * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2JobTrigger} jobTrigger The JobTrigger to create.
+ * @property {string} triggerId The trigger id can contain uppercase and lowercase letters, numbers, and hyphens; that is, it must match the regular expression: `[a-zA-Z\\d-]+`. The maximum length is 100 characters. Can be empty to allow the system to generate one.
+ */
+/**
  * @typedef GooglePrivacyDlpV2beta2CryptoHashConfig
  * @memberOf! dlp(v2beta2)
  * @type object
@@ -1694,8 +1892,11 @@ function Dlp(options) {
  * @typedef GooglePrivacyDlpV2beta2CustomInfoType
  * @memberOf! dlp(v2beta2)
  * @type object
+ * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2DetectionRule[]} detectionRules Set of detection rules to apply to all findings of this custom info type. Rules are applied in order that they are specified. Not supported for the `surrogate_type` custom info type.
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2Dictionary} dictionary Dictionary-based custom info type.
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2InfoType} infoType Info type configuration. All custom info types must have configurations that do not conflict with built-in info types or other custom info types.
+ * @property {string} likelihood Likelihood to return for this custom info type. This base value can be altered by a detection rule if the finding meets the criteria specified by the rule. Defaults to `VERY_LIKELY` if not specified.
+ * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2Regex} regex Regex-based custom info type.
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2SurrogateType} surrogateType Surrogate info type.
  */
 /**
@@ -1710,6 +1911,24 @@ function Dlp(options) {
  * @type object
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2KindExpression} kind The kind to process.
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2PartitionId} partitionId A partition ID identifies a grouping of entities. The grouping is always by project and namespace, however the namespace ID may be empty.
+ */
+/**
+ * @typedef GooglePrivacyDlpV2beta2DateShiftConfig
+ * @memberOf! dlp(v2beta2)
+ * @type object
+ * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2FieldId} context Points to the field that contains the context, for example, an entity id. If set, must also set method. If set, shift will be consistent for the given context.
+ * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2CryptoKey} cryptoKey Causes the shift to be computed based on this key and the context. This results in the same shift for the same context and crypto_key.
+ * @property {integer} lowerBoundDays For example, -5 means shift date to at most 5 days back in the past. [Required]
+ * @property {integer} upperBoundDays Range of shift in days. Actual shift will be selected at random within this range (inclusive ends). Negative means shift to earlier in time. Must not be more than 365250 days (1000 years) each direction.  For example, 3 means shift date to at most 3 days into the future. [Required]
+ */
+/**
+ * @typedef GooglePrivacyDlpV2beta2DateTime
+ * @memberOf! dlp(v2beta2)
+ * @type object
+ * @property {dlp(v2beta2).GoogleTypeDate} date One or more of the following must be set. All fields are optional, but when set must be valid date or time values.
+ * @property {string} dayOfWeek
+ * @property {dlp(v2beta2).GoogleTypeTimeOfDay} time
+ * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2TimeZone} timeZone
  */
 /**
  * @typedef GooglePrivacyDlpV2beta2DeidentifyConfig
@@ -1747,6 +1966,12 @@ function Dlp(options) {
  * @property {string} updateTime The last update timestamp of a inspectTemplate, output only field.
  */
 /**
+ * @typedef GooglePrivacyDlpV2beta2DetectionRule
+ * @memberOf! dlp(v2beta2)
+ * @type object
+ * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2HotwordRule} hotwordRule Hotword-based detection rule.
+ */
+/**
  * @typedef GooglePrivacyDlpV2beta2Dictionary
  * @memberOf! dlp(v2beta2)
  * @type object
@@ -1760,6 +1985,7 @@ function Dlp(options) {
  * @property {string} endTime Time when the job finished.
  * @property {dlp(v2beta2).GoogleRpcStatus[]} errorResults A stream of errors encountered running the job.
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2InspectDataSourceDetails} inspectDetails Results from inspecting a data source.
+ * @property {string} jobTriggerName If created by a job trigger, the resource name of the trigger that instantiated the job.
  * @property {string} name The server-assigned name.
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2AnalyzeDataSourceRiskDetails} riskDetails Results from analyzing risk of a data source.
  * @property {string} startTime Time when the job started.
@@ -1771,6 +1997,13 @@ function Dlp(options) {
  * @memberOf! dlp(v2beta2)
  * @type object
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2FieldId} field Composite key indicating which field contains the entity identifier.
+ */
+/**
+ * @typedef GooglePrivacyDlpV2beta2Error
+ * @memberOf! dlp(v2beta2)
+ * @type object
+ * @property {dlp(v2beta2).GoogleRpcStatus} details
+ * @property {string[]} timestamps The times the error occurred.
  */
 /**
  * @typedef GooglePrivacyDlpV2beta2Expressions
@@ -1809,6 +2042,7 @@ function Dlp(options) {
  * @property {string} likelihood Estimate of how likely it is that the `info_type` is correct.
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2Location} location Where the content was found.
  * @property {string} quote The content that was found. Even if the content is not textual, it may be converted to a textual representation here. Provided if requested by the `InspectConfig` and the finding is less than or equal to 4096 bytes long. If the finding exceeds 4096 bytes in length, the quote may be omitted.
+ * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2QuoteInfo} quoteInfo Contains data parsed from quotes. Only populated if include_quote was set to true and a supported infoType was requested. Currently supported infoTypes: DATE, DATE_OF_BIRTH and TIME.
  */
 /**
  * @typedef GooglePrivacyDlpV2beta2FindingLimits
@@ -1825,6 +2059,14 @@ function Dlp(options) {
  * @property {number} bucketSize Size of each bucket (except for minimum and maximum buckets). So if `lower_bound` = 10, `upper_bound` = 89, and `bucket_size` = 10, then the following buckets would be used: -10, 10-20, 20-30, 30-40, 40-50, 50-60, 60-70, 70-80, 80-89, 89+. Precision up to 2 decimals works. [Required].
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2Value} lowerBound Lower bound value of buckets. All values less than `lower_bound` are grouped together into a single bucket; for example if `lower_bound` = 10, then all values less than 10 are replaced with the value “-10”. [Required].
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2Value} upperBound Upper bound value of buckets. All values greater than upper_bound are grouped together into a single bucket; for example if `upper_bound` = 89, then all values greater than 89 are replaced with the value “89+”. [Required].
+ */
+/**
+ * @typedef GooglePrivacyDlpV2beta2HotwordRule
+ * @memberOf! dlp(v2beta2)
+ * @type object
+ * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2Regex} hotwordRegex Regex pattern defining what qualifies as a hotword.
+ * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2LikelihoodAdjustment} likelihoodAdjustment Likelihood adjustment to apply to all matching findings.
+ * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2Proximity} proximity Proximity of the finding within which the entire hotword must reside. The total length of the window cannot exceed 1000 characters. Note that the finding itself will be included in the window, so that hotwords may be used to match substrings of the finding itself. For example, the certainty of a phone number regex &quot;\(\d{3}\) \d{3}-\d{4}&quot; could be adjusted upwards if the area code is known to be the local area code of a company office using the hotword regex &quot;\(xxx\)&quot;, where &quot;xxx&quot; is the area code in question.
  */
 /**
  * @typedef GooglePrivacyDlpV2beta2ImageLocation
@@ -1921,11 +2163,13 @@ function Dlp(options) {
  * @memberOf! dlp(v2beta2)
  * @type object
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2InspectJobConfig} jobConfig A configuration for the job.
+ * @property {string} jobId Optional job ID to use for the created job. If not provided, a job ID will automatically be generated. Must be unique within the project. The job ID can contain uppercase and lowercase letters, numbers, and hyphens; that is, it must match the regular expression: `[a-zA-Z\\d-]+`. The maximum length is 100 characters. Can be empty to allow the system to generate one.
  */
 /**
  * @typedef GooglePrivacyDlpV2beta2InspectJobConfig
  * @memberOf! dlp(v2beta2)
  * @type object
+ * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2Action[]} actions Actions to execute at the completion of the job. Are executed in the order provided.
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2InspectConfig} inspectConfig How and what to scan for.
  * @property {string} inspectTemplateName If provided, will be used as the default for all values in InspectConfig. `inspect_config` will be merged into the values persisted as part of the template.
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2OutputStorageConfig} outputConfig Where to put the findings.
@@ -1948,6 +2192,21 @@ function Dlp(options) {
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2InspectConfig} inspectConfig The core content of the template. Configuration of the scanning process.
  * @property {string} name The template name. Output only.  The template will have one of the following formats: `projects/PROJECT_ID/inspectTemplates/TEMPLATE_ID` OR `organizations/ORGANIZATION_ID/inspectTemplates/TEMPLATE_ID`
  * @property {string} updateTime The last update timestamp of a inspectTemplate, output only field.
+ */
+/**
+ * @typedef GooglePrivacyDlpV2beta2JobTrigger
+ * @memberOf! dlp(v2beta2)
+ * @type object
+ * @property {string} createTime The creation timestamp of a triggeredJob, output only field.
+ * @property {string} description User provided description (max 256 chars)
+ * @property {string} displayName Display name (max 100 chars)
+ * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2Error[]} errors A stream of errors encountered when the trigger was activated. Repeated errors may result in the JobTrigger automaticaly being paused. Will return the last 100 errors. Whenever the JobTrigger is modified this list will be cleared. Output only field.
+ * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2InspectJobConfig} inspectJob
+ * @property {string} lastRunTime The timestamp of the last time this trigger executed.
+ * @property {string} name Unique resource name for the triggeredJob, assigned by the service when the triggeredJob is created, for example `projects/dlp-test-project/triggeredJobs/53234423`.
+ * @property {string} status A status for this trigger. [required]
+ * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2Trigger[]} triggers A list of triggers which will be OR&#39;ed together. Only one in the list needs to trigger for a job to be started. The list may contain only a single Schedule trigger and must have at least one object.
+ * @property {string} updateTime The last update timestamp of a triggeredJob, output only field.
  */
 /**
  * @typedef GooglePrivacyDlpV2beta2KAnonymityConfig
@@ -2060,6 +2319,13 @@ function Dlp(options) {
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2LDiversityHistogramBucket[]} sensitiveValueFrequencyHistogramBuckets Histogram of l-diversity equivalence class sensitive value frequencies.
  */
 /**
+ * @typedef GooglePrivacyDlpV2beta2LikelihoodAdjustment
+ * @memberOf! dlp(v2beta2)
+ * @type object
+ * @property {string} fixedLikelihood Set the likelihood of a finding to a fixed value.
+ * @property {integer} relativeLikelihood Increase or decrease the likelihood by the specified number of levels. For example, if a finding would be `POSSIBLE` without the detection rule and `relative_likelihood` is 1, then it is upgraded to `LIKELY`, while a value of -1 would downgrade it to `UNLIKELY`. Likelihood may never drop below `VERY_UNLIKELY` or exceed `VERY_LIKELY`, so applying an adjustment of 1 followed by an adjustment of -1 when base likelihood is `VERY_LIKELY` will result in a final likelihood of `LIKELY`.
+ */
+/**
  * @typedef GooglePrivacyDlpV2beta2ListDeidentifyTemplatesResponse
  * @memberOf! dlp(v2beta2)
  * @type object
@@ -2085,6 +2351,13 @@ function Dlp(options) {
  * @type object
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2InspectTemplate[]} inspectTemplates List of inspectTemplates, up to page_size in ListInspectTemplatesRequest.
  * @property {string} nextPageToken If the next page is available then the next page token to be used in following ListInspectTemplates request.
+ */
+/**
+ * @typedef GooglePrivacyDlpV2beta2ListJobTriggersResponse
+ * @memberOf! dlp(v2beta2)
+ * @type object
+ * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2JobTrigger[]} jobTriggers List of triggeredJobs, up to page_size in ListJobTriggersRequest.
+ * @property {string} nextPageToken If the next page is available then the next page token to be used in following ListJobTriggers request.
  */
 /**
  * @typedef GooglePrivacyDlpV2beta2Location
@@ -2115,7 +2388,8 @@ function Dlp(options) {
  * @typedef GooglePrivacyDlpV2beta2OutputStorageConfig
  * @memberOf! dlp(v2beta2)
  * @type object
- * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2BigQueryTable} table Store findings in a new table in an existing dataset. If table_id is not set a new one will be generated for you with the following format: dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific timezone will be used for generating the date details.
+ * @property {string} outputSchema Schema used for writing the findings. Columns are derived from the `Finding` object. If appending to an existing table, any columns from the predefined schema that are missing will be added. No columns in the existing table will be deleted.  If unspecified, then all available columns will be used for a new table, and no changes will be made to an existing table.
+ * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2BigQueryTable} table Store findings in an existing table or a new table in an existing dataset. Each column in an existing table must have the same name, type, and mode of a field in the `Finding` object. If table_id is not set a new one will be generated for you with the following format: dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific timezone will be used for generating the date details.
  */
 /**
  * @typedef GooglePrivacyDlpV2beta2PartitionId
@@ -2140,6 +2414,7 @@ function Dlp(options) {
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2CharacterMaskConfig} characterMaskConfig
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2CryptoHashConfig} cryptoHashConfig
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2CryptoReplaceFfxFpeConfig} cryptoReplaceFfxFpeConfig
+ * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2DateShiftConfig} dateShiftConfig
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2FixedSizeBucketingConfig} fixedSizeBucketingConfig
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2RedactConfig} redactConfig
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2ReplaceValueConfig} replaceConfig
@@ -2157,11 +2432,30 @@ function Dlp(options) {
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2NumericalStatsConfig} numericalStatsConfig
  */
 /**
+ * @typedef GooglePrivacyDlpV2beta2Proximity
+ * @memberOf! dlp(v2beta2)
+ * @type object
+ * @property {integer} windowAfter Number of characters after the finding to consider.
+ * @property {integer} windowBefore Number of characters before the finding to consider.
+ */
+/**
+ * @typedef GooglePrivacyDlpV2beta2PublishToPubSub
+ * @memberOf! dlp(v2beta2)
+ * @type object
+ * @property {string} topic Cloud Pub/Sub topic to send notifications to. The topic must have given publishing access rights to the DLP API service account executing the long running DlpJob sending the notifications. Format is projects/{project}/topics/{topic}.
+ */
+/**
  * @typedef GooglePrivacyDlpV2beta2QuasiIdField
  * @memberOf! dlp(v2beta2)
  * @type object
  * @property {string} customTag
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2FieldId} field
+ */
+/**
+ * @typedef GooglePrivacyDlpV2beta2QuoteInfo
+ * @memberOf! dlp(v2beta2)
+ * @type object
+ * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2DateTime} dateTime
  */
 /**
  * @typedef GooglePrivacyDlpV2beta2Range
@@ -2180,6 +2474,7 @@ function Dlp(options) {
  * @typedef GooglePrivacyDlpV2beta2RecordKey
  * @memberOf! dlp(v2beta2)
  * @type object
+ * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2BigQueryKey} bigQueryKey
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2CloudStorageKey} cloudStorageKey
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2DatastoreKey} datastoreKey
  */
@@ -2216,6 +2511,12 @@ function Dlp(options) {
  * @type object
  * @property {string} extractedText If an image was being inspected and the InspectConfig&#39;s include_quote was set to true, then this field will include all text, if any, that was found in the image.
  * @property {string} redactedImage The redacted image. The type will be the same as the original image.
+ */
+/**
+ * @typedef GooglePrivacyDlpV2beta2Regex
+ * @memberOf! dlp(v2beta2)
+ * @type object
+ * @property {string} pattern Pattern defining the regular expression.
  */
 /**
  * @typedef GooglePrivacyDlpV2beta2ReidentifyContentRequest
@@ -2264,6 +2565,7 @@ function Dlp(options) {
  * @typedef GooglePrivacyDlpV2beta2RiskAnalysisJobConfig
  * @memberOf! dlp(v2beta2)
  * @type object
+ * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2Action[]} actions Actions to execute at the completion of the job. Are executed in the order provided.
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2PrivacyMetric} privacyMetric Privacy metric to compute.
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2BigQueryTable} sourceTable Input dataset to compute metrics over.
  */
@@ -2274,12 +2576,25 @@ function Dlp(options) {
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2Value[]} values
  */
 /**
+ * @typedef GooglePrivacyDlpV2beta2SaveFindings
+ * @memberOf! dlp(v2beta2)
+ * @type object
+ * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2OutputStorageConfig} outputConfig
+ */
+/**
+ * @typedef GooglePrivacyDlpV2beta2Schedule
+ * @memberOf! dlp(v2beta2)
+ * @type object
+ * @property {string} reccurrencePeriodDuration With this option a job is started a regular periodic basis. For example: every 10 minutes.  A scheduled start time will be skipped if the previous execution has not ended when its scheduled time occurs.  This value must be set to a time duration greater than or equal to 60 minutes and can be no longer than 60 days.
+ */
+/**
  * @typedef GooglePrivacyDlpV2beta2StorageConfig
  * @memberOf! dlp(v2beta2)
  * @type object
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2BigQueryOptions} bigQueryOptions BigQuery options specification.
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2CloudStorageOptions} cloudStorageOptions Google Cloud Storage options specification.
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2DatastoreOptions} datastoreOptions Google Cloud Datastore options specification.
+ * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2TimespanConfig} timespanConfig
  */
 /**
  * @typedef GooglePrivacyDlpV2beta2SummaryResult
@@ -2323,6 +2638,20 @@ function Dlp(options) {
  * @property {string} partToExtract
  */
 /**
+ * @typedef GooglePrivacyDlpV2beta2TimespanConfig
+ * @memberOf! dlp(v2beta2)
+ * @type object
+ * @property {boolean} enableAutoPopulationOfTimespanConfig When the job is started by a JobTrigger we will automatically figure out a valid start_time to avoid scanning files that have not been modified since the last time the JobTrigger executed. This will be based on the time of the execution of the last run of the JobTrigger.
+ * @property {string} endTime Exclude files newer than this value. If set to zero, no upper time limit is applied.
+ * @property {string} startTime Exclude files older than this value.
+ */
+/**
+ * @typedef GooglePrivacyDlpV2beta2TimeZone
+ * @memberOf! dlp(v2beta2)
+ * @type object
+ * @property {integer} offsetMinutes Set only if the offset can be determined. Positive for time ahead of UTC. E.g. For &quot;UTC-9&quot;, this value is -540.
+ */
+/**
  * @typedef GooglePrivacyDlpV2beta2TransformationOverview
  * @memberOf! dlp(v2beta2)
  * @type object
@@ -2348,6 +2677,12 @@ function Dlp(options) {
  * @property {string} name Name of the key. [required] This is an arbitrary string used to differentiate different keys. A unique key is generated per name: two separate `TransientCryptoKey` protos share the same generated key if their names are the same. When the data crypto key is generated, this name is not used in any way (repeating the api call will result in a different key being generated).
  */
 /**
+ * @typedef GooglePrivacyDlpV2beta2Trigger
+ * @memberOf! dlp(v2beta2)
+ * @type object
+ * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2Schedule} schedule Create a job on a repeating basis based on the elapse of time.
+ */
+/**
  * @typedef GooglePrivacyDlpV2beta2UnwrappedCryptoKey
  * @memberOf! dlp(v2beta2)
  * @type object
@@ -2368,11 +2703,19 @@ function Dlp(options) {
  * @property {string} updateMask Mask to control which fields get updated.
  */
 /**
+ * @typedef GooglePrivacyDlpV2beta2UpdateJobTriggerRequest
+ * @memberOf! dlp(v2beta2)
+ * @type object
+ * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2JobTrigger} jobTrigger New JobTrigger value.
+ * @property {string} updateMask Mask to control which fields get updated.
+ */
+/**
  * @typedef GooglePrivacyDlpV2beta2Value
  * @memberOf! dlp(v2beta2)
  * @type object
  * @property {boolean} booleanValue
  * @property {dlp(v2beta2).GoogleTypeDate} dateValue
+ * @property {string} dayOfWeekValue
  * @property {number} floatValue
  * @property {string} integerValue
  * @property {string} stringValue

@@ -38,13 +38,14 @@ function Androidmanagement(options) {
   self.enterprises = {
     /**
      * androidmanagement.enterprises.create
-     * @desc Creates an enterprise by completing the enterprise signup flow.
+     * @desc Creates an enterprise. This is the last step in the enterprise
+     * signup flow.
      * @alias androidmanagement.enterprises.create
      * @memberOf! androidmanagement(v1)
      *
      * @param {object} params Parameters for request
      * @param {string=} params.enterpriseToken The enterprise token appended to the callback URL.
-     * @param {string=} params.projectId The id of the Google Cloud Platform project which will own the enterprise.
+     * @param {string=} params.projectId The ID of the Google Cloud Platform project which will own the enterprise.
      * @param {string=} params.signupUrlName The name of the SignupUrl used to sign up for the enterprise.
      * @param {androidmanagement(v1).Enterprise} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -79,7 +80,7 @@ function Androidmanagement(options) {
         * @memberOf! androidmanagement(v1)
         *
         * @param {object} params Parameters for request
-        * @param {string} params.name The name of the enterprise in the form enterprises/{enterpriseId}
+        * @param {string} params.name The name of the enterprise in the form enterprises/{enterpriseId}.
         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
@@ -112,7 +113,7 @@ function Androidmanagement(options) {
         * @memberOf! androidmanagement(v1)
         *
         * @param {object} params Parameters for request
-        * @param {string} params.name The name of the enterprise in the form enterprises/{enterpriseId}
+        * @param {string} params.name The name of the enterprise in the form enterprises/{enterpriseId}.
         * @param {string=} params.updateMask The field mask indicating the fields to update. If not set, all modifiable fields will be modified.
         * @param {androidmanagement(v1).Enterprise} params.resource Request body data
         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -150,7 +151,7 @@ function Androidmanagement(options) {
        *
        * @param {object} params Parameters for request
        * @param {string=} params.languageCode The preferred language for localized application info, as a BCP47 tag (e.g. "en-US", "de"). If not specified the default language of the application will be used.
-       * @param {string} params.name The name of the application in the form enterprises/{enterpriseId}/applications/{package_name}
+       * @param {string} params.name The name of the application in the form enterprises/{enterpriseId}/applications/{package_name}.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -182,12 +183,12 @@ function Androidmanagement(options) {
     devices: {
       /**
        * androidmanagement.enterprises.devices.delete
-       * @desc Deletes a device, which causes the device to be wiped.
+       * @desc Deletes a device. This operation wipes the device.
        * @alias androidmanagement.enterprises.devices.delete
        * @memberOf! androidmanagement(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.name The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}
+       * @param {string} params.name The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -220,7 +221,7 @@ function Androidmanagement(options) {
           * @memberOf! androidmanagement(v1)
           *
           * @param {object} params Parameters for request
-          * @param {string} params.name The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}
+          * @param {string} params.name The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
@@ -255,7 +256,7 @@ function Androidmanagement(options) {
           * @memberOf! androidmanagement(v1)
           *
           * @param {object} params Parameters for request
-          * @param {string} params.name The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}
+          * @param {string} params.name The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
           * @param {androidmanagement(v1).Command} params.resource Request body data
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
           * @param {callback} callback The callback that handles the response.
@@ -291,8 +292,8 @@ function Androidmanagement(options) {
           *
           * @param {object} params Parameters for request
           * @param {integer=} params.pageSize The requested page size. The actual page size may be fixed to a min or max value.
-          * @param {string=} params.pageToken A token identifying a page of results the server should return.
-          * @param {string} params.parent The name of the enterprise in the form enterprises/{enterpriseId}
+          * @param {string=} params.pageToken A token identifying a page of results returned by the server.
+          * @param {string} params.parent The name of the enterprise in the form enterprises/{enterpriseId}.
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
@@ -326,7 +327,7 @@ function Androidmanagement(options) {
           * @memberOf! androidmanagement(v1)
           *
           * @param {object} params Parameters for request
-          * @param {string} params.name The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}
+          * @param {string} params.name The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
           * @param {string=} params.updateMask The field mask indicating the fields to update. If not set, all modifiable fields will be modified.
           * @param {androidmanagement(v1).Device} params.resource Request body data
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -527,7 +528,7 @@ function Androidmanagement(options) {
        * @memberOf! androidmanagement(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.parent The name of the enterprise in the form enterprises/{enterpriseId}
+       * @param {string} params.parent The name of the enterprise in the form enterprises/{enterpriseId}.
        * @param {androidmanagement(v1).EnrollmentToken} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -557,13 +558,13 @@ function Androidmanagement(options) {
         return createAPIRequest(parameters, callback);
       }, /**
           * androidmanagement.enterprises.enrollmentTokens.delete
-          * @desc Deletes an enrollment token, which prevents future use of the
-          * token.
+          * @desc Deletes an enrollment token. This operation invalidates the
+          * token, preventing its future use.
           * @alias androidmanagement.enterprises.enrollmentTokens.delete
           * @memberOf! androidmanagement(v1)
           *
           * @param {object} params Parameters for request
-          * @param {string} params.name The name of the enrollment token in the form enterprises/{enterpriseId}/enrollmentTokens/{enrollmentTokenId}
+          * @param {string} params.name The name of the enrollment token in the form enterprises/{enterpriseId}/enrollmentTokens/{enrollmentTokenId}.
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
@@ -601,7 +602,7 @@ function Androidmanagement(options) {
        * @memberOf! androidmanagement(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.name The name of the policy in the form enterprises/{enterpriseId}/policies/{policyId}
+       * @param {string} params.name The name of the policy in the form enterprises/{enterpriseId}/policies/{policyId}.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -634,7 +635,7 @@ function Androidmanagement(options) {
           * @memberOf! androidmanagement(v1)
           *
           * @param {object} params Parameters for request
-          * @param {string} params.name The name of the policy in the form enterprises/{enterpriseId}/policies/{policyId}
+          * @param {string} params.name The name of the policy in the form enterprises/{enterpriseId}/policies/{policyId}.
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
@@ -668,8 +669,8 @@ function Androidmanagement(options) {
           *
           * @param {object} params Parameters for request
           * @param {integer=} params.pageSize The requested page size. The actual page size may be fixed to a min or max value.
-          * @param {string=} params.pageToken A token identifying a page of results the server should return.
-          * @param {string} params.parent The name of the enterprise in the form enterprises/{enterpriseId}
+          * @param {string=} params.pageToken A token identifying a page of results returned by the server.
+          * @param {string} params.parent The name of the enterprise in the form enterprises/{enterpriseId}.
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
@@ -703,7 +704,7 @@ function Androidmanagement(options) {
           * @memberOf! androidmanagement(v1)
           *
           * @param {object} params Parameters for request
-          * @param {string} params.name The name of the policy in the form enterprises/{enterpriseId}/policies/{policyId}
+          * @param {string} params.name The name of the policy in the form enterprises/{enterpriseId}/policies/{policyId}.
           * @param {string=} params.updateMask The field mask indicating the fields to update. If not set, all modifiable fields will be modified.
           * @param {androidmanagement(v1).Policy} params.resource Request body data
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -743,7 +744,7 @@ function Androidmanagement(options) {
        * @memberOf! androidmanagement(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.parent The name of the enterprise in the form enterprises/{enterpriseId}
+       * @param {string} params.parent The name of the enterprise in the form enterprises/{enterpriseId}.
        * @param {androidmanagement(v1).WebToken} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -783,8 +784,8 @@ function Androidmanagement(options) {
      * @memberOf! androidmanagement(v1)
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.callbackUrl The callback URL to which the admin will be redirected after successfully creating an enterprise. Before redirecting there the system will add a query parameter to this URL named enterpriseToken which will contain an opaque token to be used for the create enterprise request. The URL will be parsed then reformatted in order to add the enterpriseToken parameter, so there may be some minor formatting changes.
-     * @param {string=} params.projectId The id of the Google Cloud Platform project which will own the enterprise.
+     * @param {string=} params.callbackUrl The callback URL that the admin will be redirected to after successfully creating an enterprise. Before redirecting there the system will add a query parameter to this URL named enterpriseToken which will contain an opaque token to be used for the create enterprise request. The URL will be parsed then reformatted in order to add the enterpriseToken parameter, so there may be some minor formatting changes.
+     * @param {string=} params.projectId The ID of the Google Cloud Platform project which will own the enterprise.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -825,22 +826,22 @@ function Androidmanagement(options) {
  * @typedef ApiLevelCondition
  * @memberOf! androidmanagement(v1)
  * @type object
- * @property {integer} minApiLevel The minimum desired Android Framework API level. If the device does not meet the minimum requirement, this condition is satisfied. Must be greater than zero.
+ * @property {integer} minApiLevel The minimum desired Android Framework API level. If the device doesn&#39;t meet the minimum requirement, this condition is satisfied. Must be greater than zero.
  */
 /**
  * @typedef Application
  * @memberOf! androidmanagement(v1)
  * @type object
- * @property {androidmanagement(v1).ManagedProperty[]} managedProperties The set of managed properties available to be pre-configured for the application.
- * @property {string} name The name of the application in the form enterprises/{enterpriseId}/applications/{package_name}
+ * @property {androidmanagement(v1).ManagedProperty[]} managedProperties The set of managed properties available to be pre-configured for the app.
+ * @property {string} name The name of the app in the form enterprises/{enterpriseId}/applications/{package_name}.
  * @property {androidmanagement(v1).ApplicationPermission[]} permissions The permissions required by the app.
- * @property {string} title The title of the application. Localized.
+ * @property {string} title The title of the app. Localized.
  */
 /**
  * @typedef ApplicationPermission
  * @memberOf! androidmanagement(v1)
  * @type object
- * @property {string} description A longer description of the permission, giving more details of what it affects. Localized.
+ * @property {string} description A longer description of the permission, providing more detail on what it affects. Localized.
  * @property {string} name The name of the permission. Localized.
  * @property {string} permissionId An opaque string uniquely identifying the permission. Not localized.
  */
@@ -849,10 +850,12 @@ function Androidmanagement(options) {
  * @memberOf! androidmanagement(v1)
  * @type object
  * @property {string} defaultPermissionPolicy The default policy for all permissions requested by the app. If specified, this overrides the policy-level default_permission_policy which applies to all apps.
+ * @property {string[]} delegatedScopes The scopes delegated to the app from Android Device Policy.
  * @property {string} installType The type of installation to perform.
- * @property {boolean} lockTaskAllowed Whether the application is allowed to lock itself in full-screen mode.
+ * @property {boolean} lockTaskAllowed Whether the app is allowed to lock itself in full-screen mode.
  * @property {object} managedConfiguration Managed configuration applied to the app. The format for the configuration is dictated by the ManagedProperty values supported by the app. Each field name in the managed configuration must match the key field of the ManagedProperty. The field value must be compatible with the type of the ManagedProperty: &lt;table&gt; &lt;tr&gt;&lt;td&gt;&lt;i&gt;type&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i&gt;JSON value&lt;/i&gt;&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;BOOL&lt;/td&gt;&lt;td&gt;true or false&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;STRING&lt;/td&gt;&lt;td&gt;string&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;INTEGER&lt;/td&gt;&lt;td&gt;number&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;CHOICE&lt;/td&gt;&lt;td&gt;string&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;MULTISELECT&lt;/td&gt;&lt;td&gt;array of strings&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;HIDDEN&lt;/td&gt;&lt;td&gt;string&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;BUNDLE_ARRAY&lt;/td&gt;&lt;td&gt;array of objects&lt;/td&gt;&lt;/tr&gt; &lt;/table&gt;
- * @property {string} packageName The package name of the app, e.g. com.google.android.youtube for the YouTube app.
+ * @property {integer} minimumVersionCode The minimum version of the app that runs on the device. If set, the device attempts to update the app to at least this version code. If the app is not up-to-date, the device will contain a NonComplianceDetail with non_compliance_reason set to APP_NOT_UPDATED. The app must already be published to Google Play with a version code greater than or equal to this value. At most 20 apps may specify a minimum version code per policy.
+ * @property {string} packageName The package name of the app. For example, com.google.android.youtube for the YouTube app.
  * @property {androidmanagement(v1).PermissionGrant[]} permissionGrants Explicit permission grants or denials for the app. These values override the default_permission_policy.
  */
 /**
@@ -869,8 +872,8 @@ function Androidmanagement(options) {
  * @typedef ComplianceRule
  * @memberOf! androidmanagement(v1)
  * @type object
- * @property {androidmanagement(v1).ApiLevelCondition} apiLevelCondition A condition which is satisfied if the Android Framework API level on the device does not meet a minimum requirement.
- * @property {boolean} disableApps If set to true, the rule includes a mitigating action to disable applications so that the device is effectively disabled, but application data is preserved. If the device is running an app in locked task mode, the app will be closed and a UI showing the reason for non-compliance will be displayed.
+ * @property {androidmanagement(v1).ApiLevelCondition} apiLevelCondition A condition which is satisfied if the Android Framework API level on the device doesn&#39;t meet a minimum requirement.
+ * @property {boolean} disableApps If set to true, the rule includes a mitigating action to disable apps so that the device is effectively disabled, but app data is preserved. If the device is running an app in locked task mode, the app will be closed and a UI showing the reason for non-compliance will be displayed.
  * @property {androidmanagement(v1).NonComplianceDetailCondition} nonComplianceDetailCondition A condition which is satisfied if there exists any matching NonComplianceDetail for the device.
  */
 /**
@@ -878,43 +881,44 @@ function Androidmanagement(options) {
  * @memberOf! androidmanagement(v1)
  * @type object
  * @property {integer} apiLevel The API level of the Android platform version running on the device.
- * @property {string} appliedPolicyName The name of the policy that is currently applied by the device.
- * @property {string} appliedPolicyVersion The version of the policy that is currently applied by the device.
- * @property {string} appliedState The state that is currently applied by the device.
- * @property {androidmanagement(v1).DeviceSettings} deviceSettings Device settings information. This information is only available when deviceSettingsEnabled is true in the device&#39;s policy.
- * @property {androidmanagement(v1).UserFacingMessage} disabledReason If the device state is DISABLED, an optional message that is displayed on the device indicating the reason the device is disabled. This field may be modified by an update request.
- * @property {androidmanagement(v1).Display[]} displays Displays on the device. This information is only available when displayInfoEnabled is true in the device&#39;s policy.
+ * @property {string} appliedPolicyName The name of the policy currently applied to the device.
+ * @property {string} appliedPolicyVersion The version of the policy currently applied to the device.
+ * @property {string} appliedState The state currently applied to the device.
+ * @property {androidmanagement(v1).DeviceSettings} deviceSettings Device settings information. This information is only available if deviceSettingsEnabled is true in the device&#39;s policy.
+ * @property {androidmanagement(v1).UserFacingMessage} disabledReason If the device state is DISABLED, an optional message that is displayed on the device indicating the reason the device is disabled. This field can be modified by a patch request.
+ * @property {androidmanagement(v1).Display[]} displays Detailed information about displays on the device. This information is only available if displayInfoEnabled is true in the device&#39;s policy.
  * @property {string} enrollmentTime The time of device enrollment.
- * @property {string} enrollmentTokenData If this device was enrolled with an enrollment token with additional data provided, this field contains that data.
- * @property {string} enrollmentTokenName If this device was enrolled with an enrollment token, this field contains the name of the token.
+ * @property {string} enrollmentTokenData If the device was enrolled with an enrollment token with additional data provided, this field contains that data.
+ * @property {string} enrollmentTokenName If the device was enrolled with an enrollment token, this field contains the name of the token.
  * @property {androidmanagement(v1).HardwareInfo} hardwareInfo Detailed information about the device hardware.
- * @property {androidmanagement(v1).HardwareStatus[]} hardwareStatusSamples Hardware status samples in chronological order. This information is only available when hardwareStatusEnabled is true in the device&#39;s policy.
+ * @property {androidmanagement(v1).HardwareStatus[]} hardwareStatusSamples Hardware status samples in chronological order. This information is only available if hardwareStatusEnabled is true in the device&#39;s policy.
  * @property {string} lastPolicyComplianceReportTime The last time the device sent a policy compliance report.
  * @property {string} lastPolicySyncTime The last time the device fetched its policy.
  * @property {string} lastStatusReportTime The last time the device sent a status report.
- * @property {androidmanagement(v1).MemoryEvent[]} memoryEvents Events related to memory and storage measurements in chronological order. This information is only available when memoryInfoEnabled is true in the device&#39;s policy.
- * @property {androidmanagement(v1).MemoryInfo} memoryInfo Memory information. This information is only available when memoryInfoEnabled is true in the device&#39;s policy.
- * @property {string} name The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}
- * @property {androidmanagement(v1).NetworkInfo} networkInfo Device network information. This information is only available when networkInfoEnabled is true in the device&#39;s policy.
- * @property {androidmanagement(v1).NonComplianceDetail[]} nonComplianceDetails Details about policy settings for which the device is not in compliance.
+ * @property {androidmanagement(v1).MemoryEvent[]} memoryEvents Events related to memory and storage measurements in chronological order. This information is only available if memoryInfoEnabled is true in the device&#39;s policy.
+ * @property {androidmanagement(v1).MemoryInfo} memoryInfo Memory information. This information is only available if memoryInfoEnabled is true in the device&#39;s policy.
+ * @property {string} name The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
+ * @property {androidmanagement(v1).NetworkInfo} networkInfo Device network information. This information is only available if networkInfoEnabled is true in the device&#39;s policy.
+ * @property {androidmanagement(v1).NonComplianceDetail[]} nonComplianceDetails Details about policy settings that the device is not compliant with.
  * @property {boolean} policyCompliant Whether the device is compliant with its policy.
- * @property {string} policyName The name of the policy that is intended to be applied to the device. If empty, the policy_name for the user that owns this device is applied. This field may be modified by an update request. The name of the policy is in the form enterprises/{enterpriseId}/policies/{policyId}. It is also permissible to only specify the policyId when updating this field as long as the policyId contains no slashes since the rest of the policy name can be inferred from context.
- * @property {androidmanagement(v1).PowerManagementEvent[]} powerManagementEvents Power management events on the device in chronological order. This information is only available when powerManagementEventsEnabled is true in the device&#39;s policy.
- * @property {string[]} previousDeviceNames The previous device names used for the same physical device when it has been enrolled multiple times. The serial number is used as the unique identifier to determine if the same physical device has enrolled previously. The names are in chronological order.
- * @property {androidmanagement(v1).SoftwareInfo} softwareInfo Detailed information about the device software. This information is only available when softwareInfoEnabled is true in the device&#39;s policy.
- * @property {string} state The state that is intended to be applied to the device. This field may be modified by an update request. Note that UpdateDevice only handles toggling between ACTIVE and DISABLED states. Use the delete device method to cause the device to enter the DELETED state.
+ * @property {string} policyName The name of the policy applied to the device, in the form enterprises/{enterpriseId}/policies/{policyId}. If not specified, the policy_name for the device&#39;s user is applied. This field can be modified by a patch request. You can specify only the policyId when calling enterprises.devices.patch, as long as the policyId doesn’t contain any slashes. The rest of the policy name is inferred.
+ * @property {androidmanagement(v1).PowerManagementEvent[]} powerManagementEvents Power management events on the device in chronological order. This information is only available if powerManagementEventsEnabled is true in the device&#39;s policy.
+ * @property {string[]} previousDeviceNames If the same physical device has been enrolled multiple times, this field contains its previous device names. The serial number is used as the unique identifier to determine if the same physical device has enrolled previously. The names are in chronological order.
+ * @property {androidmanagement(v1).SoftwareInfo} softwareInfo Detailed information about the device software. This information is only available if softwareInfoEnabled is true in the device&#39;s policy.
+ * @property {string} state The state to be applied to the device. This field can be modified by a patch request. Note that when calling enterprises.devices.patch, ACTIVE and DISABLED are the only allowable values. To enter the device into a DELETED state, call enterprises.devices.delete.
  * @property {string} userName The resource name of the user that owns this device in the form enterprises/{enterpriseId}/users/{userId}.
  */
 /**
  * @typedef DeviceSettings
  * @memberOf! androidmanagement(v1)
  * @type object
- * @property {boolean} adbEnabled If the ADB is enabled Settings.Global.ADB_ENABLED.
- * @property {boolean} developmentSettingsEnabled If the developer mode is enabled Settings.Global.DEVELOPMENT_SETTINGS_ENABLED.
+ * @property {boolean} adbEnabled Whether ADB (https://developer.android.com/studio/command-line/adb.html) is enabled on the device.
+ * @property {boolean} developmentSettingsEnabled Whether developer mode is enabled on the device.
  * @property {string} encryptionStatus Encryption status from DevicePolicyManager.
- * @property {boolean} isDeviceSecure Device secured with PIN/password.
- * @property {boolean} isEncrypted Whether the storage encryption is enabled DevicePolicyManager.ENCRYPTION_STATUS_ACTIVE or DevicePolicyManager.ENCRYPTION_STATUS_ACTIVE_PER_USER in N+ devices.
- * @property {boolean} unknownSourcesEnabled If installing apps from unknown sources is enabled. Settings.Secure.INSTALL_NON_MARKET_APPS.
+ * @property {boolean} isDeviceSecure Whether the device is secured with PIN/password.
+ * @property {boolean} isEncrypted Whether the storage encryption is enabled.
+ * @property {boolean} unknownSourcesEnabled Whether installing apps from unknown sources is enabled.
+ * @property {boolean} verifyAppsEnabled Whether Verify Apps (Google Play Protect (https://support.google.com/googleplay/answer/2812853)) is enabled on the device.
  */
 /**
  * @typedef Display
@@ -937,32 +941,32 @@ function Androidmanagement(options) {
  * @typedef EnrollmentToken
  * @memberOf! androidmanagement(v1)
  * @type object
- * @property {string} additionalData Optional, arbitrary data associated with the enrollment token. This could contain, for example, the id of an org unit to which the device is assigned after enrollment. After a device enrolls with the token, this data will be exposed in the enrollment_token_data field of the Device resource. The data must be 1024 characters or less; otherwise, the creation request will fail.
- * @property {string} duration The duration of the token. If not specified, the duration will be 1 hour. The allowed range is 1 minute to 30 days.
+ * @property {string} additionalData Optional, arbitrary data associated with the enrollment token. This could contain, for example, the ID of an org unit the device is assigned to after enrollment. After a device enrolls with the token, this data will be exposed in the enrollment_token_data field of the Device resource. The data must be 1024 characters or less; otherwise, the creation request will fail.
+ * @property {string} duration The length of time the enrollment token is valid, ranging from 1 minute to 30 days. If not specified, the default duration is 1 hour.
  * @property {string} expirationTimestamp The expiration time of the token. This is a read-only field generated by the server.
- * @property {string} name The name of the enrollment token, which is generated by the server during creation, in the form enterprises/{enterpriseId}/enrollmentTokens/{enrollmentTokenId}
- * @property {string} policyName The name of the policy that will be initially applied to the enrolled device in the form enterprises/{enterpriseId}/policies/{policyId}. If not specified, the policy_name for the user that owns the device is applied. If user_name also isn&#39;t specified, the policy defaults to enterprises/{enterpriseId}/policies/default. It is permissible to only specify the policyId when updating this field as long as the policyId contains no slashes since the rest of the policy name can be inferred from context.
+ * @property {string} name The name of the enrollment token, which is generated by the server during creation, in the form enterprises/{enterpriseId}/enrollmentTokens/{enrollmentTokenId}.
+ * @property {string} policyName The name of the policy initially applied to the enrolled device, in the form enterprises/{enterpriseId}/policies/{policyId}. If not specified, the policy_name for the device’s user is applied. If user_name is also not specified, enterprises/{enterpriseId}/policies/default is applied by default. When updating this field, you can specify only the policyId as long as the policyId doesn’t contain any slashes. The rest of the policy name will be inferred.
  * @property {string} qrCode A JSON string whose UTF-8 representation can be used to generate a QR code to enroll a device with this enrollment token. To enroll a device using NFC, the NFC record must contain a serialized java.util.Properties representation of the properties in the JSON.
- * @property {string} value The token value which is passed to the device and authorizes the device to enroll. This is a read-only field generated by the server.
+ * @property {string} value The token value that&#39;s passed to the device and authorizes the device to enroll. This is a read-only field generated by the server.
  */
 /**
  * @typedef Enterprise
  * @memberOf! androidmanagement(v1)
  * @type object
- * @property {boolean} appAutoApprovalEnabled Whether app auto-approval is enabled. When enabled, apps installed via policy for this enterprise have all permissions automatically approved. When enabled, it is the caller&#39;s responsibility to display the permissions required by an app to the enterprise admin before setting the app to be installed in a policy.
- * @property {string[]} enabledNotificationTypes The notification types to enable via Google Cloud Pub/Sub.
- * @property {string} enterpriseDisplayName The name of the enterprise as it will appear to users.
+ * @property {boolean} appAutoApprovalEnabled Whether permissions for apps installed via policy are automatically approved. If enabled, you must display an app&#39;s permissions to the enterprise admin before setting the app to be installed in a policy.
+ * @property {string[]} enabledNotificationTypes The types of Google Pub/Sub notifications enabled for the enterprise.
+ * @property {string} enterpriseDisplayName The name of the enterprise displayed to users.
  * @property {androidmanagement(v1).ExternalData} logo An image displayed as a logo during device provisioning. Supported types are: image/bmp, image/gif, image/x-ico, image/jpeg, image/png, image/webp, image/vnd.wap.wbmp, image/x-adobe-dng.
- * @property {string} name The name of the enterprise which is generated by the server during creation, in the form enterprises/{enterpriseId}
- * @property {integer} primaryColor A color in RGB format indicating the predominant color to display in the device management app UI. The color components are stored as follows: (red &lt;&lt; 16) | (green &lt;&lt; 8) | blue, where each component may take a value between 0 and 255 inclusive.
- * @property {string} pubsubTopic When Cloud Pub/Sub notifications are enabled, this field is required to indicate the topic to which the notifications will be published. The format of this field is projects/{project}/topics/{topic}. You must have granted the publish permission on this topic to android-cloud-policy@system.gserviceaccount.com
+ * @property {string} name The name of the enterprise which is generated by the server during creation, in the form enterprises/{enterpriseId}.
+ * @property {integer} primaryColor A color in RGB format that indicates the predominant color to display in the device management app UI. The color components are stored as follows: (red &lt;&lt; 16) | (green &lt;&lt; 8) | blue, where the value of each component is between 0 and 255, inclusive.
+ * @property {string} pubsubTopic The topic that Cloud Pub/Sub notifications are published to, in the form projects/{project}/topics/{topic}. This field is only required if Pub/Sub notifications are enabled.
  */
 /**
  * @typedef ExternalData
  * @memberOf! androidmanagement(v1)
  * @type object
- * @property {string} sha256Hash The base-64 encoded SHA-256 hash of the content hosted at url. If the content does not match this hash, Android Device Policy will not use the data.
- * @property {string} url The absolute URL to the data, which must use either the http or https scheme. Android Device Policy does not provide any credentials in the GET request, so the URL must be publicly accessible. Including a long, random component in the URL may be used to prevent attackers from discovering the URL.
+ * @property {string} sha256Hash The base-64 encoded SHA-256 hash of the content hosted at url. If the content doesn&#39;t match this hash, Android Device Policy won&#39;t use the data.
+ * @property {string} url The absolute URL to the data, which must use either the http or https scheme. Android Device Policy doesn&#39;t provide any credentials in the GET request, so the URL must be publicly accessible. Including a long, random component in the URL may be used to prevent attackers from discovering the URL.
  */
 /**
  * @typedef HardwareInfo
@@ -970,15 +974,15 @@ function Androidmanagement(options) {
  * @type object
  * @property {number[]} batteryShutdownTemperatures Battery shutdown temperature thresholds in Celsius for each battery on the device.
  * @property {number[]} batteryThrottlingTemperatures Battery throttling temperature thresholds in Celsius for each battery on the device.
- * @property {string} brand Brand of the device, e.g. Google.
+ * @property {string} brand Brand of the device. For example, Google.
  * @property {number[]} cpuShutdownTemperatures CPU shutdown temperature thresholds in Celsius for each CPU on the device.
  * @property {number[]} cpuThrottlingTemperatures CPU throttling temperature thresholds in Celsius for each CPU on the device.
- * @property {string} deviceBasebandVersion Baseband version, e.g. MDM9625_104662.22.05.34p.
+ * @property {string} deviceBasebandVersion Baseband version. For example, MDM9625_104662.22.05.34p.
  * @property {number[]} gpuShutdownTemperatures GPU shutdown temperature thresholds in Celsius for each GPU on the device.
  * @property {number[]} gpuThrottlingTemperatures GPU throttling temperature thresholds in Celsius for each GPU on the device.
- * @property {string} hardware Name of the hardware, e.g. Angler.
- * @property {string} manufacturer Manufacturer, e.g. Motorola.
- * @property {string} model The model of the device, e.g. Asus Nexus 7.
+ * @property {string} hardware Name of the hardware. For example, Angler.
+ * @property {string} manufacturer Manufacturer. For example, Motorola.
+ * @property {string} model The model of the device. For example, Asus Nexus 7.
  * @property {string} serialNumber The device serial number.
  * @property {number[]} skinShutdownTemperatures Device skin shutdown temperature thresholds in Celsius.
  * @property {number[]} skinThrottlingTemperatures Device skin throttling temperature thresholds in Celsius.
@@ -1020,10 +1024,10 @@ function Androidmanagement(options) {
  * @typedef ManagedProperty
  * @memberOf! androidmanagement(v1)
  * @type object
- * @property {any} defaultValue The default value of the properties. BUNDLE_ARRAY properties never have a default value.
- * @property {string} description A longer description of the property, giving more detail of what it affects. Localized.
+ * @property {any} defaultValue The default value of the property. BUNDLE_ARRAY properties don&#39;t have a default value.
+ * @property {string} description A longer description of the property, providing more detail of what it affects. Localized.
  * @property {androidmanagement(v1).ManagedPropertyEntry[]} entries For CHOICE or MULTISELECT properties, the list of possible entries.
- * @property {string} key The unique key that the application uses to identify the property, e.g. &quot;com.google.android.gm.fieldname&quot;.
+ * @property {string} key The unique key that the app uses to identify the property, e.g. &quot;com.google.android.gm.fieldname&quot;.
  * @property {androidmanagement(v1).ManagedProperty[]} nestedProperties For BUNDLE_ARRAY properties, the list of nested properties. A BUNDLE_ARRAY property is at most two levels deep.
  * @property {string} title The name of the property. Localized.
  * @property {string} type The type of the property.
@@ -1054,9 +1058,10 @@ function Androidmanagement(options) {
  * @typedef NetworkInfo
  * @memberOf! androidmanagement(v1)
  * @type object
- * @property {string} imei IMEI number of the GSM device, e.g. A1000031212.
- * @property {string} meid MEID number of the CDMA device, e.g. A00000292788E1.
- * @property {string} wifiMacAddress WiFi MAC address of the device, e.g. 7c:11:11:11:11:11.
+ * @property {string} imei IMEI number of the GSM device. For example, A1000031212.
+ * @property {string} meid MEID number of the CDMA device. For example, A00000292788E1.
+ * @property {string} networkOperatorName Alphabetic name of current registered operator. For example, Vodafone.
+ * @property {string} wifiMacAddress Wi-Fi MAC address of the device. For example, 7c:11:11:11:11:11.
  */
 /**
  * @typedef NonComplianceDetail
@@ -1064,9 +1069,9 @@ function Androidmanagement(options) {
  * @type object
  * @property {any} currentValue If the policy setting could not be applied, the current value of the setting on the device.
  * @property {string} fieldPath For settings with nested fields, if a particular nested field is out of compliance, this specifies the full path to the offending field. The path is formatted in the same way the policy JSON field would be referenced in JavaScript, that is: 1) For object-typed fields, the field name is followed by a dot then by a  subfield name. 2) For array-typed fields, the field name is followed by the array index  enclosed in brackets. For example, to indicate a problem with the url field in the externalData field in the 3rd application, the path would be applications[2].externalData.url
- * @property {string} installationFailureReason If package_name is set and the non-compliance reason is APP_NOT_INSTALLED or APP_NOT_UPDATED, the detailed reason the app cannot be installed or updated.
+ * @property {string} installationFailureReason If package_name is set and the non-compliance reason is APP_NOT_INSTALLED or APP_NOT_UPDATED, the detailed reason the app can&#39;t be installed or updated.
  * @property {string} nonComplianceReason The reason the device is not in compliance with the setting.
- * @property {string} packageName The package name indicating which application is out of compliance, if applicable.
+ * @property {string} packageName The package name indicating which app is out of compliance, if applicable.
  * @property {string} settingName The name of the policy setting. This is the JSON field name of a top-level Policy  field.
  */
 /**
@@ -1074,7 +1079,7 @@ function Androidmanagement(options) {
  * @memberOf! androidmanagement(v1)
  * @type object
  * @property {string} nonComplianceReason The reason the device is not in compliance with the setting. If not set, then this condition matches any reason.
- * @property {string} packageName The package name indicating which application is out of compliance. If not set, then this condition matches any package name.
+ * @property {string} packageName The package name of the app that&#39;s out of compliance. If not set, then this condition matches any package name.
  * @property {string} settingName The name of the policy setting. This is the JSON field name of a top-level Policy field. If not set, then this condition matches any setting name.
  */
 /**
@@ -1097,9 +1102,9 @@ function Androidmanagement(options) {
  * @typedef PasswordRequirements
  * @memberOf! androidmanagement(v1)
  * @type object
- * @property {integer} maximumFailedPasswordsForWipe A device will be wiped after too many incorrect device-unlock passwords have been entered. A value of 0 means there is no restriction.
+ * @property {integer} maximumFailedPasswordsForWipe Number of incorrect device-unlock passwords that can be entered before a device is wiped. A value of 0 means there is no restriction.
  * @property {string} passwordExpirationTimeout Password expiration timeout.
- * @property {integer} passwordHistoryLength The length of the password history. After setting this, the user will not be able to enter a new password that is the same as any password in the history. A value of 0 means there is no restriction.
+ * @property {integer} passwordHistoryLength The length of the password history. After setting this field, the user won&#39;t be able to enter a new password that is the same as any password in the history. A value of 0 means there is no restriction.
  * @property {integer} passwordMinimumLength The minimum allowed password length. A value of 0 means there is no restriction. Only enforced when password_quality is NUMERIC, NUMERIC_COMPLEX, ALPHABETIC, ALPHANUMERIC, or COMPLEX.
  * @property {integer} passwordMinimumLetters Minimum number of letters required in the password. Only enforced when password_quality is COMPLEX.
  * @property {integer} passwordMinimumLowerCase Minimum number of lower case letters required in the password. Only enforced when password_quality is COMPLEX.
@@ -1128,10 +1133,11 @@ function Androidmanagement(options) {
  * @typedef Policy
  * @memberOf! androidmanagement(v1)
  * @type object
- * @property {string[]} accountTypesWithManagementDisabled Account types that cannot be managed by the user.
+ * @property {string[]} accountTypesWithManagementDisabled Account types that can&#39;t be managed by the user.
  * @property {boolean} addUserDisabled Whether adding new users and profiles is disabled.
  * @property {boolean} adjustVolumeDisabled Whether adjusting the master volume is disabled.
  * @property {androidmanagement(v1).AlwaysOnVpnPackage} alwaysOnVpnPackage Configuration for an always-on VPN connection. Use with vpn_config_disabled to prevent modification of this setting.
+ * @property {string[]} androidDevicePolicyTracks The app tracks for Android Device Policy the device can access. The device receives the latest version among all accessible tracks. If no tracks are specified, then the device only uses the production track.
  * @property {androidmanagement(v1).ApplicationPolicy[]} applications Policy applied to apps.
  * @property {boolean} autoTimeRequired Whether auto time is required, which prevents the user from manually setting the date and time.
  * @property {boolean} blockApplicationsEnabled Whether applications other than the ones configured in applications are blocked from being installed. When set, applications that were installed under a previous policy but no longer appear in the policy are automatically uninstalled.
@@ -1145,10 +1151,10 @@ function Androidmanagement(options) {
  * @property {boolean} credentialsConfigDisabled Whether configuring user credentials is disabled.
  * @property {boolean} dataRoamingDisabled Whether roaming data services are disabled.
  * @property {boolean} debuggingFeaturesAllowed Whether the user is allowed to enable debugging features.
- * @property {string} defaultPermissionPolicy The default permission policy for requests for runtime permissions.
- * @property {boolean} ensureVerifyAppsEnabled Whether application verification is forced to be enabled.
+ * @property {string} defaultPermissionPolicy The default permission policy for runtime permission requests.
+ * @property {boolean} ensureVerifyAppsEnabled Whether app verification is force-enabled.
  * @property {boolean} factoryResetDisabled Whether factory resetting from settings is disabled.
- * @property {string[]} frpAdminEmails Email addresses of device administrators for factory reset protection. When the device is factory reset, it will require one of these admins to log in with the Google account email and password to unlock the device. If no admins are specified, the device will not provide factory reset protection.
+ * @property {string[]} frpAdminEmails Email addresses of device administrators for factory reset protection. When the device is factory reset, it will require one of these admins to log in with the Google account email and password to unlock the device. If no admins are specified, the device won&#39;t provide factory reset protection.
  * @property {boolean} funDisabled Whether the user is allowed to have fun. Controls whether the Easter egg game in Settings is disabled.
  * @property {boolean} installAppsDisabled Whether user installation of apps is disabled.
  * @property {boolean} installUnknownSourcesAllowed Whether the user is allowed to enable the &quot;Unknown Sources&quot; setting, which allows installation of apps from unknown sources.
@@ -1156,18 +1162,18 @@ function Androidmanagement(options) {
  * @property {string[]} keyguardDisabledFeatures Disabled keyguard customizations, such as widgets.
  * @property {boolean} kioskCustomLauncherEnabled Whether the kiosk custom launcher is enabled. This replaces the home screen with a launcher that locks down the device to the apps installed via the applications setting. The apps appear on a single page in alphabetical order. It is recommended to also use status_bar_disabled to block access to device settings.
  * @property {androidmanagement(v1).UserFacingMessage} longSupportMessage A message displayed to the user in the device administators settings screen.
- * @property {string} maximumTimeToLock Maximum time in milliseconds for user activity until the device will lock. A value of 0 means there is no restriction.
+ * @property {string} maximumTimeToLock Maximum time in milliseconds for user activity until the device locks. A value of 0 means there is no restriction.
  * @property {boolean} mobileNetworksConfigDisabled Whether configuring mobile networks is disabled.
  * @property {boolean} modifyAccountsDisabled Whether adding or removing accounts is disabled.
  * @property {boolean} mountPhysicalMediaDisabled Whether the user mounting physical external media is disabled.
- * @property {string} name The name of the policy in the form enterprises/{enterpriseId}/policies/{policyId}
+ * @property {string} name The name of the policy in the form enterprises/{enterpriseId}/policies/{policyId}.
  * @property {boolean} networkEscapeHatchEnabled Whether the network escape hatch is enabled. If a network connection can&#39;t be made at boot time, the escape hatch prompts the user to temporarily connect to a network in order to refresh the device policy. After applying policy, the temporary network will be forgotten and the device will continue booting. This prevents being unable to connect to a network if there is no suitable network in the last policy and the device boots into an app in lock task mode, or the user is otherwise unable to reach device settings.
  * @property {boolean} networkResetDisabled Whether resetting network settings is disabled.
  * @property {object} openNetworkConfiguration Network configuration for the device. See configure networks for more information.
- * @property {boolean} outgoingBeamDisabled Whether using NFC to beam out data from apps is disabled.
+ * @property {boolean} outgoingBeamDisabled Whether using NFC to beam data from apps is disabled.
  * @property {boolean} outgoingCallsDisabled Whether outgoing calls are disabled.
  * @property {androidmanagement(v1).PasswordRequirements} passwordRequirements Password requirements.
- * @property {androidmanagement(v1).PackageNameList} permittedInputMethods If present, only input methods provided by packages in this list are permitted. If this field is present, but the list is empty, then only system input methods are permitted.
+ * @property {androidmanagement(v1).PackageNameList} permittedInputMethods If present, only the input methods provided by packages in this list are permitted. If this field is present, but the list is empty, then only system input methods are permitted.
  * @property {androidmanagement(v1).PersistentPreferredActivity[]} persistentPreferredActivities Default intent handler activities.
  * @property {androidmanagement(v1).ProxyInfo} recommendedGlobalProxy The network-independent global HTTP proxy. Typically proxies should be configured per-network in open_network_configuration. However for unusual configurations like general internal filtering a global HTTP proxy may be useful. If the proxy is not accessible, network access may break. The global proxy is only a recommendation and some apps may ignore it.
  * @property {boolean} removeUserDisabled Whether removing other users is disabled.
@@ -1176,8 +1182,8 @@ function Androidmanagement(options) {
  * @property {boolean} setUserIconDisabled Whether changing the user icon is disabled.
  * @property {boolean} setWallpaperDisabled Whether changing the wallpaper is disabled.
  * @property {androidmanagement(v1).UserFacingMessage} shortSupportMessage A message displayed to the user in the settings screen wherever functionality has been disabled by the admin.
- * @property {boolean} smsDisabled Whether sending or receiving SMS messages is disabled.
- * @property {boolean} statusBarDisabled Whether the status bar is disabled. This disables notifications, quick settings and other screen overlays that allow escape from full-screen mode.
+ * @property {boolean} smsDisabled Whether sending and receiving SMS messages is disabled.
+ * @property {boolean} statusBarDisabled Whether the status bar is disabled. This disables notifications, quick settings, and other screen overlays that allow escape from full-screen mode.
  * @property {androidmanagement(v1).StatusReportingSettings} statusReportingSettings Status reporting settings
  * @property {string[]} stayOnPluggedModes The battery plugged in modes for which the device stays on. When using this setting, it is recommended to clear maximum_time_to_lock so that the device doesn&#39;t lock itself while it stays on.
  * @property {androidmanagement(v1).SystemUpdate} systemUpdate The system update policy, which controls how OS updates are applied. If the update type is WINDOWED, the update window will automatically apply to Play app updates as well.
@@ -1187,8 +1193,8 @@ function Androidmanagement(options) {
  * @property {boolean} usbFileTransferDisabled Whether transferring files over USB is disabled.
  * @property {string} version The version of the policy. This is a read-only field. The version is incremented each time the policy is updated.
  * @property {boolean} vpnConfigDisabled Whether configuring VPN is disabled.
- * @property {boolean} wifiConfigDisabled Whether configuring WiFi access points is disabled.
- * @property {boolean} wifiConfigsLockdownEnabled Whether WiFi networks defined in Open Network Configuration are locked so they cannot be edited by the user.
+ * @property {boolean} wifiConfigDisabled Whether configuring Wi-Fi access points is disabled.
+ * @property {boolean} wifiConfigsLockdownEnabled Whether Wi-Fi networks defined in Open Network Configuration are locked so they can&#39;t be edited by the user.
  */
 /**
  * @typedef PowerManagementEvent
@@ -1211,20 +1217,21 @@ function Androidmanagement(options) {
  * @typedef SignupUrl
  * @memberOf! androidmanagement(v1)
  * @type object
- * @property {string} name The name of the resource. This must be included in the create enterprise request at the end of the signup flow.
- * @property {string} url A URL under which the Admin can sign up for an enterprise. The page pointed to cannot be rendered in an iframe.
+ * @property {string} name The name of the resource. Use this value in the signupUrl field when calling enterprises.create to complete the enterprise signup flow.
+ * @property {string} url A URL where an enterprise admin can register their enterprise. The page can&#39;t be rendered in an iframe.
  */
 /**
  * @typedef SoftwareInfo
  * @memberOf! androidmanagement(v1)
  * @type object
- * @property {string} androidBuildNumber Android build Id string meant for displaying to the user, e.g. shamu-userdebug 6.0.1 MOB30I 2756745 dev-keys.
+ * @property {string} androidBuildNumber Android build ID string meant for displaying to the user. For example, shamu-userdebug 6.0.1 MOB30I 2756745 dev-keys.
  * @property {string} androidBuildTime Build time.
  * @property {integer} androidDevicePolicyVersionCode The Android Device Policy app version code.
  * @property {string} androidDevicePolicyVersionName The Android Device Policy app version as displayed to the user.
- * @property {string} androidVersion The user visible Android version string, e.g. 6.0.1.
+ * @property {string} androidVersion The user-visible Android version string. For example, 6.0.1.
  * @property {string} bootloaderVersion The system bootloader version number, e.g. 0.6.7.
- * @property {string} deviceKernelVersion Kernel version, e.g. 2.6.32.9-g103d848.
+ * @property {string} deviceBuildSignature SHA-256 hash of android.content.pm.Signature (https://developer.android.com/reference/android/content/pm/Signature.html) associated with the system package, which can be used to verify that the system build hasn&#39;t been modified.
+ * @property {string} deviceKernelVersion Kernel version, for example, 2.6.32.9-g103d848.
  * @property {string} securityPatchLevel Security patch level, e.g. 2016-05-01.
  */
 /**
@@ -1251,24 +1258,24 @@ function Androidmanagement(options) {
  * @typedef SystemUpdate
  * @memberOf! androidmanagement(v1)
  * @type object
- * @property {integer} endMinutes If the type is WINDOWED, the end of the maintenance window, measured as the number of minutes after midnight in device local time. This value must be between 0 and 1439, inclusive. If this value is less than start_minutes, then the maintenance window spans midnight. If the maintenance window specified is smaller than 30 minutes, the actual window is extended to 30 minutes beyond the start time.
- * @property {integer} startMinutes If the type is WINDOWED, the start of the maintenance window, measured as the number of minutes after midnight in device local time. This value must be between 0 and 1439, inclusive.
+ * @property {integer} endMinutes If the type is WINDOWED, the end of the maintenance window, measured as the number of minutes after midnight in device&#39;s local time. This value must be between 0 and 1439, inclusive. If this value is less than start_minutes, then the maintenance window spans midnight. If the maintenance window specified is smaller than 30 minutes, the actual window is extended to 30 minutes beyond the start time.
+ * @property {integer} startMinutes If the type is WINDOWED, the start of the maintenance window, measured as the number of minutes after midnight in the device&#39;s local time. This value must be between 0 and 1439, inclusive.
  * @property {string} type The type of system update to configure.
  */
 /**
  * @typedef UserFacingMessage
  * @memberOf! androidmanagement(v1)
  * @type object
- * @property {string} defaultMessage The default message that gets displayed if no localized message is specified, or the user&#39;s locale does not match with any of the localized messages. A default message must be provided if any localized messages are provided.
- * @property {object} localizedMessages A map which contains &lt;locale, message&gt; pairs. The locale is a BCP 47 language code, e.g. en-US, es-ES, fr.
+ * @property {string} defaultMessage The default message displayed if no localized message is specified or the user&#39;s locale doesn&#39;t match with any of the localized messages. A default message must be provided if any localized messages are provided.
+ * @property {object} localizedMessages A map containing &lt;locale, message&gt; pairs, where locale is a well-formed BCP 47 language (https://www.w3.org/International/articles/language-tags/) code, such as en-US, es-ES, or fr.
  */
 /**
  * @typedef WebToken
  * @memberOf! androidmanagement(v1)
  * @type object
- * @property {string} name The name of the web token, which is generated by the server during creation, in the form enterprises/{enterpriseId}/webTokens/{webTokenId}.
+ * @property {string} name The name of the web token, which is generated by the server during creation in the form enterprises/{enterpriseId}/webTokens/{webTokenId}.
  * @property {string} parentFrameUrl The URL of the parent frame hosting the iframe with the embedded UI. To prevent XSS, the iframe may not be hosted at other URLs. The URL must use the https scheme.
- * @property {string[]} permissions Permissions the admin may exercise in the embedded UI. The admin must have all of these permissions in order to view the UI.
+ * @property {string[]} permissions Permissions available to an admin in the embedded UI. An admin must have all of these permissions in order to view the UI.
  * @property {string} value The token value which is used in the hosting page to generate the iframe with the embedded UI. This is a read-only field generated by the server.
  */
 

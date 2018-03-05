@@ -148,24 +148,26 @@ function Manufacturers(options) {
         return createAPIRequest(parameters, callback);
       }, /**
           * manufacturers.accounts.products.update
-          * @desc Inserts or updates the product in a Manufacturer Center
-          * account.  The checks at upload time are minimal. All required
-          * attributes need to be present for a product to be valid. Issues may
-          * show up later after the API has accepted an update for a product and
-          * it is possible to overwrite an existing valid product with an
-          * invalid product. To detect this, you should retrieve the product and
-          * check it for issues once the updated version is available.  Inserted
-          * or updated products first need to be processed before they can be
-          * retrieved. Until then, new products will be unavailable, and
-          * retrieval of updated products will return the original state of the
-          * product.
+          * @desc Inserts or updates the attributes of the product in a
+          * Manufacturer Center account.  Creates a product with the provided
+          * attributes. If the product already exists, then all attributes are
+          * replaced with the new ones. The checks at upload time are minimal.
+          * All required attributes need to be present for a product to be
+          * valid. Issues may show up later after the API has accepted a new
+          * upload for a product and it is possible to overwrite an existing
+          * valid product with an invalid product. To detect this, you should
+          * retrieve the product and check it for issues once the new version is
+          * available.  Uploaded attributes first need to be processed before
+          * they can be retrieved. Until then, new products will be unavailable,
+          * and retrieval of previously uploaded products will return the
+          * original state of the product.
           * @alias manufacturers.accounts.products.update
           * @memberOf! manufacturers(v1)
           *
           * @param {object} params Parameters for request
           * @param {string} params.name Name in the format `{target_country}:{content_language}:{product_id}`.  `target_country`   - The target country of the product as a CLDR territory                      code (for example, US).  `content_language` - The content language of the product as a two-letter                      ISO 639-1 language code (for example, en).  `product_id`     -   The ID of the product. For more information, see                      https://support.google.com/manufacturers/answer/6124116#id.
           * @param {string} params.parent Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID of the Manufacturer Center account.
-          * @param {manufacturers(v1).Product} params.resource Request body data
+          * @param {manufacturers(v1).Attributes} params.resource Request body data
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
@@ -275,7 +277,7 @@ function Manufacturers(options) {
  * @memberOf! manufacturers(v1)
  * @type object
  * @property {string} attribute If present, the attribute that triggered the issue. For more information about attributes, see https://support.google.com/manufacturers/answer/6124116.
- * @property {string} description Description of the issue.
+ * @property {string} description Longer description of the issue focused on how to resolve it.
  * @property {string} severity The severity of the issue.
  * @property {string} timestamp The timestamp when this issue appeared.
  * @property {string} type The server-generated type of the issue, for example, “INCORRECT_TEXT_FORMATTING”, “IMAGE_NOT_SERVEABLE”, etc.

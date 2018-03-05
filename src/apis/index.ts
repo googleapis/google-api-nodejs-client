@@ -100,6 +100,9 @@ const APIS = {
   calendar: {
     'v3': require('./calendar/v3'),
   },
+  chat: {
+    'v1': require('./chat/v1'),
+  },
   civicinfo: {
     'v2': require('./civicinfo/v2'),
   },
@@ -218,9 +221,6 @@ const APIS = {
   firebasedynamiclinks: {
     'v1': require('./firebasedynamiclinks/v1'),
   },
-  firebaseremoteconfig: {
-    'v1': require('./firebaseremoteconfig/v1'),
-  },
   firebaserules: {
     'v1': require('./firebaserules/v1'),
   },
@@ -246,6 +246,7 @@ const APIS = {
   genomics: {
     'v1': require('./genomics/v1'),
     'v1alpha2': require('./genomics/v1alpha2'),
+    'v2alpha1': require('./genomics/v2alpha1'),
   },
   gmail: {
     'v1': require('./gmail/v1'),
@@ -371,6 +372,9 @@ const APIS = {
   servicemanagement: {
     'v1': require('./servicemanagement/v1'),
   },
+  serviceusage: {
+    'v1': require('./serviceusage/v1'),
+  },
   serviceuser: {
     'v1': require('./serviceuser/v1'),
   },
@@ -449,6 +453,7 @@ const APIS = {
   vision: {
     'v1': require('./vision/v1'),
     'v1p1beta1': require('./vision/v1p1beta1'),
+    'v1p2beta1': require('./vision/v1p2beta1'),
   },
   webfonts: {
     'v1': require('./webfonts/v1'),
@@ -561,6 +566,9 @@ export class GeneratedAPIs {
   calendar(options) {
     return getAPI.call(this, 'calendar', options);
   }
+  chat(options) {
+    return getAPI.call(this, 'chat', options);
+  }
   civicinfo(options) {
     return getAPI.call(this, 'civicinfo', options);
   }
@@ -656,9 +664,6 @@ export class GeneratedAPIs {
   }
   firebasedynamiclinks(options) {
     return getAPI.call(this, 'firebasedynamiclinks', options);
-  }
-  firebaseremoteconfig(options) {
-    return getAPI.call(this, 'firebaseremoteconfig', options);
   }
   firebaserules(options) {
     return getAPI.call(this, 'firebaserules', options);
@@ -791,6 +796,9 @@ export class GeneratedAPIs {
   }
   servicemanagement(options) {
     return getAPI.call(this, 'servicemanagement', options);
+  }
+  serviceusage(options) {
+    return getAPI.call(this, 'serviceusage', options);
   }
   serviceuser(options) {
     return getAPI.call(this, 'serviceuser', options);

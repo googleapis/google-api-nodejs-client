@@ -3557,6 +3557,7 @@ function Androidenterprise(options) {
  * @memberOf! androidenterprise(v1)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#managedConfigurationsSettings&quot;.
+ * @property {string} lastUpdatedTimestampMillis The last updated time of the managed configuration settings in milliseconds since 1970-01-01T00:00:00Z.
  * @property {androidenterprise(v1).ManagedProperty[]} managedProperty The set of managed properties for this configuration.
  * @property {string} mcmId The ID of the managed configurations settings.
  * @property {string} name The name of the managed configurations settings.
@@ -3647,6 +3648,7 @@ function Androidenterprise(options) {
  * @typedef Policy
  * @memberOf! androidenterprise(v1)
  * @type object
+ * @property {string} autoUpdatePolicy The auto-update policy for apps installed on the device. &quot;choiceToTheUser&quot; allows the device&#39;s user to configure the app update policy. &quot;always&quot; enables auto updates. &quot;never&quot; disables auto updates. &quot;wifiOnly&quot; enables auto updates only when the device is connected to wifi.
  * @property {string} productAvailabilityPolicy The availability granted to the device for the specified products. &quot;all&quot; gives the device access to all products, regardless of approval status. &quot;allApproved&quot; entitles the device to access all products that are approved for the enterprise. &quot;allApproved&quot; and &quot;all&quot; do not enable automatic visibility of &quot;alpha&quot; or &quot;beta&quot; tracks. &quot;whitelist&quot; grants the device access the products specified in productPolicy[]. Only products that are approved or products that were previously approved (products with revoked approval) by the enterprise can be whitelisted. If no value is provided, the availability set at the user level is applied by default.
  * @property {androidenterprise(v1).ProductPolicy[]} productPolicy The list of product policies.
  */

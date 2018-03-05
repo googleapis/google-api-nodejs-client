@@ -19,8 +19,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 /**
  * Android Device Provisioning Partner API
  *
- * Automates reseller integration into zero-touch enrollment by assigning
- * devices to customers and creating device reports.
+ * Automates Android zero-touch enrollment for device resellers, customers, and
+ * EMMs.
  *
  * @example
  * const google = require('googleapis');
@@ -43,7 +43,7 @@ function Androiddeviceprovisioning(options) {
      * @memberOf! androiddeviceprovisioning(v1)
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of customers to show in a page of results. A number between 1 and 1000 (inclusive).
+     * @param {integer=} params.pageSize The maximum number of customers to show in a page of results. A number between 1 and 100 (inclusive).
      * @param {string=} params.pageToken A token specifying which result page to return.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.

@@ -458,6 +458,7 @@ function Vault(options) {
           * @param {object} params Parameters for request
           * @param {string} params.holdId The hold ID.
           * @param {string} params.matterId The matter ID.
+          * @param {string=} params.view Specifies which parts of the Hold to return.
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
@@ -494,6 +495,7 @@ function Vault(options) {
           * @param {string} params.matterId The matter ID.
           * @param {integer=} params.pageSize The number of holds to return in the response, between 0 and 100 inclusive. Leaving this empty, or as 0, is the same as page_size = 100.
           * @param {string=} params.pageToken The pagination token as returned in the response. An empty token means start from the beginning.
+          * @param {string=} params.view Specifies which parts of the Hold to return.
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
@@ -746,7 +748,7 @@ function Vault(options) {
  * @memberOf! vault(v1)
  * @type object
  * @property {string} holdTime When the org unit was put on hold. This property is immutable.
- * @property {string} orgUnitId The org unit&#39;s immutable ID as provided by the admin SDK.
+ * @property {string} orgUnitId The org unit&#39;s immutable ID as provided by the Admin SDK.
  */
 /**
  * @typedef Hold

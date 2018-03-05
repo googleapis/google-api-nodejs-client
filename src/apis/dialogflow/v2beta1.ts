@@ -35,61 +35,514 @@ import {createAPIRequest} from '../../lib/apirequest';
 function Dialogflow(options) {
   const self = this;
   self._options = options || {};
-  self.projects =
-      {
-        /**
-         * dialogflow.projects.getAgent
-         * @desc Retrieves the specified agent.
-         * @alias dialogflow.projects.getAgent
-         * @memberOf! dialogflow(v2beta1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.parent Required. The project that the agent to fetch is associated with. Format: `projects/<Project ID>`.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        getAgent(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://dialogflow.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url: (rootUrl + '/v2beta1/{parent}/agent')
-                           .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'GET'
-                },
-                options),
-            params,
-            requiredParams: ['parent'],
-            pathParams: ['parent'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        },
-        agent:
+  self.projects = {
+    /**
+     * dialogflow.projects.getAgent
+     * @desc Retrieves the specified agent.
+     * @alias dialogflow.projects.getAgent
+     * @memberOf! dialogflow(v2beta1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The project that the agent to fetch is associated with. Format: `projects/<Project ID>`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getAgent(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
             {
+              url: (rootUrl + '/v2beta1/{parent}/agent')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    },
+    agent:
+        {
+          /**
+           * dialogflow.projects.agent.export
+           * @desc Exports the specified agent to a ZIP file.   Operation
+           * <response: ExportAgentResponse,            metadata:
+           * google.protobuf.Struct>
+           * @alias dialogflow.projects.agent.export
+           * @memberOf! dialogflow(v2beta1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.parent Required. The project that the agent to export is associated with. Format: `projects/<Project ID>`.
+           * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1ExportAgentRequest} params.resource Request body data
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          export(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://dialogflow.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v2beta1/{parent}/agent:export')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['parent'],
+              pathParams: ['parent'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * dialogflow.projects.agent.import
+              * @desc Imports the specified agent from a ZIP file.  Uploads new
+              * intents and entity types without deleting the existing ones.
+              * Intents and entity types with the same name are replaced with
+              * the new versions from ImportAgentRequest.   Operation <response:
+              * google.protobuf.Empty,            metadata:
+              * google.protobuf.Struct>
+              * @alias dialogflow.projects.agent.import
+              * @memberOf! dialogflow(v2beta1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.parent Required. The project that the agent to import is associated with. Format: `projects/<Project ID>`.
+              * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1ImportAgentRequest} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          import(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://dialogflow.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v2beta1/{parent}/agent:import')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['parent'],
+              pathParams: ['parent'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * dialogflow.projects.agent.restore
+              * @desc Restores the specified agent from a ZIP file.  Replaces
+              * the current agent version with a new one. All the intents and
+              * entity types in the older version are deleted.   Operation
+              * <response: google.protobuf.Empty,            metadata:
+              * google.protobuf.Struct>
+              * @alias dialogflow.projects.agent.restore
+              * @memberOf! dialogflow(v2beta1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.parent Required. The project that the agent to restore is associated with. Format: `projects/<Project ID>`.
+              * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1RestoreAgentRequest} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          restore(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://dialogflow.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v2beta1/{parent}/agent:restore')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['parent'],
+              pathParams: ['parent'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * dialogflow.projects.agent.search
+              * @desc Returns the list of agents.  Since there is at most one
+              * conversational agent per project, this method is useful
+              * primarily for listing all agents across projects the caller has
+              * access to. One can achieve that with a wildcard project
+              * collection id "-". Refer to [List
+              * Sub-Collections](https://cloud.google.com/apis/design/design_patterns#list_sub-collections).
+              * @alias dialogflow.projects.agent.search
+              * @memberOf! dialogflow(v2beta1)
+              *
+              * @param {object} params Parameters for request
+              * @param {integer=} params.pageSize Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+              * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request.
+              * @param {string} params.parent Required. The project to list agents from. Format: `projects/<Project ID or '-'>`.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          search(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://dialogflow.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v2beta1/{parent}/agent:search')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['parent'],
+              pathParams: ['parent'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * dialogflow.projects.agent.train
+              * @desc Trains the specified agent.   Operation <response:
+              * google.protobuf.Empty,            metadata:
+              * google.protobuf.Struct>
+              * @alias dialogflow.projects.agent.train
+              * @memberOf! dialogflow(v2beta1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.parent Required. The project that the agent to train is associated with. Format: `projects/<Project ID>`.
+              * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1TrainAgentRequest} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          train(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://dialogflow.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v2beta1/{parent}/agent:train')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['parent'],
+              pathParams: ['parent'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          },
+          entityTypes: {
+            /**
+             * dialogflow.projects.agent.entityTypes.batchDelete
+             * @desc Deletes entity types in the specified agent.  Operation
+             * <response: google.protobuf.Empty,            metadata:
+             * google.protobuf.Struct>
+             * @alias dialogflow.projects.agent.entityTypes.batchDelete
+             * @memberOf! dialogflow(v2beta1)
+             *
+             * @param {object} params Parameters for request
+             * @param {string} params.parent Required. The name of the agent to delete all entities types for. Format: `projects/<Project ID>/agent`.
+             * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1BatchDeleteEntityTypesRequest} params.resource Request body data
+             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+             * @param {callback} callback The callback that handles the response.
+             * @return {object} Request object
+             */
+            batchDelete(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dialogflow.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl +
+                            '/v2beta1/{parent}/entityTypes:batchDelete')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['parent'],
+                pathParams: ['parent'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dialogflow.projects.agent.entityTypes.batchUpdate
+                * @desc Updates/Creates multiple entity types in the specified
+                * agent.  Operation <response: BatchUpdateEntityTypesResponse,
+                * metadata: google.protobuf.Struct>
+                * @alias dialogflow.projects.agent.entityTypes.batchUpdate
+                * @memberOf! dialogflow(v2beta1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.parent Required. The name of the agent to update or create entity types in. Format: `projects/<Project ID>/agent`.
+                * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1BatchUpdateEntityTypesRequest} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            batchUpdate(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dialogflow.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl +
+                            '/v2beta1/{parent}/entityTypes:batchUpdate')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['parent'],
+                pathParams: ['parent'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dialogflow.projects.agent.entityTypes.create
+                * @desc Creates an entity type in the specified agent.
+                * @alias dialogflow.projects.agent.entityTypes.create
+                * @memberOf! dialogflow(v2beta1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string=} params.languageCode Optional. The language of entity synonyms defined in `entity_type`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
+                * @param {string} params.parent Required. The agent to create a entity type for. Format: `projects/<Project ID>/agent`.
+                * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1EntityType} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            create(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dialogflow.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v2beta1/{parent}/entityTypes')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['parent'],
+                pathParams: ['parent'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dialogflow.projects.agent.entityTypes.delete
+                * @desc Deletes the specified entity type.
+                * @alias dialogflow.projects.agent.entityTypes.delete
+                * @memberOf! dialogflow(v2beta1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.name Required. The name of the entity type to delete. Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            delete (params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dialogflow.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v2beta1/{name}')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'DELETE'
+                    },
+                    options),
+                params,
+                requiredParams: ['name'],
+                pathParams: ['name'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dialogflow.projects.agent.entityTypes.get
+                * @desc Retrieves the specified entity type.
+                * @alias dialogflow.projects.agent.entityTypes.get
+                * @memberOf! dialogflow(v2beta1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string=} params.languageCode Optional. The language to retrieve entity synonyms for. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
+                * @param {string} params.name Required. The name of the entity type. Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            get(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dialogflow.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v2beta1/{name}')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'GET'
+                    },
+                    options),
+                params,
+                requiredParams: ['name'],
+                pathParams: ['name'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dialogflow.projects.agent.entityTypes.list
+                * @desc Returns the list of all entity types in the specified
+                * agent.
+                * @alias dialogflow.projects.agent.entityTypes.list
+                * @memberOf! dialogflow(v2beta1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string=} params.languageCode Optional. The language to list entity synonyms for. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
+                * @param {integer=} params.pageSize Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+                * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request.
+                * @param {string} params.parent Required. The agent to list all entity types from. Format: `projects/<Project ID>/agent`.
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            list(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dialogflow.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v2beta1/{parent}/entityTypes')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'GET'
+                    },
+                    options),
+                params,
+                requiredParams: ['parent'],
+                pathParams: ['parent'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dialogflow.projects.agent.entityTypes.patch
+                * @desc Updates the specified entity type.
+                * @alias dialogflow.projects.agent.entityTypes.patch
+                * @memberOf! dialogflow(v2beta1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string=} params.languageCode Optional. The language of entity synonyms defined in `entity_type`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
+                * @param {string} params.name Required for all methods except `create` (`create` populates the name automatically. The unique identifier of the entity type. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+                * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
+                * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1EntityType} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            patch(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dialogflow.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v2beta1/{name}')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'PATCH'
+                    },
+                    options),
+                params,
+                requiredParams: ['name'],
+                pathParams: ['name'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            },
+            entities: {
               /**
-               * dialogflow.projects.agent.export
-               * @desc Exports the specified agent to a ZIP file.   Operation
-               * <response: ExportAgentResponse,            metadata:
-               * google.protobuf.Struct>
-               * @alias dialogflow.projects.agent.export
+               * dialogflow.projects.agent.entityTypes.entities.batchCreate
+               * @desc Creates multiple new entities in the specified entity
+               * type (extends the existing collection of entries).  Operation
+               * <response: google.protobuf.Empty>
+               * @alias
+               * dialogflow.projects.agent.entityTypes.entities.batchCreate
                * @memberOf! dialogflow(v2beta1)
                *
                * @param {object} params Parameters for request
-               * @param {string} params.parent Required. The project that the agent to export is associated with. Format: `projects/<Project ID>`.
-               * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1ExportAgentRequest} params.resource Request body data
+               * @param {string} params.parent Required. The name of the entity type to create entities in. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+               * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1BatchCreateEntitiesRequest} params.resource Request body data
                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
                * @param {callback} callback The callback that handles the response.
                * @return {object} Request object
                */
-              export(params, options, callback) {
+              batchCreate(params, options, callback) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -100,8 +553,9 @@ function Dialogflow(options) {
                 const parameters = {
                   options: Object.assign(
                       {
-                        url: (rootUrl + '/v2beta1/{parent}/agent:export')
-                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        url:
+                            (rootUrl + '/v2beta1/{parent}/entities:batchCreate')
+                                .replace(/([^:]\/)\/+/g, '$1'),
                         method: 'POST'
                       },
                       options),
@@ -112,24 +566,22 @@ function Dialogflow(options) {
                 };
                 return createAPIRequest(parameters, callback);
               }, /**
-                  * dialogflow.projects.agent.import
-                  * @desc Imports the specified agent from a ZIP file.  Uploads
-                  * new intents and entity types without deleting the existing
-                  * ones. Intents and entity types with the same name are
-                  * replaced with the new versions from ImportAgentRequest.
+                  * dialogflow.projects.agent.entityTypes.entities.batchDelete
+                  * @desc Deletes entities in the specified entity type.
                   * Operation <response: google.protobuf.Empty,
                   * metadata: google.protobuf.Struct>
-                  * @alias dialogflow.projects.agent.import
+                  * @alias
+                  * dialogflow.projects.agent.entityTypes.entities.batchDelete
                   * @memberOf! dialogflow(v2beta1)
                   *
                   * @param {object} params Parameters for request
-                  * @param {string} params.parent Required. The project that the agent to import is associated with. Format: `projects/<Project ID>`.
-                  * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1ImportAgentRequest} params.resource Request body data
+                  * @param {string} params.parent Required. The name of the entity type to delete entries for. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+                  * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1BatchDeleteEntitiesRequest} params.resource Request body data
                   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              import(params, options, callback) {
+              batchDelete(params, options, callback) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -140,8 +592,9 @@ function Dialogflow(options) {
                 const parameters = {
                   options: Object.assign(
                       {
-                        url: (rootUrl + '/v2beta1/{parent}/agent:import')
-                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        url:
+                            (rootUrl + '/v2beta1/{parent}/entities:batchDelete')
+                                .replace(/([^:]\/)\/+/g, '$1'),
                         method: 'POST'
                       },
                       options),
@@ -152,101 +605,23 @@ function Dialogflow(options) {
                 };
                 return createAPIRequest(parameters, callback);
               }, /**
-                  * dialogflow.projects.agent.restore
-                  * @desc Restores the specified agent from a ZIP file.
-                  * Replaces the current agent version with a new one. All the
-                  * intents and entity types in the older version are deleted.
-                  * Operation <response: google.protobuf.Empty,
-                  * metadata: google.protobuf.Struct>
-                  * @alias dialogflow.projects.agent.restore
-                  * @memberOf! dialogflow(v2beta1)
-                  *
-                  * @param {object} params Parameters for request
-                  * @param {string} params.parent Required. The project that the agent to restore is associated with. Format: `projects/<Project ID>`.
-                  * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1RestoreAgentRequest} params.resource Request body data
-                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                  * @param {callback} callback The callback that handles the response.
-                  * @return {object} Request object
-                  */
-              restore(params, options, callback) {
-                if (typeof options === 'function') {
-                  callback = options;
-                  options = {};
-                }
-                options = options || {};
-                const rootUrl =
-                    options.rootUrl || 'https://dialogflow.googleapis.com/';
-                const parameters = {
-                  options: Object.assign(
-                      {
-                        url: (rootUrl + '/v2beta1/{parent}/agent:restore')
-                                 .replace(/([^:]\/)\/+/g, '$1'),
-                        method: 'POST'
-                      },
-                      options),
-                  params,
-                  requiredParams: ['parent'],
-                  pathParams: ['parent'],
-                  context: self
-                };
-                return createAPIRequest(parameters, callback);
-              }, /**
-                  * dialogflow.projects.agent.search
-                  * @desc Returns the list of agents.  Since there is at most
-                  * one conversational agent per project, this method is useful
-                  * primarily for listing all agents across projects the caller
-                  * has access to. One can achieve that with a wildcard project
-                  * collection id "-". Refer to [List
-                  * Sub-Collections](https://cloud.google.com/apis/design/design_patterns#list_sub-collections).
-                  * @alias dialogflow.projects.agent.search
-                  * @memberOf! dialogflow(v2beta1)
-                  *
-                  * @param {object} params Parameters for request
-                  * @param {integer=} params.pageSize Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
-                  * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request.
-                  * @param {string} params.parent Required. The project to list agents from. Format: `projects/<Project ID or '-'>`.
-                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                  * @param {callback} callback The callback that handles the response.
-                  * @return {object} Request object
-                  */
-              search(params, options, callback) {
-                if (typeof options === 'function') {
-                  callback = options;
-                  options = {};
-                }
-                options = options || {};
-                const rootUrl =
-                    options.rootUrl || 'https://dialogflow.googleapis.com/';
-                const parameters = {
-                  options: Object.assign(
-                      {
-                        url: (rootUrl + '/v2beta1/{parent}/agent:search')
-                                 .replace(/([^:]\/)\/+/g, '$1'),
-                        method: 'GET'
-                      },
-                      options),
-                  params,
-                  requiredParams: ['parent'],
-                  pathParams: ['parent'],
-                  context: self
-                };
-                return createAPIRequest(parameters, callback);
-              }, /**
-                  * dialogflow.projects.agent.train
-                  * @desc Trains the specified agent.   Operation <response:
-                  * google.protobuf.Empty,            metadata:
+                  * dialogflow.projects.agent.entityTypes.entities.batchUpdate
+                  * @desc Updates entities in the specified entity type
+                  * (replaces the existing collection of entries).  Operation
+                  * <response: google.protobuf.Empty,            metadata:
                   * google.protobuf.Struct>
-                  * @alias dialogflow.projects.agent.train
+                  * @alias
+                  * dialogflow.projects.agent.entityTypes.entities.batchUpdate
                   * @memberOf! dialogflow(v2beta1)
                   *
                   * @param {object} params Parameters for request
-                  * @param {string} params.parent Required. The project that the agent to train is associated with. Format: `projects/<Project ID>`.
-                  * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1TrainAgentRequest} params.resource Request body data
+                  * @param {string} params.parent Required. The name of the entity type to update the entities in. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+                  * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1BatchUpdateEntitiesRequest} params.resource Request body data
                   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              train(params, options, callback) {
+              batchUpdate(params, options, callback) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -257,499 +632,374 @@ function Dialogflow(options) {
                 const parameters = {
                   options: Object.assign(
                       {
-                        url: (rootUrl + '/v2beta1/{parent}/agent:train')
-                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        url:
+                            (rootUrl + '/v2beta1/{parent}/entities:batchUpdate')
+                                .replace(/([^:]\/)\/+/g, '$1'),
                         method: 'POST'
                       },
                       options),
                   params,
                   requiredParams: ['parent'],
                   pathParams: ['parent'],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }
+
+            }
+          },
+          intents: {
+            /**
+             * dialogflow.projects.agent.intents.batchDelete
+             * @desc Deletes intents in the specified agent.  Operation
+             * <response: google.protobuf.Empty>
+             * @alias dialogflow.projects.agent.intents.batchDelete
+             * @memberOf! dialogflow(v2beta1)
+             *
+             * @param {object} params Parameters for request
+             * @param {string} params.parent Required. The name of the agent to delete all entities types for. Format: `projects/<Project ID>/agent`.
+             * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1BatchDeleteIntentsRequest} params.resource Request body data
+             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+             * @param {callback} callback The callback that handles the response.
+             * @return {object} Request object
+             */
+            batchDelete(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dialogflow.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v2beta1/{parent}/intents:batchDelete')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['parent'],
+                pathParams: ['parent'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dialogflow.projects.agent.intents.batchUpdate
+                * @desc Updates/Creates multiple intents in the specified agent.
+                * Operation <response: BatchUpdateIntentsResponse>
+                * @alias dialogflow.projects.agent.intents.batchUpdate
+                * @memberOf! dialogflow(v2beta1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.parent Required. The name of the agent to update or create intents in. Format: `projects/<Project ID>/agent`.
+                * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1BatchUpdateIntentsRequest} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            batchUpdate(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dialogflow.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v2beta1/{parent}/intents:batchUpdate')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['parent'],
+                pathParams: ['parent'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dialogflow.projects.agent.intents.create
+                * @desc Creates an intent in the specified agent.
+                * @alias dialogflow.projects.agent.intents.create
+                * @memberOf! dialogflow(v2beta1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string=} params.intentView Optional. The resource view to apply to the returned intent.
+                * @param {string=} params.languageCode Optional. The language of training phrases, parameters and rich messages defined in `intent`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
+                * @param {string} params.parent Required. The agent to create a intent for. Format: `projects/<Project ID>/agent`.
+                * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1Intent} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            create(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dialogflow.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v2beta1/{parent}/intents')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['parent'],
+                pathParams: ['parent'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dialogflow.projects.agent.intents.delete
+                * @desc Deletes the specified intent.
+                * @alias dialogflow.projects.agent.intents.delete
+                * @memberOf! dialogflow(v2beta1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.name Required. The name of the intent to delete. Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            delete (params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dialogflow.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v2beta1/{name}')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'DELETE'
+                    },
+                    options),
+                params,
+                requiredParams: ['name'],
+                pathParams: ['name'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dialogflow.projects.agent.intents.get
+                * @desc Retrieves the specified intent.
+                * @alias dialogflow.projects.agent.intents.get
+                * @memberOf! dialogflow(v2beta1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string=} params.intentView Optional. The resource view to apply to the returned intent.
+                * @param {string=} params.languageCode Optional. The language to retrieve training phrases, parameters and rich messages for. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
+                * @param {string} params.name Required. The name of the intent. Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            get(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dialogflow.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v2beta1/{name}')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'GET'
+                    },
+                    options),
+                params,
+                requiredParams: ['name'],
+                pathParams: ['name'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dialogflow.projects.agent.intents.list
+                * @desc Returns the list of all intents in the specified agent.
+                * @alias dialogflow.projects.agent.intents.list
+                * @memberOf! dialogflow(v2beta1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string=} params.intentView Optional. The resource view to apply to the returned intent.
+                * @param {string=} params.languageCode Optional. The language to list training phrases, parameters and rich messages for. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
+                * @param {integer=} params.pageSize Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+                * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request.
+                * @param {string} params.parent Required. The agent to list all intents from. Format: `projects/<Project ID>/agent`.
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            list(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dialogflow.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v2beta1/{parent}/intents')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'GET'
+                    },
+                    options),
+                params,
+                requiredParams: ['parent'],
+                pathParams: ['parent'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dialogflow.projects.agent.intents.patch
+                * @desc Updates the specified intent.
+                * @alias dialogflow.projects.agent.intents.patch
+                * @memberOf! dialogflow(v2beta1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string=} params.intentView Optional. The resource view to apply to the returned intent.
+                * @param {string=} params.languageCode Optional. The language of training phrases, parameters and rich messages defined in `intent`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
+                * @param {string} params.name Required for all methods except `create` (`create` populates the name automatically. The unique identifier of this intent. Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
+                * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
+                * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1Intent} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            patch(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dialogflow.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v2beta1/{name}')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'PATCH'
+                    },
+                    options),
+                params,
+                requiredParams: ['name'],
+                pathParams: ['name'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }
+
+          },
+          runtimes: {
+            sessions: {
+              /**
+               * dialogflow.projects.agent.runtimes.sessions.deleteContexts
+               * @desc Deletes all active contexts in the specified session.
+               * @alias
+               * dialogflow.projects.agent.runtimes.sessions.deleteContexts
+               * @memberOf! dialogflow(v2beta1)
+               *
+               * @param {object} params Parameters for request
+               * @param {string} params.parent Required. The name of the session to delete all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>`. Note: Runtimes are under construction and will be available soon. If <Runtime ID> is not specified we assume default 'sandbox' runtime.
+               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+               * @param {callback} callback The callback that handles the response.
+               * @return {object} Request object
+               */
+              deleteContexts(params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://dialogflow.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl + '/v2beta1/{parent}/contexts')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'DELETE'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['parent'],
+                  pathParams: ['parent'],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }, /**
+                  * dialogflow.projects.agent.runtimes.sessions.detectIntent
+                  * @desc Processes a natural language query and returns
+                  * structured, actionable data as a result. This method is not
+                  * idempotent, because it may cause contexts and session entity
+                  * types to be updated, which in turn might affect results of
+                  * future queries.
+                  * @alias
+                  * dialogflow.projects.agent.runtimes.sessions.detectIntent
+                  * @memberOf! dialogflow(v2beta1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.session Required. The name of the session this query is sent to. Format: `projects/<Project ID>/agent/sessions/<Session ID>`, or `projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>`. Note: Runtimes are under construction and will be available soon. If <Runtime ID> is not specified, we assume default 'sandbox' runtime. It's up to the API caller to choose an appropriate session ID. It can be a random number or some type of user identifier (preferably hashed). The length of the session ID must not exceed 36 bytes.
+                  * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1DetectIntentRequest} params.resource Request body data
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              detectIntent(params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://dialogflow.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl + '/v2beta1/{session}:detectIntent')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'POST'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['session'],
+                  pathParams: ['session'],
                   context: self
                 };
                 return createAPIRequest(parameters, callback);
               },
-              entityTypes:
-                  {
-                    /**
-                     * dialogflow.projects.agent.entityTypes.batchDelete
-                     * @desc Deletes entity types in the specified agent.
-                     * Operation <response: google.protobuf.Empty,
-                     * metadata: google.protobuf.Struct>
-                     * @alias dialogflow.projects.agent.entityTypes.batchDelete
-                     * @memberOf! dialogflow(v2beta1)
-                     *
-                     * @param {object} params Parameters for request
-                     * @param {string} params.parent Required. The name of the agent to delete all entities types for. Format: `projects/<Project ID>/agent`.
-                     * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1BatchDeleteEntityTypesRequest} params.resource Request body data
-                     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                     * @param {callback} callback The callback that handles the response.
-                     * @return {object} Request object
-                     */
-                    batchDelete(params, options, callback) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl = options.rootUrl ||
-                          'https://dialogflow.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url: (rootUrl +
-                                    '/v2beta1/{parent}/entityTypes:batchDelete')
-                                       .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'POST'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['parent'],
-                        pathParams: ['parent'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback);
-                    }, /**
-                        * dialogflow.projects.agent.entityTypes.batchUpdate
-                        * @desc Updates/Creates multiple entity types in the
-                        * specified agent.  Operation <response:
-                        * BatchUpdateEntityTypesResponse,            metadata:
-                        * google.protobuf.Struct>
-                        * @alias
-                        * dialogflow.projects.agent.entityTypes.batchUpdate
-                        * @memberOf! dialogflow(v2beta1)
-                        *
-                        * @param {object} params Parameters for request
-                        * @param {string} params.parent Required. The name of the agent to update or create entity types in. Format: `projects/<Project ID>/agent`.
-                        * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1BatchUpdateEntityTypesRequest} params.resource Request body data
-                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                        * @param {callback} callback The callback that handles the response.
-                        * @return {object} Request object
-                        */
-                    batchUpdate(params, options, callback) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl = options.rootUrl ||
-                          'https://dialogflow.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url: (rootUrl +
-                                    '/v2beta1/{parent}/entityTypes:batchUpdate')
-                                       .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'POST'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['parent'],
-                        pathParams: ['parent'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback);
-                    }, /**
-                        * dialogflow.projects.agent.entityTypes.create
-                        * @desc Creates an entity type in the specified agent.
-                        * @alias dialogflow.projects.agent.entityTypes.create
-                        * @memberOf! dialogflow(v2beta1)
-                        *
-                        * @param {object} params Parameters for request
-                        * @param {string=} params.languageCode Optional. The language of entity synonyms defined in `entity_type`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
-                        * @param {string} params.parent Required. The agent to create a entity type for. Format: `projects/<Project ID>/agent`.
-                        * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1EntityType} params.resource Request body data
-                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                        * @param {callback} callback The callback that handles the response.
-                        * @return {object} Request object
-                        */
-                    create(params, options, callback) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl = options.rootUrl ||
-                          'https://dialogflow.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url: (rootUrl + '/v2beta1/{parent}/entityTypes')
-                                       .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'POST'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['parent'],
-                        pathParams: ['parent'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback);
-                    }, /**
-                        * dialogflow.projects.agent.entityTypes.delete
-                        * @desc Deletes the specified entity type.
-                        * @alias dialogflow.projects.agent.entityTypes.delete
-                        * @memberOf! dialogflow(v2beta1)
-                        *
-                        * @param {object} params Parameters for request
-                        * @param {string} params.name Required. The name of the entity type to delete. Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
-                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                        * @param {callback} callback The callback that handles the response.
-                        * @return {object} Request object
-                        */
-                    delete (params, options, callback) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl = options.rootUrl ||
-                          'https://dialogflow.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url: (rootUrl + '/v2beta1/{name}')
-                                       .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'DELETE'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['name'],
-                        pathParams: ['name'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback);
-                    }, /**
-                        * dialogflow.projects.agent.entityTypes.get
-                        * @desc Retrieves the specified entity type.
-                        * @alias dialogflow.projects.agent.entityTypes.get
-                        * @memberOf! dialogflow(v2beta1)
-                        *
-                        * @param {object} params Parameters for request
-                        * @param {string=} params.languageCode Optional. The language to retrieve entity synonyms for. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
-                        * @param {string} params.name Required. The name of the entity type. Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
-                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                        * @param {callback} callback The callback that handles the response.
-                        * @return {object} Request object
-                        */
-                    get(params, options, callback) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl = options.rootUrl ||
-                          'https://dialogflow.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url: (rootUrl + '/v2beta1/{name}')
-                                       .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'GET'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['name'],
-                        pathParams: ['name'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback);
-                    }, /**
-                        * dialogflow.projects.agent.entityTypes.list
-                        * @desc Returns the list of all entity types in the
-                        * specified agent.
-                        * @alias dialogflow.projects.agent.entityTypes.list
-                        * @memberOf! dialogflow(v2beta1)
-                        *
-                        * @param {object} params Parameters for request
-                        * @param {string=} params.languageCode Optional. The language to list entity synonyms for. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
-                        * @param {integer=} params.pageSize Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
-                        * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request.
-                        * @param {string} params.parent Required. The agent to list all entity types from. Format: `projects/<Project ID>/agent`.
-                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                        * @param {callback} callback The callback that handles the response.
-                        * @return {object} Request object
-                        */
-                    list(params, options, callback) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl = options.rootUrl ||
-                          'https://dialogflow.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url: (rootUrl + '/v2beta1/{parent}/entityTypes')
-                                       .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'GET'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['parent'],
-                        pathParams: ['parent'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback);
-                    }, /**
-                        * dialogflow.projects.agent.entityTypes.patch
-                        * @desc Updates the specified entity type.
-                        * @alias dialogflow.projects.agent.entityTypes.patch
-                        * @memberOf! dialogflow(v2beta1)
-                        *
-                        * @param {object} params Parameters for request
-                        * @param {string=} params.languageCode Optional. The language of entity synonyms defined in `entity_type`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
-                        * @param {string} params.name Required for all methods except `create` (`create` populates the name automatically. The unique identifier of the entity type. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
-                        * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
-                        * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1EntityType} params.resource Request body data
-                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                        * @param {callback} callback The callback that handles the response.
-                        * @return {object} Request object
-                        */
-                    patch(params, options, callback) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl = options.rootUrl ||
-                          'https://dialogflow.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url: (rootUrl + '/v2beta1/{name}')
-                                       .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'PATCH'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['name'],
-                        pathParams: ['name'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback);
-                    },
-                    entities:
-                        {
-                          /**
-                           * dialogflow.projects.agent.entityTypes.entities.batchCreate
-                           * @desc Creates multiple new entities in the
-                           * specified entity type (extends the existing
-                           * collection of entries).  Operation <response:
-                           * google.protobuf.Empty>
-                           * @alias
-                           * dialogflow.projects.agent.entityTypes.entities.batchCreate
-                           * @memberOf! dialogflow(v2beta1)
-                           *
-                           * @param {object} params Parameters for request
-                           * @param {string} params.parent Required. The name of the entity type to create entities in. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
-                           * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1BatchCreateEntitiesRequest} params.resource Request body data
-                           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                           * @param {callback} callback The callback that handles the response.
-                           * @return {object} Request object
-                           */
-                          batchCreate(params, options, callback) {
-                            if (typeof options === 'function') {
-                              callback = options;
-                              options = {};
-                            }
-                            options = options || {};
-                            const rootUrl = options.rootUrl ||
-                                'https://dialogflow.googleapis.com/';
-                            const parameters = {
-                              options: Object.assign(
-                                  {
-                                    url:
-                                        (rootUrl +
-                                         '/v2beta1/{parent}/entities:batchCreate')
-                                            .replace(/([^:]\/)\/+/g, '$1'),
-                                    method: 'POST'
-                                  },
-                                  options),
-                              params,
-                              requiredParams: ['parent'],
-                              pathParams: ['parent'],
-                              context: self
-                            };
-                            return createAPIRequest(parameters, callback);
-                          }, /**
-                              * dialogflow.projects.agent.entityTypes.entities.batchDelete
-                              * @desc Deletes entities in the specified entity
-                              * type.  Operation <response:
-                              * google.protobuf.Empty,            metadata:
-                              * google.protobuf.Struct>
-                              * @alias
-                              * dialogflow.projects.agent.entityTypes.entities.batchDelete
-                              * @memberOf! dialogflow(v2beta1)
-                              *
-                              * @param {object} params Parameters for request
-                              * @param {string} params.parent Required. The name of the entity type to delete entries for. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
-                              * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1BatchDeleteEntitiesRequest} params.resource Request body data
-                              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                              * @param {callback} callback The callback that handles the response.
-                              * @return {object} Request object
-                              */
-                          batchDelete(params, options, callback) {
-                            if (typeof options === 'function') {
-                              callback = options;
-                              options = {};
-                            }
-                            options = options || {};
-                            const rootUrl = options.rootUrl ||
-                                'https://dialogflow.googleapis.com/';
-                            const parameters = {
-                              options: Object.assign(
-                                  {
-                                    url:
-                                        (rootUrl +
-                                         '/v2beta1/{parent}/entities:batchDelete')
-                                            .replace(/([^:]\/)\/+/g, '$1'),
-                                    method: 'POST'
-                                  },
-                                  options),
-                              params,
-                              requiredParams: ['parent'],
-                              pathParams: ['parent'],
-                              context: self
-                            };
-                            return createAPIRequest(parameters, callback);
-                          }, /**
-                              * dialogflow.projects.agent.entityTypes.entities.batchUpdate
-                              * @desc Updates entities in the specified entity
-                              * type (replaces the existing collection of
-                              * entries).  Operation <response:
-                              * google.protobuf.Empty,            metadata:
-                              * google.protobuf.Struct>
-                              * @alias
-                              * dialogflow.projects.agent.entityTypes.entities.batchUpdate
-                              * @memberOf! dialogflow(v2beta1)
-                              *
-                              * @param {object} params Parameters for request
-                              * @param {string} params.parent Required. The name of the entity type to update the entities in. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
-                              * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1BatchUpdateEntitiesRequest} params.resource Request body data
-                              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                              * @param {callback} callback The callback that handles the response.
-                              * @return {object} Request object
-                              */
-                          batchUpdate(params, options, callback) {
-                            if (typeof options === 'function') {
-                              callback = options;
-                              options = {};
-                            }
-                            options = options || {};
-                            const rootUrl = options.rootUrl ||
-                                'https://dialogflow.googleapis.com/';
-                            const parameters = {
-                              options: Object.assign(
-                                  {
-                                    url:
-                                        (rootUrl +
-                                         '/v2beta1/{parent}/entities:batchUpdate')
-                                            .replace(/([^:]\/)\/+/g, '$1'),
-                                    method: 'POST'
-                                  },
-                                  options),
-                              params,
-                              requiredParams: ['parent'],
-                              pathParams: ['parent'],
-                              context: self
-                            };
-                            return createAPIRequest(parameters, callback);
-                          }
-
-                        }
-                  },
-              intents: {
+              contexts: {
                 /**
-                 * dialogflow.projects.agent.intents.batchDelete
-                 * @desc Deletes intents in the specified agent.  Operation
-                 * <response: google.protobuf.Empty>
-                 * @alias dialogflow.projects.agent.intents.batchDelete
+                 * dialogflow.projects.agent.runtimes.sessions.contexts.create
+                 * @desc Creates a context.
+                 * @alias
+                 * dialogflow.projects.agent.runtimes.sessions.contexts.create
                  * @memberOf! dialogflow(v2beta1)
                  *
                  * @param {object} params Parameters for request
-                 * @param {string} params.parent Required. The name of the agent to delete all entities types for. Format: `projects/<Project ID>/agent`.
-                 * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1BatchDeleteIntentsRequest} params.resource Request body data
+                 * @param {string} params.parent Required. The session to create a context for. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>`. Note: Runtimes are under construction and will be available soon. If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
+                 * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1Context} params.resource Request body data
                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
                  * @param {callback} callback The callback that handles the response.
                  * @return {object} Request object
                  */
-                batchDelete(params, options, callback) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://dialogflow.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url: (rootUrl +
-                                '/v2beta1/{parent}/intents:batchDelete')
-                                   .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'POST'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['parent'],
-                    pathParams: ['parent'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback);
-                }, /**
-                    * dialogflow.projects.agent.intents.batchUpdate
-                    * @desc Updates/Creates multiple intents in the specified
-                    * agent.  Operation <response: BatchUpdateIntentsResponse>
-                    * @alias dialogflow.projects.agent.intents.batchUpdate
-                    * @memberOf! dialogflow(v2beta1)
-                    *
-                    * @param {object} params Parameters for request
-                    * @param {string} params.parent Required. The name of the agent to update or create intents in. Format: `projects/<Project ID>/agent`.
-                    * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1BatchUpdateIntentsRequest} params.resource Request body data
-                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                    * @param {callback} callback The callback that handles the response.
-                    * @return {object} Request object
-                    */
-                batchUpdate(params, options, callback) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://dialogflow.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url: (rootUrl +
-                                '/v2beta1/{parent}/intents:batchUpdate')
-                                   .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'POST'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['parent'],
-                    pathParams: ['parent'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback);
-                }, /**
-                    * dialogflow.projects.agent.intents.create
-                    * @desc Creates an intent in the specified agent.
-                    * @alias dialogflow.projects.agent.intents.create
-                    * @memberOf! dialogflow(v2beta1)
-                    *
-                    * @param {object} params Parameters for request
-                    * @param {string=} params.intentView Optional. The resource view to apply to the returned intent.
-                    * @param {string=} params.languageCode Optional. The language of training phrases, parameters and rich messages defined in `intent`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
-                    * @param {string} params.parent Required. The agent to create a intent for. Format: `projects/<Project ID>/agent`.
-                    * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1Intent} params.resource Request body data
-                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                    * @param {callback} callback The callback that handles the response.
-                    * @return {object} Request object
-                    */
                 create(params, options, callback) {
                   if (typeof options === 'function') {
                     callback = options;
@@ -761,7 +1011,7 @@ function Dialogflow(options) {
                   const parameters = {
                     options: Object.assign(
                         {
-                          url: (rootUrl + '/v2beta1/{parent}/intents')
+                          url: (rootUrl + '/v2beta1/{parent}/contexts')
                                    .replace(/([^:]\/)\/+/g, '$1'),
                           method: 'POST'
                         },
@@ -773,13 +1023,14 @@ function Dialogflow(options) {
                   };
                   return createAPIRequest(parameters, callback);
                 }, /**
-                    * dialogflow.projects.agent.intents.delete
-                    * @desc Deletes the specified intent.
-                    * @alias dialogflow.projects.agent.intents.delete
+                    * dialogflow.projects.agent.runtimes.sessions.contexts.delete
+                    * @desc Deletes the specified context.
+                    * @alias
+                    * dialogflow.projects.agent.runtimes.sessions.contexts.delete
                     * @memberOf! dialogflow(v2beta1)
                     *
                     * @param {object} params Parameters for request
-                    * @param {string} params.name Required. The name of the intent to delete. Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
+                    * @param {string} params.name Required. The name of the context to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or `projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>/contexts/<Context ID>`. Note: Runtimes are under construction and will be available soon. If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
                     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
@@ -807,15 +1058,14 @@ function Dialogflow(options) {
                   };
                   return createAPIRequest(parameters, callback);
                 }, /**
-                    * dialogflow.projects.agent.intents.get
-                    * @desc Retrieves the specified intent.
-                    * @alias dialogflow.projects.agent.intents.get
+                    * dialogflow.projects.agent.runtimes.sessions.contexts.get
+                    * @desc Retrieves the specified context.
+                    * @alias
+                    * dialogflow.projects.agent.runtimes.sessions.contexts.get
                     * @memberOf! dialogflow(v2beta1)
                     *
                     * @param {object} params Parameters for request
-                    * @param {string=} params.intentView Optional. The resource view to apply to the returned intent.
-                    * @param {string=} params.languageCode Optional. The language to retrieve training phrases, parameters and rich messages for. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
-                    * @param {string} params.name Required. The name of the intent. Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
+                    * @param {string} params.name Required. The name of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or `projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>/contexts/<Context ID>`. Note: Runtimes are under construction and will be available soon. If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
                     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
@@ -843,18 +1093,17 @@ function Dialogflow(options) {
                   };
                   return createAPIRequest(parameters, callback);
                 }, /**
-                    * dialogflow.projects.agent.intents.list
-                    * @desc Returns the list of all intents in the specified
-                    * agent.
-                    * @alias dialogflow.projects.agent.intents.list
+                    * dialogflow.projects.agent.runtimes.sessions.contexts.list
+                    * @desc Returns the list of all contexts in the specified
+                    * session.
+                    * @alias
+                    * dialogflow.projects.agent.runtimes.sessions.contexts.list
                     * @memberOf! dialogflow(v2beta1)
                     *
                     * @param {object} params Parameters for request
-                    * @param {string=} params.intentView Optional. The resource view to apply to the returned intent.
-                    * @param {string=} params.languageCode Optional. The language to list training phrases, parameters and rich messages for. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
                     * @param {integer=} params.pageSize Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
                     * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request.
-                    * @param {string} params.parent Required. The agent to list all intents from. Format: `projects/<Project ID>/agent`.
+                    * @param {string} params.parent Required. The session to list all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>`. Note: Runtimes are under construction and will be available soon. If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
                     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
@@ -870,7 +1119,7 @@ function Dialogflow(options) {
                   const parameters = {
                     options: Object.assign(
                         {
-                          url: (rootUrl + '/v2beta1/{parent}/intents')
+                          url: (rootUrl + '/v2beta1/{parent}/contexts')
                                    .replace(/([^:]\/)\/+/g, '$1'),
                           method: 'GET'
                         },
@@ -882,17 +1131,16 @@ function Dialogflow(options) {
                   };
                   return createAPIRequest(parameters, callback);
                 }, /**
-                    * dialogflow.projects.agent.intents.patch
-                    * @desc Updates the specified intent.
-                    * @alias dialogflow.projects.agent.intents.patch
+                    * dialogflow.projects.agent.runtimes.sessions.contexts.patch
+                    * @desc Updates the specified context.
+                    * @alias
+                    * dialogflow.projects.agent.runtimes.sessions.contexts.patch
                     * @memberOf! dialogflow(v2beta1)
                     *
                     * @param {object} params Parameters for request
-                    * @param {string=} params.intentView Optional. The resource view to apply to the returned intent.
-                    * @param {string=} params.languageCode Optional. The language of training phrases, parameters and rich messages defined in `intent`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
-                    * @param {string} params.name Required for all methods except `create` (`create` populates the name automatically. The unique identifier of this intent. Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
+                    * @param {string} params.name Required. The unique identifier of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`, or `projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>/contexts/<Context ID>`. Note: Runtimes are under construction and will be available soon. The Context ID is always converted to lowercase. If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
                     * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
-                    * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1Intent} params.resource Request body data
+                    * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1Context} params.resource Request body data
                     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
@@ -922,499 +1170,670 @@ function Dialogflow(options) {
                 }
 
               },
-              sessions:
-                  {
-                    /**
-                     * dialogflow.projects.agent.sessions.deleteContexts
-                     * @desc Deletes all active contexts in the specified
-                     * session.
-                     * @alias dialogflow.projects.agent.sessions.deleteContexts
-                     * @memberOf! dialogflow(v2beta1)
-                     *
-                     * @param {object} params Parameters for request
-                     * @param {string} params.parent Required. The name of the session to delete all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
-                     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                     * @param {callback} callback The callback that handles the response.
-                     * @return {object} Request object
-                     */
-                    deleteContexts(params, options, callback) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl = options.rootUrl ||
-                          'https://dialogflow.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url: (rootUrl + '/v2beta1/{parent}/contexts')
-                                       .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'DELETE'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['parent'],
-                        pathParams: ['parent'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback);
-                    }, /**
-                        * dialogflow.projects.agent.sessions.detectIntent
-                        * @desc Processes a natural language query and returns
-                        * structured, actionable data as a result. This method
-                        * is not idempotent, because it may cause contexts and
-                        * session entity types to be updated, which in turn
-                        * might affect results of future queries.
-                        * @alias dialogflow.projects.agent.sessions.detectIntent
-                        * @memberOf! dialogflow(v2beta1)
-                        *
-                        * @param {object} params Parameters for request
-                        * @param {string} params.session Required. The name of the session this query is sent to. Format: `projects/<Project ID>/agent/sessions/<Session ID>`. It's up to the API caller to choose an appropriate session ID. It can be a random number or some type of user identifier (preferably hashed). The length of the session ID must not exceed 36 bytes.
-                        * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1DetectIntentRequest} params.resource Request body data
-                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                        * @param {callback} callback The callback that handles the response.
-                        * @return {object} Request object
-                        */
-                    detectIntent(params, options, callback) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl = options.rootUrl ||
-                          'https://dialogflow.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url: (rootUrl + '/v2beta1/{session}:detectIntent')
-                                       .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'POST'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['session'],
-                        pathParams: ['session'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback);
-                    },
-                    contexts:
-                        {
-                          /**
-                           * dialogflow.projects.agent.sessions.contexts.create
-                           * @desc Creates a context.
-                           * @alias
-                           * dialogflow.projects.agent.sessions.contexts.create
-                           * @memberOf! dialogflow(v2beta1)
-                           *
-                           * @param {object} params Parameters for request
-                           * @param {string} params.parent Required. The session to create a context for. Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
-                           * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1Context} params.resource Request body data
-                           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                           * @param {callback} callback The callback that handles the response.
-                           * @return {object} Request object
-                           */
-                          create(params, options, callback) {
-                            if (typeof options === 'function') {
-                              callback = options;
-                              options = {};
-                            }
-                            options = options || {};
-                            const rootUrl = options.rootUrl ||
-                                'https://dialogflow.googleapis.com/';
-                            const parameters = {
-                              options: Object.assign(
-                                  {
-                                    url:
-                                        (rootUrl + '/v2beta1/{parent}/contexts')
-                                            .replace(/([^:]\/)\/+/g, '$1'),
-                                    method: 'POST'
-                                  },
-                                  options),
-                              params,
-                              requiredParams: ['parent'],
-                              pathParams: ['parent'],
-                              context: self
-                            };
-                            return createAPIRequest(parameters, callback);
-                          }, /**
-                              * dialogflow.projects.agent.sessions.contexts.delete
-                              * @desc Deletes the specified context.
-                              * @alias
-                              * dialogflow.projects.agent.sessions.contexts.delete
-                              * @memberOf! dialogflow(v2beta1)
-                              *
-                              * @param {object} params Parameters for request
-                              * @param {string} params.name Required. The name of the context to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`.
-                              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                              * @param {callback} callback The callback that handles the response.
-                              * @return {object} Request object
-                              */
-                          delete (params, options, callback) {
-                            if (typeof options === 'function') {
-                              callback = options;
-                              options = {};
-                            }
-                            options = options || {};
-                            const rootUrl = options.rootUrl ||
-                                'https://dialogflow.googleapis.com/';
-                            const parameters = {
-                              options: Object.assign(
-                                  {
-                                    url: (rootUrl + '/v2beta1/{name}')
-                                             .replace(/([^:]\/)\/+/g, '$1'),
-                                    method: 'DELETE'
-                                  },
-                                  options),
-                              params,
-                              requiredParams: ['name'],
-                              pathParams: ['name'],
-                              context: self
-                            };
-                            return createAPIRequest(parameters, callback);
-                          }, /**
-                              * dialogflow.projects.agent.sessions.contexts.get
-                              * @desc Retrieves the specified context.
-                              * @alias
-                              * dialogflow.projects.agent.sessions.contexts.get
-                              * @memberOf! dialogflow(v2beta1)
-                              *
-                              * @param {object} params Parameters for request
-                              * @param {string} params.name Required. The name of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`.
-                              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                              * @param {callback} callback The callback that handles the response.
-                              * @return {object} Request object
-                              */
-                          get(params, options, callback) {
-                            if (typeof options === 'function') {
-                              callback = options;
-                              options = {};
-                            }
-                            options = options || {};
-                            const rootUrl = options.rootUrl ||
-                                'https://dialogflow.googleapis.com/';
-                            const parameters = {
-                              options: Object.assign(
-                                  {
-                                    url: (rootUrl + '/v2beta1/{name}')
-                                             .replace(/([^:]\/)\/+/g, '$1'),
-                                    method: 'GET'
-                                  },
-                                  options),
-                              params,
-                              requiredParams: ['name'],
-                              pathParams: ['name'],
-                              context: self
-                            };
-                            return createAPIRequest(parameters, callback);
-                          }, /**
-                              * dialogflow.projects.agent.sessions.contexts.list
-                              * @desc Returns the list of all contexts in the
-                              * specified session.
-                              * @alias
-                              * dialogflow.projects.agent.sessions.contexts.list
-                              * @memberOf! dialogflow(v2beta1)
-                              *
-                              * @param {object} params Parameters for request
-                              * @param {integer=} params.pageSize Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
-                              * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request.
-                              * @param {string} params.parent Required. The session to list all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
-                              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                              * @param {callback} callback The callback that handles the response.
-                              * @return {object} Request object
-                              */
-                          list(params, options, callback) {
-                            if (typeof options === 'function') {
-                              callback = options;
-                              options = {};
-                            }
-                            options = options || {};
-                            const rootUrl = options.rootUrl ||
-                                'https://dialogflow.googleapis.com/';
-                            const parameters = {
-                              options: Object.assign(
-                                  {
-                                    url:
-                                        (rootUrl + '/v2beta1/{parent}/contexts')
-                                            .replace(/([^:]\/)\/+/g, '$1'),
-                                    method: 'GET'
-                                  },
-                                  options),
-                              params,
-                              requiredParams: ['parent'],
-                              pathParams: ['parent'],
-                              context: self
-                            };
-                            return createAPIRequest(parameters, callback);
-                          }, /**
-                              * dialogflow.projects.agent.sessions.contexts.patch
-                              * @desc Updates the specified context.
-                              * @alias
-                              * dialogflow.projects.agent.sessions.contexts.patch
-                              * @memberOf! dialogflow(v2beta1)
-                              *
-                              * @param {object} params Parameters for request
-                              * @param {string} params.name Required. The unique identifier of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`. Note: The Context ID is always converted to lowercase.
-                              * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
-                              * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1Context} params.resource Request body data
-                              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                              * @param {callback} callback The callback that handles the response.
-                              * @return {object} Request object
-                              */
-                          patch(params, options, callback) {
-                            if (typeof options === 'function') {
-                              callback = options;
-                              options = {};
-                            }
-                            options = options || {};
-                            const rootUrl = options.rootUrl ||
-                                'https://dialogflow.googleapis.com/';
-                            const parameters = {
-                              options: Object.assign(
-                                  {
-                                    url: (rootUrl + '/v2beta1/{name}')
-                                             .replace(/([^:]\/)\/+/g, '$1'),
-                                    method: 'PATCH'
-                                  },
-                                  options),
-                              params,
-                              requiredParams: ['name'],
-                              pathParams: ['name'],
-                              context: self
-                            };
-                            return createAPIRequest(parameters, callback);
-                          }
-
-                        },
-                    entityTypes: {
-                      /**
-                       * dialogflow.projects.agent.sessions.entityTypes.create
-                       * @desc Creates a session entity type.
-                       * @alias
-                       * dialogflow.projects.agent.sessions.entityTypes.create
-                       * @memberOf! dialogflow(v2beta1)
-                       *
-                       * @param {object} params Parameters for request
-                       * @param {string} params.parent Required. The session to create a session entity type for. Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
-                       * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1SessionEntityType} params.resource Request body data
-                       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                       * @param {callback} callback The callback that handles the response.
-                       * @return {object} Request object
-                       */
-                      create(params, options, callback) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://dialogflow.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url: (rootUrl + '/v2beta1/{parent}/entityTypes')
-                                         .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'POST'
-                              },
-                              options),
-                          params,
-                          requiredParams: ['parent'],
-                          pathParams: ['parent'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback);
-                      }, /**
-                          * dialogflow.projects.agent.sessions.entityTypes.delete
-                          * @desc Deletes the specified session entity type.
-                          * @alias
-                          * dialogflow.projects.agent.sessions.entityTypes.delete
-                          * @memberOf! dialogflow(v2beta1)
-                          *
-                          * @param {object} params Parameters for request
-                          * @param {string} params.name Required. The name of the entity type to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`.
-                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                          * @param {callback} callback The callback that handles the response.
-                          * @return {object} Request object
-                          */
-                      delete (params, options, callback) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://dialogflow.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url: (rootUrl + '/v2beta1/{name}')
-                                         .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'DELETE'
-                              },
-                              options),
-                          params,
-                          requiredParams: ['name'],
-                          pathParams: ['name'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback);
-                      }, /**
-                          * dialogflow.projects.agent.sessions.entityTypes.get
-                          * @desc Retrieves the specified session entity type.
-                          * @alias
-                          * dialogflow.projects.agent.sessions.entityTypes.get
-                          * @memberOf! dialogflow(v2beta1)
-                          *
-                          * @param {object} params Parameters for request
-                          * @param {string} params.name Required. The name of the session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`.
-                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                          * @param {callback} callback The callback that handles the response.
-                          * @return {object} Request object
-                          */
-                      get(params, options, callback) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://dialogflow.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url: (rootUrl + '/v2beta1/{name}')
-                                         .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'GET'
-                              },
-                              options),
-                          params,
-                          requiredParams: ['name'],
-                          pathParams: ['name'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback);
-                      }, /**
-                          * dialogflow.projects.agent.sessions.entityTypes.list
-                          * @desc Returns the list of all session entity types
-                          * in the specified session.
-                          * @alias
-                          * dialogflow.projects.agent.sessions.entityTypes.list
-                          * @memberOf! dialogflow(v2beta1)
-                          *
-                          * @param {object} params Parameters for request
-                          * @param {integer=} params.pageSize Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
-                          * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request.
-                          * @param {string} params.parent Required. The session to list all session entity types from. Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
-                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                          * @param {callback} callback The callback that handles the response.
-                          * @return {object} Request object
-                          */
-                      list(params, options, callback) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://dialogflow.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url: (rootUrl + '/v2beta1/{parent}/entityTypes')
-                                         .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'GET'
-                              },
-                              options),
-                          params,
-                          requiredParams: ['parent'],
-                          pathParams: ['parent'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback);
-                      }, /**
-                          * dialogflow.projects.agent.sessions.entityTypes.patch
-                          * @desc Updates the specified session entity type.
-                          * @alias
-                          * dialogflow.projects.agent.sessions.entityTypes.patch
-                          * @memberOf! dialogflow(v2beta1)
-                          *
-                          * @param {object} params Parameters for request
-                          * @param {string} params.name Required. The unique identifier of this session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`.
-                          * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
-                          * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1SessionEntityType} params.resource Request body data
-                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                          * @param {callback} callback The callback that handles the response.
-                          * @return {object} Request object
-                          */
-                      patch(params, options, callback) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://dialogflow.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url: (rootUrl + '/v2beta1/{name}')
-                                         .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'PATCH'
-                              },
-                              options),
-                          params,
-                          requiredParams: ['name'],
-                          pathParams: ['name'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback);
-                      }
-
-                    }
+              entityTypes: {
+                /**
+                 * dialogflow.projects.agent.runtimes.sessions.entityTypes.create
+                 * @desc Creates a session entity type.
+                 * @alias
+                 * dialogflow.projects.agent.runtimes.sessions.entityTypes.create
+                 * @memberOf! dialogflow(v2beta1)
+                 *
+                 * @param {object} params Parameters for request
+                 * @param {string} params.parent Required. The session to create a session entity type for. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>`. Note: Runtimes are under construction and will be available soon. If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
+                 * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1SessionEntityType} params.resource Request body data
+                 * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                 * @param {callback} callback The callback that handles the response.
+                 * @return {object} Request object
+                 */
+                create(params, options, callback) {
+                  if (typeof options === 'function') {
+                    callback = options;
+                    options = {};
                   }
-            },
-        operations: {
-          /**
-           * dialogflow.projects.operations.get
-           * @desc Gets the latest state of a long-running operation.  Clients
-           * can use this method to poll the operation result at intervals as
-           * recommended by the API service.
-           * @alias dialogflow.projects.operations.get
-           * @memberOf! dialogflow(v2beta1)
-           *
-           * @param {object} params Parameters for request
-           * @param {string} params.name The name of the operation resource.
-           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-           * @param {callback} callback The callback that handles the response.
-           * @return {object} Request object
-           */
-          get(params, options, callback) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://dialogflow.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url: (rootUrl + '/v2beta1/{name}')
-                             .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'GET'
-                  },
-                  options),
-              params,
-              requiredParams: ['name'],
-              pathParams: ['name'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback);
-          }
+                  options = options || {};
+                  const rootUrl =
+                      options.rootUrl || 'https://dialogflow.googleapis.com/';
+                  const parameters = {
+                    options: Object.assign(
+                        {
+                          url: (rootUrl + '/v2beta1/{parent}/entityTypes')
+                                   .replace(/([^:]\/)\/+/g, '$1'),
+                          method: 'POST'
+                        },
+                        options),
+                    params,
+                    requiredParams: ['parent'],
+                    pathParams: ['parent'],
+                    context: self
+                  };
+                  return createAPIRequest(parameters, callback);
+                }, /**
+                    * dialogflow.projects.agent.runtimes.sessions.entityTypes.delete
+                    * @desc Deletes the specified session entity type.
+                    * @alias
+                    * dialogflow.projects.agent.runtimes.sessions.entityTypes.delete
+                    * @memberOf! dialogflow(v2beta1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.name Required. The name of the entity type to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>` or `projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. Note: Runtimes are under construction and will be available soon. If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                delete (params, options, callback) {
+                  if (typeof options === 'function') {
+                    callback = options;
+                    options = {};
+                  }
+                  options = options || {};
+                  const rootUrl =
+                      options.rootUrl || 'https://dialogflow.googleapis.com/';
+                  const parameters = {
+                    options: Object.assign(
+                        {
+                          url: (rootUrl + '/v2beta1/{name}')
+                                   .replace(/([^:]\/)\/+/g, '$1'),
+                          method: 'DELETE'
+                        },
+                        options),
+                    params,
+                    requiredParams: ['name'],
+                    pathParams: ['name'],
+                    context: self
+                  };
+                  return createAPIRequest(parameters, callback);
+                }, /**
+                    * dialogflow.projects.agent.runtimes.sessions.entityTypes.get
+                    * @desc Retrieves the specified session entity type.
+                    * @alias
+                    * dialogflow.projects.agent.runtimes.sessions.entityTypes.get
+                    * @memberOf! dialogflow(v2beta1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.name Required. The name of the session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>` or `projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. Note: Runtimes are under construction and will be available soon. If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                get(params, options, callback) {
+                  if (typeof options === 'function') {
+                    callback = options;
+                    options = {};
+                  }
+                  options = options || {};
+                  const rootUrl =
+                      options.rootUrl || 'https://dialogflow.googleapis.com/';
+                  const parameters = {
+                    options: Object.assign(
+                        {
+                          url: (rootUrl + '/v2beta1/{name}')
+                                   .replace(/([^:]\/)\/+/g, '$1'),
+                          method: 'GET'
+                        },
+                        options),
+                    params,
+                    requiredParams: ['name'],
+                    pathParams: ['name'],
+                    context: self
+                  };
+                  return createAPIRequest(parameters, callback);
+                }, /**
+                    * dialogflow.projects.agent.runtimes.sessions.entityTypes.list
+                    * @desc Returns the list of all session entity types in the
+                    * specified session.
+                    * @alias
+                    * dialogflow.projects.agent.runtimes.sessions.entityTypes.list
+                    * @memberOf! dialogflow(v2beta1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {integer=} params.pageSize Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+                    * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request.
+                    * @param {string} params.parent Required. The session to list all session entity types from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>`. Note: Runtimes are under construction and will be available soon. If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                list(params, options, callback) {
+                  if (typeof options === 'function') {
+                    callback = options;
+                    options = {};
+                  }
+                  options = options || {};
+                  const rootUrl =
+                      options.rootUrl || 'https://dialogflow.googleapis.com/';
+                  const parameters = {
+                    options: Object.assign(
+                        {
+                          url: (rootUrl + '/v2beta1/{parent}/entityTypes')
+                                   .replace(/([^:]\/)\/+/g, '$1'),
+                          method: 'GET'
+                        },
+                        options),
+                    params,
+                    requiredParams: ['parent'],
+                    pathParams: ['parent'],
+                    context: self
+                  };
+                  return createAPIRequest(parameters, callback);
+                }, /**
+                    * dialogflow.projects.agent.runtimes.sessions.entityTypes.patch
+                    * @desc Updates the specified session entity type.
+                    * @alias
+                    * dialogflow.projects.agent.runtimes.sessions.entityTypes.patch
+                    * @memberOf! dialogflow(v2beta1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.name Required. The unique identifier of this session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`, or `projects/<Project ID>/agent/runtimes/<Runtime ID>sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. Note: Runtimes are under construction and will be available soon. If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
+                    * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
+                    * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1SessionEntityType} params.resource Request body data
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                patch(params, options, callback) {
+                  if (typeof options === 'function') {
+                    callback = options;
+                    options = {};
+                  }
+                  options = options || {};
+                  const rootUrl =
+                      options.rootUrl || 'https://dialogflow.googleapis.com/';
+                  const parameters = {
+                    options: Object.assign(
+                        {
+                          url: (rootUrl + '/v2beta1/{name}')
+                                   .replace(/([^:]\/)\/+/g, '$1'),
+                          method: 'PATCH'
+                        },
+                        options),
+                    params,
+                    requiredParams: ['name'],
+                    pathParams: ['name'],
+                    context: self
+                  };
+                  return createAPIRequest(parameters, callback);
+                }
 
+              }
+            }
+          },
+          sessions: {
+            /**
+             * dialogflow.projects.agent.sessions.deleteContexts
+             * @desc Deletes all active contexts in the specified session.
+             * @alias dialogflow.projects.agent.sessions.deleteContexts
+             * @memberOf! dialogflow(v2beta1)
+             *
+             * @param {object} params Parameters for request
+             * @param {string} params.parent Required. The name of the session to delete all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>`. Note: Runtimes are under construction and will be available soon. If <Runtime ID> is not specified we assume default 'sandbox' runtime.
+             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+             * @param {callback} callback The callback that handles the response.
+             * @return {object} Request object
+             */
+            deleteContexts(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dialogflow.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v2beta1/{parent}/contexts')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'DELETE'
+                    },
+                    options),
+                params,
+                requiredParams: ['parent'],
+                pathParams: ['parent'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            }, /**
+                * dialogflow.projects.agent.sessions.detectIntent
+                * @desc Processes a natural language query and returns
+                * structured, actionable data as a result. This method is not
+                * idempotent, because it may cause contexts and session entity
+                * types to be updated, which in turn might affect results of
+                * future queries.
+                * @alias dialogflow.projects.agent.sessions.detectIntent
+                * @memberOf! dialogflow(v2beta1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.session Required. The name of the session this query is sent to. Format: `projects/<Project ID>/agent/sessions/<Session ID>`, or `projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>`. Note: Runtimes are under construction and will be available soon. If <Runtime ID> is not specified, we assume default 'sandbox' runtime. It's up to the API caller to choose an appropriate session ID. It can be a random number or some type of user identifier (preferably hashed). The length of the session ID must not exceed 36 bytes.
+                * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1DetectIntentRequest} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            detectIntent(params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://dialogflow.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v2beta1/{session}:detectIntent')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['session'],
+                pathParams: ['session'],
+                context: self
+              };
+              return createAPIRequest(parameters, callback);
+            },
+            contexts: {
+              /**
+               * dialogflow.projects.agent.sessions.contexts.create
+               * @desc Creates a context.
+               * @alias dialogflow.projects.agent.sessions.contexts.create
+               * @memberOf! dialogflow(v2beta1)
+               *
+               * @param {object} params Parameters for request
+               * @param {string} params.parent Required. The session to create a context for. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>`. Note: Runtimes are under construction and will be available soon. If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
+               * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1Context} params.resource Request body data
+               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+               * @param {callback} callback The callback that handles the response.
+               * @return {object} Request object
+               */
+              create(params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://dialogflow.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl + '/v2beta1/{parent}/contexts')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'POST'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['parent'],
+                  pathParams: ['parent'],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }, /**
+                  * dialogflow.projects.agent.sessions.contexts.delete
+                  * @desc Deletes the specified context.
+                  * @alias dialogflow.projects.agent.sessions.contexts.delete
+                  * @memberOf! dialogflow(v2beta1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.name Required. The name of the context to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or `projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>/contexts/<Context ID>`. Note: Runtimes are under construction and will be available soon. If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              delete (params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://dialogflow.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl + '/v2beta1/{name}')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'DELETE'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['name'],
+                  pathParams: ['name'],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }, /**
+                  * dialogflow.projects.agent.sessions.contexts.get
+                  * @desc Retrieves the specified context.
+                  * @alias dialogflow.projects.agent.sessions.contexts.get
+                  * @memberOf! dialogflow(v2beta1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.name Required. The name of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or `projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>/contexts/<Context ID>`. Note: Runtimes are under construction and will be available soon. If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              get(params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://dialogflow.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl + '/v2beta1/{name}')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['name'],
+                  pathParams: ['name'],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }, /**
+                  * dialogflow.projects.agent.sessions.contexts.list
+                  * @desc Returns the list of all contexts in the specified
+                  * session.
+                  * @alias dialogflow.projects.agent.sessions.contexts.list
+                  * @memberOf! dialogflow(v2beta1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {integer=} params.pageSize Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+                  * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request.
+                  * @param {string} params.parent Required. The session to list all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>`. Note: Runtimes are under construction and will be available soon. If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              list(params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://dialogflow.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl + '/v2beta1/{parent}/contexts')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['parent'],
+                  pathParams: ['parent'],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }, /**
+                  * dialogflow.projects.agent.sessions.contexts.patch
+                  * @desc Updates the specified context.
+                  * @alias dialogflow.projects.agent.sessions.contexts.patch
+                  * @memberOf! dialogflow(v2beta1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.name Required. The unique identifier of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`, or `projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>/contexts/<Context ID>`. Note: Runtimes are under construction and will be available soon. The Context ID is always converted to lowercase. If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
+                  * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
+                  * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1Context} params.resource Request body data
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              patch(params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://dialogflow.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl + '/v2beta1/{name}')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'PATCH'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['name'],
+                  pathParams: ['name'],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }
+
+            },
+            entityTypes: {
+              /**
+               * dialogflow.projects.agent.sessions.entityTypes.create
+               * @desc Creates a session entity type.
+               * @alias dialogflow.projects.agent.sessions.entityTypes.create
+               * @memberOf! dialogflow(v2beta1)
+               *
+               * @param {object} params Parameters for request
+               * @param {string} params.parent Required. The session to create a session entity type for. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>`. Note: Runtimes are under construction and will be available soon. If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
+               * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1SessionEntityType} params.resource Request body data
+               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+               * @param {callback} callback The callback that handles the response.
+               * @return {object} Request object
+               */
+              create(params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://dialogflow.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl + '/v2beta1/{parent}/entityTypes')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'POST'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['parent'],
+                  pathParams: ['parent'],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }, /**
+                  * dialogflow.projects.agent.sessions.entityTypes.delete
+                  * @desc Deletes the specified session entity type.
+                  * @alias dialogflow.projects.agent.sessions.entityTypes.delete
+                  * @memberOf! dialogflow(v2beta1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.name Required. The name of the entity type to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>` or `projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. Note: Runtimes are under construction and will be available soon. If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              delete (params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://dialogflow.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl + '/v2beta1/{name}')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'DELETE'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['name'],
+                  pathParams: ['name'],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }, /**
+                  * dialogflow.projects.agent.sessions.entityTypes.get
+                  * @desc Retrieves the specified session entity type.
+                  * @alias dialogflow.projects.agent.sessions.entityTypes.get
+                  * @memberOf! dialogflow(v2beta1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.name Required. The name of the session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>` or `projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. Note: Runtimes are under construction and will be available soon. If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              get(params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://dialogflow.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl + '/v2beta1/{name}')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['name'],
+                  pathParams: ['name'],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }, /**
+                  * dialogflow.projects.agent.sessions.entityTypes.list
+                  * @desc Returns the list of all session entity types in the
+                  * specified session.
+                  * @alias dialogflow.projects.agent.sessions.entityTypes.list
+                  * @memberOf! dialogflow(v2beta1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {integer=} params.pageSize Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+                  * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request.
+                  * @param {string} params.parent Required. The session to list all session entity types from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>`. Note: Runtimes are under construction and will be available soon. If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              list(params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://dialogflow.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl + '/v2beta1/{parent}/entityTypes')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['parent'],
+                  pathParams: ['parent'],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }, /**
+                  * dialogflow.projects.agent.sessions.entityTypes.patch
+                  * @desc Updates the specified session entity type.
+                  * @alias dialogflow.projects.agent.sessions.entityTypes.patch
+                  * @memberOf! dialogflow(v2beta1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.name Required. The unique identifier of this session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`, or `projects/<Project ID>/agent/runtimes/<Runtime ID>sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. Note: Runtimes are under construction and will be available soon. If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
+                  * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
+                  * @param {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1SessionEntityType} params.resource Request body data
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              patch(params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://dialogflow.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl + '/v2beta1/{name}')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'PATCH'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['name'],
+                  pathParams: ['name'],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }
+
+            }
+          }
+        },
+    operations: {
+      /**
+       * dialogflow.projects.operations.get
+       * @desc Gets the latest state of a long-running operation.  Clients can
+       * use this method to poll the operation result at intervals as
+       * recommended by the API service.
+       * @alias dialogflow.projects.operations.get
+       * @memberOf! dialogflow(v2beta1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.name The name of the operation resource.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get(params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
         }
-      };
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+        return createAPIRequest(parameters, callback);
+      }
+
+    }
+  };
 }
 /**
  * @typedef GoogleCloudDialogflowV2BatchUpdateEntityTypesResponse
@@ -1482,7 +1901,7 @@ function Dialogflow(options) {
  * @memberOf! dialogflow(v2beta1)
  * @type object
  * @property {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1EntityTypeBatch} entityTypeBatchInline The collection of entity type to update or create.
- * @property {string} entityTypeBatchUri Warning: Importing entity types from a URI is not implemented yet. This feature is coming soon. The URI to a Google Cloud Storage file containing entity types to update or create. The file format can either be a serialized proto (of EntityBatch type) or a JSON object. Note: The URI must start with &quot;gs://&quot;.
+ * @property {string} entityTypeBatchUri The URI to a Google Cloud Storage file containing entity types to update or create. The file format can either be a serialized proto (of EntityBatch type) or a JSON object. Note: The URI must start with &quot;gs://&quot;.
  * @property {string} languageCode Optional. The language of entity synonyms defined in `entity_types`. If not specified, the agent&#39;s default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
  * @property {string} updateMask Optional. The mask to control which fields get updated.
  */
@@ -1497,7 +1916,7 @@ function Dialogflow(options) {
  * @memberOf! dialogflow(v2beta1)
  * @type object
  * @property {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1IntentBatch} intentBatchInline The collection of intents to update or create.
- * @property {string} intentBatchUri Warning: Importing intents from a URI is not implemented yet. This feature is coming soon. The URI to a Google Cloud Storage file containing intents to update or create. The file format can either be a serialized proto (of IntentBatch type) or JSON object. Note: The URI must start with &quot;gs://&quot;.
+ * @property {string} intentBatchUri The URI to a Google Cloud Storage file containing intents to update or create. The file format can either be a serialized proto (of IntentBatch type) or JSON object. Note: The URI must start with &quot;gs://&quot;.
  * @property {string} intentView Optional. The resource view to apply to the returned intent.
  * @property {string} languageCode Optional. The language of training phrases, parameters and rich messages defined in `intents`. If not specified, the agent&#39;s default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
  * @property {string} updateMask Optional. The mask to control which fields get updated.
@@ -1513,7 +1932,7 @@ function Dialogflow(options) {
  * @memberOf! dialogflow(v2beta1)
  * @type object
  * @property {integer} lifespanCount Optional. The number of conversational query requests after which the context expires. If set to `0` (the default) the context expires immediately. Contexts expire automatically after 10 minutes even if there are no matching queries.
- * @property {string} name Required. The unique identifier of the context. Format: `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`. Note: The Context ID is always converted to lowercase.
+ * @property {string} name Required. The unique identifier of the context. Format: `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`, or `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`. Note: Runtimes are under construction and will be available soon. The Context ID is always converted to lowercase. If &lt;Runtime ID&gt; is not specified, we assume default &#39;sandbox&#39; runtime.
  * @property {object} parameters Optional. The collection of parameters associated with this context. Refer to [this doc](https://dialogflow.com/docs/actions-and-parameters) for syntax.
  */
 /**
@@ -1567,7 +1986,7 @@ function Dialogflow(options) {
  * @typedef GoogleCloudDialogflowV2beta1ExportAgentRequest
  * @memberOf! dialogflow(v2beta1)
  * @type object
- * @property {string} agentUri Warning: Exporting agents to a URI is not implemented yet. This feature is coming soon.  Optional. The Google Cloud Storage URI to export the agent to. Note: The URI must start with &quot;gs://&quot;. If left unspecified, the serialized agent is returned inline.
+ * @property {string} agentUri Optional. The Google Cloud Storage URI to export the agent to. Note: The URI must start with &quot;gs://&quot;. If left unspecified, the serialized agent is returned inline.
  */
 /**
  * @typedef GoogleCloudDialogflowV2beta1ExportAgentResponse
@@ -1581,7 +2000,7 @@ function Dialogflow(options) {
  * @memberOf! dialogflow(v2beta1)
  * @type object
  * @property {string} agentContent The agent to import.  Example for how to import an agent via the command line:  curl \   &#39;https://dialogflow.googleapis.com/v2beta1/projects/&lt;project_name&gt;/agent:import\    -X POST \    -H &#39;Authorization: Bearer &#39;$(gcloud auth print-access-token) \    -H &#39;Accept: application/json&#39; \    -H &#39;Content-Type: application/json&#39; \    --compressed \    --data-binary &quot;{       &#39;agentContent&#39;: &#39;$(cat &lt;agent zip file&gt; | base64 -w 0)&#39;    }&quot;
- * @property {string} agentUri Warning: Importing agents from a URI is not implemented yet. This feature is coming soon.  The URI to a Google Cloud Storage file containing the agent to import. Note: The URI must start with &quot;gs://&quot;.
+ * @property {string} agentUri The URI to a Google Cloud Storage file containing the agent to import. Note: The URI must start with &quot;gs://&quot;.
  */
 /**
  * @typedef GoogleCloudDialogflowV2beta1InputAudioConfig
@@ -1604,7 +2023,8 @@ function Dialogflow(options) {
  * @property {string[]} inputContextNames Optional. The list of context names required for this intent to be triggered. Format: `projects/&lt;Project ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;`.
  * @property {boolean} isFallback Optional. Indicates whether this is a fallback intent.
  * @property {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1IntentMessage[]} messages Optional. The collection of rich messages corresponding to the `Response` field in API.AI console.
- * @property {boolean} mlEnabled Optional. Indicates whether Machine Learning is enabled for the intent. Note: If `ml_enabled` setting is set to false, then this intent is not taken into account during inference in `ML ONLY` match mode. Also, auto-markup in the UI is turned off.
+ * @property {boolean} mlDisabled Optional. Indicates whether Machine Learning is disabled for the intent. Note: If `ml_disabled` setting is set to true, then this intent is not taken into account during inference in `ML ONLY` match mode. Also, auto-markup in the UI is turned off.
+ * @property {boolean} mlEnabled Optional. Indicates whether Machine Learning is enabled for the intent. Note: If `ml_enabled` setting is set to false, then this intent is not taken into account during inference in `ML ONLY` match mode. Also, auto-markup in the UI is turned off. DEPRECATED! Please use `ml_disabled` field instead. NOTE: If neither `ml_enabled` nor `ml_disabled` field is set, then the default value is determined as follows: - Before April 15th, 2018 the default is:   ml_enabled = false / ml_disabled = true. - After April 15th, 2018 the default is:   ml_enabled = true / ml_disabled = false.
  * @property {string} name Required for all methods except `create` (`create` populates the name automatically. The unique identifier of this intent. Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
  * @property {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1Context[]} outputContexts Optional. The collection of contexts that are activated when the intent is matched. Context messages in this collection should not set the parameters field. Setting the `lifespan_count` to 0 will reset the context when the intent is matched. Format: `projects/&lt;Project ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;`.
  * @property {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1IntentParameter[]} parameters Optional. The collection of parameters associated with the intent.
@@ -1885,7 +2305,7 @@ function Dialogflow(options) {
  * @memberOf! dialogflow(v2beta1)
  * @type object
  * @property {string} agentContent The agent to restore.  Example for how to restore an agent via the command line:  curl \   &#39;https://dialogflow.googleapis.com/v2beta1/projects/&lt;project_name&gt;/agent:restore\    -X POST \    -H &#39;Authorization: Bearer &#39;$(gcloud auth print-access-token) \    -H &#39;Accept: application/json&#39; \    -H &#39;Content-Type: application/json&#39; \    --compressed \    --data-binary &quot;{        &#39;agentContent&#39;: &#39;$(cat &lt;agent zip file&gt; | base64 -w 0)&#39;    }&quot; \
- * @property {string} agentUri Warning: Restoring agents from a URI is not implemented yet. This feature is coming soon.  The URI to a Google Cloud Storage file containing the agent to restore. Note: The URI must start with &quot;gs://&quot;.
+ * @property {string} agentUri The URI to a Google Cloud Storage file containing the agent to restore. Note: The URI must start with &quot;gs://&quot;.
  */
 /**
  * @typedef GoogleCloudDialogflowV2beta1SearchAgentsResponse
@@ -1900,7 +2320,7 @@ function Dialogflow(options) {
  * @type object
  * @property {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1EntityTypeEntity[]} entities Required. The collection of entities associated with this session entity type.
  * @property {string} entityOverrideMode Required. Indicates whether the additional data should override or supplement the developer entity type definition.
- * @property {string} name Required. The unique identifier of this session entity type. Format: `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`.
+ * @property {string} name Required. The unique identifier of this session entity type. Format: `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`, or `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`. Note: Runtimes are under construction and will be available soon. If &lt;Runtime ID&gt; is not specified, we assume default &#39;sandbox&#39; runtime.
  */
 /**
  * @typedef GoogleCloudDialogflowV2beta1TextInput
@@ -1939,7 +2359,7 @@ function Dialogflow(options) {
  * @memberOf! dialogflow(v2beta1)
  * @type object
  * @property {integer} lifespanCount Optional. The number of conversational query requests after which the context expires. If set to `0` (the default) the context expires immediately. Contexts expire automatically after 10 minutes even if there are no matching queries.
- * @property {string} name Required. The unique identifier of the context. Format: `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`. Note: The Context ID is always converted to lowercase.
+ * @property {string} name Required. The unique identifier of the context. Format: `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`, or `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime ID&gt;/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`. Note: Runtimes are under construction and will be available soon. The Context ID is always converted to lowercase. If &lt;Runtime ID&gt; is not specified, we assume default &#39;sandbox&#39; runtime.
  * @property {object} parameters Optional. The collection of parameters associated with this context. Refer to [this doc](https://dialogflow.com/docs/actions-and-parameters) for syntax.
  */
 /**
@@ -1986,7 +2406,7 @@ function Dialogflow(options) {
  * @property {string[]} inputContextNames Optional. The list of context names required for this intent to be triggered. Format: `projects/&lt;Project ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;`.
  * @property {boolean} isFallback Optional. Indicates whether this is a fallback intent.
  * @property {dialogflow(v2beta1).GoogleCloudDialogflowV2IntentMessage[]} messages Optional. The collection of rich messages corresponding to the `Response` field in API.AI console.
- * @property {boolean} mlEnabled Optional. Indicates whether Machine Learning is enabled for the intent. Note: If `ml_enabled` setting is set to false, then this intent is not taken into account during inference in `ML ONLY` match mode. Also, auto-markup in the UI is turned off.
+ * @property {boolean} mlDisabled Optional. Indicates whether Machine Learning is disabled for the intent. Note: If `ml_diabled` setting is set to true, then this intent is not taken into account during inference in `ML ONLY` match mode. Also, auto-markup in the UI is turned off.
  * @property {string} name Required for all methods except `create` (`create` populates the name automatically. The unique identifier of this intent. Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
  * @property {dialogflow(v2beta1).GoogleCloudDialogflowV2Context[]} outputContexts Optional. The collection of contexts that are activated when the intent is matched. Context messages in this collection should not set the parameters field. Setting the `lifespan_count` to 0 will reset the context when the intent is matched. Format: `projects/&lt;Project ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;`.
  * @property {dialogflow(v2beta1).GoogleCloudDialogflowV2IntentParameter[]} parameters Optional. The collection of parameters associated with the intent.
