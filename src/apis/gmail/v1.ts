@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Gmail API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Gmail
  */
-function Gmail(options) {
+function Gmail(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.users =
@@ -48,7 +55,9 @@ function Gmail(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        getProfile(params, options, callback) {
+        getProfile(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -68,7 +77,7 @@ function Gmail(options) {
             pathParams: ['userId'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * gmail.users.stop
             * @desc Stop receiving push notifications for the given user
@@ -82,7 +91,9 @@ function Gmail(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        stop(params, options, callback) {
+        stop(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -102,7 +113,7 @@ function Gmail(options) {
             pathParams: ['userId'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * gmail.users.watch
             * @desc Set up or update a push notification watch on the given user
@@ -117,7 +128,9 @@ function Gmail(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        watch(params, options, callback) {
+        watch(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -137,7 +150,7 @@ function Gmail(options) {
             pathParams: ['userId'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         },
         drafts: {
           /**
@@ -156,7 +169,9 @@ function Gmail(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          create(params, options, callback) {
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -178,7 +193,7 @@ function Gmail(options) {
               pathParams: ['userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * gmail.users.drafts.delete
               * @desc Immediately and permanently deletes the specified draft.
@@ -193,7 +208,9 @@ function Gmail(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          delete (params, options, callback) {
+          delete (
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -213,7 +230,7 @@ function Gmail(options) {
               pathParams: ['id', 'userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * gmail.users.drafts.get
               * @desc Gets the specified draft.
@@ -228,7 +245,8 @@ function Gmail(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -248,7 +266,7 @@ function Gmail(options) {
               pathParams: ['id', 'userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * gmail.users.drafts.list
               * @desc Lists the drafts in the user's mailbox.
@@ -265,7 +283,9 @@ function Gmail(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -285,7 +305,7 @@ function Gmail(options) {
               pathParams: ['userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * gmail.users.drafts.send
               * @desc Sends the specified, existing draft to the recipients in
@@ -303,7 +323,9 @@ function Gmail(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          send(params, options, callback) {
+          send(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -326,7 +348,7 @@ function Gmail(options) {
               pathParams: ['userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * gmail.users.drafts.update
               * @desc Replaces a draft's content.
@@ -344,7 +366,9 @@ function Gmail(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          update(params, options, callback) {
+          update(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -367,7 +391,7 @@ function Gmail(options) {
               pathParams: ['id', 'userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }
 
         },
@@ -391,7 +415,9 @@ function Gmail(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -411,7 +437,7 @@ function Gmail(options) {
               pathParams: ['userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }
 
         },
@@ -429,7 +455,9 @@ function Gmail(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          create(params, options, callback) {
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -449,7 +477,7 @@ function Gmail(options) {
               pathParams: ['userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * gmail.users.labels.delete
               * @desc Immediately and permanently deletes the specified label
@@ -465,7 +493,9 @@ function Gmail(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          delete (params, options, callback) {
+          delete (
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -485,7 +515,7 @@ function Gmail(options) {
               pathParams: ['id', 'userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * gmail.users.labels.get
               * @desc Gets the specified label.
@@ -499,7 +529,8 @@ function Gmail(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -519,7 +550,7 @@ function Gmail(options) {
               pathParams: ['id', 'userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * gmail.users.labels.list
               * @desc Lists all labels in the user's mailbox.
@@ -532,7 +563,9 @@ function Gmail(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -552,7 +585,7 @@ function Gmail(options) {
               pathParams: ['userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * gmail.users.labels.patch
               * @desc Updates the specified label. This method supports patch
@@ -568,7 +601,9 @@ function Gmail(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          patch(params, options, callback) {
+          patch(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -588,7 +623,7 @@ function Gmail(options) {
               pathParams: ['id', 'userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * gmail.users.labels.update
               * @desc Updates the specified label.
@@ -603,7 +638,9 @@ function Gmail(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          update(params, options, callback) {
+          update(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -623,7 +660,7 @@ function Gmail(options) {
               pathParams: ['id', 'userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }
 
         },
@@ -642,7 +679,9 @@ function Gmail(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          batchDelete(params, options, callback) {
+          batchDelete(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -663,7 +702,7 @@ function Gmail(options) {
               pathParams: ['userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * gmail.users.messages.batchModify
               * @desc Modifies the labels on the specified messages.
@@ -677,7 +716,9 @@ function Gmail(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          batchModify(params, options, callback) {
+          batchModify(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -698,7 +739,7 @@ function Gmail(options) {
               pathParams: ['userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * gmail.users.messages.delete
               * @desc Immediately and permanently deletes the specified message.
@@ -713,7 +754,9 @@ function Gmail(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          delete (params, options, callback) {
+          delete (
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -733,7 +776,7 @@ function Gmail(options) {
               pathParams: ['id', 'userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * gmail.users.messages.get
               * @desc Gets the specified message.
@@ -749,7 +792,8 @@ function Gmail(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -769,7 +813,7 @@ function Gmail(options) {
               pathParams: ['id', 'userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * gmail.users.messages.import
               * @desc Imports a message into only this user's mailbox, with
@@ -792,7 +836,9 @@ function Gmail(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          import(params, options, callback) {
+          import(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -815,7 +861,7 @@ function Gmail(options) {
               pathParams: ['userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * gmail.users.messages.insert
               * @desc Directly inserts a message into only this user's mailbox
@@ -836,7 +882,9 @@ function Gmail(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          insert(params, options, callback) {
+          insert(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -858,7 +906,7 @@ function Gmail(options) {
               pathParams: ['userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * gmail.users.messages.list
               * @desc Lists the messages in the user's mailbox.
@@ -876,7 +924,9 @@ function Gmail(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -896,7 +946,7 @@ function Gmail(options) {
               pathParams: ['userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * gmail.users.messages.modify
               * @desc Modifies the labels on the specified message.
@@ -911,7 +961,9 @@ function Gmail(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          modify(params, options, callback) {
+          modify(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -932,7 +984,7 @@ function Gmail(options) {
               pathParams: ['id', 'userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * gmail.users.messages.send
               * @desc Sends the specified message to the recipients in the To,
@@ -950,7 +1002,9 @@ function Gmail(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          send(params, options, callback) {
+          send(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -973,7 +1027,7 @@ function Gmail(options) {
               pathParams: ['userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * gmail.users.messages.trash
               * @desc Moves the specified message to the trash.
@@ -987,7 +1041,9 @@ function Gmail(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          trash(params, options, callback) {
+          trash(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1008,7 +1064,7 @@ function Gmail(options) {
               pathParams: ['id', 'userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * gmail.users.messages.untrash
               * @desc Removes the specified message from the trash.
@@ -1022,7 +1078,9 @@ function Gmail(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          untrash(params, options, callback) {
+          untrash(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1043,7 +1101,7 @@ function Gmail(options) {
               pathParams: ['id', 'userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           },
           attachments: {
             /**
@@ -1060,7 +1118,8 @@ function Gmail(options) {
              * @param {callback} callback The callback that handles the response.
              * @return {object} Request object
              */
-            get(params, options, callback) {
+            get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -1082,7 +1141,7 @@ function Gmail(options) {
                 pathParams: ['id', 'messageId', 'userId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }
 
           }
@@ -1100,7 +1159,9 @@ function Gmail(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          getAutoForwarding(params, options, callback) {
+          getAutoForwarding(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1121,7 +1182,7 @@ function Gmail(options) {
               pathParams: ['userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * gmail.users.settings.getImap
               * @desc Gets IMAP settings.
@@ -1134,7 +1195,9 @@ function Gmail(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          getImap(params, options, callback) {
+          getImap(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1154,7 +1217,7 @@ function Gmail(options) {
               pathParams: ['userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * gmail.users.settings.getPop
               * @desc Gets POP settings.
@@ -1167,7 +1230,9 @@ function Gmail(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          getPop(params, options, callback) {
+          getPop(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1187,7 +1252,7 @@ function Gmail(options) {
               pathParams: ['userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * gmail.users.settings.getVacation
               * @desc Gets vacation responder settings.
@@ -1200,7 +1265,9 @@ function Gmail(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          getVacation(params, options, callback) {
+          getVacation(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1221,7 +1288,7 @@ function Gmail(options) {
               pathParams: ['userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * gmail.users.settings.updateAutoForwarding
               * @desc Updates the auto-forwarding setting for the specified
@@ -1239,7 +1306,9 @@ function Gmail(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          updateAutoForwarding(params, options, callback) {
+          updateAutoForwarding(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1260,7 +1329,7 @@ function Gmail(options) {
               pathParams: ['userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * gmail.users.settings.updateImap
               * @desc Updates IMAP settings.
@@ -1274,7 +1343,9 @@ function Gmail(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          updateImap(params, options, callback) {
+          updateImap(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1294,7 +1365,7 @@ function Gmail(options) {
               pathParams: ['userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * gmail.users.settings.updatePop
               * @desc Updates POP settings.
@@ -1308,7 +1379,9 @@ function Gmail(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          updatePop(params, options, callback) {
+          updatePop(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1328,7 +1401,7 @@ function Gmail(options) {
               pathParams: ['userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * gmail.users.settings.updateVacation
               * @desc Updates vacation responder settings.
@@ -1342,7 +1415,9 @@ function Gmail(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          updateVacation(params, options, callback) {
+          updateVacation(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1363,7 +1438,7 @@ function Gmail(options) {
               pathParams: ['userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           },
           filters: {
             /**
@@ -1379,7 +1454,9 @@ function Gmail(options) {
              * @param {callback} callback The callback that handles the response.
              * @return {object} Request object
              */
-            create(params, options, callback) {
+            create(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -1400,7 +1477,7 @@ function Gmail(options) {
                 pathParams: ['userId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * gmail.users.settings.filters.delete
                 * @desc Deletes a filter.
@@ -1414,7 +1491,9 @@ function Gmail(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            delete (params, options, callback) {
+            delete (
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -1435,7 +1514,7 @@ function Gmail(options) {
                 pathParams: ['id', 'userId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * gmail.users.settings.filters.get
                 * @desc Gets a filter.
@@ -1449,7 +1528,8 @@ function Gmail(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            get(params, options, callback) {
+            get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -1470,7 +1550,7 @@ function Gmail(options) {
                 pathParams: ['id', 'userId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * gmail.users.settings.filters.list
                 * @desc Lists the message filters of a Gmail user.
@@ -1483,7 +1563,9 @@ function Gmail(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            list(params, options, callback) {
+            list(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -1504,7 +1586,7 @@ function Gmail(options) {
                 pathParams: ['userId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }
 
           },
@@ -1527,7 +1609,9 @@ function Gmail(options) {
              * @param {callback} callback The callback that handles the response.
              * @return {object} Request object
              */
-            create(params, options, callback) {
+            create(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -1549,7 +1633,7 @@ function Gmail(options) {
                 pathParams: ['userId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * gmail.users.settings.forwardingAddresses.delete
                 * @desc Deletes the specified forwarding address and revokes any
@@ -1566,7 +1650,9 @@ function Gmail(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            delete (params, options, callback) {
+            delete (
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -1588,7 +1674,7 @@ function Gmail(options) {
                 pathParams: ['forwardingEmail', 'userId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * gmail.users.settings.forwardingAddresses.get
                 * @desc Gets the specified forwarding address.
@@ -1602,7 +1688,8 @@ function Gmail(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            get(params, options, callback) {
+            get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -1624,7 +1711,7 @@ function Gmail(options) {
                 pathParams: ['forwardingEmail', 'userId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * gmail.users.settings.forwardingAddresses.list
                 * @desc Lists the forwarding addresses for the specified
@@ -1638,7 +1725,9 @@ function Gmail(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            list(params, options, callback) {
+            list(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -1660,7 +1749,7 @@ function Gmail(options) {
                 pathParams: ['userId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }
 
           },
@@ -1687,7 +1776,9 @@ function Gmail(options) {
              * @param {callback} callback The callback that handles the response.
              * @return {object} Request object
              */
-            create(params, options, callback) {
+            create(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -1708,7 +1799,7 @@ function Gmail(options) {
                 pathParams: ['userId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * gmail.users.settings.sendAs.delete
                 * @desc Deletes the specified send-as alias. Revokes any
@@ -1725,7 +1816,9 @@ function Gmail(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            delete (params, options, callback) {
+            delete (
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -1747,7 +1840,7 @@ function Gmail(options) {
                 pathParams: ['sendAsEmail', 'userId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * gmail.users.settings.sendAs.get
                 * @desc Gets the specified send-as alias. Fails with an HTTP 404
@@ -1763,7 +1856,8 @@ function Gmail(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            get(params, options, callback) {
+            get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -1785,7 +1879,7 @@ function Gmail(options) {
                 pathParams: ['sendAsEmail', 'userId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * gmail.users.settings.sendAs.list
                 * @desc Lists the send-as aliases for the specified account. The
@@ -1800,7 +1894,9 @@ function Gmail(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            list(params, options, callback) {
+            list(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -1821,7 +1917,7 @@ function Gmail(options) {
                 pathParams: ['userId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * gmail.users.settings.sendAs.patch
                 * @desc Updates a send-as alias. If a signature is provided,
@@ -1841,7 +1937,9 @@ function Gmail(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            patch(params, options, callback) {
+            patch(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -1863,7 +1961,7 @@ function Gmail(options) {
                 pathParams: ['sendAsEmail', 'userId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * gmail.users.settings.sendAs.update
                 * @desc Updates a send-as alias. If a signature is provided,
@@ -1882,7 +1980,9 @@ function Gmail(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            update(params, options, callback) {
+            update(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -1904,7 +2004,7 @@ function Gmail(options) {
                 pathParams: ['sendAsEmail', 'userId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * gmail.users.settings.sendAs.verify
                 * @desc Sends a verification email to the specified send-as
@@ -1921,7 +2021,9 @@ function Gmail(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            verify(params, options, callback) {
+            verify(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -1943,7 +2045,7 @@ function Gmail(options) {
                 pathParams: ['sendAsEmail', 'userId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             },
             smimeInfo: {
               /**
@@ -1961,7 +2063,9 @@ function Gmail(options) {
                * @param {callback} callback The callback that handles the response.
                * @return {object} Request object
                */
-              delete (params, options, callback) {
+              delete (
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -1984,7 +2088,7 @@ function Gmail(options) {
                   pathParams: ['id', 'sendAsEmail', 'userId'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * gmail.users.settings.sendAs.smimeInfo.get
                   * @desc Gets the specified S/MIME config for the specified
@@ -2000,7 +2104,8 @@ function Gmail(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              get(params, options, callback) {
+              get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -2023,7 +2128,7 @@ function Gmail(options) {
                   pathParams: ['id', 'sendAsEmail', 'userId'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * gmail.users.settings.sendAs.smimeInfo.insert
                   * @desc Insert (upload) the given S/MIME config for the
@@ -2040,7 +2145,9 @@ function Gmail(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              insert(params, options, callback) {
+              insert(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -2063,7 +2170,7 @@ function Gmail(options) {
                   pathParams: ['sendAsEmail', 'userId'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * gmail.users.settings.sendAs.smimeInfo.list
                   * @desc Lists S/MIME configs for the specified send-as alias.
@@ -2077,7 +2184,9 @@ function Gmail(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              list(params, options, callback) {
+              list(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -2100,7 +2209,7 @@ function Gmail(options) {
                   pathParams: ['sendAsEmail', 'userId'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * gmail.users.settings.sendAs.smimeInfo.setDefault
                   * @desc Sets the default S/MIME config for the specified
@@ -2116,7 +2225,9 @@ function Gmail(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              setDefault(params, options, callback) {
+              setDefault(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -2139,7 +2250,7 @@ function Gmail(options) {
                   pathParams: ['id', 'sendAsEmail', 'userId'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }
 
             }
@@ -2160,7 +2271,9 @@ function Gmail(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          delete (params, options, callback) {
+          delete (
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -2180,7 +2293,7 @@ function Gmail(options) {
               pathParams: ['id', 'userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * gmail.users.threads.get
               * @desc Gets the specified thread.
@@ -2196,7 +2309,8 @@ function Gmail(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -2216,7 +2330,7 @@ function Gmail(options) {
               pathParams: ['id', 'userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * gmail.users.threads.list
               * @desc Lists the threads in the user's mailbox.
@@ -2234,7 +2348,9 @@ function Gmail(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -2254,7 +2370,7 @@ function Gmail(options) {
               pathParams: ['userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * gmail.users.threads.modify
               * @desc Modifies the labels applied to the thread. This applies to
@@ -2270,7 +2386,9 @@ function Gmail(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          modify(params, options, callback) {
+          modify(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -2291,7 +2409,7 @@ function Gmail(options) {
               pathParams: ['id', 'userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * gmail.users.threads.trash
               * @desc Moves the specified thread to the trash.
@@ -2305,7 +2423,9 @@ function Gmail(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          trash(params, options, callback) {
+          trash(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -2326,7 +2446,7 @@ function Gmail(options) {
               pathParams: ['id', 'userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * gmail.users.threads.untrash
               * @desc Removes the specified thread from the trash.
@@ -2340,7 +2460,9 @@ function Gmail(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          untrash(params, options, callback) {
+          untrash(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -2361,7 +2483,7 @@ function Gmail(options) {
               pathParams: ['id', 'userId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }
 
         }

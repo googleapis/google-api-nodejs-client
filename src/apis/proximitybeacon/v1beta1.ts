@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Proximity Beacon API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta1
  * @param {object=} options Options for Proximitybeacon
  */
-function Proximitybeacon(options) {
+function Proximitybeacon(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.beaconinfo = {
@@ -51,7 +58,9 @@ function Proximitybeacon(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getforobserved(params, options, callback) {
+    getforobserved(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -72,7 +81,7 @@ function Proximitybeacon(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -96,7 +105,9 @@ function Proximitybeacon(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    activate(params, options, callback) {
+    activate(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -117,7 +128,7 @@ function Proximitybeacon(options) {
         pathParams: ['beaconName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * proximitybeacon.beacons.deactivate
         * @desc Deactivates a beacon. Once deactivated, the API will not return
@@ -138,7 +149,9 @@ function Proximitybeacon(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    deactivate(params, options, callback) {
+    deactivate(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -159,7 +172,7 @@ function Proximitybeacon(options) {
         pathParams: ['beaconName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * proximitybeacon.beacons.decommission
         * @desc Decommissions the specified beacon in the service. This beacon
@@ -179,7 +192,9 @@ function Proximitybeacon(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    decommission(params, options, callback) {
+    decommission(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -200,7 +215,7 @@ function Proximitybeacon(options) {
         pathParams: ['beaconName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * proximitybeacon.beacons.delete
         * @desc Deletes the specified beacon including all diagnostics data for
@@ -220,7 +235,9 @@ function Proximitybeacon(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -241,7 +258,7 @@ function Proximitybeacon(options) {
         pathParams: ['beaconName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * proximitybeacon.beacons.get
         * @desc Returns detailed information about the specified beacon.
@@ -264,7 +281,8 @@ function Proximitybeacon(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -285,7 +303,7 @@ function Proximitybeacon(options) {
         pathParams: ['beaconName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * proximitybeacon.beacons.list
         * @desc Searches the beacon registry for beacons that match the given
@@ -306,7 +324,9 @@ function Proximitybeacon(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -326,7 +346,7 @@ function Proximitybeacon(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * proximitybeacon.beacons.register
         * @desc Registers a previously unregistered beacon given its
@@ -345,7 +365,9 @@ function Proximitybeacon(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    register(params, options, callback) {
+    register(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -366,7 +388,7 @@ function Proximitybeacon(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * proximitybeacon.beacons.update
         * @desc Updates the information about the specified beacon. **Any field
@@ -390,7 +412,9 @@ function Proximitybeacon(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -411,7 +435,7 @@ function Proximitybeacon(options) {
         pathParams: ['beaconName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     },
     attachments: {
       /**
@@ -436,7 +460,9 @@ function Proximitybeacon(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      batchDelete(params, options, callback) {
+      batchDelete(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -457,7 +483,7 @@ function Proximitybeacon(options) {
           pathParams: ['beaconName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * proximitybeacon.beacons.attachments.create
           * @desc Associates the given data with the specified beacon.
@@ -483,7 +509,9 @@ function Proximitybeacon(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      create(params, options, callback) {
+      create(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -504,7 +532,7 @@ function Proximitybeacon(options) {
           pathParams: ['beaconName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * proximitybeacon.beacons.attachments.delete
           * @desc Deletes the specified attachment for the given beacon. Each
@@ -526,7 +554,9 @@ function Proximitybeacon(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (params, options, callback) {
+      delete (
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -547,7 +577,7 @@ function Proximitybeacon(options) {
           pathParams: ['attachmentName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * proximitybeacon.beacons.attachments.list
           * @desc Returns the attachments for the specified beacon that match
@@ -570,7 +600,9 @@ function Proximitybeacon(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -591,7 +623,7 @@ function Proximitybeacon(options) {
           pathParams: ['beaconName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -618,7 +650,9 @@ function Proximitybeacon(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -639,7 +673,7 @@ function Proximitybeacon(options) {
           pathParams: ['beaconName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }
@@ -663,7 +697,9 @@ function Proximitybeacon(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -684,7 +720,7 @@ function Proximitybeacon(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * proximitybeacon.namespaces.update
         * @desc Updates the information about the specified namespace. Only the
@@ -700,7 +736,9 @@ function Proximitybeacon(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -721,7 +759,7 @@ function Proximitybeacon(options) {
         pathParams: ['namespaceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -743,7 +781,9 @@ function Proximitybeacon(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getEidparams(params, options, callback) {
+    getEidparams(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -764,7 +804,7 @@ function Proximitybeacon(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

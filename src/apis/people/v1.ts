@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * People API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for People
  */
-function People(options) {
+function People(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.contactGroups = {
@@ -49,7 +56,9 @@ function People(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    batchGet(params, options, callback) {
+    batchGet(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -69,7 +78,7 @@ function People(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * people.contactGroups.create
         * @desc Create a new contact group owned by the authenticated user.
@@ -82,7 +91,9 @@ function People(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    create(params, options, callback) {
+    create(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -102,7 +113,7 @@ function People(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * people.contactGroups.delete
         * @desc Delete an existing contact group owned by the authenticated user
@@ -117,7 +128,9 @@ function People(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -137,7 +150,7 @@ function People(options) {
         pathParams: ['resourceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * people.contactGroups.get
         * @desc Get a specific contact group owned by the authenticated user by
@@ -152,7 +165,8 @@ function People(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -172,7 +186,7 @@ function People(options) {
         pathParams: ['resourceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * people.contactGroups.list
         * @desc List all contact groups owned by the authenticated user. Members
@@ -188,7 +202,9 @@ function People(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -208,7 +224,7 @@ function People(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * people.contactGroups.update
         * @desc Update the name of an existing contact group owned by the
@@ -223,7 +239,9 @@ function People(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -243,7 +261,7 @@ function People(options) {
         pathParams: ['resourceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     },
     members: {
       /**
@@ -260,7 +278,9 @@ function People(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      modify(params, options, callback) {
+      modify(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -280,7 +300,7 @@ function People(options) {
           pathParams: ['resourceName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }
@@ -300,7 +320,9 @@ function People(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    createContact(params, options, callback) {
+    createContact(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -320,7 +342,7 @@ function People(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * people.people.deleteContact
         * @desc Delete a contact person. Any non-contact data will not be
@@ -334,7 +356,9 @@ function People(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    deleteContact(params, options, callback) {
+    deleteContact(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -354,7 +378,7 @@ function People(options) {
         pathParams: ['resourceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * people.people.get
         * @desc Provides information about a person by specifying a resource
@@ -371,7 +395,8 @@ function People(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -391,7 +416,7 @@ function People(options) {
         pathParams: ['resourceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * people.people.getBatchGet
         * @desc Provides information about a list of specific people by
@@ -409,7 +434,9 @@ function People(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getBatchGet(params, options, callback) {
+    getBatchGet(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -429,7 +456,7 @@ function People(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * people.people.updateContact
         * @desc Update contact data for an existing contact person. Any
@@ -452,7 +479,9 @@ function People(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    updateContact(params, options, callback) {
+    updateContact(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -472,7 +501,7 @@ function People(options) {
         pathParams: ['resourceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     },
     connections: {
       /**
@@ -496,7 +525,9 @@ function People(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -516,7 +547,7 @@ function People(options) {
           pathParams: ['resourceName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }

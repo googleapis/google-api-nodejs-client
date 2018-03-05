@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Cloud Deployment Manager API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2
  * @param {object=} options Options for Deploymentmanager
  */
-function Deploymentmanager(options) {
+function Deploymentmanager(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.deployments = {
@@ -108,7 +115,9 @@ function Deploymentmanager(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancelPreview(params, options, callback) {
+    cancelPreview(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -130,7 +139,7 @@ function Deploymentmanager(options) {
         pathParams: ['deployment', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * deploymentmanager.deployments.delete
         * @desc Deletes a deployment and all of the resources in the deployment.
@@ -200,7 +209,9 @@ function Deploymentmanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -222,7 +233,7 @@ function Deploymentmanager(options) {
         pathParams: ['deployment', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * deploymentmanager.deployments.get
         * @desc Gets information about a specific deployment.
@@ -293,7 +304,8 @@ function Deploymentmanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -315,7 +327,7 @@ function Deploymentmanager(options) {
         pathParams: ['deployment', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * deploymentmanager.deployments.getIamPolicy
         * @desc Gets the access control policy for a resource. May be empty if
@@ -385,7 +397,9 @@ function Deploymentmanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getIamPolicy(params, options, callback) {
+    getIamPolicy(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -407,7 +421,7 @@ function Deploymentmanager(options) {
         pathParams: ['project', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * deploymentmanager.deployments.insert
         * @desc Creates a deployment and all of the resources described by the
@@ -479,7 +493,9 @@ function Deploymentmanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -501,7 +517,7 @@ function Deploymentmanager(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * deploymentmanager.deployments.list
         * @desc Lists all deployments for a given project.
@@ -577,7 +593,7 @@ function Deploymentmanager(options) {
         * @memberOf! deploymentmanager(v2)
         *
         * @param {object} params Parameters for request
-        * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+        * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
         * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
         * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
         * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -586,7 +602,9 @@ function Deploymentmanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -608,7 +626,7 @@ function Deploymentmanager(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * deploymentmanager.deployments.patch
         * @desc Updates a deployment and all of the resources described by the
@@ -688,7 +706,9 @@ function Deploymentmanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -710,7 +730,7 @@ function Deploymentmanager(options) {
         pathParams: ['deployment', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * deploymentmanager.deployments.setIamPolicy
         * @desc Sets the access control policy on the specified resource.
@@ -785,7 +805,9 @@ function Deploymentmanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setIamPolicy(params, options, callback) {
+    setIamPolicy(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -807,7 +829,7 @@ function Deploymentmanager(options) {
         pathParams: ['project', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * deploymentmanager.deployments.stop
         * @desc Stops an ongoing operation. This does not roll back any work
@@ -883,7 +905,9 @@ function Deploymentmanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    stop(params, options, callback) {
+    stop(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -905,7 +929,7 @@ function Deploymentmanager(options) {
         pathParams: ['deployment', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * deploymentmanager.deployments.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -979,7 +1003,9 @@ function Deploymentmanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1001,7 +1027,7 @@ function Deploymentmanager(options) {
         pathParams: ['project', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * deploymentmanager.deployments.update
         * @desc Updates a deployment and all of the resources described by the
@@ -1081,7 +1107,9 @@ function Deploymentmanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1103,7 +1131,7 @@ function Deploymentmanager(options) {
         pathParams: ['deployment', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1181,7 +1209,8 @@ function Deploymentmanager(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1203,7 +1232,7 @@ function Deploymentmanager(options) {
         pathParams: ['deployment', 'manifest', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * deploymentmanager.manifests.list
         * @desc Lists all manifests for a given deployment.
@@ -1283,7 +1312,7 @@ function Deploymentmanager(options) {
         *
         * @param {object} params Parameters for request
         * @param {string} params.deployment The name of the deployment for this request.
-        * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+        * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
         * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
         * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
         * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -1292,7 +1321,9 @@ function Deploymentmanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1314,7 +1345,7 @@ function Deploymentmanager(options) {
         pathParams: ['deployment', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1388,7 +1419,8 @@ function Deploymentmanager(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1410,7 +1442,7 @@ function Deploymentmanager(options) {
         pathParams: ['operation', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * deploymentmanager.operations.list
         * @desc Lists all operations for a project.
@@ -1486,7 +1518,7 @@ function Deploymentmanager(options) {
         * @memberOf! deploymentmanager(v2)
         *
         * @param {object} params Parameters for request
-        * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+        * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
         * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
         * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
         * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -1495,7 +1527,9 @@ function Deploymentmanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1517,7 +1551,7 @@ function Deploymentmanager(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1595,7 +1629,8 @@ function Deploymentmanager(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1617,7 +1652,7 @@ function Deploymentmanager(options) {
         pathParams: ['deployment', 'project', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * deploymentmanager.resources.list
         * @desc Lists all resources in a given deployment.
@@ -1697,7 +1732,7 @@ function Deploymentmanager(options) {
         *
         * @param {object} params Parameters for request
         * @param {string} params.deployment The name of the deployment for this request.
-        * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+        * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
         * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
         * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
         * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -1706,7 +1741,9 @@ function Deploymentmanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1728,7 +1765,7 @@ function Deploymentmanager(options) {
         pathParams: ['deployment', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1806,7 +1843,7 @@ function Deploymentmanager(options) {
      * @memberOf! deploymentmanager(v2)
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -1815,7 +1852,9 @@ function Deploymentmanager(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1836,7 +1875,7 @@ function Deploymentmanager(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

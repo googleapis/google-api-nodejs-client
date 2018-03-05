@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Cloud Speech API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Speech
  */
-function Speech(options) {
+function Speech(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.operations = {
@@ -49,7 +56,8 @@ function Speech(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -69,7 +77,7 @@ function Speech(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -89,7 +97,9 @@ function Speech(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    longrunningrecognize(params, options, callback) {
+    longrunningrecognize(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -109,7 +119,7 @@ function Speech(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * speech.speech.recognize
         * @desc Performs synchronous speech recognition: receive results after
@@ -123,7 +133,9 @@ function Speech(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    recognize(params, options, callback) {
+    recognize(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -143,7 +155,7 @@ function Speech(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

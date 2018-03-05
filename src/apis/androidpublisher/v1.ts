@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Play Developer API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Androidpublisher
  */
-function Androidpublisher(options) {
+function Androidpublisher(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.purchases = {
@@ -50,7 +57,9 @@ function Androidpublisher(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params, options, callback) {
+    cancel(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -72,7 +81,7 @@ function Androidpublisher(options) {
         pathParams: ['packageName', 'subscriptionId', 'token'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * androidpublisher.purchases.get
         * @desc Checks whether a user's subscription purchase is valid and
@@ -88,7 +97,8 @@ function Androidpublisher(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -110,7 +120,7 @@ function Androidpublisher(options) {
         pathParams: ['packageName', 'subscriptionId', 'token'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

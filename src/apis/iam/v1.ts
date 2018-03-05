@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Identity and Access Management (IAM) API
@@ -33,7 +40,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Iam
  */
-function Iam(options) {
+function Iam(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.iamPolicies = {
@@ -50,7 +57,9 @@ function Iam(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    queryAuditableServices(params, options, callback) {
+    queryAuditableServices(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -70,7 +79,7 @@ function Iam(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -89,7 +98,9 @@ function Iam(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create(params, options, callback) {
+      create(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -109,7 +120,7 @@ function Iam(options) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * iam.organizations.roles.delete
           * @desc Soft deletes a role. The role is suspended and cannot be used
@@ -129,7 +140,9 @@ function Iam(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (params, options, callback) {
+      delete (
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -148,7 +161,7 @@ function Iam(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * iam.organizations.roles.get
           * @desc Gets a Role definition.
@@ -161,7 +174,8 @@ function Iam(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -180,7 +194,7 @@ function Iam(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * iam.organizations.roles.list
           * @desc Lists the Roles defined on a resource.
@@ -197,7 +211,9 @@ function Iam(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -217,7 +233,7 @@ function Iam(options) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * iam.organizations.roles.patch
           * @desc Updates a Role definition.
@@ -232,7 +248,9 @@ function Iam(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      patch(params, options, callback) {
+      patch(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -251,7 +269,7 @@ function Iam(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * iam.organizations.roles.undelete
           * @desc Undelete a Role, bringing it back in its previous state.
@@ -265,7 +283,9 @@ function Iam(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      undelete(params, options, callback) {
+      undelete(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -285,7 +305,7 @@ function Iam(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }
@@ -304,7 +324,9 @@ function Iam(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    queryTestablePermissions(params, options, callback) {
+    queryTestablePermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -324,7 +346,7 @@ function Iam(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -344,7 +366,9 @@ function Iam(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          create(params, options, callback) {
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -364,7 +388,7 @@ function Iam(options) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * iam.projects.roles.delete
               * @desc Soft deletes a role. The role is suspended and cannot be
@@ -384,7 +408,9 @@ function Iam(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          delete (params, options, callback) {
+          delete (
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -403,7 +429,7 @@ function Iam(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * iam.projects.roles.get
               * @desc Gets a Role definition.
@@ -416,7 +442,8 @@ function Iam(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -435,7 +462,7 @@ function Iam(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * iam.projects.roles.list
               * @desc Lists the Roles defined on a resource.
@@ -452,7 +479,9 @@ function Iam(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -472,7 +501,7 @@ function Iam(options) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * iam.projects.roles.patch
               * @desc Updates a Role definition.
@@ -487,7 +516,9 @@ function Iam(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          patch(params, options, callback) {
+          patch(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -506,7 +537,7 @@ function Iam(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * iam.projects.roles.undelete
               * @desc Undelete a Role, bringing it back in its previous state.
@@ -520,7 +551,9 @@ function Iam(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          undelete(params, options, callback) {
+          undelete(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -540,7 +573,7 @@ function Iam(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }
 
         },
@@ -558,7 +591,9 @@ function Iam(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          create(params, options, callback) {
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -578,7 +613,7 @@ function Iam(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * iam.projects.serviceAccounts.delete
               * @desc Deletes a ServiceAccount.
@@ -591,7 +626,9 @@ function Iam(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          delete (params, options, callback) {
+          delete (
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -610,7 +647,7 @@ function Iam(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * iam.projects.serviceAccounts.get
               * @desc Gets a ServiceAccount.
@@ -623,7 +660,8 @@ function Iam(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -642,7 +680,7 @@ function Iam(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * iam.projects.serviceAccounts.getIamPolicy
               * @desc Returns the IAM access control policy for a
@@ -656,7 +694,9 @@ function Iam(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          getIamPolicy(params, options, callback) {
+          getIamPolicy(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -676,7 +716,7 @@ function Iam(options) {
               pathParams: ['resource'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * iam.projects.serviceAccounts.list
               * @desc Lists ServiceAccounts for a project.
@@ -691,7 +731,9 @@ function Iam(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -711,7 +753,7 @@ function Iam(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * iam.projects.serviceAccounts.setIamPolicy
               * @desc Sets the IAM access control policy for a ServiceAccount.
@@ -725,7 +767,9 @@ function Iam(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          setIamPolicy(params, options, callback) {
+          setIamPolicy(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -745,7 +789,7 @@ function Iam(options) {
               pathParams: ['resource'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * iam.projects.serviceAccounts.signBlob
               * @desc Signs a blob using a service account's system-managed
@@ -760,7 +804,9 @@ function Iam(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          signBlob(params, options, callback) {
+          signBlob(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -780,7 +826,7 @@ function Iam(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * iam.projects.serviceAccounts.signJwt
               * @desc Signs a JWT using a service account's system-managed
@@ -798,7 +844,9 @@ function Iam(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          signJwt(params, options, callback) {
+          signJwt(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -818,7 +866,7 @@ function Iam(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * iam.projects.serviceAccounts.testIamPermissions
               * @desc Tests the specified permissions against the IAM access
@@ -833,7 +881,9 @@ function Iam(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          testIamPermissions(params, options, callback) {
+          testIamPermissions(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -853,7 +903,7 @@ function Iam(options) {
               pathParams: ['resource'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * iam.projects.serviceAccounts.update
               * @desc Updates a ServiceAccount.  Currently, only the following
@@ -868,7 +918,9 @@ function Iam(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          update(params, options, callback) {
+          update(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -887,7 +939,7 @@ function Iam(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           },
           keys: {
             /**
@@ -903,7 +955,9 @@ function Iam(options) {
              * @param {callback} callback The callback that handles the response.
              * @return {object} Request object
              */
-            create(params, options, callback) {
+            create(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -923,7 +977,7 @@ function Iam(options) {
                 pathParams: ['name'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * iam.projects.serviceAccounts.keys.delete
                 * @desc Deletes a ServiceAccountKey.
@@ -936,7 +990,9 @@ function Iam(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            delete (params, options, callback) {
+            delete (
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -956,7 +1012,7 @@ function Iam(options) {
                 pathParams: ['name'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * iam.projects.serviceAccounts.keys.get
                 * @desc Gets the ServiceAccountKey by key id.
@@ -970,7 +1026,8 @@ function Iam(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            get(params, options, callback) {
+            get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -990,7 +1047,7 @@ function Iam(options) {
                 pathParams: ['name'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * iam.projects.serviceAccounts.keys.list
                 * @desc Lists ServiceAccountKeys.
@@ -1004,7 +1061,9 @@ function Iam(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            list(params, options, callback) {
+            list(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -1024,7 +1083,7 @@ function Iam(options) {
                 pathParams: ['name'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }
 
           }
@@ -1043,7 +1102,8 @@ function Iam(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1062,7 +1122,7 @@ function Iam(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * iam.roles.list
         * @desc Lists the Roles defined on a resource.
@@ -1079,7 +1139,9 @@ function Iam(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1098,7 +1160,7 @@ function Iam(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * iam.roles.queryGrantableRoles
         * @desc Queries roles that can be granted on a particular resource. A
@@ -1113,7 +1175,9 @@ function Iam(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    queryGrantableRoles(params, options, callback) {
+    queryGrantableRoles(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1133,7 +1197,7 @@ function Iam(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

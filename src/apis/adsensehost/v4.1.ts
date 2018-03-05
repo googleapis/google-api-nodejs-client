@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * AdSense Host API
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v4.1
  * @param {object=} options Options for Adsensehost
  */
-function Adsensehost(options) {
+function Adsensehost(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.accounts = {
@@ -48,7 +55,8 @@ function Adsensehost(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -68,7 +76,7 @@ function Adsensehost(options) {
         pathParams: ['accountId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adsensehost.accounts.list
         * @desc List hosted accounts associated with this AdSense account by ad
@@ -82,7 +90,9 @@ function Adsensehost(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -102,7 +112,7 @@ function Adsensehost(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     },
     adclients: {
       /**
@@ -119,7 +129,8 @@ function Adsensehost(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -141,7 +152,7 @@ function Adsensehost(options) {
           pathParams: ['accountId', 'adClientId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * adsensehost.accounts.adclients.list
           * @desc List all hosted ad clients in the specified hosted account.
@@ -156,7 +167,9 @@ function Adsensehost(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -177,7 +190,7 @@ function Adsensehost(options) {
           pathParams: ['accountId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -197,7 +210,9 @@ function Adsensehost(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete (params, options, callback) {
+      delete (
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -219,7 +234,7 @@ function Adsensehost(options) {
           pathParams: ['accountId', 'adClientId', 'adUnitId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * adsensehost.accounts.adunits.get
           * @desc Get the specified host ad unit in this AdSense account.
@@ -234,7 +249,8 @@ function Adsensehost(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -256,7 +272,7 @@ function Adsensehost(options) {
           pathParams: ['accountId', 'adClientId', 'adUnitId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * adsensehost.accounts.adunits.getAdCode
           * @desc Get ad code for the specified ad unit, attaching the specified
@@ -273,7 +289,9 @@ function Adsensehost(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      getAdCode(params, options, callback) {
+      getAdCode(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -295,7 +313,7 @@ function Adsensehost(options) {
           pathParams: ['accountId', 'adClientId', 'adUnitId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * adsensehost.accounts.adunits.insert
           * @desc Insert the supplied ad unit into the specified publisher
@@ -311,7 +329,9 @@ function Adsensehost(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      insert(params, options, callback) {
+      insert(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -333,7 +353,7 @@ function Adsensehost(options) {
           pathParams: ['accountId', 'adClientId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * adsensehost.accounts.adunits.list
           * @desc List all ad units in the specified publisher's AdSense
@@ -351,7 +371,9 @@ function Adsensehost(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -373,7 +395,7 @@ function Adsensehost(options) {
           pathParams: ['accountId', 'adClientId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * adsensehost.accounts.adunits.patch
           * @desc Update the supplied ad unit in the specified publisher AdSense
@@ -390,7 +412,9 @@ function Adsensehost(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      patch(params, options, callback) {
+      patch(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -412,7 +436,7 @@ function Adsensehost(options) {
           pathParams: ['accountId', 'adClientId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * adsensehost.accounts.adunits.update
           * @desc Update the supplied ad unit in the specified publisher AdSense
@@ -428,7 +452,9 @@ function Adsensehost(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      update(params, options, callback) {
+      update(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -450,7 +476,7 @@ function Adsensehost(options) {
           pathParams: ['accountId', 'adClientId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -478,7 +504,9 @@ function Adsensehost(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      generate(params, options, callback) {
+      generate(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -499,7 +527,7 @@ function Adsensehost(options) {
           pathParams: ['accountId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }
@@ -518,7 +546,8 @@ function Adsensehost(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -538,7 +567,7 @@ function Adsensehost(options) {
         pathParams: ['adClientId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adsensehost.adclients.list
         * @desc List all host ad clients in this AdSense account.
@@ -552,7 +581,9 @@ function Adsensehost(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -572,7 +603,7 @@ function Adsensehost(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -593,7 +624,9 @@ function Adsensehost(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    start(params, options, callback) {
+    start(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -613,7 +646,7 @@ function Adsensehost(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adsensehost.associationsessions.verify
         * @desc Verify an association session after the association callback
@@ -627,7 +660,9 @@ function Adsensehost(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    verify(params, options, callback) {
+    verify(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -647,7 +682,7 @@ function Adsensehost(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -665,7 +700,9 @@ function Adsensehost(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -687,7 +724,7 @@ function Adsensehost(options) {
         pathParams: ['adClientId', 'customChannelId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adsensehost.customchannels.get
         * @desc Get a specific custom channel from the host AdSense account.
@@ -701,7 +738,8 @@ function Adsensehost(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -723,7 +761,7 @@ function Adsensehost(options) {
         pathParams: ['adClientId', 'customChannelId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adsensehost.customchannels.insert
         * @desc Add a new custom channel to the host AdSense account.
@@ -737,7 +775,9 @@ function Adsensehost(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -758,7 +798,7 @@ function Adsensehost(options) {
         pathParams: ['adClientId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adsensehost.customchannels.list
         * @desc List all host custom channels in this AdSense account.
@@ -773,7 +813,9 @@ function Adsensehost(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -794,7 +836,7 @@ function Adsensehost(options) {
         pathParams: ['adClientId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adsensehost.customchannels.patch
         * @desc Update a custom channel in the host AdSense account. This method
@@ -810,7 +852,9 @@ function Adsensehost(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -831,7 +875,7 @@ function Adsensehost(options) {
         pathParams: ['adClientId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adsensehost.customchannels.update
         * @desc Update a custom channel in the host AdSense account.
@@ -845,7 +889,9 @@ function Adsensehost(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -866,7 +912,7 @@ function Adsensehost(options) {
         pathParams: ['adClientId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -893,7 +939,9 @@ function Adsensehost(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    generate(params, options, callback) {
+    generate(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -913,7 +961,7 @@ function Adsensehost(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -931,7 +979,9 @@ function Adsensehost(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -953,7 +1003,7 @@ function Adsensehost(options) {
         pathParams: ['adClientId', 'urlChannelId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adsensehost.urlchannels.insert
         * @desc Add a new URL channel to the host AdSense account.
@@ -967,7 +1017,9 @@ function Adsensehost(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -988,7 +1040,7 @@ function Adsensehost(options) {
         pathParams: ['adClientId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adsensehost.urlchannels.list
         * @desc List all host URL channels in the host AdSense account.
@@ -1003,7 +1055,9 @@ function Adsensehost(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1024,7 +1078,7 @@ function Adsensehost(options) {
         pathParams: ['adClientId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

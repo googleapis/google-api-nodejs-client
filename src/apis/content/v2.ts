@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Content API for Shopping
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2
  * @param {object=} options Options for Content
  */
-function Content(options) {
+function Content(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.accounts = {
@@ -47,7 +54,9 @@ function Content(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    authinfo(params, options, callback) {
+    authinfo(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -67,7 +76,7 @@ function Content(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.accounts.claimwebsite
         * @desc Claims the website of a Merchant Center sub-account.
@@ -82,7 +91,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    claimwebsite(params, options, callback) {
+    claimwebsite(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -104,7 +115,7 @@ function Content(options) {
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.accounts.custombatch
         * @desc Retrieves, inserts, updates, and deletes multiple Merchant
@@ -119,7 +130,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    custombatch(params, options, callback) {
+    custombatch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -139,7 +152,7 @@ function Content(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.accounts.delete
         * @desc Deletes a Merchant Center sub-account.
@@ -155,7 +168,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -175,7 +190,7 @@ function Content(options) {
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.accounts.get
         * @desc Retrieves a Merchant Center account.
@@ -189,7 +204,8 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -209,7 +225,7 @@ function Content(options) {
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.accounts.insert
         * @desc Creates a Merchant Center sub-account.
@@ -224,7 +240,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -244,7 +262,7 @@ function Content(options) {
         pathParams: ['merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.accounts.list
         * @desc Lists the sub-accounts in your Merchant Center account.
@@ -259,7 +277,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -279,7 +299,7 @@ function Content(options) {
         pathParams: ['merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.accounts.patch
         * @desc Updates a Merchant Center account. This method supports patch
@@ -296,7 +316,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -316,7 +338,7 @@ function Content(options) {
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.accounts.update
         * @desc Updates a Merchant Center account.
@@ -332,7 +354,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -352,7 +376,7 @@ function Content(options) {
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -368,7 +392,9 @@ function Content(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch(params, options, callback) {
+    custombatch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -388,7 +414,7 @@ function Content(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.accountstatuses.get
         * @desc Retrieves the status of a Merchant Center account.
@@ -402,7 +428,8 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -423,7 +450,7 @@ function Content(options) {
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.accountstatuses.list
         * @desc Lists the statuses of the sub-accounts in your Merchant Center
@@ -439,7 +466,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -459,7 +488,7 @@ function Content(options) {
         pathParams: ['merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -478,7 +507,9 @@ function Content(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch(params, options, callback) {
+    custombatch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -498,7 +529,7 @@ function Content(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.accounttax.get
         * @desc Retrieves the tax settings of the account.
@@ -512,7 +543,8 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -532,7 +564,7 @@ function Content(options) {
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.accounttax.list
         * @desc Lists the tax settings of the sub-accounts in your Merchant
@@ -548,7 +580,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -568,7 +602,7 @@ function Content(options) {
         pathParams: ['merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.accounttax.patch
         * @desc Updates the tax settings of the account. This method supports
@@ -585,7 +619,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -605,7 +641,7 @@ function Content(options) {
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.accounttax.update
         * @desc Updates the tax settings of the account.
@@ -621,7 +657,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -641,7 +679,7 @@ function Content(options) {
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -658,7 +696,9 @@ function Content(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch(params, options, callback) {
+    custombatch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -678,7 +718,7 @@ function Content(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.datafeeds.delete
         * @desc Deletes a datafeed configuration from your Merchant Center
@@ -694,7 +734,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -714,7 +756,7 @@ function Content(options) {
         pathParams: ['datafeedId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.datafeeds.get
         * @desc Retrieves a datafeed configuration from your Merchant Center
@@ -729,7 +771,8 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -749,7 +792,7 @@ function Content(options) {
         pathParams: ['datafeedId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.datafeeds.insert
         * @desc Registers a datafeed configuration with your Merchant Center
@@ -765,7 +808,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -785,7 +830,7 @@ function Content(options) {
         pathParams: ['merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.datafeeds.list
         * @desc Lists the configurations for datafeeds in your Merchant Center
@@ -801,7 +846,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -821,7 +868,7 @@ function Content(options) {
         pathParams: ['merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.datafeeds.patch
         * @desc Updates a datafeed configuration of your Merchant Center
@@ -838,7 +885,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -858,7 +907,7 @@ function Content(options) {
         pathParams: ['datafeedId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.datafeeds.update
         * @desc Updates a datafeed configuration of your Merchant Center
@@ -875,7 +924,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -895,7 +946,7 @@ function Content(options) {
         pathParams: ['datafeedId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -911,7 +962,9 @@ function Content(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch(params, options, callback) {
+    custombatch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -931,7 +984,7 @@ function Content(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.datafeedstatuses.get
         * @desc Retrieves the status of a datafeed from your Merchant Center
@@ -948,7 +1001,8 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -969,7 +1023,7 @@ function Content(options) {
         pathParams: ['datafeedId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.datafeedstatuses.list
         * @desc Lists the statuses of the datafeeds in your Merchant Center
@@ -985,7 +1039,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1005,7 +1061,7 @@ function Content(options) {
         pathParams: ['merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1025,7 +1081,9 @@ function Content(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch(params, options, callback) {
+    custombatch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1045,7 +1103,7 @@ function Content(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.inventory.set
         * @desc Updates price and availability of a product in your Merchant
@@ -1063,7 +1121,8 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    set(params, options, callback) {
+    set(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1085,7 +1144,7 @@ function Content(options) {
         pathParams: ['merchantId', 'productId', 'storeCode'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1104,7 +1163,9 @@ function Content(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    acknowledge(params, options, callback) {
+    acknowledge(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1125,7 +1186,7 @@ function Content(options) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.advancetestorder
         * @desc Sandbox only. Moves a test order from state "inProgress" to
@@ -1140,7 +1201,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    advancetestorder(params, options, callback) {
+    advancetestorder(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1161,7 +1224,7 @@ function Content(options) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.cancel
         * @desc Cancels all line items in an order, making a full refund.
@@ -1176,7 +1239,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    cancel(params, options, callback) {
+    cancel(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1197,7 +1262,7 @@ function Content(options) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.cancellineitem
         * @desc Cancels a line item, making a full refund.
@@ -1212,7 +1277,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    cancellineitem(params, options, callback) {
+    cancellineitem(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1233,7 +1300,7 @@ function Content(options) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.createtestorder
         * @desc Sandbox only. Creates a test order.
@@ -1247,7 +1314,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    createtestorder(params, options, callback) {
+    createtestorder(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1267,7 +1336,7 @@ function Content(options) {
         pathParams: ['merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.custombatch
         * @desc Retrieves or modifies multiple orders in a single request.
@@ -1280,7 +1349,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    custombatch(params, options, callback) {
+    custombatch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1300,7 +1371,7 @@ function Content(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.get
         * @desc Retrieves an order from your Merchant Center account.
@@ -1314,7 +1385,8 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1334,7 +1406,7 @@ function Content(options) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.getbymerchantorderid
         * @desc Retrieves an order using merchant order id.
@@ -1348,7 +1420,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getbymerchantorderid(params, options, callback) {
+    getbymerchantorderid(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1370,7 +1444,7 @@ function Content(options) {
         pathParams: ['merchantId', 'merchantOrderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.gettestordertemplate
         * @desc Sandbox only. Retrieves an order template that can be used to
@@ -1385,7 +1459,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    gettestordertemplate(params, options, callback) {
+    gettestordertemplate(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1407,7 +1483,7 @@ function Content(options) {
         pathParams: ['merchantId', 'templateName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.instorerefundlineitem
         * @desc Notifies that item return and refund was handled directly in
@@ -1423,7 +1499,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    instorerefundlineitem(params, options, callback) {
+    instorerefundlineitem(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1445,7 +1523,7 @@ function Content(options) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.list
         * @desc Lists the orders in your Merchant Center account.
@@ -1465,7 +1543,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1485,7 +1565,7 @@ function Content(options) {
         pathParams: ['merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.refund
         * @desc Refund a portion of the order, up to the full amount paid.
@@ -1500,7 +1580,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    refund(params, options, callback) {
+    refund(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1521,7 +1603,7 @@ function Content(options) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.rejectreturnlineitem
         * @desc Rejects return on an line item.
@@ -1536,7 +1618,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    rejectreturnlineitem(params, options, callback) {
+    rejectreturnlineitem(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1558,7 +1642,7 @@ function Content(options) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.returnlineitem
         * @desc Returns a line item.
@@ -1573,7 +1657,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    returnlineitem(params, options, callback) {
+    returnlineitem(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1594,7 +1680,7 @@ function Content(options) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.returnrefundlineitem
         * @desc Returns and refunds a line item. Note that this method can only
@@ -1610,7 +1696,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    returnrefundlineitem(params, options, callback) {
+    returnrefundlineitem(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1632,7 +1720,7 @@ function Content(options) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.setlineitemmetadata
         * @desc Sets (overrides) merchant provided annotations on the line item.
@@ -1647,7 +1735,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setlineitemmetadata(params, options, callback) {
+    setlineitemmetadata(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1669,7 +1759,7 @@ function Content(options) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.shiplineitems
         * @desc Marks line item(s) as shipped.
@@ -1684,7 +1774,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    shiplineitems(params, options, callback) {
+    shiplineitems(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1705,7 +1797,7 @@ function Content(options) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.updatelineitemshippingdetails
         * @desc Updates ship by and delivery by dates for a line item.
@@ -1720,7 +1812,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    updatelineitemshippingdetails(params, options, callback) {
+    updatelineitemshippingdetails(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1742,7 +1836,7 @@ function Content(options) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.updatemerchantorderid
         * @desc Updates the merchant order ID for a given order.
@@ -1757,7 +1851,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    updatemerchantorderid(params, options, callback) {
+    updatemerchantorderid(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1779,7 +1875,7 @@ function Content(options) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.updateshipment
         * @desc Updates a shipment's status, carrier, and/or tracking ID.
@@ -1794,7 +1890,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    updateshipment(params, options, callback) {
+    updateshipment(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1815,7 +1913,279 @@ function Content(options) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
+    }
+
+  };
+  self.pos = {
+    /**
+     * content.pos.custombatch
+     * @desc Batches multiple POS-related calls in a single request.
+     * @alias content.pos.custombatch
+     * @memberOf! content(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {content(v2).PosCustomBatchRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    custombatch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/content/v2/pos/batch')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * content.pos.delete
+        * @desc Deletes a store for the given merchant.
+        * @alias content.pos.delete
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+        * @param {string} params.merchantId The ID of the POS provider.
+        * @param {string} params.storeCode A store code that is unique per merchant.
+        * @param {string} params.targetMerchantId The ID of the target merchant.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2/{merchantId}/pos/{targetMerchantId}/store/{storeCode}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'targetMerchantId', 'storeCode'],
+        pathParams: ['merchantId', 'storeCode', 'targetMerchantId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * content.pos.get
+        * @desc Retrieves information about the given store.
+        * @alias content.pos.get
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the POS provider.
+        * @param {string} params.storeCode A store code that is unique per merchant.
+        * @param {string} params.targetMerchantId The ID of the target merchant.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2/{merchantId}/pos/{targetMerchantId}/store/{storeCode}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'targetMerchantId', 'storeCode'],
+        pathParams: ['merchantId', 'storeCode', 'targetMerchantId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * content.pos.insert
+        * @desc Creates a store for the given merchant.
+        * @alias content.pos.insert
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+        * @param {string} params.merchantId The ID of the POS provider.
+        * @param {string} params.targetMerchantId The ID of the target merchant.
+        * @param {content(v2).PosStore} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/content/v2/{merchantId}/pos/{targetMerchantId}/store')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'targetMerchantId'],
+        pathParams: ['merchantId', 'targetMerchantId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * content.pos.inventory
+        * @desc Submit inventory for the given merchant.
+        * @alias content.pos.inventory
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+        * @param {string} params.merchantId The ID of the POS provider.
+        * @param {string} params.targetMerchantId The ID of the target merchant.
+        * @param {content(v2).PosInventoryRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    inventory(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/content/v2/{merchantId}/pos/{targetMerchantId}/inventory')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'targetMerchantId'],
+        pathParams: ['merchantId', 'targetMerchantId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * content.pos.list
+        * @desc Lists the stores of the target merchant.
+        * @alias content.pos.list
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the POS provider.
+        * @param {string} params.targetMerchantId The ID of the target merchant.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/content/v2/{merchantId}/pos/{targetMerchantId}/store')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'targetMerchantId'],
+        pathParams: ['merchantId', 'targetMerchantId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * content.pos.sale
+        * @desc Submit a sale event for the given merchant.
+        * @alias content.pos.sale
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+        * @param {string} params.merchantId The ID of the POS provider.
+        * @param {string} params.targetMerchantId The ID of the target merchant.
+        * @param {content(v2).PosSaleRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    sale(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/content/v2/{merchantId}/pos/{targetMerchantId}/sale')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'targetMerchantId'],
+        pathParams: ['merchantId', 'targetMerchantId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1834,7 +2204,9 @@ function Content(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch(params, options, callback) {
+    custombatch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1854,7 +2226,7 @@ function Content(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.products.delete
         * @desc Deletes a product from your Merchant Center account.
@@ -1869,7 +2241,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1889,7 +2263,7 @@ function Content(options) {
         pathParams: ['merchantId', 'productId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.products.get
         * @desc Retrieves a product from your Merchant Center account.
@@ -1903,7 +2277,8 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1923,7 +2298,7 @@ function Content(options) {
         pathParams: ['merchantId', 'productId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.products.insert
         * @desc Uploads a product to your Merchant Center account. If an item
@@ -1940,7 +2315,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1960,7 +2337,7 @@ function Content(options) {
         pathParams: ['merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.products.list
         * @desc Lists the products in your Merchant Center account.
@@ -1976,7 +2353,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1996,7 +2375,7 @@ function Content(options) {
         pathParams: ['merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -2014,7 +2393,9 @@ function Content(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch(params, options, callback) {
+    custombatch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2034,7 +2415,7 @@ function Content(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.productstatuses.get
         * @desc Gets the status of a product from your Merchant Center account.
@@ -2049,7 +2430,8 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2070,7 +2452,7 @@ function Content(options) {
         pathParams: ['merchantId', 'productId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.productstatuses.list
         * @desc Lists the statuses of the products in your Merchant Center
@@ -2088,7 +2470,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2108,7 +2492,7 @@ function Content(options) {
         pathParams: ['merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -2127,7 +2511,9 @@ function Content(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch(params, options, callback) {
+    custombatch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2147,7 +2533,7 @@ function Content(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.shippingsettings.get
         * @desc Retrieves the shipping settings of the account.
@@ -2161,7 +2547,8 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2182,7 +2569,7 @@ function Content(options) {
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.shippingsettings.getsupportedcarriers
         * @desc Retrieves supported carriers and carrier services for an
@@ -2196,7 +2583,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getsupportedcarriers(params, options, callback) {
+    getsupportedcarriers(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2216,7 +2605,7 @@ function Content(options) {
         pathParams: ['merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.shippingsettings.getsupportedholidays
         * @desc Retrieves supported holidays for an account.
@@ -2229,7 +2618,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getsupportedholidays(params, options, callback) {
+    getsupportedholidays(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2249,7 +2640,7 @@ function Content(options) {
         pathParams: ['merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.shippingsettings.list
         * @desc Lists the shipping settings of the sub-accounts in your Merchant
@@ -2265,7 +2656,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2285,7 +2678,7 @@ function Content(options) {
         pathParams: ['merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.shippingsettings.patch
         * @desc Updates the shipping settings of the account. This method
@@ -2302,7 +2695,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2323,7 +2718,7 @@ function Content(options) {
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * content.shippingsettings.update
         * @desc Updates the shipping settings of the account.
@@ -2339,7 +2734,9 @@ function Content(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2360,7 +2757,7 @@ function Content(options) {
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -2375,7 +2772,7 @@ function Content(options) {
  * @property {string} id Merchant Center account ID.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#account&quot;.
  * @property {string} name Display name for the account.
- * @property {string} reviewsUrl URL for individual seller reviews, i.e., reviews for each child account.
+ * @property {string} reviewsUrl [DEPRECATED] This field is never returned and will be ignored if provided.
  * @property {string} sellerId Client-specific, locally-unique, internal ID for the child account.
  * @property {content(v2).AccountUser[]} users Users with access to the account. Every account (except for subaccounts) must have at least one admin user.
  * @property {string} websiteUrl The merchant&#39;s website.
@@ -2392,7 +2789,7 @@ function Content(options) {
  * @typedef AccountGoogleMyBusinessLink
  * @memberOf! content(v2)
  * @type object
- * @property {string} gmbEmail The GMB email address.
+ * @property {string} gmbEmail The GMB email address of which a specific account within a GMB account. A sample account within a GMB account could be a business account with set of locations, managed under the GMB account.
  * @property {string} status Status of the link between this Merchant Center account and the GMB account.
  */
 /**
@@ -3583,6 +3980,143 @@ function Content(options) {
  * @type object
  * @property {string} executionStatus The status of the execution.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersUpdateShipmentResponse&quot;.
+ */
+/**
+ * @typedef PosCustomBatchRequest
+ * @memberOf! content(v2)
+ * @type object
+ * @property {content(v2).PosCustomBatchRequestEntry[]} entries The request entries to be processed in the batch.
+ */
+/**
+ * @typedef PosCustomBatchRequestEntry
+ * @memberOf! content(v2)
+ * @type object
+ * @property {integer} batchId An entry ID, unique within the batch request.
+ * @property {content(v2).PosInventory} inventory The inventory to submit. Set this only if the method is inventory.
+ * @property {string} merchantId The ID of the POS provider.
+ * @property {string} method
+ * @property {content(v2).PosSale} sale The sale information to submit. Set this only if the method is sale.
+ * @property {content(v2).PosStore} store The store information to submit. Set this only if the method is insert.
+ * @property {string} storeCode The store code. Required only to get/submit store information.
+ * @property {string} targetMerchantId The ID of the account for which to get/submit data.
+ */
+/**
+ * @typedef PosCustomBatchResponse
+ * @memberOf! content(v2)
+ * @type object
+ * @property {content(v2).PosCustomBatchResponseEntry[]} entries The result of the execution of the batch requests.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#posCustomBatchResponse&quot;.
+ */
+/**
+ * @typedef PosCustomBatchResponseEntry
+ * @memberOf! content(v2)
+ * @type object
+ * @property {integer} batchId The ID of the request entry to which this entry responds.
+ * @property {content(v2).Errors} errors A list of errors defined if, and only if, the request failed.
+ * @property {content(v2).PosInventory} inventory The updated inventory information.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#posCustomBatchResponseEntry&quot;.
+ * @property {content(v2).PosSale} sale The updated sale information.
+ * @property {content(v2).PosStore} store The retrieved or updated store information.
+ */
+/**
+ * @typedef PosInventory
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} contentLanguage The two-letter ISO 639-1 language code for the item.
+ * @property {string} gtin Global Trade Item Number.
+ * @property {string} itemId A unique identifier for the item.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#posInventory&quot;.
+ * @property {content(v2).Price} price The current price of the item.
+ * @property {string} quantity The available quantity of the item.
+ * @property {string} storeCode The identifier of the merchant&#39;s store.
+ * @property {string} targetCountry The CLDR territory code for the item.
+ * @property {string} timestamp The inventory timestamp, in ISO 8601 format.
+ */
+/**
+ * @typedef PosInventoryRequest
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} contentLanguage The two-letter ISO 639-1 language code for the item.
+ * @property {string} gtin Global Trade Item Number.
+ * @property {string} itemId A unique identifier for the item.
+ * @property {content(v2).Price} price The current price of the item.
+ * @property {string} quantity The available quantity of the item.
+ * @property {string} storeCode The identifier of the merchant&#39;s store.
+ * @property {string} targetCountry The CLDR territory code for the item.
+ * @property {string} timestamp The inventory timestamp, in ISO 8601 format.
+ */
+/**
+ * @typedef PosInventoryResponse
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} contentLanguage The two-letter ISO 639-1 language code for the item.
+ * @property {string} gtin Global Trade Item Number.
+ * @property {string} itemId A unique identifier for the item.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#posInventoryResponse&quot;.
+ * @property {content(v2).Price} price The current price of the item.
+ * @property {string} quantity The available quantity of the item.
+ * @property {string} storeCode The identifier of the merchant&#39;s store.
+ * @property {string} targetCountry The CLDR territory code for the item.
+ * @property {string} timestamp The inventory timestamp, in ISO 8601 format.
+ */
+/**
+ * @typedef PosListResponse
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#posListResponse&quot;.
+ * @property {content(v2).PosStore[]} resources
+ */
+/**
+ * @typedef PosSale
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} contentLanguage The two-letter ISO 639-1 language code for the item.
+ * @property {string} gtin Global Trade Item Number.
+ * @property {string} itemId A unique identifier for the item.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#posSale&quot;.
+ * @property {content(v2).Price} price The price of the item.
+ * @property {string} quantity The relative change of the available quantity. Negative for items sold.
+ * @property {string} saleId A unique ID to group items from the same sale event.
+ * @property {string} storeCode The identifier of the merchant&#39;s store.
+ * @property {string} targetCountry The CLDR territory code for the item.
+ * @property {string} timestamp The inventory timestamp, in ISO 8601 format.
+ */
+/**
+ * @typedef PosSaleRequest
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} contentLanguage The two-letter ISO 639-1 language code for the item.
+ * @property {string} gtin Global Trade Item Number.
+ * @property {string} itemId A unique identifier for the item.
+ * @property {content(v2).Price} price The price of the item.
+ * @property {string} quantity The relative change of the available quantity. Negative for items sold.
+ * @property {string} saleId A unique ID to group items from the same sale event.
+ * @property {string} storeCode The identifier of the merchant&#39;s store.
+ * @property {string} targetCountry The CLDR territory code for the item.
+ * @property {string} timestamp The inventory timestamp, in ISO 8601 format.
+ */
+/**
+ * @typedef PosSaleResponse
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} contentLanguage The two-letter ISO 639-1 language code for the item.
+ * @property {string} gtin Global Trade Item Number.
+ * @property {string} itemId A unique identifier for the item.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#posSaleResponse&quot;.
+ * @property {content(v2).Price} price The price of the item.
+ * @property {string} quantity The relative change of the available quantity. Negative for items sold.
+ * @property {string} saleId A unique ID to group items from the same sale event.
+ * @property {string} storeCode The identifier of the merchant&#39;s store.
+ * @property {string} targetCountry The CLDR territory code for the item.
+ * @property {string} timestamp The inventory timestamp, in ISO 8601 format.
+ */
+/**
+ * @typedef PosStore
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#posStore&quot;.
+ * @property {string} storeAddress The street address of the store.
+ * @property {string} storeCode A store identifier that is unique for the given merchant.
  */
 /**
  * @typedef PostalCodeGroup

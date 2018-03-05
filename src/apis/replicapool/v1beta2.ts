@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Compute Engine Instance Group Manager API
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta2
  * @param {object=} options Options for Replicapool
  */
-function Replicapool(options) {
+function Replicapool(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.instanceGroupManagers = {
@@ -53,7 +60,9 @@ function Replicapool(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    abandonInstances(params, options, callback) {
+    abandonInstances(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -75,7 +84,7 @@ function Replicapool(options) {
         pathParams: ['instanceGroupManager', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.instanceGroupManagers.delete
         * @desc Deletes the instance group manager and all instances contained
@@ -93,7 +102,9 @@ function Replicapool(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -115,7 +126,7 @@ function Replicapool(options) {
         pathParams: ['instanceGroupManager', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.instanceGroupManagers.deleteInstances
         * @desc Deletes the specified instances. The instances are deleted, then
@@ -134,7 +145,9 @@ function Replicapool(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    deleteInstances(params, options, callback) {
+    deleteInstances(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -156,7 +169,7 @@ function Replicapool(options) {
         pathParams: ['instanceGroupManager', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.instanceGroupManagers.get
         * @desc Returns the specified Instance Group Manager resource.
@@ -171,7 +184,8 @@ function Replicapool(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -193,7 +207,7 @@ function Replicapool(options) {
         pathParams: ['instanceGroupManager', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.instanceGroupManagers.insert
         * @desc Creates an instance group manager, as well as the instance group
@@ -210,7 +224,9 @@ function Replicapool(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -232,7 +248,7 @@ function Replicapool(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.instanceGroupManagers.list
         * @desc Retrieves the list of Instance Group Manager resources contained
@@ -250,7 +266,9 @@ function Replicapool(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -272,7 +290,7 @@ function Replicapool(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.instanceGroupManagers.recreateInstances
         * @desc Recreates the specified instances. The instances are deleted,
@@ -290,7 +308,9 @@ function Replicapool(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    recreateInstances(params, options, callback) {
+    recreateInstances(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -312,7 +332,7 @@ function Replicapool(options) {
         pathParams: ['instanceGroupManager', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.instanceGroupManagers.resize
         * @desc Resizes the managed instance group up or down. If resized up,
@@ -331,7 +351,9 @@ function Replicapool(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    resize(params, options, callback) {
+    resize(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -353,7 +375,7 @@ function Replicapool(options) {
         pathParams: ['instanceGroupManager', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.instanceGroupManagers.setInstanceTemplate
         * @desc Sets the instance template to use when creating new instances in
@@ -370,7 +392,9 @@ function Replicapool(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setInstanceTemplate(params, options, callback) {
+    setInstanceTemplate(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -392,7 +416,7 @@ function Replicapool(options) {
         pathParams: ['instanceGroupManager', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.instanceGroupManagers.setTargetPools
         * @desc Modifies the target pools to which all new instances in this
@@ -409,7 +433,9 @@ function Replicapool(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setTargetPools(params, options, callback) {
+    setTargetPools(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -431,7 +457,7 @@ function Replicapool(options) {
         pathParams: ['instanceGroupManager', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -450,7 +476,8 @@ function Replicapool(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -472,7 +499,7 @@ function Replicapool(options) {
         pathParams: ['operation', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.zoneOperations.list
         * @desc Retrieves the list of operation resources contained within the
@@ -490,7 +517,9 @@ function Replicapool(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -512,7 +541,7 @@ function Replicapool(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

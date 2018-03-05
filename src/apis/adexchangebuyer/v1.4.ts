@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Ad Exchange Buyer API
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1.4
  * @param {object=} options Options for Adexchangebuyer
  */
-function Adexchangebuyer(options) {
+function Adexchangebuyer(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.accounts = {
@@ -48,7 +55,8 @@ function Adexchangebuyer(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -68,7 +76,7 @@ function Adexchangebuyer(options) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.accounts.list
         * @desc Retrieves the authenticated user's list of accounts.
@@ -80,7 +88,9 @@ function Adexchangebuyer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -100,7 +110,7 @@ function Adexchangebuyer(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.accounts.patch
         * @desc Updates an existing account. This method supports patch
@@ -116,7 +126,9 @@ function Adexchangebuyer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -136,7 +148,7 @@ function Adexchangebuyer(options) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.accounts.update
         * @desc Updates an existing account.
@@ -151,7 +163,9 @@ function Adexchangebuyer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -171,7 +185,7 @@ function Adexchangebuyer(options) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -189,7 +203,8 @@ function Adexchangebuyer(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -209,7 +224,7 @@ function Adexchangebuyer(options) {
         pathParams: ['accountId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.billingInfo.list
         * @desc Retrieves a list of billing information for all accounts of the
@@ -222,7 +237,9 @@ function Adexchangebuyer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -242,7 +259,7 @@ function Adexchangebuyer(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -261,7 +278,8 @@ function Adexchangebuyer(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -282,7 +300,7 @@ function Adexchangebuyer(options) {
         pathParams: ['accountId', 'billingId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.budget.patch
         * @desc Updates the budget amount for the budget of the adgroup
@@ -299,7 +317,9 @@ function Adexchangebuyer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -320,7 +340,7 @@ function Adexchangebuyer(options) {
         pathParams: ['accountId', 'billingId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.budget.update
         * @desc Updates the budget amount for the budget of the adgroup
@@ -337,7 +357,9 @@ function Adexchangebuyer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -358,7 +380,7 @@ function Adexchangebuyer(options) {
         pathParams: ['accountId', 'billingId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -377,7 +399,9 @@ function Adexchangebuyer(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addDeal(params, options, callback) {
+    addDeal(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -399,7 +423,7 @@ function Adexchangebuyer(options) {
         pathParams: ['accountId', 'buyerCreativeId', 'dealId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.creatives.get
         * @desc Gets the status for a single creative. A creative will be
@@ -414,7 +438,8 @@ function Adexchangebuyer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -436,7 +461,7 @@ function Adexchangebuyer(options) {
         pathParams: ['accountId', 'buyerCreativeId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.creatives.insert
         * @desc Submit a new creative.
@@ -449,7 +474,9 @@ function Adexchangebuyer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -469,7 +496,7 @@ function Adexchangebuyer(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.creatives.list
         * @desc Retrieves a list of the authenticated user's active creatives. A
@@ -488,7 +515,9 @@ function Adexchangebuyer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -508,7 +537,7 @@ function Adexchangebuyer(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.creatives.listDeals
         * @desc Lists the external deal ids associated with the creative.
@@ -522,7 +551,9 @@ function Adexchangebuyer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    listDeals(params, options, callback) {
+    listDeals(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -544,7 +575,7 @@ function Adexchangebuyer(options) {
         pathParams: ['accountId', 'buyerCreativeId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.creatives.removeDeal
         * @desc Remove a deal id associated with the creative.
@@ -559,7 +590,9 @@ function Adexchangebuyer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    removeDeal(params, options, callback) {
+    removeDeal(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -581,7 +614,7 @@ function Adexchangebuyer(options) {
         pathParams: ['accountId', 'buyerCreativeId', 'dealId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -599,7 +632,9 @@ function Adexchangebuyer(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -620,7 +655,7 @@ function Adexchangebuyer(options) {
         pathParams: ['proposalId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.marketplacedeals.insert
         * @desc Add new deals for the specified proposal
@@ -634,7 +669,9 @@ function Adexchangebuyer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -655,7 +692,7 @@ function Adexchangebuyer(options) {
         pathParams: ['proposalId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.marketplacedeals.list
         * @desc List all the deals for a given proposal
@@ -669,7 +706,9 @@ function Adexchangebuyer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -690,7 +729,7 @@ function Adexchangebuyer(options) {
         pathParams: ['proposalId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.marketplacedeals.update
         * @desc Replaces all the deals in the proposal with the passed in deals
@@ -704,7 +743,9 @@ function Adexchangebuyer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -725,7 +766,7 @@ function Adexchangebuyer(options) {
         pathParams: ['proposalId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -743,7 +784,9 @@ function Adexchangebuyer(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -764,7 +807,7 @@ function Adexchangebuyer(options) {
         pathParams: ['proposalId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.marketplacenotes.list
         * @desc Get all the notes associated with a proposal
@@ -778,7 +821,9 @@ function Adexchangebuyer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -799,7 +844,7 @@ function Adexchangebuyer(options) {
         pathParams: ['proposalId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -817,7 +862,9 @@ function Adexchangebuyer(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    updateproposal(params, options, callback) {
+    updateproposal(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -839,7 +886,7 @@ function Adexchangebuyer(options) {
         pathParams: ['privateAuctionId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -860,7 +907,9 @@ function Adexchangebuyer(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -880,7 +929,7 @@ function Adexchangebuyer(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -898,7 +947,9 @@ function Adexchangebuyer(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -920,7 +971,7 @@ function Adexchangebuyer(options) {
         pathParams: ['accountId', 'configId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.pretargetingConfig.get
         * @desc Gets a specific pretargeting configuration
@@ -934,7 +985,8 @@ function Adexchangebuyer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -956,7 +1008,7 @@ function Adexchangebuyer(options) {
         pathParams: ['accountId', 'configId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.pretargetingConfig.insert
         * @desc Inserts a new pretargeting configuration.
@@ -970,7 +1022,9 @@ function Adexchangebuyer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -991,7 +1045,7 @@ function Adexchangebuyer(options) {
         pathParams: ['accountId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.pretargetingConfig.list
         * @desc Retrieves a list of the authenticated user's pretargeting
@@ -1005,7 +1059,9 @@ function Adexchangebuyer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1026,7 +1082,7 @@ function Adexchangebuyer(options) {
         pathParams: ['accountId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.pretargetingConfig.patch
         * @desc Updates an existing pretargeting config. This method supports
@@ -1042,7 +1098,9 @@ function Adexchangebuyer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1064,7 +1122,7 @@ function Adexchangebuyer(options) {
         pathParams: ['accountId', 'configId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.pretargetingConfig.update
         * @desc Updates an existing pretargeting config.
@@ -1079,7 +1137,9 @@ function Adexchangebuyer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1101,7 +1161,7 @@ function Adexchangebuyer(options) {
         pathParams: ['accountId', 'configId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1118,7 +1178,8 @@ function Adexchangebuyer(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1138,7 +1199,7 @@ function Adexchangebuyer(options) {
         pathParams: ['productId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.products.search
         * @desc Gets the requested product.
@@ -1151,7 +1212,9 @@ function Adexchangebuyer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    search(params, options, callback) {
+    search(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1171,7 +1234,7 @@ function Adexchangebuyer(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1188,7 +1251,8 @@ function Adexchangebuyer(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1208,7 +1272,7 @@ function Adexchangebuyer(options) {
         pathParams: ['proposalId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.proposals.insert
         * @desc Create the given list of proposals
@@ -1221,7 +1285,9 @@ function Adexchangebuyer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1241,7 +1307,7 @@ function Adexchangebuyer(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.proposals.patch
         * @desc Update the given proposal. This method supports patch semantics.
@@ -1257,7 +1323,9 @@ function Adexchangebuyer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1279,7 +1347,7 @@ function Adexchangebuyer(options) {
         pathParams: ['proposalId', 'revisionNumber', 'updateAction'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.proposals.search
         * @desc Search for proposals using pql query
@@ -1292,7 +1360,9 @@ function Adexchangebuyer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    search(params, options, callback) {
+    search(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1312,7 +1382,7 @@ function Adexchangebuyer(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.proposals.setupcomplete
         * @desc Update the given proposal to indicate that setup has been
@@ -1326,7 +1396,9 @@ function Adexchangebuyer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setupcomplete(params, options, callback) {
+    setupcomplete(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1348,7 +1420,7 @@ function Adexchangebuyer(options) {
         pathParams: ['proposalId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.proposals.update
         * @desc Update the given proposal
@@ -1364,7 +1436,9 @@ function Adexchangebuyer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1386,7 +1460,7 @@ function Adexchangebuyer(options) {
         pathParams: ['proposalId', 'revisionNumber', 'updateAction'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1403,7 +1477,9 @@ function Adexchangebuyer(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1424,7 +1500,7 @@ function Adexchangebuyer(options) {
         pathParams: ['accountId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

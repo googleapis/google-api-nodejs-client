@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Cloud Vision API
@@ -33,7 +40,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Vision
  */
-function Vision(options) {
+function Vision(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.images = {
@@ -103,7 +110,9 @@ function Vision(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    annotate(params, options, callback) {
+    annotate(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -123,7 +132,7 @@ function Vision(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -149,7 +158,9 @@ function Vision(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params, options, callback) {
+    cancel(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -169,7 +180,7 @@ function Vision(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * vision.operations.delete
         * @desc Deletes a long-running operation. This method indicates that the
@@ -185,7 +196,9 @@ function Vision(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -204,7 +217,7 @@ function Vision(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * vision.operations.get
         * @desc Gets the latest state of a long-running operation.  Clients can
@@ -219,7 +232,8 @@ function Vision(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -238,7 +252,7 @@ function Vision(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * vision.operations.list
         * @desc Lists operations that match the specified filter in the request.
@@ -262,7 +276,9 @@ function Vision(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -281,7 +297,7 @@ function Vision(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

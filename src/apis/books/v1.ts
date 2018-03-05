@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Books API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Books
  */
-function Books(options) {
+function Books(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.bookshelves = {
@@ -49,7 +56,8 @@ function Books(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -69,7 +77,7 @@ function Books(options) {
         pathParams: ['shelf', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * books.bookshelves.list
         * @desc Retrieves a list of public bookshelves for the specified user.
@@ -83,7 +91,9 @@ function Books(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -103,7 +113,7 @@ function Books(options) {
         pathParams: ['userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     },
     volumes: {
       /**
@@ -123,7 +133,9 @@ function Books(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -144,7 +156,7 @@ function Books(options) {
           pathParams: ['shelf', 'userId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }
@@ -164,7 +176,9 @@ function Books(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addBook(params, options, callback) {
+    addBook(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -184,7 +198,7 @@ function Books(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * books.cloudloading.deleteBook
         * @desc Remove the book and its contents
@@ -197,7 +211,9 @@ function Books(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    deleteBook(params, options, callback) {
+    deleteBook(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -217,7 +233,7 @@ function Books(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * books.cloudloading.updateBook
         * @alias books.cloudloading.updateBook
@@ -229,7 +245,9 @@ function Books(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    updateBook(params, options, callback) {
+    updateBook(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -249,7 +267,7 @@ function Books(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -266,7 +284,9 @@ function Books(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listOfflineMetadata(params, options, callback) {
+    listOfflineMetadata(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -286,7 +306,7 @@ function Books(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -303,7 +323,9 @@ function Books(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getFamilyInfo(params, options, callback) {
+    getFamilyInfo(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -323,7 +345,7 @@ function Books(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * books.familysharing.share
         * @desc Initiates sharing of the content with the user's family. Empty
@@ -339,7 +361,9 @@ function Books(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    share(params, options, callback) {
+    share(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -359,7 +383,7 @@ function Books(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * books.familysharing.unshare
         * @desc Initiates revoking content that has already been shared with the
@@ -375,7 +399,9 @@ function Books(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    unshare(params, options, callback) {
+    unshare(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -395,7 +421,7 @@ function Books(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -415,7 +441,8 @@ function Books(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -436,7 +463,7 @@ function Books(options) {
         pathParams: ['summaryId', 'volumeId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * books.layers.list
         * @desc List the layer summaries for a volume.
@@ -453,7 +480,9 @@ function Books(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -473,7 +502,7 @@ function Books(options) {
         pathParams: ['volumeId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     },
     annotationData: {
       /**
@@ -497,7 +526,8 @@ function Books(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -520,7 +550,7 @@ function Books(options) {
           pathParams: ['annotationDataId', 'layerId', 'volumeId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * books.layers.annotationData.list
           * @desc Gets the annotation data for a volume and layer.
@@ -545,7 +575,9 @@ function Books(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -566,7 +598,7 @@ function Books(options) {
           pathParams: ['layerId', 'volumeId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -587,7 +619,8 @@ function Books(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -609,7 +642,7 @@ function Books(options) {
           pathParams: ['annotationId', 'layerId', 'volumeId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * books.layers.volumeAnnotations.list
           * @desc Gets the volume annotations for a volume and layer.
@@ -636,7 +669,9 @@ function Books(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -656,7 +691,7 @@ function Books(options) {
           pathParams: ['layerId', 'volumeId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }
@@ -673,7 +708,9 @@ function Books(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getUserSettings(params, options, callback) {
+    getUserSettings(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -693,7 +730,7 @@ function Books(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * books.myconfig.releaseDownloadAccess
         * @desc Release downloaded content access restriction.
@@ -709,7 +746,9 @@ function Books(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    releaseDownloadAccess(params, options, callback) {
+    releaseDownloadAccess(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -729,7 +768,7 @@ function Books(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * books.myconfig.requestAccess
         * @desc Request concurrent and download access restrictions.
@@ -747,7 +786,9 @@ function Books(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    requestAccess(params, options, callback) {
+    requestAccess(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -767,7 +808,7 @@ function Books(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * books.myconfig.syncVolumeLicenses
         * @desc Request downloaded content access for specified volumes on the
@@ -788,7 +829,9 @@ function Books(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    syncVolumeLicenses(params, options, callback) {
+    syncVolumeLicenses(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -808,7 +851,7 @@ function Books(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * books.myconfig.updateUserSettings
         * @desc Sets the settings for the user. If a sub-object is specified, it
@@ -823,7 +866,9 @@ function Books(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    updateUserSettings(params, options, callback) {
+    updateUserSettings(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -843,7 +888,7 @@ function Books(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -862,7 +907,9 @@ function Books(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete (params, options, callback) {
+      delete (
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -883,7 +930,7 @@ function Books(options) {
           pathParams: ['annotationId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * books.mylibrary.annotations.insert
           * @desc Inserts a new annotation.
@@ -900,7 +947,9 @@ function Books(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      insert(params, options, callback) {
+      insert(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -920,7 +969,7 @@ function Books(options) {
           pathParams: [],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * books.mylibrary.annotations.list
           * @desc Retrieves a list of annotations, possibly filtered.
@@ -942,7 +991,9 @@ function Books(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -962,7 +1013,7 @@ function Books(options) {
           pathParams: [],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * books.mylibrary.annotations.summary
           * @desc Gets the summary of specified layers.
@@ -976,7 +1027,9 @@ function Books(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      summary(params, options, callback) {
+      summary(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -996,7 +1049,7 @@ function Books(options) {
           pathParams: [],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * books.mylibrary.annotations.update
           * @desc Updates an existing annotation.
@@ -1011,7 +1064,9 @@ function Books(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      update(params, options, callback) {
+      update(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1032,7 +1087,7 @@ function Books(options) {
           pathParams: ['annotationId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -1052,7 +1107,9 @@ function Books(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      addVolume(params, options, callback) {
+      addVolume(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1073,7 +1130,7 @@ function Books(options) {
           pathParams: ['shelf'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * books.mylibrary.bookshelves.clearVolumes
           * @desc Clears all volumes from a bookshelf.
@@ -1087,7 +1144,9 @@ function Books(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      clearVolumes(params, options, callback) {
+      clearVolumes(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1108,7 +1167,7 @@ function Books(options) {
           pathParams: ['shelf'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * books.mylibrary.bookshelves.get
           * @desc Retrieves metadata for a specific bookshelf belonging to the
@@ -1123,7 +1182,8 @@ function Books(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1143,7 +1203,7 @@ function Books(options) {
           pathParams: ['shelf'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * books.mylibrary.bookshelves.list
           * @desc Retrieves a list of bookshelves belonging to the authenticated
@@ -1157,7 +1217,9 @@ function Books(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1177,7 +1239,7 @@ function Books(options) {
           pathParams: [],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * books.mylibrary.bookshelves.moveVolume
           * @desc Moves a volume within a bookshelf.
@@ -1193,7 +1255,9 @@ function Books(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      moveVolume(params, options, callback) {
+      moveVolume(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1214,7 +1278,7 @@ function Books(options) {
           pathParams: ['shelf'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * books.mylibrary.bookshelves.removeVolume
           * @desc Removes a volume from a bookshelf.
@@ -1230,7 +1294,9 @@ function Books(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      removeVolume(params, options, callback) {
+      removeVolume(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1251,7 +1317,7 @@ function Books(options) {
           pathParams: ['shelf'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       },
       volumes: {
         /**
@@ -1273,7 +1339,9 @@ function Books(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -1294,7 +1362,7 @@ function Books(options) {
             pathParams: ['shelf'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       }
@@ -1314,7 +1382,8 @@ function Books(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1335,7 +1404,7 @@ function Books(options) {
           pathParams: ['volumeId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * books.mylibrary.readingpositions.setPosition
           * @desc Sets my reading position information for a volume.
@@ -1354,7 +1423,9 @@ function Books(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      setPosition(params, options, callback) {
+      setPosition(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1376,7 +1447,7 @@ function Books(options) {
           pathParams: ['volumeId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }
@@ -1396,7 +1467,8 @@ function Books(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1416,7 +1488,7 @@ function Books(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1433,7 +1505,9 @@ function Books(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listCategories(params, options, callback) {
+    listCategories(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1453,7 +1527,7 @@ function Books(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * books.onboarding.listCategoryVolumes
         * @desc List available volumes under categories for onboarding
@@ -1471,7 +1545,9 @@ function Books(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    listCategoryVolumes(params, options, callback) {
+    listCategoryVolumes(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1491,7 +1567,7 @@ function Books(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1510,7 +1586,8 @@ function Books(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1530,7 +1607,7 @@ function Books(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1553,7 +1630,9 @@ function Books(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    accept(params, options, callback) {
+    accept(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1573,7 +1652,7 @@ function Books(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * books.promooffer.dismiss
         * @alias books.promooffer.dismiss
@@ -1591,7 +1670,9 @@ function Books(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    dismiss(params, options, callback) {
+    dismiss(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1611,7 +1692,7 @@ function Books(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * books.promooffer.get
         * @desc Returns a list of promo offers available to the user
@@ -1629,7 +1710,8 @@ function Books(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1649,7 +1731,7 @@ function Books(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1666,7 +1748,8 @@ function Books(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1686,7 +1769,7 @@ function Books(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     },
     membership: {
       /**
@@ -1703,7 +1786,8 @@ function Books(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1723,7 +1807,7 @@ function Books(options) {
           pathParams: [],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }
@@ -1747,7 +1831,8 @@ function Books(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1767,7 +1852,7 @@ function Books(options) {
         pathParams: ['volumeId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * books.volumes.list
         * @desc Performs a book search.
@@ -1793,7 +1878,9 @@ function Books(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1813,7 +1900,7 @@ function Books(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     },
     associated: {
       /**
@@ -1832,7 +1919,9 @@ function Books(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1852,7 +1941,7 @@ function Books(options) {
           pathParams: ['volumeId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -1875,7 +1964,9 @@ function Books(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1895,7 +1986,7 @@ function Books(options) {
           pathParams: [],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -1914,7 +2005,9 @@ function Books(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1934,7 +2027,7 @@ function Books(options) {
           pathParams: [],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * books.volumes.recommended.rate
           * @desc Rate a recommended book for the current user.
@@ -1950,7 +2043,9 @@ function Books(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      rate(params, options, callback) {
+      rate(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1970,7 +2065,7 @@ function Books(options) {
           pathParams: [],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -1992,7 +2087,9 @@ function Books(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -2012,7 +2109,7 @@ function Books(options) {
           pathParams: [],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }

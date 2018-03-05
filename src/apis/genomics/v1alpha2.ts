@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Genomics API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1alpha2
  * @param {object=} options Options for Genomics
  */
-function Genomics(options) {
+function Genomics(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.operations = {
@@ -106,7 +113,9 @@ function Genomics(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params, options, callback) {
+    cancel(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -126,7 +135,7 @@ function Genomics(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * genomics.operations.get
         * @desc Gets the latest state of a long-running operation.  Clients can
@@ -195,7 +204,8 @@ function Genomics(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -214,7 +224,7 @@ function Genomics(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * genomics.operations.list
         * @desc Lists operations that match the specified filter in the request.
@@ -297,7 +307,9 @@ function Genomics(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -316,7 +328,7 @@ function Genomics(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -390,7 +402,9 @@ function Genomics(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params, options, callback) {
+    create(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -410,7 +424,7 @@ function Genomics(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * genomics.pipelines.delete
         * @desc Deletes a pipeline based on ID.  Caller must have WRITE
@@ -476,7 +490,9 @@ function Genomics(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -496,7 +512,7 @@ function Genomics(options) {
         pathParams: ['pipelineId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * genomics.pipelines.get
         * @desc Retrieves a pipeline based on ID.  Caller must have READ
@@ -565,7 +581,8 @@ function Genomics(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -585,7 +602,7 @@ function Genomics(options) {
         pathParams: ['pipelineId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * genomics.pipelines.getControllerConfig
         * @desc Gets controller configuration information. Should only be called
@@ -648,7 +665,9 @@ function Genomics(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getControllerConfig(params, options, callback) {
+    getControllerConfig(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -668,7 +687,7 @@ function Genomics(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * genomics.pipelines.list
         * @desc Lists pipelines.  Caller must have READ permission to the
@@ -749,7 +768,9 @@ function Genomics(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -769,7 +790,7 @@ function Genomics(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * genomics.pipelines.run
         * @desc Runs a pipeline. If `pipelineId` is specified in the request,
@@ -842,7 +863,8 @@ function Genomics(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    run(params, options, callback) {
+    run(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -862,7 +884,7 @@ function Genomics(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * genomics.pipelines.setOperationStatus
         * @desc Sets status of a given operation. Any new timestamps (as
@@ -931,7 +953,9 @@ function Genomics(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setOperationStatus(params, options, callback) {
+    setOperationStatus(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -951,7 +975,7 @@ function Genomics(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

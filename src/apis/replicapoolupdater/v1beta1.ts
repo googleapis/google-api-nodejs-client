@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Compute Engine Instance Group Updater API
@@ -33,7 +40,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta1
  * @param {object=} options Options for Replicapoolupdater
  */
-function Replicapoolupdater(options) {
+function Replicapoolupdater(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.rollingUpdates = {
@@ -52,7 +59,9 @@ function Replicapoolupdater(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params, options, callback) {
+    cancel(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -74,7 +83,7 @@ function Replicapoolupdater(options) {
         pathParams: ['project', 'rollingUpdate', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * replicapoolupdater.rollingUpdates.get
         * @desc Returns information about an update.
@@ -89,7 +98,8 @@ function Replicapoolupdater(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -111,7 +121,7 @@ function Replicapoolupdater(options) {
         pathParams: ['project', 'rollingUpdate', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * replicapoolupdater.rollingUpdates.insert
         * @desc Inserts and starts a new update.
@@ -126,7 +136,9 @@ function Replicapoolupdater(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -148,7 +160,7 @@ function Replicapoolupdater(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * replicapoolupdater.rollingUpdates.list
         * @desc Lists recent updates for a given managed instance group, in
@@ -166,7 +178,9 @@ function Replicapoolupdater(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -188,7 +202,7 @@ function Replicapoolupdater(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * replicapoolupdater.rollingUpdates.listInstanceUpdates
         * @desc Lists the current status for each instance within a given
@@ -207,7 +221,9 @@ function Replicapoolupdater(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    listInstanceUpdates(params, options, callback) {
+    listInstanceUpdates(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -229,7 +245,7 @@ function Replicapoolupdater(options) {
         pathParams: ['project', 'rollingUpdate', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * replicapoolupdater.rollingUpdates.pause
         * @desc Pauses the update in state from ROLLING_FORWARD or ROLLING_BACK.
@@ -245,7 +261,9 @@ function Replicapoolupdater(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    pause(params, options, callback) {
+    pause(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -267,7 +285,7 @@ function Replicapoolupdater(options) {
         pathParams: ['project', 'rollingUpdate', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * replicapoolupdater.rollingUpdates.resume
         * @desc Continues an update in PAUSED state. Has no effect if invoked
@@ -283,7 +301,9 @@ function Replicapoolupdater(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    resume(params, options, callback) {
+    resume(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -305,7 +325,7 @@ function Replicapoolupdater(options) {
         pathParams: ['project', 'rollingUpdate', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * replicapoolupdater.rollingUpdates.rollback
         * @desc Rolls back the update in state from ROLLING_FORWARD or PAUSED.
@@ -321,7 +341,9 @@ function Replicapoolupdater(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    rollback(params, options, callback) {
+    rollback(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -343,7 +365,7 @@ function Replicapoolupdater(options) {
         pathParams: ['project', 'rollingUpdate', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -362,7 +384,8 @@ function Replicapoolupdater(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -384,7 +407,7 @@ function Replicapoolupdater(options) {
         pathParams: ['operation', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * replicapoolupdater.zoneOperations.list
         * @desc Retrieves the list of Operation resources contained within the
@@ -402,7 +425,9 @@ function Replicapoolupdater(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -424,7 +449,7 @@ function Replicapoolupdater(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

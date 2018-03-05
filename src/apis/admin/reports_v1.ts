@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Admin Reports API
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation reports_v1
  * @param {object=} options Options for Admin
  */
-function Admin(options) {
+function Admin(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.activities = {
@@ -58,7 +65,9 @@ function Admin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -80,7 +89,7 @@ function Admin(options) {
         pathParams: ['applicationName', 'userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * reports.activities.watch
         * @desc Push changes to activities
@@ -103,7 +112,9 @@ function Admin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    watch(params, options, callback) {
+    watch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -125,7 +136,7 @@ function Admin(options) {
         pathParams: ['applicationName', 'userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -142,7 +153,9 @@ function Admin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop(params, options, callback) {
+    stop(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -163,7 +176,7 @@ function Admin(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -184,7 +197,8 @@ function Admin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -204,7 +218,7 @@ function Admin(options) {
         pathParams: ['date'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -229,7 +243,8 @@ function Admin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -251,7 +266,7 @@ function Admin(options) {
         pathParams: ['date', 'entityKey', 'entityType'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -275,7 +290,8 @@ function Admin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -296,7 +312,7 @@ function Admin(options) {
         pathParams: ['date', 'userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

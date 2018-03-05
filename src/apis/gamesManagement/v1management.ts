@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Play Game Services Management API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1management
  * @param {object=} options Options for Gamesmanagement
  */
-function Gamesmanagement(options) {
+function Gamesmanagement(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.achievements = {
@@ -49,7 +56,9 @@ function Gamesmanagement(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reset(params, options, callback) {
+    reset(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -70,7 +79,7 @@ function Gamesmanagement(options) {
         pathParams: ['achievementId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.achievements.resetAll
         * @desc Resets all achievements for the currently authenticated player
@@ -84,7 +93,9 @@ function Gamesmanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    resetAll(params, options, callback) {
+    resetAll(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -104,7 +115,7 @@ function Gamesmanagement(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.achievements.resetAllForAllPlayers
         * @desc Resets all draft achievements for all players. This method is
@@ -117,7 +128,9 @@ function Gamesmanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    resetAllForAllPlayers(params, options, callback) {
+    resetAllForAllPlayers(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -138,7 +151,7 @@ function Gamesmanagement(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.achievements.resetForAllPlayers
         * @desc Resets the achievement with the given ID for all players. This
@@ -153,7 +166,9 @@ function Gamesmanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    resetForAllPlayers(params, options, callback) {
+    resetForAllPlayers(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -175,7 +190,7 @@ function Gamesmanagement(options) {
         pathParams: ['achievementId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.achievements.resetMultipleForAllPlayers
         * @desc Resets achievements with the given IDs for all players. This
@@ -190,7 +205,9 @@ function Gamesmanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    resetMultipleForAllPlayers(params, options, callback) {
+    resetMultipleForAllPlayers(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -212,7 +229,7 @@ function Gamesmanagement(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -232,7 +249,9 @@ function Gamesmanagement(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listHidden(params, options, callback) {
+    listHidden(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -254,7 +273,7 @@ function Gamesmanagement(options) {
         pathParams: ['applicationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -274,7 +293,9 @@ function Gamesmanagement(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reset(params, options, callback) {
+    reset(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -294,7 +315,7 @@ function Gamesmanagement(options) {
         pathParams: ['eventId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.events.resetAll
         * @desc Resets all player progress on all events for the currently
@@ -309,7 +330,9 @@ function Gamesmanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    resetAll(params, options, callback) {
+    resetAll(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -329,7 +352,7 @@ function Gamesmanagement(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.events.resetAllForAllPlayers
         * @desc Resets all draft events for all players. This method is only
@@ -343,7 +366,9 @@ function Gamesmanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    resetAllForAllPlayers(params, options, callback) {
+    resetAllForAllPlayers(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -364,7 +389,7 @@ function Gamesmanagement(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.events.resetForAllPlayers
         * @desc Resets the event with the given ID for all players. This method
@@ -380,7 +405,9 @@ function Gamesmanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    resetForAllPlayers(params, options, callback) {
+    resetForAllPlayers(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -401,7 +428,7 @@ function Gamesmanagement(options) {
         pathParams: ['eventId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.events.resetMultipleForAllPlayers
         * @desc Resets events with the given IDs for all players. This method is
@@ -417,7 +444,9 @@ function Gamesmanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    resetMultipleForAllPlayers(params, options, callback) {
+    resetMultipleForAllPlayers(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -438,7 +467,7 @@ function Gamesmanagement(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -458,7 +487,9 @@ function Gamesmanagement(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    hide(params, options, callback) {
+    hide(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -480,7 +511,7 @@ function Gamesmanagement(options) {
         pathParams: ['applicationId', 'playerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.players.unhide
         * @desc Unhide the given player's leaderboard scores from the given
@@ -496,7 +527,9 @@ function Gamesmanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    unhide(params, options, callback) {
+    unhide(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -518,7 +551,7 @@ function Gamesmanagement(options) {
         pathParams: ['applicationId', 'playerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -537,7 +570,9 @@ function Gamesmanagement(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reset(params, options, callback) {
+    reset(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -557,7 +592,7 @@ function Gamesmanagement(options) {
         pathParams: ['questId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.quests.resetAll
         * @desc Resets all player progress on all quests for the currently
@@ -571,7 +606,9 @@ function Gamesmanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    resetAll(params, options, callback) {
+    resetAll(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -591,7 +628,7 @@ function Gamesmanagement(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.quests.resetAllForAllPlayers
         * @desc Resets all draft quests for all players. This method is only
@@ -604,7 +641,9 @@ function Gamesmanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    resetAllForAllPlayers(params, options, callback) {
+    resetAllForAllPlayers(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -625,7 +664,7 @@ function Gamesmanagement(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.quests.resetForAllPlayers
         * @desc Resets all player progress on the quest with the given ID for
@@ -640,7 +679,9 @@ function Gamesmanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    resetForAllPlayers(params, options, callback) {
+    resetForAllPlayers(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -661,7 +702,7 @@ function Gamesmanagement(options) {
         pathParams: ['questId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.quests.resetMultipleForAllPlayers
         * @desc Resets quests with the given IDs for all players. This method is
@@ -676,7 +717,9 @@ function Gamesmanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    resetMultipleForAllPlayers(params, options, callback) {
+    resetMultipleForAllPlayers(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -697,7 +740,7 @@ function Gamesmanagement(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -715,7 +758,9 @@ function Gamesmanagement(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reset(params, options, callback) {
+    reset(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -735,7 +780,7 @@ function Gamesmanagement(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.rooms.resetForAllPlayers
         * @desc Deletes rooms where the only room participants are from
@@ -749,7 +794,9 @@ function Gamesmanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    resetForAllPlayers(params, options, callback) {
+    resetForAllPlayers(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -769,7 +816,7 @@ function Gamesmanagement(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -788,7 +835,9 @@ function Gamesmanagement(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reset(params, options, callback) {
+    reset(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -810,7 +859,7 @@ function Gamesmanagement(options) {
         pathParams: ['leaderboardId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.scores.resetAll
         * @desc Resets all scores for all leaderboards for the currently
@@ -824,7 +873,9 @@ function Gamesmanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    resetAll(params, options, callback) {
+    resetAll(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -844,7 +895,7 @@ function Gamesmanagement(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.scores.resetAllForAllPlayers
         * @desc Resets scores for all draft leaderboards for all players. This
@@ -857,7 +908,9 @@ function Gamesmanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    resetAllForAllPlayers(params, options, callback) {
+    resetAllForAllPlayers(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -878,7 +931,7 @@ function Gamesmanagement(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.scores.resetForAllPlayers
         * @desc Resets scores for the leaderboard with the given ID for all
@@ -893,7 +946,9 @@ function Gamesmanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    resetForAllPlayers(params, options, callback) {
+    resetForAllPlayers(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -915,7 +970,7 @@ function Gamesmanagement(options) {
         pathParams: ['leaderboardId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.scores.resetMultipleForAllPlayers
         * @desc Resets scores for the leaderboards with the given IDs for all
@@ -930,7 +985,9 @@ function Gamesmanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    resetMultipleForAllPlayers(params, options, callback) {
+    resetMultipleForAllPlayers(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -951,7 +1008,7 @@ function Gamesmanagement(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -968,7 +1025,9 @@ function Gamesmanagement(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reset(params, options, callback) {
+    reset(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -988,7 +1047,7 @@ function Gamesmanagement(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.turnBasedMatches.resetForAllPlayers
         * @desc Deletes turn-based matches where the only match participants are
@@ -1002,7 +1061,9 @@ function Gamesmanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    resetForAllPlayers(params, options, callback) {
+    resetForAllPlayers(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1023,7 +1084,7 @@ function Gamesmanagement(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

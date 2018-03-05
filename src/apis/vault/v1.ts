@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Vault API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Vault
  */
-function Vault(options) {
+function Vault(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.matters = {
@@ -48,7 +55,9 @@ function Vault(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addPermissions(params, options, callback) {
+    addPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -68,7 +77,7 @@ function Vault(options) {
         pathParams: ['matterId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * vault.matters.close
         * @desc Closes the specified matter. Returns matter with updated state.
@@ -82,7 +91,9 @@ function Vault(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    close(params, options, callback) {
+    close(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -102,7 +113,7 @@ function Vault(options) {
         pathParams: ['matterId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * vault.matters.create
         * @desc Creates a new matter with the given name and description. The
@@ -117,7 +128,9 @@ function Vault(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    create(params, options, callback) {
+    create(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -136,7 +149,7 @@ function Vault(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * vault.matters.delete
         * @desc Deletes the specified matter. Returns matter with updated state.
@@ -149,7 +162,9 @@ function Vault(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -169,7 +184,7 @@ function Vault(options) {
         pathParams: ['matterId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * vault.matters.get
         * @desc Gets the specified matter.
@@ -183,7 +198,8 @@ function Vault(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -203,7 +219,7 @@ function Vault(options) {
         pathParams: ['matterId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * vault.matters.list
         * @desc Lists matters the user has access to.
@@ -219,7 +235,9 @@ function Vault(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -238,7 +256,7 @@ function Vault(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * vault.matters.removePermissions
         * @desc Removes an account as a matter collaborator.
@@ -252,7 +270,9 @@ function Vault(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    removePermissions(params, options, callback) {
+    removePermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -272,7 +292,7 @@ function Vault(options) {
         pathParams: ['matterId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * vault.matters.reopen
         * @desc Reopens the specified matter. Returns matter with updated state.
@@ -286,7 +306,9 @@ function Vault(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    reopen(params, options, callback) {
+    reopen(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -306,7 +328,7 @@ function Vault(options) {
         pathParams: ['matterId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * vault.matters.undelete
         * @desc Undeletes the specified matter. Returns matter with updated
@@ -321,7 +343,9 @@ function Vault(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    undelete(params, options, callback) {
+    undelete(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -341,7 +365,7 @@ function Vault(options) {
         pathParams: ['matterId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * vault.matters.update
         * @desc Updates the specified matter. This updates only the name and
@@ -357,7 +381,9 @@ function Vault(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -377,7 +403,7 @@ function Vault(options) {
         pathParams: ['matterId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     },
     holds: {
       /**
@@ -393,7 +419,9 @@ function Vault(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create(params, options, callback) {
+      create(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -413,7 +441,7 @@ function Vault(options) {
           pathParams: ['matterId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * vault.matters.holds.delete
           * @desc Removes a hold by ID. This will release any HeldAccounts on
@@ -428,7 +456,9 @@ function Vault(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (params, options, callback) {
+      delete (
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -448,7 +478,7 @@ function Vault(options) {
           pathParams: ['holdId', 'matterId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * vault.matters.holds.get
           * @desc Gets a hold by ID.
@@ -463,7 +493,8 @@ function Vault(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -483,7 +514,7 @@ function Vault(options) {
           pathParams: ['holdId', 'matterId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * vault.matters.holds.list
           * @desc Lists holds within a matter. An empty page token in
@@ -500,7 +531,9 @@ function Vault(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -520,7 +553,7 @@ function Vault(options) {
           pathParams: ['matterId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * vault.matters.holds.update
           * @desc Updates the OU and/or query parameters of a hold. You cannot
@@ -538,7 +571,9 @@ function Vault(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      update(params, options, callback) {
+      update(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -558,7 +593,7 @@ function Vault(options) {
           pathParams: ['holdId', 'matterId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       },
       accounts: {
         /**
@@ -577,7 +612,9 @@ function Vault(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create(params, options, callback) {
+        create(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -598,7 +635,7 @@ function Vault(options) {
             pathParams: ['holdId', 'matterId'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * vault.matters.holds.accounts.delete
             * @desc Removes a HeldAccount from a hold. If this request leaves
@@ -615,7 +652,9 @@ function Vault(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -637,7 +676,7 @@ function Vault(options) {
             pathParams: ['accountId', 'holdId', 'matterId'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * vault.matters.holds.accounts.list
             * @desc Lists HeldAccounts for a hold. This will only list
@@ -654,7 +693,9 @@ function Vault(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -675,7 +716,7 @@ function Vault(options) {
             pathParams: ['holdId', 'matterId'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       }
@@ -707,6 +748,7 @@ function Vault(options) {
  * @type object
  * @property {vault(v1).HeldDriveQuery} driveQuery Details pertaining to Drive holds. If set, corpus must be Drive.
  * @property {vault(v1).HeldGroupsQuery} groupsQuery Details pertaining to Groups holds. If set, corpus must be Groups.
+ * @property {vault(v1).HeldHangoutsChatQuery} hangoutsChatQuery Details pertaining to Hangouts Chat holds. If set, corpus must be Hangouts Chat.
  * @property {vault(v1).HeldMailQuery} mailQuery Details pertaining to mail holds. If set, corpus must be mail.
  */
 /**
@@ -734,6 +776,12 @@ function Vault(options) {
  * @property {string} endTime The end time range for the search query. These timestamps are in GMT and rounded down to the start of the given date.
  * @property {string} startTime The start time range for the search query. These timestamps are in GMT and rounded down to the start of the given date.
  * @property {string} terms The search terms for the hold.
+ */
+/**
+ * @typedef HeldHangoutsChatQuery
+ * @memberOf! vault(v1)
+ * @type object
+ * @property {boolean} includeRooms If true, include rooms the user has participated in.
  */
 /**
  * @typedef HeldMailQuery

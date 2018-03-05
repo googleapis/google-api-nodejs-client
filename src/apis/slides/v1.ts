@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Slides API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Slides
  */
-function Slides(options) {
+function Slides(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.presentations = {
@@ -61,7 +68,9 @@ function Slides(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    batchUpdate(params, options, callback) {
+    batchUpdate(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -81,7 +90,7 @@ function Slides(options) {
         pathParams: ['presentationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * slides.presentations.create
         * @desc Creates a new presentation using the title given in the request.
@@ -96,7 +105,9 @@ function Slides(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    create(params, options, callback) {
+    create(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -116,7 +127,7 @@ function Slides(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * slides.presentations.get
         * @desc Gets the latest version of the specified presentation.
@@ -129,7 +140,8 @@ function Slides(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -149,7 +161,7 @@ function Slides(options) {
         pathParams: ['presentationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     },
     pages: {
       /**
@@ -166,7 +178,8 @@ function Slides(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -187,7 +200,7 @@ function Slides(options) {
           pathParams: ['pageObjectId', 'presentationId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * slides.presentations.pages.getThumbnail
           * @desc Generates a thumbnail of the latest version of the specified
@@ -206,7 +219,9 @@ function Slides(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      getThumbnail(params, options, callback) {
+      getThumbnail(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -228,7 +243,7 @@ function Slides(options) {
           pathParams: ['pageObjectId', 'presentationId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }

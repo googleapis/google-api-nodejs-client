@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Cloud Tool Results API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta3
  * @param {object=} options Options for Toolresults
  */
-function Toolresults(options) {
+function Toolresults(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.projects = {
@@ -49,7 +56,9 @@ function Toolresults(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getSettings(params, options, callback) {
+    getSettings(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -70,7 +79,7 @@ function Toolresults(options) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * toolresults.projects.initializeSettings
         * @desc Creates resources for settings which have not yet been set.
@@ -102,7 +111,9 @@ function Toolresults(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    initializeSettings(params, options, callback) {
+    initializeSettings(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -124,7 +135,7 @@ function Toolresults(options) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     },
     histories: {
       /**
@@ -145,7 +156,9 @@ function Toolresults(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create(params, options, callback) {
+      create(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -166,7 +179,7 @@ function Toolresults(options) {
           pathParams: ['projectId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * toolresults.projects.histories.get
           * @desc Gets a History.  May return any of the following canonical
@@ -183,7 +196,8 @@ function Toolresults(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -205,7 +219,7 @@ function Toolresults(options) {
           pathParams: ['historyId', 'projectId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * toolresults.projects.histories.list
           * @desc Lists Histories for a given Project.  The histories are sorted
@@ -227,7 +241,9 @@ function Toolresults(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -248,7 +264,7 @@ function Toolresults(options) {
           pathParams: ['projectId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       },
       executions: {
         /**
@@ -270,7 +286,9 @@ function Toolresults(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create(params, options, callback) {
+        create(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -292,7 +310,7 @@ function Toolresults(options) {
             pathParams: ['historyId', 'projectId'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * toolresults.projects.histories.executions.get
             * @desc Gets an Execution.  May return any of the following
@@ -310,7 +328,8 @@ function Toolresults(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -332,7 +351,7 @@ function Toolresults(options) {
             pathParams: ['executionId', 'historyId', 'projectId'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * toolresults.projects.histories.executions.list
             * @desc Lists Histories for a given Project.  The executions are
@@ -354,7 +373,9 @@ function Toolresults(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -376,7 +397,7 @@ function Toolresults(options) {
             pathParams: ['historyId', 'projectId'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * toolresults.projects.histories.executions.patch
             * @desc Updates an existing Execution with the supplied partial
@@ -398,7 +419,9 @@ function Toolresults(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        patch(params, options, callback) {
+        patch(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -420,7 +443,7 @@ function Toolresults(options) {
             pathParams: ['executionId', 'historyId', 'projectId'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         },
         clusters: {
           /**
@@ -438,7 +461,8 @@ function Toolresults(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -462,7 +486,7 @@ function Toolresults(options) {
                   ['clusterId', 'executionId', 'historyId', 'projectId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * toolresults.projects.histories.executions.clusters.list
               * @desc Lists Screenshot Clusters  Returns the list of screenshot
@@ -483,7 +507,9 @@ function Toolresults(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -505,7 +531,7 @@ function Toolresults(options) {
               pathParams: ['executionId', 'historyId', 'projectId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }
 
         },
@@ -531,7 +557,9 @@ function Toolresults(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          create(params, options, callback) {
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -553,7 +581,7 @@ function Toolresults(options) {
               pathParams: ['executionId', 'historyId', 'projectId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * toolresults.projects.histories.executions.steps.get
               * @desc Gets a Step.  May return any of the following canonical
@@ -572,7 +600,8 @@ function Toolresults(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -595,7 +624,7 @@ function Toolresults(options) {
               pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * toolresults.projects.histories.executions.steps.getPerfMetricsSummary
               * @desc Retrieves a PerfMetricsSummary.  May return any of the
@@ -614,7 +643,9 @@ function Toolresults(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          getPerfMetricsSummary(params, options, callback) {
+          getPerfMetricsSummary(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -637,7 +668,7 @@ function Toolresults(options) {
               pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * toolresults.projects.histories.executions.steps.list
               * @desc Lists Steps for a given Execution.  The steps are sorted
@@ -663,7 +694,9 @@ function Toolresults(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -685,7 +718,7 @@ function Toolresults(options) {
               pathParams: ['executionId', 'historyId', 'projectId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * toolresults.projects.histories.executions.steps.patch
               * @desc Updates an existing Step with the supplied partial entity.
@@ -710,7 +743,9 @@ function Toolresults(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          patch(params, options, callback) {
+          patch(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -733,7 +768,7 @@ function Toolresults(options) {
               pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * toolresults.projects.histories.executions.steps.publishXunitXmlFiles
               * @desc Publish xml files to an existing Step.  May return any of
@@ -757,7 +792,9 @@ function Toolresults(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          publishXunitXmlFiles(params, options, callback) {
+          publishXunitXmlFiles(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -780,7 +817,7 @@ function Toolresults(options) {
               pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           },
           perfMetricsSummary: {
             /**
@@ -803,7 +840,9 @@ function Toolresults(options) {
              * @param {callback} callback The callback that handles the response.
              * @return {object} Request object
              */
-            create(params, options, callback) {
+            create(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -826,7 +865,7 @@ function Toolresults(options) {
                 pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }
 
           },
@@ -851,7 +890,9 @@ function Toolresults(options) {
              * @param {callback} callback The callback that handles the response.
              * @return {object} Request object
              */
-            create(params, options, callback) {
+            create(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -874,7 +915,7 @@ function Toolresults(options) {
                 pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * toolresults.projects.histories.executions.steps.perfSampleSeries.get
                 * @desc Gets a PerfSampleSeries.  May return any of the
@@ -894,7 +935,8 @@ function Toolresults(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            get(params, options, callback) {
+            get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -922,7 +964,7 @@ function Toolresults(options) {
                 ],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * toolresults.projects.histories.executions.steps.perfSampleSeries.list
                 * @desc Lists PerfSampleSeries for a given Step.  The request
@@ -945,7 +987,9 @@ function Toolresults(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            list(params, options, callback) {
+            list(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -968,7 +1012,7 @@ function Toolresults(options) {
                 pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             },
             samples:
                 {
@@ -998,7 +1042,10 @@ function Toolresults(options) {
                    * @param {callback} callback The callback that handles the response.
                    * @return {object} Request object
                    */
-                  batchCreate(params, options, callback) {
+                  batchCreate(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -1027,7 +1074,7 @@ function Toolresults(options) {
                       ],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }, /**
                       * toolresults.projects.histories.executions.steps.perfSampleSeries.samples.list
                       * @desc Lists the Performance Samples of a given Sample
@@ -1058,7 +1105,10 @@ function Toolresults(options) {
                       * @param {callback} callback The callback that handles the response.
                       * @return {object} Request object
                       */
-                  list(params, options, callback) {
+                  list(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -1087,7 +1137,7 @@ function Toolresults(options) {
                       ],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }
 
                 }
@@ -1116,7 +1166,9 @@ function Toolresults(options) {
              * @param {callback} callback The callback that handles the response.
              * @return {object} Request object
              */
-            list(params, options, callback) {
+            list(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -1139,7 +1191,7 @@ function Toolresults(options) {
                 pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }
 
           }

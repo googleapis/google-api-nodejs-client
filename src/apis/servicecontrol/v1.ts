@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Service Control API
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Servicecontrol
  */
-function Servicecontrol(options) {
+function Servicecontrol(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.services = {
@@ -56,7 +63,9 @@ function Servicecontrol(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    allocateQuota(params, options, callback) {
+    allocateQuota(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -77,7 +86,7 @@ function Servicecontrol(options) {
         pathParams: ['serviceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * servicecontrol.services.check
         * @desc Checks an operation with Google Service Control to decide
@@ -99,7 +108,9 @@ function Servicecontrol(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    check(params, options, callback) {
+    check(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -120,7 +131,7 @@ function Servicecontrol(options) {
         pathParams: ['serviceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * servicecontrol.services.endReconciliation
         * @desc Signals the quota controller that service ends the ongoing usage
@@ -138,7 +149,9 @@ function Servicecontrol(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    endReconciliation(params, options, callback) {
+    endReconciliation(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -159,7 +172,7 @@ function Servicecontrol(options) {
         pathParams: ['serviceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * servicecontrol.services.releaseQuota
         * @desc Releases previously allocated quota done through AllocateQuota
@@ -180,7 +193,9 @@ function Servicecontrol(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    releaseQuota(params, options, callback) {
+    releaseQuota(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -201,7 +216,7 @@ function Servicecontrol(options) {
         pathParams: ['serviceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * servicecontrol.services.report
         * @desc Reports operation results to Google Service Control, such as
@@ -225,7 +240,9 @@ function Servicecontrol(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    report(params, options, callback) {
+    report(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -246,7 +263,7 @@ function Servicecontrol(options) {
         pathParams: ['serviceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * servicecontrol.services.startReconciliation
         * @desc Unlike rate quota, allocation quota does not get refilled
@@ -281,7 +298,9 @@ function Servicecontrol(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    startReconciliation(params, options, callback) {
+    startReconciliation(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -302,7 +321,7 @@ function Servicecontrol(options) {
         pathParams: ['serviceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
