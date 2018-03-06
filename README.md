@@ -256,6 +256,8 @@ The following sample retrieves Google+ profile of the authenticated user.
 var {google} = require('googleapis');
 var plus = google.plus('v1');
 var OAuth2 = google.auth.OAuth2;
+
+// WARNING: Make sure your CLIENT_SECRET is stored in a safe place.  
 var oauth2Client = new OAuth2(
   YOUR_CLIENT_ID,
   YOUR_CLIENT_SECRET,
