@@ -26,7 +26,7 @@ test_samples: &test_samples
     - run: mkdir ~/.npm-packages
     - run: echo "prefix = $HOME/.npm-packages" >> ~/.npmrc
     - run: export PATH=~/.npm-packages/bin:$PATH
-    - run: make test-samples
+    - run: make && make test-samples
 
 version: 2.0
 workflows:
