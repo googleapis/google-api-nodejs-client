@@ -91,6 +91,36 @@ describe('Media', () => {
     localGmail = google.gmail('v1');
   });
 
+  it('should post progress for uploads', async () => {
+    const scope =
+        nock(Utils.baseUrl)
+            .post(
+                '/upload/youtube/v3/videos?part=id%2Csnippet&notifySubscribers=false&uploadType=multipart')
+            .reply(200);
+    const fileName = path.join(__dirname, '../../test/fixtures/mediabody.txt');
+    const fileSize = (await pify(fs.stat)(fileName)).size;
+    const google = new GoogleApis();
+    const youtube = google.youtube('v3');
+    const progressEvents = new Array<number>();
+    const res = await pify(youtube.videos.insert)(
+        {
+          part: 'id,snippet',
+          notifySubscribers: false,
+          resource: {
+            snippet: {
+              title: 'Node.js YouTube Upload Test',
+              description:
+                  'Testing YouTube upload via Google APIs Node.js Client'
+            }
+          },
+          media: {body: fs.createReadStream(fileName)}
+        },
+        {onUploadProgress: evt => progressEvents.push(evt.bytesRead)});
+    assert(progressEvents.length > 0);
+    assert.equal(progressEvents[0], fileSize);
+    scope.done();
+  });
+
   it('should post with uploadType=multipart if resource and media set',
      async () => {
        nock(Utils.baseUrl)
