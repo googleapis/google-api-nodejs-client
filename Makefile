@@ -1,55 +1,56 @@
-.PHONY: build build-tools check check-samples check-licenses check-typescript clean coverage docs fix fix-samples fix-typescript generate install test watch
+.PHONY: build build-tools check check-samples check-licenses check-typescript clean coverage docs fix fix-samples fix-typescript generate install test test-samples watch
 
-bin := $(shell npm bin)
+PATH := $(shell npm bin):$(PATH)
 
 build:
-	$(bin)/tsc -p .
+	tsc -p .
 
 build-tools:
-	$(bin)/tsc -p tsconfig.tools.json
+	tsc -p tsconfig.tools.json
 
 check: check-typescript check-samples check-licenses
 
 check-samples:
-	$(bin)/semistandard 'samples/**/*.js'
+	semistandard 'samples/**/*.js'
 
 check-licenses:
-	$(bin)/jsgl --local .
+	jsgl --local .
 
 check-typescript:
-	$(bin)/gts check
+	gts check
 
 clean:
-	$(bin)/gts clean
+	gts clean
 
 coverage: build
-	$(bin)/nyc --cache $(bin)/mocha build/test -t 10000 -S -R spec --require intelli-espower-loader
-	$(bin)/nyc report --reporter=html
+	nyc --cache mocha build/test -t 10000 -S -R spec --require intelli-espower-loader
+	nyc report --reporter=html
 
 docs:
-	$(bin)/jsdoc -c jsdoc-conf.json
+	jsdoc -c jsdoc-conf.json
 
 fix: fix-typescript fix-samples
 
 fix-samples:
-	$(bin)/semistandard --fix 'samples/**/*.js'
+	semistandard --fix 'samples/**/*.js'
 
 fix-typescript:
-	$(bin)/gts fix
+	gts fix
 
 generate: build-tools
 	node build/src/scripts/generate.js
-	$(bin)/clang-format -i -style='{Language: JavaScript, BasedOnStyle: Google, ColumnLimit: 80}' src/apis/**/*.ts
+	clang-format -i -style='{Language: JavaScript, BasedOnStyle: Google, ColumnLimit: 80}' src/apis/**/*.ts
 
 install:
 	npm install
 
+node_modules/.link:
+	npm link && npm link googleapis && touch $@
+
 test: coverage check
 
-test-samples:
-	npm link
-	npm link googleapis
-	$(bin)/mocha build/test/samples
+test-samples: node_modules/.link
+	mocha build/test/samples
 
 watch:
-	$(bin)/tsc -p . --watch
+	tsc -p . --watch
