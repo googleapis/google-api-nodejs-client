@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Cloud SQL Administration API
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta4
  * @param {object=} options Options for Sqladmin
  */
-function Sqladmin(options) {
+function Sqladmin(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.backupRuns = {
@@ -50,7 +57,9 @@ function Sqladmin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -72,7 +81,7 @@ function Sqladmin(options) {
         pathParams: ['id', 'instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sql.backupRuns.get
         * @desc Retrieves a resource containing information about a backup run.
@@ -87,7 +96,8 @@ function Sqladmin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -109,7 +119,7 @@ function Sqladmin(options) {
         pathParams: ['id', 'instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sql.backupRuns.insert
         * @desc Creates a new backup run on demand. This method is applicable
@@ -125,7 +135,9 @@ function Sqladmin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -147,7 +159,7 @@ function Sqladmin(options) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sql.backupRuns.list
         * @desc Lists all backup runs associated with a given instance and
@@ -164,7 +176,9 @@ function Sqladmin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -186,7 +200,7 @@ function Sqladmin(options) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -205,7 +219,9 @@ function Sqladmin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -227,7 +243,7 @@ function Sqladmin(options) {
         pathParams: ['database', 'instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sql.databases.get
         * @desc Retrieves a resource containing information about a database
@@ -243,7 +259,8 @@ function Sqladmin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -265,7 +282,7 @@ function Sqladmin(options) {
         pathParams: ['database', 'instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sql.databases.insert
         * @desc Inserts a resource containing information about a database
@@ -281,7 +298,9 @@ function Sqladmin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -303,7 +322,7 @@ function Sqladmin(options) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sql.databases.list
         * @desc Lists databases in the specified Cloud SQL instance.
@@ -317,7 +336,9 @@ function Sqladmin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -339,7 +360,7 @@ function Sqladmin(options) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sql.databases.patch
         * @desc Updates a resource containing information about a database
@@ -356,7 +377,9 @@ function Sqladmin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -378,7 +401,7 @@ function Sqladmin(options) {
         pathParams: ['database', 'instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sql.databases.update
         * @desc Updates a resource containing information about a database
@@ -395,7 +418,9 @@ function Sqladmin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -417,7 +442,7 @@ function Sqladmin(options) {
         pathParams: ['database', 'instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -434,7 +459,9 @@ function Sqladmin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -454,7 +481,7 @@ function Sqladmin(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -474,7 +501,9 @@ function Sqladmin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    clone(params, options, callback) {
+    clone(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -496,7 +525,7 @@ function Sqladmin(options) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.delete
         * @desc Deletes a Cloud SQL instance.
@@ -510,7 +539,9 @@ function Sqladmin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -531,7 +562,7 @@ function Sqladmin(options) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.demoteMaster
         * @desc Reserved for future use.
@@ -546,7 +577,9 @@ function Sqladmin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    demoteMaster(params, options, callback) {
+    demoteMaster(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -568,7 +601,7 @@ function Sqladmin(options) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.export
         * @desc Exports data from a Cloud SQL instance to a Google Cloud Storage
@@ -584,7 +617,9 @@ function Sqladmin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    export(params, options, callback) {
+    export(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -606,7 +641,7 @@ function Sqladmin(options) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.failover
         * @desc Failover the instance to its failover replica instance.
@@ -621,7 +656,9 @@ function Sqladmin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    failover(params, options, callback) {
+    failover(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -643,7 +680,7 @@ function Sqladmin(options) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.get
         * @desc Retrieves a resource containing information about a Cloud SQL
@@ -658,7 +695,8 @@ function Sqladmin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -679,7 +717,7 @@ function Sqladmin(options) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.import
         * @desc Imports data into a Cloud SQL instance from a MySQL dump file in
@@ -695,7 +733,9 @@ function Sqladmin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    import(params, options, callback) {
+    import(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -717,7 +757,7 @@ function Sqladmin(options) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.insert
         * @desc Creates a new Cloud SQL instance.
@@ -731,7 +771,9 @@ function Sqladmin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -751,7 +793,7 @@ function Sqladmin(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.list
         * @desc Lists instances under a given project in the alphabetical order
@@ -768,7 +810,9 @@ function Sqladmin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -788,7 +832,7 @@ function Sqladmin(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.patch
         * @desc Updates settings of a Cloud SQL instance. Caution: This is not a
@@ -806,7 +850,9 @@ function Sqladmin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -827,7 +873,7 @@ function Sqladmin(options) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.promoteReplica
         * @desc Promotes the read replica instance to be a stand-alone Cloud SQL
@@ -842,7 +888,9 @@ function Sqladmin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    promoteReplica(params, options, callback) {
+    promoteReplica(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -864,7 +912,7 @@ function Sqladmin(options) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.resetSslConfig
         * @desc Deletes all client certificates and generates a new server SSL
@@ -881,7 +929,9 @@ function Sqladmin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    resetSslConfig(params, options, callback) {
+    resetSslConfig(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -903,7 +953,7 @@ function Sqladmin(options) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.restart
         * @desc Restarts a Cloud SQL instance.
@@ -917,7 +967,9 @@ function Sqladmin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    restart(params, options, callback) {
+    restart(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -939,7 +991,7 @@ function Sqladmin(options) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.restoreBackup
         * @desc Restores a backup of a Cloud SQL instance.
@@ -954,7 +1006,9 @@ function Sqladmin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    restoreBackup(params, options, callback) {
+    restoreBackup(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -976,7 +1030,7 @@ function Sqladmin(options) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.startReplica
         * @desc Starts the replication in the read replica instance.
@@ -990,7 +1044,9 @@ function Sqladmin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    startReplica(params, options, callback) {
+    startReplica(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1012,7 +1068,7 @@ function Sqladmin(options) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.stopReplica
         * @desc Stops the replication in the read replica instance.
@@ -1026,7 +1082,9 @@ function Sqladmin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    stopReplica(params, options, callback) {
+    stopReplica(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1048,7 +1106,7 @@ function Sqladmin(options) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.truncateLog
         * @desc Truncate MySQL general and slow query log tables
@@ -1063,7 +1121,9 @@ function Sqladmin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    truncateLog(params, options, callback) {
+    truncateLog(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1085,7 +1145,7 @@ function Sqladmin(options) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.update
         * @desc Updates settings of a Cloud SQL instance. Caution: This is not a
@@ -1102,7 +1162,9 @@ function Sqladmin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1123,7 +1185,7 @@ function Sqladmin(options) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1142,7 +1204,8 @@ function Sqladmin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1163,7 +1226,7 @@ function Sqladmin(options) {
         pathParams: ['operation', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sql.operations.list
         * @desc Lists all instance operations that have been performed on the
@@ -1181,7 +1244,9 @@ function Sqladmin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1201,7 +1266,7 @@ function Sqladmin(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1223,7 +1288,9 @@ function Sqladmin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    createEphemeral(params, options, callback) {
+    createEphemeral(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1245,7 +1312,7 @@ function Sqladmin(options) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sql.sslCerts.delete
         * @desc Deletes the SSL certificate. The change will not take effect
@@ -1261,7 +1328,9 @@ function Sqladmin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1283,7 +1352,7 @@ function Sqladmin(options) {
         pathParams: ['instance', 'project', 'sha1Fingerprint'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sql.sslCerts.get
         * @desc Retrieves a particular SSL certificate. Does not include the
@@ -1300,7 +1369,8 @@ function Sqladmin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1322,7 +1392,7 @@ function Sqladmin(options) {
         pathParams: ['instance', 'project', 'sha1Fingerprint'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sql.sslCerts.insert
         * @desc Creates an SSL certificate and returns it along with the private
@@ -1339,7 +1409,9 @@ function Sqladmin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1361,7 +1433,7 @@ function Sqladmin(options) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sql.sslCerts.list
         * @desc Lists all of the current SSL certificates for the instance.
@@ -1375,7 +1447,9 @@ function Sqladmin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1397,7 +1471,7 @@ function Sqladmin(options) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1415,7 +1489,9 @@ function Sqladmin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1435,7 +1511,7 @@ function Sqladmin(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1455,7 +1531,9 @@ function Sqladmin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1477,7 +1555,7 @@ function Sqladmin(options) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sql.users.insert
         * @desc Creates a new user in a Cloud SQL instance.
@@ -1492,7 +1570,9 @@ function Sqladmin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1514,7 +1594,7 @@ function Sqladmin(options) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sql.users.list
         * @desc Lists users in the specified Cloud SQL instance.
@@ -1528,7 +1608,9 @@ function Sqladmin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1550,7 +1632,7 @@ function Sqladmin(options) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sql.users.update
         * @desc Updates an existing user in a Cloud SQL instance.
@@ -1567,7 +1649,9 @@ function Sqladmin(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1589,7 +1673,7 @@ function Sqladmin(options) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1726,6 +1810,7 @@ function Sqladmin(options) {
  * @property {string} kind This is always sql#demoteMasterContext.
  * @property {string} masterInstanceName The name of the instance which will act as on-premises master in the replication setup.
  * @property {sqladmin(v1beta4).DemoteMasterConfiguration} replicaConfiguration Configuration specific to read-replicas replicating from the on-premises master.
+ * @property {boolean} verifyGtidConsistency Verify GTID consistency for demote operation. Default value: True. Second Generation instances only. Setting this flag to false enables you to bypass GTID consistency check between on-premises master and Cloud SQL instance during the demotion operation but also exposes you to the risk of future replication failures. Change the value only if you know the reason for the GTID divergence and are confident that doing so will not cause any replication issues.
  */
 /**
  * @typedef DemoteMasterMySqlReplicaConfiguration

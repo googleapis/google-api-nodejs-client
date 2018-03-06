@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * BigQuery API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2
  * @param {object=} options Options for Bigquery
  */
-function Bigquery(options) {
+function Bigquery(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.datasets = {
@@ -105,7 +112,9 @@ function Bigquery(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -126,7 +135,7 @@ function Bigquery(options) {
         pathParams: ['datasetId', 'projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.datasets.get
         * @desc Returns the dataset specified by datasetID.
@@ -196,7 +205,8 @@ function Bigquery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -217,7 +227,7 @@ function Bigquery(options) {
         pathParams: ['datasetId', 'projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.datasets.insert
         * @desc Creates a new empty dataset.
@@ -288,7 +298,9 @@ function Bigquery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -308,7 +320,7 @@ function Bigquery(options) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.datasets.list
         * @desc Lists all datasets in the specified project to which you have
@@ -392,7 +404,9 @@ function Bigquery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -412,7 +426,7 @@ function Bigquery(options) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.datasets.patch
         * @desc Updates information in an existing dataset. The update method
@@ -492,7 +506,9 @@ function Bigquery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -513,7 +529,7 @@ function Bigquery(options) {
         pathParams: ['datasetId', 'projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.datasets.update
         * @desc Updates information in an existing dataset. The update method
@@ -592,7 +608,9 @@ function Bigquery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -613,7 +631,7 @@ function Bigquery(options) {
         pathParams: ['datasetId', 'projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -691,7 +709,9 @@ function Bigquery(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params, options, callback) {
+    cancel(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -712,7 +732,7 @@ function Bigquery(options) {
         pathParams: ['jobId', 'projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.jobs.get
         * @desc Returns information about a specific job. Job information is
@@ -785,7 +805,8 @@ function Bigquery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -805,7 +826,7 @@ function Bigquery(options) {
         pathParams: ['jobId', 'projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.jobs.getQueryResults
         * @desc Retrieves the results of a query job.
@@ -893,7 +914,9 @@ function Bigquery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getQueryResults(params, options, callback) {
+    getQueryResults(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -914,7 +937,7 @@ function Bigquery(options) {
         pathParams: ['jobId', 'projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.jobs.insert
         * @desc Starts a new asynchronous job. Requires the Can View project
@@ -997,7 +1020,9 @@ function Bigquery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1019,7 +1044,7 @@ function Bigquery(options) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.jobs.list
         * @desc Lists all jobs that you started in the specified project. Job
@@ -1098,7 +1123,9 @@ function Bigquery(options) {
         *
         * @param {object} params Parameters for request
         * @param {boolean=} params.allUsers Whether to display jobs owned by all users in the project. Default false
+        * @param {string=} params.maxCreationTime Max value for job creation time, in milliseconds since the POSIX epoch. If set, only jobs created before or at this timestamp are returned
         * @param {integer=} params.maxResults Maximum number of results to return
+        * @param {string=} params.minCreationTime Min value for job creation time, in milliseconds since the POSIX epoch. If set, only jobs created after or at this timestamp are returned
         * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
         * @param {string} params.projectId Project ID of the jobs to list
         * @param {string=} params.projection Restrict information returned to a set of selected fields
@@ -1107,7 +1134,9 @@ function Bigquery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1127,7 +1156,7 @@ function Bigquery(options) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.jobs.query
         * @desc Runs a BigQuery SQL query synchronously and returns query
@@ -1199,7 +1228,9 @@ function Bigquery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    query(params, options, callback) {
+    query(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1219,7 +1250,7 @@ function Bigquery(options) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1290,7 +1321,9 @@ function Bigquery(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getServiceAccount(params, options, callback) {
+    getServiceAccount(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1311,7 +1344,7 @@ function Bigquery(options) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.projects.list
         * @desc Lists all projects to which you have been granted any project
@@ -1389,7 +1422,9 @@ function Bigquery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1409,7 +1444,7 @@ function Bigquery(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1493,7 +1528,9 @@ function Bigquery(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insertAll(params, options, callback) {
+    insertAll(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1515,7 +1552,7 @@ function Bigquery(options) {
         pathParams: ['datasetId', 'projectId', 'tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.tabledata.list
         * @desc Retrieves table data from a specified set of rows. Requires the
@@ -1607,7 +1644,9 @@ function Bigquery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1629,7 +1668,7 @@ function Bigquery(options) {
         pathParams: ['datasetId', 'projectId', 'tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1705,7 +1744,9 @@ function Bigquery(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1727,7 +1768,7 @@ function Bigquery(options) {
         pathParams: ['datasetId', 'projectId', 'tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.tables.get
         * @desc Gets the specified table resource by table ID. This method does
@@ -1804,7 +1845,8 @@ function Bigquery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1826,7 +1868,7 @@ function Bigquery(options) {
         pathParams: ['datasetId', 'projectId', 'tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.tables.insert
         * @desc Creates a new, empty table in the dataset.
@@ -1901,7 +1943,9 @@ function Bigquery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1923,7 +1967,7 @@ function Bigquery(options) {
         pathParams: ['datasetId', 'projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.tables.list
         * @desc Lists all tables in the specified dataset. Requires the READER
@@ -2009,7 +2053,9 @@ function Bigquery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2031,7 +2077,7 @@ function Bigquery(options) {
         pathParams: ['datasetId', 'projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.tables.patch
         * @desc Updates information in an existing table. The update method
@@ -2115,7 +2161,9 @@ function Bigquery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2137,7 +2185,7 @@ function Bigquery(options) {
         pathParams: ['datasetId', 'projectId', 'tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.tables.update
         * @desc Updates information in an existing table. The update method
@@ -2220,7 +2268,9 @@ function Bigquery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2242,7 +2292,7 @@ function Bigquery(options) {
         pathParams: ['datasetId', 'projectId', 'tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

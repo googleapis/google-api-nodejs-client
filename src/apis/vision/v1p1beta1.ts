@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Cloud Vision API
@@ -33,7 +40,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1p1beta1
  * @param {object=} options Options for Vision
  */
-function Vision(options) {
+function Vision(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.images = {
@@ -49,7 +56,9 @@ function Vision(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    annotate(params, options, callback) {
+    annotate(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -69,7 +78,7 @@ function Vision(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

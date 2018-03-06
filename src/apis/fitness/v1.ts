@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Fitness
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Fitness
  */
-function Fitness(options) {
+function Fitness(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.users = {
@@ -52,7 +59,9 @@ function Fitness(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      aggregate(params, options, callback) {
+      aggregate(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -72,7 +81,7 @@ function Fitness(options) {
           pathParams: ['userId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -97,7 +106,9 @@ function Fitness(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create(params, options, callback) {
+      create(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -117,7 +128,7 @@ function Fitness(options) {
           pathParams: ['userId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * fitness.users.dataSources.delete
           * @desc Deletes the specified data source. The request will fail if
@@ -132,7 +143,9 @@ function Fitness(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (params, options, callback) {
+      delete (
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -153,7 +166,7 @@ function Fitness(options) {
           pathParams: ['dataSourceId', 'userId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * fitness.users.dataSources.get
           * @desc Returns the specified data source.
@@ -167,7 +180,8 @@ function Fitness(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -188,7 +202,7 @@ function Fitness(options) {
           pathParams: ['dataSourceId', 'userId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * fitness.users.dataSources.list
           * @desc Lists all data sources that are visible to the developer,
@@ -205,7 +219,9 @@ function Fitness(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -225,7 +241,7 @@ function Fitness(options) {
           pathParams: ['userId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * fitness.users.dataSources.patch
           * @desc Updates the specified data source. The dataStreamId, dataType,
@@ -243,7 +259,9 @@ function Fitness(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      patch(params, options, callback) {
+      patch(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -264,7 +282,7 @@ function Fitness(options) {
           pathParams: ['dataSourceId', 'userId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * fitness.users.dataSources.update
           * @desc Updates the specified data source. The dataStreamId, dataType,
@@ -282,7 +300,9 @@ function Fitness(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      update(params, options, callback) {
+      update(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -303,7 +323,7 @@ function Fitness(options) {
           pathParams: ['dataSourceId', 'userId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       },
       dataPointChanges: {
         /**
@@ -322,7 +342,9 @@ function Fitness(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -344,7 +366,7 @@ function Fitness(options) {
             pathParams: ['dataSourceId', 'userId'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       },
@@ -371,7 +393,9 @@ function Fitness(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -393,7 +417,7 @@ function Fitness(options) {
             pathParams: ['datasetId', 'dataSourceId', 'userId'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * fitness.users.dataSources.datasets.get
             * @desc Returns a dataset containing all data points whose start and
@@ -414,7 +438,8 @@ function Fitness(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -436,7 +461,7 @@ function Fitness(options) {
             pathParams: ['datasetId', 'dataSourceId', 'userId'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * fitness.users.dataSources.datasets.patch
             * @desc Adds data points to a dataset. The dataset need not be
@@ -457,7 +482,9 @@ function Fitness(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        patch(params, options, callback) {
+        patch(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -479,7 +506,7 @@ function Fitness(options) {
             pathParams: ['datasetId', 'dataSourceId', 'userId'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       }
@@ -499,7 +526,9 @@ function Fitness(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete (params, options, callback) {
+      delete (
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -520,7 +549,7 @@ function Fitness(options) {
           pathParams: ['sessionId', 'userId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * fitness.users.sessions.list
           * @desc Lists sessions previously created.
@@ -537,7 +566,9 @@ function Fitness(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -557,7 +588,7 @@ function Fitness(options) {
           pathParams: ['userId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * fitness.users.sessions.update
           * @desc Updates or insert a given session.
@@ -573,7 +604,9 @@ function Fitness(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      update(params, options, callback) {
+      update(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -594,7 +627,7 @@ function Fitness(options) {
           pathParams: ['sessionId', 'userId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }

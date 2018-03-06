@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Stackdriver Logging API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2beta1
  * @param {object=} options Options for Logging
  */
-function Logging(options) {
+function Logging(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.billingAccounts = {
@@ -111,7 +118,9 @@ function Logging(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete (params, options, callback) {
+      delete (
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -131,7 +140,7 @@ function Logging(options) {
           pathParams: ['logName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * logging.billingAccounts.logs.list
           * @desc Lists the logs in projects, organizations, folders, or billing
@@ -219,7 +228,9 @@ function Logging(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -239,7 +250,7 @@ function Logging(options) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }
@@ -325,7 +336,9 @@ function Logging(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -345,7 +358,7 @@ function Logging(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * logging.entries.write
         * @desc Log entry resourcesWrites log entries to Stackdriver Logging.
@@ -416,7 +429,9 @@ function Logging(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    write(params, options, callback) {
+    write(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -436,7 +451,7 @@ function Logging(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -519,7 +534,9 @@ function Logging(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -539,7 +556,7 @@ function Logging(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -620,7 +637,9 @@ function Logging(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete (params, options, callback) {
+      delete (
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -640,7 +659,7 @@ function Logging(options) {
           pathParams: ['logName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * logging.organizations.logs.list
           * @desc Lists the logs in projects, organizations, folders, or billing
@@ -728,7 +747,9 @@ function Logging(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -748,7 +769,7 @@ function Logging(options) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }
@@ -831,7 +852,9 @@ function Logging(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          delete (params, options, callback) {
+          delete (
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -852,7 +875,7 @@ function Logging(options) {
               pathParams: ['logName'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * logging.projects.logs.list
               * @desc Lists the logs in projects, organizations, folders, or
@@ -940,7 +963,9 @@ function Logging(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -961,7 +986,7 @@ function Logging(options) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }
 
         },
@@ -1038,7 +1063,9 @@ function Logging(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          create(params, options, callback) {
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1059,7 +1086,7 @@ function Logging(options) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * logging.projects.metrics.delete
               * @desc Deletes a logs-based metric.
@@ -1124,7 +1151,9 @@ function Logging(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          delete (params, options, callback) {
+          delete (
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1145,7 +1174,7 @@ function Logging(options) {
               pathParams: ['metricName'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * logging.projects.metrics.get
               * @desc Gets a logs-based metric.
@@ -1211,7 +1240,8 @@ function Logging(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1232,7 +1262,7 @@ function Logging(options) {
               pathParams: ['metricName'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * logging.projects.metrics.list
               * @desc Lists logs-based metrics.
@@ -1316,7 +1346,9 @@ function Logging(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1337,7 +1369,7 @@ function Logging(options) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * logging.projects.metrics.update
               * @desc Creates or updates a logs-based metric.
@@ -1414,7 +1446,9 @@ function Logging(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          update(params, options, callback) {
+          update(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1435,7 +1469,7 @@ function Logging(options) {
               pathParams: ['metricName'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }
 
         },
@@ -1521,7 +1555,9 @@ function Logging(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          create(params, options, callback) {
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1542,7 +1578,7 @@ function Logging(options) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * logging.projects.sinks.delete
               * @desc Deletes a sink. If the sink has a unique writer_identity,
@@ -1614,7 +1650,9 @@ function Logging(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          delete (params, options, callback) {
+          delete (
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1635,7 +1673,7 @@ function Logging(options) {
               pathParams: ['sinkName'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * logging.projects.sinks.get
               * @desc Gets a sink.
@@ -1707,7 +1745,8 @@ function Logging(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1728,7 +1767,7 @@ function Logging(options) {
               pathParams: ['sinkName'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * logging.projects.sinks.list
               * @desc Lists sinks.
@@ -1815,7 +1854,9 @@ function Logging(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1836,7 +1877,7 @@ function Logging(options) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * logging.projects.sinks.update
               * @desc Updates a sink. This method replaces the following fields
@@ -1920,7 +1961,9 @@ function Logging(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          update(params, options, callback) {
+          update(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1941,7 +1984,7 @@ function Logging(options) {
               pathParams: ['sinkName'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }
 
         }

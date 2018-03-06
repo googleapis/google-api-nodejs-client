@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Enterprise Apps Reseller API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Reseller
  */
-function Reseller(options) {
+function Reseller(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.customers = {
@@ -47,7 +54,8 @@ function Reseller(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -67,7 +75,7 @@ function Reseller(options) {
         pathParams: ['customerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * reseller.customers.insert
         * @desc Order a new customer's account.
@@ -81,7 +89,9 @@ function Reseller(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -101,7 +111,7 @@ function Reseller(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * reseller.customers.patch
         * @desc Update a customer account's settings. This method supports patch
@@ -116,7 +126,9 @@ function Reseller(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -136,7 +148,7 @@ function Reseller(options) {
         pathParams: ['customerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * reseller.customers.update
         * @desc Update a customer account's settings.
@@ -150,7 +162,9 @@ function Reseller(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -170,7 +184,7 @@ function Reseller(options) {
         pathParams: ['customerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -186,7 +200,9 @@ function Reseller(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getwatchdetails(params, options, callback) {
+    getwatchdetails(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -207,7 +223,7 @@ function Reseller(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * reseller.resellernotify.register
         * @desc Registers a Reseller for receiving notifications.
@@ -220,7 +236,9 @@ function Reseller(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    register(params, options, callback) {
+    register(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -240,7 +258,7 @@ function Reseller(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * reseller.resellernotify.unregister
         * @desc Unregisters a Reseller for receiving notifications.
@@ -253,7 +271,9 @@ function Reseller(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    unregister(params, options, callback) {
+    unregister(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -273,7 +293,7 @@ function Reseller(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -292,7 +312,9 @@ function Reseller(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        activate(params, options, callback) {
+        activate(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -314,7 +336,7 @@ function Reseller(options) {
             pathParams: ['customerId', 'subscriptionId'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * reseller.subscriptions.changePlan
             * @desc Update a subscription plan. Use this method to update a plan
@@ -331,7 +353,9 @@ function Reseller(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        changePlan(params, options, callback) {
+        changePlan(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -353,7 +377,7 @@ function Reseller(options) {
             pathParams: ['customerId', 'subscriptionId'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * reseller.subscriptions.changeRenewalSettings
             * @desc Update a user license's renewal settings. This is applicable
@@ -369,7 +393,9 @@ function Reseller(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        changeRenewalSettings(params, options, callback) {
+        changeRenewalSettings(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -391,7 +417,7 @@ function Reseller(options) {
             pathParams: ['customerId', 'subscriptionId'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * reseller.subscriptions.changeSeats
             * @desc Update a subscription's user license settings.
@@ -406,7 +432,9 @@ function Reseller(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        changeSeats(params, options, callback) {
+        changeSeats(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -428,7 +456,7 @@ function Reseller(options) {
             pathParams: ['customerId', 'subscriptionId'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * reseller.subscriptions.delete
             * @desc Cancel, suspend or transfer a subscription to direct.
@@ -443,7 +471,9 @@ function Reseller(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -465,7 +495,7 @@ function Reseller(options) {
             pathParams: ['customerId', 'subscriptionId'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * reseller.subscriptions.get
             * @desc Get a specific subscription.
@@ -479,7 +509,8 @@ function Reseller(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -501,7 +532,7 @@ function Reseller(options) {
             pathParams: ['customerId', 'subscriptionId'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * reseller.subscriptions.insert
             * @desc Create or transfer a subscription.
@@ -516,7 +547,9 @@ function Reseller(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        insert(params, options, callback) {
+        insert(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -538,7 +571,7 @@ function Reseller(options) {
             pathParams: ['customerId'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * reseller.subscriptions.list
             * @desc List of subscriptions managed by the reseller. The list can
@@ -557,7 +590,9 @@ function Reseller(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -577,7 +612,7 @@ function Reseller(options) {
             pathParams: [],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * reseller.subscriptions.startPaidService
             * @desc Immediately move a 30-day free trial subscription to a paid
@@ -592,7 +627,9 @@ function Reseller(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        startPaidService(params, options, callback) {
+        startPaidService(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -614,7 +651,7 @@ function Reseller(options) {
             pathParams: ['customerId', 'subscriptionId'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * reseller.subscriptions.suspend
             * @desc Suspends an active subscription.
@@ -628,7 +665,9 @@ function Reseller(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        suspend(params, options, callback) {
+        suspend(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -650,7 +689,7 @@ function Reseller(options) {
             pathParams: ['customerId', 'subscriptionId'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       };

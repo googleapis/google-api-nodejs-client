@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Apps Script API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Script
  */
-function Script(options) {
+function Script(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.processes = {
@@ -58,7 +65,9 @@ function Script(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -77,7 +86,7 @@ function Script(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * script.processes.listScriptProcesses
         * @desc List information about a script's executed processes, such as
@@ -100,7 +109,9 @@ function Script(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    listScriptProcesses(params, options, callback) {
+    listScriptProcesses(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -120,7 +131,7 @@ function Script(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -138,7 +149,9 @@ function Script(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params, options, callback) {
+    create(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -157,7 +170,7 @@ function Script(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * script.projects.get
         * @desc Gets a script project's metadata.
@@ -170,7 +183,8 @@ function Script(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -190,7 +204,7 @@ function Script(options) {
         pathParams: ['scriptId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * script.projects.getContent
         * @desc Gets the content of the script project, including the code
@@ -205,7 +219,9 @@ function Script(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getContent(params, options, callback) {
+    getContent(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -225,7 +241,7 @@ function Script(options) {
         pathParams: ['scriptId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * script.projects.getMetrics
         * @desc Get metrics data for scripts, such as number of executions and
@@ -241,7 +257,9 @@ function Script(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getMetrics(params, options, callback) {
+    getMetrics(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -261,7 +279,7 @@ function Script(options) {
         pathParams: ['scriptId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * script.projects.updateContent
         * @desc Updates the content of the specified script project. This
@@ -279,7 +297,9 @@ function Script(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    updateContent(params, options, callback) {
+    updateContent(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -299,7 +319,7 @@ function Script(options) {
         pathParams: ['scriptId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     },
     deployments: {
       /**
@@ -315,7 +335,9 @@ function Script(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create(params, options, callback) {
+      create(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -335,7 +357,7 @@ function Script(options) {
           pathParams: ['scriptId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * script.projects.deployments.delete
           * @desc Deletes a deployment of an Apps Script project.
@@ -349,7 +371,9 @@ function Script(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (params, options, callback) {
+      delete (
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -370,7 +394,7 @@ function Script(options) {
           pathParams: ['deploymentId', 'scriptId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * script.projects.deployments.get
           * @desc Gets a deployment of an Apps Script project.
@@ -384,7 +408,8 @@ function Script(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -405,7 +430,7 @@ function Script(options) {
           pathParams: ['deploymentId', 'scriptId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * script.projects.deployments.list
           * @desc Lists the deployments of an Apps Script project.
@@ -420,7 +445,9 @@ function Script(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -440,7 +467,7 @@ function Script(options) {
           pathParams: ['scriptId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * script.projects.deployments.update
           * @desc Updates a deployment of an Apps Script project.
@@ -455,7 +482,9 @@ function Script(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      update(params, options, callback) {
+      update(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -476,7 +505,7 @@ function Script(options) {
           pathParams: ['deploymentId', 'scriptId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -495,7 +524,9 @@ function Script(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create(params, options, callback) {
+      create(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -515,7 +546,7 @@ function Script(options) {
           pathParams: ['scriptId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * script.projects.versions.get
           * @desc Gets a version of a script project.
@@ -529,7 +560,8 @@ function Script(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -550,7 +582,7 @@ function Script(options) {
           pathParams: ['scriptId', 'versionNumber'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * script.projects.versions.list
           * @desc List the versions of a script project.
@@ -565,7 +597,9 @@ function Script(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -585,7 +619,7 @@ function Script(options) {
           pathParams: ['scriptId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }
@@ -611,7 +645,8 @@ function Script(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    run(params, options, callback) {
+    run(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -631,7 +666,7 @@ function Script(options) {
         pathParams: ['scriptId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

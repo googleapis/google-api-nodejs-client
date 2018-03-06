@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Android Device Provisioning Partner API
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Androiddeviceprovisioning
  */
-function Androiddeviceprovisioning(options) {
+function Androiddeviceprovisioning(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.customers = {
@@ -49,7 +56,9 @@ function Androiddeviceprovisioning(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -69,7 +78,7 @@ function Androiddeviceprovisioning(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     },
     configurations: {
       /**
@@ -86,7 +95,9 @@ function Androiddeviceprovisioning(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create(params, options, callback) {
+      create(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -107,7 +118,7 @@ function Androiddeviceprovisioning(options) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androiddeviceprovisioning.customers.configurations.delete
           * @desc Deletes an unused configuration. The API call fails if the
@@ -121,7 +132,9 @@ function Androiddeviceprovisioning(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (params, options, callback) {
+      delete (
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -141,7 +154,7 @@ function Androiddeviceprovisioning(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androiddeviceprovisioning.customers.configurations.get
           * @desc Gets the details of a configuration.
@@ -154,7 +167,8 @@ function Androiddeviceprovisioning(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -174,7 +188,7 @@ function Androiddeviceprovisioning(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androiddeviceprovisioning.customers.configurations.list
           * @desc Lists a customer's configurations.
@@ -187,7 +201,9 @@ function Androiddeviceprovisioning(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -208,7 +224,7 @@ function Androiddeviceprovisioning(options) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androiddeviceprovisioning.customers.configurations.patch
           * @desc Updates a configuration's field values.
@@ -223,7 +239,9 @@ function Androiddeviceprovisioning(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      patch(params, options, callback) {
+      patch(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -243,7 +261,7 @@ function Androiddeviceprovisioning(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -264,7 +282,9 @@ function Androiddeviceprovisioning(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      applyConfiguration(params, options, callback) {
+      applyConfiguration(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -285,7 +305,7 @@ function Androiddeviceprovisioning(options) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androiddeviceprovisioning.customers.devices.get
           * @desc Gets the details of a device.
@@ -298,7 +318,8 @@ function Androiddeviceprovisioning(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -318,7 +339,7 @@ function Androiddeviceprovisioning(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androiddeviceprovisioning.customers.devices.list
           * @desc Lists a customer's devices.
@@ -333,7 +354,9 @@ function Androiddeviceprovisioning(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -354,7 +377,7 @@ function Androiddeviceprovisioning(options) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androiddeviceprovisioning.customers.devices.removeConfiguration
           * @desc Removes a configuration from device.
@@ -369,7 +392,9 @@ function Androiddeviceprovisioning(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      removeConfiguration(params, options, callback) {
+      removeConfiguration(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -390,7 +415,7 @@ function Androiddeviceprovisioning(options) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androiddeviceprovisioning.customers.devices.unclaim
           * @desc Unclaims a device from a customer and removes it from
@@ -407,7 +432,9 @@ function Androiddeviceprovisioning(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      unclaim(params, options, callback) {
+      unclaim(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -428,7 +455,7 @@ function Androiddeviceprovisioning(options) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -446,7 +473,9 @@ function Androiddeviceprovisioning(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -467,7 +496,7 @@ function Androiddeviceprovisioning(options) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }
@@ -487,7 +516,8 @@ function Androiddeviceprovisioning(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -507,7 +537,7 @@ function Androiddeviceprovisioning(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -529,7 +559,9 @@ function Androiddeviceprovisioning(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create(params, options, callback) {
+      create(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -550,7 +582,7 @@ function Androiddeviceprovisioning(options) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androiddeviceprovisioning.partners.customers.list
           * @desc Lists the customers that are enrolled to the reseller
@@ -566,7 +598,9 @@ function Androiddeviceprovisioning(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -587,7 +621,7 @@ function Androiddeviceprovisioning(options) {
           pathParams: ['partnerId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -605,7 +639,9 @@ function Androiddeviceprovisioning(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      claim(params, options, callback) {
+      claim(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -626,7 +662,7 @@ function Androiddeviceprovisioning(options) {
           pathParams: ['partnerId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androiddeviceprovisioning.partners.devices.claimAsync
           * @desc Claim devices asynchronously.
@@ -640,7 +676,9 @@ function Androiddeviceprovisioning(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      claimAsync(params, options, callback) {
+      claimAsync(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -661,7 +699,7 @@ function Androiddeviceprovisioning(options) {
           pathParams: ['partnerId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androiddeviceprovisioning.partners.devices.findByIdentifier
           * @desc Find devices by device identifier.
@@ -675,7 +713,9 @@ function Androiddeviceprovisioning(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      findByIdentifier(params, options, callback) {
+      findByIdentifier(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -697,7 +737,7 @@ function Androiddeviceprovisioning(options) {
           pathParams: ['partnerId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androiddeviceprovisioning.partners.devices.findByOwner
           * @desc Find devices by ownership.
@@ -711,7 +751,9 @@ function Androiddeviceprovisioning(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      findByOwner(params, options, callback) {
+      findByOwner(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -732,7 +774,7 @@ function Androiddeviceprovisioning(options) {
           pathParams: ['partnerId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androiddeviceprovisioning.partners.devices.get
           * @desc Get a device.
@@ -745,7 +787,8 @@ function Androiddeviceprovisioning(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -765,7 +808,7 @@ function Androiddeviceprovisioning(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androiddeviceprovisioning.partners.devices.metadata
           * @desc Update the metadata.
@@ -780,7 +823,9 @@ function Androiddeviceprovisioning(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      metadata(params, options, callback) {
+      metadata(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -803,7 +848,7 @@ function Androiddeviceprovisioning(options) {
           pathParams: ['deviceId', 'metadataOwnerId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androiddeviceprovisioning.partners.devices.unclaim
           * @desc Unclaim the device identified by the `device_id` or the
@@ -818,7 +863,9 @@ function Androiddeviceprovisioning(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      unclaim(params, options, callback) {
+      unclaim(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -839,7 +886,7 @@ function Androiddeviceprovisioning(options) {
           pathParams: ['partnerId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androiddeviceprovisioning.partners.devices.unclaimAsync
           * @desc Unclaim devices asynchronously.
@@ -853,7 +900,9 @@ function Androiddeviceprovisioning(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      unclaimAsync(params, options, callback) {
+      unclaimAsync(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -874,7 +923,7 @@ function Androiddeviceprovisioning(options) {
           pathParams: ['partnerId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * androiddeviceprovisioning.partners.devices.updateMetadataAsync
           * @desc Set metadata in batch asynchronously.
@@ -889,7 +938,9 @@ function Androiddeviceprovisioning(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      updateMetadataAsync(params, options, callback) {
+      updateMetadataAsync(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -911,7 +962,7 @@ function Androiddeviceprovisioning(options) {
           pathParams: ['partnerId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }

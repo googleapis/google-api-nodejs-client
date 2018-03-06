@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Cloud IoT API
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Cloudiot
  */
-function Cloudiot(options) {
+function Cloudiot(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.projects = {
@@ -53,7 +60,10 @@ function Cloudiot(options) {
                  * @param {callback} callback The callback that handles the response.
                  * @return {object} Request object
                  */
-                create(params, options, callback) {
+                create(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -74,7 +84,7 @@ function Cloudiot(options) {
                     pathParams: ['parent'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * cloudiot.projects.locations.registries.delete
                     * @desc Deletes a device registry configuration.
@@ -87,7 +97,10 @@ function Cloudiot(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                delete (params, options, callback) {
+                delete (
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -108,7 +121,7 @@ function Cloudiot(options) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * cloudiot.projects.locations.registries.get
                     * @desc Gets a device registry configuration.
@@ -121,7 +134,9 @@ function Cloudiot(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                get(params, options, callback) {
+                get(params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -142,7 +157,7 @@ function Cloudiot(options) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * cloudiot.projects.locations.registries.getIamPolicy
                     * @desc Gets the access control policy for a resource.
@@ -158,7 +173,10 @@ function Cloudiot(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                getIamPolicy(params, options, callback) {
+                getIamPolicy(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -179,7 +197,7 @@ function Cloudiot(options) {
                     pathParams: ['resource'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * cloudiot.projects.locations.registries.list
                     * @desc Lists device registries.
@@ -194,7 +212,10 @@ function Cloudiot(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                list(params, options, callback) {
+                list(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -215,7 +236,7 @@ function Cloudiot(options) {
                     pathParams: ['parent'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * cloudiot.projects.locations.registries.patch
                     * @desc Updates a device registry configuration.
@@ -230,7 +251,10 @@ function Cloudiot(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                patch(params, options, callback) {
+                patch(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -251,7 +275,7 @@ function Cloudiot(options) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * cloudiot.projects.locations.registries.setIamPolicy
                     * @desc Sets the access control policy on the specified
@@ -266,7 +290,10 @@ function Cloudiot(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                setIamPolicy(params, options, callback) {
+                setIamPolicy(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -287,7 +314,7 @@ function Cloudiot(options) {
                     pathParams: ['resource'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * cloudiot.projects.locations.registries.testIamPermissions
                     * @desc Returns permissions that a caller has on the
@@ -305,7 +332,10 @@ function Cloudiot(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                testIamPermissions(params, options, callback) {
+                testIamPermissions(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -326,7 +356,7 @@ function Cloudiot(options) {
                     pathParams: ['resource'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 },
                 devices: {
                   /**
@@ -343,7 +373,10 @@ function Cloudiot(options) {
                    * @param {callback} callback The callback that handles the response.
                    * @return {object} Request object
                    */
-                  create(params, options, callback) {
+                  create(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -364,7 +397,7 @@ function Cloudiot(options) {
                       pathParams: ['parent'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }, /**
                       * cloudiot.projects.locations.registries.devices.delete
                       * @desc Deletes a device.
@@ -378,7 +411,10 @@ function Cloudiot(options) {
                       * @param {callback} callback The callback that handles the response.
                       * @return {object} Request object
                       */
-                  delete (params, options, callback) {
+                  delete (
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -399,7 +435,7 @@ function Cloudiot(options) {
                       pathParams: ['name'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }, /**
                       * cloudiot.projects.locations.registries.devices.get
                       * @desc Gets details about a device.
@@ -414,7 +450,9 @@ function Cloudiot(options) {
                       * @param {callback} callback The callback that handles the response.
                       * @return {object} Request object
                       */
-                  get(params, options, callback) {
+                  get(params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -435,7 +473,7 @@ function Cloudiot(options) {
                       pathParams: ['name'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }, /**
                       * cloudiot.projects.locations.registries.devices.list
                       * @desc List devices in a device registry.
@@ -454,7 +492,10 @@ function Cloudiot(options) {
                       * @param {callback} callback The callback that handles the response.
                       * @return {object} Request object
                       */
-                  list(params, options, callback) {
+                  list(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -475,7 +516,7 @@ function Cloudiot(options) {
                       pathParams: ['parent'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }, /**
                       * cloudiot.projects.locations.registries.devices.modifyCloudToDeviceConfig
                       * @desc Modifies the configuration for the device, which
@@ -493,7 +534,10 @@ function Cloudiot(options) {
                       * @param {callback} callback The callback that handles the response.
                       * @return {object} Request object
                       */
-                  modifyCloudToDeviceConfig(params, options, callback) {
+                  modifyCloudToDeviceConfig(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -515,7 +559,7 @@ function Cloudiot(options) {
                       pathParams: ['name'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }, /**
                       * cloudiot.projects.locations.registries.devices.patch
                       * @desc Updates a device.
@@ -531,7 +575,10 @@ function Cloudiot(options) {
                       * @param {callback} callback The callback that handles the response.
                       * @return {object} Request object
                       */
-                  patch(params, options, callback) {
+                  patch(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -552,7 +599,7 @@ function Cloudiot(options) {
                       pathParams: ['name'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   },
                   configVersions: {
                     /**
@@ -570,7 +617,10 @@ function Cloudiot(options) {
                      * @param {callback} callback The callback that handles the response.
                      * @return {object} Request object
                      */
-                    list(params, options, callback) {
+                    list(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
                       if (typeof options === 'function') {
                         callback = options;
                         options = {};
@@ -591,7 +641,7 @@ function Cloudiot(options) {
                         pathParams: ['name'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback);
+                      return createAPIRequest(parameters, callback!);
                     }
 
                   },
@@ -611,7 +661,10 @@ function Cloudiot(options) {
                      * @param {callback} callback The callback that handles the response.
                      * @return {object} Request object
                      */
-                    list(params, options, callback) {
+                    list(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
                       if (typeof options === 'function') {
                         callback = options;
                         options = {};
@@ -632,7 +685,7 @@ function Cloudiot(options) {
                         pathParams: ['name'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback);
+                      return createAPIRequest(parameters, callback!);
                     }
 
                   }

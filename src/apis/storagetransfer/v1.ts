@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Storage Transfer API
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Storagetransfer
  */
-function Storagetransfer(options) {
+function Storagetransfer(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.googleServiceAccounts = {
@@ -108,7 +115,8 @@ function Storagetransfer(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -129,7 +137,7 @@ function Storagetransfer(options) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -200,7 +208,9 @@ function Storagetransfer(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params, options, callback) {
+    create(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -220,7 +230,7 @@ function Storagetransfer(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * storagetransfer.transferJobs.get
         * @desc Gets a transfer job.
@@ -289,7 +299,8 @@ function Storagetransfer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -309,7 +320,7 @@ function Storagetransfer(options) {
         pathParams: ['jobName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * storagetransfer.transferJobs.list
         * @desc Lists transfer jobs.
@@ -388,7 +399,9 @@ function Storagetransfer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -408,7 +421,7 @@ function Storagetransfer(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * storagetransfer.transferJobs.patch
         * @desc Updates a transfer job. Updating a job's transfer spec does not
@@ -483,7 +496,9 @@ function Storagetransfer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -503,7 +518,7 @@ function Storagetransfer(options) {
         pathParams: ['jobName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -573,7 +588,9 @@ function Storagetransfer(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params, options, callback) {
+    cancel(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -594,7 +611,7 @@ function Storagetransfer(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * storagetransfer.transferOperations.delete
         * @desc This method is not supported and the server returns
@@ -659,7 +676,9 @@ function Storagetransfer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -679,7 +698,7 @@ function Storagetransfer(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * storagetransfer.transferOperations.get
         * @desc Gets the latest state of a long-running operation.  Clients can
@@ -746,7 +765,8 @@ function Storagetransfer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -766,7 +786,7 @@ function Storagetransfer(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * storagetransfer.transferOperations.list
         * @desc Lists operations that match the specified filter in the request.
@@ -857,7 +877,9 @@ function Storagetransfer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -877,7 +899,7 @@ function Storagetransfer(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * storagetransfer.transferOperations.pause
         * @desc Pauses a transfer operation.
@@ -947,7 +969,9 @@ function Storagetransfer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    pause(params, options, callback) {
+    pause(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -967,7 +991,7 @@ function Storagetransfer(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * storagetransfer.transferOperations.resume
         * @desc Resumes a transfer operation that is paused.
@@ -1037,7 +1061,9 @@ function Storagetransfer(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    resume(params, options, callback) {
+    resume(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1058,7 +1084,7 @@ function Storagetransfer(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

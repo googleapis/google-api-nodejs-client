@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Sheets API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v4
  * @param {object=} options Options for Sheets
  */
-function Sheets(options) {
+function Sheets(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.spreadsheets = {
@@ -119,7 +126,9 @@ function Sheets(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    batchUpdate(params, options, callback) {
+    batchUpdate(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -139,7 +148,7 @@ function Sheets(options) {
         pathParams: ['spreadsheetId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sheets.spreadsheets.create
         * @desc Creates a spreadsheet, returning the newly created spreadsheet.
@@ -202,7 +211,9 @@ function Sheets(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    create(params, options, callback) {
+    create(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -221,7 +232,7 @@ function Sheets(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sheets.spreadsheets.get
         * @desc Returns the spreadsheet at the given ID. The caller must specify
@@ -306,7 +317,8 @@ function Sheets(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -326,7 +338,7 @@ function Sheets(options) {
         pathParams: ['spreadsheetId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * sheets.spreadsheets.getByDataFilter
         * @desc Returns the spreadsheet at the given ID. The caller must specify
@@ -412,7 +424,9 @@ function Sheets(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getByDataFilter(params, options, callback) {
+    getByDataFilter(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -433,7 +447,7 @@ function Sheets(options) {
         pathParams: ['spreadsheetId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     },
     developerMetadata: {
       /**
@@ -502,7 +516,8 @@ function Sheets(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -524,7 +539,7 @@ function Sheets(options) {
           pathParams: ['metadataId', 'spreadsheetId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * sheets.spreadsheets.developerMetadata.search
           * @desc Returns all developer metadata matching the specified
@@ -596,7 +611,9 @@ function Sheets(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      search(params, options, callback) {
+      search(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -618,7 +635,7 @@ function Sheets(options) {
           pathParams: ['spreadsheetId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -698,7 +715,9 @@ function Sheets(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      copyTo(params, options, callback) {
+      copyTo(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -720,7 +739,7 @@ function Sheets(options) {
           pathParams: ['sheetId', 'spreadsheetId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -819,7 +838,9 @@ function Sheets(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      append(params, options, callback) {
+      append(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -840,7 +861,7 @@ function Sheets(options) {
           pathParams: ['range', 'spreadsheetId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * sheets.spreadsheets.values.batchClear
           * @desc Clears one or more ranges of values from a spreadsheet. The
@@ -912,7 +933,9 @@ function Sheets(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      batchClear(params, options, callback) {
+      batchClear(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -933,7 +956,7 @@ function Sheets(options) {
           pathParams: ['spreadsheetId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * sheets.spreadsheets.values.batchClearByDataFilter
           * @desc Clears one or more ranges of values from a spreadsheet. The
@@ -1006,7 +1029,9 @@ function Sheets(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      batchClearByDataFilter(params, options, callback) {
+      batchClearByDataFilter(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1028,7 +1053,7 @@ function Sheets(options) {
           pathParams: ['spreadsheetId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * sheets.spreadsheets.values.batchGet
           * @desc Returns one or more ranges of values from a spreadsheet. The
@@ -1112,7 +1137,9 @@ function Sheets(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      batchGet(params, options, callback) {
+      batchGet(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1133,7 +1160,7 @@ function Sheets(options) {
           pathParams: ['spreadsheetId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * sheets.spreadsheets.values.batchGetByDataFilter
           * @desc Returns one or more ranges of values that match the specified
@@ -1222,7 +1249,9 @@ function Sheets(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      batchGetByDataFilter(params, options, callback) {
+      batchGetByDataFilter(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1244,7 +1273,7 @@ function Sheets(options) {
           pathParams: ['spreadsheetId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * sheets.spreadsheets.values.batchUpdate
           * @desc Sets values in one or more ranges of a spreadsheet. The caller
@@ -1318,7 +1347,9 @@ function Sheets(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      batchUpdate(params, options, callback) {
+      batchUpdate(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1339,7 +1370,7 @@ function Sheets(options) {
           pathParams: ['spreadsheetId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * sheets.spreadsheets.values.batchUpdateByDataFilter
           * @desc Sets values in one or more ranges of a spreadsheet. The caller
@@ -1417,7 +1448,9 @@ function Sheets(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      batchUpdateByDataFilter(params, options, callback) {
+      batchUpdateByDataFilter(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1439,7 +1472,7 @@ function Sheets(options) {
           pathParams: ['spreadsheetId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * sheets.spreadsheets.values.clear
           * @desc Clears values from a spreadsheet. The caller must specify the
@@ -1512,7 +1545,9 @@ function Sheets(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      clear(params, options, callback) {
+      clear(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1533,7 +1568,7 @@ function Sheets(options) {
           pathParams: ['range', 'spreadsheetId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * sheets.spreadsheets.values.get
           * @desc Returns a range of values from a spreadsheet. The caller must
@@ -1619,7 +1654,8 @@ function Sheets(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1640,7 +1676,7 @@ function Sheets(options) {
           pathParams: ['range', 'spreadsheetId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * sheets.spreadsheets.values.update
           * @desc Sets values in a range of a spreadsheet. The caller must
@@ -1720,7 +1756,9 @@ function Sheets(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      update(params, options, callback) {
+      update(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1741,7 +1779,7 @@ function Sheets(options) {
           pathParams: ['range', 'spreadsheetId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }

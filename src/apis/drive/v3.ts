@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Drive API
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v3
  * @param {object=} options Options for Drive
  */
-function Drive(options) {
+function Drive(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.about = {
@@ -48,7 +55,8 @@ function Drive(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -67,7 +75,7 @@ function Drive(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -85,7 +93,9 @@ function Drive(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getStartPageToken(params, options, callback) {
+    getStartPageToken(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -105,7 +115,7 @@ function Drive(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * drive.changes.list
         * @desc Lists the changes for a user or Team Drive.
@@ -126,7 +136,9 @@ function Drive(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -146,7 +158,7 @@ function Drive(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * drive.changes.watch
         * @desc Subscribes to changes for a user.
@@ -168,7 +180,9 @@ function Drive(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    watch(params, options, callback) {
+    watch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -188,7 +202,7 @@ function Drive(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -205,7 +219,9 @@ function Drive(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop(params, options, callback) {
+    stop(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -225,7 +241,7 @@ function Drive(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -243,7 +259,9 @@ function Drive(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params, options, callback) {
+    create(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -263,7 +281,7 @@ function Drive(options) {
         pathParams: ['fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * drive.comments.delete
         * @desc Deletes a comment.
@@ -277,7 +295,9 @@ function Drive(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -297,7 +317,7 @@ function Drive(options) {
         pathParams: ['commentId', 'fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * drive.comments.get
         * @desc Gets a comment by ID.
@@ -312,7 +332,8 @@ function Drive(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -332,7 +353,7 @@ function Drive(options) {
         pathParams: ['commentId', 'fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * drive.comments.list
         * @desc Lists a file's comments.
@@ -349,7 +370,9 @@ function Drive(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -369,7 +392,7 @@ function Drive(options) {
         pathParams: ['fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * drive.comments.update
         * @desc Updates a comment with patch semantics.
@@ -384,7 +407,9 @@ function Drive(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -404,7 +429,7 @@ function Drive(options) {
         pathParams: ['commentId', 'fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -427,7 +452,9 @@ function Drive(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    copy(params, options, callback) {
+    copy(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -447,7 +474,7 @@ function Drive(options) {
         pathParams: ['fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * drive.files.create
         * @desc Creates a new file.
@@ -468,7 +495,9 @@ function Drive(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    create(params, options, callback) {
+    create(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -489,7 +518,7 @@ function Drive(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * drive.files.delete
         * @desc Permanently deletes a file owned by the user without moving it
@@ -506,7 +535,9 @@ function Drive(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -526,7 +557,7 @@ function Drive(options) {
         pathParams: ['fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * drive.files.emptyTrash
         * @desc Permanently deletes all of the user's trashed files.
@@ -538,7 +569,9 @@ function Drive(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    emptyTrash(params, options, callback) {
+    emptyTrash(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -558,7 +591,7 @@ function Drive(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * drive.files.export
         * @desc Exports a Google Doc to the requested MIME type and returns the
@@ -574,7 +607,9 @@ function Drive(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    export(params, options, callback) {
+    export(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -594,7 +629,7 @@ function Drive(options) {
         pathParams: ['fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * drive.files.generateIds
         * @desc Generates a set of file IDs which can be provided in create
@@ -609,7 +644,9 @@ function Drive(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    generateIds(params, options, callback) {
+    generateIds(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -629,7 +666,7 @@ function Drive(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * drive.files.get
         * @desc Gets a file's metadata or content by ID.
@@ -644,7 +681,8 @@ function Drive(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -664,7 +702,7 @@ function Drive(options) {
         pathParams: ['fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * drive.files.list
         * @desc Lists or searches files.
@@ -686,7 +724,9 @@ function Drive(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -705,7 +745,7 @@ function Drive(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * drive.files.update
         * @desc Updates a file's metadata and/or content with patch semantics.
@@ -728,7 +768,9 @@ function Drive(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -750,7 +792,7 @@ function Drive(options) {
         pathParams: ['fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * drive.files.watch
         * @desc Subscribes to changes to a file
@@ -766,7 +808,9 @@ function Drive(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    watch(params, options, callback) {
+    watch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -786,7 +830,7 @@ function Drive(options) {
         pathParams: ['fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -809,7 +853,9 @@ function Drive(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params, options, callback) {
+    create(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -829,7 +875,7 @@ function Drive(options) {
         pathParams: ['fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * drive.permissions.delete
         * @desc Deletes a permission.
@@ -845,7 +891,9 @@ function Drive(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -866,7 +914,7 @@ function Drive(options) {
         pathParams: ['fileId', 'permissionId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * drive.permissions.get
         * @desc Gets a permission by ID.
@@ -882,7 +930,8 @@ function Drive(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -903,7 +952,7 @@ function Drive(options) {
         pathParams: ['fileId', 'permissionId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * drive.permissions.list
         * @desc Lists a file's or Team Drive's permissions.
@@ -920,7 +969,9 @@ function Drive(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -940,7 +991,7 @@ function Drive(options) {
         pathParams: ['fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * drive.permissions.update
         * @desc Updates a permission with patch semantics.
@@ -959,7 +1010,9 @@ function Drive(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -980,7 +1033,7 @@ function Drive(options) {
         pathParams: ['fileId', 'permissionId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -999,7 +1052,9 @@ function Drive(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params, options, callback) {
+    create(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1020,7 +1075,7 @@ function Drive(options) {
         pathParams: ['commentId', 'fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * drive.replies.delete
         * @desc Deletes a reply.
@@ -1035,7 +1090,9 @@ function Drive(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1057,7 +1114,7 @@ function Drive(options) {
         pathParams: ['commentId', 'fileId', 'replyId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * drive.replies.get
         * @desc Gets a reply by ID.
@@ -1073,7 +1130,8 @@ function Drive(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1095,7 +1153,7 @@ function Drive(options) {
         pathParams: ['commentId', 'fileId', 'replyId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * drive.replies.list
         * @desc Lists a comment's replies.
@@ -1112,7 +1170,9 @@ function Drive(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1133,7 +1193,7 @@ function Drive(options) {
         pathParams: ['commentId', 'fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * drive.replies.update
         * @desc Updates a reply with patch semantics.
@@ -1149,7 +1209,9 @@ function Drive(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1171,7 +1233,7 @@ function Drive(options) {
         pathParams: ['commentId', 'fileId', 'replyId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1190,7 +1252,9 @@ function Drive(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1210,7 +1274,7 @@ function Drive(options) {
         pathParams: ['fileId', 'revisionId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * drive.revisions.get
         * @desc Gets a revision's metadata or content by ID.
@@ -1225,7 +1289,8 @@ function Drive(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1245,7 +1310,7 @@ function Drive(options) {
         pathParams: ['fileId', 'revisionId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * drive.revisions.list
         * @desc Lists a file's revisions.
@@ -1260,7 +1325,9 @@ function Drive(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1280,7 +1347,7 @@ function Drive(options) {
         pathParams: ['fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * drive.revisions.update
         * @desc Updates a revision with patch semantics.
@@ -1295,7 +1362,9 @@ function Drive(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1315,7 +1384,7 @@ function Drive(options) {
         pathParams: ['fileId', 'revisionId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1333,7 +1402,9 @@ function Drive(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params, options, callback) {
+    create(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1353,7 +1424,7 @@ function Drive(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * drive.teamdrives.delete
         * @desc Permanently deletes a Team Drive for which the user is an
@@ -1367,7 +1438,9 @@ function Drive(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1387,7 +1460,7 @@ function Drive(options) {
         pathParams: ['teamDriveId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * drive.teamdrives.get
         * @desc Gets a Team Drive's metadata by ID.
@@ -1401,7 +1474,8 @@ function Drive(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1421,7 +1495,7 @@ function Drive(options) {
         pathParams: ['teamDriveId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * drive.teamdrives.list
         * @desc Lists the user's Team Drives.
@@ -1437,7 +1511,9 @@ function Drive(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1457,7 +1533,7 @@ function Drive(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * drive.teamdrives.update
         * @desc Updates a Team Drive's metadata
@@ -1471,7 +1547,9 @@ function Drive(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1491,7 +1569,7 @@ function Drive(options) {
         pathParams: ['teamDriveId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

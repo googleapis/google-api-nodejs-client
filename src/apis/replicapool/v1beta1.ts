@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Replica Pool API
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta1
  * @param {object=} options Options for Replicapool
  */
-function Replicapool(options) {
+function Replicapool(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.pools = {
@@ -51,7 +58,9 @@ function Replicapool(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -73,7 +82,7 @@ function Replicapool(options) {
         pathParams: ['poolName', 'projectName', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.pools.get
         * @desc Gets information about a single replica pool.
@@ -88,7 +97,8 @@ function Replicapool(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -110,7 +120,7 @@ function Replicapool(options) {
         pathParams: ['poolName', 'projectName', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.pools.insert
         * @desc Inserts a new replica pool.
@@ -125,7 +135,9 @@ function Replicapool(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -147,7 +159,7 @@ function Replicapool(options) {
         pathParams: ['projectName', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.pools.list
         * @desc List all replica pools.
@@ -163,7 +175,9 @@ function Replicapool(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -185,7 +199,7 @@ function Replicapool(options) {
         pathParams: ['projectName', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.pools.resize
         * @desc Resize a pool. This is an asynchronous operation, and multiple
@@ -203,7 +217,9 @@ function Replicapool(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    resize(params, options, callback) {
+    resize(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -225,7 +241,7 @@ function Replicapool(options) {
         pathParams: ['poolName', 'projectName', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.pools.updatetemplate
         * @desc Update the template used by the pool.
@@ -241,7 +257,9 @@ function Replicapool(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    updatetemplate(params, options, callback) {
+    updatetemplate(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -263,7 +281,7 @@ function Replicapool(options) {
         pathParams: ['poolName', 'projectName', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -284,7 +302,9 @@ function Replicapool(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -306,7 +326,7 @@ function Replicapool(options) {
         pathParams: ['poolName', 'projectName', 'replicaName', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.replicas.get
         * @desc Gets information about a specific replica.
@@ -322,7 +342,8 @@ function Replicapool(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -344,7 +365,7 @@ function Replicapool(options) {
         pathParams: ['poolName', 'projectName', 'replicaName', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.replicas.list
         * @desc Lists all replicas in a pool.
@@ -361,7 +382,9 @@ function Replicapool(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -383,7 +406,7 @@ function Replicapool(options) {
         pathParams: ['poolName', 'projectName', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.replicas.restart
         * @desc Restarts a replica in a pool.
@@ -399,7 +422,9 @@ function Replicapool(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    restart(params, options, callback) {
+    restart(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -421,7 +446,7 @@ function Replicapool(options) {
         pathParams: ['poolName', 'projectName', 'replicaName', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

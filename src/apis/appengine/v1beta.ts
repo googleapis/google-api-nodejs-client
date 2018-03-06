@@ -14,10 +14,17 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
 
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
+
 /**
- * Google App Engine Admin API
+ * App Engine Admin API
  *
  * The App Engine Admin API enables developers to provision and manage their App
  * Engine applications.
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta
  * @param {object=} options Options for Appengine
  */
-function Appengine(options) {
+function Appengine(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.apps =
@@ -55,7 +62,9 @@ function Appengine(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create(params, options, callback) {
+        create(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -75,7 +84,7 @@ function Appengine(options) {
             pathParams: [],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * appengine.apps.get
             * @desc Gets information about an application.
@@ -88,7 +97,8 @@ function Appengine(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -109,7 +119,7 @@ function Appengine(options) {
             pathParams: ['appsId'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * appengine.apps.patch
             * @desc Updates the specified Application resource. You can update
@@ -128,7 +138,9 @@ function Appengine(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        patch(params, options, callback) {
+        patch(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -149,7 +161,7 @@ function Appengine(options) {
             pathParams: ['appsId'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * appengine.apps.repair
             * @desc Recreates the required App Engine features for the specified
@@ -167,7 +179,9 @@ function Appengine(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        repair(params, options, callback) {
+        repair(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -188,7 +202,7 @@ function Appengine(options) {
             pathParams: ['appsId'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         },
         authorizedCertificates: {
           /**
@@ -204,7 +218,9 @@ function Appengine(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          create(params, options, callback) {
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -226,7 +242,7 @@ function Appengine(options) {
               pathParams: ['appsId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * appengine.apps.authorizedCertificates.delete
               * @desc Deletes the specified SSL certificate.
@@ -240,7 +256,9 @@ function Appengine(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          delete (params, options, callback) {
+          delete (
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -263,7 +281,7 @@ function Appengine(options) {
               pathParams: ['appsId', 'authorizedCertificatesId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * appengine.apps.authorizedCertificates.get
               * @desc Gets the specified SSL certificate.
@@ -278,7 +296,8 @@ function Appengine(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -301,7 +320,7 @@ function Appengine(options) {
               pathParams: ['appsId', 'authorizedCertificatesId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * appengine.apps.authorizedCertificates.list
               * @desc Lists all SSL certificates the user is authorized to
@@ -318,7 +337,9 @@ function Appengine(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -340,7 +361,7 @@ function Appengine(options) {
               pathParams: ['appsId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * appengine.apps.authorizedCertificates.patch
               * @desc Updates the specified SSL certificate. To renew a
@@ -360,7 +381,9 @@ function Appengine(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          patch(params, options, callback) {
+          patch(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -383,7 +406,7 @@ function Appengine(options) {
               pathParams: ['appsId', 'authorizedCertificatesId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }
 
         },
@@ -402,7 +425,9 @@ function Appengine(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -423,7 +448,7 @@ function Appengine(options) {
               pathParams: ['appsId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }
 
         },
@@ -445,7 +470,9 @@ function Appengine(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          create(params, options, callback) {
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -466,7 +493,7 @@ function Appengine(options) {
               pathParams: ['appsId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * appengine.apps.domainMappings.delete
               * @desc Deletes the specified domain mapping. A user must be
@@ -482,7 +509,9 @@ function Appengine(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          delete (params, options, callback) {
+          delete (
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -505,7 +534,7 @@ function Appengine(options) {
               pathParams: ['appsId', 'domainMappingsId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * appengine.apps.domainMappings.get
               * @desc Gets the specified domain mapping.
@@ -519,7 +548,8 @@ function Appengine(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -542,7 +572,7 @@ function Appengine(options) {
               pathParams: ['appsId', 'domainMappingsId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * appengine.apps.domainMappings.list
               * @desc Lists the domain mappings on an application.
@@ -557,7 +587,9 @@ function Appengine(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -578,7 +610,7 @@ function Appengine(options) {
               pathParams: ['appsId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * appengine.apps.domainMappings.patch
               * @desc Updates the specified domain mapping. To map an SSL
@@ -598,7 +630,9 @@ function Appengine(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          patch(params, options, callback) {
+          patch(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -621,7 +655,7 @@ function Appengine(options) {
               pathParams: ['appsId', 'domainMappingsId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }
 
         },
@@ -644,7 +678,9 @@ function Appengine(options) {
              * @param {callback} callback The callback that handles the response.
              * @return {object} Request object
              */
-            batchUpdate(params, options, callback) {
+            batchUpdate(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -667,7 +703,7 @@ function Appengine(options) {
                 pathParams: ['appsId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * appengine.apps.firewall.ingressRules.create
                 * @desc Creates a firewall rule for the application.
@@ -681,7 +717,9 @@ function Appengine(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            create(params, options, callback) {
+            create(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -703,7 +741,7 @@ function Appengine(options) {
                 pathParams: ['appsId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * appengine.apps.firewall.ingressRules.delete
                 * @desc Deletes the specified firewall rule.
@@ -717,7 +755,9 @@ function Appengine(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            delete (params, options, callback) {
+            delete (
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -740,7 +780,7 @@ function Appengine(options) {
                 pathParams: ['appsId', 'ingressRulesId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * appengine.apps.firewall.ingressRules.get
                 * @desc Gets the specified firewall rule.
@@ -754,7 +794,8 @@ function Appengine(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            get(params, options, callback) {
+            get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -777,7 +818,7 @@ function Appengine(options) {
                 pathParams: ['appsId', 'ingressRulesId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * appengine.apps.firewall.ingressRules.list
                 * @desc Lists the firewall rules of an application.
@@ -793,7 +834,9 @@ function Appengine(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            list(params, options, callback) {
+            list(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -815,7 +858,7 @@ function Appengine(options) {
                 pathParams: ['appsId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * appengine.apps.firewall.ingressRules.patch
                 * @desc Updates the specified firewall rule.
@@ -831,7 +874,9 @@ function Appengine(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            patch(params, options, callback) {
+            patch(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -854,7 +899,7 @@ function Appengine(options) {
                 pathParams: ['appsId', 'ingressRulesId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }
 
           }
@@ -873,7 +918,8 @@ function Appengine(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -895,7 +941,7 @@ function Appengine(options) {
               pathParams: ['appsId', 'locationsId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * appengine.apps.locations.list
               * @desc Lists information about the supported locations for this
@@ -912,7 +958,9 @@ function Appengine(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -933,7 +981,7 @@ function Appengine(options) {
               pathParams: ['appsId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }
 
         },
@@ -953,7 +1001,8 @@ function Appengine(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -975,7 +1024,7 @@ function Appengine(options) {
               pathParams: ['appsId', 'operationsId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * appengine.apps.operations.list
               * @desc Lists operations that match the specified filter in the
@@ -1001,7 +1050,9 @@ function Appengine(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1022,7 +1073,7 @@ function Appengine(options) {
               pathParams: ['appsId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }
 
         },
@@ -1040,7 +1091,9 @@ function Appengine(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          delete (params, options, callback) {
+          delete (
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1062,7 +1115,7 @@ function Appengine(options) {
               pathParams: ['appsId', 'servicesId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * appengine.apps.services.get
               * @desc Gets the current configuration of the specified service.
@@ -1076,7 +1129,8 @@ function Appengine(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1098,7 +1152,7 @@ function Appengine(options) {
               pathParams: ['appsId', 'servicesId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * appengine.apps.services.list
               * @desc Lists all the services in the application.
@@ -1113,7 +1167,9 @@ function Appengine(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1134,7 +1190,7 @@ function Appengine(options) {
               pathParams: ['appsId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * appengine.apps.services.patch
               * @desc Updates the configuration of the specified service.
@@ -1151,7 +1207,9 @@ function Appengine(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          patch(params, options, callback) {
+          patch(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1173,7 +1231,7 @@ function Appengine(options) {
               pathParams: ['appsId', 'servicesId'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           },
           versions: {
             /**
@@ -1190,7 +1248,9 @@ function Appengine(options) {
              * @param {callback} callback The callback that handles the response.
              * @return {object} Request object
              */
-            create(params, options, callback) {
+            create(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -1213,7 +1273,7 @@ function Appengine(options) {
                 pathParams: ['appsId', 'servicesId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * appengine.apps.services.versions.delete
                 * @desc Deletes an existing Version resource.
@@ -1228,7 +1288,9 @@ function Appengine(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            delete (params, options, callback) {
+            delete (
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -1251,7 +1313,7 @@ function Appengine(options) {
                 pathParams: ['appsId', 'servicesId', 'versionsId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * appengine.apps.services.versions.get
                 * @desc Gets the specified Version resource. By default, only a
@@ -1269,7 +1331,8 @@ function Appengine(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            get(params, options, callback) {
+            get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -1292,7 +1355,7 @@ function Appengine(options) {
                 pathParams: ['appsId', 'servicesId', 'versionsId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * appengine.apps.services.versions.list
                 * @desc Lists the versions of a service.
@@ -1309,7 +1372,9 @@ function Appengine(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            list(params, options, callback) {
+            list(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -1332,7 +1397,7 @@ function Appengine(options) {
                 pathParams: ['appsId', 'servicesId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * appengine.apps.services.versions.patch
                 * @desc Updates the specified Version resource. You can specify
@@ -1381,7 +1446,9 @@ function Appengine(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            patch(params, options, callback) {
+            patch(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -1404,7 +1471,7 @@ function Appengine(options) {
                 pathParams: ['appsId', 'servicesId', 'versionsId'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             },
             instances: {
               /**
@@ -1429,7 +1496,9 @@ function Appengine(options) {
                * @param {callback} callback The callback that handles the response.
                * @return {object} Request object
                */
-              debug(params, options, callback) {
+              debug(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -1454,7 +1523,7 @@ function Appengine(options) {
                       ['appsId', 'instancesId', 'servicesId', 'versionsId'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * appengine.apps.services.versions.instances.delete
                   * @desc Stops a running instance.
@@ -1470,7 +1539,9 @@ function Appengine(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              delete (params, options, callback) {
+              delete (
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -1495,7 +1566,7 @@ function Appengine(options) {
                       ['appsId', 'instancesId', 'servicesId', 'versionsId'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * appengine.apps.services.versions.instances.get
                   * @desc Gets instance information.
@@ -1511,7 +1582,8 @@ function Appengine(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              get(params, options, callback) {
+              get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -1536,7 +1608,7 @@ function Appengine(options) {
                       ['appsId', 'instancesId', 'servicesId', 'versionsId'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * appengine.apps.services.versions.instances.list
                   * @desc Lists the instances of a version.Tip: To aggregate
@@ -1556,7 +1628,9 @@ function Appengine(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              list(params, options, callback) {
+              list(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -1579,7 +1653,7 @@ function Appengine(options) {
                   pathParams: ['appsId', 'servicesId', 'versionsId'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }
 
             }

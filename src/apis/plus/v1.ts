@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google+ API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Plus
  */
-function Plus(options) {
+function Plus(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.activities = {
@@ -47,7 +54,8 @@ function Plus(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -67,7 +75,7 @@ function Plus(options) {
         pathParams: ['activityId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * plus.activities.list
         * @desc List all of the activities in the specified collection for a
@@ -84,7 +92,9 @@ function Plus(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -105,7 +115,7 @@ function Plus(options) {
         pathParams: ['collection', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * plus.activities.search
         * @desc Search public activities.
@@ -122,7 +132,9 @@ function Plus(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    search(params, options, callback) {
+    search(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -142,7 +154,7 @@ function Plus(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -159,7 +171,8 @@ function Plus(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -179,7 +192,7 @@ function Plus(options) {
         pathParams: ['commentId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * plus.comments.list
         * @desc List all of the comments for an activity.
@@ -195,7 +208,9 @@ function Plus(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -215,7 +230,7 @@ function Plus(options) {
         pathParams: ['activityId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -234,7 +249,8 @@ function Plus(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -254,7 +270,7 @@ function Plus(options) {
         pathParams: ['userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * plus.people.list
         * @desc List all of the people in the specified collection.
@@ -271,7 +287,9 @@ function Plus(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -291,7 +309,7 @@ function Plus(options) {
         pathParams: ['collection', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * plus.people.listByActivity
         * @desc List all of the people in the specified collection for a
@@ -308,7 +326,9 @@ function Plus(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    listByActivity(params, options, callback) {
+    listByActivity(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -329,7 +349,7 @@ function Plus(options) {
         pathParams: ['activityId', 'collection'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * plus.people.search
         * @desc Search all public profiles.
@@ -345,7 +365,9 @@ function Plus(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    search(params, options, callback) {
+    search(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -364,7 +386,7 @@ function Plus(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

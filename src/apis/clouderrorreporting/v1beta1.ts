@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Stackdriver Error Reporting API
@@ -33,7 +40,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta1
  * @param {object=} options Options for Clouderrorreporting
  */
-function Clouderrorreporting(options) {
+function Clouderrorreporting(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.projects = {
@@ -49,7 +56,9 @@ function Clouderrorreporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    deleteEvents(params, options, callback) {
+    deleteEvents(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -70,7 +79,7 @@ function Clouderrorreporting(options) {
         pathParams: ['projectName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     },
     events: {
       /**
@@ -92,7 +101,9 @@ function Clouderrorreporting(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -113,7 +124,7 @@ function Clouderrorreporting(options) {
           pathParams: ['projectName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * clouderrorreporting.projects.events.report
           * @desc Report an individual error event.  This endpoint accepts
@@ -132,7 +143,9 @@ function Clouderrorreporting(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      report(params, options, callback) {
+      report(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -153,7 +166,7 @@ function Clouderrorreporting(options) {
           pathParams: ['projectName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -170,7 +183,8 @@ function Clouderrorreporting(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -191,7 +205,7 @@ function Clouderrorreporting(options) {
           pathParams: ['groupName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * clouderrorreporting.projects.groups.update
           * @desc Replace the data for the specified group. Fails if the group
@@ -206,7 +220,9 @@ function Clouderrorreporting(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      update(params, options, callback) {
+      update(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -227,7 +243,7 @@ function Clouderrorreporting(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -255,7 +271,9 @@ function Clouderrorreporting(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -276,7 +294,7 @@ function Clouderrorreporting(options) {
           pathParams: ['projectName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }
