@@ -14,6 +14,20 @@ unit_tests: &unit_tests
         command: node_modules/.bin/codecov
         when: always
 
+# Testing the samples requires running `npm link` and 
+# `npm link googleapis`, which attempts to make a global
+# change.  This leads to a permissions error unless the 
+# global npm module directory is changed.  These samples 
+# only tested against latest LTS. 
+test_samples: &test_samples
+  steps:
+    - checkout
+    - run: npm install
+    - run: mkdir ~/.npm-packages
+    - run: echo "prefix = $HOME/.npm-packages" >> ~/.npmrc
+    - run: export PATH=~/.npm-packages/bin:$PATH
+    - run: npm run test-samples
+
 version: 2.0
 workflows:
   version: 2
@@ -52,18 +66,7 @@ jobs:
     docker:
       - image: node:4
         user: node
-    steps:
-      - checkout
-      - run:
-          name: Install modules and dependencies.
-          command: npm install --unsafe-perm
-      - run:
-          name: Run unit tests.
-          command: npm test
-      - run:
-          name: Submit coverage data to codecov.
-          command: node_modules/.bin/codecov
-          when: always
+    <<: *unit_tests
   node6:
     docker:
       - image: node:6
@@ -74,6 +77,7 @@ jobs:
       - image: node:8
         user: node
     <<: *unit_tests
+    <<: *test_samples
   node9:
     docker:
       - image: node:9
