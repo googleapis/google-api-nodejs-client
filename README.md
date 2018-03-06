@@ -97,7 +97,8 @@ var {google} = require('googleapis');
 var urlshortener = google.urlshortener('v1');
 
 var params = {
-  shortUrl: 'http://goo.gl/xKbRu3'
+  shortUrl: 'http://goo.gl/xKbRu3',
+  key: 'YOUR API KEY'
 };
 
 // get the long url of a shortened url
@@ -105,7 +106,7 @@ urlshortener.url.get(params, function (err, response) {
   if (err) {
     console.log('Encountered error', err);
   } else {
-    console.log('Long url is', response.longUrl);
+    console.log('Long url is', response.data.longUrl);
   }
 });
 ```
@@ -256,6 +257,8 @@ The following sample retrieves Google+ profile of the authenticated user.
 var {google} = require('googleapis');
 var plus = google.plus('v1');
 var OAuth2 = google.auth.OAuth2;
+
+// WARNING: Make sure your CLIENT_SECRET is stored in a safe place.  
 var oauth2Client = new OAuth2(
   YOUR_CLIENT_ID,
   YOUR_CLIENT_SECRET,
