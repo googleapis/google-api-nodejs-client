@@ -3,7 +3,7 @@
 PATH := $(shell npm bin):$(PATH)
 
 build:
-	tsc -p .
+	tsc -v && tsc -p .
 
 build-tools:
 	tsc -p tsconfig.tools.json
