@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Cloud Machine Learning Engine
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Ml
  */
-function Ml(options) {
+function Ml(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.projects = {
@@ -51,7 +58,9 @@ function Ml(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getConfig(params, options, callback) {
+    getConfig(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -71,7 +80,7 @@ function Ml(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * ml.projects.predict
         * @desc Performs prediction on the data in the request. Cloud ML Engine
@@ -88,7 +97,9 @@ function Ml(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    predict(params, options, callback) {
+    predict(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -108,7 +119,7 @@ function Ml(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     },
     jobs: {
       /**
@@ -124,7 +135,9 @@ function Ml(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      cancel(params, options, callback) {
+      cancel(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -144,7 +157,7 @@ function Ml(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * ml.projects.jobs.create
           * @desc Creates a training or a batch prediction job.
@@ -158,7 +171,9 @@ function Ml(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      create(params, options, callback) {
+      create(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -178,7 +193,7 @@ function Ml(options) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * ml.projects.jobs.get
           * @desc Describes a job.
@@ -191,7 +206,8 @@ function Ml(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -210,7 +226,7 @@ function Ml(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * ml.projects.jobs.getIamPolicy
           * @desc Gets the access control policy for a resource. Returns an
@@ -224,7 +240,9 @@ function Ml(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      getIamPolicy(params, options, callback) {
+      getIamPolicy(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -244,7 +262,7 @@ function Ml(options) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * ml.projects.jobs.list
           * @desc Lists the jobs in the project.  If there are no jobs that
@@ -262,7 +280,9 @@ function Ml(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -282,7 +302,7 @@ function Ml(options) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * ml.projects.jobs.setIamPolicy
           * @desc Sets the access control policy on the specified resource.
@@ -297,7 +317,9 @@ function Ml(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      setIamPolicy(params, options, callback) {
+      setIamPolicy(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -317,7 +339,7 @@ function Ml(options) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * ml.projects.jobs.testIamPermissions
           * @desc Returns permissions that a caller has on the specified
@@ -336,7 +358,9 @@ function Ml(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      testIamPermissions(params, options, callback) {
+      testIamPermissions(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -356,7 +380,7 @@ function Ml(options) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -374,7 +398,8 @@ function Ml(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -393,7 +418,7 @@ function Ml(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * ml.projects.locations.list
           * @desc List all locations that provides at least one type of CMLE
@@ -409,7 +434,9 @@ function Ml(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -429,7 +456,7 @@ function Ml(options) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -450,7 +477,9 @@ function Ml(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create(params, options, callback) {
+      create(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -470,7 +499,7 @@ function Ml(options) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * ml.projects.models.delete
           * @desc Deletes a model.  You can only delete a model if there are no
@@ -485,7 +514,9 @@ function Ml(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (params, options, callback) {
+      delete (
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -504,7 +535,7 @@ function Ml(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * ml.projects.models.get
           * @desc Gets information about a model, including its name, the
@@ -519,7 +550,8 @@ function Ml(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -538,7 +570,7 @@ function Ml(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * ml.projects.models.getIamPolicy
           * @desc Gets the access control policy for a resource. Returns an
@@ -552,7 +584,9 @@ function Ml(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      getIamPolicy(params, options, callback) {
+      getIamPolicy(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -572,7 +606,7 @@ function Ml(options) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * ml.projects.models.list
           * @desc Lists the models in a project.  Each project can contain
@@ -591,7 +625,9 @@ function Ml(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -611,7 +647,7 @@ function Ml(options) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * ml.projects.models.patch
           * @desc Updates a specific model resource.  Currently the only
@@ -628,7 +664,9 @@ function Ml(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      patch(params, options, callback) {
+      patch(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -647,7 +685,7 @@ function Ml(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * ml.projects.models.setIamPolicy
           * @desc Sets the access control policy on the specified resource.
@@ -662,7 +700,9 @@ function Ml(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      setIamPolicy(params, options, callback) {
+      setIamPolicy(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -682,7 +722,7 @@ function Ml(options) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * ml.projects.models.testIamPermissions
           * @desc Returns permissions that a caller has on the specified
@@ -701,7 +741,9 @@ function Ml(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      testIamPermissions(params, options, callback) {
+      testIamPermissions(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -721,7 +763,7 @@ function Ml(options) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       },
       versions: {
         /**
@@ -743,7 +785,9 @@ function Ml(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create(params, options, callback) {
+        create(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -763,7 +807,7 @@ function Ml(options) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * ml.projects.models.versions.delete
             * @desc Deletes a model version.  Each model can have multiple
@@ -780,7 +824,9 @@ function Ml(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -799,7 +845,7 @@ function Ml(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * ml.projects.models.versions.get
             * @desc Gets information about a model version.  Models can have
@@ -816,7 +862,8 @@ function Ml(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -835,7 +882,7 @@ function Ml(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * ml.projects.models.versions.list
             * @desc Gets basic information about all the versions of a model.
@@ -856,7 +903,9 @@ function Ml(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -876,7 +925,7 @@ function Ml(options) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * ml.projects.models.versions.patch
             * @desc Updates the specified Version resource.  Currently the only
@@ -892,7 +941,9 @@ function Ml(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        patch(params, options, callback) {
+        patch(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -911,7 +962,7 @@ function Ml(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * ml.projects.models.versions.setDefault
             * @desc Designates a version to be the default for the model.  The
@@ -930,7 +981,9 @@ function Ml(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setDefault(params, options, callback) {
+        setDefault(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -950,7 +1003,7 @@ function Ml(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       }
@@ -976,7 +1029,9 @@ function Ml(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      cancel(params, options, callback) {
+      cancel(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -996,7 +1051,7 @@ function Ml(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * ml.projects.operations.delete
           * @desc Deletes a long-running operation. This method indicates that
@@ -1012,7 +1067,9 @@ function Ml(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (params, options, callback) {
+      delete (
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1031,7 +1088,7 @@ function Ml(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * ml.projects.operations.get
           * @desc Gets the latest state of a long-running operation.  Clients
@@ -1046,7 +1103,8 @@ function Ml(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1065,7 +1123,7 @@ function Ml(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * ml.projects.operations.list
           * @desc Lists operations that match the specified filter in the
@@ -1090,7 +1148,9 @@ function Ml(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1110,7 +1170,7 @@ function Ml(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }

@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Cloud Dataproc API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta2
  * @param {object=} options Options for Dataproc
  */
-function Dataproc(options) {
+function Dataproc(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.projects =
@@ -51,7 +58,9 @@ function Dataproc(options) {
              * @param {callback} callback The callback that handles the response.
              * @return {object} Request object
              */
-            create(params, options, callback) {
+            create(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -72,7 +81,7 @@ function Dataproc(options) {
                 pathParams: ['parent'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * dataproc.projects.locations.workflowTemplates.delete
                 * @desc Deletes a workflow template. It does not cancel
@@ -87,7 +96,9 @@ function Dataproc(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            delete (params, options, callback) {
+            delete (
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -108,7 +119,7 @@ function Dataproc(options) {
                 pathParams: ['name'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * dataproc.projects.locations.workflowTemplates.get
                 * @desc Retrieves the latest workflow template.Can retrieve
@@ -124,7 +135,8 @@ function Dataproc(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            get(params, options, callback) {
+            get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -145,7 +157,7 @@ function Dataproc(options) {
                 pathParams: ['name'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * dataproc.projects.locations.workflowTemplates.instantiate
                 * @desc Instantiates a template and begins execution.The
@@ -167,7 +179,9 @@ function Dataproc(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            instantiate(params, options, callback) {
+            instantiate(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -188,7 +202,7 @@ function Dataproc(options) {
                 pathParams: ['name'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * dataproc.projects.locations.workflowTemplates.instantiateInline
                 * @desc Instantiates a template and begins execution.This method
@@ -214,7 +228,9 @@ function Dataproc(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            instantiateInline(params, options, callback) {
+            instantiateInline(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -237,7 +253,7 @@ function Dataproc(options) {
                 pathParams: ['parent'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * dataproc.projects.locations.workflowTemplates.list
                 * @desc Lists workflows that match the specified filter in the
@@ -253,7 +269,9 @@ function Dataproc(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            list(params, options, callback) {
+            list(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -274,7 +292,7 @@ function Dataproc(options) {
                 pathParams: ['parent'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * dataproc.projects.locations.workflowTemplates.update
                 * @desc Updates (replaces) workflow template. The updated
@@ -290,7 +308,9 @@ function Dataproc(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            update(params, options, callback) {
+            update(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -311,7 +331,7 @@ function Dataproc(options) {
                 pathParams: ['name'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }
 
           }
@@ -334,7 +354,10 @@ function Dataproc(options) {
                      * @param {callback} callback The callback that handles the response.
                      * @return {object} Request object
                      */
-                    create(params, options, callback) {
+                    create(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
                       if (typeof options === 'function') {
                         callback = options;
                         options = {};
@@ -357,7 +380,7 @@ function Dataproc(options) {
                         pathParams: ['projectId', 'region'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback);
+                      return createAPIRequest(parameters, callback!);
                     }, /**
                         * dataproc.projects.regions.clusters.delete
                         * @desc Deletes a cluster in a project.
@@ -373,7 +396,10 @@ function Dataproc(options) {
                         * @param {callback} callback The callback that handles the response.
                         * @return {object} Request object
                         */
-                    delete (params, options, callback) {
+                    delete (
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
                       if (typeof options === 'function') {
                         callback = options;
                         options = {};
@@ -396,7 +422,7 @@ function Dataproc(options) {
                         pathParams: ['clusterName', 'projectId', 'region'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback);
+                      return createAPIRequest(parameters, callback!);
                     }, /**
                         * dataproc.projects.regions.clusters.diagnose
                         * @desc Gets cluster diagnostic information. After the
@@ -414,7 +440,10 @@ function Dataproc(options) {
                         * @param {callback} callback The callback that handles the response.
                         * @return {object} Request object
                         */
-                    diagnose(params, options, callback) {
+                    diagnose(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
                       if (typeof options === 'function') {
                         callback = options;
                         options = {};
@@ -437,7 +466,7 @@ function Dataproc(options) {
                         pathParams: ['clusterName', 'projectId', 'region'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback);
+                      return createAPIRequest(parameters, callback!);
                     }, /**
                         * dataproc.projects.regions.clusters.get
                         * @desc Gets the resource representation for a cluster
@@ -453,7 +482,9 @@ function Dataproc(options) {
                         * @param {callback} callback The callback that handles the response.
                         * @return {object} Request object
                         */
-                    get(params, options, callback) {
+                    get(params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
                       if (typeof options === 'function') {
                         callback = options;
                         options = {};
@@ -476,7 +507,7 @@ function Dataproc(options) {
                         pathParams: ['clusterName', 'projectId', 'region'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback);
+                      return createAPIRequest(parameters, callback!);
                     }, /**
                         * dataproc.projects.regions.clusters.getIamPolicy
                         * @desc Gets the access control policy for a resource.
@@ -491,7 +522,10 @@ function Dataproc(options) {
                         * @param {callback} callback The callback that handles the response.
                         * @return {object} Request object
                         */
-                    getIamPolicy(params, options, callback) {
+                    getIamPolicy(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
                       if (typeof options === 'function') {
                         callback = options;
                         options = {};
@@ -513,7 +547,7 @@ function Dataproc(options) {
                         pathParams: ['resource'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback);
+                      return createAPIRequest(parameters, callback!);
                     }, /**
                         * dataproc.projects.regions.clusters.list
                         * @desc Lists all regions/{region}/clusters in a
@@ -531,7 +565,10 @@ function Dataproc(options) {
                         * @param {callback} callback The callback that handles the response.
                         * @return {object} Request object
                         */
-                    list(params, options, callback) {
+                    list(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
                       if (typeof options === 'function') {
                         callback = options;
                         options = {};
@@ -554,7 +591,7 @@ function Dataproc(options) {
                         pathParams: ['projectId', 'region'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback);
+                      return createAPIRequest(parameters, callback!);
                     }, /**
                         * dataproc.projects.regions.clusters.patch
                         * @desc Updates a cluster in a project.
@@ -572,7 +609,10 @@ function Dataproc(options) {
                         * @param {callback} callback The callback that handles the response.
                         * @return {object} Request object
                         */
-                    patch(params, options, callback) {
+                    patch(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
                       if (typeof options === 'function') {
                         callback = options;
                         options = {};
@@ -595,7 +635,7 @@ function Dataproc(options) {
                         pathParams: ['clusterName', 'projectId', 'region'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback);
+                      return createAPIRequest(parameters, callback!);
                     }, /**
                         * dataproc.projects.regions.clusters.setIamPolicy
                         * @desc Sets the access control policy on the specified
@@ -610,7 +650,10 @@ function Dataproc(options) {
                         * @param {callback} callback The callback that handles the response.
                         * @return {object} Request object
                         */
-                    setIamPolicy(params, options, callback) {
+                    setIamPolicy(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
                       if (typeof options === 'function') {
                         callback = options;
                         options = {};
@@ -632,7 +675,7 @@ function Dataproc(options) {
                         pathParams: ['resource'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback);
+                      return createAPIRequest(parameters, callback!);
                     }, /**
                         * dataproc.projects.regions.clusters.testIamPermissions
                         * @desc Returns permissions that a caller has on the
@@ -653,7 +696,10 @@ function Dataproc(options) {
                         * @param {callback} callback The callback that handles the response.
                         * @return {object} Request object
                         */
-                    testIamPermissions(params, options, callback) {
+                    testIamPermissions(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
                       if (typeof options === 'function') {
                         callback = options;
                         options = {};
@@ -675,7 +721,7 @@ function Dataproc(options) {
                         pathParams: ['resource'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback);
+                      return createAPIRequest(parameters, callback!);
                     }
 
                   },
@@ -697,7 +743,10 @@ function Dataproc(options) {
                  * @param {callback} callback The callback that handles the response.
                  * @return {object} Request object
                  */
-                cancel(params, options, callback) {
+                cancel(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -720,7 +769,7 @@ function Dataproc(options) {
                     pathParams: ['jobId', 'projectId', 'region'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * dataproc.projects.regions.jobs.delete
                     * @desc Deletes the job from the project. If the job is
@@ -737,7 +786,10 @@ function Dataproc(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                delete (params, options, callback) {
+                delete (
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -760,7 +812,7 @@ function Dataproc(options) {
                     pathParams: ['jobId', 'projectId', 'region'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * dataproc.projects.regions.jobs.get
                     * @desc Gets the resource representation for a job in a
@@ -776,7 +828,9 @@ function Dataproc(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                get(params, options, callback) {
+                get(params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -799,7 +853,7 @@ function Dataproc(options) {
                     pathParams: ['jobId', 'projectId', 'region'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * dataproc.projects.regions.jobs.list
                     * @desc Lists regions/{region}/jobs in a project.
@@ -818,7 +872,10 @@ function Dataproc(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                list(params, options, callback) {
+                list(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -841,7 +898,7 @@ function Dataproc(options) {
                     pathParams: ['projectId', 'region'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * dataproc.projects.regions.jobs.patch
                     * @desc Updates a job in a project.
@@ -858,7 +915,10 @@ function Dataproc(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                patch(params, options, callback) {
+                patch(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -881,7 +941,7 @@ function Dataproc(options) {
                     pathParams: ['jobId', 'projectId', 'region'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * dataproc.projects.regions.jobs.submit
                     * @desc Submits a job to a cluster.
@@ -896,7 +956,10 @@ function Dataproc(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                submit(params, options, callback) {
+                submit(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -919,7 +982,7 @@ function Dataproc(options) {
                     pathParams: ['projectId', 'region'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }
 
               },
@@ -946,7 +1009,10 @@ function Dataproc(options) {
                  * @param {callback} callback The callback that handles the response.
                  * @return {object} Request object
                  */
-                cancel(params, options, callback) {
+                cancel(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -967,7 +1033,7 @@ function Dataproc(options) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * dataproc.projects.regions.operations.delete
                     * @desc Deletes a long-running operation. This method
@@ -984,7 +1050,10 @@ function Dataproc(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                delete (params, options, callback) {
+                delete (
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1005,7 +1074,7 @@ function Dataproc(options) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * dataproc.projects.regions.operations.get
                     * @desc Gets the latest state of a long-running operation.
@@ -1020,7 +1089,9 @@ function Dataproc(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                get(params, options, callback) {
+                get(params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1041,7 +1112,7 @@ function Dataproc(options) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * dataproc.projects.regions.operations.list
                     * @desc Lists operations that match the specified filter in
@@ -1067,7 +1138,10 @@ function Dataproc(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                list(params, options, callback) {
+                list(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1088,7 +1162,7 @@ function Dataproc(options) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }
 
               },
@@ -1106,7 +1180,10 @@ function Dataproc(options) {
                  * @param {callback} callback The callback that handles the response.
                  * @return {object} Request object
                  */
-                create(params, options, callback) {
+                create(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1127,7 +1204,7 @@ function Dataproc(options) {
                     pathParams: ['parent'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * dataproc.projects.regions.workflowTemplates.delete
                     * @desc Deletes a workflow template. It does not cancel
@@ -1142,7 +1219,10 @@ function Dataproc(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                delete (params, options, callback) {
+                delete (
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1163,7 +1243,7 @@ function Dataproc(options) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * dataproc.projects.regions.workflowTemplates.get
                     * @desc Retrieves the latest workflow template.Can retrieve
@@ -1179,7 +1259,9 @@ function Dataproc(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                get(params, options, callback) {
+                get(params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1200,7 +1282,7 @@ function Dataproc(options) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * dataproc.projects.regions.workflowTemplates.instantiate
                     * @desc Instantiates a template and begins execution.The
@@ -1223,7 +1305,10 @@ function Dataproc(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                instantiate(params, options, callback) {
+                instantiate(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1244,7 +1329,7 @@ function Dataproc(options) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * dataproc.projects.regions.workflowTemplates.instantiateInline
                     * @desc Instantiates a template and begins execution.This
@@ -1270,7 +1355,10 @@ function Dataproc(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                instantiateInline(params, options, callback) {
+                instantiateInline(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1293,7 +1381,7 @@ function Dataproc(options) {
                     pathParams: ['parent'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * dataproc.projects.regions.workflowTemplates.list
                     * @desc Lists workflows that match the specified filter in
@@ -1309,7 +1397,10 @@ function Dataproc(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                list(params, options, callback) {
+                list(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1330,7 +1421,7 @@ function Dataproc(options) {
                     pathParams: ['parent'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * dataproc.projects.regions.workflowTemplates.update
                     * @desc Updates (replaces) workflow template. The updated
@@ -1346,7 +1437,10 @@ function Dataproc(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                update(params, options, callback) {
+                update(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1367,7 +1461,7 @@ function Dataproc(options) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }
 
               }

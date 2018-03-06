@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Service Usage API
@@ -33,7 +40,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Serviceusage
  */
-function Serviceusage(options) {
+function Serviceusage(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.operations = {
@@ -58,7 +65,9 @@ function Serviceusage(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params, options, callback) {
+    cancel(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -78,7 +87,7 @@ function Serviceusage(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * serviceusage.operations.delete
         * @desc Deletes a long-running operation. This method indicates that the
@@ -94,7 +103,9 @@ function Serviceusage(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -113,7 +124,7 @@ function Serviceusage(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * serviceusage.operations.get
         * @desc Gets the latest state of a long-running operation.  Clients can
@@ -128,7 +139,8 @@ function Serviceusage(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -147,7 +159,7 @@ function Serviceusage(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * serviceusage.operations.list
         * @desc Lists operations that match the specified filter in the request.
@@ -171,7 +183,9 @@ function Serviceusage(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -190,7 +204,7 @@ function Serviceusage(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -213,7 +227,9 @@ function Serviceusage(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    disable(params, options, callback) {
+    disable(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -233,7 +249,7 @@ function Serviceusage(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * serviceusage.services.enable
         * @desc Enable a service so it can be used with a project. See [Cloud
@@ -249,7 +265,9 @@ function Serviceusage(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    enable(params, options, callback) {
+    enable(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -269,7 +287,7 @@ function Serviceusage(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * serviceusage.services.get
         * @desc Returns the service definition and EnabledState for a given
@@ -283,7 +301,8 @@ function Serviceusage(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -302,7 +321,7 @@ function Serviceusage(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * serviceusage.services.listEnabled
         * @desc List enabled services.
@@ -317,7 +336,9 @@ function Serviceusage(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    listEnabled(params, options, callback) {
+    listEnabled(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -337,7 +358,7 @@ function Serviceusage(options) {
         pathParams: ['parent'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * serviceusage.services.search
         * @desc Search available services.  When no filter is specified, returns
@@ -354,7 +375,9 @@ function Serviceusage(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    search(params, options, callback) {
+    search(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -374,7 +397,7 @@ function Serviceusage(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

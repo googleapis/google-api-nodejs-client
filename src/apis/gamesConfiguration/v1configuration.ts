@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Play Game Services Publishing API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1configuration
  * @param {object=} options Options for Gamesconfiguration
  */
-function Gamesconfiguration(options) {
+function Gamesconfiguration(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.achievementConfigurations = {
@@ -47,7 +54,9 @@ function Gamesconfiguration(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -68,7 +77,7 @@ function Gamesconfiguration(options) {
         pathParams: ['achievementId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * gamesConfiguration.achievementConfigurations.get
         * @desc Retrieves the metadata of the achievement configuration with the
@@ -82,7 +91,8 @@ function Gamesconfiguration(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -103,7 +113,7 @@ function Gamesconfiguration(options) {
         pathParams: ['achievementId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * gamesConfiguration.achievementConfigurations.insert
         * @desc Insert a new achievement configuration in this application.
@@ -117,7 +127,9 @@ function Gamesconfiguration(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -139,7 +151,7 @@ function Gamesconfiguration(options) {
         pathParams: ['applicationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * gamesConfiguration.achievementConfigurations.list
         * @desc Returns a list of the achievement configurations in this
@@ -155,7 +167,9 @@ function Gamesconfiguration(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -177,7 +191,7 @@ function Gamesconfiguration(options) {
         pathParams: ['applicationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * gamesConfiguration.achievementConfigurations.patch
         * @desc Update the metadata of the achievement configuration with the
@@ -192,7 +206,9 @@ function Gamesconfiguration(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -213,7 +229,7 @@ function Gamesconfiguration(options) {
         pathParams: ['achievementId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * gamesConfiguration.achievementConfigurations.update
         * @desc Update the metadata of the achievement configuration with the
@@ -228,7 +244,9 @@ function Gamesconfiguration(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -249,7 +267,7 @@ function Gamesconfiguration(options) {
         pathParams: ['achievementId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -270,7 +288,9 @@ function Gamesconfiguration(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    upload(params, options, callback) {
+    upload(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -296,7 +316,7 @@ function Gamesconfiguration(options) {
         pathParams: ['imageType', 'resourceId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -313,7 +333,9 @@ function Gamesconfiguration(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -334,7 +356,7 @@ function Gamesconfiguration(options) {
         pathParams: ['leaderboardId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * gamesConfiguration.leaderboardConfigurations.get
         * @desc Retrieves the metadata of the leaderboard configuration with the
@@ -348,7 +370,8 @@ function Gamesconfiguration(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -369,7 +392,7 @@ function Gamesconfiguration(options) {
         pathParams: ['leaderboardId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * gamesConfiguration.leaderboardConfigurations.insert
         * @desc Insert a new leaderboard configuration in this application.
@@ -383,7 +406,9 @@ function Gamesconfiguration(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -405,7 +430,7 @@ function Gamesconfiguration(options) {
         pathParams: ['applicationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * gamesConfiguration.leaderboardConfigurations.list
         * @desc Returns a list of the leaderboard configurations in this
@@ -421,7 +446,9 @@ function Gamesconfiguration(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -443,7 +470,7 @@ function Gamesconfiguration(options) {
         pathParams: ['applicationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * gamesConfiguration.leaderboardConfigurations.patch
         * @desc Update the metadata of the leaderboard configuration with the
@@ -458,7 +485,9 @@ function Gamesconfiguration(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -479,7 +508,7 @@ function Gamesconfiguration(options) {
         pathParams: ['leaderboardId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * gamesConfiguration.leaderboardConfigurations.update
         * @desc Update the metadata of the leaderboard configuration with the
@@ -494,7 +523,9 @@ function Gamesconfiguration(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -515,7 +546,7 @@ function Gamesconfiguration(options) {
         pathParams: ['leaderboardId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

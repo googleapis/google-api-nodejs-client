@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * PageSpeed Insights API
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Pagespeedonline
  */
-function Pagespeedonline(options) {
+function Pagespeedonline(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.pagespeedapi = {
@@ -55,7 +62,9 @@ function Pagespeedonline(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    runpagespeed(params, options, callback) {
+    runpagespeed(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -75,7 +84,7 @@ function Pagespeedonline(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

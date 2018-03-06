@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Tag Manager API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2
  * @param {object=} options Options for Tagmanager
  */
-function Tagmanager(options) {
+function Tagmanager(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.accounts =
@@ -48,7 +55,8 @@ function Tagmanager(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -68,7 +76,7 @@ function Tagmanager(options) {
             pathParams: ['path'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * tagmanager.accounts.list
             * @desc Lists all GTM Accounts that a user has access to.
@@ -81,7 +89,9 @@ function Tagmanager(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -101,7 +111,7 @@ function Tagmanager(options) {
             pathParams: [],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * tagmanager.accounts.update
             * @desc Updates a GTM Account.
@@ -116,7 +126,9 @@ function Tagmanager(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        update(params, options, callback) {
+        update(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -136,7 +148,7 @@ function Tagmanager(options) {
             pathParams: ['path'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         },
         containers: {
           /**
@@ -152,7 +164,9 @@ function Tagmanager(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          create(params, options, callback) {
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -172,7 +186,7 @@ function Tagmanager(options) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * tagmanager.accounts.containers.delete
               * @desc Deletes a Container.
@@ -185,7 +199,9 @@ function Tagmanager(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          delete (params, options, callback) {
+          delete (
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -205,7 +221,7 @@ function Tagmanager(options) {
               pathParams: ['path'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * tagmanager.accounts.containers.get
               * @desc Gets a Container.
@@ -218,7 +234,8 @@ function Tagmanager(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -238,7 +255,7 @@ function Tagmanager(options) {
               pathParams: ['path'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * tagmanager.accounts.containers.list
               * @desc Lists all Containers that belongs to a GTM Account.
@@ -252,7 +269,9 @@ function Tagmanager(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -272,7 +291,7 @@ function Tagmanager(options) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * tagmanager.accounts.containers.update
               * @desc Updates a Container.
@@ -287,7 +306,9 @@ function Tagmanager(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          update(params, options, callback) {
+          update(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -307,7 +328,7 @@ function Tagmanager(options) {
               pathParams: ['path'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           },
           environments: {
             /**
@@ -323,7 +344,9 @@ function Tagmanager(options) {
              * @param {callback} callback The callback that handles the response.
              * @return {object} Request object
              */
-            create(params, options, callback) {
+            create(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -343,7 +366,7 @@ function Tagmanager(options) {
                 pathParams: ['parent'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * tagmanager.accounts.containers.environments.delete
                 * @desc Deletes a GTM Environment.
@@ -356,7 +379,9 @@ function Tagmanager(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            delete (params, options, callback) {
+            delete (
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -376,7 +401,7 @@ function Tagmanager(options) {
                 pathParams: ['path'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * tagmanager.accounts.containers.environments.get
                 * @desc Gets a GTM Environment.
@@ -389,7 +414,8 @@ function Tagmanager(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            get(params, options, callback) {
+            get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -409,7 +435,7 @@ function Tagmanager(options) {
                 pathParams: ['path'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * tagmanager.accounts.containers.environments.list
                 * @desc Lists all GTM Environments of a GTM Container.
@@ -423,7 +449,9 @@ function Tagmanager(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            list(params, options, callback) {
+            list(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -443,7 +471,7 @@ function Tagmanager(options) {
                 pathParams: ['parent'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * tagmanager.accounts.containers.environments.patch
                 * @desc Updates a GTM Environment. This method supports patch
@@ -459,7 +487,9 @@ function Tagmanager(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            patch(params, options, callback) {
+            patch(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -479,7 +509,7 @@ function Tagmanager(options) {
                 pathParams: ['path'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * tagmanager.accounts.containers.environments.reauthorize
                 * @desc Re-generates the authorization code for a GTM
@@ -494,7 +524,9 @@ function Tagmanager(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            reauthorize(params, options, callback) {
+            reauthorize(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -514,7 +546,7 @@ function Tagmanager(options) {
                 pathParams: ['path'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * tagmanager.accounts.containers.environments.update
                 * @desc Updates a GTM Environment.
@@ -529,7 +561,9 @@ function Tagmanager(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            update(params, options, callback) {
+            update(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -549,7 +583,7 @@ function Tagmanager(options) {
                 pathParams: ['path'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }
 
           },
@@ -566,7 +600,9 @@ function Tagmanager(options) {
              * @param {callback} callback The callback that handles the response.
              * @return {object} Request object
              */
-            delete (params, options, callback) {
+            delete (
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -586,7 +622,7 @@ function Tagmanager(options) {
                 pathParams: ['path'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * tagmanager.accounts.containers.versions.get
                 * @desc Gets a Container Version.
@@ -600,7 +636,8 @@ function Tagmanager(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            get(params, options, callback) {
+            get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -620,7 +657,7 @@ function Tagmanager(options) {
                 pathParams: ['path'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * tagmanager.accounts.containers.versions.live
                 * @desc Gets the live (i.e. published) container version
@@ -633,7 +670,9 @@ function Tagmanager(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            live(params, options, callback) {
+            live(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -653,7 +692,7 @@ function Tagmanager(options) {
                 pathParams: ['parent'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * tagmanager.accounts.containers.versions.publish
                 * @desc Publishes a Container Version.
@@ -667,7 +706,9 @@ function Tagmanager(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            publish(params, options, callback) {
+            publish(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -687,7 +728,7 @@ function Tagmanager(options) {
                 pathParams: ['path'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * tagmanager.accounts.containers.versions.set_latest
                 * @desc Sets the latest version used for synchronization of
@@ -701,7 +742,9 @@ function Tagmanager(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            set_latest(params, options, callback) {
+            set_latest(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -721,7 +764,7 @@ function Tagmanager(options) {
                 pathParams: ['path'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * tagmanager.accounts.containers.versions.undelete
                 * @desc Undeletes a Container Version.
@@ -734,7 +777,9 @@ function Tagmanager(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            undelete(params, options, callback) {
+            undelete(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -754,7 +799,7 @@ function Tagmanager(options) {
                 pathParams: ['path'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * tagmanager.accounts.containers.versions.update
                 * @desc Updates a Container Version.
@@ -769,7 +814,9 @@ function Tagmanager(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            update(params, options, callback) {
+            update(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -789,7 +836,7 @@ function Tagmanager(options) {
                 pathParams: ['path'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }
 
           },
@@ -806,7 +853,9 @@ function Tagmanager(options) {
              * @param {callback} callback The callback that handles the response.
              * @return {object} Request object
              */
-            latest(params, options, callback) {
+            latest(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -827,7 +876,7 @@ function Tagmanager(options) {
                 pathParams: ['parent'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }, /**
                 * tagmanager.accounts.containers.version_headers.list
                 * @desc Lists all Container Versions of a GTM Container.
@@ -842,7 +891,9 @@ function Tagmanager(options) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            list(params, options, callback) {
+            list(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -862,7 +913,7 @@ function Tagmanager(options) {
                 pathParams: ['parent'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }
 
           },
@@ -881,7 +932,10 @@ function Tagmanager(options) {
                  * @param {callback} callback The callback that handles the response.
                  * @return {object} Request object
                  */
-                create(params, options, callback) {
+                create(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -902,7 +956,7 @@ function Tagmanager(options) {
                     pathParams: ['parent'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * tagmanager.accounts.containers.workspaces.create_version
                     * @desc Creates a Container Version from the entities
@@ -919,7 +973,10 @@ function Tagmanager(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                create_version(params, options, callback) {
+                create_version(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -941,7 +998,7 @@ function Tagmanager(options) {
                     pathParams: ['path'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * tagmanager.accounts.containers.workspaces.delete
                     * @desc Deletes a Workspace.
@@ -954,7 +1011,10 @@ function Tagmanager(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                delete (params, options, callback) {
+                delete (
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -975,7 +1035,7 @@ function Tagmanager(options) {
                     pathParams: ['path'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * tagmanager.accounts.containers.workspaces.get
                     * @desc Gets a Workspace.
@@ -988,7 +1048,9 @@ function Tagmanager(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                get(params, options, callback) {
+                get(params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1009,7 +1071,7 @@ function Tagmanager(options) {
                     pathParams: ['path'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * tagmanager.accounts.containers.workspaces.getProposal
                     * @desc Gets a GTM Workspace Proposal.
@@ -1023,7 +1085,10 @@ function Tagmanager(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                getProposal(params, options, callback) {
+                getProposal(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1044,7 +1109,7 @@ function Tagmanager(options) {
                     pathParams: ['path'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * tagmanager.accounts.containers.workspaces.getStatus
                     * @desc Finds conflicting and modified entities in the
@@ -1058,7 +1123,10 @@ function Tagmanager(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                getStatus(params, options, callback) {
+                getStatus(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1079,7 +1147,7 @@ function Tagmanager(options) {
                     pathParams: ['path'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * tagmanager.accounts.containers.workspaces.list
                     * @desc Lists all Workspaces that belong to a GTM Container.
@@ -1093,7 +1161,10 @@ function Tagmanager(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                list(params, options, callback) {
+                list(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1114,7 +1185,7 @@ function Tagmanager(options) {
                     pathParams: ['parent'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * tagmanager.accounts.containers.workspaces.quick_preview
                     * @desc Quick previews a workspace by creating a fake
@@ -1130,7 +1201,10 @@ function Tagmanager(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                quick_preview(params, options, callback) {
+                quick_preview(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1151,7 +1225,7 @@ function Tagmanager(options) {
                     pathParams: ['path'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * tagmanager.accounts.containers.workspaces.resolve_conflict
                     * @desc Resolves a merge conflict for a workspace entity by
@@ -1168,7 +1242,10 @@ function Tagmanager(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                resolve_conflict(params, options, callback) {
+                resolve_conflict(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1190,7 +1267,7 @@ function Tagmanager(options) {
                     pathParams: ['path'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * tagmanager.accounts.containers.workspaces.sync
                     * @desc Syncs a workspace to the latest container version by
@@ -1205,7 +1282,10 @@ function Tagmanager(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                sync(params, options, callback) {
+                sync(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1226,7 +1306,7 @@ function Tagmanager(options) {
                     pathParams: ['path'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * tagmanager.accounts.containers.workspaces.update
                     * @desc Updates a Workspace.
@@ -1241,7 +1321,10 @@ function Tagmanager(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                update(params, options, callback) {
+                update(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1262,7 +1345,7 @@ function Tagmanager(options) {
                     pathParams: ['path'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * tagmanager.accounts.containers.workspaces.updateProposal
                     * @desc Updates a GTM Workspace Proposal.
@@ -1277,7 +1360,10 @@ function Tagmanager(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                updateProposal(params, options, callback) {
+                updateProposal(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1298,7 +1384,7 @@ function Tagmanager(options) {
                     pathParams: ['path'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 },
                 built_in_variables: {
                   /**
@@ -1315,7 +1401,10 @@ function Tagmanager(options) {
                    * @param {callback} callback The callback that handles the response.
                    * @return {object} Request object
                    */
-                  create(params, options, callback) {
+                  create(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -1337,7 +1426,7 @@ function Tagmanager(options) {
                       pathParams: ['parent'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }, /**
                       * tagmanager.accounts.containers.workspaces.built_in_variables.delete
                       * @desc Deletes one or more GTM Built-In Variables.
@@ -1352,7 +1441,10 @@ function Tagmanager(options) {
                       * @param {callback} callback The callback that handles the response.
                       * @return {object} Request object
                       */
-                  delete (params, options, callback) {
+                  delete (
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -1373,7 +1465,7 @@ function Tagmanager(options) {
                       pathParams: ['path'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }, /**
                       * tagmanager.accounts.containers.workspaces.built_in_variables.list
                       * @desc Lists all the enabled Built-In Variables of a GTM
@@ -1389,7 +1481,10 @@ function Tagmanager(options) {
                       * @param {callback} callback The callback that handles the response.
                       * @return {object} Request object
                       */
-                  list(params, options, callback) {
+                  list(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -1411,7 +1506,7 @@ function Tagmanager(options) {
                       pathParams: ['parent'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }, /**
                       * tagmanager.accounts.containers.workspaces.built_in_variables.revert
                       * @desc Reverts changes to a GTM Built-In Variables in a
@@ -1427,7 +1522,10 @@ function Tagmanager(options) {
                       * @param {callback} callback The callback that handles the response.
                       * @return {object} Request object
                       */
-                  revert(params, options, callback) {
+                  revert(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -1450,7 +1548,7 @@ function Tagmanager(options) {
                       pathParams: ['path'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }
 
                 },
@@ -1469,7 +1567,10 @@ function Tagmanager(options) {
                    * @param {callback} callback The callback that handles the response.
                    * @return {object} Request object
                    */
-                  create(params, options, callback) {
+                  create(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -1490,7 +1591,7 @@ function Tagmanager(options) {
                       pathParams: ['parent'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }, /**
                       * tagmanager.accounts.containers.workspaces.folders.delete
                       * @desc Deletes a GTM Folder.
@@ -1504,7 +1605,10 @@ function Tagmanager(options) {
                       * @param {callback} callback The callback that handles the response.
                       * @return {object} Request object
                       */
-                  delete (params, options, callback) {
+                  delete (
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -1525,7 +1629,7 @@ function Tagmanager(options) {
                       pathParams: ['path'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }, /**
                       * tagmanager.accounts.containers.workspaces.folders.entities
                       * @desc List all entities in a GTM Folder.
@@ -1540,7 +1644,10 @@ function Tagmanager(options) {
                       * @param {callback} callback The callback that handles the response.
                       * @return {object} Request object
                       */
-                  entities(params, options, callback) {
+                  entities(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -1561,7 +1668,7 @@ function Tagmanager(options) {
                       pathParams: ['path'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }, /**
                       * tagmanager.accounts.containers.workspaces.folders.get
                       * @desc Gets a GTM Folder.
@@ -1575,7 +1682,9 @@ function Tagmanager(options) {
                       * @param {callback} callback The callback that handles the response.
                       * @return {object} Request object
                       */
-                  get(params, options, callback) {
+                  get(params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -1596,7 +1705,7 @@ function Tagmanager(options) {
                       pathParams: ['path'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }, /**
                       * tagmanager.accounts.containers.workspaces.folders.list
                       * @desc Lists all GTM Folders of a Container.
@@ -1611,7 +1720,10 @@ function Tagmanager(options) {
                       * @param {callback} callback The callback that handles the response.
                       * @return {object} Request object
                       */
-                  list(params, options, callback) {
+                  list(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -1632,7 +1744,7 @@ function Tagmanager(options) {
                       pathParams: ['parent'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }, /**
                       * tagmanager.accounts.containers.workspaces.folders.move_entities_to_folder
                       * @desc Moves entities to a GTM Folder.
@@ -1650,7 +1762,10 @@ function Tagmanager(options) {
                       * @param {callback} callback The callback that handles the response.
                       * @return {object} Request object
                       */
-                  move_entities_to_folder(params, options, callback) {
+                  move_entities_to_folder(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -1673,7 +1788,7 @@ function Tagmanager(options) {
                       pathParams: ['path'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }, /**
                       * tagmanager.accounts.containers.workspaces.folders.revert
                       * @desc Reverts changes to a GTM Folder in a GTM
@@ -1689,7 +1804,10 @@ function Tagmanager(options) {
                       * @param {callback} callback The callback that handles the response.
                       * @return {object} Request object
                       */
-                  revert(params, options, callback) {
+                  revert(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -1710,7 +1828,7 @@ function Tagmanager(options) {
                       pathParams: ['path'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }, /**
                       * tagmanager.accounts.containers.workspaces.folders.update
                       * @desc Updates a GTM Folder.
@@ -1726,7 +1844,10 @@ function Tagmanager(options) {
                       * @param {callback} callback The callback that handles the response.
                       * @return {object} Request object
                       */
-                  update(params, options, callback) {
+                  update(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -1747,7 +1868,7 @@ function Tagmanager(options) {
                       pathParams: ['path'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }
 
                 },
@@ -1766,7 +1887,10 @@ function Tagmanager(options) {
                    * @param {callback} callback The callback that handles the response.
                    * @return {object} Request object
                    */
-                  create(params, options, callback) {
+                  create(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -1787,7 +1911,7 @@ function Tagmanager(options) {
                       pathParams: ['parent'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }, /**
                       * tagmanager.accounts.containers.workspaces.proposal.delete
                       * @desc Deletes a GTM Workspace Proposal.
@@ -1801,7 +1925,10 @@ function Tagmanager(options) {
                       * @param {callback} callback The callback that handles the response.
                       * @return {object} Request object
                       */
-                  delete (params, options, callback) {
+                  delete (
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -1822,7 +1949,7 @@ function Tagmanager(options) {
                       pathParams: ['path'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }
 
                 },
@@ -1842,7 +1969,10 @@ function Tagmanager(options) {
                        * @param {callback} callback The callback that handles the response.
                        * @return {object} Request object
                        */
-                      create(params, options, callback) {
+                      create(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
                         if (typeof options === 'function') {
                           callback = options;
                           options = {};
@@ -1863,7 +1993,7 @@ function Tagmanager(options) {
                           pathParams: ['parent'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback);
+                        return createAPIRequest(parameters, callback!);
                       }, /**
                           * tagmanager.accounts.containers.workspaces.tags.delete
                           * @desc Deletes a GTM Tag.
@@ -1877,7 +2007,10 @@ function Tagmanager(options) {
                           * @param {callback} callback The callback that handles the response.
                           * @return {object} Request object
                           */
-                      delete (params, options, callback) {
+                      delete (
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
                         if (typeof options === 'function') {
                           callback = options;
                           options = {};
@@ -1898,7 +2031,7 @@ function Tagmanager(options) {
                           pathParams: ['path'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback);
+                        return createAPIRequest(parameters, callback!);
                       }, /**
                           * tagmanager.accounts.containers.workspaces.tags.get
                           * @desc Gets a GTM Tag.
@@ -1912,7 +2045,9 @@ function Tagmanager(options) {
                           * @param {callback} callback The callback that handles the response.
                           * @return {object} Request object
                           */
-                      get(params, options, callback) {
+                      get(params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
                         if (typeof options === 'function') {
                           callback = options;
                           options = {};
@@ -1933,7 +2068,7 @@ function Tagmanager(options) {
                           pathParams: ['path'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback);
+                        return createAPIRequest(parameters, callback!);
                       }, /**
                           * tagmanager.accounts.containers.workspaces.tags.list
                           * @desc Lists all GTM Tags of a Container.
@@ -1948,7 +2083,10 @@ function Tagmanager(options) {
                           * @param {callback} callback The callback that handles the response.
                           * @return {object} Request object
                           */
-                      list(params, options, callback) {
+                      list(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
                         if (typeof options === 'function') {
                           callback = options;
                           options = {};
@@ -1969,7 +2107,7 @@ function Tagmanager(options) {
                           pathParams: ['parent'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback);
+                        return createAPIRequest(parameters, callback!);
                       }, /**
                           * tagmanager.accounts.containers.workspaces.tags.revert
                           * @desc Reverts changes to a GTM Tag in a GTM
@@ -1985,7 +2123,10 @@ function Tagmanager(options) {
                           * @param {callback} callback The callback that handles the response.
                           * @return {object} Request object
                           */
-                      revert(params, options, callback) {
+                      revert(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
                         if (typeof options === 'function') {
                           callback = options;
                           options = {};
@@ -2006,7 +2147,7 @@ function Tagmanager(options) {
                           pathParams: ['path'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback);
+                        return createAPIRequest(parameters, callback!);
                       }, /**
                           * tagmanager.accounts.containers.workspaces.tags.update
                           * @desc Updates a GTM Tag.
@@ -2022,7 +2163,10 @@ function Tagmanager(options) {
                           * @param {callback} callback The callback that handles the response.
                           * @return {object} Request object
                           */
-                      update(params, options, callback) {
+                      update(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
                         if (typeof options === 'function') {
                           callback = options;
                           options = {};
@@ -2043,7 +2187,7 @@ function Tagmanager(options) {
                           pathParams: ['path'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback);
+                        return createAPIRequest(parameters, callback!);
                       }
 
                     },
@@ -2062,7 +2206,10 @@ function Tagmanager(options) {
                    * @param {callback} callback The callback that handles the response.
                    * @return {object} Request object
                    */
-                  create(params, options, callback) {
+                  create(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -2083,7 +2230,7 @@ function Tagmanager(options) {
                       pathParams: ['parent'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }, /**
                       * tagmanager.accounts.containers.workspaces.triggers.delete
                       * @desc Deletes a GTM Trigger.
@@ -2097,7 +2244,10 @@ function Tagmanager(options) {
                       * @param {callback} callback The callback that handles the response.
                       * @return {object} Request object
                       */
-                  delete (params, options, callback) {
+                  delete (
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -2118,7 +2268,7 @@ function Tagmanager(options) {
                       pathParams: ['path'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }, /**
                       * tagmanager.accounts.containers.workspaces.triggers.get
                       * @desc Gets a GTM Trigger.
@@ -2132,7 +2282,9 @@ function Tagmanager(options) {
                       * @param {callback} callback The callback that handles the response.
                       * @return {object} Request object
                       */
-                  get(params, options, callback) {
+                  get(params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -2153,7 +2305,7 @@ function Tagmanager(options) {
                       pathParams: ['path'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }, /**
                       * tagmanager.accounts.containers.workspaces.triggers.list
                       * @desc Lists all GTM Triggers of a Container.
@@ -2168,7 +2320,10 @@ function Tagmanager(options) {
                       * @param {callback} callback The callback that handles the response.
                       * @return {object} Request object
                       */
-                  list(params, options, callback) {
+                  list(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -2189,7 +2344,7 @@ function Tagmanager(options) {
                       pathParams: ['parent'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }, /**
                       * tagmanager.accounts.containers.workspaces.triggers.revert
                       * @desc Reverts changes to a GTM Trigger in a GTM
@@ -2205,7 +2360,10 @@ function Tagmanager(options) {
                       * @param {callback} callback The callback that handles the response.
                       * @return {object} Request object
                       */
-                  revert(params, options, callback) {
+                  revert(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -2226,7 +2384,7 @@ function Tagmanager(options) {
                       pathParams: ['path'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }, /**
                       * tagmanager.accounts.containers.workspaces.triggers.update
                       * @desc Updates a GTM Trigger.
@@ -2242,7 +2400,10 @@ function Tagmanager(options) {
                       * @param {callback} callback The callback that handles the response.
                       * @return {object} Request object
                       */
-                  update(params, options, callback) {
+                  update(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -2263,7 +2424,7 @@ function Tagmanager(options) {
                       pathParams: ['path'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }
 
                 },
@@ -2282,7 +2443,10 @@ function Tagmanager(options) {
                    * @param {callback} callback The callback that handles the response.
                    * @return {object} Request object
                    */
-                  create(params, options, callback) {
+                  create(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -2303,7 +2467,7 @@ function Tagmanager(options) {
                       pathParams: ['parent'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }, /**
                       * tagmanager.accounts.containers.workspaces.variables.delete
                       * @desc Deletes a GTM Variable.
@@ -2317,7 +2481,10 @@ function Tagmanager(options) {
                       * @param {callback} callback The callback that handles the response.
                       * @return {object} Request object
                       */
-                  delete (params, options, callback) {
+                  delete (
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -2338,7 +2505,7 @@ function Tagmanager(options) {
                       pathParams: ['path'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }, /**
                       * tagmanager.accounts.containers.workspaces.variables.get
                       * @desc Gets a GTM Variable.
@@ -2352,7 +2519,9 @@ function Tagmanager(options) {
                       * @param {callback} callback The callback that handles the response.
                       * @return {object} Request object
                       */
-                  get(params, options, callback) {
+                  get(params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -2373,7 +2542,7 @@ function Tagmanager(options) {
                       pathParams: ['path'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }, /**
                       * tagmanager.accounts.containers.workspaces.variables.list
                       * @desc Lists all GTM Variables of a Container.
@@ -2388,7 +2557,10 @@ function Tagmanager(options) {
                       * @param {callback} callback The callback that handles the response.
                       * @return {object} Request object
                       */
-                  list(params, options, callback) {
+                  list(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -2409,7 +2581,7 @@ function Tagmanager(options) {
                       pathParams: ['parent'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }, /**
                       * tagmanager.accounts.containers.workspaces.variables.revert
                       * @desc Reverts changes to a GTM Variable in a GTM
@@ -2425,7 +2597,10 @@ function Tagmanager(options) {
                       * @param {callback} callback The callback that handles the response.
                       * @return {object} Request object
                       */
-                  revert(params, options, callback) {
+                  revert(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -2446,7 +2621,7 @@ function Tagmanager(options) {
                       pathParams: ['path'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }, /**
                       * tagmanager.accounts.containers.workspaces.variables.update
                       * @desc Updates a GTM Variable.
@@ -2462,7 +2637,10 @@ function Tagmanager(options) {
                       * @param {callback} callback The callback that handles the response.
                       * @return {object} Request object
                       */
-                  update(params, options, callback) {
+                  update(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -2483,7 +2661,7 @@ function Tagmanager(options) {
                       pathParams: ['path'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }
 
                 }
@@ -2503,7 +2681,9 @@ function Tagmanager(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          create(params, options, callback) {
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -2523,7 +2703,7 @@ function Tagmanager(options) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * tagmanager.accounts.user_permissions.delete
               * @desc Removes a user from the account, revoking access to it and
@@ -2537,7 +2717,9 @@ function Tagmanager(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          delete (params, options, callback) {
+          delete (
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -2557,7 +2739,7 @@ function Tagmanager(options) {
               pathParams: ['path'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * tagmanager.accounts.user_permissions.get
               * @desc Gets a user's Account & Container access.
@@ -2570,7 +2752,8 @@ function Tagmanager(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -2590,7 +2773,7 @@ function Tagmanager(options) {
               pathParams: ['path'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * tagmanager.accounts.user_permissions.list
               * @desc List all users that have access to the account along with
@@ -2605,7 +2788,9 @@ function Tagmanager(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -2625,7 +2810,7 @@ function Tagmanager(options) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * tagmanager.accounts.user_permissions.update
               * @desc Updates a user's Account & Container access.
@@ -2639,7 +2824,9 @@ function Tagmanager(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          update(params, options, callback) {
+          update(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -2659,7 +2846,7 @@ function Tagmanager(options) {
               pathParams: ['path'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }
 
         }

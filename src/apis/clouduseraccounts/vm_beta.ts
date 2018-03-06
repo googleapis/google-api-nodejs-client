@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Cloud User Accounts API
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation vm_beta
  * @param {object=} options Options for Clouduseraccounts
  */
-function Clouduseraccounts(options) {
+function Clouduseraccounts(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.globalAccountsOperations = {
@@ -49,7 +56,9 @@ function Clouduseraccounts(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -71,7 +80,7 @@ function Clouduseraccounts(options) {
         pathParams: ['operation', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * clouduseraccounts.globalAccountsOperations.get
         * @desc Retrieves the specified operation resource.
@@ -85,7 +94,8 @@ function Clouduseraccounts(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -107,7 +117,7 @@ function Clouduseraccounts(options) {
         pathParams: ['operation', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * clouduseraccounts.globalAccountsOperations.list
         * @desc Retrieves the list of operation resources contained within the
@@ -125,7 +135,9 @@ function Clouduseraccounts(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -147,7 +159,7 @@ function Clouduseraccounts(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -166,7 +178,9 @@ function Clouduseraccounts(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addMember(params, options, callback) {
+    addMember(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -188,7 +202,7 @@ function Clouduseraccounts(options) {
         pathParams: ['groupName', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * clouduseraccounts.groups.delete
         * @desc Deletes the specified Group resource.
@@ -202,7 +216,9 @@ function Clouduseraccounts(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -224,7 +240,7 @@ function Clouduseraccounts(options) {
         pathParams: ['groupName', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * clouduseraccounts.groups.get
         * @desc Returns the specified Group resource.
@@ -238,7 +254,8 @@ function Clouduseraccounts(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -260,7 +277,7 @@ function Clouduseraccounts(options) {
         pathParams: ['groupName', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * clouduseraccounts.groups.insert
         * @desc Creates a Group resource in the specified project using the data
@@ -275,7 +292,9 @@ function Clouduseraccounts(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -297,7 +316,7 @@ function Clouduseraccounts(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * clouduseraccounts.groups.list
         * @desc Retrieves the list of groups contained within the specified
@@ -315,7 +334,9 @@ function Clouduseraccounts(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -337,7 +358,7 @@ function Clouduseraccounts(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * clouduseraccounts.groups.removeMember
         * @desc Removes users from the specified group.
@@ -352,7 +373,9 @@ function Clouduseraccounts(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    removeMember(params, options, callback) {
+    removeMember(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -374,7 +397,7 @@ function Clouduseraccounts(options) {
         pathParams: ['groupName', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -396,7 +419,9 @@ function Clouduseraccounts(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getAuthorizedKeysView(params, options, callback) {
+    getAuthorizedKeysView(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -418,7 +443,7 @@ function Clouduseraccounts(options) {
         pathParams: ['project', 'user', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * clouduseraccounts.linux.getLinuxAccountViews
         * @desc Retrieves a list of user accounts for an instance within a
@@ -438,7 +463,9 @@ function Clouduseraccounts(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getLinuxAccountViews(params, options, callback) {
+    getLinuxAccountViews(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -460,7 +487,7 @@ function Clouduseraccounts(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -480,7 +507,9 @@ function Clouduseraccounts(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addPublicKey(params, options, callback) {
+    addPublicKey(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -502,7 +531,7 @@ function Clouduseraccounts(options) {
         pathParams: ['project', 'user'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * clouduseraccounts.users.delete
         * @desc Deletes the specified User resource.
@@ -516,7 +545,9 @@ function Clouduseraccounts(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -538,7 +569,7 @@ function Clouduseraccounts(options) {
         pathParams: ['project', 'user'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * clouduseraccounts.users.get
         * @desc Returns the specified User resource.
@@ -552,7 +583,8 @@ function Clouduseraccounts(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -574,7 +606,7 @@ function Clouduseraccounts(options) {
         pathParams: ['project', 'user'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * clouduseraccounts.users.insert
         * @desc Creates a User resource in the specified project using the data
@@ -589,7 +621,9 @@ function Clouduseraccounts(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -611,7 +645,7 @@ function Clouduseraccounts(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * clouduseraccounts.users.list
         * @desc Retrieves a list of users contained within the specified
@@ -629,7 +663,9 @@ function Clouduseraccounts(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -651,7 +687,7 @@ function Clouduseraccounts(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * clouduseraccounts.users.removePublicKey
         * @desc Removes the specified public key from the user.
@@ -666,7 +702,9 @@ function Clouduseraccounts(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    removePublicKey(params, options, callback) {
+    removePublicKey(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -688,7 +726,7 @@ function Clouduseraccounts(options) {
         pathParams: ['project', 'user'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

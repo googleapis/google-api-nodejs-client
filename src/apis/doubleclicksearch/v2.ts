@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * DoubleClick Search API
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2
  * @param {object=} options Options for Doubleclicksearch
  */
-function Doubleclicksearch(options) {
+function Doubleclicksearch(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.conversion = {
@@ -59,7 +66,8 @@ function Doubleclicksearch(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -84,7 +92,7 @@ function Doubleclicksearch(options) {
         pathParams: ['advertiserId', 'agencyId', 'engineAccountId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * doubleclicksearch.conversion.insert
         * @desc Inserts a batch of new conversions into DoubleClick Search.
@@ -97,7 +105,9 @@ function Doubleclicksearch(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -117,7 +127,7 @@ function Doubleclicksearch(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * doubleclicksearch.conversion.patch
         * @desc Updates a batch of conversions in DoubleClick Search. This
@@ -138,7 +148,9 @@ function Doubleclicksearch(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -161,7 +173,7 @@ function Doubleclicksearch(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * doubleclicksearch.conversion.update
         * @desc Updates a batch of conversions in DoubleClick Search.
@@ -174,7 +186,9 @@ function Doubleclicksearch(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -194,7 +208,7 @@ function Doubleclicksearch(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * doubleclicksearch.conversion.updateAvailability
         * @desc Updates the availabilities of a batch of floodlight activities
@@ -208,7 +222,9 @@ function Doubleclicksearch(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    updateAvailability(params, options, callback) {
+    updateAvailability(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -229,7 +245,7 @@ function Doubleclicksearch(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -246,7 +262,9 @@ function Doubleclicksearch(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    generate(params, options, callback) {
+    generate(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -266,7 +284,7 @@ function Doubleclicksearch(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * doubleclicksearch.reports.get
         * @desc Polls for the status of a report request.
@@ -279,7 +297,8 @@ function Doubleclicksearch(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -299,7 +318,7 @@ function Doubleclicksearch(options) {
         pathParams: ['reportId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * doubleclicksearch.reports.getFile
         * @desc Downloads a report file encoded in UTF-8.
@@ -313,7 +332,9 @@ function Doubleclicksearch(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getFile(params, options, callback) {
+    getFile(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -335,7 +356,7 @@ function Doubleclicksearch(options) {
         pathParams: ['reportFragment', 'reportId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * doubleclicksearch.reports.request
         * @desc Inserts a report request into the reporting system.
@@ -348,7 +369,9 @@ function Doubleclicksearch(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    request(params, options, callback) {
+    request(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -368,7 +391,7 @@ function Doubleclicksearch(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -386,7 +409,9 @@ function Doubleclicksearch(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -408,7 +433,7 @@ function Doubleclicksearch(options) {
         pathParams: ['advertiserId', 'agencyId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

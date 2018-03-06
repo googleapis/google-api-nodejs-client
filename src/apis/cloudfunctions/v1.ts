@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Cloud Functions API
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Cloudfunctions
  */
-function Cloudfunctions(options) {
+function Cloudfunctions(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.operations = {
@@ -50,7 +57,8 @@ function Cloudfunctions(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -70,7 +78,7 @@ function Cloudfunctions(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * cloudfunctions.operations.list
         * @desc Lists operations that match the specified filter in the request.
@@ -94,7 +102,9 @@ function Cloudfunctions(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -114,7 +124,7 @@ function Cloudfunctions(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -135,7 +145,9 @@ function Cloudfunctions(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -156,7 +168,7 @@ function Cloudfunctions(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       },
       functions: {
         /**
@@ -173,7 +185,9 @@ function Cloudfunctions(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        call(params, options, callback) {
+        call(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -194,7 +208,7 @@ function Cloudfunctions(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * cloudfunctions.projects.locations.functions.create
             * @desc Creates a new function. If a function with the given name
@@ -210,7 +224,9 @@ function Cloudfunctions(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        create(params, options, callback) {
+        create(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -231,7 +247,7 @@ function Cloudfunctions(options) {
             pathParams: ['location'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * cloudfunctions.projects.locations.functions.delete
             * @desc Deletes a function with the given name from the specified
@@ -246,7 +262,9 @@ function Cloudfunctions(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -266,7 +284,7 @@ function Cloudfunctions(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * cloudfunctions.projects.locations.functions.generateDownloadUrl
             * @desc Returns a signed URL for downloading deployed function
@@ -285,7 +303,9 @@ function Cloudfunctions(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        generateDownloadUrl(params, options, callback) {
+        generateDownloadUrl(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -306,7 +326,7 @@ function Cloudfunctions(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * cloudfunctions.projects.locations.functions.generateUploadUrl
             * @desc Returns a signed URL for uploading a function source code.
@@ -331,7 +351,9 @@ function Cloudfunctions(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        generateUploadUrl(params, options, callback) {
+        generateUploadUrl(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -352,7 +374,7 @@ function Cloudfunctions(options) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * cloudfunctions.projects.locations.functions.get
             * @desc Returns a function with the given name from the requested
@@ -366,7 +388,8 @@ function Cloudfunctions(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -386,7 +409,7 @@ function Cloudfunctions(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * cloudfunctions.projects.locations.functions.list
             * @desc Returns a list of functions that belong to the requested
@@ -402,7 +425,9 @@ function Cloudfunctions(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -423,7 +448,7 @@ function Cloudfunctions(options) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * cloudfunctions.projects.locations.functions.patch
             * @desc Updates existing function.
@@ -438,7 +463,9 @@ function Cloudfunctions(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        patch(params, options, callback) {
+        patch(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -458,7 +485,7 @@ function Cloudfunctions(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       }

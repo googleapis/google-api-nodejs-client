@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Cloud Natural Language API
@@ -33,7 +40,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta2
  * @param {object=} options Options for Language
  */
-function Language(options) {
+function Language(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.documents = {
@@ -51,7 +58,9 @@ function Language(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    analyzeEntities(params, options, callback) {
+    analyzeEntities(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -71,7 +80,7 @@ function Language(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * language.documents.analyzeEntitySentiment
         * @desc Finds entities, similar to AnalyzeEntities in the text and
@@ -85,7 +94,9 @@ function Language(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    analyzeEntitySentiment(params, options, callback) {
+    analyzeEntitySentiment(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -105,7 +116,7 @@ function Language(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * language.documents.analyzeSentiment
         * @desc Analyzes the sentiment of the provided text.
@@ -118,7 +129,9 @@ function Language(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    analyzeSentiment(params, options, callback) {
+    analyzeSentiment(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -138,7 +151,7 @@ function Language(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * language.documents.analyzeSyntax
         * @desc Analyzes the syntax of the text and provides sentence boundaries
@@ -153,7 +166,9 @@ function Language(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    analyzeSyntax(params, options, callback) {
+    analyzeSyntax(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -173,7 +188,7 @@ function Language(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * language.documents.annotateText
         * @desc A convenience method that provides all syntax, sentiment,
@@ -187,7 +202,9 @@ function Language(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    annotateText(params, options, callback) {
+    annotateText(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -207,7 +224,7 @@ function Language(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * language.documents.classifyText
         * @desc Classifies a document into categories.
@@ -220,7 +237,9 @@ function Language(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    classifyText(params, options, callback) {
+    classifyText(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -240,7 +259,7 @@ function Language(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

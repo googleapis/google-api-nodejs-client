@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Cloud TPU API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1alpha1
  * @param {object=} options Options for Tpu
  */
-function Tpu(options) {
+function Tpu(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.projects = {
@@ -48,7 +55,8 @@ function Tpu(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -68,7 +76,7 @@ function Tpu(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * tpu.projects.locations.list
           * @desc Lists information about the supported locations for this
@@ -85,7 +93,9 @@ function Tpu(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -105,7 +115,7 @@ function Tpu(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       },
       nodes: {
         /**
@@ -122,7 +132,9 @@ function Tpu(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create(params, options, callback) {
+        create(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -142,7 +154,7 @@ function Tpu(options) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * tpu.projects.locations.nodes.delete
             * @desc Deletes a node.
@@ -155,7 +167,9 @@ function Tpu(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -175,7 +189,7 @@ function Tpu(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * tpu.projects.locations.nodes.get
             * @desc Gets the details of a node.
@@ -188,7 +202,8 @@ function Tpu(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -208,7 +223,7 @@ function Tpu(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * tpu.projects.locations.nodes.list
             * @desc Lists nodes.
@@ -223,7 +238,9 @@ function Tpu(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -243,7 +260,7 @@ function Tpu(options) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * tpu.projects.locations.nodes.reimage
             * @desc Reimages a node's OS.
@@ -257,7 +274,9 @@ function Tpu(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        reimage(params, options, callback) {
+        reimage(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -277,7 +296,7 @@ function Tpu(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * tpu.projects.locations.nodes.reset
             * @desc Resets a node, which stops and starts the VM.
@@ -291,7 +310,9 @@ function Tpu(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        reset(params, options, callback) {
+        reset(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -311,7 +332,7 @@ function Tpu(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * tpu.projects.locations.nodes.start
             * @desc Starts a node.
@@ -325,7 +346,9 @@ function Tpu(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        start(params, options, callback) {
+        start(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -345,7 +368,7 @@ function Tpu(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * tpu.projects.locations.nodes.stop
             * @desc Stops a node.
@@ -359,7 +382,9 @@ function Tpu(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        stop(params, options, callback) {
+        stop(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -379,7 +404,7 @@ function Tpu(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       },
@@ -405,7 +430,9 @@ function Tpu(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        cancel(params, options, callback) {
+        cancel(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -425,7 +452,7 @@ function Tpu(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * tpu.projects.locations.operations.delete
             * @desc Deletes a long-running operation. This method indicates that
@@ -441,7 +468,9 @@ function Tpu(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -461,7 +490,7 @@ function Tpu(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * tpu.projects.locations.operations.get
             * @desc Gets the latest state of a long-running operation.  Clients
@@ -476,7 +505,8 @@ function Tpu(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -496,7 +526,7 @@ function Tpu(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * tpu.projects.locations.operations.list
             * @desc Lists operations that match the specified filter in the
@@ -521,7 +551,9 @@ function Tpu(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -541,7 +573,7 @@ function Tpu(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       },
@@ -558,7 +590,8 @@ function Tpu(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -578,7 +611,7 @@ function Tpu(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * tpu.projects.locations.tensorflowVersions.list
             * @desc Lists TensorFlow versions supported by this API.
@@ -595,7 +628,9 @@ function Tpu(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -615,7 +650,7 @@ function Tpu(options) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       }

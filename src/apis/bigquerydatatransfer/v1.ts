@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * BigQuery Data Transfer API
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Bigquerydatatransfer
  */
-function Bigquerydatatransfer(options) {
+function Bigquerydatatransfer(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.projects = {
@@ -54,7 +61,9 @@ function Bigquerydatatransfer(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      checkValidCreds(params, options, callback) {
+      checkValidCreds(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -75,7 +84,7 @@ function Bigquerydatatransfer(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * bigquerydatatransfer.projects.dataSources.get
           * @desc Retrieves a supported data source and returns its settings,
@@ -89,7 +98,8 @@ function Bigquerydatatransfer(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -109,7 +119,7 @@ function Bigquerydatatransfer(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * bigquerydatatransfer.projects.dataSources.list
           * @desc Lists supported data sources and returns their settings, which
@@ -125,7 +135,9 @@ function Bigquerydatatransfer(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -146,7 +158,7 @@ function Bigquerydatatransfer(options) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -163,7 +175,8 @@ function Bigquerydatatransfer(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -183,7 +196,7 @@ function Bigquerydatatransfer(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * bigquerydatatransfer.projects.locations.list
           * @desc Lists information about the supported locations for this
@@ -200,7 +213,9 @@ function Bigquerydatatransfer(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -221,7 +236,7 @@ function Bigquerydatatransfer(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       },
       dataSources: {
         /**
@@ -242,7 +257,9 @@ function Bigquerydatatransfer(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        checkValidCreds(params, options, callback) {
+        checkValidCreds(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -263,7 +280,7 @@ function Bigquerydatatransfer(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * bigquerydatatransfer.projects.locations.dataSources.get
             * @desc Retrieves a supported data source and returns its settings,
@@ -277,7 +294,8 @@ function Bigquerydatatransfer(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -297,7 +315,7 @@ function Bigquerydatatransfer(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * bigquerydatatransfer.projects.locations.dataSources.list
             * @desc Lists supported data sources and returns their settings,
@@ -313,7 +331,9 @@ function Bigquerydatatransfer(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -334,7 +354,7 @@ function Bigquerydatatransfer(options) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       },
@@ -353,7 +373,9 @@ function Bigquerydatatransfer(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create(params, options, callback) {
+        create(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -374,7 +396,7 @@ function Bigquerydatatransfer(options) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * bigquerydatatransfer.projects.locations.transferConfigs.delete
             * @desc Deletes a data transfer configuration, including any
@@ -389,7 +411,9 @@ function Bigquerydatatransfer(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -409,7 +433,7 @@ function Bigquerydatatransfer(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * bigquerydatatransfer.projects.locations.transferConfigs.get
             * @desc Returns information about a data transfer config.
@@ -422,7 +446,8 @@ function Bigquerydatatransfer(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -442,7 +467,7 @@ function Bigquerydatatransfer(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * bigquerydatatransfer.projects.locations.transferConfigs.list
             * @desc Returns information about all data transfers in the project.
@@ -459,7 +484,9 @@ function Bigquerydatatransfer(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -480,7 +507,7 @@ function Bigquerydatatransfer(options) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * bigquerydatatransfer.projects.locations.transferConfigs.patch
             * @desc Updates a data transfer configuration. All fields must be
@@ -498,7 +525,9 @@ function Bigquerydatatransfer(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        patch(params, options, callback) {
+        patch(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -518,7 +547,7 @@ function Bigquerydatatransfer(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * bigquerydatatransfer.projects.locations.transferConfigs.scheduleRuns
             * @desc Creates transfer runs for a time range [start_time,
@@ -536,7 +565,9 @@ function Bigquerydatatransfer(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        scheduleRuns(params, options, callback) {
+        scheduleRuns(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -557,7 +588,7 @@ function Bigquerydatatransfer(options) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         },
         runs: {
           /**
@@ -573,7 +604,9 @@ function Bigquerydatatransfer(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          delete (params, options, callback) {
+          delete (
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -593,7 +626,7 @@ function Bigquerydatatransfer(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * bigquerydatatransfer.projects.locations.transferConfigs.runs.get
               * @desc Returns information about the particular transfer run.
@@ -607,7 +640,8 @@ function Bigquerydatatransfer(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -627,7 +661,7 @@ function Bigquerydatatransfer(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * bigquerydatatransfer.projects.locations.transferConfigs.runs.list
               * @desc Returns information about running and completed jobs.
@@ -645,7 +679,9 @@ function Bigquerydatatransfer(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -666,7 +702,7 @@ function Bigquerydatatransfer(options) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           },
           transferLogs: {
             /**
@@ -685,7 +721,9 @@ function Bigquerydatatransfer(options) {
              * @param {callback} callback The callback that handles the response.
              * @return {object} Request object
              */
-            list(params, options, callback) {
+            list(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -706,7 +744,7 @@ function Bigquerydatatransfer(options) {
                 pathParams: ['parent'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }
 
           }
@@ -728,7 +766,9 @@ function Bigquerydatatransfer(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create(params, options, callback) {
+      create(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -749,7 +789,7 @@ function Bigquerydatatransfer(options) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * bigquerydatatransfer.projects.transferConfigs.delete
           * @desc Deletes a data transfer configuration, including any
@@ -763,7 +803,9 @@ function Bigquerydatatransfer(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (params, options, callback) {
+      delete (
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -783,7 +825,7 @@ function Bigquerydatatransfer(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * bigquerydatatransfer.projects.transferConfigs.get
           * @desc Returns information about a data transfer config.
@@ -796,7 +838,8 @@ function Bigquerydatatransfer(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -816,7 +859,7 @@ function Bigquerydatatransfer(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * bigquerydatatransfer.projects.transferConfigs.list
           * @desc Returns information about all data transfers in the project.
@@ -832,7 +875,9 @@ function Bigquerydatatransfer(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -853,7 +898,7 @@ function Bigquerydatatransfer(options) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * bigquerydatatransfer.projects.transferConfigs.patch
           * @desc Updates a data transfer configuration. All fields must be set,
@@ -870,7 +915,9 @@ function Bigquerydatatransfer(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      patch(params, options, callback) {
+      patch(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -890,7 +937,7 @@ function Bigquerydatatransfer(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * bigquerydatatransfer.projects.transferConfigs.scheduleRuns
           * @desc Creates transfer runs for a time range [start_time, end_time].
@@ -907,7 +954,9 @@ function Bigquerydatatransfer(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      scheduleRuns(params, options, callback) {
+      scheduleRuns(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -928,7 +977,7 @@ function Bigquerydatatransfer(options) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       },
       runs: {
         /**
@@ -943,7 +992,9 @@ function Bigquerydatatransfer(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -963,7 +1014,7 @@ function Bigquerydatatransfer(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * bigquerydatatransfer.projects.transferConfigs.runs.get
             * @desc Returns information about the particular transfer run.
@@ -976,7 +1027,8 @@ function Bigquerydatatransfer(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -996,7 +1048,7 @@ function Bigquerydatatransfer(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * bigquerydatatransfer.projects.transferConfigs.runs.list
             * @desc Returns information about running and completed jobs.
@@ -1013,7 +1065,9 @@ function Bigquerydatatransfer(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -1034,7 +1088,7 @@ function Bigquerydatatransfer(options) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         },
         transferLogs: {
           /**
@@ -1053,7 +1107,9 @@ function Bigquerydatatransfer(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1074,7 +1130,7 @@ function Bigquerydatatransfer(options) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }
 
         }

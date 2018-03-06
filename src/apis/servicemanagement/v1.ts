@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Service Management API
@@ -33,7 +40,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Servicemanagement
  */
-function Servicemanagement(options) {
+function Servicemanagement(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.operations = {
@@ -51,7 +58,8 @@ function Servicemanagement(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -71,7 +79,7 @@ function Servicemanagement(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.operations.list
         * @desc Lists service operations that match the specified filter in the
@@ -88,7 +96,9 @@ function Servicemanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -108,7 +118,7 @@ function Servicemanagement(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -126,7 +136,9 @@ function Servicemanagement(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params, options, callback) {
+    create(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -146,7 +158,7 @@ function Servicemanagement(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.services.delete
         * @desc Deletes a managed service. This method will change the service
@@ -163,7 +175,9 @@ function Servicemanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -184,7 +198,7 @@ function Servicemanagement(options) {
         pathParams: ['serviceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.services.disable
         * @desc Disables a service for a project, so it can no longer be be used
@@ -201,7 +215,9 @@ function Servicemanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    disable(params, options, callback) {
+    disable(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -222,7 +238,7 @@ function Servicemanagement(options) {
         pathParams: ['serviceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.services.enable
         * @desc Enables a service for a project, so it can be used for the
@@ -239,7 +255,9 @@ function Servicemanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    enable(params, options, callback) {
+    enable(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -260,7 +278,7 @@ function Servicemanagement(options) {
         pathParams: ['serviceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.services.generateConfigReport
         * @desc Generates and returns a report (errors, warnings and changes
@@ -282,7 +300,9 @@ function Servicemanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    generateConfigReport(params, options, callback) {
+    generateConfigReport(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -303,7 +323,7 @@ function Servicemanagement(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.services.get
         * @desc Gets a managed service. Authentication is required unless the
@@ -317,7 +337,8 @@ function Servicemanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -338,7 +359,7 @@ function Servicemanagement(options) {
         pathParams: ['serviceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.services.getConfig
         * @desc Gets a service configuration (version) for a managed service.
@@ -353,7 +374,9 @@ function Servicemanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getConfig(params, options, callback) {
+    getConfig(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -374,7 +397,7 @@ function Servicemanagement(options) {
         pathParams: ['serviceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.services.getIamPolicy
         * @desc Gets the access control policy for a resource. Returns an empty
@@ -389,7 +412,9 @@ function Servicemanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getIamPolicy(params, options, callback) {
+    getIamPolicy(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -410,7 +435,7 @@ function Servicemanagement(options) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.services.list
         * @desc Lists managed services.  Returns all public services. For
@@ -431,7 +456,9 @@ function Servicemanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -451,7 +478,7 @@ function Servicemanagement(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.services.setIamPolicy
         * @desc Sets the access control policy on the specified resource.
@@ -466,7 +493,9 @@ function Servicemanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setIamPolicy(params, options, callback) {
+    setIamPolicy(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -487,7 +516,7 @@ function Servicemanagement(options) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.services.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -506,7 +535,9 @@ function Servicemanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -527,7 +558,7 @@ function Servicemanagement(options) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.services.undelete
         * @desc Revives a previously deleted managed service. The method
@@ -543,7 +574,9 @@ function Servicemanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    undelete(params, options, callback) {
+    undelete(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -564,7 +597,7 @@ function Servicemanagement(options) {
         pathParams: ['serviceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     },
     configs: {
       /**
@@ -583,7 +616,9 @@ function Servicemanagement(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create(params, options, callback) {
+      create(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -604,7 +639,7 @@ function Servicemanagement(options) {
           pathParams: ['serviceName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * servicemanagement.services.configs.get
           * @desc Gets a service configuration (version) for a managed service.
@@ -619,7 +654,8 @@ function Servicemanagement(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -640,7 +676,7 @@ function Servicemanagement(options) {
           pathParams: ['configId', 'serviceName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * servicemanagement.services.configs.list
           * @desc Lists the history of the service configuration for a managed
@@ -656,7 +692,9 @@ function Servicemanagement(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -677,7 +715,7 @@ function Servicemanagement(options) {
           pathParams: ['serviceName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * servicemanagement.services.configs.submit
           * @desc Creates a new service configuration (version) for a managed
@@ -697,7 +735,9 @@ function Servicemanagement(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      submit(params, options, callback) {
+      submit(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -718,7 +758,7 @@ function Servicemanagement(options) {
           pathParams: ['serviceName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -737,7 +777,9 @@ function Servicemanagement(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      getIamPolicy(params, options, callback) {
+      getIamPolicy(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -758,7 +800,7 @@ function Servicemanagement(options) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * servicemanagement.services.consumers.setIamPolicy
           * @desc Sets the access control policy on the specified resource.
@@ -773,7 +815,9 @@ function Servicemanagement(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      setIamPolicy(params, options, callback) {
+      setIamPolicy(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -794,7 +838,7 @@ function Servicemanagement(options) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * servicemanagement.services.consumers.testIamPermissions
           * @desc Returns permissions that a caller has on the specified
@@ -813,7 +857,9 @@ function Servicemanagement(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      testIamPermissions(params, options, callback) {
+      testIamPermissions(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -834,7 +880,7 @@ function Servicemanagement(options) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -858,7 +904,9 @@ function Servicemanagement(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create(params, options, callback) {
+      create(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -879,7 +927,7 @@ function Servicemanagement(options) {
           pathParams: ['serviceName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * servicemanagement.services.rollouts.get
           * @desc Gets a service configuration rollout.
@@ -893,7 +941,8 @@ function Servicemanagement(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -915,7 +964,7 @@ function Servicemanagement(options) {
           pathParams: ['rolloutId', 'serviceName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * servicemanagement.services.rollouts.list
           * @desc Lists the history of the service configuration rollouts for a
@@ -932,7 +981,9 @@ function Servicemanagement(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -953,7 +1004,7 @@ function Servicemanagement(options) {
           pathParams: ['serviceName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }

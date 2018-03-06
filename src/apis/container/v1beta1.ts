@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Kubernetes Engine API
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta1
  * @param {object=} options Options for Container
  */
-function Container(options) {
+function Container(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.projects = {
@@ -51,7 +58,9 @@ function Container(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      getServerConfig(params, options, callback) {
+      getServerConfig(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -71,7 +80,7 @@ function Container(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       },
       clusters: {
         /**
@@ -87,7 +96,9 @@ function Container(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        completeIpRotation(params, options, callback) {
+        completeIpRotation(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -108,7 +119,7 @@ function Container(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.locations.clusters.create
             * @desc Creates a cluster, consisting of the specified number and
@@ -130,7 +141,9 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        create(params, options, callback) {
+        create(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -151,7 +164,7 @@ function Container(options) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.locations.clusters.delete
             * @desc Deletes the cluster, including the Kubernetes endpoint and
@@ -172,7 +185,9 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -193,7 +208,7 @@ function Container(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.locations.clusters.get
             * @desc Gets the details of a specific cluster.
@@ -209,7 +224,8 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -230,7 +246,7 @@ function Container(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.locations.clusters.list
             * @desc Lists all clusters owned by a project in either the
@@ -246,7 +262,9 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -267,7 +285,7 @@ function Container(options) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.locations.clusters.setAddons
             * @desc Sets the addons of a specific cluster.
@@ -281,7 +299,9 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setAddons(params, options, callback) {
+        setAddons(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -302,7 +322,7 @@ function Container(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.locations.clusters.setLegacyAbac
             * @desc Enables or disables the ABAC authorization mechanism on a
@@ -317,7 +337,9 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setLegacyAbac(params, options, callback) {
+        setLegacyAbac(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -338,7 +360,7 @@ function Container(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.locations.clusters.setLocations
             * @desc Sets the locations of a specific cluster.
@@ -352,7 +374,9 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setLocations(params, options, callback) {
+        setLocations(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -373,7 +397,7 @@ function Container(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.locations.clusters.setLogging
             * @desc Sets the logging service of a specific cluster.
@@ -387,7 +411,9 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setLogging(params, options, callback) {
+        setLogging(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -408,7 +434,7 @@ function Container(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.locations.clusters.setMaintenancePolicy
             * @desc Sets the maintenance policy for a cluster.
@@ -422,7 +448,9 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setMaintenancePolicy(params, options, callback) {
+        setMaintenancePolicy(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -443,7 +471,7 @@ function Container(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.locations.clusters.setMasterAuth
             * @desc Used to set master auth materials. Currently supports :-
@@ -460,7 +488,9 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setMasterAuth(params, options, callback) {
+        setMasterAuth(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -481,7 +511,7 @@ function Container(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.locations.clusters.setMonitoring
             * @desc Sets the monitoring service of a specific cluster.
@@ -495,7 +525,9 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setMonitoring(params, options, callback) {
+        setMonitoring(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -516,7 +548,7 @@ function Container(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.locations.clusters.setNetworkPolicy
             * @desc Enables/Disables Network Policy for a cluster.
@@ -530,7 +562,9 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setNetworkPolicy(params, options, callback) {
+        setNetworkPolicy(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -551,7 +585,7 @@ function Container(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.locations.clusters.setResourceLabels
             * @desc Sets labels on a cluster.
@@ -565,7 +599,9 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setResourceLabels(params, options, callback) {
+        setResourceLabels(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -586,7 +622,7 @@ function Container(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.locations.clusters.startIpRotation
             * @desc Start master IP rotation.
@@ -600,7 +636,9 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        startIpRotation(params, options, callback) {
+        startIpRotation(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -621,7 +659,7 @@ function Container(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.locations.clusters.update
             * @desc Updates the settings of a specific cluster.
@@ -635,7 +673,9 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        update(params, options, callback) {
+        update(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -656,7 +696,7 @@ function Container(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.locations.clusters.updateMaster
             * @desc Updates the master of a specific cluster.
@@ -670,7 +710,9 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        updateMaster(params, options, callback) {
+        updateMaster(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -691,7 +733,7 @@ function Container(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         },
         nodePools:
             {
@@ -708,7 +750,9 @@ function Container(options) {
                * @param {callback} callback The callback that handles the response.
                * @return {object} Request object
                */
-              create(params, options, callback) {
+              create(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -729,7 +773,7 @@ function Container(options) {
                   pathParams: ['parent'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * container.projects.locations.clusters.nodePools.delete
                   * @desc Deletes a node pool from a cluster.
@@ -747,7 +791,9 @@ function Container(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              delete (params, options, callback) {
+              delete (
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -768,7 +814,7 @@ function Container(options) {
                   pathParams: ['name'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * container.projects.locations.clusters.nodePools.get
                   * @desc Retrieves the node pool requested.
@@ -785,7 +831,8 @@ function Container(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              get(params, options, callback) {
+              get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -806,7 +853,7 @@ function Container(options) {
                   pathParams: ['name'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * container.projects.locations.clusters.nodePools.list
                   * @desc Lists the node pools for a cluster.
@@ -822,7 +869,9 @@ function Container(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              list(params, options, callback) {
+              list(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -843,7 +892,7 @@ function Container(options) {
                   pathParams: ['parent'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * container.projects.locations.clusters.nodePools.rollback
                   * @desc Roll back the previously Aborted or Failed NodePool
@@ -860,7 +909,9 @@ function Container(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              rollback(params, options, callback) {
+              rollback(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -881,7 +932,7 @@ function Container(options) {
                   pathParams: ['name'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * container.projects.locations.clusters.nodePools.setAutoscaling
                   * @desc Sets the autoscaling settings of a specific node pool.
@@ -896,7 +947,9 @@ function Container(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              setAutoscaling(params, options, callback) {
+              setAutoscaling(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -917,7 +970,7 @@ function Container(options) {
                   pathParams: ['name'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * container.projects.locations.clusters.nodePools.setManagement
                   * @desc Sets the NodeManagement options for a node pool.
@@ -932,7 +985,9 @@ function Container(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              setManagement(params, options, callback) {
+              setManagement(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -953,7 +1008,7 @@ function Container(options) {
                   pathParams: ['name'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * container.projects.locations.clusters.nodePools.setSize
                   * @desc Sets the size of a specific node pool.
@@ -968,7 +1023,9 @@ function Container(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              setSize(params, options, callback) {
+              setSize(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -989,7 +1046,7 @@ function Container(options) {
                   pathParams: ['name'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * container.projects.locations.clusters.nodePools.update
                   * @desc Updates the version and/or image type of a specific
@@ -1005,7 +1062,9 @@ function Container(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              update(params, options, callback) {
+              update(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -1026,7 +1085,7 @@ function Container(options) {
                   pathParams: ['name'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }
 
             }
@@ -1045,7 +1104,9 @@ function Container(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        cancel(params, options, callback) {
+        cancel(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -1066,7 +1127,7 @@ function Container(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.locations.operations.get
             * @desc Gets the specified operation.
@@ -1082,7 +1143,8 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -1103,7 +1165,7 @@ function Container(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.locations.operations.list
             * @desc Lists all operations in a project in a specific zone or all
@@ -1119,7 +1181,9 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -1140,7 +1204,7 @@ function Container(options) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       }
@@ -1160,7 +1224,9 @@ function Container(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      getServerconfig(params, options, callback) {
+      getServerconfig(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -1181,7 +1247,7 @@ function Container(options) {
           pathParams: ['projectId', 'zone'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       },
       clusters: {
         /**
@@ -1199,7 +1265,9 @@ function Container(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        addons(params, options, callback) {
+        addons(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -1222,7 +1290,7 @@ function Container(options) {
             pathParams: ['clusterId', 'projectId', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.zones.clusters.completeIpRotation
             * @desc Completes master IP rotation.
@@ -1238,7 +1306,9 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        completeIpRotation(params, options, callback) {
+        completeIpRotation(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -1261,7 +1331,7 @@ function Container(options) {
             pathParams: ['clusterId', 'projectId', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.zones.clusters.create
             * @desc Creates a cluster, consisting of the specified number and
@@ -1284,7 +1354,9 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        create(params, options, callback) {
+        create(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -1306,7 +1378,7 @@ function Container(options) {
             pathParams: ['projectId', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.zones.clusters.delete
             * @desc Deletes the cluster, including the Kubernetes endpoint and
@@ -1327,7 +1399,9 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -1350,7 +1424,7 @@ function Container(options) {
             pathParams: ['clusterId', 'projectId', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.zones.clusters.get
             * @desc Gets the details of a specific cluster.
@@ -1366,7 +1440,8 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -1389,7 +1464,7 @@ function Container(options) {
             pathParams: ['clusterId', 'projectId', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.zones.clusters.legacyAbac
             * @desc Enables or disables the ABAC authorization mechanism on a
@@ -1406,7 +1481,9 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        legacyAbac(params, options, callback) {
+        legacyAbac(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -1429,7 +1506,7 @@ function Container(options) {
             pathParams: ['clusterId', 'projectId', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.zones.clusters.list
             * @desc Lists all clusters owned by a project in either the
@@ -1445,7 +1522,9 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -1467,7 +1546,7 @@ function Container(options) {
             pathParams: ['projectId', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.zones.clusters.locations
             * @desc Sets the locations of a specific cluster.
@@ -1483,7 +1562,9 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        locations(params, options, callback) {
+        locations(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -1506,7 +1587,7 @@ function Container(options) {
             pathParams: ['clusterId', 'projectId', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.zones.clusters.logging
             * @desc Sets the logging service of a specific cluster.
@@ -1522,7 +1603,9 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        logging(params, options, callback) {
+        logging(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -1545,7 +1628,7 @@ function Container(options) {
             pathParams: ['clusterId', 'projectId', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.zones.clusters.master
             * @desc Updates the master of a specific cluster.
@@ -1561,7 +1644,9 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        master(params, options, callback) {
+        master(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -1584,7 +1669,7 @@ function Container(options) {
             pathParams: ['clusterId', 'projectId', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.zones.clusters.monitoring
             * @desc Sets the monitoring service of a specific cluster.
@@ -1600,7 +1685,9 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        monitoring(params, options, callback) {
+        monitoring(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -1623,7 +1710,7 @@ function Container(options) {
             pathParams: ['clusterId', 'projectId', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.zones.clusters.resourceLabels
             * @desc Sets labels on a cluster.
@@ -1639,7 +1726,9 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        resourceLabels(params, options, callback) {
+        resourceLabels(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -1662,7 +1751,7 @@ function Container(options) {
             pathParams: ['clusterId', 'projectId', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.zones.clusters.setMaintenancePolicy
             * @desc Sets the maintenance policy for a cluster.
@@ -1678,7 +1767,9 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setMaintenancePolicy(params, options, callback) {
+        setMaintenancePolicy(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -1701,7 +1792,7 @@ function Container(options) {
             pathParams: ['clusterId', 'projectId', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.zones.clusters.setMasterAuth
             * @desc Used to set master auth materials. Currently supports :-
@@ -1720,7 +1811,9 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setMasterAuth(params, options, callback) {
+        setMasterAuth(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -1743,7 +1836,7 @@ function Container(options) {
             pathParams: ['clusterId', 'projectId', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.zones.clusters.setNetworkPolicy
             * @desc Enables/Disables Network Policy for a cluster.
@@ -1759,7 +1852,9 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setNetworkPolicy(params, options, callback) {
+        setNetworkPolicy(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -1782,7 +1877,7 @@ function Container(options) {
             pathParams: ['clusterId', 'projectId', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.zones.clusters.startIpRotation
             * @desc Start master IP rotation.
@@ -1798,7 +1893,9 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        startIpRotation(params, options, callback) {
+        startIpRotation(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -1821,7 +1918,7 @@ function Container(options) {
             pathParams: ['clusterId', 'projectId', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.zones.clusters.update
             * @desc Updates the settings of a specific cluster.
@@ -1837,7 +1934,9 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        update(params, options, callback) {
+        update(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -1860,7 +1959,7 @@ function Container(options) {
             pathParams: ['clusterId', 'projectId', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         },
         nodePools: {
           /**
@@ -1879,7 +1978,9 @@ function Container(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          autoscaling(params, options, callback) {
+          autoscaling(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1902,7 +2003,7 @@ function Container(options) {
               pathParams: ['clusterId', 'nodePoolId', 'projectId', 'zone'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * container.projects.zones.clusters.nodePools.create
               * @desc Creates a node pool for a cluster.
@@ -1918,7 +2019,9 @@ function Container(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          create(params, options, callback) {
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1941,7 +2044,7 @@ function Container(options) {
               pathParams: ['clusterId', 'projectId', 'zone'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * container.projects.zones.clusters.nodePools.delete
               * @desc Deletes a node pool from a cluster.
@@ -1958,7 +2061,9 @@ function Container(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          delete (params, options, callback) {
+          delete (
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1981,7 +2086,7 @@ function Container(options) {
               pathParams: ['clusterId', 'nodePoolId', 'projectId', 'zone'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * container.projects.zones.clusters.nodePools.get
               * @desc Retrieves the node pool requested.
@@ -1998,7 +2103,8 @@ function Container(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -2021,7 +2127,7 @@ function Container(options) {
               pathParams: ['clusterId', 'nodePoolId', 'projectId', 'zone'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * container.projects.zones.clusters.nodePools.list
               * @desc Lists the node pools for a cluster.
@@ -2037,7 +2143,9 @@ function Container(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -2060,7 +2168,7 @@ function Container(options) {
               pathParams: ['clusterId', 'projectId', 'zone'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * container.projects.zones.clusters.nodePools.rollback
               * @desc Roll back the previously Aborted or Failed NodePool
@@ -2079,7 +2187,9 @@ function Container(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          rollback(params, options, callback) {
+          rollback(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -2102,7 +2212,7 @@ function Container(options) {
               pathParams: ['clusterId', 'nodePoolId', 'projectId', 'zone'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * container.projects.zones.clusters.nodePools.setManagement
               * @desc Sets the NodeManagement options for a node pool.
@@ -2119,7 +2229,9 @@ function Container(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          setManagement(params, options, callback) {
+          setManagement(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -2142,7 +2254,7 @@ function Container(options) {
               pathParams: ['clusterId', 'nodePoolId', 'projectId', 'zone'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * container.projects.zones.clusters.nodePools.setSize
               * @desc Sets the size of a specific node pool.
@@ -2159,7 +2271,9 @@ function Container(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          setSize(params, options, callback) {
+          setSize(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -2182,7 +2296,7 @@ function Container(options) {
               pathParams: ['clusterId', 'nodePoolId', 'projectId', 'zone'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * container.projects.zones.clusters.nodePools.update
               * @desc Updates the version and/or image type of a specific node
@@ -2200,7 +2314,9 @@ function Container(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          update(params, options, callback) {
+          update(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -2223,7 +2339,7 @@ function Container(options) {
               pathParams: ['clusterId', 'nodePoolId', 'projectId', 'zone'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }
 
         }
@@ -2244,7 +2360,9 @@ function Container(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        cancel(params, options, callback) {
+        cancel(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -2267,7 +2385,7 @@ function Container(options) {
             pathParams: ['operationId', 'projectId', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.zones.operations.get
             * @desc Gets the specified operation.
@@ -2283,7 +2401,8 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -2306,7 +2425,7 @@ function Container(options) {
             pathParams: ['operationId', 'projectId', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * container.projects.zones.operations.list
             * @desc Lists all operations in a project in a specific zone or all
@@ -2322,7 +2441,9 @@ function Container(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -2344,7 +2465,7 @@ function Container(options) {
             pathParams: ['projectId', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       }

@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Civic Information API
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2
  * @param {object=} options Options for Civicinfo
  */
-function Civicinfo(options) {
+function Civicinfo(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.divisions = {
@@ -49,7 +56,9 @@ function Civicinfo(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search(params, options, callback) {
+    search(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -69,7 +78,7 @@ function Civicinfo(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -86,7 +95,9 @@ function Civicinfo(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    electionQuery(params, options, callback) {
+    electionQuery(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -106,7 +117,7 @@ function Civicinfo(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * civicinfo.elections.voterInfoQuery
         * @desc Looks up information relevant to a voter based on the voter's
@@ -124,7 +135,9 @@ function Civicinfo(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    voterInfoQuery(params, options, callback) {
+    voterInfoQuery(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -144,7 +157,7 @@ function Civicinfo(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -166,7 +179,9 @@ function Civicinfo(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    representativeInfoByAddress(params, options, callback) {
+    representativeInfoByAddress(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -186,7 +201,7 @@ function Civicinfo(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * civicinfo.representatives.representativeInfoByDivision
         * @desc Looks up representative information for a single geographic
@@ -204,7 +219,9 @@ function Civicinfo(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    representativeInfoByDivision(params, options, callback) {
+    representativeInfoByDivision(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -224,7 +241,7 @@ function Civicinfo(options) {
         pathParams: ['ocdId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
