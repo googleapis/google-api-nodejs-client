@@ -49,7 +49,7 @@ node_modules/.link:
 
 test: coverage check
 
-test-samples: node_modules/.link
+test-samples: node_modules/.link build
 	mocha build/test/samples
 
 watch:

@@ -21,8 +21,6 @@ const {google} = require('googleapis');
 const sampleClient = require('../sampleclient');
 const fs = require('fs');
 
-const FILENAME = process.argv[2];
-
 // initialize the Youtube API library
 const youtube = google.youtube({
   version: 'v3',
@@ -30,8 +28,9 @@ const youtube = google.youtube({
 });
 
 // very basic example of uploading a video to youtube
-function uploadVideo () {
-  const req = youtube.videos.insert({
+function runSample (fileName, callback) {
+  const fileSize = fs.statSync(fileName).size;
+  youtube.videos.insert({
     part: 'id,snippet,status',
     notifySubscribers: false,
     resource: {
@@ -44,33 +43,25 @@ function uploadVideo () {
       }
     },
     media: {
-      body: fs.createReadStream(FILENAME)
+      body: fs.createReadStream(fileName)
     }
-  }, (err, data) => {
+  }, {
+    // Use the `onUploadProgress` event from Axios to track the
+    // number of bytes uploaded to this point.
+    onUploadProgress: evt => {
+      const progress = (evt.bytesRead / fileSize) * 100;
+      process.stdout.clearLine();
+      process.stdout.cursorTo(0);
+      process.stdout.write(`${Math.round(progress)}% complete`);
+    }
+  }, (err, res) => {
     if (err) {
       throw err;
     }
-    console.log(data);
-    process.exit();
+    console.log('\n\n');
+    console.log(res.data);
+    callback(res.data);
   });
-
-  const fileSize = fs.statSync(FILENAME).size;
-
-  // show some progress
-  const id = setInterval(() => {
-    const uploadedBytes = req.req.connection._bytesDispatched;
-    const uploadedMBytes = uploadedBytes / 1000000;
-    const progress = uploadedBytes > fileSize
-      ? 100 : (uploadedBytes / fileSize) * 100;
-    process.stdout.clearLine();
-    process.stdout.cursorTo(0);
-    process.stdout.write(uploadedMBytes.toFixed(2) + ' MBs uploaded. ' +
-     progress.toFixed(2) + '% completed.');
-    if (progress === 100) {
-      process.stdout.write('\nDone uploading, waiting for response...\n');
-      clearInterval(id);
-    }
-  }, 250);
 }
 
 const scopes = [
@@ -78,9 +69,17 @@ const scopes = [
   'https://www.googleapis.com/auth/youtube'
 ];
 
-sampleClient.authenticate(scopes, err => {
-  if (err) {
-    throw err;
-  }
-  uploadVideo();
-});
+if (module === require.main) {
+  const fileName = process.argv[2];
+  sampleClient.authenticate(scopes, err => {
+    if (err) {
+      throw err;
+    }
+    runSample(fileName, () => { /* sample complete */ });
+  });
+}
+
+module.exports = {
+  runSample,
+  client: sampleClient.oAuth2Client
+};
