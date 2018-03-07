@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Knowledge Graph Search API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Kgsearch
  */
-function Kgsearch(options) {
+function Kgsearch(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.entities = {
@@ -55,7 +62,9 @@ function Kgsearch(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search(params, options, callback) {
+    search(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -75,7 +84,7 @@ function Kgsearch(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

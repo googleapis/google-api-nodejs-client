@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Stackdriver Monitoring API
@@ -33,7 +40,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v3
  * @param {object=} options Options for Monitoring
  */
-function Monitoring(options) {
+function Monitoring(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.projects =
@@ -100,7 +107,9 @@ function Monitoring(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          create(params, options, callback) {
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -121,7 +130,7 @@ function Monitoring(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }
 
         },
@@ -184,7 +193,9 @@ function Monitoring(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          create(params, options, callback) {
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -205,7 +216,7 @@ function Monitoring(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * monitoring.projects.groups.delete
               * @desc Deletes an existing group.
@@ -263,7 +274,9 @@ function Monitoring(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          delete (params, options, callback) {
+          delete (
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -283,7 +296,7 @@ function Monitoring(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * monitoring.projects.groups.get
               * @desc Gets a single group.
@@ -340,7 +353,8 @@ function Monitoring(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -360,7 +374,7 @@ function Monitoring(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * monitoring.projects.groups.list
               * @desc Lists the existing groups.
@@ -432,7 +446,9 @@ function Monitoring(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -453,7 +469,7 @@ function Monitoring(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * monitoring.projects.groups.update
               * @desc Updates an existing group. You can change any group
@@ -520,7 +536,9 @@ function Monitoring(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          update(params, options, callback) {
+          update(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -540,7 +558,7 @@ function Monitoring(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           },
           members: {
             /**
@@ -614,7 +632,9 @@ function Monitoring(options) {
              * @param {callback} callback The callback that handles the response.
              * @return {object} Request object
              */
-            list(params, options, callback) {
+            list(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
                 callback = options;
                 options = {};
@@ -635,7 +655,7 @@ function Monitoring(options) {
                 pathParams: ['name'],
                 context: self
               };
-              return createAPIRequest(parameters, callback);
+              return createAPIRequest(parameters, callback!);
             }
 
           }
@@ -700,7 +720,9 @@ function Monitoring(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          create(params, options, callback) {
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -721,7 +743,7 @@ function Monitoring(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * monitoring.projects.metricDescriptors.delete
               * @desc Deletes a metric descriptor. Only user-created custom
@@ -784,7 +806,9 @@ function Monitoring(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          delete (params, options, callback) {
+          delete (
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -804,7 +828,7 @@ function Monitoring(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * monitoring.projects.metricDescriptors.get
               * @desc Gets a single metric descriptor. This method does not
@@ -868,7 +892,8 @@ function Monitoring(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -888,7 +913,7 @@ function Monitoring(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * monitoring.projects.metricDescriptors.list
               * @desc Lists metric descriptors that match a filter. This method
@@ -960,7 +985,9 @@ function Monitoring(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -981,7 +1008,7 @@ function Monitoring(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }
 
         },
@@ -1048,7 +1075,8 @@ function Monitoring(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1068,7 +1096,7 @@ function Monitoring(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * monitoring.projects.monitoredResourceDescriptors.list
               * @desc Lists monitored resource descriptors that match a filter.
@@ -1141,7 +1169,9 @@ function Monitoring(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1162,7 +1192,7 @@ function Monitoring(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }
 
         },
@@ -1228,7 +1258,9 @@ function Monitoring(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          create(params, options, callback) {
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1249,7 +1281,7 @@ function Monitoring(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * monitoring.projects.timeSeries.list
               * @desc Lists time series that match a filter. This method does
@@ -1328,7 +1360,9 @@ function Monitoring(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1349,7 +1383,7 @@ function Monitoring(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }
 
         },
@@ -1361,13 +1395,15 @@ function Monitoring(options) {
            * @memberOf! monitoring(v3)
            *
            * @param {object} params Parameters for request
-           * @param {string} params.parent The project in which to create the uptime check. The formatis projects/[PROJECT_ID].
+           * @param {string} params.parent The project in which to create the uptime check. The format  is projects/[PROJECT_ID].
            * @param {monitoring(v3).UptimeCheckConfig} params.resource Request body data
            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          create(params, options, callback) {
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1388,7 +1424,7 @@ function Monitoring(options) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * monitoring.projects.uptimeCheckConfigs.delete
               * @desc Deletes an uptime check configuration. Note that this
@@ -1399,12 +1435,14 @@ function Monitoring(options) {
               * @memberOf! monitoring(v3)
               *
               * @param {object} params Parameters for request
-              * @param {string} params.name The uptime check configuration to delete. The formatis projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].
+              * @param {string} params.name The uptime check configuration to delete. The format  is projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].
               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          delete (params, options, callback) {
+          delete (
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1424,7 +1462,7 @@ function Monitoring(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * monitoring.projects.uptimeCheckConfigs.get
               * @desc Gets a single uptime check configuration.
@@ -1432,12 +1470,13 @@ function Monitoring(options) {
               * @memberOf! monitoring(v3)
               *
               * @param {object} params Parameters for request
-              * @param {string} params.name The uptime check configuration to retrieve. The formatis projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].
+              * @param {string} params.name The uptime check configuration to retrieve. The format  is projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].
               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1457,7 +1496,7 @@ function Monitoring(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * monitoring.projects.uptimeCheckConfigs.list
               * @desc Lists the existing valid uptime check configurations for
@@ -1468,12 +1507,14 @@ function Monitoring(options) {
               * @param {object} params Parameters for request
               * @param {integer=} params.pageSize The maximum number of results to return in a single response. The server may further constrain the maximum number of results returned in a single page. If the page_size is <=0, the server will decide the number of results to be returned.
               * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return more results from the previous method call.
-              * @param {string} params.parent The project whose uptime check configurations are listed. The formatis projects/[PROJECT_ID].
+              * @param {string} params.parent The project whose uptime check configurations are listed. The format  is projects/[PROJECT_ID].
               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1494,7 +1535,7 @@ function Monitoring(options) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * monitoring.projects.uptimeCheckConfigs.patch
               * @desc Updates an uptime check configuration. You can either
@@ -1513,7 +1554,9 @@ function Monitoring(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          patch(params, options, callback) {
+          patch(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -1533,7 +1576,7 @@ function Monitoring(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }
 
         }
@@ -1552,7 +1595,9 @@ function Monitoring(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1572,7 +1617,7 @@ function Monitoring(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1632,7 +1677,7 @@ function Monitoring(options) {
  * @typedef ContentMatcher
  * @memberOf! monitoring(v3)
  * @type object
- * @property {string} content String content to match
+ * @property {string} content String content to match (max 1024 bytes)
  */
 /**
  * @typedef CreateCollectdTimeSeriesRequest
@@ -1714,7 +1759,7 @@ function Monitoring(options) {
  * @memberOf! monitoring(v3)
  * @type object
  * @property {monitoring(v3).BasicAuthentication} authInfo The authentication information. Optional when creating an HTTP check; defaults to empty.
- * @property {object} headers The list of headers to send as part of the uptime check request. If two headers have the same key and different values, they should be entered as a single header, with the value being a comma-separated list of all the desired values as described at https://www.w3.org/Protocols/rfc2616/rfc2616.txt (page 31). Entering two separate headers with the same key in a Create call will cause the first to be overwritten by the second.
+ * @property {object} headers The list of headers to send as part of the uptime check request. If two headers have the same key and different values, they should be entered as a single header, with the value being a comma-separated list of all the desired values as described at https://www.w3.org/Protocols/rfc2616/rfc2616.txt (page 31). Entering two separate headers with the same key in a Create call will cause the first to be overwritten by the second. The maximum number of headers allowed is 100.
  * @property {boolean} maskHeaders Boolean specifiying whether to encrypt the header information. Encryption should be specified for any headers related to authentication that you do not wish to be seen when retrieving the configuration. The server will be responsible for encrypting the headers. On Get/List calls, if mask_headers is set to True then the headers will be obscured with ******.
  * @property {string} path The path to the page to run the check against. Will be combined with the host (specified within the MonitoredResource) and port to construct the full URL. Optional (defaults to &quot;/&quot;).
  * @property {integer} port The port to the page to run the check against. Will be combined with host (specified within the MonitoredResource) and path to construct the full URL. Optional (defaults to 80 without SSL, or 443 with SSL).
@@ -1787,6 +1832,7 @@ function Monitoring(options) {
  * @memberOf! monitoring(v3)
  * @type object
  * @property {string} nextPageToken This field represents the pagination token to retrieve the next page of results. If the value is empty, it means no further results for the request. To retrieve the next page of results, the value of the next_page_token is passed to the subsequent List method call (in the request message&#39;s page_token field).
+ * @property {integer} totalSize The total number of uptime check configurations for the project, irrespective of any pagination.
  * @property {monitoring(v3).UptimeCheckConfig[]} uptimeCheckConfigs The returned uptime check configurations.
  */
 /**
@@ -1936,9 +1982,9 @@ function Monitoring(options) {
  * @property {monitoring(v3).HttpCheck} httpCheck Contains information needed to make an HTTP or HTTPS check.
  * @property {monitoring(v3).InternalChecker[]} internalCheckers The internal checkers that this check will egress from. If is_internal is true and this list is empty, the check will egress from all InternalCheckers configured for the project that owns this CheckConfig.
  * @property {boolean} isInternal Denotes whether this is a check that egresses from InternalCheckers.
- * @property {monitoring(v3).MonitoredResource} monitoredResource The monitored resource associated with the configuration.
+ * @property {monitoring(v3).MonitoredResource} monitoredResource The monitored resource (https://cloud.google.com/monitoring/api/resources) associated with the configuration. The following monitored resource types are supported for uptime checks:  uptime_url  gce_instance  gae_app  aws_ec2_instance  aws_elb_load_balancer
  * @property {string} name A unique resource name for this UptimeCheckConfig. The format is:projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].This field should be omitted when creating the uptime check configuration; on create, the resource name is assigned by the server and included in the response.
- * @property {string} period How often the uptime check is performed. Currently, only 1, 5, 10, and 15 minutes are supported. Required.
+ * @property {string} period How often, in seconds, the uptime check is performed. Currently, the only supported values are 60s (1 minute), 300s (5 minutes), 600s (10 minutes), and 900s (15 minutes). Required.
  * @property {monitoring(v3).ResourceGroup} resourceGroup The group resource associated with the configuration.
  * @property {string[]} selectedRegions The list of regions from which the check will be run. If this field is specified, enough regions to include a minimum of 3 locations must be provided, or an error message is returned. Not specifying this field will result in uptime checks running from all regions.
  * @property {monitoring(v3).TcpCheck} tcpCheck Contains information needed to make a TCP check.

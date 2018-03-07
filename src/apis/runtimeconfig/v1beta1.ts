@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Cloud Runtime Configuration API
@@ -34,7 +41,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta1
  * @param {object=} options Options for Runtimeconfig
  */
-function Runtimeconfig(options) {
+function Runtimeconfig(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.projects = {
@@ -54,7 +61,9 @@ function Runtimeconfig(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create(params, options, callback) {
+      create(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -75,7 +84,7 @@ function Runtimeconfig(options) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * runtimeconfig.projects.configs.delete
           * @desc Deletes a RuntimeConfig resource.
@@ -88,7 +97,9 @@ function Runtimeconfig(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (params, options, callback) {
+      delete (
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -109,7 +120,7 @@ function Runtimeconfig(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * runtimeconfig.projects.configs.get
           * @desc Gets information about a RuntimeConfig resource.
@@ -122,7 +133,8 @@ function Runtimeconfig(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -143,7 +155,7 @@ function Runtimeconfig(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * runtimeconfig.projects.configs.getIamPolicy
           * @desc Gets the access control policy for a resource. Returns an
@@ -157,7 +169,9 @@ function Runtimeconfig(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      getIamPolicy(params, options, callback) {
+      getIamPolicy(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -178,7 +192,7 @@ function Runtimeconfig(options) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * runtimeconfig.projects.configs.list
           * @desc Lists all the RuntimeConfig resources within project.
@@ -193,7 +207,9 @@ function Runtimeconfig(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -214,7 +230,7 @@ function Runtimeconfig(options) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * runtimeconfig.projects.configs.setIamPolicy
           * @desc Sets the access control policy on the specified resource.
@@ -229,7 +245,9 @@ function Runtimeconfig(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      setIamPolicy(params, options, callback) {
+      setIamPolicy(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -250,7 +268,7 @@ function Runtimeconfig(options) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * runtimeconfig.projects.configs.testIamPermissions
           * @desc Returns permissions that a caller has on the specified
@@ -269,7 +287,9 @@ function Runtimeconfig(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      testIamPermissions(params, options, callback) {
+      testIamPermissions(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -290,7 +310,7 @@ function Runtimeconfig(options) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * runtimeconfig.projects.configs.update
           * @desc Updates a RuntimeConfig resource. The configuration must exist
@@ -305,7 +325,9 @@ function Runtimeconfig(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      update(params, options, callback) {
+      update(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -326,7 +348,7 @@ function Runtimeconfig(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       },
       operations: {
         /**
@@ -343,7 +365,8 @@ function Runtimeconfig(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -364,7 +387,7 @@ function Runtimeconfig(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * runtimeconfig.projects.configs.operations.testIamPermissions
             * @desc Returns permissions that a caller has on the specified
@@ -384,7 +407,9 @@ function Runtimeconfig(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        testIamPermissions(params, options, callback) {
+        testIamPermissions(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -405,7 +430,7 @@ function Runtimeconfig(options) {
             pathParams: ['resource'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       },
@@ -430,7 +455,9 @@ function Runtimeconfig(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create(params, options, callback) {
+        create(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -451,7 +478,7 @@ function Runtimeconfig(options) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * runtimeconfig.projects.configs.variables.delete
             * @desc Deletes a variable or multiple variables.  If you specify a
@@ -469,7 +496,9 @@ function Runtimeconfig(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -490,7 +519,7 @@ function Runtimeconfig(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * runtimeconfig.projects.configs.variables.get
             * @desc Gets information about a single variable.
@@ -503,7 +532,8 @@ function Runtimeconfig(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -524,7 +554,7 @@ function Runtimeconfig(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * runtimeconfig.projects.configs.variables.list
             * @desc Lists variables within given a configuration, matching any
@@ -544,7 +574,9 @@ function Runtimeconfig(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -565,7 +597,7 @@ function Runtimeconfig(options) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * runtimeconfig.projects.configs.variables.testIamPermissions
             * @desc Returns permissions that a caller has on the specified
@@ -584,7 +616,9 @@ function Runtimeconfig(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        testIamPermissions(params, options, callback) {
+        testIamPermissions(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -605,7 +639,7 @@ function Runtimeconfig(options) {
             pathParams: ['resource'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * runtimeconfig.projects.configs.variables.update
             * @desc Updates an existing variable with a new value.
@@ -619,7 +653,9 @@ function Runtimeconfig(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        update(params, options, callback) {
+        update(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -640,7 +676,7 @@ function Runtimeconfig(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * runtimeconfig.projects.configs.variables.watch
             * @desc Watches a specific variable and waits for a change in the
@@ -664,7 +700,9 @@ function Runtimeconfig(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        watch(params, options, callback) {
+        watch(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -685,7 +723,7 @@ function Runtimeconfig(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       },
@@ -709,7 +747,9 @@ function Runtimeconfig(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create(params, options, callback) {
+        create(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -730,7 +770,7 @@ function Runtimeconfig(options) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * runtimeconfig.projects.configs.waiters.delete
             * @desc Deletes the waiter with the specified name.
@@ -743,7 +783,9 @@ function Runtimeconfig(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -764,7 +806,7 @@ function Runtimeconfig(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * runtimeconfig.projects.configs.waiters.get
             * @desc Gets information about a single waiter.
@@ -777,7 +819,8 @@ function Runtimeconfig(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -798,7 +841,7 @@ function Runtimeconfig(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * runtimeconfig.projects.configs.waiters.list
             * @desc List waiters within the given configuration.
@@ -813,7 +856,9 @@ function Runtimeconfig(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -834,7 +879,7 @@ function Runtimeconfig(options) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * runtimeconfig.projects.configs.waiters.testIamPermissions
             * @desc Returns permissions that a caller has on the specified
@@ -853,7 +898,9 @@ function Runtimeconfig(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        testIamPermissions(params, options, callback) {
+        testIamPermissions(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -874,7 +921,7 @@ function Runtimeconfig(options) {
             pathParams: ['resource'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       }
@@ -985,16 +1032,16 @@ function Runtimeconfig(options) {
  * @property {string} name The name of the variable resource, in the format:      projects/[PROJECT_ID]/configs/[CONFIG_NAME]/variables/[VARIABLE_NAME]  The `[PROJECT_ID]` must be a valid project ID, `[CONFIG_NAME]` must be a valid RuntimeConfig reource and `[VARIABLE_NAME]` follows Unix file system file path naming.  The `[VARIABLE_NAME]` can contain ASCII letters, numbers, slashes and dashes. Slashes are used as path element separators and are not part of the `[VARIABLE_NAME]` itself, so `[VARIABLE_NAME]` must contain at least one non-slash character. Multiple slashes are coalesced into single slash character. Each path segment should match [0-9A-Za-z](?:[_.A-Za-z0-9-]{0,62}[_.A-Za-z0-9])? regular expression. The length of a `[VARIABLE_NAME]` must be less than 256 characters.  Once you create a variable, you cannot change the variable name.
  * @property {string} state [Ouput only] The current state of the variable. The variable state indicates the outcome of the `variables().watch` call and is visible through the `get` and `list` calls.
  * @property {string} text The string value of the variable. The length of the value must be less than 4096 bytes. Empty values are also accepted. For example, `text: &quot;my text value&quot;`. The string must be valid UTF-8.
- * @property {string} updateTime [Output Only] The time of the last variable update.
+ * @property {string} updateTime Output only. The time of the last variable update.
  * @property {string} value The binary value of the variable. The length of the value must be less than 4096 bytes. Empty values are also accepted. The value must be base64 encoded. Only one of `value` or `text` can be set.
  */
 /**
  * @typedef Waiter
  * @memberOf! runtimeconfig(v1beta1)
  * @type object
- * @property {string} createTime [Output Only] The instant at which this Waiter resource was created. Adding the value of `timeout` to this instant yields the timeout deadline for the waiter.
- * @property {boolean} done [Output Only] If the value is `false`, it means the waiter is still waiting for one of its conditions to be met.  If true, the waiter has finished. If the waiter finished due to a timeout or failure, `error` will be set.
- * @property {runtimeconfig(v1beta1).Status} error [Output Only] If the waiter ended due to a failure or timeout, this value will be set.
+ * @property {string} createTime Output only. The instant at which this Waiter resource was created. Adding the value of `timeout` to this instant yields the timeout deadline for the waiter.
+ * @property {boolean} done Output only. If the value is `false`, it means the waiter is still waiting for one of its conditions to be met.  If true, the waiter has finished. If the waiter finished due to a timeout or failure, `error` will be set.
+ * @property {runtimeconfig(v1beta1).Status} error Output only. If the waiter ended due to a failure or timeout, this value will be set.
  * @property {runtimeconfig(v1beta1).EndCondition} failure [Optional] The failure condition of this waiter. If this condition is met, `done` will be set to `true` and the `error` code will be set to `ABORTED`. The failure condition takes precedence over the success condition. If both conditions are met, a failure will be indicated. This value is optional; if no failure condition is set, the only failure scenario will be a timeout.
  * @property {string} name The name of the Waiter resource, in the format:      projects/[PROJECT_ID]/configs/[CONFIG_NAME]/waiters/[WAITER_NAME]  The `[PROJECT_ID]` must be a valid Google Cloud project ID, the `[CONFIG_NAME]` must be a valid RuntimeConfig resource, the `[WAITER_NAME]` must match RFC 1035 segment specification, and the length of `[WAITER_NAME]` must be less than 64 bytes.  After you create a Waiter resource, you cannot change the resource name.
  * @property {runtimeconfig(v1beta1).EndCondition} success [Required] The success condition. If this condition is met, `done` will be set to `true` and the `error` value will remain unset. The failure condition takes precedence over the success condition. If both conditions are met, a failure will be indicated.

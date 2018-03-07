@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Blogger API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v3
  * @param {object=} options Options for Blogger
  */
-function Blogger(options) {
+function Blogger(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.blogs = {
@@ -49,7 +56,8 @@ function Blogger(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -69,7 +77,7 @@ function Blogger(options) {
         pathParams: ['blogId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * blogger.blogs.getByUrl
         * @desc Retrieve a Blog by URL.
@@ -83,7 +91,9 @@ function Blogger(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getByUrl(params, options, callback) {
+    getByUrl(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -103,7 +113,7 @@ function Blogger(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * blogger.blogs.listByUser
         * @desc Retrieves a list of blogs, possibly filtered.
@@ -120,7 +130,9 @@ function Blogger(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    listByUser(params, options, callback) {
+    listByUser(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -140,7 +152,7 @@ function Blogger(options) {
         pathParams: ['userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -159,7 +171,8 @@ function Blogger(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -179,7 +192,7 @@ function Blogger(options) {
         pathParams: ['blogId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -198,7 +211,9 @@ function Blogger(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    approve(params, options, callback) {
+    approve(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -220,7 +235,7 @@ function Blogger(options) {
         pathParams: ['blogId', 'commentId', 'postId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * blogger.comments.delete
         * @desc Delete a comment by ID.
@@ -235,7 +250,9 @@ function Blogger(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -257,7 +274,7 @@ function Blogger(options) {
         pathParams: ['blogId', 'commentId', 'postId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * blogger.comments.get
         * @desc Gets one comment by ID.
@@ -273,7 +290,8 @@ function Blogger(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -295,7 +313,7 @@ function Blogger(options) {
         pathParams: ['blogId', 'commentId', 'postId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * blogger.comments.list
         * @desc Retrieves the comments for a post, possibly filtered.
@@ -316,7 +334,9 @@ function Blogger(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -337,7 +357,7 @@ function Blogger(options) {
         pathParams: ['blogId', 'postId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * blogger.comments.listByBlog
         * @desc Retrieves the comments for a blog, across all posts, possibly
@@ -357,7 +377,9 @@ function Blogger(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    listByBlog(params, options, callback) {
+    listByBlog(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -377,7 +399,7 @@ function Blogger(options) {
         pathParams: ['blogId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * blogger.comments.markAsSpam
         * @desc Marks a comment as spam.
@@ -392,7 +414,9 @@ function Blogger(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    markAsSpam(params, options, callback) {
+    markAsSpam(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -414,7 +438,7 @@ function Blogger(options) {
         pathParams: ['blogId', 'commentId', 'postId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * blogger.comments.removeContent
         * @desc Removes the content of a comment.
@@ -429,7 +453,9 @@ function Blogger(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    removeContent(params, options, callback) {
+    removeContent(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -451,7 +477,7 @@ function Blogger(options) {
         pathParams: ['blogId', 'commentId', 'postId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -469,7 +495,9 @@ function Blogger(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -489,7 +517,7 @@ function Blogger(options) {
         pathParams: ['blogId', 'pageId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * blogger.pages.get
         * @desc Gets one blog page by ID.
@@ -504,7 +532,8 @@ function Blogger(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -524,7 +553,7 @@ function Blogger(options) {
         pathParams: ['blogId', 'pageId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * blogger.pages.insert
         * @desc Add a page.
@@ -539,7 +568,9 @@ function Blogger(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -559,7 +590,7 @@ function Blogger(options) {
         pathParams: ['blogId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * blogger.pages.list
         * @desc Retrieves the pages for a blog, optionally including non-LIVE
@@ -578,7 +609,9 @@ function Blogger(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -598,7 +631,7 @@ function Blogger(options) {
         pathParams: ['blogId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * blogger.pages.patch
         * @desc Update a page. This method supports patch semantics.
@@ -615,7 +648,9 @@ function Blogger(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -635,7 +670,7 @@ function Blogger(options) {
         pathParams: ['blogId', 'pageId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * blogger.pages.publish
         * @desc Publishes a draft page.
@@ -649,7 +684,9 @@ function Blogger(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    publish(params, options, callback) {
+    publish(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -670,7 +707,7 @@ function Blogger(options) {
         pathParams: ['blogId', 'pageId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * blogger.pages.revert
         * @desc Revert a published or scheduled page to draft state.
@@ -684,7 +721,9 @@ function Blogger(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    revert(params, options, callback) {
+    revert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -705,7 +744,7 @@ function Blogger(options) {
         pathParams: ['blogId', 'pageId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * blogger.pages.update
         * @desc Update a page.
@@ -722,7 +761,9 @@ function Blogger(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -742,7 +783,7 @@ function Blogger(options) {
         pathParams: ['blogId', 'pageId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -760,7 +801,8 @@ function Blogger(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -780,7 +822,7 @@ function Blogger(options) {
         pathParams: ['blogId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -798,7 +840,9 @@ function Blogger(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -818,7 +862,7 @@ function Blogger(options) {
         pathParams: ['blogId', 'postId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * blogger.posts.get
         * @desc Get a post by ID.
@@ -836,7 +880,8 @@ function Blogger(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -856,7 +901,7 @@ function Blogger(options) {
         pathParams: ['blogId', 'postId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * blogger.posts.getByPath
         * @desc Retrieve a Post by Path.
@@ -872,7 +917,9 @@ function Blogger(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getByPath(params, options, callback) {
+    getByPath(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -892,7 +939,7 @@ function Blogger(options) {
         pathParams: ['blogId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * blogger.posts.insert
         * @desc Add a post.
@@ -909,7 +956,9 @@ function Blogger(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -929,7 +978,7 @@ function Blogger(options) {
         pathParams: ['blogId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * blogger.posts.list
         * @desc Retrieves a list of posts, possibly filtered.
@@ -952,7 +1001,9 @@ function Blogger(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -972,7 +1023,7 @@ function Blogger(options) {
         pathParams: ['blogId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * blogger.posts.patch
         * @desc Update a post. This method supports patch semantics.
@@ -992,7 +1043,9 @@ function Blogger(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1012,7 +1065,7 @@ function Blogger(options) {
         pathParams: ['blogId', 'postId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * blogger.posts.publish
         * @desc Publishes a draft post, optionally at the specific time of the
@@ -1028,7 +1081,9 @@ function Blogger(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    publish(params, options, callback) {
+    publish(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1049,7 +1104,7 @@ function Blogger(options) {
         pathParams: ['blogId', 'postId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * blogger.posts.revert
         * @desc Revert a published or scheduled post to draft state.
@@ -1063,7 +1118,9 @@ function Blogger(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    revert(params, options, callback) {
+    revert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1084,7 +1141,7 @@ function Blogger(options) {
         pathParams: ['blogId', 'postId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * blogger.posts.search
         * @desc Search for a post.
@@ -1100,7 +1157,9 @@ function Blogger(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    search(params, options, callback) {
+    search(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1120,7 +1179,7 @@ function Blogger(options) {
         pathParams: ['blogId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * blogger.posts.update
         * @desc Update a post.
@@ -1140,7 +1199,9 @@ function Blogger(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1160,7 +1221,7 @@ function Blogger(options) {
         pathParams: ['blogId', 'postId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1182,7 +1243,8 @@ function Blogger(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1203,7 +1265,7 @@ function Blogger(options) {
         pathParams: ['blogId', 'postId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * blogger.postUserInfos.list
         * @desc Retrieves a list of post and post user info pairs, possibly
@@ -1228,7 +1290,9 @@ function Blogger(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1248,7 +1312,7 @@ function Blogger(options) {
         pathParams: ['blogId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1265,7 +1329,8 @@ function Blogger(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1285,7 +1350,7 @@ function Blogger(options) {
         pathParams: ['userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

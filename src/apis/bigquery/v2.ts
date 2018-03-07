@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * BigQuery API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2
  * @param {object=} options Options for Bigquery
  */
-function Bigquery(options) {
+function Bigquery(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.datasets = {
@@ -105,7 +112,9 @@ function Bigquery(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -126,7 +135,7 @@ function Bigquery(options) {
         pathParams: ['datasetId', 'projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.datasets.get
         * @desc Returns the dataset specified by datasetID.
@@ -196,7 +205,8 @@ function Bigquery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -217,7 +227,7 @@ function Bigquery(options) {
         pathParams: ['datasetId', 'projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.datasets.insert
         * @desc Creates a new empty dataset.
@@ -288,7 +298,9 @@ function Bigquery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -308,7 +320,7 @@ function Bigquery(options) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.datasets.list
         * @desc Lists all datasets in the specified project to which you have
@@ -392,7 +404,9 @@ function Bigquery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -412,7 +426,7 @@ function Bigquery(options) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.datasets.patch
         * @desc Updates information in an existing dataset. The update method
@@ -492,7 +506,9 @@ function Bigquery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -513,7 +529,7 @@ function Bigquery(options) {
         pathParams: ['datasetId', 'projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.datasets.update
         * @desc Updates information in an existing dataset. The update method
@@ -592,7 +608,9 @@ function Bigquery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -613,7 +631,7 @@ function Bigquery(options) {
         pathParams: ['datasetId', 'projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -685,12 +703,15 @@ function Bigquery(options) {
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId [Required] Job ID of the job to cancel
+     * @param {string=} params.location [Experimental] The geographic location of the job. Required except for US and EU.
      * @param {string} params.projectId [Required] Project ID of the job to cancel
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params, options, callback) {
+    cancel(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -711,7 +732,7 @@ function Bigquery(options) {
         pathParams: ['jobId', 'projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.jobs.get
         * @desc Returns information about a specific job. Job information is
@@ -778,12 +799,14 @@ function Bigquery(options) {
         *
         * @param {object} params Parameters for request
         * @param {string} params.jobId [Required] Job ID of the requested job
+        * @param {string=} params.location [Experimental] The geographic location of the job. Required except for US and EU.
         * @param {string} params.projectId [Required] Project ID of the requested job
         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -803,7 +826,7 @@ function Bigquery(options) {
         pathParams: ['jobId', 'projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.jobs.getQueryResults
         * @desc Retrieves the results of a query job.
@@ -881,6 +904,7 @@ function Bigquery(options) {
         *
         * @param {object} params Parameters for request
         * @param {string} params.jobId [Required] Job ID of the query job
+        * @param {string=} params.location [Experimental] The geographic location where the job should run. Required except for US and EU.
         * @param {integer=} params.maxResults Maximum number of results to read
         * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
         * @param {string} params.projectId [Required] Project ID of the query job
@@ -890,7 +914,9 @@ function Bigquery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getQueryResults(params, options, callback) {
+    getQueryResults(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -911,7 +937,7 @@ function Bigquery(options) {
         pathParams: ['jobId', 'projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.jobs.insert
         * @desc Starts a new asynchronous job. Requires the Can View project
@@ -994,7 +1020,9 @@ function Bigquery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1016,7 +1044,7 @@ function Bigquery(options) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.jobs.list
         * @desc Lists all jobs that you started in the specified project. Job
@@ -1095,7 +1123,9 @@ function Bigquery(options) {
         *
         * @param {object} params Parameters for request
         * @param {boolean=} params.allUsers Whether to display jobs owned by all users in the project. Default false
+        * @param {string=} params.maxCreationTime Max value for job creation time, in milliseconds since the POSIX epoch. If set, only jobs created before or at this timestamp are returned
         * @param {integer=} params.maxResults Maximum number of results to return
+        * @param {string=} params.minCreationTime Min value for job creation time, in milliseconds since the POSIX epoch. If set, only jobs created after or at this timestamp are returned
         * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
         * @param {string} params.projectId Project ID of the jobs to list
         * @param {string=} params.projection Restrict information returned to a set of selected fields
@@ -1104,7 +1134,9 @@ function Bigquery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1124,7 +1156,7 @@ function Bigquery(options) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.jobs.query
         * @desc Runs a BigQuery SQL query synchronously and returns query
@@ -1196,7 +1228,9 @@ function Bigquery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    query(params, options, callback) {
+    query(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1216,7 +1250,7 @@ function Bigquery(options) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1287,7 +1321,9 @@ function Bigquery(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getServiceAccount(params, options, callback) {
+    getServiceAccount(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1308,7 +1344,7 @@ function Bigquery(options) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.projects.list
         * @desc Lists all projects to which you have been granted any project
@@ -1386,7 +1422,9 @@ function Bigquery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1406,7 +1444,7 @@ function Bigquery(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1490,7 +1528,9 @@ function Bigquery(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insertAll(params, options, callback) {
+    insertAll(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1512,7 +1552,7 @@ function Bigquery(options) {
         pathParams: ['datasetId', 'projectId', 'tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.tabledata.list
         * @desc Retrieves table data from a specified set of rows. Requires the
@@ -1604,7 +1644,9 @@ function Bigquery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1626,7 +1668,7 @@ function Bigquery(options) {
         pathParams: ['datasetId', 'projectId', 'tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1702,7 +1744,9 @@ function Bigquery(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1724,7 +1768,7 @@ function Bigquery(options) {
         pathParams: ['datasetId', 'projectId', 'tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.tables.get
         * @desc Gets the specified table resource by table ID. This method does
@@ -1801,7 +1845,8 @@ function Bigquery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1823,7 +1868,7 @@ function Bigquery(options) {
         pathParams: ['datasetId', 'projectId', 'tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.tables.insert
         * @desc Creates a new, empty table in the dataset.
@@ -1898,7 +1943,9 @@ function Bigquery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1920,7 +1967,7 @@ function Bigquery(options) {
         pathParams: ['datasetId', 'projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.tables.list
         * @desc Lists all tables in the specified dataset. Requires the READER
@@ -2006,7 +2053,9 @@ function Bigquery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2028,7 +2077,7 @@ function Bigquery(options) {
         pathParams: ['datasetId', 'projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.tables.patch
         * @desc Updates information in an existing table. The update method
@@ -2112,7 +2161,9 @@ function Bigquery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2134,7 +2185,7 @@ function Bigquery(options) {
         pathParams: ['datasetId', 'projectId', 'tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.tables.update
         * @desc Updates information in an existing table. The update method
@@ -2217,7 +2268,9 @@ function Bigquery(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2239,7 +2292,7 @@ function Bigquery(options) {
         pathParams: ['datasetId', 'projectId', 'tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -2319,6 +2372,13 @@ function Bigquery(options) {
  * @property {string} projectId [Optional] The ID of the project containing this dataset.
  */
 /**
+ * @typedef DestinationTableProperties
+ * @memberOf! bigquery(v2)
+ * @type object
+ * @property {string} description [Optional] The description for the destination table. This will only be used if the destination table is newly created. If the table already exists and a value different than the current description is provided, the job will fail.
+ * @property {string} friendlyName [Optional] The friendly name for the destination table. This will only be used if the destination table is newly created. If the table already exists and a value different than the current friendly name is provided, the job will fail.
+ */
+/**
  * @typedef EncryptionConfiguration
  * @memberOf! bigquery(v2)
  * @type object
@@ -2342,7 +2402,9 @@ function Bigquery(options) {
  * @property {string} computeMsMax Milliseconds the slowest shard spent on CPU-bound tasks.
  * @property {number} computeRatioAvg Relative amount of time the average shard spent on CPU-bound tasks.
  * @property {number} computeRatioMax Relative amount of time the slowest shard spent on CPU-bound tasks.
+ * @property {string} endMs Stage end time in milliseconds.
  * @property {string} id Unique ID for stage within plan.
+ * @property {string[]} inputStages IDs for stages that are inputs to this stage.
  * @property {string} name Human-readable name for stage.
  * @property {string} parallelInputs Number of parallel input segments to be processed.
  * @property {string} readMsAvg Milliseconds the average shard spent reading input.
@@ -2353,6 +2415,7 @@ function Bigquery(options) {
  * @property {string} recordsWritten Number of records written by the stage.
  * @property {string} shuffleOutputBytes Total number of bytes written to shuffle.
  * @property {string} shuffleOutputBytesSpilled Total number of bytes written to shuffle and spilled to disk.
+ * @property {string} startMs Stage start time in milliseconds.
  * @property {string} status Current status for the stage.
  * @property {bigquery(v2).ExplainQueryStep[]} steps List of operations within the stage in dependency order (approximately chronological).
  * @property {string} waitMsAvg Milliseconds the average shard spent waiting to be scheduled.
@@ -2444,6 +2507,7 @@ function Bigquery(options) {
  * @property {bigquery(v2).JobConfigurationTableCopy} copy [Pick one] Copies a table.
  * @property {boolean} dryRun [Optional] If set, don&#39;t actually run this job. A valid query will return a mostly empty response with some processing statistics, while an invalid query will return the same error it would if it wasn&#39;t a dry run. Behavior of non-query jobs is undefined.
  * @property {bigquery(v2).JobConfigurationExtract} extract [Pick one] Configures an extract job.
+ * @property {string} jobTimeoutMs [Optional] Job timeout in milliseconds. If this time limit is exceeded, BigQuery may attempt to terminate the job.
  * @property {object} labels The labels associated with this job. You can use these to organize and group your jobs. Label keys and values can be no longer than 63 characters, can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter and each label in the list must have a different key.
  * @property {bigquery(v2).JobConfigurationLoad} load [Pick one] Configures a load job.
  * @property {bigquery(v2).JobConfigurationQuery} query [Pick one] Configures a query job.
@@ -2452,7 +2516,7 @@ function Bigquery(options) {
  * @typedef JobConfigurationExtract
  * @memberOf! bigquery(v2)
  * @type object
- * @property {string} compression [Optional] The compression type to use for exported files. Possible values include GZIP and NONE. The default value is NONE.
+ * @property {string} compression [Optional] The compression type to use for exported files. Possible values include GZIP, DEFLATE, SNAPPY, and NONE. The default value is NONE. DEFLATE and SNAPPY are only supported for Avro.
  * @property {string} destinationFormat [Optional] The exported file format. Possible values include CSV, NEWLINE_DELIMITED_JSON and AVRO. The default value is CSV. Tables with nested or repeated fields cannot be exported as CSV.
  * @property {string} destinationUri [Pick one] DEPRECATED: Use destinationUris instead, passing only one URI as necessary. The fully-qualified Google Cloud Storage URI where the extracted table should be written.
  * @property {string[]} destinationUris [Pick one] A list of fully-qualified Google Cloud Storage URIs where the extracted table should be written.
@@ -2468,8 +2532,9 @@ function Bigquery(options) {
  * @property {boolean} allowQuotedNewlines Indicates if BigQuery should allow quoted data sections that contain newline characters in a CSV file. The default value is false.
  * @property {boolean} autodetect Indicates if we should automatically infer the options and schema for CSV and JSON sources.
  * @property {string} createDisposition [Optional] Specifies whether the job is allowed to create new tables. The following values are supported: CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table. CREATE_NEVER: The table must already exist. If it does not, a &#39;notFound&#39; error is returned in the job result. The default value is CREATE_IF_NEEDED. Creation, truncation and append actions occur as one atomic update upon job completion.
- * @property {bigquery(v2).EncryptionConfiguration} destinationEncryptionConfiguration [Experimental] Custom encryption configuration (e.g., Cloud KMS keys).
+ * @property {bigquery(v2).EncryptionConfiguration} destinationEncryptionConfiguration Custom encryption configuration (e.g., Cloud KMS keys).
  * @property {bigquery(v2).TableReference} destinationTable [Required] The destination table to load the data into.
+ * @property {bigquery(v2).DestinationTableProperties} destinationTableProperties [Experimental] [Optional] Properties with which to create the destination table if it is new.
  * @property {string} encoding [Optional] The character encoding of the data. The supported values are UTF-8 or ISO-8859-1. The default value is UTF-8. BigQuery decodes the data after the raw, binary data has been split using the values of the quote and fieldDelimiter properties.
  * @property {string} fieldDelimiter [Optional] The separator for fields in a CSV file. The separator can be any ISO-8859-1 single-byte character. To use a character in the range 128-255, you must encode the character as UTF8. BigQuery converts the string to ISO-8859-1 encoding, and then uses the first byte of the encoded string to split the data in its raw, binary state. BigQuery also supports the escape sequence &quot;\t&quot; to specify a tab separator. The default value is a comma (&#39;,&#39;).
  * @property {boolean} ignoreUnknownValues [Optional] Indicates if BigQuery should allow extra values that are not represented in the table schema. If true, the extra values are ignored. If false, records with extra columns are treated as bad records, and if there are too many bad records, an invalid error is returned in the job result. The default value is false. The sourceFormat property determines what BigQuery treats as an extra value: CSV: Trailing columns JSON: Named values that don&#39;t match any column names
@@ -2482,7 +2547,7 @@ function Bigquery(options) {
  * @property {string} schemaInlineFormat [Deprecated] The format of the schemaInline property.
  * @property {string[]} schemaUpdateOptions Allows the schema of the destination table to be updated as a side effect of the load job if a schema is autodetected or supplied in the job configuration. Schema update options are supported in two cases: when writeDisposition is WRITE_APPEND; when writeDisposition is WRITE_TRUNCATE and the destination table is a partition of a table, specified by partition decorators. For normal tables, WRITE_TRUNCATE will always overwrite the schema. One or more of the following values are specified: ALLOW_FIELD_ADDITION: allow adding a nullable field to the schema. ALLOW_FIELD_RELAXATION: allow relaxing a required field in the original schema to nullable.
  * @property {integer} skipLeadingRows [Optional] The number of rows at the top of a CSV file that BigQuery will skip when loading the data. The default value is 0. This property is useful if you have header rows in the file that should be skipped.
- * @property {string} sourceFormat [Optional] The format of the data files. For CSV files, specify &quot;CSV&quot;. For datastore backups, specify &quot;DATASTORE_BACKUP&quot;. For newline-delimited JSON, specify &quot;NEWLINE_DELIMITED_JSON&quot;. For Avro, specify &quot;AVRO&quot;. The default value is CSV.
+ * @property {string} sourceFormat [Optional] The format of the data files. For CSV files, specify &quot;CSV&quot;. For datastore backups, specify &quot;DATASTORE_BACKUP&quot;. For newline-delimited JSON, specify &quot;NEWLINE_DELIMITED_JSON&quot;. For Avro, specify &quot;AVRO&quot;. For parquet, specify &quot;PARQUET&quot;. For orc, specify &quot;ORC&quot;. The default value is CSV.
  * @property {string[]} sourceUris [Required] The fully-qualified URIs that point to your data in Google Cloud. For Google Cloud Storage URIs: Each URI can contain one &#39;*&#39; wildcard character and it must come after the &#39;bucket&#39; name. Size limits related to load jobs apply to external data sources. For Google Cloud Bigtable URIs: Exactly one URI can be specified and it has be a fully specified and valid HTTPS URL for a Google Cloud Bigtable table. For Google Cloud Datastore backups: Exactly one URI can be specified. Also, the &#39;*&#39; wildcard character is not allowed.
  * @property {bigquery(v2).TimePartitioning} timePartitioning If specified, configures time-based partitioning for the destination table.
  * @property {string} writeDisposition [Optional] Specifies the action that occurs if the destination table already exists. The following values are supported: WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the table data. WRITE_APPEND: If the table already exists, BigQuery appends the data to the table. WRITE_EMPTY: If the table already exists and contains data, a &#39;duplicate&#39; error is returned in the job result. The default value is WRITE_APPEND. Each action is atomic and only occurs if BigQuery is able to complete the job successfully. Creation, truncation and append actions occur as one atomic update upon job completion.
@@ -2494,7 +2559,7 @@ function Bigquery(options) {
  * @property {boolean} allowLargeResults [Optional] If true and query uses legacy SQL dialect, allows the query to produce arbitrarily large result tables at a slight cost in performance. Requires destinationTable to be set. For standard SQL queries, this flag is ignored and large results are always allowed. However, you must still set destinationTable when result size exceeds the allowed maximum response size.
  * @property {string} createDisposition [Optional] Specifies whether the job is allowed to create new tables. The following values are supported: CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table. CREATE_NEVER: The table must already exist. If it does not, a &#39;notFound&#39; error is returned in the job result. The default value is CREATE_IF_NEEDED. Creation, truncation and append actions occur as one atomic update upon job completion.
  * @property {bigquery(v2).DatasetReference} defaultDataset [Optional] Specifies the default dataset to use for unqualified table names in the query.
- * @property {bigquery(v2).EncryptionConfiguration} destinationEncryptionConfiguration [Experimental] Custom encryption configuration (e.g., Cloud KMS keys).
+ * @property {bigquery(v2).EncryptionConfiguration} destinationEncryptionConfiguration Custom encryption configuration (e.g., Cloud KMS keys).
  * @property {bigquery(v2).TableReference} destinationTable [Optional] Describes the table where the query results should be stored. If not present, a new table will be created to store the results. This property must be set for large results that exceed the maximum response size.
  * @property {boolean} flattenResults [Optional] If true and query uses legacy SQL dialect, flattens all nested and repeated fields in the query results. allowLargeResults must be true if this is set to false. For standard SQL queries, this flag is ignored and results are never flattened.
  * @property {integer} maximumBillingTier [Optional] Limits the billing tier for this job. Queries that have resource usage beyond this tier will fail (without incurring a charge). If unspecified, this will be set to your project default.
@@ -2517,7 +2582,7 @@ function Bigquery(options) {
  * @memberOf! bigquery(v2)
  * @type object
  * @property {string} createDisposition [Optional] Specifies whether the job is allowed to create new tables. The following values are supported: CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table. CREATE_NEVER: The table must already exist. If it does not, a &#39;notFound&#39; error is returned in the job result. The default value is CREATE_IF_NEEDED. Creation, truncation and append actions occur as one atomic update upon job completion.
- * @property {bigquery(v2).EncryptionConfiguration} destinationEncryptionConfiguration [Experimental] Custom encryption configuration (e.g., Cloud KMS keys).
+ * @property {bigquery(v2).EncryptionConfiguration} destinationEncryptionConfiguration Custom encryption configuration (e.g., Cloud KMS keys).
  * @property {bigquery(v2).TableReference} destinationTable [Required] The destination table
  * @property {bigquery(v2).TableReference} sourceTable [Pick one] Source table to copy.
  * @property {bigquery(v2).TableReference[]} sourceTables [Pick one] Source tables to copy.
@@ -2537,12 +2602,14 @@ function Bigquery(options) {
  * @memberOf! bigquery(v2)
  * @type object
  * @property {string} jobId [Required] The ID of the job. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), or dashes (-). The maximum length is 1,024 characters.
+ * @property {string} location [Experimental] The geographic location of the job. Required except for US and EU.
  * @property {string} projectId [Required] The ID of the project containing this job.
  */
 /**
  * @typedef JobStatistics
  * @memberOf! bigquery(v2)
  * @type object
+ * @property {number} completionRatio [Experimental] [Output-only] Job progress (0.0 -&gt; 1.0) for LOAD and EXTRACT jobs.
  * @property {string} creationTime [Output-only] Creation time of this job, in milliseconds since the epoch. This field will be present on all jobs.
  * @property {string} endTime [Output-only] End time of this job, in milliseconds since the epoch. This field will be present whenever a job is in the DONE state.
  * @property {bigquery(v2).JobStatistics4} extract [Output-only] Statistics for an extract job.
@@ -2565,7 +2632,7 @@ function Bigquery(options) {
  * @property {bigquery(v2).TableReference[]} referencedTables [Output-only] Referenced tables for the job. Queries that reference more than 50 tables will not have a complete list.
  * @property {bigquery(v2).TableSchema} schema [Output-only] The schema of the results. Present only for successful dry run of non-legacy SQL queries.
  * @property {string} statementType [Output-only, Experimental] The type of query statement, if valid. Possible values (new values might be added in the future): &quot;SELECT&quot;: SELECT query. &quot;INSERT&quot;: INSERT query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language &quot;UPDATE&quot;: UPDATE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language &quot;DELETE&quot;: DELETE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language &quot;CREATE_TABLE&quot;: CREATE [OR REPLACE] TABLE without AS SELECT. &quot;CREATE_TABLE_AS_SELECT&quot;: CREATE [OR REPLACE] TABLE ... AS SELECT ... &quot;DROP_TABLE&quot;: DROP TABLE query. &quot;CREATE_VIEW&quot;: CREATE [OR REPLACE] VIEW ... AS SELECT ... &quot;DROP_VIEW&quot;: DROP VIEW query.
- * @property {bigquery(v2).QueryTimelineSample[]} timeline [Output-only] Describes a timeline of job execution.
+ * @property {bigquery(v2).QueryTimelineSample[]} timeline [Output-only] [Experimental] Describes a timeline of job execution.
  * @property {string} totalBytesBilled [Output-only] Total bytes billed for the job.
  * @property {string} totalBytesProcessed [Output-only] Total bytes processed for the job.
  * @property {string} totalSlotMs [Output-only] Slot-milliseconds for the job.
@@ -2652,6 +2719,7 @@ function Bigquery(options) {
  * @property {bigquery(v2).DatasetReference} defaultDataset [Optional] Specifies the default datasetId and projectId to assume for any unqualified table names in the query. If not set, all table names in the query string must be qualified in the format &#39;datasetId.tableId&#39;.
  * @property {boolean} dryRun [Optional] If set to true, BigQuery doesn&#39;t run the job. Instead, if the query is valid, BigQuery returns statistics about the job such as how many bytes would be processed. If the query is invalid, an error returns. The default value is false.
  * @property {string} kind The resource type of the request.
+ * @property {string} location [Experimental] The geographic location where the job should run. Required except for US and EU.
  * @property {integer} maxResults [Optional] The maximum number of rows of data to return per page of results. Setting this flag to a small value such as 1000 and then paging through results might improve reliability when the query result set is large. In addition to this limit, responses are also limited to 10 MB. By default, there is no maximum row count, and only the byte limit applies.
  * @property {string} parameterMode Standard SQL only. Set to POSITIONAL to use positional (?) query parameters or to NAMED to use named (@myparam) query parameters in this query.
  * @property {boolean} preserveNulls [Deprecated] This property is deprecated.
@@ -2681,9 +2749,8 @@ function Bigquery(options) {
  * @typedef QueryTimelineSample
  * @memberOf! bigquery(v2)
  * @type object
- * @property {integer} activeInputs Total number of active workers. This does not correspond directly to slot usage. This is the largest value observed since the last sample.
- * @property {integer} completedInputs Total parallel units of work completed by this query.
- * @property {integer} completedInputsForActiveStages Total parallel units of work completed by the currently active stages.
+ * @property {string} activeInputs Total number of active workers. This does not correspond directly to slot usage. This is the largest value observed since the last sample.
+ * @property {string} completedInputs Total parallel units of work completed by this query.
  * @property {string} elapsedMs Milliseconds elapsed since the start of query execution.
  * @property {string} pendingInputs Total parallel units of work remaining for the active stages.
  * @property {string} totalSlotMs Cumulative slot-ms consumed by the query.
@@ -2702,7 +2769,7 @@ function Bigquery(options) {
  * @type object
  * @property {string} creationTime [Output-only] The time when this table was created, in milliseconds since the epoch.
  * @property {string} description [Optional] A user-friendly description of this table.
- * @property {bigquery(v2).EncryptionConfiguration} encryptionConfiguration [Experimental] Custom encryption configuration (e.g., Cloud KMS keys).
+ * @property {bigquery(v2).EncryptionConfiguration} encryptionConfiguration Custom encryption configuration (e.g., Cloud KMS keys).
  * @property {string} etag [Output-only] A hash of this resource.
  * @property {string} expirationTime [Optional] The time when this table expires, in milliseconds since the epoch. If not present, the table will persist indefinitely. Expired tables will be deleted and their storage reclaimed. The defaultTableExpirationMs property of the encapsulating dataset can be used to set a default expirationTime on newly created tables.
  * @property {bigquery(v2).ExternalDataConfiguration} externalDataConfiguration [Optional] Describes the data format, location, and other properties of a table stored outside of BigQuery. By defining these properties, the data source can then be queried as if it were a standard BigQuery table.
@@ -2802,6 +2869,7 @@ function Bigquery(options) {
  * @type object
  * @property {string} expirationMs [Optional] Number of milliseconds for which to keep the storage for a partition.
  * @property {string} field [Experimental] [Optional] If not set, the table is partitioned by pseudo column &#39;_PARTITIONTIME&#39;; if set, the table is partitioned by this field. The field must be a top-level TIMESTAMP or DATE field. Its mode must be NULLABLE or REQUIRED.
+ * @property {boolean} requirePartitionFilter [Experimental] [Optional] If set to true, queries over this table require a partition filter that can be used for partition elimination to be specified.
  * @property {string} type [Required] The only type supported is DAY, which will generate one partition per day.
  */
 /**

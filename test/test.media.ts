@@ -54,6 +54,7 @@ async function testMediaBody(drive: APIEndpoint) {
       {encoding: 'utf8'});
   const res = await pify(drive.files.insert)({resource, media});
   assert.equal(res.config.method.toLowerCase(), 'post');
+  assert.equal(res.config.maxContentLength, Math.pow(2, 31));
   assert.equal(res.request.path, '/upload/drive/v2/files?uploadType=multipart');
   assert.equal(
       res.request.headers['content-type'].indexOf('multipart/related;'), 0);

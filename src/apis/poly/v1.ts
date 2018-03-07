@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Poly API
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Poly
  */
-function Poly(options) {
+function Poly(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.assets = {
@@ -50,7 +57,8 @@ function Poly(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -69,7 +77,7 @@ function Poly(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * poly.assets.list
         * @desc Lists all public, remixable assets. These are assets with an
@@ -90,7 +98,9 @@ function Poly(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -109,7 +119,7 @@ function Poly(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -135,7 +145,9 @@ function Poly(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -155,7 +167,7 @@ function Poly(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -178,7 +190,9 @@ function Poly(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -198,7 +212,7 @@ function Poly(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }
@@ -221,6 +235,15 @@ function Poly(options) {
  * @property {poly(v1).File} thumbnail The thumbnail image for the asset.
  * @property {string} updateTime The time when the asset was last modified. For published assets, whose contents are immutable, the update time changes only when metadata properties, such as visibility, are updated.
  * @property {string} visibility The visibility of the asset and who can access it.
+ */
+/**
+ * @typedef AssetImportMessage
+ * @memberOf! poly(v1)
+ * @type object
+ * @property {string} code The code associated with this message.
+ * @property {string} filePath An optional file path. Only present for those error codes that specify it.
+ * @property {poly(v1).ImageError} imageError An optional image error. Only present for INVALID_IMAGE_FILE.
+ * @property {poly(v1).ObjParseError} objParseError An optional OBJ parse error. Only present for OBJ_PARSE_ERROR.
  */
 /**
  * @typedef File
@@ -247,6 +270,13 @@ function Poly(options) {
  * @property {string} triangleCount The estimated number of triangles.
  */
 /**
+ * @typedef ImageError
+ * @memberOf! poly(v1)
+ * @type object
+ * @property {string} code The type of image error encountered. Optional for older image errors.
+ * @property {string} filePath The file path in the import of the image that was rejected.
+ */
+/**
  * @typedef ListAssetsResponse
  * @memberOf! poly(v1)
  * @type object
@@ -271,6 +301,17 @@ function Poly(options) {
  * @property {poly(v1).UserAsset[]} userAssets A list of UserAssets matching the request.
  */
 /**
+ * @typedef ObjParseError
+ * @memberOf! poly(v1)
+ * @type object
+ * @property {string} code The type of problem found (required).
+ * @property {integer} endIndex The ending character index at which the problem was found.
+ * @property {string} filePath The file path in which the problem was found.
+ * @property {string} line The text of the line. Note that this may be truncated if the line was very long. This may not include the error if it occurs after line truncation.
+ * @property {integer} lineNumber Line number at which the problem was found.
+ * @property {integer} startIndex The starting character index at which the problem was found.
+ */
+/**
  * @typedef PresentationParams
  * @memberOf! poly(v1)
  * @type object
@@ -285,6 +326,15 @@ function Poly(options) {
  * @property {number} x The x component.
  * @property {number} y The y component.
  * @property {number} z The z component.
+ */
+/**
+ * @typedef StartAssetImportResponse
+ * @memberOf! poly(v1)
+ * @type object
+ * @property {string} assetId The id of newly created asset. If this is empty when the operation is complete it means the import failed. Please refer to the asset_import_message field to understand what went wrong.
+ * @property {string} assetImportId The id of the asset import.
+ * @property {poly(v1).AssetImportMessage[]} assetImportMessages The message from the asset import. This will contain any warnings (or - in the case of failure - errors) that occurred during import.
+ * @property {string} publishUrl The publish URL for the asset.
  */
 /**
  * @typedef UserAsset

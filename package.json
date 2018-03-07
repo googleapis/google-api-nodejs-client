@@ -2,7 +2,8 @@
   "nyc": {
     "exclude": [
       "build/src/apis",
-      "build/test"
+      "build/test",
+      "samples"
     ]
   },
   "license": "Apache-2.0",
@@ -62,25 +63,15 @@
     {
       "email": "beckwith@google.com",
       "name": "Justin Beckwith"
+    },
+    {
+      "email": "fenster@google.com",
+      "name": "Alexander Fenster"
     }
   ],
-  "version": "26.0.1",
+  "version": "27.0.0",
   "scripts": {
-    "posttest": "npm run check && npm run license-check",
-    "test": "npm run cover",
-    "doc": "jsdoc -c jsdoc-conf.json",
-    "prepare": "npm run compile",
-    "build-tools": "tsc -p tsconfig.tools.json",
-    "compile": "tsc -p .",
-    "check-samples": "semistandard \"samples/**/*.js\"",
-    "generate-apis": "npm run build-tools && node build/src/scripts/generate.js && clang-format -i -style='{Language: JavaScript, BasedOnStyle: Google, ColumnLimit: 80}' src/apis/**/*.ts",
-    "cover": "nyc --cache mocha build/test/ --recursive -t 10000 -S -R spec --require intelli-espower-loader && nyc report --reporter=html",
-    "pretest": "npm run compile",
-    "clean": "gts clean",
-    "check": "gts check && npm run check-samples",
-    "fix": "gts fix && npm run fix-samples",
-    "fix-samples": "semistandard --fix \"samples/**/*.js\"",
-    "license-check": "jsgl --local ."
+    "test": "make test -j 4"
   },
   "author": "Google Inc.",
   "keywords": [
@@ -97,9 +88,11 @@
     "node": ">=4.0"
   },
   "devDependencies": {
+    "@types/express": "^4.11.1",
     "@types/minimist": "1.2.0",
     "@types/mkdirp": "0.5.2",
     "@types/mocha": "2.2.48",
+    "@types/mv": "^2.1.0",
     "@types/ncp": "^2.0.1",
     "@types/nock": "^9.1.2",
     "@types/node": "9.4.6",
@@ -115,23 +108,26 @@
     "axios": "^0.18.0",
     "clang-format": "^1.2.2",
     "codecov": "^3.0.0",
-    "gts": "0.5.3",
+    "express": "^4.16.2",
+    "gts": "0.5.4",
     "ink-docstrap": "1.3.2",
     "intelli-espower-loader": "1.0.1",
     "js-green-licenses": "^0.4.0",
     "jsdoc": "3.5.5",
     "minimist": "1.2.0",
     "mkdirp": "0.5.1",
-    "mocha": "5.0.1",
+    "mocha": "5.0.2",
+    "mv": "^2.1.1",
     "nconf": "^0.10.0",
     "ncp": "^2.0.0",
-    "nock": "9.1.6",
+    "nock": "9.2.2",
     "nunjucks": "^3.1.0",
     "nyc": "11.4.1",
     "opn": "5.2.0",
     "p-queue": "^2.3.0",
     "rimraf": "2.6.2",
-    "semistandard": "12.0.0",
+    "semistandard": "12.0.1",
+    "server-destroy": "^1.0.1",
     "source-map-support": "0.5.3",
     "tmp": "0.0.33",
     "typescript": "2.7.2"

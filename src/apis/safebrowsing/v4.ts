@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Safe Browsing API
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v4
  * @param {object=} options Options for Safebrowsing
  */
-function Safebrowsing(options) {
+function Safebrowsing(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.encodedFullHashes = {
@@ -49,7 +56,8 @@ function Safebrowsing(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -69,7 +77,7 @@ function Safebrowsing(options) {
         pathParams: ['encodedRequest'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -87,7 +95,8 @@ function Safebrowsing(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -107,7 +116,7 @@ function Safebrowsing(options) {
         pathParams: ['encodedRequest'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -124,7 +133,9 @@ function Safebrowsing(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    find(params, options, callback) {
+    find(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -144,7 +155,7 @@ function Safebrowsing(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -162,7 +173,9 @@ function Safebrowsing(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params, options, callback) {
+    create(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -181,7 +194,7 @@ function Safebrowsing(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -197,7 +210,9 @@ function Safebrowsing(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -216,7 +231,7 @@ function Safebrowsing(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -234,7 +249,9 @@ function Safebrowsing(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    fetch(params, options, callback) {
+    fetch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -254,7 +271,7 @@ function Safebrowsing(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -271,7 +288,9 @@ function Safebrowsing(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    find(params, options, callback) {
+    find(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -291,7 +310,7 @@ function Safebrowsing(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -423,7 +442,7 @@ function Safebrowsing(options) {
  * @memberOf! safebrowsing(v4)
  * @type object
  * @property {string} encodedData The encoded deltas that are encoded using the Golomb-Rice coder.
- * @property {string} firstValue The offset of the first entry in the encoded data, or, if only a single integer was encoded, that single integer&#39;s value.
+ * @property {string} firstValue The offset of the first entry in the encoded data, or, if only a single integer was encoded, that single integer&#39;s value. If the field is empty or missing, assume zero.
  * @property {integer} numEntries The number of entries that are delta encoded in the encoded data. If only a single integer was encoded, this will be zero and the single value will be stored in `first_value`.
  * @property {integer} riceParameter The Golomb-Rice parameter, which is a number between 2 and 28. This field is missing (that is, zero) if `num_entries` is zero.
  */

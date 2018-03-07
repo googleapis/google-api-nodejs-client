@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Fusion Tables API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2
  * @param {object=} options Options for Fusiontables
  */
-function Fusiontables(options) {
+function Fusiontables(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.column = {
@@ -48,7 +55,9 @@ function Fusiontables(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -69,7 +78,7 @@ function Fusiontables(options) {
         pathParams: ['columnId', 'tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * fusiontables.column.get
         * @desc Retrieves a specific column by its ID.
@@ -83,7 +92,8 @@ function Fusiontables(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -104,7 +114,7 @@ function Fusiontables(options) {
         pathParams: ['columnId', 'tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * fusiontables.column.insert
         * @desc Adds a new column to the table.
@@ -118,7 +128,9 @@ function Fusiontables(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -138,7 +150,7 @@ function Fusiontables(options) {
         pathParams: ['tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * fusiontables.column.list
         * @desc Retrieves a list of columns.
@@ -153,7 +165,9 @@ function Fusiontables(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -173,7 +187,7 @@ function Fusiontables(options) {
         pathParams: ['tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * fusiontables.column.patch
         * @desc Updates the name or type of an existing column. This method
@@ -189,7 +203,9 @@ function Fusiontables(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -210,7 +226,7 @@ function Fusiontables(options) {
         pathParams: ['columnId', 'tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * fusiontables.column.update
         * @desc Updates the name or type of an existing column.
@@ -225,7 +241,9 @@ function Fusiontables(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -246,7 +264,7 @@ function Fusiontables(options) {
         pathParams: ['columnId', 'tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -266,7 +284,8 @@ function Fusiontables(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    sql(params, options, callback) {
+    sql(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -286,7 +305,7 @@ function Fusiontables(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * fusiontables.query.sqlGet
         * @desc Executes a SQL statement which can be any of  - SELECT - SHOW -
@@ -302,7 +321,9 @@ function Fusiontables(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    sqlGet(params, options, callback) {
+    sqlGet(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -322,7 +343,7 @@ function Fusiontables(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -340,7 +361,9 @@ function Fusiontables(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -361,7 +384,7 @@ function Fusiontables(options) {
         pathParams: ['styleId', 'tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * fusiontables.style.get
         * @desc Gets a specific style.
@@ -375,7 +398,8 @@ function Fusiontables(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -396,7 +420,7 @@ function Fusiontables(options) {
         pathParams: ['styleId', 'tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * fusiontables.style.insert
         * @desc Adds a new style for the table.
@@ -410,7 +434,9 @@ function Fusiontables(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -430,7 +456,7 @@ function Fusiontables(options) {
         pathParams: ['tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * fusiontables.style.list
         * @desc Retrieves a list of styles.
@@ -445,7 +471,9 @@ function Fusiontables(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -465,7 +493,7 @@ function Fusiontables(options) {
         pathParams: ['tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * fusiontables.style.patch
         * @desc Updates an existing style. This method supports patch semantics.
@@ -480,7 +508,9 @@ function Fusiontables(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -501,7 +531,7 @@ function Fusiontables(options) {
         pathParams: ['styleId', 'tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * fusiontables.style.update
         * @desc Updates an existing style.
@@ -516,7 +546,9 @@ function Fusiontables(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -537,7 +569,7 @@ function Fusiontables(options) {
         pathParams: ['styleId', 'tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -555,7 +587,9 @@ function Fusiontables(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    copy(params, options, callback) {
+    copy(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -575,7 +609,7 @@ function Fusiontables(options) {
         pathParams: ['tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * fusiontables.table.delete
         * @desc Deletes a table.
@@ -588,7 +622,9 @@ function Fusiontables(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -608,7 +644,7 @@ function Fusiontables(options) {
         pathParams: ['tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * fusiontables.table.get
         * @desc Retrieves a specific table by its ID.
@@ -621,7 +657,8 @@ function Fusiontables(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -641,7 +678,7 @@ function Fusiontables(options) {
         pathParams: ['tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * fusiontables.table.importRows
         * @desc Imports more rows into a table.
@@ -662,7 +699,9 @@ function Fusiontables(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    importRows(params, options, callback) {
+    importRows(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -684,7 +723,7 @@ function Fusiontables(options) {
         pathParams: ['tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * fusiontables.table.importTable
         * @desc Imports a new table.
@@ -702,7 +741,9 @@ function Fusiontables(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    importTable(params, options, callback) {
+    importTable(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -724,7 +765,7 @@ function Fusiontables(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * fusiontables.table.insert
         * @desc Creates a new table.
@@ -737,7 +778,9 @@ function Fusiontables(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -757,7 +800,7 @@ function Fusiontables(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * fusiontables.table.list
         * @desc Retrieves a list of tables a user owns.
@@ -771,7 +814,9 @@ function Fusiontables(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -791,7 +836,7 @@ function Fusiontables(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * fusiontables.table.patch
         * @desc Updates an existing table. Unless explicitly requested, only the
@@ -808,7 +853,9 @@ function Fusiontables(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -828,7 +875,7 @@ function Fusiontables(options) {
         pathParams: ['tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * fusiontables.table.refetchSheet
         * @desc Replaces rows of the table with the rows of the spreadsheet that
@@ -843,7 +890,9 @@ function Fusiontables(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    refetchSheet(params, options, callback) {
+    refetchSheet(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -863,7 +912,7 @@ function Fusiontables(options) {
         pathParams: ['tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * fusiontables.table.replaceRows
         * @desc Replaces rows of an existing table. Current rows remain visible
@@ -885,7 +934,9 @@ function Fusiontables(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    replaceRows(params, options, callback) {
+    replaceRows(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -907,7 +958,7 @@ function Fusiontables(options) {
         pathParams: ['tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * fusiontables.table.update
         * @desc Updates an existing table. Unless explicitly requested, only the
@@ -923,7 +974,9 @@ function Fusiontables(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -943,7 +996,7 @@ function Fusiontables(options) {
         pathParams: ['tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -962,7 +1015,9 @@ function Fusiontables(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -983,7 +1038,7 @@ function Fusiontables(options) {
         pathParams: ['tableId', 'taskId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * fusiontables.task.get
         * @desc Retrieves a specific task by its ID.
@@ -997,7 +1052,8 @@ function Fusiontables(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1018,7 +1074,7 @@ function Fusiontables(options) {
         pathParams: ['tableId', 'taskId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * fusiontables.task.list
         * @desc Retrieves a list of tasks.
@@ -1034,7 +1090,9 @@ function Fusiontables(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1054,7 +1112,7 @@ function Fusiontables(options) {
         pathParams: ['tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1072,7 +1130,9 @@ function Fusiontables(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1093,7 +1153,7 @@ function Fusiontables(options) {
         pathParams: ['tableId', 'templateId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * fusiontables.template.get
         * @desc Retrieves a specific template by its id
@@ -1107,7 +1167,8 @@ function Fusiontables(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1128,7 +1189,7 @@ function Fusiontables(options) {
         pathParams: ['tableId', 'templateId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * fusiontables.template.insert
         * @desc Creates a new template for the table.
@@ -1142,7 +1203,9 @@ function Fusiontables(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1162,7 +1225,7 @@ function Fusiontables(options) {
         pathParams: ['tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * fusiontables.template.list
         * @desc Retrieves a list of templates.
@@ -1177,7 +1240,9 @@ function Fusiontables(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1197,7 +1262,7 @@ function Fusiontables(options) {
         pathParams: ['tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * fusiontables.template.patch
         * @desc Updates an existing template. This method supports patch
@@ -1213,7 +1278,9 @@ function Fusiontables(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1234,7 +1301,7 @@ function Fusiontables(options) {
         pathParams: ['tableId', 'templateId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * fusiontables.template.update
         * @desc Updates an existing template
@@ -1249,7 +1316,9 @@ function Fusiontables(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1270,7 +1339,7 @@ function Fusiontables(options) {
         pathParams: ['tableId', 'templateId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

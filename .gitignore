@@ -1,4 +1,4 @@
-node_modules/*
+node_modules
 .idea
 doc/
 npm-debug.log
@@ -14,3 +14,4 @@ apis/iam/v1alpha1.js
 **/*.d.ts
 yarn.lock
 **/.DS_Store
+**/credentials.json

@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Cloud Datastore API
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta1
  * @param {object=} options Options for Datastore
  */
-function Datastore(options) {
+function Datastore(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.projects = {
@@ -56,7 +63,9 @@ function Datastore(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    export(params, options, callback) {
+    export(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -76,7 +85,7 @@ function Datastore(options) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * datastore.projects.import
         * @desc Imports entities into Google Cloud Datastore. Existing entities
@@ -95,7 +104,9 @@ function Datastore(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    import(params, options, callback) {
+    import(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -115,7 +126,7 @@ function Datastore(options) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

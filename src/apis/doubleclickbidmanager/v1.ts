@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * DoubleClick Bid Manager API
@@ -31,13 +38,14 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Doubleclickbidmanager
  */
-function Doubleclickbidmanager(options) {
+function Doubleclickbidmanager(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.lineitems = {
     /**
      * doubleclickbidmanager.lineitems.downloadlineitems
-     * @desc Retrieves line items in CSV format.
+     * @desc Retrieves line items in CSV format. TrueView line items are not
+     * supported.
      * @alias doubleclickbidmanager.lineitems.downloadlineitems
      * @memberOf! doubleclickbidmanager(v1)
      *
@@ -47,7 +55,9 @@ function Doubleclickbidmanager(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    downloadlineitems(params, options, callback) {
+    downloadlineitems(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -68,10 +78,11 @@ function Doubleclickbidmanager(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * doubleclickbidmanager.lineitems.uploadlineitems
-        * @desc Uploads line items in CSV format.
+        * @desc Uploads line items in CSV format. TrueView line items are not
+        * supported.
         * @alias doubleclickbidmanager.lineitems.uploadlineitems
         * @memberOf! doubleclickbidmanager(v1)
         *
@@ -81,7 +92,9 @@ function Doubleclickbidmanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    uploadlineitems(params, options, callback) {
+    uploadlineitems(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -102,7 +115,7 @@ function Doubleclickbidmanager(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -119,7 +132,9 @@ function Doubleclickbidmanager(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    createquery(params, options, callback) {
+    createquery(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -139,7 +154,7 @@ function Doubleclickbidmanager(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * doubleclickbidmanager.queries.deletequery
         * @desc Deletes a stored query as well as the associated stored reports.
@@ -152,7 +167,9 @@ function Doubleclickbidmanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    deletequery(params, options, callback) {
+    deletequery(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -172,7 +189,7 @@ function Doubleclickbidmanager(options) {
         pathParams: ['queryId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * doubleclickbidmanager.queries.getquery
         * @desc Retrieves a stored query.
@@ -185,7 +202,9 @@ function Doubleclickbidmanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getquery(params, options, callback) {
+    getquery(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -205,7 +224,7 @@ function Doubleclickbidmanager(options) {
         pathParams: ['queryId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * doubleclickbidmanager.queries.listqueries
         * @desc Retrieves stored queries.
@@ -217,7 +236,9 @@ function Doubleclickbidmanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    listqueries(params, options, callback) {
+    listqueries(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -237,7 +258,7 @@ function Doubleclickbidmanager(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * doubleclickbidmanager.queries.runquery
         * @desc Runs a stored query to generate a report.
@@ -251,7 +272,9 @@ function Doubleclickbidmanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    runquery(params, options, callback) {
+    runquery(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -271,7 +294,7 @@ function Doubleclickbidmanager(options) {
         pathParams: ['queryId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -288,7 +311,9 @@ function Doubleclickbidmanager(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listreports(params, options, callback) {
+    listreports(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -309,7 +334,7 @@ function Doubleclickbidmanager(options) {
         pathParams: ['queryId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -326,7 +351,9 @@ function Doubleclickbidmanager(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    download(params, options, callback) {
+    download(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -346,7 +373,7 @@ function Doubleclickbidmanager(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -381,6 +408,7 @@ function Doubleclickbidmanager(options) {
  * @type object
  * @property {string} adGroups Retrieved ad groups in SDF format.
  * @property {string} ads Retrieved ads in SDF format.
+ * @property {string} campaigns Retrieved campaigns in SDF format.
  * @property {string} insertionOrders Retrieved insertion orders in SDF format.
  * @property {string} lineItems Retrieved line items in SDF format.
  */

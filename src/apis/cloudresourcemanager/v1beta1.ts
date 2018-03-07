@@ -14,10 +14,17 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
 
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
+
 /**
- * Google Cloud Resource Manager API
+ * Cloud Resource Manager API
  *
  * The Google Cloud Resource Manager API provides methods for creating, reading,
  * and updating project metadata.
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta1
  * @param {object=} options Options for Cloudresourcemanager
  */
-function Cloudresourcemanager(options) {
+function Cloudresourcemanager(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.organizations = {
@@ -102,7 +109,8 @@ function Cloudresourcemanager(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -122,7 +130,7 @@ function Cloudresourcemanager(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.organizations.getIamPolicy
         * @desc Gets the access control policy for an Organization resource. May
@@ -196,7 +204,9 @@ function Cloudresourcemanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getIamPolicy(params, options, callback) {
+    getIamPolicy(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -217,7 +227,7 @@ function Cloudresourcemanager(options) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.organizations.list
         * @desc Lists Organization resources that are visible to the user and
@@ -300,7 +310,9 @@ function Cloudresourcemanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -321,7 +333,7 @@ function Cloudresourcemanager(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.organizations.setIamPolicy
         * @desc Sets the access control policy on an Organization resource.
@@ -395,7 +407,9 @@ function Cloudresourcemanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setIamPolicy(params, options, callback) {
+    setIamPolicy(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -416,7 +430,7 @@ function Cloudresourcemanager(options) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.organizations.testIamPermissions
         * @desc Returns permissions that a caller has on the specified
@@ -491,7 +505,9 @@ function Cloudresourcemanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -512,7 +528,7 @@ function Cloudresourcemanager(options) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.organizations.update
         * @desc Updates an Organization resource identified by the specified
@@ -588,7 +604,9 @@ function Cloudresourcemanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -608,7 +626,7 @@ function Cloudresourcemanager(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -683,7 +701,9 @@ function Cloudresourcemanager(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params, options, callback) {
+    create(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -704,7 +724,7 @@ function Cloudresourcemanager(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.projects.delete
         * @desc Marks the Project identified by the specified `project_id` (for
@@ -781,7 +801,9 @@ function Cloudresourcemanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -802,7 +824,7 @@ function Cloudresourcemanager(options) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.projects.get
         * @desc Retrieves the Project identified by the specified `project_id`
@@ -872,7 +894,8 @@ function Cloudresourcemanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -893,7 +916,7 @@ function Cloudresourcemanager(options) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.projects.getAncestry
         * @desc Gets a list of ancestors in the resource hierarchy for the
@@ -967,7 +990,9 @@ function Cloudresourcemanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getAncestry(params, options, callback) {
+    getAncestry(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -988,7 +1013,7 @@ function Cloudresourcemanager(options) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.projects.getIamPolicy
         * @desc Returns the IAM access control policy for the specified Project.
@@ -1063,7 +1088,9 @@ function Cloudresourcemanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getIamPolicy(params, options, callback) {
+    getIamPolicy(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1084,7 +1111,7 @@ function Cloudresourcemanager(options) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.projects.list
         * @desc Lists Projects that are visible to the user and satisfy the
@@ -1169,7 +1196,9 @@ function Cloudresourcemanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1190,7 +1219,7 @@ function Cloudresourcemanager(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.projects.setIamPolicy
         * @desc Sets the IAM access control policy for the specified Project.
@@ -1287,7 +1316,9 @@ function Cloudresourcemanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setIamPolicy(params, options, callback) {
+    setIamPolicy(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1308,7 +1339,7 @@ function Cloudresourcemanager(options) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.projects.testIamPermissions
         * @desc Returns permissions that a caller has on the specified Project.
@@ -1381,7 +1412,9 @@ function Cloudresourcemanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1402,7 +1435,7 @@ function Cloudresourcemanager(options) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.projects.undelete
         * @desc Restores the Project identified by the specified `project_id`
@@ -1476,7 +1509,9 @@ function Cloudresourcemanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    undelete(params, options, callback) {
+    undelete(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1497,7 +1532,7 @@ function Cloudresourcemanager(options) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.projects.update
         * @desc Updates the attributes of the Project identified by the
@@ -1572,7 +1607,9 @@ function Cloudresourcemanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1593,7 +1630,7 @@ function Cloudresourcemanager(options) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1680,10 +1717,10 @@ function Cloudresourcemanager(options) {
  * @memberOf! cloudresourcemanager(v1beta1)
  * @type object
  * @property {string} creationTime Timestamp when the Organization was created. Assigned by the server. @OutputOnly
- * @property {string} displayName A friendly string to be used to refer to the Organization in the UI. Assigned by the server, set to the primary domain of the G Suite customer that owns the organization. @OutputOnly
+ * @property {string} displayName A human-readable string that refers to the Organization in the GCP Console UI. This string is set by the server and cannot be changed. The string will be set to the primary domain (for example, &quot;google.com&quot;) of the G Suite customer that owns the organization. @OutputOnly
  * @property {string} lifecycleState The organization&#39;s current lifecycle state. Assigned by the server. @OutputOnly
  * @property {string} name Output Only. The resource name of the organization. This is the organization&#39;s relative path in the API. Its format is &quot;organizations/[organization_id]&quot;. For example, &quot;organizations/1234&quot;.
- * @property {string} organizationId An immutable id for the Organization that is assigned on creation. This should be omitted when creating a new Organization. This field is read-only. This field is deprecated and will be removed in v1. Use name instead.
+ * @property {string} organizationId An immutable id for the Organization that is assigned on creation. This should be omitted when creating a new Organization. This field is read-only.
  * @property {cloudresourcemanager(v1beta1).OrganizationOwner} owner The owner of this Organization. The owner should be specified on creation. Once set, it cannot be changed. This field is required.
  */
 /**

@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Service Management API
@@ -33,7 +40,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Servicemanagement
  */
-function Servicemanagement(options) {
+function Servicemanagement(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.operations = {
@@ -51,7 +58,8 @@ function Servicemanagement(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -71,7 +79,7 @@ function Servicemanagement(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.operations.list
         * @desc Lists service operations that match the specified filter in the
@@ -88,7 +96,9 @@ function Servicemanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -108,7 +118,7 @@ function Servicemanagement(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -126,7 +136,9 @@ function Servicemanagement(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params, options, callback) {
+    create(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -146,7 +158,7 @@ function Servicemanagement(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.services.delete
         * @desc Deletes a managed service. This method will change the service
@@ -163,7 +175,9 @@ function Servicemanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -184,7 +198,7 @@ function Servicemanagement(options) {
         pathParams: ['serviceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.services.disable
         * @desc Disables a service for a project, so it can no longer be be used
@@ -201,7 +215,9 @@ function Servicemanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    disable(params, options, callback) {
+    disable(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -222,7 +238,7 @@ function Servicemanagement(options) {
         pathParams: ['serviceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.services.enable
         * @desc Enables a service for a project, so it can be used for the
@@ -239,7 +255,9 @@ function Servicemanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    enable(params, options, callback) {
+    enable(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -260,7 +278,7 @@ function Servicemanagement(options) {
         pathParams: ['serviceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.services.generateConfigReport
         * @desc Generates and returns a report (errors, warnings and changes
@@ -282,7 +300,9 @@ function Servicemanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    generateConfigReport(params, options, callback) {
+    generateConfigReport(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -303,7 +323,7 @@ function Servicemanagement(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.services.get
         * @desc Gets a managed service. Authentication is required unless the
@@ -317,7 +337,8 @@ function Servicemanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -338,7 +359,7 @@ function Servicemanagement(options) {
         pathParams: ['serviceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.services.getConfig
         * @desc Gets a service configuration (version) for a managed service.
@@ -353,7 +374,9 @@ function Servicemanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getConfig(params, options, callback) {
+    getConfig(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -374,7 +397,7 @@ function Servicemanagement(options) {
         pathParams: ['serviceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.services.getIamPolicy
         * @desc Gets the access control policy for a resource. Returns an empty
@@ -389,7 +412,9 @@ function Servicemanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getIamPolicy(params, options, callback) {
+    getIamPolicy(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -410,7 +435,7 @@ function Servicemanagement(options) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.services.list
         * @desc Lists managed services.  Returns all public services. For
@@ -431,7 +456,9 @@ function Servicemanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -451,7 +478,7 @@ function Servicemanagement(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.services.setIamPolicy
         * @desc Sets the access control policy on the specified resource.
@@ -466,7 +493,9 @@ function Servicemanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setIamPolicy(params, options, callback) {
+    setIamPolicy(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -487,7 +516,7 @@ function Servicemanagement(options) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.services.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -506,7 +535,9 @@ function Servicemanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -527,7 +558,7 @@ function Servicemanagement(options) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.services.undelete
         * @desc Revives a previously deleted managed service. The method
@@ -543,7 +574,9 @@ function Servicemanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    undelete(params, options, callback) {
+    undelete(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -564,7 +597,7 @@ function Servicemanagement(options) {
         pathParams: ['serviceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     },
     configs: {
       /**
@@ -583,7 +616,9 @@ function Servicemanagement(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create(params, options, callback) {
+      create(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -604,7 +639,7 @@ function Servicemanagement(options) {
           pathParams: ['serviceName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * servicemanagement.services.configs.get
           * @desc Gets a service configuration (version) for a managed service.
@@ -619,7 +654,8 @@ function Servicemanagement(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -640,7 +676,7 @@ function Servicemanagement(options) {
           pathParams: ['configId', 'serviceName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * servicemanagement.services.configs.list
           * @desc Lists the history of the service configuration for a managed
@@ -656,7 +692,9 @@ function Servicemanagement(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -677,7 +715,7 @@ function Servicemanagement(options) {
           pathParams: ['serviceName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * servicemanagement.services.configs.submit
           * @desc Creates a new service configuration (version) for a managed
@@ -697,7 +735,9 @@ function Servicemanagement(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      submit(params, options, callback) {
+      submit(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -718,7 +758,7 @@ function Servicemanagement(options) {
           pathParams: ['serviceName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -737,7 +777,9 @@ function Servicemanagement(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      getIamPolicy(params, options, callback) {
+      getIamPolicy(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -758,7 +800,7 @@ function Servicemanagement(options) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * servicemanagement.services.consumers.setIamPolicy
           * @desc Sets the access control policy on the specified resource.
@@ -773,7 +815,9 @@ function Servicemanagement(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      setIamPolicy(params, options, callback) {
+      setIamPolicy(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -794,7 +838,7 @@ function Servicemanagement(options) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * servicemanagement.services.consumers.testIamPermissions
           * @desc Returns permissions that a caller has on the specified
@@ -813,7 +857,9 @@ function Servicemanagement(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      testIamPermissions(params, options, callback) {
+      testIamPermissions(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -834,7 +880,7 @@ function Servicemanagement(options) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     },
@@ -858,7 +904,9 @@ function Servicemanagement(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create(params, options, callback) {
+      create(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -879,7 +927,7 @@ function Servicemanagement(options) {
           pathParams: ['serviceName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * servicemanagement.services.rollouts.get
           * @desc Gets a service configuration rollout.
@@ -893,7 +941,8 @@ function Servicemanagement(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -915,7 +964,7 @@ function Servicemanagement(options) {
           pathParams: ['rolloutId', 'serviceName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * servicemanagement.services.rollouts.list
           * @desc Lists the history of the service configuration rollouts for a
@@ -932,7 +981,9 @@ function Servicemanagement(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -953,7 +1004,7 @@ function Servicemanagement(options) {
           pathParams: ['serviceName'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }
@@ -976,6 +1027,20 @@ function Servicemanagement(options) {
  * @property {servicemanagement(v1).SourceContext} sourceContext Source context for the protocol buffer service represented by this message.
  * @property {string} syntax The source syntax of the service.
  * @property {string} version A version string for this interface. If specified, must have the form `major-version.minor-version`, as in `1.10`. If the minor version is omitted, it defaults to zero. If the entire version field is empty, the major version is derived from the package name, as outlined below. If the field is not empty, the version in the package name will be verified to be consistent with what is provided here.  The versioning schema uses [semantic versioning](http://semver.org) where the major version number indicates a breaking change and the minor version an additive, non-breaking change. Both version numbers are signals to users what to expect from different versions, and should be carefully chosen based on the product plan.  The major version is also reflected in the package name of the interface, which must end in `v&lt;major-version&gt;`, as in `google.feature.v1`. For major versions 0 and 1, the suffix can be omitted. Zero major versions must only be used for experimental, non-GA interfaces.
+ */
+/**
+ * @typedef AuditConfig
+ * @memberOf! servicemanagement(v1)
+ * @type object
+ * @property {servicemanagement(v1).AuditLogConfig[]} auditLogConfigs The configuration for logging of each type of permission. Next ID: 4
+ * @property {string} service Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
+ */
+/**
+ * @typedef AuditLogConfig
+ * @memberOf! servicemanagement(v1)
+ * @type object
+ * @property {string[]} exemptedMembers Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
+ * @property {string} logType The log type that this config enables.
  */
 /**
  * @typedef Authentication
@@ -1049,7 +1114,6 @@ function Servicemanagement(options) {
  * @typedef Binding
  * @memberOf! servicemanagement(v1)
  * @type object
- * @property {servicemanagement(v1).Expr} condition The condition that is associated with this binding. NOTE: an unsatisfied condition will not allow user access via current binding. Different bindings, including their conditions, are examined independently. This field is only visible as GOOGLE_INTERNAL or CONDITION_TRUSTED_TESTER.
  * @property {string[]} members Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@gmail.com` or `joe@example.com`.   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: A Google Apps domain name that represents all the    users of that domain. For example, `google.com` or `example.com`.
  * @property {string} role Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. Required
  */
@@ -1100,6 +1164,8 @@ function Servicemanagement(options) {
  * @typedef ContextRule
  * @memberOf! servicemanagement(v1)
  * @type object
+ * @property {string[]} allowedRequestExtensions A list of full type names or extension IDs of extensions allowed in grpc side channel from client to backend.
+ * @property {string[]} allowedResponseExtensions A list of full type names or extension IDs of extensions allowed in grpc side channel from backend to client.
  * @property {string[]} provided A list of full type names of provided contexts.
  * @property {string[]} requested A list of full type names of requested contexts.
  * @property {string} selector Selects the methods to which this rule applies.  Refer to selector for syntax details.
@@ -1215,15 +1281,6 @@ function Servicemanagement(options) {
  * @property {servicemanagement(v1).AuthorizationConfig} authorization Authorization configuration.
  */
 /**
- * @typedef Expr
- * @memberOf! servicemanagement(v1)
- * @type object
- * @property {string} description An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
- * @property {string} expression Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
- * @property {string} location An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
- * @property {string} title An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
- */
-/**
  * @typedef Field
  * @memberOf! servicemanagement(v1)
  * @type object
@@ -1237,18 +1294,6 @@ function Servicemanagement(options) {
  * @property {servicemanagement(v1).Option[]} options The protocol buffer options.
  * @property {boolean} packed Whether to use alternative packed wire representation.
  * @property {string} typeUrl The field type URL, without the scheme, for message or enumeration types. Example: `&quot;type.googleapis.com/google.protobuf.Timestamp&quot;`.
- */
-/**
- * @typedef FlowOperationMetadata
- * @memberOf! servicemanagement(v1)
- * @type object
- * @property {string} cancelState The state of the operation with respect to cancellation.
- * @property {string} deadline Deadline for the flow to complete, to prevent orphaned Operations.  If the flow has not completed by this time, it may be terminated by the engine, or force-failed by Operation lookup.  Note that this is not a hard deadline after which the Flow will definitely be failed, rather it is a deadline after which it is reasonable to suspect a problem and other parts of the system may kill operation to ensure we don&#39;t have orphans. see also: go/prevent-orphaned-operations
- * @property {string} flowName The name of the top-level flow corresponding to this operation. Must be equal to the &quot;name&quot; field for a FlowName enum.
- * @property {integer} operationType Operation type which is a flow type and subtype info as that is missing in our datastore otherwise. This maps to the ordinal value of the enum: jcg/api/tenant/operations/OperationNamespace.java
- * @property {string[]} resourceNames The full name of the resources that this flow is directly associated with.
- * @property {string} startTime The start time of the operation.
- * @property {string} surface
  */
 /**
  * @typedef GenerateConfigReportRequest
@@ -1406,7 +1451,7 @@ function Servicemanagement(options) {
  * @property {string} metricKind Whether the metric records instantaneous values, changes to a value, etc. Some combinations of `metric_kind` and `value_type` might not be supported.
  * @property {string} name The resource name of the metric descriptor.
  * @property {string} type The metric type, including its DNS name prefix. The type is not URL-encoded.  All user-defined custom metric types have the DNS name `custom.googleapis.com`.  Metric types should use a natural hierarchical grouping. For example:      &quot;custom.googleapis.com/invoice/paid/amount&quot;     &quot;appengine.googleapis.com/http/server/response_latencies&quot;
- * @property {string} unit The unit in which the metric value is reported. It is only applicable if the `value_type` is `INT64`, `DOUBLE`, or `DISTRIBUTION`. The supported units are a subset of [The Unified Code for Units of Measure](http://unitsofmeasure.org/ucum.html) standard:  **Basic units (UNIT)**  * `bit`   bit * `By`    byte * `s`     second * `min`   minute * `h`     hour * `d`     day  **Prefixes (PREFIX)**  * `k`     kilo    (10**3) * `M`     mega    (10**6) * `G`     giga    (10**9) * `T`     tera    (10**12) * `P`     peta    (10**15) * `E`     exa     (10**18) * `Z`     zetta   (10**21) * `Y`     yotta   (10**24) * `m`     milli   (10**-3) * `u`     micro   (10**-6) * `n`     nano    (10**-9) * `p`     pico    (10**-12) * `f`     femto   (10**-15) * `a`     atto    (10**-18) * `z`     zepto   (10**-21) * `y`     yocto   (10**-24) * `Ki`    kibi    (2**10) * `Mi`    mebi    (2**20) * `Gi`    gibi    (2**30) * `Ti`    tebi    (2**40)  **Grammar**  The grammar includes the dimensionless unit `1`, such as `1/s`.  The grammar also includes these connectors:  * `/`    division (as an infix operator, e.g. `1/s`). * `.`    multiplication (as an infix operator, e.g. `GBy.d`)  The grammar for a unit is as follows:      Expression = Component { &quot;.&quot; Component } { &quot;/&quot; Component } ;      Component = [ PREFIX ] UNIT [ Annotation ]               | Annotation               | &quot;1&quot;               ;      Annotation = &quot;{&quot; NAME &quot;}&quot; ;  Notes:  * `Annotation` is just a comment if it follows a `UNIT` and is    equivalent to `1` if it is used alone. For examples,    `{requests}/s == 1/s`, `By{transmitted}/s == By/s`. * `NAME` is a sequence of non-blank printable ASCII characters not    containing &#39;{&#39; or &#39;}&#39;.
+ * @property {string} unit The unit in which the metric value is reported. It is only applicable if the `value_type` is `INT64`, `DOUBLE`, or `DISTRIBUTION`. The supported units are a subset of [The Unified Code for Units of Measure](http://unitsofmeasure.org/ucum.html) standard:  **Basic units (UNIT)**  * `bit`   bit * `By`    byte * `s`     second * `min`   minute * `h`     hour * `d`     day  **Prefixes (PREFIX)**  * `k`     kilo    (10**3) * `M`     mega    (10**6) * `G`     giga    (10**9) * `T`     tera    (10**12) * `P`     peta    (10**15) * `E`     exa     (10**18) * `Z`     zetta   (10**21) * `Y`     yotta   (10**24) * `m`     milli   (10**-3) * `u`     micro   (10**-6) * `n`     nano    (10**-9) * `p`     pico    (10**-12) * `f`     femto   (10**-15) * `a`     atto    (10**-18) * `z`     zepto   (10**-21) * `y`     yocto   (10**-24) * `Ki`    kibi    (2**10) * `Mi`    mebi    (2**20) * `Gi`    gibi    (2**30) * `Ti`    tebi    (2**40)  **Grammar**  The grammar also includes these connectors:  * `/`    division (as an infix operator, e.g. `1/s`). * `.`    multiplication (as an infix operator, e.g. `GBy.d`)  The grammar for a unit is as follows:      Expression = Component { &quot;.&quot; Component } { &quot;/&quot; Component } ;      Component = ( [ PREFIX ] UNIT | &quot;%&quot; ) [ Annotation ]               | Annotation               | &quot;1&quot;               ;      Annotation = &quot;{&quot; NAME &quot;}&quot; ;  Notes:  * `Annotation` is just a comment if it follows a `UNIT` and is    equivalent to `1` if it is used alone. For examples,    `{requests}/s == 1/s`, `By{transmitted}/s == By/s`. * `NAME` is a sequence of non-blank printable ASCII characters not    containing &#39;{&#39; or &#39;}&#39;. * `1` represents dimensionless value 1, such as in `1/s`. * `%` represents dimensionless value 1/100, and annotates values giving    a percentage.
  * @property {string} valueType Whether the measurement is an integer, a floating-point number, etc. Some combinations of `metric_kind` and `value_type` might not be supported.
  */
 /**
@@ -1491,6 +1536,7 @@ function Servicemanagement(options) {
  * @typedef Policy
  * @memberOf! servicemanagement(v1)
  * @type object
+ * @property {servicemanagement(v1).AuditConfig[]} auditConfigs Specifies cloud audit logging configuration for this policy.
  * @property {servicemanagement(v1).Binding[]} bindings Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
  * @property {string} etag `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
  * @property {integer} version Deprecated.

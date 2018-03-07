@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Slides API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Slides
  */
-function Slides(options) {
+function Slides(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.presentations = {
@@ -61,7 +68,9 @@ function Slides(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    batchUpdate(params, options, callback) {
+    batchUpdate(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -81,7 +90,7 @@ function Slides(options) {
         pathParams: ['presentationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * slides.presentations.create
         * @desc Creates a new presentation using the title given in the request.
@@ -96,7 +105,9 @@ function Slides(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    create(params, options, callback) {
+    create(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -116,7 +127,7 @@ function Slides(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * slides.presentations.get
         * @desc Gets the latest version of the specified presentation.
@@ -129,7 +140,8 @@ function Slides(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -149,7 +161,7 @@ function Slides(options) {
         pathParams: ['presentationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     },
     pages: {
       /**
@@ -166,7 +178,8 @@ function Slides(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -187,12 +200,13 @@ function Slides(options) {
           pathParams: ['pageObjectId', 'presentationId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * slides.presentations.pages.getThumbnail
           * @desc Generates a thumbnail of the latest version of the specified
           * page in the presentation and returns a URL to the thumbnail image.
-          * This request counts as an expensive read request for quota purposes.
+          * This request counts as an [expensive read request](/slides/limits)
+          * for quota purposes.
           * @alias slides.presentations.pages.getThumbnail
           * @memberOf! slides(v1)
           *
@@ -205,7 +219,9 @@ function Slides(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      getThumbnail(params, options, callback) {
+      getThumbnail(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -227,7 +243,7 @@ function Slides(options) {
           pathParams: ['pageObjectId', 'presentationId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }
@@ -266,6 +282,7 @@ function Slides(options) {
  * @type object
  * @property {string} presentationId The presentation the updates were applied to.
  * @property {slides(v1).Response[]} replies The reply of the updates.  This maps 1:1 with the updates, although replies to some requests may be empty.
+ * @property {slides(v1).WriteControl} writeControl The updated write control after applying the request.
  */
 /**
  * @typedef Bullet
@@ -493,6 +510,7 @@ function Slides(options) {
  * @type object
  * @property {string} contentUrl An URL to an image with a default lifetime of 30 minutes. This URL is tagged with the account of the requester. Anyone with the URL effectively accesses the image as the original requester. Access to the image may be lost if the presentation&#39;s sharing settings change.
  * @property {slides(v1).ImageProperties} imageProperties The properties of the image.
+ * @property {string} sourceUrl The source URL is the URL used to insert the image. The source URL can be empty.
  */
 /**
  * @typedef ImageProperties
@@ -816,6 +834,14 @@ function Slides(options) {
  * @property {integer} occurrencesChanged The number of occurrences changed by replacing all text.
  */
 /**
+ * @typedef ReplaceImageRequest
+ * @memberOf! slides(v1)
+ * @type object
+ * @property {string} imageObjectId The ID of the existing image that will be replaced.
+ * @property {string} imageReplaceMethod The replacement method.
+ * @property {string} url The URL of the new image.  The image is fetched once at insertion time and a copy is stored for display inside the presentation. Images must be less than 50MB in size, cannot exceed 25 megapixels, and must be in either in PNG, JPEG, or GIF format.  The provided URL can be at most 2 kB in length.
+ */
+/**
  * @typedef Request
  * @memberOf! slides(v1)
  * @type object
@@ -842,6 +868,7 @@ function Slides(options) {
  * @property {slides(v1).ReplaceAllShapesWithImageRequest} replaceAllShapesWithImage Replaces all shapes matching some criteria with an image.
  * @property {slides(v1).ReplaceAllShapesWithSheetsChartRequest} replaceAllShapesWithSheetsChart Replaces all shapes matching some criteria with a Google Sheets chart.
  * @property {slides(v1).ReplaceAllTextRequest} replaceAllText Replaces all instances of specified text.
+ * @property {slides(v1).ReplaceImageRequest} replaceImage Replaces an existing image with a new image.
  * @property {slides(v1).UngroupObjectsRequest} ungroupObjects Ungroups objects, such as groups.
  * @property {slides(v1).UnmergeTableCellsRequest} unmergeTableCells Unmerges cells in a Table.
  * @property {slides(v1).UpdateImagePropertiesRequest} updateImageProperties Updates the properties of an Image.
@@ -1273,7 +1300,11 @@ function Slides(options) {
  * @typedef VideoProperties
  * @memberOf! slides(v1)
  * @type object
+ * @property {boolean} autoPlay Whether to enable video autoplay when the page is displayed in present mode. Defaults to false.
+ * @property {integer} end The time at which to end playback, measured in seconds from the beginning of the video. If set, the end time should be after the start time. If not set or if you set this to a value that exceeds the video duration, the video will be played until its end.
+ * @property {boolean} mute Whether to mute the audio during video playback. Defaults to false.
  * @property {slides(v1).Outline} outline The outline of the video. The default outline matches the defaults for new videos created in the Slides editor.
+ * @property {integer} start The time at which to start playback, measured in seconds from the beginning of the video. If set, the start time should be before the end time. If you set this to a value that exceeds the video&#39;s length in seconds, the video will be played from the last second. If not set, the video will be played from the beginning.
  */
 /**
  * @typedef WeightedFontFamily

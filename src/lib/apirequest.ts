@@ -18,8 +18,10 @@ import * as stream from 'stream';
 import * as parseString from 'string-template';
 import * as uuid from 'uuid';
 
-import {APIRequestParams} from './api';
+import {APIRequestParams, GlobalOptions} from './api';
 import {SchemaParameters} from './schema';
+
+const maxContentLength = Math.pow(2, 31);
 
 function isReadableStream(obj: stream.Readable|string) {
   return obj instanceof stream.Readable && typeof obj._read === 'function';
@@ -190,6 +192,19 @@ export function createAPIRequest<T>(
 
   options.headers = headers;
   options.params = params;
+  // We need to set a default content size, or the max defaults
+  // to 10MB.  Setting to 2GB by default.
+  // https://github.com/google/google-api-nodejs-client/issues/991
+  options.maxContentLength = options.maxContentLength || maxContentLength;
+
+  // By default Axios treats any 2xx as valid, and all non 2xx status
+  // codes as errors.  This is a problem for HTTP 304s when used along
+  // with an eTag.
+  if (!options.validateStatus) {
+    options.validateStatus = (status) => {
+      return (status >= 200 && status < 300) || status === 304;
+    };
+  }
 
   // Combine the AxiosRequestConfig options passed with this specific
   // API call witht the global options configured at the API Context
@@ -207,5 +222,12 @@ export function createAPIRequest<T>(
     authClient.request(mergedOptions, callback);
   } else {
     (new DefaultTransporter()).request(mergedOptions, callback);
+  }
+}
+
+export class BaseAPI {
+  protected _options: GlobalOptions;
+  constructor(options: GlobalOptions) {
+    this._options = options || {};
   }
 }
