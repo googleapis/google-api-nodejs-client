@@ -14,6 +14,8 @@
 'use strict';
 
 const {google} = require('googleapis');
+const fs = require('fs');
+const path = require('path');
 
 /**
  * The JWT authorization is ideal for performing server-to-server
@@ -25,7 +27,11 @@ const {google} = require('googleapis');
  * See the defaultauth.js sample for an alternate way of fetching compute credentials.
  */
 
-const keys = require('./jwt.keys.json');
+let keys = {};
+const keyPath = path.join(__dirname, 'jwt.keys.json');
+if (fs.existsSync(keyPath)) {
+  keys = require(keyPath);
+}
 
 // Create a new JWT client using the key file downloaded from the Google Developer Console
 const jwtClient = new google.auth.JWT({
