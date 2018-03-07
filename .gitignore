@@ -12,5 +12,7 @@ apis/iam/v1alpha1.js
 !samples/**/*.js
 .vscode
 **/*.d.ts
+yarn.lock
+**/.DS_Store
 **/credentials.json
 **/.DS_Store
