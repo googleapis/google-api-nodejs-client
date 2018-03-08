@@ -115,7 +115,11 @@ describe('Media', () => {
           },
           media: {body: fs.createReadStream(fileName)}
         },
-        {onUploadProgress: evt => progressEvents.push(evt.bytesRead)});
+        {
+          onUploadProgress: (evt: {bytesRead: number}) => {
+            progressEvents.push(evt.bytesRead);
+          }
+        });
     assert(progressEvents.length > 0);
     assert.equal(progressEvents[0], fileSize);
     scope.done();

@@ -15,8 +15,14 @@
 
 import * as path from 'path';
 import * as util from 'util';
+import { APIList, ServiceOptions } from '../lib/api';
 
-const APIS = {
+export interface APIList {
+  // tslint:disable-next-line: no-any
+  [index: string]: { [index: string]: any };
+}
+
+const APIS: APIList = {
   {% for apiName, api in apis %}{{ apiName }}: {
     {% for versionName, version in api %}'{{ version }}': require('./{{ apiName }}/{{ version }}'),
     {% endfor %}
@@ -24,14 +30,13 @@ const APIS = {
   {% endfor %}
 };
 
-function getAPI (api, options) {
-  const type = typeof options;
-  let version;
-  if (type === 'string') {
+function getAPI(api: string, options: ServiceOptions|string) {
+  let version: string;
+  if (typeof options === 'string') {
     version = options;
     options = {};
-  } else if (type === 'object') {
-    version = options.version;
+  } else if (typeof options === 'object') {
+    version = options.version!;
     delete options.version;
   } else {
     throw new Error('Argument error: Accepts only string or object');
@@ -42,14 +47,14 @@ function getAPI (api, options) {
     ep.google = this;          // for drive.google.transporter
     return Object.freeze(ep);  // create new & freeze
   } catch (e) {
-    throw new Error(util.format(
-        'Unable to load endpoint %s("%s"): %s', api, version, e.message));
+    throw new Error(
+        `Unable to load endpoint ${api}("${version}"): ${e.message}`);
   }
 }
 
 export class GeneratedAPIs {
 {% for apiName, api in apis %}
-{{ apiName }}(options) {
+{{ apiName }}(options: ServiceOptions|string) {
   return getAPI.call(this, '{{ apiName }}', options);
 }
 {% endfor %}

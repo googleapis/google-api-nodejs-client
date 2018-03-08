@@ -16,7 +16,9 @@
 import * as path from 'path';
 import * as util from 'util';
 
-const APIS = {
+import {APIList, ServiceOptions} from '../lib/api';
+
+const APIS: APIList = {
   abusiveexperiencereport: {
     'v1': require('./abusiveexperiencereport/v1'),
   },
@@ -473,14 +475,13 @@ const APIS = {
   },
 };
 
-function getAPI(api, options) {
-  const type = typeof options;
-  let version;
-  if (type === 'string') {
+function getAPI(api: string, options: ServiceOptions|string) {
+  let version: string;
+  if (typeof options === 'string') {
     version = options;
     options = {};
-  } else if (type === 'object') {
-    version = options.version;
+  } else if (typeof options === 'object') {
+    version = options.version!;
     delete options.version;
   } else {
     throw new Error('Argument error: Accepts only string or object');
@@ -491,400 +492,400 @@ function getAPI(api, options) {
     ep.google = this;          // for drive.google.transporter
     return Object.freeze(ep);  // create new & freeze
   } catch (e) {
-    throw new Error(util.format(
-        'Unable to load endpoint %s("%s"): %s', api, version, e.message));
+    throw new Error(
+        `Unable to load endpoint ${api}("${version}"): ${e.message}`);
   }
 }
 
 export class GeneratedAPIs {
-  abusiveexperiencereport(options) {
+  abusiveexperiencereport(options: ServiceOptions|string) {
     return getAPI.call(this, 'abusiveexperiencereport', options);
   }
-  acceleratedmobilepageurl(options) {
+  acceleratedmobilepageurl(options: ServiceOptions|string) {
     return getAPI.call(this, 'acceleratedmobilepageurl', options);
   }
-  adexchangebuyer(options) {
+  adexchangebuyer(options: ServiceOptions|string) {
     return getAPI.call(this, 'adexchangebuyer', options);
   }
-  adexchangebuyer2(options) {
+  adexchangebuyer2(options: ServiceOptions|string) {
     return getAPI.call(this, 'adexchangebuyer2', options);
   }
-  adexchangeseller(options) {
+  adexchangeseller(options: ServiceOptions|string) {
     return getAPI.call(this, 'adexchangeseller', options);
   }
-  adexperiencereport(options) {
+  adexperiencereport(options: ServiceOptions|string) {
     return getAPI.call(this, 'adexperiencereport', options);
   }
-  admin(options) {
+  admin(options: ServiceOptions|string) {
     return getAPI.call(this, 'admin', options);
   }
-  adsense(options) {
+  adsense(options: ServiceOptions|string) {
     return getAPI.call(this, 'adsense', options);
   }
-  adsensehost(options) {
+  adsensehost(options: ServiceOptions|string) {
     return getAPI.call(this, 'adsensehost', options);
   }
-  analytics(options) {
+  analytics(options: ServiceOptions|string) {
     return getAPI.call(this, 'analytics', options);
   }
-  analyticsreporting(options) {
+  analyticsreporting(options: ServiceOptions|string) {
     return getAPI.call(this, 'analyticsreporting', options);
   }
-  androiddeviceprovisioning(options) {
+  androiddeviceprovisioning(options: ServiceOptions|string) {
     return getAPI.call(this, 'androiddeviceprovisioning', options);
   }
-  androidenterprise(options) {
+  androidenterprise(options: ServiceOptions|string) {
     return getAPI.call(this, 'androidenterprise', options);
   }
-  androidmanagement(options) {
+  androidmanagement(options: ServiceOptions|string) {
     return getAPI.call(this, 'androidmanagement', options);
   }
-  androidpublisher(options) {
+  androidpublisher(options: ServiceOptions|string) {
     return getAPI.call(this, 'androidpublisher', options);
   }
-  appengine(options) {
+  appengine(options: ServiceOptions|string) {
     return getAPI.call(this, 'appengine', options);
   }
-  appsactivity(options) {
+  appsactivity(options: ServiceOptions|string) {
     return getAPI.call(this, 'appsactivity', options);
   }
-  appstate(options) {
+  appstate(options: ServiceOptions|string) {
     return getAPI.call(this, 'appstate', options);
   }
-  bigquery(options) {
+  bigquery(options: ServiceOptions|string) {
     return getAPI.call(this, 'bigquery', options);
   }
-  bigquerydatatransfer(options) {
+  bigquerydatatransfer(options: ServiceOptions|string) {
     return getAPI.call(this, 'bigquerydatatransfer', options);
   }
-  blogger(options) {
+  blogger(options: ServiceOptions|string) {
     return getAPI.call(this, 'blogger', options);
   }
-  books(options) {
+  books(options: ServiceOptions|string) {
     return getAPI.call(this, 'books', options);
   }
-  calendar(options) {
+  calendar(options: ServiceOptions|string) {
     return getAPI.call(this, 'calendar', options);
   }
-  chat(options) {
+  chat(options: ServiceOptions|string) {
     return getAPI.call(this, 'chat', options);
   }
-  civicinfo(options) {
+  civicinfo(options: ServiceOptions|string) {
     return getAPI.call(this, 'civicinfo', options);
   }
-  classroom(options) {
+  classroom(options: ServiceOptions|string) {
     return getAPI.call(this, 'classroom', options);
   }
-  cloudbilling(options) {
+  cloudbilling(options: ServiceOptions|string) {
     return getAPI.call(this, 'cloudbilling', options);
   }
-  cloudbuild(options) {
+  cloudbuild(options: ServiceOptions|string) {
     return getAPI.call(this, 'cloudbuild', options);
   }
-  clouddebugger(options) {
+  clouddebugger(options: ServiceOptions|string) {
     return getAPI.call(this, 'clouddebugger', options);
   }
-  clouderrorreporting(options) {
+  clouderrorreporting(options: ServiceOptions|string) {
     return getAPI.call(this, 'clouderrorreporting', options);
   }
-  cloudfunctions(options) {
+  cloudfunctions(options: ServiceOptions|string) {
     return getAPI.call(this, 'cloudfunctions', options);
   }
-  cloudiot(options) {
+  cloudiot(options: ServiceOptions|string) {
     return getAPI.call(this, 'cloudiot', options);
   }
-  cloudkms(options) {
+  cloudkms(options: ServiceOptions|string) {
     return getAPI.call(this, 'cloudkms', options);
   }
-  cloudresourcemanager(options) {
+  cloudresourcemanager(options: ServiceOptions|string) {
     return getAPI.call(this, 'cloudresourcemanager', options);
   }
-  cloudshell(options) {
+  cloudshell(options: ServiceOptions|string) {
     return getAPI.call(this, 'cloudshell', options);
   }
-  cloudtasks(options) {
+  cloudtasks(options: ServiceOptions|string) {
     return getAPI.call(this, 'cloudtasks', options);
   }
-  cloudtrace(options) {
+  cloudtrace(options: ServiceOptions|string) {
     return getAPI.call(this, 'cloudtrace', options);
   }
-  clouduseraccounts(options) {
+  clouduseraccounts(options: ServiceOptions|string) {
     return getAPI.call(this, 'clouduseraccounts', options);
   }
-  compute(options) {
+  compute(options: ServiceOptions|string) {
     return getAPI.call(this, 'compute', options);
   }
-  container(options) {
+  container(options: ServiceOptions|string) {
     return getAPI.call(this, 'container', options);
   }
-  content(options) {
+  content(options: ServiceOptions|string) {
     return getAPI.call(this, 'content', options);
   }
-  customsearch(options) {
+  customsearch(options: ServiceOptions|string) {
     return getAPI.call(this, 'customsearch', options);
   }
-  dataflow(options) {
+  dataflow(options: ServiceOptions|string) {
     return getAPI.call(this, 'dataflow', options);
   }
-  dataproc(options) {
+  dataproc(options: ServiceOptions|string) {
     return getAPI.call(this, 'dataproc', options);
   }
-  datastore(options) {
+  datastore(options: ServiceOptions|string) {
     return getAPI.call(this, 'datastore', options);
   }
-  deploymentmanager(options) {
+  deploymentmanager(options: ServiceOptions|string) {
     return getAPI.call(this, 'deploymentmanager', options);
   }
-  dfareporting(options) {
+  dfareporting(options: ServiceOptions|string) {
     return getAPI.call(this, 'dfareporting', options);
   }
-  dialogflow(options) {
+  dialogflow(options: ServiceOptions|string) {
     return getAPI.call(this, 'dialogflow', options);
   }
-  digitalassetlinks(options) {
+  digitalassetlinks(options: ServiceOptions|string) {
     return getAPI.call(this, 'digitalassetlinks', options);
   }
-  discovery(options) {
+  discovery(options: ServiceOptions|string) {
     return getAPI.call(this, 'discovery', options);
   }
-  dlp(options) {
+  dlp(options: ServiceOptions|string) {
     return getAPI.call(this, 'dlp', options);
   }
-  dns(options) {
+  dns(options: ServiceOptions|string) {
     return getAPI.call(this, 'dns', options);
   }
-  doubleclickbidmanager(options) {
+  doubleclickbidmanager(options: ServiceOptions|string) {
     return getAPI.call(this, 'doubleclickbidmanager', options);
   }
-  doubleclicksearch(options) {
+  doubleclicksearch(options: ServiceOptions|string) {
     return getAPI.call(this, 'doubleclicksearch', options);
   }
-  drive(options) {
+  drive(options: ServiceOptions|string) {
     return getAPI.call(this, 'drive', options);
   }
-  firebasedynamiclinks(options) {
+  firebasedynamiclinks(options: ServiceOptions|string) {
     return getAPI.call(this, 'firebasedynamiclinks', options);
   }
-  firebaserules(options) {
+  firebaserules(options: ServiceOptions|string) {
     return getAPI.call(this, 'firebaserules', options);
   }
-  firestore(options) {
+  firestore(options: ServiceOptions|string) {
     return getAPI.call(this, 'firestore', options);
   }
-  fitness(options) {
+  fitness(options: ServiceOptions|string) {
     return getAPI.call(this, 'fitness', options);
   }
-  fusiontables(options) {
+  fusiontables(options: ServiceOptions|string) {
     return getAPI.call(this, 'fusiontables', options);
   }
-  games(options) {
+  games(options: ServiceOptions|string) {
     return getAPI.call(this, 'games', options);
   }
-  gamesConfiguration(options) {
+  gamesConfiguration(options: ServiceOptions|string) {
     return getAPI.call(this, 'gamesConfiguration', options);
   }
-  gamesManagement(options) {
+  gamesManagement(options: ServiceOptions|string) {
     return getAPI.call(this, 'gamesManagement', options);
   }
-  genomics(options) {
+  genomics(options: ServiceOptions|string) {
     return getAPI.call(this, 'genomics', options);
   }
-  gmail(options) {
+  gmail(options: ServiceOptions|string) {
     return getAPI.call(this, 'gmail', options);
   }
-  groupsmigration(options) {
+  groupsmigration(options: ServiceOptions|string) {
     return getAPI.call(this, 'groupsmigration', options);
   }
-  groupssettings(options) {
+  groupssettings(options: ServiceOptions|string) {
     return getAPI.call(this, 'groupssettings', options);
   }
-  iam(options) {
+  iam(options: ServiceOptions|string) {
     return getAPI.call(this, 'iam', options);
   }
-  identitytoolkit(options) {
+  identitytoolkit(options: ServiceOptions|string) {
     return getAPI.call(this, 'identitytoolkit', options);
   }
-  kgsearch(options) {
+  kgsearch(options: ServiceOptions|string) {
     return getAPI.call(this, 'kgsearch', options);
   }
-  language(options) {
+  language(options: ServiceOptions|string) {
     return getAPI.call(this, 'language', options);
   }
-  licensing(options) {
+  licensing(options: ServiceOptions|string) {
     return getAPI.call(this, 'licensing', options);
   }
-  logging(options) {
+  logging(options: ServiceOptions|string) {
     return getAPI.call(this, 'logging', options);
   }
-  manufacturers(options) {
+  manufacturers(options: ServiceOptions|string) {
     return getAPI.call(this, 'manufacturers', options);
   }
-  mirror(options) {
+  mirror(options: ServiceOptions|string) {
     return getAPI.call(this, 'mirror', options);
   }
-  ml(options) {
+  ml(options: ServiceOptions|string) {
     return getAPI.call(this, 'ml', options);
   }
-  monitoring(options) {
+  monitoring(options: ServiceOptions|string) {
     return getAPI.call(this, 'monitoring', options);
   }
-  oauth2(options) {
+  oauth2(options: ServiceOptions|string) {
     return getAPI.call(this, 'oauth2', options);
   }
-  oslogin(options) {
+  oslogin(options: ServiceOptions|string) {
     return getAPI.call(this, 'oslogin', options);
   }
-  pagespeedonline(options) {
+  pagespeedonline(options: ServiceOptions|string) {
     return getAPI.call(this, 'pagespeedonline', options);
   }
-  partners(options) {
+  partners(options: ServiceOptions|string) {
     return getAPI.call(this, 'partners', options);
   }
-  people(options) {
+  people(options: ServiceOptions|string) {
     return getAPI.call(this, 'people', options);
   }
-  playcustomapp(options) {
+  playcustomapp(options: ServiceOptions|string) {
     return getAPI.call(this, 'playcustomapp', options);
   }
-  plus(options) {
+  plus(options: ServiceOptions|string) {
     return getAPI.call(this, 'plus', options);
   }
-  plusDomains(options) {
+  plusDomains(options: ServiceOptions|string) {
     return getAPI.call(this, 'plusDomains', options);
   }
-  poly(options) {
+  poly(options: ServiceOptions|string) {
     return getAPI.call(this, 'poly', options);
   }
-  prediction(options) {
+  prediction(options: ServiceOptions|string) {
     return getAPI.call(this, 'prediction', options);
   }
-  proximitybeacon(options) {
+  proximitybeacon(options: ServiceOptions|string) {
     return getAPI.call(this, 'proximitybeacon', options);
   }
-  pubsub(options) {
+  pubsub(options: ServiceOptions|string) {
     return getAPI.call(this, 'pubsub', options);
   }
-  replicapool(options) {
+  replicapool(options: ServiceOptions|string) {
     return getAPI.call(this, 'replicapool', options);
   }
-  replicapoolupdater(options) {
+  replicapoolupdater(options: ServiceOptions|string) {
     return getAPI.call(this, 'replicapoolupdater', options);
   }
-  reseller(options) {
+  reseller(options: ServiceOptions|string) {
     return getAPI.call(this, 'reseller', options);
   }
-  resourceviews(options) {
+  resourceviews(options: ServiceOptions|string) {
     return getAPI.call(this, 'resourceviews', options);
   }
-  runtimeconfig(options) {
+  runtimeconfig(options: ServiceOptions|string) {
     return getAPI.call(this, 'runtimeconfig', options);
   }
-  safebrowsing(options) {
+  safebrowsing(options: ServiceOptions|string) {
     return getAPI.call(this, 'safebrowsing', options);
   }
-  script(options) {
+  script(options: ServiceOptions|string) {
     return getAPI.call(this, 'script', options);
   }
-  searchconsole(options) {
+  searchconsole(options: ServiceOptions|string) {
     return getAPI.call(this, 'searchconsole', options);
   }
-  serviceconsumermanagement(options) {
+  serviceconsumermanagement(options: ServiceOptions|string) {
     return getAPI.call(this, 'serviceconsumermanagement', options);
   }
-  servicecontrol(options) {
+  servicecontrol(options: ServiceOptions|string) {
     return getAPI.call(this, 'servicecontrol', options);
   }
-  servicemanagement(options) {
+  servicemanagement(options: ServiceOptions|string) {
     return getAPI.call(this, 'servicemanagement', options);
   }
-  serviceusage(options) {
+  serviceusage(options: ServiceOptions|string) {
     return getAPI.call(this, 'serviceusage', options);
   }
-  serviceuser(options) {
+  serviceuser(options: ServiceOptions|string) {
     return getAPI.call(this, 'serviceuser', options);
   }
-  sheets(options) {
+  sheets(options: ServiceOptions|string) {
     return getAPI.call(this, 'sheets', options);
   }
-  siteVerification(options) {
+  siteVerification(options: ServiceOptions|string) {
     return getAPI.call(this, 'siteVerification', options);
   }
-  slides(options) {
+  slides(options: ServiceOptions|string) {
     return getAPI.call(this, 'slides', options);
   }
-  sourcerepo(options) {
+  sourcerepo(options: ServiceOptions|string) {
     return getAPI.call(this, 'sourcerepo', options);
   }
-  spanner(options) {
+  spanner(options: ServiceOptions|string) {
     return getAPI.call(this, 'spanner', options);
   }
-  spectrum(options) {
+  spectrum(options: ServiceOptions|string) {
     return getAPI.call(this, 'spectrum', options);
   }
-  speech(options) {
+  speech(options: ServiceOptions|string) {
     return getAPI.call(this, 'speech', options);
   }
-  sqladmin(options) {
+  sqladmin(options: ServiceOptions|string) {
     return getAPI.call(this, 'sqladmin', options);
   }
-  storage(options) {
+  storage(options: ServiceOptions|string) {
     return getAPI.call(this, 'storage', options);
   }
-  storagetransfer(options) {
+  storagetransfer(options: ServiceOptions|string) {
     return getAPI.call(this, 'storagetransfer', options);
   }
-  streetviewpublish(options) {
+  streetviewpublish(options: ServiceOptions|string) {
     return getAPI.call(this, 'streetviewpublish', options);
   }
-  surveys(options) {
+  surveys(options: ServiceOptions|string) {
     return getAPI.call(this, 'surveys', options);
   }
-  tagmanager(options) {
+  tagmanager(options: ServiceOptions|string) {
     return getAPI.call(this, 'tagmanager', options);
   }
-  taskqueue(options) {
+  taskqueue(options: ServiceOptions|string) {
     return getAPI.call(this, 'taskqueue', options);
   }
-  tasks(options) {
+  tasks(options: ServiceOptions|string) {
     return getAPI.call(this, 'tasks', options);
   }
-  testing(options) {
+  testing(options: ServiceOptions|string) {
     return getAPI.call(this, 'testing', options);
   }
-  toolresults(options) {
+  toolresults(options: ServiceOptions|string) {
     return getAPI.call(this, 'toolresults', options);
   }
-  tpu(options) {
+  tpu(options: ServiceOptions|string) {
     return getAPI.call(this, 'tpu', options);
   }
-  translate(options) {
+  translate(options: ServiceOptions|string) {
     return getAPI.call(this, 'translate', options);
   }
-  urlshortener(options) {
+  urlshortener(options: ServiceOptions|string) {
     return getAPI.call(this, 'urlshortener', options);
   }
-  vault(options) {
+  vault(options: ServiceOptions|string) {
     return getAPI.call(this, 'vault', options);
   }
-  videointelligence(options) {
+  videointelligence(options: ServiceOptions|string) {
     return getAPI.call(this, 'videointelligence', options);
   }
-  vision(options) {
+  vision(options: ServiceOptions|string) {
     return getAPI.call(this, 'vision', options);
   }
-  webfonts(options) {
+  webfonts(options: ServiceOptions|string) {
     return getAPI.call(this, 'webfonts', options);
   }
-  webmasters(options) {
+  webmasters(options: ServiceOptions|string) {
     return getAPI.call(this, 'webmasters', options);
   }
-  youtube(options) {
+  youtube(options: ServiceOptions|string) {
     return getAPI.call(this, 'youtube', options);
   }
-  youtubeAnalytics(options) {
+  youtubeAnalytics(options: ServiceOptions|string) {
     return getAPI.call(this, 'youtubeAnalytics', options);
   }
-  youtubereporting(options) {
+  youtubereporting(options: ServiceOptions|string) {
     return getAPI.call(this, 'youtubereporting', options);
   }
 }

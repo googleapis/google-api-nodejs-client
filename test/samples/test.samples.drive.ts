@@ -21,7 +21,8 @@ import {Utils} from './../utils';
 
 nock.disableNetConnect();
 
-const samples = {
+// tslint:disable: no-any
+const samples: any = {
   download: require('../../../samples/drive/download'),
   export: require('../../../samples/drive/export'),
   list: require('../../../samples/drive/list')
@@ -68,7 +69,7 @@ describe('Drive samples', () => {
   it('should list all the docs', done => {
     const scope =
         nock(Utils.baseUrl).get(`/drive/v3/files?pageSize=3`).reply(200, {});
-    samples.list.listDocs(undefined, (data) => {
+    samples.list.listDocs(undefined, (data: {}) => {
       assert(data);
       scope.done();
       done();

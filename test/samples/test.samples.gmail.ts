@@ -21,7 +21,8 @@ import {Utils} from './../utils';
 
 nock.disableNetConnect();
 
-const samples = {
+// tslint:disable: no-any
+const samples: any = {
   list: require('../../../samples/gmail/list'),
   labels: require('../../../samples/gmail/labels')
 };
@@ -42,7 +43,7 @@ describe('gmail samples', () => {
         nock(Utils.baseUrl).get(`/gmail/v1/users/me/messages`).reply(200, {
           yes: true
         });
-    samples.list.runSample(data => {
+    samples.list.runSample((data: {}) => {
       assert(data);
       scope.done();
       done();
@@ -55,7 +56,7 @@ describe('gmail samples', () => {
     const scope = nock(Utils.baseUrl)
                       .post(`/gmail/v1/users/me/messages/${messageId}/modify`)
                       .reply(200, {yes: true});
-    samples.labels.runSample('add', messageId, labelId, data => {
+    samples.labels.runSample('add', messageId, labelId, (data: {}) => {
       assert(data);
       scope.done();
       done();
