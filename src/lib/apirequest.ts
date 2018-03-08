@@ -158,6 +158,7 @@ export function createAPIRequest<T>(
       const boundary = uuid.v4();
       const finale = `--${boundary}--`;
       const rStream = new stream.PassThrough();
+      const pStream = new ProgressStream();
       const isStream = isReadableStream(multipart[1].body);
       headers['Content-Type'] = `multipart/related; boundary=${boundary}`;
       for (const part of multipart) {
@@ -168,7 +169,15 @@ export function createAPIRequest<T>(
           rStream.push(part.body);
           rStream.push('\r\n');
         } else {
-          part.body.pipe(rStream, {end: false});
+          // Axios does not natively support onUploadProgress in node.js.
+          // Pipe through the pStream first to read the number of bytes read
+          // for the purpose of tracking progress.
+          pStream.on('progress', bytesRead => {
+            if (options.onUploadProgress) {
+              options.onUploadProgress({bytesRead});
+            }
+          });
+          part.body.pipe(pStream).pipe(rStream, {end: false});
           part.body.on('end', () => {
             rStream.push('\r\n');
             rStream.push(finale);
@@ -225,9 +234,17 @@ export function createAPIRequest<T>(
   }
 }
 
-export class BaseAPI {
-  protected _options: GlobalOptions;
-  constructor(options: GlobalOptions) {
-    this._options = options || {};
+/**
+ * Basic Passthrough Stream that records the number of bytes read
+ * every time the cursor is moved.
+ */
+class ProgressStream extends stream.Transform {
+  bytesRead = 0;
+  // tslint:disable-next-line: no-any
+  _transform(chunk: any, encoding: string, callback: Function) {
+    this.bytesRead += chunk.length;
+    this.emit('progress', this.bytesRead);
+    this.push(chunk);
+    callback();
   }
 }
