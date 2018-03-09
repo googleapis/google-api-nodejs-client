@@ -21,7 +21,8 @@ import {Utils} from './../utils';
 
 nock.disableNetConnect();
 
-const samples = {
+// tslint:disable: no-any
+const samples: any = {
   upload: require('../../../samples/youtube/upload')
 };
 
@@ -44,7 +45,7 @@ describe('YouTube samples', () => {
             .post(
                 `/upload/youtube/v3/videos?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart`)
             .reply(200, {kind: 'youtube#video'});
-    samples.upload.runSample(someFile, data => {
+    samples.upload.runSample(someFile, (data: {kind: string}) => {
       assert(data);
       assert.equal(data.kind, 'youtube#video');
       scope.done();

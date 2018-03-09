@@ -19,14 +19,10 @@ import * as util from 'util';
 
 import {GeneratedAPIs} from '../apis/index';
 
-import {APIRequestMethodParams} from './api';
+import {APIRequestMethodParams, ServiceOptions} from './api';
 import {createAPIRequest} from './apirequest';
 import {Endpoint} from './endpoint';
 import {Schema, Schemas} from './schema';
-
-interface Versionable {
-  version?: string;
-}
 
 export type EndpointCreator = (options: {}) => Endpoint;
 
@@ -89,19 +85,20 @@ export class Discovery {
 
     const versionIndex:
         {[index: string]: {[index: string]: EndpointCreator}} = {};
-    const apisIndex = {};
+    // tslint:disable-next-line no-any
+    const apisIndex: {[index: string]: any} = {};
     for (const set of apis) {
       if (!apisIndex[set.api.name]) {
         versionIndex[set.api.name] = {};
-        apisIndex[set.api.name] = (options: Versionable|string) => {
+        apisIndex[set.api.name] = (options: ServiceOptions|string) => {
           const type = typeof options;
           let version: string;
           if (type === 'string') {
             version = options as string;
             options = {};
           } else if (type === 'object') {
-            version = (options as Versionable).version!;
-            delete (options as Versionable).version;
+            version = (options as ServiceOptions).version!;
+            delete (options as ServiceOptions).version;
           } else {
             throw new Error('Argument error: Accepts only string or object');
           }

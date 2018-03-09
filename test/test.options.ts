@@ -174,7 +174,7 @@ describe('Options', () => {
     const google = new GoogleApis();
     const drive = google.drive('v2');
     const res = await pify(drive.files.list)({}, {
-      validateStatus: status => {
+      validateStatus: (status: {}) => {
         return true;
       }
     });

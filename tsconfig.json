@@ -3,7 +3,6 @@
   "compilerOptions": {
     "rootDir": ".",
     "outDir": "build",
-    "noImplicitAny": false,
     "noImplicitThis": false
   },
   "include": [
