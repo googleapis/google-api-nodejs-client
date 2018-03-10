@@ -45,7 +45,7 @@ if (module === require.main) {
     q: process.argv[2],
     apiKey: process.argv[3],
     cx: process.argv[4]
-  }
+  };
   runSample(options, () => { /* complete */ });
 }
 

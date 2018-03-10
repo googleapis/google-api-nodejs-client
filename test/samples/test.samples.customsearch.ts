@@ -28,12 +28,9 @@ describe('customsearch samples', () => {
   });
 
   it('should search', done => {
-    const scope = nock(Utils.baseUrl).get(`/customsearch/v1?cx=cx&q=q`).reply(200, {});
-    const options = {
-      cx: "cx",
-      q: "q",
-      auth: "key"
-    }
+    const scope =
+        nock(Utils.baseUrl).get(`/customsearch/v1?cx=cx&q=q`).reply(200, {});
+    const options = {cx: 'cx', q: 'q', auth: 'key'};
     samples.list.runSample(options, (data: {}) => {
       assert(data);
       scope.done();
