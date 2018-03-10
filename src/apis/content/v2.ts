@@ -3079,7 +3079,7 @@ function Content(options: GlobalOptions) {
  * @type object
  * @property {integer} batchId An entry ID, unique within the batch request.
  * @property {content(v2).Datafeed} datafeed The data feed to insert.
- * @property {string} datafeedId The ID of the data feed to get or delete.
+ * @property {string} datafeedId The ID of the data feed to get, delete or fetch.
  * @property {string} merchantId The ID of the managing account.
  * @property {string} method
  */

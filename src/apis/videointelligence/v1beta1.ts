@@ -257,6 +257,157 @@ function Videointelligence(options: GlobalOptions) {
  * @property {string} startTimeOffset Time-offset, relative to the beginning of the video, corresponding to the start of the segment (inclusive).
  */
 /**
+ * @typedef GoogleCloudVideointelligenceV1p1beta1_AnnotateVideoProgress
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+ * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationProgress[]} annotationProgress Progress metadata for all videos specified in `AnnotateVideoRequest`.
+ */
+/**
+ * @typedef GoogleCloudVideointelligenceV1p1beta1_AnnotateVideoResponse
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+ * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationResults[]} annotationResults Annotation results for all videos specified in `AnnotateVideoRequest`.
+ */
+/**
+ * @typedef GoogleCloudVideointelligenceV1p1beta1_EmotionAttribute
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+ * @property {string} emotion Emotion entry.
+ * @property {number} score Confidence score.
+ */
+/**
+ * @typedef GoogleCloudVideointelligenceV1p1beta1_Entity
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+ * @property {string} description Textual description, e.g. `Fixed-gear bicycle`.
+ * @property {string} entityId Opaque entity ID. Some IDs may be available in [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
+ * @property {string} languageCode Language code for `description` in BCP-47 format.
+ */
+/**
+ * @typedef GoogleCloudVideointelligenceV1p1beta1_ExplicitContentAnnotation
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+ * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_ExplicitContentFrame[]} frames All video frames where explicit content was detected.
+ */
+/**
+ * @typedef GoogleCloudVideointelligenceV1p1beta1_ExplicitContentFrame
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+ * @property {string} pornographyLikelihood Likelihood of the pornography content..
+ * @property {string} timeOffset Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
+ */
+/**
+ * @typedef GoogleCloudVideointelligenceV1p1beta1_FaceDetectionAnnotation
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+ * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_FaceDetectionFrame[]} frames All video frames where a face was detected.
+ * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_FaceSegment[]} segments All video segments where a face was detected.
+ */
+/**
+ * @typedef GoogleCloudVideointelligenceV1p1beta1_FaceDetectionAttribute
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+ * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_EmotionAttribute[]} emotions Emotion attributes.
+ * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_NormalizedBoundingBox} normalizedBoundingBox Normalized Bounding box.
+ */
+/**
+ * @typedef GoogleCloudVideointelligenceV1p1beta1_FaceDetectionFrame
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+ * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_FaceDetectionAttribute[]} attributes Face attributes in a frame. There can be more than one attributes if the same face is detected in multiple locations within the current frame.
+ * @property {string} timeOffset Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
+ */
+/**
+ * @typedef GoogleCloudVideointelligenceV1p1beta1_FaceSegment
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+ * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_VideoSegment} segment Video segment where a face was detected.
+ */
+/**
+ * @typedef GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+ * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_Entity[]} categoryEntities Common categories for the detected entity. E.g. when the label is `Terrier` the category is likely `dog`. And in some cases there might be more than one categories e.g. `Terrier` could also be a `pet`.
+ * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_Entity} entity Detected entity.
+ * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_LabelFrame[]} frames All video frames where a label was detected.
+ * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_LabelSegment[]} segments All video segments where a label was detected.
+ */
+/**
+ * @typedef GoogleCloudVideointelligenceV1p1beta1_LabelFrame
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+ * @property {number} confidence Confidence that the label is accurate. Range: [0, 1].
+ * @property {string} timeOffset Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
+ */
+/**
+ * @typedef GoogleCloudVideointelligenceV1p1beta1_LabelSegment
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+ * @property {number} confidence Confidence that the label is accurate. Range: [0, 1].
+ * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_VideoSegment} segment Video segment where a label was detected.
+ */
+/**
+ * @typedef GoogleCloudVideointelligenceV1p1beta1_NormalizedBoundingBox
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+ * @property {number} bottom Bottom Y coordinate.
+ * @property {number} left Left X coordinate.
+ * @property {number} right Right X coordinate.
+ * @property {number} top Top Y coordinate.
+ */
+/**
+ * @typedef GoogleCloudVideointelligenceV1p1beta1_SpeechRecognitionAlternative
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+ * @property {number} confidence Output only. The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is typically provided only for the top hypothesis, and only for `is_final=true` results. Clients should not rely on the `confidence` field as it is not guaranteed to be accurate or consistent. The default of 0.0 is a sentinel value indicating `confidence` was not set.
+ * @property {string} transcript Output only. Transcript text representing the words that the user spoke.
+ * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_WordInfo[]} words Output only. A list of word-specific information for each recognized word.
+ */
+/**
+ * @typedef GoogleCloudVideointelligenceV1p1beta1_SpeechTranscription
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+ * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_SpeechRecognitionAlternative[]} alternatives Output only. May contain one or more recognition hypotheses (up to the maximum specified in `max_alternatives`). These alternatives are ordered in terms of accuracy, with the top (first) alternative being the most probable, as ranked by the recognizer.
+ */
+/**
+ * @typedef GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationProgress
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+ * @property {string} inputUri Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
+ * @property {integer} progressPercent Approximate percentage processed thus far. Guaranteed to be 100 when fully processed.
+ * @property {string} startTime Time when the request was received.
+ * @property {string} updateTime Time of the most recent update.
+ */
+/**
+ * @typedef GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationResults
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+ * @property {videointelligence(v1beta1).GoogleRpc_Status} error If set, indicates an error. Note that for a single `AnnotateVideoRequest` some videos may succeed and some may fail.
+ * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_ExplicitContentAnnotation} explicitAnnotation Explicit content annotation.
+ * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_FaceDetectionAnnotation[]} faceDetectionAnnotations Face detection annotations.
+ * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[]} frameLabelAnnotations Label annotations on frame level. There is exactly one element for each unique label.
+ * @property {string} inputUri Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
+ * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[]} segmentLabelAnnotations Label annotations on video level or user specified segment level. There is exactly one element for each unique label.
+ * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_VideoSegment[]} shotAnnotations Shot annotations. Each shot is represented as a video segment.
+ * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[]} shotLabelAnnotations Label annotations on shot level. There is exactly one element for each unique label.
+ * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_SpeechTranscription[]} speechTranscriptions Speech transcription.
+ */
+/**
+ * @typedef GoogleCloudVideointelligenceV1p1beta1_VideoSegment
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+ * @property {string} endTimeOffset Time-offset, relative to the beginning of the video, corresponding to the end of the segment (inclusive).
+ * @property {string} startTimeOffset Time-offset, relative to the beginning of the video, corresponding to the start of the segment (inclusive).
+ */
+/**
+ * @typedef GoogleCloudVideointelligenceV1p1beta1_WordInfo
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+ * @property {string} endTime Output only. Time offset relative to the beginning of the audio, and corresponding to the end of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary.
+ * @property {string} startTime Output only. Time offset relative to the beginning of the audio, and corresponding to the start of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary.
+ * @property {string} word Output only. The word corresponding to this set of information.
+ */
+/**
  * @typedef GoogleCloudVideointelligenceV1_AnnotateVideoProgress
  * @memberOf! videointelligence(v1beta1)
  * @type object

@@ -32,12 +32,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  *
  * @example
  * const google = require('googleapis');
- * const serviceusage = google.serviceusage('v1');
+ * const serviceusage = google.serviceusage('v1beta1');
  *
  * @namespace serviceusage
  * @type {Function}
- * @version v1
- * @variation v1
+ * @version v1beta1
+ * @variation v1beta1
  * @param {object=} options Options for Serviceusage
  */
 function Serviceusage(options: GlobalOptions) {
@@ -45,100 +45,19 @@ function Serviceusage(options: GlobalOptions) {
   self._options = options || {};
   self.operations = {
     /**
-     * serviceusage.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation.  The
-     * server makes a best effort to cancel the operation, but success is not
-     * guaranteed.  If the server doesn't support this method, it returns
-     * `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation
-     * or other methods to check whether the cancellation succeeded or whether
-     * the operation completed despite cancellation. On successful cancellation,
-     * the operation is not deleted; instead, it becomes an operation with an
-     * Operation.error value with a google.rpc.Status.code of 1, corresponding
-     * to `Code.CANCELLED`.
-     * @alias serviceusage.operations.cancel
-     * @memberOf! serviceusage(v1)
+     * serviceusage.operations.get
+     * @desc Gets the latest state of a long-running operation.  Clients can use
+     * this method to poll the operation result at intervals as recommended by
+     * the API service.
+     * @alias serviceusage.operations.get
+     * @memberOf! serviceusage(v1beta1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {serviceusage(v1).CancelOperationRequest} params.resource Request body data
+     * @param {string} params.name The name of the operation resource.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://serviceusage.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1/{name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * serviceusage.operations.delete
-        * @desc Deletes a long-running operation. This method indicates that the
-        * client is no longer interested in the operation result. It does not
-        * cancel the operation. If the server doesn't support this method, it
-        * returns `google.rpc.Code.UNIMPLEMENTED`.
-        * @alias serviceusage.operations.delete
-        * @memberOf! serviceusage(v1)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.name The name of the operation resource to be deleted.
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    delete (
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://serviceusage.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * serviceusage.operations.get
-        * @desc Gets the latest state of a long-running operation.  Clients can
-        * use this method to poll the operation result at intervals as
-        * recommended by the API service.
-        * @alias serviceusage.operations.get
-        * @memberOf! serviceusage(v1)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.name The name of the operation resource.
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
     get(params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -150,7 +69,7 @@ function Serviceusage(options: GlobalOptions) {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v1beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
             options),
@@ -172,7 +91,7 @@ function Serviceusage(options: GlobalOptions) {
         * collection id, however overriding users must ensure the name binding
         * is the parent resource, without the operations collection id.
         * @alias serviceusage.operations.list
-        * @memberOf! serviceusage(v1)
+        * @memberOf! serviceusage(v1beta1)
         *
         * @param {object} params Parameters for request
         * @param {string=} params.filter The standard list filter.
@@ -195,7 +114,8 @@ function Serviceusage(options: GlobalOptions) {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1/operations').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v1beta1/operations')
+                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
             options),
@@ -210,23 +130,61 @@ function Serviceusage(options: GlobalOptions) {
   };
   self.services = {
     /**
-     * serviceusage.services.disable
-     * @desc Disable a service so it can no longer be used with a project. This
-     * prevents unintended usage that may cause unexpected billing charges or
-     * security leaks.  It is not valid to call the disable method on a service
-     * that is not currently enabled. Callers will receive a FAILED_PRECONDITION
-     * status if the target service is not currently enabled.
-     * Operation<response: google.protobuf.Empty>
-     * @alias serviceusage.services.disable
-     * @memberOf! serviceusage(v1)
+     * serviceusage.services.batchEnable
+     * @desc Enable multiple services on a project. The operation is atomic: if
+     * enabling any service fails, then the entire batch fails, and no state
+     * changes occur.  Operation<response: google.protobuf.Empty>
+     * @alias serviceusage.services.batchEnable
+     * @memberOf! serviceusage(v1beta1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the consumer and service to disable the service on.  The enable and disable methods currently only support projects.  An example name would be: projects/123/services/serviceusage.googleapis.com
-     * @param {serviceusage(v1).DisableServiceRequest} params.resource Request body data
+     * @param {string} params.parent Parent to enable services on.  An example name would be: projects/123  The `BatchEnableServices` method currently only supports projects.
+     * @param {serviceusage(v1beta1).BatchEnableServicesRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
+    batchEnable(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://serviceusage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1beta1/{parent}/services:batchEnable')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * serviceusage.services.disable
+        * @desc Disable a service so that it can no longer be used with a
+        * project. This prevents unintended usage that may cause unexpected
+        * billing charges or security leaks.  It is not valid to call the
+        * disable method on a service that is not currently enabled. Callers
+        * will receive a `FAILED_PRECONDITION` status if the target service is
+        * not currently enabled.  Operation<response: google.protobuf.Empty>
+        * @alias serviceusage.services.disable
+        * @memberOf! serviceusage(v1beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.name Name of the consumer and service to disable the service on.  The enable and disable methods currently only support projects.  An example name would be: projects/123/services/serviceusage.googleapis.com
+        * @param {serviceusage(v1beta1).DisableServiceRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
     disable(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
@@ -239,7 +197,7 @@ function Serviceusage(options: GlobalOptions) {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1/{name}:disable')
+              url: (rootUrl + '/v1beta1/{name}:disable')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -252,15 +210,14 @@ function Serviceusage(options: GlobalOptions) {
       return createAPIRequest(parameters, callback!);
     }, /**
         * serviceusage.services.enable
-        * @desc Enable a service so it can be used with a project. See [Cloud
-        * Auth Guide](https://cloud.google.com/docs/authentication) for more
-        * information.  Operation<response: google.protobuf.Empty>
+        * @desc Enable a service so that it can be used with a project.
+        * Operation<response: google.protobuf.Empty>
         * @alias serviceusage.services.enable
-        * @memberOf! serviceusage(v1)
+        * @memberOf! serviceusage(v1beta1)
         *
         * @param {object} params Parameters for request
-        * @param {string} params.name Name of the consumer and service to enable the service on.  The enable and disable methods currently only support projects.  Enabling a service requires that the service is public or is shared with the user enabling the service.  An example name would be: projects/123/services/serviceusage.googleapis.com
-        * @param {serviceusage(v1).EnableServiceRequest} params.resource Request body data
+        * @param {string} params.name Name of the consumer and service to enable the service on.  The `EnableService` and `DisableService` methods currently only support projects.  Enabling a service requires that the service is public or is shared with the user enabling the service.  An example name would be: projects/123/services/serviceusage.googleapis.com
+        * @param {serviceusage(v1beta1).EnableServiceRequest} params.resource Request body data
         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
@@ -277,8 +234,8 @@ function Serviceusage(options: GlobalOptions) {
       const parameters = {
         options: Object.assign(
             {
-              url:
-                  (rootUrl + '/v1/{name}:enable').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v1beta1/{name}:enable')
+                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
             options),
@@ -290,13 +247,13 @@ function Serviceusage(options: GlobalOptions) {
       return createAPIRequest(parameters, callback!);
     }, /**
         * serviceusage.services.get
-        * @desc Returns the service definition and EnabledState for a given
+        * @desc Returns the service configuration and enabled state for a given
         * service.
         * @alias serviceusage.services.get
-        * @memberOf! serviceusage(v1)
+        * @memberOf! serviceusage(v1beta1)
         *
         * @param {object} params Parameters for request
-        * @param {string} params.name Name of the consumer and service to get the ConsumerState for.  An example name would be: projects/123/services/serviceusage.googleapis.com
+        * @param {string} params.name Name of the consumer and service to get the `ConsumerState` for.  An example name would be: projects/123/services/serviceusage.googleapis.com
         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
@@ -312,7 +269,7 @@ function Serviceusage(options: GlobalOptions) {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v1beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
             options),
@@ -323,20 +280,27 @@ function Serviceusage(options: GlobalOptions) {
       };
       return createAPIRequest(parameters, callback!);
     }, /**
-        * serviceusage.services.listEnabled
-        * @desc List enabled services.
-        * @alias serviceusage.services.listEnabled
-        * @memberOf! serviceusage(v1)
+        * serviceusage.services.list
+        * @desc List all services available to the specified project, and the
+        * current state of those services with respect to the project. The list
+        * includes all public services, all services for which the calling user
+        * has the `servicemanagement.services.bind` permission, and all services
+        * that have already been enabled on the project. The list can be
+        * filtered to only include services in a specific state, for example to
+        * only include services enabled on the project.
+        * @alias serviceusage.services.list
+        * @memberOf! serviceusage(v1beta1)
         *
         * @param {object} params Parameters for request
-        * @param {integer=} params.pageSize Requested size of the next page of data.
-        * @param {string=} params.pageToken Token identifying which result to start with; returned by a previous list call.
+        * @param {string=} params.filter Only list services that conform to the given filter. The allowed filter strings are `state:ENABLED` and `state:DISABLED`.
+        * @param {integer=} params.pageSize Requested size of the next page of data. Requested page size cannot exceed 200.  If not set, the default page size is 50.
+        * @param {string=} params.pageToken Token identifying which result to start with, which is returned by a previous list call.
         * @param {string} params.parent Parent to search for services on.  An example name would be: projects/123
         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    listEnabled(
+    list(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -348,7 +312,7 @@ function Serviceusage(options: GlobalOptions) {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1/{parent}/services:enabled')
+              url: (rootUrl + '/v1beta1/{parent}/services')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -359,94 +323,55 @@ function Serviceusage(options: GlobalOptions) {
         context: self
       };
       return createAPIRequest(parameters, callback!);
-    }, /**
-        * serviceusage.services.search
-        * @desc Search available services.  When no filter is specified, returns
-        * all accessible services. This includes public services and services
-        * for which the calling user has the "servicemanagement.services.bind"
-        * permission.
-        * @alias serviceusage.services.search
-        * @memberOf! serviceusage(v1)
-        *
-        * @param {object} params Parameters for request
-        * @param {integer=} params.pageSize Requested size of the next page of data.
-        * @param {string=} params.pageToken Token identifying which result to start with; returned by a previous search call.
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    search(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://serviceusage.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1/services:search')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
     }
 
   };
 }
 /**
  * @typedef Api
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
- * @property {serviceusage(v1).Method[]} methods The methods of this interface, in unspecified order.
- * @property {serviceusage(v1).Mixin[]} mixins Included interfaces. See Mixin.
+ * @property {serviceusage(v1beta1).Method[]} methods The methods of this interface, in unspecified order.
+ * @property {serviceusage(v1beta1).Mixin[]} mixins Included interfaces. See Mixin.
  * @property {string} name The fully qualified name of this interface, including package name followed by the interface&#39;s simple name.
- * @property {serviceusage(v1).Option[]} options Any metadata attached to the interface.
- * @property {serviceusage(v1).SourceContext} sourceContext Source context for the protocol buffer service represented by this message.
+ * @property {serviceusage(v1beta1).Option[]} options Any metadata attached to the interface.
+ * @property {serviceusage(v1beta1).SourceContext} sourceContext Source context for the protocol buffer service represented by this message.
  * @property {string} syntax The source syntax of the service.
  * @property {string} version A version string for this interface. If specified, must have the form `major-version.minor-version`, as in `1.10`. If the minor version is omitted, it defaults to zero. If the entire version field is empty, the major version is derived from the package name, as outlined below. If the field is not empty, the version in the package name will be verified to be consistent with what is provided here.  The versioning schema uses [semantic versioning](http://semver.org) where the major version number indicates a breaking change and the minor version an additive, non-breaking change. Both version numbers are signals to users what to expect from different versions, and should be carefully chosen based on the product plan.  The major version is also reflected in the package name of the interface, which must end in `v&lt;major-version&gt;`, as in `google.feature.v1`. For major versions 0 and 1, the suffix can be omitted. Zero major versions must only be used for experimental, non-GA interfaces.
  */
 /**
  * @typedef Authentication
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
- * @property {serviceusage(v1).AuthProvider[]} providers Defines a set of authentication providers that a service supports.
- * @property {serviceusage(v1).AuthenticationRule[]} rules A list of authentication rules that apply to individual API methods.  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
+ * @property {serviceusage(v1beta1).AuthProvider[]} providers Defines a set of authentication providers that a service supports.
+ * @property {serviceusage(v1beta1).AuthenticationRule[]} rules A list of authentication rules that apply to individual API methods.  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
  */
 /**
  * @typedef AuthenticationRule
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {boolean} allowWithoutCredential Whether to allow requests without a credential. The credential can be an OAuth token, Google cookies (first-party auth) or EndUserCreds.  For requests without credentials, if the service control environment is specified, each incoming request **must** be associated with a service consumer. This can be done by passing an API key that belongs to a consumer project.
- * @property {serviceusage(v1).CustomAuthRequirements} customAuth Configuration for custom authentication.
- * @property {serviceusage(v1).OAuthRequirements} oauth The requirements for OAuth credentials.
- * @property {serviceusage(v1).AuthRequirement[]} requirements Requirements for additional authentication providers.
+ * @property {serviceusage(v1beta1).CustomAuthRequirements} customAuth Configuration for custom authentication.
+ * @property {serviceusage(v1beta1).OAuthRequirements} oauth The requirements for OAuth credentials.
+ * @property {serviceusage(v1beta1).AuthRequirement[]} requirements Requirements for additional authentication providers.
  * @property {string} selector Selects the methods to which this rule applies.  Refer to selector for syntax details.
  */
 /**
  * @typedef AuthorizationConfig
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {string} provider The name of the authorization provider, such as firebaserules.googleapis.com.
  */
 /**
  * @typedef AuthorizationRule
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {string} permissions The required permissions. The acceptable values vary depend on the authorization system used. For Google APIs, it should be a comma-separated Google IAM permission values. When multiple permissions are listed, the semantics is not defined by the system. Additional documentation must be provided manually.
  * @property {string} selector Selects the API elements to which this rule applies.  Refer to selector for syntax details.
  */
 /**
  * @typedef AuthProvider
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {string} audiences The list of JWT [audiences](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.3). that are allowed to access. A JWT containing any of these audiences will be accepted. When this setting is absent, only JWTs with audience &quot;https://Service_name/API_name&quot; will be accepted. For example, if no audiences are in the setting, LibraryService API will only accept JWTs with the following audience &quot;https://library-example.googleapis.com/google.example.library.v1.LibraryService&quot;.  Example:      audiences: bookstore_android.apps.googleusercontent.com,                bookstore_web.apps.googleusercontent.com
  * @property {string} authorizationUrl Redirect URL if JWT token is required but no present or is expired. Implement authorizationUrl of securityDefinitions in OpenAPI spec.
@@ -456,20 +381,20 @@ function Serviceusage(options: GlobalOptions) {
  */
 /**
  * @typedef AuthRequirement
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {string} audiences NOTE: This will be deprecated soon, once AuthProvider.audiences is implemented and accepted in all the runtime components.  The list of JWT [audiences](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.3). that are allowed to access. A JWT containing any of these audiences will be accepted. When this setting is absent, only JWTs with audience &quot;https://Service_name/API_name&quot; will be accepted. For example, if no audiences are in the setting, LibraryService API will only accept JWTs with the following audience &quot;https://library-example.googleapis.com/google.example.library.v1.LibraryService&quot;.  Example:      audiences: bookstore_android.apps.googleusercontent.com,                bookstore_web.apps.googleusercontent.com
  * @property {string} providerId id from authentication provider.  Example:      provider_id: bookstore_auth
  */
 /**
  * @typedef Backend
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
- * @property {serviceusage(v1).BackendRule[]} rules A list of API backend rules that apply to individual API methods.  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
+ * @property {serviceusage(v1beta1).BackendRule[]} rules A list of API backend rules that apply to individual API methods.  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
  */
 /**
  * @typedef BackendRule
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {string} address The address of the API backend.
  * @property {number} deadline The number of seconds to wait for a response from a request.  The default deadline for gRPC is infinite (no deadline) and HTTP requests is 5 seconds.
@@ -477,32 +402,33 @@ function Serviceusage(options: GlobalOptions) {
  * @property {string} selector Selects the methods to which this rule applies.  Refer to selector for syntax details.
  */
 /**
- * @typedef Billing
- * @memberOf! serviceusage(v1)
+ * @typedef BatchEnableServicesRequest
+ * @memberOf! serviceusage(v1beta1)
  * @type object
- * @property {serviceusage(v1).BillingDestination[]} consumerDestinations Billing configurations for sending metrics to the consumer project. There can be multiple consumer destinations per service, each one must have a different monitored resource type. A metric can be used in at most one consumer destination.
+ * @property {string[]} serviceIds The identifiers of the services to enable on the project.  A valid identifier would be: serviceusage.googleapis.com  Enabling services requires that each service is public or is shared with the user enabling the service.  Two or more services must be specified. To enable a single service, use the `EnableService` method instead.  A single request can enable a maximum of 20 services at a time. If more than 20 services are specified, the request will fail, and no state changes will occur.
+ */
+/**
+ * @typedef Billing
+ * @memberOf! serviceusage(v1beta1)
+ * @type object
+ * @property {serviceusage(v1beta1).BillingDestination[]} consumerDestinations Billing configurations for sending metrics to the consumer project. There can be multiple consumer destinations per service, each one must have a different monitored resource type. A metric can be used in at most one consumer destination.
  */
 /**
  * @typedef BillingDestination
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {string[]} metrics Names of the metrics to report to this billing destination. Each name must be defined in Service.metrics section.
  * @property {string} monitoredResource The monitored resource type. The type must be defined in Service.monitored_resources section.
  */
 /**
- * @typedef CancelOperationRequest
- * @memberOf! serviceusage(v1)
- * @type object
- */
-/**
  * @typedef Context
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
- * @property {serviceusage(v1).ContextRule[]} rules A list of RPC context rules that apply to individual API methods.  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
+ * @property {serviceusage(v1beta1).ContextRule[]} rules A list of RPC context rules that apply to individual API methods.  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
  */
 /**
  * @typedef ContextRule
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {string[]} allowedRequestExtensions A list of full type names or extension IDs of extensions allowed in grpc side channel from client to backend.
  * @property {string[]} allowedResponseExtensions A list of full type names or extension IDs of extensions allowed in grpc side channel from backend to client.
@@ -512,79 +438,68 @@ function Serviceusage(options: GlobalOptions) {
  */
 /**
  * @typedef Control
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {string} environment The service control environment to use. If empty, no control plane feature (like quota and billing) will be enabled.
  */
 /**
  * @typedef CustomAuthRequirements
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {string} provider A configuration string containing connection information for the authentication provider, typically formatted as a SmartService string (go/smartservice).
  */
 /**
  * @typedef CustomError
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
- * @property {serviceusage(v1).CustomErrorRule[]} rules The list of custom error rules that apply to individual API messages.  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
+ * @property {serviceusage(v1beta1).CustomErrorRule[]} rules The list of custom error rules that apply to individual API messages.  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
  * @property {string[]} types The list of custom error detail types, e.g. &#39;google.foo.v1.CustomError&#39;.
  */
 /**
  * @typedef CustomErrorRule
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {boolean} isErrorType Mark this message as possible payload in error response.  Otherwise, objects of this type will be filtered when they appear in error payload.
  * @property {string} selector Selects messages to which this rule applies.  Refer to selector for syntax details.
  */
 /**
  * @typedef CustomHttpPattern
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {string} kind The name of this custom HTTP verb.
  * @property {string} path The path matched by this custom verb.
  */
 /**
  * @typedef DisableServiceRequest
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  */
 /**
  * @typedef Documentation
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {string} documentationRootUrl The URL to the root of documentation.
  * @property {string} overview Declares a single overview page. For example: &lt;pre&gt;&lt;code&gt;documentation:   summary: ...   overview: &amp;#40;== include overview.md ==&amp;#41; &lt;/code&gt;&lt;/pre&gt; This is a shortcut for the following declaration (using pages style): &lt;pre&gt;&lt;code&gt;documentation:   summary: ...   pages:   - name: Overview     content: &amp;#40;== include overview.md ==&amp;#41; &lt;/code&gt;&lt;/pre&gt; Note: you cannot specify both `overview` field and `pages` field.
- * @property {serviceusage(v1).Page[]} pages The top level pages for the documentation set.
- * @property {serviceusage(v1).DocumentationRule[]} rules A list of documentation rules that apply to individual API elements.  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
+ * @property {serviceusage(v1beta1).Page[]} pages The top level pages for the documentation set.
+ * @property {serviceusage(v1beta1).DocumentationRule[]} rules A list of documentation rules that apply to individual API elements.  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
  * @property {string} summary A short summary of what the service does. Can only be provided by plain text.
  */
 /**
  * @typedef DocumentationRule
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {string} deprecationDescription Deprecation description of the selected element(s). It can be provided if an element is marked as `deprecated`.
  * @property {string} description Description of the selected API(s).
  * @property {string} selector The selector is a comma-separated list of patterns. Each pattern is a qualified name of the element which may end in &quot;*&quot;, indicating a wildcard. Wildcards are only allowed at the end and for a whole component of the qualified name, i.e. &quot;foo.*&quot; is ok, but not &quot;foo.b*&quot; or &quot;foo.*.bar&quot;. To specify a default for all applicable elements, the whole pattern &quot;*&quot; is used.
  */
 /**
- * @typedef Empty
- * @memberOf! serviceusage(v1)
- * @type object
- */
-/**
- * @typedef EnabledState
- * @memberOf! serviceusage(v1)
- * @type object
- * @property {string} state Whether or not the service has been explicitly enabled.
- */
-/**
  * @typedef EnableServiceRequest
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  */
 /**
  * @typedef Endpoint
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {string[]} aliases DEPRECATED: This field is no longer supported. Instead of using aliases, please specify multiple google.api.Endpoint for each of the intended aliases.  Additional names that this endpoint will be hosted on.
  * @property {boolean} allowCors Allowing [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing), aka cross-domain traffic, would allow the backends served from this endpoint to receive and respond to HTTP OPTIONS requests. The response will be used by the browser to determine whether the subsequent cross-origin request is allowed to proceed.
@@ -594,31 +509,31 @@ function Serviceusage(options: GlobalOptions) {
  */
 /**
  * @typedef Enum
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
- * @property {serviceusage(v1).EnumValue[]} enumvalue Enum value definitions.
+ * @property {serviceusage(v1beta1).EnumValue[]} enumvalue Enum value definitions.
  * @property {string} name Enum type name.
- * @property {serviceusage(v1).Option[]} options Protocol buffer options.
- * @property {serviceusage(v1).SourceContext} sourceContext The source context.
+ * @property {serviceusage(v1beta1).Option[]} options Protocol buffer options.
+ * @property {serviceusage(v1beta1).SourceContext} sourceContext The source context.
  * @property {string} syntax The source syntax.
  */
 /**
  * @typedef EnumValue
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {string} name Enum value name.
  * @property {integer} number Enum value number.
- * @property {serviceusage(v1).Option[]} options Protocol buffer options.
+ * @property {serviceusage(v1beta1).Option[]} options Protocol buffer options.
  */
 /**
  * @typedef Experimental
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
- * @property {serviceusage(v1).AuthorizationConfig} authorization Authorization configuration.
+ * @property {serviceusage(v1beta1).AuthorizationConfig} authorization Authorization configuration.
  */
 /**
  * @typedef Field
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {string} cardinality The field cardinality.
  * @property {string} defaultValue The string value of the default value of this field. Proto2 syntax only.
@@ -627,63 +542,63 @@ function Serviceusage(options: GlobalOptions) {
  * @property {string} name The field name.
  * @property {integer} number The field number.
  * @property {integer} oneofIndex The index of the field type in `Type.oneofs`, for message or enumeration types. The first type has index 1; zero means the type is not in the list.
- * @property {serviceusage(v1).Option[]} options The protocol buffer options.
+ * @property {serviceusage(v1beta1).Option[]} options The protocol buffer options.
  * @property {boolean} packed Whether to use alternative packed wire representation.
  * @property {string} typeUrl The field type URL, without the scheme, for message or enumeration types. Example: `&quot;type.googleapis.com/google.protobuf.Timestamp&quot;`.
  */
 /**
  * @typedef GoogleApiService
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
- * @property {serviceusage(v1).Api[]} apis A list of API interfaces exported by this service. Only the `name` field of the google.protobuf.Api needs to be provided by the configuration author, as the remaining fields will be derived from the IDL during the normalization process. It is an error to specify an API interface here which cannot be resolved against the associated IDL files.
- * @property {serviceusage(v1).Authentication} authentication Auth configuration.
- * @property {serviceusage(v1).Backend} backend API backend configuration.
- * @property {serviceusage(v1).Billing} billing Billing configuration.
+ * @property {serviceusage(v1beta1).Api[]} apis A list of API interfaces exported by this service. Only the `name` field of the google.protobuf.Api needs to be provided by the configuration author, as the remaining fields will be derived from the IDL during the normalization process. It is an error to specify an API interface here which cannot be resolved against the associated IDL files.
+ * @property {serviceusage(v1beta1).Authentication} authentication Auth configuration.
+ * @property {serviceusage(v1beta1).Backend} backend API backend configuration.
+ * @property {serviceusage(v1beta1).Billing} billing Billing configuration.
  * @property {integer} configVersion The semantic version of the service configuration. The config version affects the interpretation of the service configuration. For example, certain features are enabled by default for certain config versions. The latest config version is `3`.
- * @property {serviceusage(v1).Context} context Context configuration.
- * @property {serviceusage(v1).Control} control Configuration for the service control plane.
- * @property {serviceusage(v1).CustomError} customError Custom error configuration.
- * @property {serviceusage(v1).Documentation} documentation Additional API documentation.
- * @property {serviceusage(v1).Endpoint[]} endpoints Configuration for network endpoints.  If this is empty, then an endpoint with the same name as the service is automatically generated to service all defined APIs.
- * @property {serviceusage(v1).Enum[]} enums A list of all enum types included in this API service.  Enums referenced directly or indirectly by the `apis` are automatically included.  Enums which are not referenced but shall be included should be listed here by name. Example:      enums:     - name: google.someapi.v1.SomeEnum
- * @property {serviceusage(v1).Experimental} experimental Experimental configuration.
- * @property {serviceusage(v1).Http} http HTTP configuration.
+ * @property {serviceusage(v1beta1).Context} context Context configuration.
+ * @property {serviceusage(v1beta1).Control} control Configuration for the service control plane.
+ * @property {serviceusage(v1beta1).CustomError} customError Custom error configuration.
+ * @property {serviceusage(v1beta1).Documentation} documentation Additional API documentation.
+ * @property {serviceusage(v1beta1).Endpoint[]} endpoints Configuration for network endpoints.  If this is empty, then an endpoint with the same name as the service is automatically generated to service all defined APIs.
+ * @property {serviceusage(v1beta1).Enum[]} enums A list of all enum types included in this API service.  Enums referenced directly or indirectly by the `apis` are automatically included.  Enums which are not referenced but shall be included should be listed here by name. Example:      enums:     - name: google.someapi.v1.SomeEnum
+ * @property {serviceusage(v1beta1).Experimental} experimental Experimental configuration.
+ * @property {serviceusage(v1beta1).Http} http HTTP configuration.
  * @property {string} id A unique ID for a specific instance of this message, typically assigned by the client for tracking purpose. If empty, the server may choose to generate one instead.
- * @property {serviceusage(v1).Logging} logging Logging configuration.
- * @property {serviceusage(v1).LogDescriptor[]} logs Defines the logs used by this service.
- * @property {serviceusage(v1).MetricDescriptor[]} metrics Defines the metrics used by this service.
- * @property {serviceusage(v1).MonitoredResourceDescriptor[]} monitoredResources Defines the monitored resources used by this service. This is required by the Service.monitoring and Service.logging configurations.
- * @property {serviceusage(v1).Monitoring} monitoring Monitoring configuration.
+ * @property {serviceusage(v1beta1).Logging} logging Logging configuration.
+ * @property {serviceusage(v1beta1).LogDescriptor[]} logs Defines the logs used by this service.
+ * @property {serviceusage(v1beta1).MetricDescriptor[]} metrics Defines the metrics used by this service.
+ * @property {serviceusage(v1beta1).MonitoredResourceDescriptor[]} monitoredResources Defines the monitored resources used by this service. This is required by the Service.monitoring and Service.logging configurations.
+ * @property {serviceusage(v1beta1).Monitoring} monitoring Monitoring configuration.
  * @property {string} name The DNS address at which this service is available, e.g. `calendar.googleapis.com`.
  * @property {string} producerProjectId The Google project that owns this service.
- * @property {serviceusage(v1).Quota} quota Quota configuration.
- * @property {serviceusage(v1).SourceInfo} sourceInfo Output only. The source information for this configuration if available.
- * @property {serviceusage(v1).SystemParameters} systemParameters System parameter configuration.
- * @property {serviceusage(v1).Type[]} systemTypes A list of all proto message types included in this API service. It serves similar purpose as [google.api.Service.types], except that these types are not needed by user-defined APIs. Therefore, they will not show up in the generated discovery doc. This field should only be used to define system APIs in ESF.
+ * @property {serviceusage(v1beta1).Quota} quota Quota configuration.
+ * @property {serviceusage(v1beta1).SourceInfo} sourceInfo Output only. The source information for this configuration if available.
+ * @property {serviceusage(v1beta1).SystemParameters} systemParameters System parameter configuration.
+ * @property {serviceusage(v1beta1).Type[]} systemTypes A list of all proto message types included in this API service. It serves similar purpose as [google.api.Service.types], except that these types are not needed by user-defined APIs. Therefore, they will not show up in the generated discovery doc. This field should only be used to define system APIs in ESF.
  * @property {string} title The product title for this service.
- * @property {serviceusage(v1).Type[]} types A list of all proto message types included in this API service. Types referenced directly or indirectly by the `apis` are automatically included.  Messages which are not referenced but shall be included, such as types used by the `google.protobuf.Any` type, should be listed here by name. Example:      types:     - name: google.protobuf.Int32
- * @property {serviceusage(v1).Usage} usage Configuration controlling usage of this service.
- * @property {serviceusage(v1).Visibility} visibility API visibility configuration.
+ * @property {serviceusage(v1beta1).Type[]} types A list of all proto message types included in this API service. Types referenced directly or indirectly by the `apis` are automatically included.  Messages which are not referenced but shall be included, such as types used by the `google.protobuf.Any` type, should be listed here by name. Example:      types:     - name: google.protobuf.Int32
+ * @property {serviceusage(v1beta1).Usage} usage Configuration controlling usage of this service.
+ * @property {serviceusage(v1beta1).Visibility} visibility API visibility configuration.
  */
 /**
  * @typedef Http
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {boolean} fullyDecodeReservedExpansion When set to true, URL path parmeters will be fully URI-decoded except in cases of single segment matches in reserved expansion, where &quot;%2F&quot; will be left encoded.  The default behavior is to not decode RFC 6570 reserved characters in multi segment matches.
- * @property {serviceusage(v1).HttpRule[]} rules A list of HTTP configuration rules that apply to individual API methods.  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
+ * @property {serviceusage(v1beta1).HttpRule[]} rules A list of HTTP configuration rules that apply to individual API methods.  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
  */
 /**
  * @typedef HttpRule
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
- * @property {serviceusage(v1).HttpRule[]} additionalBindings Additional HTTP bindings for the selector. Nested bindings must not contain an `additional_bindings` field themselves (that is, the nesting may only be one level deep).
- * @property {serviceusage(v1).AuthorizationRule[]} authorizations Specifies the permission(s) required for an API element for the overall API request to succeed. It is typically used to mark request message fields that contain the name of the resource and indicates the permissions that will be checked on that resource.
+ * @property {serviceusage(v1beta1).HttpRule[]} additionalBindings Additional HTTP bindings for the selector. Nested bindings must not contain an `additional_bindings` field themselves (that is, the nesting may only be one level deep).
+ * @property {serviceusage(v1beta1).AuthorizationRule[]} authorizations Specifies the permission(s) required for an API element for the overall API request to succeed. It is typically used to mark request message fields that contain the name of the resource and indicates the permissions that will be checked on that resource.
  * @property {string} body The name of the request field whose value is mapped to the HTTP body, or `*` for mapping all fields not captured by the path pattern to the HTTP body. NOTE: the referred field must not be a repeated field and must be present at the top-level of request message type.
- * @property {serviceusage(v1).CustomHttpPattern} custom The custom pattern is used for specifying an HTTP method that is not included in the `pattern` field, such as HEAD, or &quot;*&quot; to leave the HTTP method unspecified for this rule. The wild-card rule is useful for services that provide content to Web (HTML) clients.
+ * @property {serviceusage(v1beta1).CustomHttpPattern} custom The custom pattern is used for specifying an HTTP method that is not included in the `pattern` field, such as HEAD, or &quot;*&quot; to leave the HTTP method unspecified for this rule. The wild-card rule is useful for services that provide content to Web (HTML) clients.
  * @property {string} delete Used for deleting a resource.
  * @property {string} get Used for listing and getting information about resources.
- * @property {serviceusage(v1).MediaDownload} mediaDownload Use this only for Scotty Requests. Do not use this for bytestream methods. For media support, add instead [][google.bytestream.RestByteStream] as an API to your configuration.
- * @property {serviceusage(v1).MediaUpload} mediaUpload Use this only for Scotty Requests. Do not use this for media support using Bytestream, add instead [][google.bytestream.RestByteStream] as an API to your configuration for Bytestream methods.
+ * @property {serviceusage(v1beta1).MediaDownload} mediaDownload Use this only for Scotty Requests. Do not use this for bytestream methods. For media support, add instead [][google.bytestream.RestByteStream] as an API to your configuration.
+ * @property {serviceusage(v1beta1).MediaUpload} mediaUpload Use this only for Scotty Requests. Do not use this for media support using Bytestream, add instead [][google.bytestream.RestByteStream] as an API to your configuration for Bytestream methods.
  * @property {string} patch Used for updating a resource.
  * @property {string} post Used for creating a resource.
  * @property {string} put Used for updating a resource.
@@ -693,52 +608,52 @@ function Serviceusage(options: GlobalOptions) {
  */
 /**
  * @typedef LabelDescriptor
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {string} description A human-readable description for the label.
  * @property {string} key The label key.
  * @property {string} valueType The type of data that can be assigned to the label.
  */
 /**
- * @typedef ListEnabledServicesResponse
- * @memberOf! serviceusage(v1)
- * @type object
- * @property {string} nextPageToken Token that can be passed to `ListEnabledServices` to resume a paginated query.
- * @property {serviceusage(v1).ServiceState[]} services The state of the enabled services for the requested parent.
- */
-/**
  * @typedef ListOperationsResponse
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {string} nextPageToken The standard List next-page token.
- * @property {serviceusage(v1).Operation[]} operations A list of operations that matches the specified filter in the request.
+ * @property {serviceusage(v1beta1).Operation[]} operations A list of operations that matches the specified filter in the request.
+ */
+/**
+ * @typedef ListServicesResponse
+ * @memberOf! serviceusage(v1beta1)
+ * @type object
+ * @property {string} nextPageToken Token that can be passed to `ListServices` to resume a paginated query.
+ * @property {serviceusage(v1beta1).Service[]} services The available services for the requested project.
  */
 /**
  * @typedef LogDescriptor
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {string} description A human-readable description of this log. This information appears in the documentation and can contain details.
  * @property {string} displayName The human-readable name for this log. This information appears on the user interface and should be concise.
- * @property {serviceusage(v1).LabelDescriptor[]} labels The set of labels that are available to describe a specific log entry. Runtime requests that contain labels not specified here are considered invalid.
+ * @property {serviceusage(v1beta1).LabelDescriptor[]} labels The set of labels that are available to describe a specific log entry. Runtime requests that contain labels not specified here are considered invalid.
  * @property {string} name The name of the log. It must be less than 512 characters long and can include the following characters: upper- and lower-case alphanumeric characters [A-Za-z0-9], and punctuation characters including slash, underscore, hyphen, period [/_-.].
  */
 /**
  * @typedef Logging
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
- * @property {serviceusage(v1).LoggingDestination[]} consumerDestinations Logging configurations for sending logs to the consumer project. There can be multiple consumer destinations, each one must have a different monitored resource type. A log can be used in at most one consumer destination.
- * @property {serviceusage(v1).LoggingDestination[]} producerDestinations Logging configurations for sending logs to the producer project. There can be multiple producer destinations, each one must have a different monitored resource type. A log can be used in at most one producer destination.
+ * @property {serviceusage(v1beta1).LoggingDestination[]} consumerDestinations Logging configurations for sending logs to the consumer project. There can be multiple consumer destinations, each one must have a different monitored resource type. A log can be used in at most one consumer destination.
+ * @property {serviceusage(v1beta1).LoggingDestination[]} producerDestinations Logging configurations for sending logs to the producer project. There can be multiple producer destinations, each one must have a different monitored resource type. A log can be used in at most one producer destination.
  */
 /**
  * @typedef LoggingDestination
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {string[]} logs Names of the logs to be sent to this destination. Each name must be defined in the Service.logs section. If the log name is not a domain scoped name, it will be automatically prefixed with the service name followed by &quot;/&quot;.
  * @property {string} monitoredResource The monitored resource type. The type must be defined in the Service.monitored_resources section.
  */
 /**
  * @typedef MediaDownload
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {boolean} completeNotification A boolean that determines whether a notification for the completion of a download should be sent to the backend.
  * @property {string} downloadService DO NOT USE FIELDS BELOW THIS LINE UNTIL THIS WARNING IS REMOVED.  Specify name of the download service if one is used for download.
@@ -749,7 +664,7 @@ function Serviceusage(options: GlobalOptions) {
  */
 /**
  * @typedef MediaUpload
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {boolean} completeNotification A boolean that determines whether a notification for the completion of an upload should be sent to the backend. These notifications will not be seen by the client and will not consume quota.
  * @property {string} dropzone Name of the Scotty dropzone to use for the current API.
@@ -762,10 +677,10 @@ function Serviceusage(options: GlobalOptions) {
  */
 /**
  * @typedef Method
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {string} name The simple name of this method.
- * @property {serviceusage(v1).Option[]} options Any metadata attached to the method.
+ * @property {serviceusage(v1beta1).Option[]} options Any metadata attached to the method.
  * @property {boolean} requestStreaming If true, the request is streamed.
  * @property {string} requestTypeUrl A URL of the input message type.
  * @property {boolean} responseStreaming If true, the response is streamed.
@@ -774,11 +689,11 @@ function Serviceusage(options: GlobalOptions) {
  */
 /**
  * @typedef MetricDescriptor
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {string} description A detailed description of the metric, which can be used in documentation.
  * @property {string} displayName A concise name for the metric, which can be displayed in user interfaces. Use sentence case without an ending period, for example &quot;Request count&quot;. This field is optional but it is recommended to be set for any metrics associated with user-visible concepts, such as Quota.
- * @property {serviceusage(v1).LabelDescriptor[]} labels The set of labels that can be used to describe a specific instance of this metric type. For example, the `appengine.googleapis.com/http/server/response_latencies` metric type has a label for the HTTP response code, `response_code`, so you can look at latencies for successful responses or just for responses that failed.
+ * @property {serviceusage(v1beta1).LabelDescriptor[]} labels The set of labels that can be used to describe a specific instance of this metric type. For example, the `appengine.googleapis.com/http/server/response_latencies` metric type has a label for the HTTP response code, `response_code`, so you can look at latencies for successful responses or just for responses that failed.
  * @property {string} metricKind Whether the metric records instantaneous values, changes to a value, etc. Some combinations of `metric_kind` and `value_type` might not be supported.
  * @property {string} name The resource name of the metric descriptor.
  * @property {string} type The metric type, including its DNS name prefix. The type is not URL-encoded.  All user-defined custom metric types have the DNS name `custom.googleapis.com`.  Metric types should use a natural hierarchical grouping. For example:      &quot;custom.googleapis.com/invoice/paid/amount&quot;     &quot;appengine.googleapis.com/http/server/response_latencies&quot;
@@ -787,99 +702,92 @@ function Serviceusage(options: GlobalOptions) {
  */
 /**
  * @typedef MetricRule
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {object} metricCosts Metrics to update when the selected methods are called, and the associated cost applied to each metric.  The key of the map is the metric name, and the values are the amount increased for the metric against which the quota limits are defined. The value must not be negative.
  * @property {string} selector Selects the methods to which this rule applies.  Refer to selector for syntax details.
  */
 /**
  * @typedef Mixin
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {string} name The fully qualified name of the interface which is included.
  * @property {string} root If non-empty specifies a path under which inherited HTTP paths are rooted.
  */
 /**
  * @typedef MonitoredResourceDescriptor
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {string} description Optional. A detailed description of the monitored resource type that might be used in documentation.
  * @property {string} displayName Optional. A concise name for the monitored resource type that might be displayed in user interfaces. It should be a Title Cased Noun Phrase, without any article or other determiners. For example, `&quot;Google Cloud SQL Database&quot;`.
- * @property {serviceusage(v1).LabelDescriptor[]} labels Required. A set of labels used to describe instances of this monitored resource type. For example, an individual Google Cloud SQL database is identified by values for the labels `&quot;database_id&quot;` and `&quot;zone&quot;`.
+ * @property {serviceusage(v1beta1).LabelDescriptor[]} labels Required. A set of labels used to describe instances of this monitored resource type. For example, an individual Google Cloud SQL database is identified by values for the labels `&quot;database_id&quot;` and `&quot;zone&quot;`.
  * @property {string} name Optional. The resource name of the monitored resource descriptor: `&quot;projects/{project_id}/monitoredResourceDescriptors/{type}&quot;` where {type} is the value of the `type` field in this object and {project_id} is a project ID that provides API-specific context for accessing the type.  APIs that do not use project information can use the resource name format `&quot;monitoredResourceDescriptors/{type}&quot;`.
  * @property {string} type Required. The monitored resource type. For example, the type `&quot;cloudsql_database&quot;` represents databases in Google Cloud SQL. The maximum length of this value is 256 characters.
  */
 /**
  * @typedef Monitoring
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
- * @property {serviceusage(v1).MonitoringDestination[]} consumerDestinations Monitoring configurations for sending metrics to the consumer project. There can be multiple consumer destinations, each one must have a different monitored resource type. A metric can be used in at most one consumer destination.
- * @property {serviceusage(v1).MonitoringDestination[]} producerDestinations Monitoring configurations for sending metrics to the producer project. There can be multiple producer destinations, each one must have a different monitored resource type. A metric can be used in at most one producer destination.
+ * @property {serviceusage(v1beta1).MonitoringDestination[]} consumerDestinations Monitoring configurations for sending metrics to the consumer project. There can be multiple consumer destinations, each one must have a different monitored resource type. A metric can be used in at most one consumer destination.
+ * @property {serviceusage(v1beta1).MonitoringDestination[]} producerDestinations Monitoring configurations for sending metrics to the producer project. There can be multiple producer destinations, each one must have a different monitored resource type. A metric can be used in at most one producer destination.
  */
 /**
  * @typedef MonitoringDestination
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {string[]} metrics Names of the metrics to report to this monitoring destination. Each name must be defined in Service.metrics section.
  * @property {string} monitoredResource The monitored resource type. The type must be defined in Service.monitored_resources section.
  */
 /**
  * @typedef OAuthRequirements
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {string} canonicalScopes The list of publicly documented OAuth scopes that are allowed access. An OAuth token containing any of these scopes will be accepted.  Example:       canonical_scopes: https://www.googleapis.com/auth/calendar,                        https://www.googleapis.com/auth/calendar.read
  */
 /**
  * @typedef Operation
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {boolean} done If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
- * @property {serviceusage(v1).Status} error The error result of the operation in case of failure or cancellation.
+ * @property {serviceusage(v1beta1).Status} error The error result of the operation in case of failure or cancellation.
  * @property {object} metadata Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
  * @property {string} name The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should have the format of `operations/some/unique/name`.
  * @property {object} response The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
  */
 /**
  * @typedef OperationMetadata
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {integer} progressPercentage Percentage of completion of this operation, ranging from 0 to 100.
  * @property {string[]} resourceNames The full name of the resources that this operation is directly associated with.
  * @property {string} startTime The start time of the operation.
- * @property {serviceusage(v1).Step[]} steps Detailed status information for each step. The order is undetermined.
+ * @property {serviceusage(v1beta1).Step[]} steps Detailed status information for each step. The order is undetermined.
  */
 /**
  * @typedef Option
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {string} name The option&#39;s name. For protobuf built-in options (options defined in descriptor.proto), this is the short name. For example, `&quot;map_entry&quot;`. For custom options, it should be the fully-qualified name. For example, `&quot;google.api.http&quot;`.
  * @property {object} value The option&#39;s value packed in an Any message. If the value is a primitive, the corresponding wrapper type defined in google/protobuf/wrappers.proto should be used. If the value is an enum, it should be stored as an int32 value using the google.protobuf.Int32Value type.
  */
 /**
  * @typedef Page
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {string} content The Markdown content of the page. You can use &lt;code&gt;&amp;#40;== include {path} ==&amp;#41;&lt;/code&gt; to include content from a Markdown file.
  * @property {string} name The name of the page. It will be used as an identity of the page to generate URI of the page, text of the link to this page in navigation, etc. The full page name (start from the root page name to this page concatenated with `.`) can be used as reference to the page in your documentation. For example: &lt;pre&gt;&lt;code&gt;pages: - name: Tutorial   content: &amp;#40;== include tutorial.md ==&amp;#41;   subpages:   - name: Java     content: &amp;#40;== include tutorial_java.md ==&amp;#41; &lt;/code&gt;&lt;/pre&gt; You can reference `Java` page using Markdown reference link syntax: `Java`.
- * @property {serviceusage(v1).Page[]} subpages Subpages of this page. The order of subpages specified here will be honored in the generated docset.
- */
-/**
- * @typedef PublishedService
- * @memberOf! serviceusage(v1)
- * @type object
- * @property {string} name The resource name of the service.  A valid name would be: - services/serviceusage.googleapis.com
- * @property {serviceusage(v1).GoogleApiService} service The service&#39;s published configuration.
+ * @property {serviceusage(v1beta1).Page[]} subpages Subpages of this page. The order of subpages specified here will be honored in the generated docset.
  */
 /**
  * @typedef Quota
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
- * @property {serviceusage(v1).QuotaLimit[]} limits List of `QuotaLimit` definitions for the service.
- * @property {serviceusage(v1).MetricRule[]} metricRules List of `MetricRule` definitions, each one mapping a selected method to one or more metrics.
+ * @property {serviceusage(v1beta1).QuotaLimit[]} limits List of `QuotaLimit` definitions for the service.
+ * @property {serviceusage(v1beta1).MetricRule[]} metricRules List of `MetricRule` definitions, each one mapping a selected method to one or more metrics.
  */
 /**
  * @typedef QuotaLimit
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {string} defaultLimit Default number of tokens that can be consumed during the specified duration. This is the number of tokens assigned when a client application developer activates the service for his/her project.  Specifying a value of 0 will block all requests. This can be used if you are provisioning quota to selected consumers and blocking others. Similarly, a value of -1 will indicate an unlimited quota. No other negative values are allowed.  Used by group-based quotas only.
  * @property {string} description Optional. User-visible, extended description for this quota limit. Should be used only when more context is needed to understand this limit than provided by the limit&#39;s display name (see: `display_name`).
@@ -893,35 +801,42 @@ function Serviceusage(options: GlobalOptions) {
  * @property {object} values Tiered limit values. You must specify this as a key:value pair, with an integer value that is the maximum number of requests allowed for the specified unit. Currently only STANDARD is supported.
  */
 /**
- * @typedef SearchServicesResponse
- * @memberOf! serviceusage(v1)
+ * @typedef Service
+ * @memberOf! serviceusage(v1beta1)
  * @type object
- * @property {string} nextPageToken Token that can be passed to `SearchServices` to resume a paginated query.
- * @property {serviceusage(v1).PublishedService[]} services The state of services available publicly or available to the authenticated caller.
+ * @property {serviceusage(v1beta1).ServiceConfig} config The service configuration of the available service. Some fields may be filtered out of the configuration in responses to the `ListServices` method. These fields are present only in responses to the `GetService` method.
+ * @property {string} name The resource name of the consumer and service.  A valid name would be: - projects/123/services/serviceusage.googleapis.com
+ * @property {string} parent The resource name of the consumer.  A valid name would be: - projects/123
+ * @property {string} state Whether or not the service has been enabled for use by the consumer.
  */
 /**
- * @typedef ServiceState
- * @memberOf! serviceusage(v1)
+ * @typedef ServiceConfig
+ * @memberOf! serviceusage(v1beta1)
  * @type object
- * @property {serviceusage(v1).EnabledState} enabled Reflects whether or not the service has been explicitly enabled.
- * @property {string} name The resource name of the consumer and service.  A valid name would be: - projects/123/services/serviceusage.googleapis.com
- * @property {serviceusage(v1).PublishedService} service The published version of the consumed service.
+ * @property {serviceusage(v1beta1).Api[]} apis A list of API interfaces exported by this service. Contains only the names, versions, and method names of the interfaces.
+ * @property {serviceusage(v1beta1).Authentication} authentication Auth configuration. Contains only the OAuth rules.
+ * @property {serviceusage(v1beta1).Documentation} documentation Additional API documentation. Contains only the summary and the documentation URL.
+ * @property {serviceusage(v1beta1).Endpoint[]} endpoints Configuration for network endpoints. Contains only the names and aliases of the endpoints.
+ * @property {string} name The DNS address at which this service is available.  An example DNS address would be: `calendar.googleapis.com`.
+ * @property {serviceusage(v1beta1).Quota} quota Quota configuration.
+ * @property {string} title The product title for this service.
+ * @property {serviceusage(v1beta1).Usage} usage Configuration controlling usage of this service.
  */
 /**
  * @typedef SourceContext
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {string} fileName The path-qualified name of the .proto file that contained the associated protobuf element.  For example: `&quot;google/protobuf/source_context.proto&quot;`.
  */
 /**
  * @typedef SourceInfo
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {object[]} sourceFiles All files used during config generation.
  */
 /**
  * @typedef Status
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {integer} code The status code, which should be an enum value of google.rpc.Code.
  * @property {object[]} details A list of messages that carry the error details.  There is a common set of message types for APIs to use.
@@ -929,14 +844,14 @@ function Serviceusage(options: GlobalOptions) {
  */
 /**
  * @typedef Step
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {string} description The short description of the step.
  * @property {string} status The status code.
  */
 /**
  * @typedef SystemParameter
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {string} httpHeader Define the HTTP header name to use for the parameter. It is case insensitive.
  * @property {string} name Define the name of the parameter, such as &quot;api_key&quot; . It is case sensitive.
@@ -944,39 +859,39 @@ function Serviceusage(options: GlobalOptions) {
  */
 /**
  * @typedef SystemParameterRule
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
- * @property {serviceusage(v1).SystemParameter[]} parameters Define parameters. Multiple names may be defined for a parameter. For a given method call, only one of them should be used. If multiple names are used the behavior is implementation-dependent. If none of the specified names are present the behavior is parameter-dependent.
+ * @property {serviceusage(v1beta1).SystemParameter[]} parameters Define parameters. Multiple names may be defined for a parameter. For a given method call, only one of them should be used. If multiple names are used the behavior is implementation-dependent. If none of the specified names are present the behavior is parameter-dependent.
  * @property {string} selector Selects the methods to which this rule applies. Use &#39;*&#39; to indicate all methods in all APIs.  Refer to selector for syntax details.
  */
 /**
  * @typedef SystemParameters
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
- * @property {serviceusage(v1).SystemParameterRule[]} rules Define system parameters.  The parameters defined here will override the default parameters implemented by the system. If this field is missing from the service config, default system parameters will be used. Default system parameters and names is implementation-dependent.  Example: define api key for all methods      system_parameters       rules:         - selector: &quot;*&quot;           parameters:             - name: api_key               url_query_parameter: api_key   Example: define 2 api key names for a specific method.      system_parameters       rules:         - selector: &quot;/ListShelves&quot;           parameters:             - name: api_key               http_header: Api-Key1             - name: api_key               http_header: Api-Key2  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
+ * @property {serviceusage(v1beta1).SystemParameterRule[]} rules Define system parameters.  The parameters defined here will override the default parameters implemented by the system. If this field is missing from the service config, default system parameters will be used. Default system parameters and names is implementation-dependent.  Example: define api key for all methods      system_parameters       rules:         - selector: &quot;*&quot;           parameters:             - name: api_key               url_query_parameter: api_key   Example: define 2 api key names for a specific method.      system_parameters       rules:         - selector: &quot;/ListShelves&quot;           parameters:             - name: api_key               http_header: Api-Key1             - name: api_key               http_header: Api-Key2  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
  */
 /**
  * @typedef Type
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
- * @property {serviceusage(v1).Field[]} fields The list of fields.
+ * @property {serviceusage(v1beta1).Field[]} fields The list of fields.
  * @property {string} name The fully qualified message name.
  * @property {string[]} oneofs The list of types appearing in `oneof` definitions in this type.
- * @property {serviceusage(v1).Option[]} options The protocol buffer options.
- * @property {serviceusage(v1).SourceContext} sourceContext The source context.
+ * @property {serviceusage(v1beta1).Option[]} options The protocol buffer options.
+ * @property {serviceusage(v1beta1).SourceContext} sourceContext The source context.
  * @property {string} syntax The source syntax.
  */
 /**
  * @typedef Usage
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {string} producerNotificationChannel The full resource name of a channel used for sending notifications to the service producer.  Google Service Management currently only supports [Google Cloud Pub/Sub](https://cloud.google.com/pubsub) as a notification channel. To use Google Cloud Pub/Sub as the channel, this must be the name of a Cloud Pub/Sub topic that uses the Cloud Pub/Sub topic name format documented in https://cloud.google.com/pubsub/docs/overview.
  * @property {string[]} requirements Requirements that must be satisfied before a consumer project can use the service. Each requirement is of the form &lt;service.name&gt;/&lt;requirement-id&gt;; for example &#39;serviceusage.googleapis.com/billing-enabled&#39;.
- * @property {serviceusage(v1).UsageRule[]} rules A list of usage rules that apply to individual API methods.  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
+ * @property {serviceusage(v1beta1).UsageRule[]} rules A list of usage rules that apply to individual API methods.  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
  */
 /**
  * @typedef UsageRule
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {boolean} allowUnregisteredCalls If true, the selected method allows unregistered calls, e.g. calls that don&#39;t identify any user or application.
  * @property {string} selector Selects the methods to which this rule applies. Use &#39;*&#39; to indicate all methods in all APIs.  Refer to selector for syntax details.
@@ -984,13 +899,13 @@ function Serviceusage(options: GlobalOptions) {
  */
 /**
  * @typedef Visibility
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
- * @property {serviceusage(v1).VisibilityRule[]} rules A list of visibility rules that apply to individual API elements.  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
+ * @property {serviceusage(v1beta1).VisibilityRule[]} rules A list of visibility rules that apply to individual API elements.  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
  */
 /**
  * @typedef VisibilityRule
- * @memberOf! serviceusage(v1)
+ * @memberOf! serviceusage(v1beta1)
  * @type object
  * @property {string} restriction A comma-separated list of visibility labels that apply to the `selector`. Any of the listed labels can be used to grant the visibility.  If a rule has multiple labels, removing one of the labels but not all of them can break clients.  Example:      visibility:       rules:       - selector: google.calendar.Calendar.EnhancedSearch         restriction: GOOGLE_INTERNAL, TRUSTED_TESTER  Removing GOOGLE_INTERNAL from this restriction will break clients that rely on this method and only had access to it through GOOGLE_INTERNAL.
  * @property {string} selector Selects methods, messages, fields, enums, etc. to which this rule applies.  Refer to selector for syntax details.

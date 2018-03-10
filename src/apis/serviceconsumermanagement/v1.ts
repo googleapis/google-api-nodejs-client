@@ -1009,7 +1009,7 @@ function Serviceconsumermanagement(options: GlobalOptions) {
  * @property {string} createTime @OutputOnly The time this tenancy unit was created.
  * @property {string} name Globally unique identifier of this tenancy unit &quot;services/{service}/{collection id}/{resource id}/tenancyUnits/{unit}&quot;
  * @property {string} service @OutputOnly Google Cloud API name of the service owning this tenancy unit. For example &#39;serviceconsumermanagement.googleapis.com&#39;.
- * @property {serviceconsumermanagement(v1).TenantResource[]} tenantResources Resources constituting the tenancy unit. There can be at most 512 tenant resources in a tenancy units.
+ * @property {serviceconsumermanagement(v1).TenantResource[]} tenantResources Resources constituting the tenancy unit. There can be at most 512 tenant resources in a tenancy unit.
  */
 /**
  * @typedef TenantProjectConfig

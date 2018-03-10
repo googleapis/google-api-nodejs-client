@@ -126,7 +126,8 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+          const rootUrl =
+              options.rootUrl || 'https://content-dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -225,7 +226,8 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+          const rootUrl =
+              options.rootUrl || 'https://content-dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -330,7 +332,8 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+          const rootUrl =
+              options.rootUrl || 'https://content-dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -427,7 +430,8 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+          const rootUrl =
+              options.rootUrl || 'https://content-dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -540,7 +544,8 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+          const rootUrl =
+              options.rootUrl || 'https://content-dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -647,7 +652,8 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+          const rootUrl =
+              options.rootUrl || 'https://content-dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -755,7 +761,8 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+          const rootUrl =
+              options.rootUrl || 'https://content-dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -852,7 +859,8 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+          const rootUrl =
+              options.rootUrl || 'https://content-dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -948,7 +956,8 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+          const rootUrl =
+              options.rootUrl || 'https://content-dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -1061,7 +1070,8 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+          const rootUrl =
+              options.rootUrl || 'https://content-dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -1165,7 +1175,8 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+          const rootUrl =
+              options.rootUrl || 'https://content-dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -1263,7 +1274,8 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+          const rootUrl =
+              options.rootUrl || 'https://content-dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -1362,7 +1374,8 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+          const rootUrl =
+              options.rootUrl || 'https://content-dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -1450,7 +1463,8 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+          const rootUrl =
+              options.rootUrl || 'https://content-dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -1538,7 +1552,8 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+          const rootUrl =
+              options.rootUrl || 'https://content-dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -1653,7 +1668,8 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+          const rootUrl =
+              options.rootUrl || 'https://content-dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -1678,7 +1694,7 @@ function Dataproc(options: GlobalOptions) {
  * @memberOf! dataproc(v1)
  * @type object
  * @property {integer} acceleratorCount The number of the accelerator cards of this type exposed to this instance.
- * @property {string} acceleratorTypeUri Full URL, partial URI, or short name of the accelerator type resource to expose to this instance. See Google Compute Engine AcceleratorTypes.Examples: https://www.googleapis.com/compute/beta/projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80 projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80 nvidia-tesla-k80
+ * @property {string} acceleratorTypeUri Full URL, partial URI, or short name of the accelerator type resource to expose to this instance. See Compute Engine AcceleratorTypes.Examples: https://www.googleapis.com/compute/beta/projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80 projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80 nvidia-tesla-k80
  */
 /**
  * @typedef CancelJobRequest
@@ -1702,13 +1718,13 @@ function Dataproc(options: GlobalOptions) {
  * @typedef ClusterConfig
  * @memberOf! dataproc(v1)
  * @type object
- * @property {string} configBucket Optional. A Google Cloud Storage staging bucket used for sharing generated SSH keys and config. If you do not specify a staging bucket, Cloud Dataproc will determine an appropriate Cloud Storage location (US, ASIA, or EU) for your cluster&#39;s staging bucket according to the Google Compute Engine zone where your cluster is deployed, and then it will create and manage this project-level, per-location bucket for you.
- * @property {dataproc(v1).GceClusterConfig} gceClusterConfig Required. The shared Google Compute Engine config settings for all instances in a cluster.
+ * @property {string} configBucket Optional. A Cloud Storage staging bucket used for sharing generated SSH keys and config. If you do not specify a staging bucket, Cloud Dataproc will determine an appropriate Cloud Storage location (US, ASIA, or EU) for your cluster&#39;s staging bucket according to the Google Compute Engine zone where your cluster is deployed, and then it will create and manage this project-level, per-location bucket for you.
+ * @property {dataproc(v1).GceClusterConfig} gceClusterConfig Required. The shared Compute Engine config settings for all instances in a cluster.
  * @property {dataproc(v1).NodeInitializationAction[]} initializationActions Optional. Commands to execute on each node after config is completed. By default, executables are run on master and all worker nodes. You can test a node&#39;s role metadata to run an executable on a master or worker node, as shown below using curl (you can also use wget): ROLE=$(curl -H Metadata-Flavor:Google http://metadata/computeMetadata/v1/instance/attributes/dataproc-role) if [[ &quot;${ROLE}&quot; == &#39;Master&#39; ]]; then   ... master specific actions ... else   ... worker specific actions ... fi
- * @property {dataproc(v1).InstanceGroupConfig} masterConfig Optional. The Google Compute Engine config settings for the master instance in a cluster.
- * @property {dataproc(v1).InstanceGroupConfig} secondaryWorkerConfig Optional. The Google Compute Engine config settings for additional worker instances in a cluster.
+ * @property {dataproc(v1).InstanceGroupConfig} masterConfig Optional. The Compute Engine config settings for the master instance in a cluster.
+ * @property {dataproc(v1).InstanceGroupConfig} secondaryWorkerConfig Optional. The Compute Engine config settings for additional worker instances in a cluster.
  * @property {dataproc(v1).SoftwareConfig} softwareConfig Optional. The config settings for software inside the cluster.
- * @property {dataproc(v1).InstanceGroupConfig} workerConfig Optional. The Google Compute Engine config settings for worker instances in a cluster.
+ * @property {dataproc(v1).InstanceGroupConfig} workerConfig Optional. The Compute Engine config settings for worker instances in a cluster.
  */
 /**
  * @typedef ClusterMetrics
@@ -1776,13 +1792,13 @@ function Dataproc(options: GlobalOptions) {
  * @memberOf! dataproc(v1)
  * @type object
  * @property {boolean} internalIpOnly Optional. If true, all instances in the cluster will only have internal IP addresses. By default, clusters are not restricted to internal IP addresses, and will have ephemeral external IP addresses assigned to each instance. This internal_ip_only restriction can only be enabled for subnetwork enabled networks, and all off-cluster dependencies must be configured to be accessible without external IP addresses.
- * @property {object} metadata The Google Compute Engine metadata entries to add to all instances (see Project and instance metadata (https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
- * @property {string} networkUri Optional. The Google Compute Engine network to be used for machine communications. Cannot be specified with subnetwork_uri. If neither network_uri nor subnetwork_uri is specified, the &quot;default&quot; network of the project is used, if it exists. Cannot be a &quot;Custom Subnet Network&quot; (see Using Subnetworks for more information).A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default projects/[project_id]/regions/global/default default
- * @property {string} serviceAccount Optional. The service account of the instances. Defaults to the default Google Compute Engine service account. Custom service accounts need permissions equivalent to the folloing IAM roles: roles/logging.logWriter roles/storage.objectAdmin(see https://cloud.google.com/compute/docs/access/service-accounts#custom_service_accounts for more information). Example: [account_id]@[project_id].iam.gserviceaccount.com
+ * @property {object} metadata The Compute Engine metadata entries to add to all instances (see Project and instance metadata (https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
+ * @property {string} networkUri Optional. The Compute Engine network to be used for machine communications. Cannot be specified with subnetwork_uri. If neither network_uri nor subnetwork_uri is specified, the &quot;default&quot; network of the project is used, if it exists. Cannot be a &quot;Custom Subnet Network&quot; (see Using Subnetworks for more information).A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default projects/[project_id]/regions/global/default default
+ * @property {string} serviceAccount Optional. The service account of the instances. Defaults to the default Compute Engine service account. Custom service accounts need permissions equivalent to the folloing IAM roles: roles/logging.logWriter roles/storage.objectAdmin(see https://cloud.google.com/compute/docs/access/service-accounts#custom_service_accounts for more information). Example: [account_id]@[project_id].iam.gserviceaccount.com
  * @property {string[]} serviceAccountScopes Optional. The URIs of service account scopes to be included in Google Compute Engine instances. The following base set of scopes is always included: https://www.googleapis.com/auth/cloud.useraccounts.readonly https://www.googleapis.com/auth/devstorage.read_write https://www.googleapis.com/auth/logging.writeIf no scopes are specified, the following defaults are also provided: https://www.googleapis.com/auth/bigquery https://www.googleapis.com/auth/bigtable.admin.table https://www.googleapis.com/auth/bigtable.data https://www.googleapis.com/auth/devstorage.full_control
- * @property {string} subnetworkUri Optional. The Google Compute Engine subnetwork to be used for machine communications. Cannot be specified with network_uri.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/sub0 projects/[project_id]/regions/us-east1/sub0 sub0
- * @property {string[]} tags The Google Compute Engine tags to add to all instances (see Tagging instances).
- * @property {string} zoneUri Optional. The zone where the Google Compute Engine cluster will be located. On a create request, it is required in the &quot;global&quot; region. If omitted in a non-global Cloud Dataproc region, the service will pick a zone in the corresponding Compute Engine region. On a get request, zone will always be present.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone] projects/[project_id]/zones/[zone] us-central1-f
+ * @property {string} subnetworkUri Optional. The Compute Engine subnetwork to be used for machine communications. Cannot be specified with network_uri.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/sub0 projects/[project_id]/regions/us-east1/sub0 sub0
+ * @property {string[]} tags The Compute Engine tags to add to all instances (see Tagging instances).
+ * @property {string} zoneUri Optional. The zone where the Compute Engine cluster will be located. On a create request, it is required in the &quot;global&quot; region. If omitted in a non-global Cloud Dataproc region, the service will pick a zone in the corresponding Compute Engine region. On a get request, zone will always be present.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone] projects/[project_id]/zones/[zone] us-central1-f
  */
 /**
  * @typedef HadoopJob
@@ -1812,13 +1828,13 @@ function Dataproc(options: GlobalOptions) {
  * @typedef InstanceGroupConfig
  * @memberOf! dataproc(v1)
  * @type object
- * @property {dataproc(v1).AcceleratorConfig[]} accelerators Optional. The Google Compute Engine accelerator configuration for these instances.Beta Feature: This feature is still under development. It may be changed before final release.
+ * @property {dataproc(v1).AcceleratorConfig[]} accelerators Optional. The Compute Engine accelerator configuration for these instances.Beta Feature: This feature is still under development. It may be changed before final release.
  * @property {dataproc(v1).DiskConfig} diskConfig Optional. Disk option config settings.
- * @property {string} imageUri Output only. The Google Compute Engine image resource used for cluster instances. Inferred from SoftwareConfig.image_version.
+ * @property {string} imageUri Output only. The Compute Engine image resource used for cluster instances. Inferred from SoftwareConfig.image_version.
  * @property {string[]} instanceNames Optional. The list of instance names. Cloud Dataproc derives the names from cluster_name, num_instances, and the instance group if not set by user (recommended practice is to let Cloud Dataproc derive the name).
  * @property {boolean} isPreemptible Optional. Specifies that this instance group contains preemptible instances.
- * @property {string} machineTypeUri Optional. The Google Compute Engine machine type used for cluster instances.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2 projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2 n1-standard-2
- * @property {dataproc(v1).ManagedGroupConfig} managedGroupConfig Output only. The config for Google Compute Engine Instance Group Manager that manages this group. This is only used for preemptible instance groups.
+ * @property {string} machineTypeUri Optional. The Compute Engine machine type used for cluster instances.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2 projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2 n1-standard-2
+ * @property {dataproc(v1).ManagedGroupConfig} managedGroupConfig Output only. The config for Compute Engine Instance Group Manager that manages this group. This is only used for preemptible instance groups.
  * @property {integer} numInstances Optional. The number of VM instances in the instance group. For master instance groups, must be set to 1.
  */
 /**
@@ -1908,7 +1924,7 @@ function Dataproc(options: GlobalOptions) {
  * @typedef NodeInitializationAction
  * @memberOf! dataproc(v1)
  * @type object
- * @property {string} executableFile Required. Google Cloud Storage URI of executable file.
+ * @property {string} executableFile Required. Cloud Storage URI of executable file.
  * @property {string} executionTimeout Optional. Amount of time executable has to complete. Default is 10 minutes. Cluster creation fails with an explanatory error message (the name of the executable that caused the error and the exceeded timeout period) if the executable is not completed at end of the timeout period.
  */
 /**

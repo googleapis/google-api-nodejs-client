@@ -1844,6 +1844,7 @@ function Dlp(options: GlobalOptions) {
  * @memberOf! dlp(v2beta2)
  * @type object
  * @property {string} bucketSize Total number of values in this bucket.
+ * @property {string} bucketValueCount Total number of distinct values in this bucket.
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2ValueFrequency[]} bucketValues Sample of value frequencies in this bucket. The total number of values returned per bucket is capped at 20.
  * @property {string} valueFrequencyLowerBound Lower bound on the value frequency of the values in this bucket.
  * @property {string} valueFrequencyUpperBound Upper bound on the value frequency of the values in this bucket.
@@ -2300,6 +2301,7 @@ function Dlp(options: GlobalOptions) {
  * @memberOf! dlp(v2beta2)
  * @type object
  * @property {string} bucketSize Total number of equivalence classes in this bucket.
+ * @property {string} bucketValueCount Total number of distinct equivalence classes in this bucket.
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2KAnonymityEquivalenceClass[]} bucketValues Sample of equivalence classes in this bucket. The total number of classes returned per bucket is capped at 20.
  * @property {string} equivalenceClassSizeLowerBound Lower bound on the size of the equivalence classes in this bucket.
  * @property {string} equivalenceClassSizeUpperBound Upper bound on the size of the equivalence classes in this bucket.
@@ -2336,6 +2338,7 @@ function Dlp(options: GlobalOptions) {
  * @memberOf! dlp(v2beta2)
  * @type object
  * @property {string} bucketSize Number of records within these anonymity bounds.
+ * @property {string} bucketValueCount Total number of distinct quasi-identifier tuple values in this bucket.
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2KMapEstimationQuasiIdValues[]} bucketValues Sample of quasi-identifier tuple values in this bucket. The total number of classes returned per bucket is capped at 20.
  * @property {string} maxAnonymity Always greater than or equal to min_anonymity.
  * @property {string} minAnonymity Always positive.
@@ -2381,6 +2384,7 @@ function Dlp(options: GlobalOptions) {
  * @memberOf! dlp(v2beta2)
  * @type object
  * @property {string} bucketSize Total number of equivalence classes in this bucket.
+ * @property {string} bucketValueCount Total number of distinct equivalence classes in this bucket.
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2LDiversityEquivalenceClass[]} bucketValues Sample of equivalence classes in this bucket. The total number of classes returned per bucket is capped at 20.
  * @property {string} sensitiveValueFrequencyLowerBound Lower bound on the sensitive value frequencies of the equivalence classes in this bucket.
  * @property {string} sensitiveValueFrequencyUpperBound Upper bound on the sensitive value frequencies of the equivalence classes in this bucket.

@@ -15,8 +15,12 @@
 
 import * as path from 'path';
 import * as util from 'util';
-
 import {APIList, ServiceOptions} from '../lib/api';
+
+export interface APIList {
+  // tslint:disable-next-line: no-any
+  [index: string]: {[index: string]: any};
+}
 
 const APIS: APIList = {
   abusiveexperiencereport: {
@@ -304,6 +308,7 @@ const APIS: APIList = {
   pagespeedonline: {
     'v1': require('./pagespeedonline/v1'),
     'v2': require('./pagespeedonline/v2'),
+    'v4': require('./pagespeedonline/v4'),
   },
   partners: {
     'v2': require('./partners/v2'),
@@ -375,7 +380,7 @@ const APIS: APIList = {
     'v1': require('./servicemanagement/v1'),
   },
   serviceusage: {
-    'v1': require('./serviceusage/v1'),
+    'v1beta1': require('./serviceusage/v1beta1'),
   },
   serviceuser: {
     'v1': require('./serviceuser/v1'),

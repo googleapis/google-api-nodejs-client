@@ -49,7 +49,8 @@ function Genomics(options: GlobalOptions) {
      * automatically when the Genomics API is first enabled, but if you delete
      * this permission, or if you have already enabled the Genomics API prior to
      * the launch of the v2alpha1 API, you must disable and re-enable the API to
-     * grant the Genomics Service Agent the required permissions.
+     * grant the Genomics Service Agent the required permissions.  [1]:
+     * /genomics/gsa
      * @alias genomics.pipelines.run
      * @memberOf! genomics(v2alpha1)
      *
@@ -253,7 +254,7 @@ function Genomics(options: GlobalOptions) {
  * @type object
  * @property {string[]} commands If specified, overrides the CMD specified in the container.  If the container also has an ENTRYPOINT the values are used as entrypoint arguments.  Otherwise, they are used as a command and arguments to run inside the container.
  * @property {string} entrypoint If specified, overrides the ENTRYPOINT specified in the container.
- * @property {object} environment The environment to pass into the container.  This environment is merged with any values specified in the Pipeline message.  These values overwrite any in the Pipeline message.
+ * @property {object} environment The environment to pass into the container.  This environment is merged with any values specified in the Pipeline message.  These values overwrite any in the Pipeline message.  In addition to the values passed here, a few other values are automatically injected into the environment.  These cannot be hidden or overwritten.  `GOOGLE_PIPELINE_FAILED` will be set to &quot;1&quot; if the pipeline has failed because an action has exited with a non-zero status (and did not have the IGNORE_EXIT_STATUS flag set).  This can be used to determine if additional debug or logging actions should execute.  `GOOGLE_LAST_EXIT_STATUS` will be set to the exit status of the last non-background action that executed.  This can be used by workflow engine authors to determine whether an individual action has succeeded or failed.
  * @property {string[]} flags The set of flags to apply to this action.
  * @property {string} imageUri The URI to pull the container image from.  Note that all images referenced by actions in the pipeline are pulled before the first action runs.  If multiple actions reference the same image, it is only pulled once, ensuring that the same image is used for all actions in a single pipeline.
  * @property {object} labels Labels to associate with the action.  This field is provided to assist workflow engine authors in identifying actions (for example, to indicate what sort of action they perform: eg. localization, debugging, etc).  They are returned in the operation metadata but are otherwise ignored.
@@ -450,7 +451,7 @@ function Genomics(options: GlobalOptions) {
  * @typedef RunPipelineRequest
  * @memberOf! genomics(v2alpha1)
  * @type object
- * @property {object} labels User defined labels to associate with the returned operation.  These labels are not propogated to any Google Cloud Platform resources used by the operation, and may be modified at any time.  To associate labels with resources created while executing the operation, see the appropriate resource message (i.e., VirtualMachine).
+ * @property {object} labels User defined labels to associate with the returned operation.  These labels are not propagated to any Google Cloud Platform resources used by the operation, and may be modified at any time.  To associate labels with resources created while executing the operation, see the appropriate resource message (i.e., VirtualMachine).
  * @property {genomics(v2alpha1).Pipeline} pipeline The description of the pipeline to run.
  */
 /**

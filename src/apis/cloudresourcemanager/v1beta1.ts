@@ -116,8 +116,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -212,8 +212,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -303,7 +303,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         * @memberOf! cloudresourcemanager(v1beta1)
         *
         * @param {object} params Parameters for request
-        * @param {string=} params.filter An optional query string used to filter the Organizations to return in the response. Filter rules are case-insensitive.   Organizations may be filtered by `owner.directoryCustomerId` or by `domain`, where the domain is a Google for Work domain, for example:  |Filter|Description| |------|-----------| |owner.directorycustomerid:123456789|Organizations with `owner.directory_customer_id` equal to `123456789`.| |domain:google.com|Organizations corresponding to the domain `google.com`.|  This field is optional.
+        * @param {string=} params.filter An optional query string used to filter the Organizations to return in the response. Filter rules are case-insensitive.   Organizations may be filtered by `owner.directoryCustomerId` or by `domain`, where the domain is a G Suite domain, for example:  |Filter|Description| |------|-----------| |owner.directorycustomerid:123456789|Organizations with `owner.directory_customer_id` equal to `123456789`.| |domain:google.com|Organizations corresponding to the domain `google.com`.|  This field is optional.
         * @param {integer=} params.pageSize The maximum number of Organizations to return in the response. This field is optional.
         * @param {string=} params.pageToken A pagination token returned from a previous call to `ListOrganizations` that indicates from where listing should continue. This field is optional.
         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -318,8 +318,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -415,8 +415,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -513,8 +513,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -612,8 +612,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -636,7 +636,9 @@ function Cloudresourcemanager(options: GlobalOptions) {
      * @desc Creates a Project resource.  Initially, the Project resource is
      * owned by its creator exclusively. The creator can later grant permission
      * to others to read or update the Project.  Several APIs are activated
-     * automatically for the Project, including Google Cloud Storage.
+     * automatically for the Project, including Google Cloud Storage. The parent
+     * is identified by a specified ResourceId, which must include both an ID
+     * and a type, such as project, folder, or organization.
      * @example
      * // BEFORE RUNNING:
      * // ---------------
@@ -709,8 +711,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -809,8 +811,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -901,8 +903,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -998,8 +1000,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -1096,8 +1098,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -1204,8 +1206,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -1324,8 +1326,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -1420,8 +1422,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -1517,8 +1519,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -1615,8 +1617,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -1727,7 +1729,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
  * @typedef OrganizationOwner
  * @memberOf! cloudresourcemanager(v1beta1)
  * @type object
- * @property {string} directoryCustomerId The Google for Work customer id used in the Directory API.
+ * @property {string} directoryCustomerId The G Suite customer id used in the Directory API.
  */
 /**
  * @typedef Policy

@@ -2351,6 +2351,7 @@ function Cloudtasks(options: GlobalOptions) {
  * @typedef Location
  * @memberOf! cloudtasks(v2beta2)
  * @type object
+ * @property {string} displayName The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
  * @property {object} labels Cross-service attributes for the location. For example      {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
  * @property {string} locationId The canonical id for this location. For example: `&quot;us-east1&quot;`.
  * @property {object} metadata Service-specific metadata. For example the available capacity at the given location.

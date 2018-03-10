@@ -2158,18 +2158,18 @@ function Dialogflow(options: GlobalOptions) {
  * @typedef GoogleCloudDialogflowV2beta1IntentMessage
  * @memberOf! dialogflow(v2beta1)
  * @type object
- * @property {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1IntentMessageBasicCard} basicCard The basic card response for Actions on Google.
- * @property {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1IntentMessageCard} card The card response.
- * @property {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1IntentMessageCarouselSelect} carouselSelect The carousel card response for Actions on Google.
- * @property {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1IntentMessageImage} image The image response.
- * @property {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1IntentMessageLinkOutSuggestion} linkOutSuggestion The link out suggestion chip for Actions on Google.
- * @property {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1IntentMessageListSelect} listSelect The list card response for Actions on Google.
- * @property {object} payload The response containing a custom payload.
+ * @property {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1IntentMessageBasicCard} basicCard Displays a basic card for Actions on Google.
+ * @property {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1IntentMessageCard} card Displays a card.
+ * @property {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1IntentMessageCarouselSelect} carouselSelect Displays a carousel card for Actions on Google.
+ * @property {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1IntentMessageImage} image Displays an image.
+ * @property {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1IntentMessageLinkOutSuggestion} linkOutSuggestion Displays a link out suggestion chip for Actions on Google.
+ * @property {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1IntentMessageListSelect} listSelect Displays a list card for Actions on Google.
+ * @property {object} payload Returns a response containing a custom payload.
  * @property {string} platform Optional. The platform that this message is intended for.
- * @property {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1IntentMessageQuickReplies} quickReplies The quick replies response.
- * @property {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1IntentMessageSimpleResponses} simpleResponses The voice and text-only responses for Actions on Google.
- * @property {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1IntentMessageSuggestions} suggestions The suggestion chips for Actions on Google.
- * @property {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1IntentMessageText} text The text response.
+ * @property {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1IntentMessageQuickReplies} quickReplies Displays quick replies.
+ * @property {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1IntentMessageSimpleResponses} simpleResponses Returns a voice or text-only response for Actions on Google.
+ * @property {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1IntentMessageSuggestions} suggestions Displays suggestion chips for Actions on Google.
+ * @property {dialogflow(v2beta1).GoogleCloudDialogflowV2beta1IntentMessageText} text Returns a text response.
  */
 /**
  * @typedef GoogleCloudDialogflowV2beta1IntentMessageBasicCard
