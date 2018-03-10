@@ -61,10 +61,10 @@ function getAccessToken (oauth2Client, callback) {
 // retrieve an access token
 getAccessToken(oauth2Client, () => {
   // retrieve user profile
-  plus.people.get({ userId: 'me', auth: oauth2Client }, (err, profile) => {
+  plus.people.get({ userId: 'me', auth: oauth2Client }, (err, res) => {
     if (err) {
       throw err;
     }
-    console.log(profile.displayName, ':', profile.tagline);
+    console.log(res.data.displayName, ':', res.data.tagline);
   });
 });

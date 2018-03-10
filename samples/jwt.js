@@ -57,6 +57,6 @@ authClient.authorize(err => {
     if (err) {
       throw err;
     }
-    console.log(res);
+    console.log(res.data);
   });
 });

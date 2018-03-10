@@ -24,9 +24,9 @@ nconf.argv().env().file(path.join(__dirname, 'config.json'));
 blogger.blogs.get({
   key: nconf.get('api_key'),
   blogId: 3213900
-}, (err, result) => {
+}, (err, res) => {
   if (err) {
-    console.error(err);
+    throw err;
   }
-  console.log(result);
+  console.log(res.data);
 });
