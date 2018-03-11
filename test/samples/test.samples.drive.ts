@@ -78,7 +78,9 @@ describe('Drive samples', () => {
   });
 
   it('should upload a file', done => {
-    const scope = nock(Utils.baseUrl).post(`/upload/drive/v3/files?uploadType=multipart`).reply(200, {});
+    const scope = nock(Utils.baseUrl)
+                      .post(`/upload/drive/v3/files?uploadType=multipart`)
+                      .reply(200, {});
     samples.upload.runSample(someFile, (data: {}) => {
       assert(data);
       scope.done();
