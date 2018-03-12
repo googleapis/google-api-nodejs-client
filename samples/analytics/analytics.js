@@ -14,8 +14,12 @@
 'use strict';
 
 const {google} = require('googleapis');
-const analytics = google.analytics('v3');
 const sampleClient = require('../sampleclient');
+
+const analytics = google.analytics({
+  version: 'v3',
+  auth: sampleClient.oAuth2Client
+});
 
 // Custom Goals must be exist prior to used as an objectiveMetric
 const objectiveMetric = 'ga:goal1Completions';
@@ -45,20 +49,23 @@ const scopes = [
   'https://www.googleapis.com/auth/analytics'
 ];
 
-sampleClient.authenticate(scopes, (err, authClient) => {
-  if (err) {
-    throw err;
-  }
+function runSample () {
   analytics.management.experiments.insert({
-    auth: authClient,
     accountId: 'your-accountId',
     webPropertyId: 'your-webPropertyId',
     profileId: 'your-profileId',
     resource: resourceBody
-  }, (err, body) => {
+  }, (err, res) => {
     if (err) {
       throw err;
     }
-    console.log(body);
+    console.log(res.data);
   });
+}
+
+sampleClient.authenticate(scopes, err => {
+  if (err) {
+    throw err;
+  }
+  runSample();
 });

@@ -17,32 +17,38 @@
 
 const {google} = require('googleapis');
 const customsearch = google.customsearch('v1');
-const nconf = require('nconf');
-const path = require('path');
 
 // Ex: node customsearch.js
 //      "Google Node.js"
-//      --api_key "YOUR KEY"
-//      --customsearch_engine_id="YOUR ID"
-nconf.argv().env().file(path.join(__dirname, 'config.json'));
+//      "API KEY"
+//      "CUSTOM ENGINE ID"
 
-// You can get a custom search engine id at
-// https://www.google.com/cse/create/new
-const CX = nconf.get('customsearch_engine_id');
-const API_KEY = nconf.get('api_key');
-const SEARCH = process.argv[2];
+function runSample (options, callback) {
+  console.log(options);
+  customsearch.cse.list({
+    cx: options.cx,
+    q: options.q,
+    auth: options.apiKey
+  }, (err, res) => {
+    if (err) {
+      throw err;
+    }
+    console.log(res.data);
+    callback(res.data);
+  });
+}
 
-customsearch.cse.list({
-  cx: CX,
-  q: SEARCH,
-  auth: API_KEY
-}, (err, res) => {
-  if (err) {
-    throw err;
-  }
-  // Got the response from custom search
-  console.log('Result: ' + res.searchInformation.formattedTotalResults);
-  if (res.items && res.items.length > 0) {
-    console.log('First result name is ' + res.items[0].title);
-  }
-});
+if (module === require.main) {
+  // You can get a custom search engine id at
+  // https://www.google.com/cse/create/new
+  const options = {
+    q: process.argv[2],
+    apiKey: process.argv[3],
+    cx: process.argv[4]
+  };
+  runSample(options, () => { /* complete */ });
+}
+
+module.exports = {
+  runSample
+};
