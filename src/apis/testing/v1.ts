@@ -334,6 +334,7 @@ function Testing(options: GlobalOptions) {
  * @property {integer} maxDepth The max depth of the traversal stack Robo can explore. Needs to be at least 2 to make Robo explore the app beyond the first activity. Default is 50. Optional
  * @property {integer} maxSteps The max number of steps Robo can execute. Default is no limit. Optional
  * @property {testing(v1).RoboDirective[]} roboDirectives A set of directives Robo should apply during the crawl. This allows users to customize the crawl. For example, the username and password for a test account can be provided. Optional
+ * @property {testing(v1).FileReference} roboScript A JSON file with a sequence of actions Robo should perform as a prologue for the crawl. Optional
  * @property {testing(v1).RoboStartingIntent[]} startingIntents The intents used to launch the app for the crawl. If none are provided, then the main launcher activity is launched. If some are provided, then only those provided are launched (the main launcher activity must be provided explicitly).
  */
 /**
@@ -363,6 +364,13 @@ function Testing(options: GlobalOptions) {
  * @property {testing(v1).Date} releaseDate The date this Android version became available in the market. @OutputOnly
  * @property {string[]} tags Tags for this dimension. Examples: &quot;default&quot;, &quot;preview&quot;, &quot;deprecated&quot;
  * @property {string} versionString A string representing this version of the Android OS. Examples: &quot;4.3&quot;, &quot;4.4&quot; @OutputOnly
+ */
+/**
+ * @typedef Apk
+ * @memberOf! testing(v1)
+ * @type object
+ * @property {testing(v1).FileReference} location The path to an APK to be installed on the device before the test begins. Optional
+ * @property {string} packageName The java package for the APK to be installed. Optional, value is determined by examining the application&#39;s manifest.
  */
 /**
  * @typedef ApkDetail
@@ -413,6 +421,7 @@ function Testing(options: GlobalOptions) {
  * @memberOf! testing(v1)
  * @type object
  * @property {testing(v1).ObbFile} obbFile A reference to an opaque binary blob file
+ * @property {testing(v1).RegularFile} regularFile A reference to a regular file
  */
 /**
  * @typedef Distribution
@@ -516,6 +525,13 @@ function Testing(options: GlobalOptions) {
  * @property {string[]} tags Tags for this dimension. Examples: &quot;default&quot;
  */
 /**
+ * @typedef RegularFile
+ * @memberOf! testing(v1)
+ * @type object
+ * @property {testing(v1).FileReference} content Required
+ * @property {string} devicePath Where to put the content on the device. Must be an absolute, whitelisted path. If the file exists, it will be replaced. The following device-side directories and any of their subdirectories are whitelisted: &lt;p&gt;${EXTERNAL_STORAGE}, or /sdcard&lt;/p&gt; &lt;p&gt;${ANDROID_DATA}/local/tmp, or /data/local/tmp&lt;/p&gt; &lt;p&gt;Specifying a path outside of these directory trees is invalid.  &lt;p&gt; The paths /sdcard and /data will be made available and treated as implicit path substitutions. E.g. if /sdcard on a particular device does not map to external storage, the system will replace it with the external storage path prefix for that device and copy the file there.  &lt;p&gt; It is strongly advised to use the &lt;a href= &quot;http://developer.android.com/reference/android/os/Environment.html&quot;&gt; Environment API&lt;/a&gt; in app and test code to access files on the device in a portable way. Required
+ */
+/**
  * @typedef ResultStorage
  * @memberOf! testing(v1)
  * @type object
@@ -594,6 +610,7 @@ function Testing(options: GlobalOptions) {
  * @memberOf! testing(v1)
  * @type object
  * @property {testing(v1).Account} account The device will be logged in on this account for the duration of the test. Optional
+ * @property {testing(v1).Apk[]} additionalApks APKs to install in addition to those being directly tested. Currently capped at 100. Optional
  * @property {string[]} directoriesToPull List of directories on the device to upload to GCS at the end of the test; they must be absolute paths under /sdcard or /data/local/tmp. Path names are restricted to characters a-z A-Z 0-9 _ - . + and /  Note: The paths /sdcard and /data will be made available and treated as implicit path substitutions. E.g. if /sdcard on a particular device does not map to external storage, the system will replace it with the external storage path prefix for that device.  Optional
  * @property {testing(v1).EnvironmentVariable[]} environmentVariables Environment variables to set for the test (only applicable for instrumentation tests).
  * @property {testing(v1).DeviceFile[]} filesToPush List of files to push to the device before starting the test.  Optional

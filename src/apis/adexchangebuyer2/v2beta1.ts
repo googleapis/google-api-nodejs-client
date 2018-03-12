@@ -465,7 +465,6 @@ function Adexchangebuyer2(options: GlobalOptions) {
            *
            * @param {object} params Parameters for request
            * @param {string} params.accountId The account that this creative belongs to. Can be used to filter the response of the creatives.list method.
-           * @param {string=} params.accountId1 The account the creative belongs to.
            * @param {string=} params.duplicateIdMode Indicates if multiple creatives can share an ID or not. Default is NO_DUPLICATES (one ID per creative).
            * @param {adexchangebuyer2(v2beta1).Creative} params.resource Request body data
            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -622,7 +621,6 @@ function Adexchangebuyer2(options: GlobalOptions) {
               *
               * @param {object} params Parameters for request
               * @param {string} params.accountId The account that this creative belongs to. Can be used to filter the response of the creatives.list method.
-              * @param {string=} params.accountId1 The account the creative belongs to.
               * @param {string} params.creativeId The buyer-defined creative ID of this creative. Can be used to filter the response of the creatives.list method.
               * @param {adexchangebuyer2(v2beta1).Creative} params.resource Request body data
               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.

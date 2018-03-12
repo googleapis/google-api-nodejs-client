@@ -24,7 +24,7 @@ import {createAPIRequest} from '../../lib/apirequest';
 
 
 /**
- * Google Cloud Billing API
+ * Cloud Billing API
  *
  * Allows developers to manage billing for their Google Cloud Platform projects
  * programmatically.
@@ -44,74 +44,117 @@ function Cloudbilling(options: GlobalOptions) {
   self._options = options || {};
   self.billingAccounts = {
     /**
-     * cloudbilling.billingAccounts.get
-     * @desc Gets information about a billing account. The current authenticated
-     * user must be an [owner of the billing
-     * account](https://support.google.com/cloud/answer/4430947).
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Cloud Billing API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/cloudbilling
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var cloudbilling = google.cloudbilling('v1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The resource name of the billing account to retrieve. For example,
-     *     // `billingAccounts/012345-567890-ABCDEF`.
-     *     name: 'billingAccounts/my-billing-account',  // TODO: Update
-     * placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   cloudbilling.billingAccounts.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     * @alias cloudbilling.billingAccounts.get
+     * cloudbilling.billingAccounts.create
+     * @desc Creates a billing account. This method can only be used to create
+     * [billing subaccounts](https://cloud.google.com/billing/docs/concepts).
+     * When creating a subaccount, the current authenticated user must have the
+     * `billing.accounts.update` IAM permission on the master account, which is
+     * typically given to billing account
+     * [administrators](https://cloud.google.com/billing/docs/how-to/billing-access).
+     * > This method is currently in >
+     * [Beta](https://cloud.google.com/terms/launch-stages).
+     * @alias cloudbilling.billingAccounts.create
      * @memberOf! cloudbilling(v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the billing account to retrieve. For example, `billingAccounts/012345-567890-ABCDEF`.
+     * @param {cloudbilling(v1).BillingAccount} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
+    create(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/billingAccounts')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * cloudbilling.billingAccounts.get
+        * @desc Gets information about a billing account. The current
+        * authenticated user must be a [viewer of the billing
+        * account](https://cloud.google.com/billing/docs/how-to/billing-access).
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Google Cloud Billing API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/cloudbilling
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var cloudbilling = google.cloudbilling('v1');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // The resource name of the billing account to retrieve. For
+        * example,
+        *     // `billingAccounts/012345-567890-ABCDEF`.
+        *     name: 'billingAccounts/my-billing-account',  // TODO: Update
+        * placeholder value.
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   cloudbilling.billingAccounts.get(request, function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias cloudbilling.billingAccounts.get
+        * @memberOf! cloudbilling(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.name The resource name of the billing account to retrieve. For example, `billingAccounts/012345-567890-ABCDEF`.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
     get(params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -134,9 +177,50 @@ function Cloudbilling(options: GlobalOptions) {
       };
       return createAPIRequest(parameters, callback!);
     }, /**
+        * cloudbilling.billingAccounts.getIamPolicy
+        * @desc Gets the access control policy for a billing account. The caller
+        * must have the `billing.accounts.getIamPolicy` permission on the
+        * account, which is often given to billing account
+        * [viewers](https://cloud.google.com/billing/docs/how-to/billing-access).
+        * > This method is currently in >
+        * [Beta](https://cloud.google.com/terms/launch-stages).
+        * @alias cloudbilling.billingAccounts.getIamPolicy
+        * @memberOf! cloudbilling(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    getIamPolicy(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{resource}:getIamPolicy')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
         * cloudbilling.billingAccounts.list
         * @desc Lists the billing accounts that the current authenticated user
-        * [owns](https://support.google.com/cloud/answer/4430947).
+        * has permission to
+        * [view](https://cloud.google.com/billing/docs/how-to/billing-access).
         * @example
         * // BEFORE RUNNING:
         * // ---------------
@@ -205,6 +289,7 @@ function Cloudbilling(options: GlobalOptions) {
         * @memberOf! cloudbilling(v1)
         *
         * @param {object} params Parameters for request
+        * @param {string=} params.filter Options for how to filter the returned billing accounts. Currently this only supports filtering for [subaccounts](https://cloud.google.com/billing/docs/concepts) under a single provided reseller billing account. (e.g. "master_billing_account=billingAccounts/012345-678901-ABCDEF"). Boolean algebra and other fields are not currently supported.  > This field is currently in > [Beta](https://cloud.google.com/terms/launch-stages).
         * @param {integer=} params.pageSize Requested page size. The maximum page size is 100; this is also the default.
         * @param {string=} params.pageToken A token identifying a page of results to return. This should be a `next_page_token` value returned from a previous `ListBillingAccounts` call. If unspecified, the first page of results is returned.
         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -234,14 +319,138 @@ function Cloudbilling(options: GlobalOptions) {
         context: self
       };
       return createAPIRequest(parameters, callback!);
+    }, /**
+        * cloudbilling.billingAccounts.patch
+        * @desc Updates a billing account's fields. Currently the only field
+        * that can be edited is `display_name`. The current authenticated user
+        * must have the `billing.accounts.update` IAM permission, which is
+        * typically given to the
+        * [administrator](https://cloud.google.com/billing/docs/how-to/billing-access)
+        * of the billing account.  > This method is currently in >
+        * [Beta](https://cloud.google.com/terms/launch-stages).
+        * @alias cloudbilling.billingAccounts.patch
+        * @memberOf! cloudbilling(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.name The name of the billing account resource to be updated.
+        * @param {string=} params.updateMask The update mask applied to the resource. Only "display_name" is currently supported.
+        * @param {cloudbilling(v1).BillingAccount} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * cloudbilling.billingAccounts.setIamPolicy
+        * @desc Sets the access control policy for a billing account. Replaces
+        * any existing policy. The caller must have the
+        * `billing.accounts.setIamPolicy` permission on the account, which is
+        * often given to billing account
+        * [administrators](https://cloud.google.com/billing/docs/how-to/billing-access).
+        * > This method is currently in >
+        * [Beta](https://cloud.google.com/terms/launch-stages).
+        * @alias cloudbilling.billingAccounts.setIamPolicy
+        * @memberOf! cloudbilling(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+        * @param {cloudbilling(v1).SetIamPolicyRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    setIamPolicy(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{resource}:setIamPolicy')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * cloudbilling.billingAccounts.testIamPermissions
+        * @desc Tests the access control policy for a billing account. This
+        * method takes the resource and a set of permissions as input and
+        * returns the subset of the input permissions that the caller is allowed
+        * for that resource.  > This method is currently in >
+        * [Beta](https://cloud.google.com/terms/launch-stages).
+        * @alias cloudbilling.billingAccounts.testIamPermissions
+        * @memberOf! cloudbilling(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+        * @param {cloudbilling(v1).TestIamPermissionsRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{resource}:testIamPermissions')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
     },
     projects: {
       /**
        * cloudbilling.billingAccounts.projects.list
        * @desc Lists the projects associated with a billing account. The current
-       * authenticated user must have the "billing.resourceAssociations.list"
+       * authenticated user must have the `billing.resourceAssociations.list`
        * IAM permission, which is often given to billing account
-       * [viewers](https://support.google.com/cloud/answer/4430947).
+       * [viewers](https://cloud.google.com/billing/docs/how-to/billing-access).
        * @example
        * // BEFORE RUNNING:
        * // ---------------
@@ -455,25 +664,25 @@ function Cloudbilling(options: GlobalOptions) {
         * resource usage. If the project already had a billing account, this
         * method changes the billing account used for resource usage charges.
         * *Note:* Incurred charges that have not yet been reported in the
-        * transaction history of the Google Cloud Console may be billed to the
-        * new billing account, even if the charge occurred before the new
-        * billing account was assigned to the project.  The current
-        * authenticated user must have ownership privileges for both the
+        * transaction history of the GCP Console might be billed to the new
+        * billing account, even if the charge occurred before the new billing
+        * account was assigned to the project.  The current authenticated user
+        * must have ownership privileges for both the
         * [project](https://cloud.google.com/docs/permissions-overview#h.bgs0oxofvnoo
         * ) and the [billing
-        * account](https://support.google.com/cloud/answer/4430947).  You can
-        * disable billing on the project by setting the `billing_account_name`
-        * field to empty. This action disassociates the current billing account
-        * from the project. Any billable activity of your in-use services will
-        * stop, and your application could stop functioning as expected. Any
-        * unbilled charges to date will be billed to the previously associated
-        * account. The current authenticated user must be either an owner of the
-        * project or an owner of the billing account for the project.  Note that
-        * associating a project with a *closed* billing account will have much
-        * the same effect as disabling billing on the project: any paid
-        * resources used by the project will be shut down. Thus, unless you wish
-        * to disable billing, you should always call this method with the name
-        * of an *open* billing account.
+        * account](https://cloud.google.com/billing/docs/how-to/billing-access).
+        * You can disable billing on the project by setting the
+        * `billing_account_name` field to empty. This action disassociates the
+        * current billing account from the project. Any billable activity of
+        * your in-use services will stop, and your application could stop
+        * functioning as expected. Any unbilled charges to date will be billed
+        * to the previously associated account. The current authenticated user
+        * must be either an owner of the project or an owner of the billing
+        * account for the project.  Note that associating a project with a
+        * *closed* billing account will have much the same effect as disabling
+        * billing on the project: any paid resources used by the project will be
+        * shut down. Thus, unless you wish to disable billing, you should always
+        * call this method with the name of an *open* billing account.
         * @example
         * // BEFORE RUNNING:
         * // ---------------
@@ -793,12 +1002,34 @@ function Cloudbilling(options: GlobalOptions) {
  * @property {string} aggregationLevel
  */
 /**
+ * @typedef AuditConfig
+ * @memberOf! cloudbilling(v1)
+ * @type object
+ * @property {cloudbilling(v1).AuditLogConfig[]} auditLogConfigs The configuration for logging of each type of permission. Next ID: 4
+ * @property {string} service Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
+ */
+/**
+ * @typedef AuditLogConfig
+ * @memberOf! cloudbilling(v1)
+ * @type object
+ * @property {string[]} exemptedMembers Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
+ * @property {string} logType The log type that this config enables.
+ */
+/**
  * @typedef BillingAccount
  * @memberOf! cloudbilling(v1)
  * @type object
- * @property {string} displayName The display name given to the billing account, such as `My Billing Account`. This name is displayed in the Google Cloud Console.
+ * @property {string} displayName The display name given to the billing account, such as `My Billing Account`. This name is displayed in the GCP Console.
+ * @property {string} masterBillingAccount If this account is a [subaccount](https://cloud.google.com/billing/docs/concepts), then this will be the resource name of the master billing account that it is being resold through. Otherwise this will be empty.  &gt; This field is currently in &gt; [Beta](https://cloud.google.com/terms/launch-stages).
  * @property {string} name The resource name of the billing account. The resource name has the form `billingAccounts/{billing_account_id}`. For example, `billingAccounts/012345-567890-ABCDEF` would be the resource name for billing account `012345-567890-ABCDEF`.
  * @property {boolean} open True if the billing account is open, and will therefore be charged for any usage on associated projects. False if the billing account is closed, and therefore projects associated with it will be unable to use paid services.
+ */
+/**
+ * @typedef Binding
+ * @memberOf! cloudbilling(v1)
+ * @type object
+ * @property {string[]} members Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@gmail.com` or `joe@example.com`.   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: A Google Apps domain name that represents all the    users of that domain. For example, `google.com` or `example.com`.
+ * @property {string} role Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. Required
  */
 /**
  * @typedef Category
@@ -846,6 +1077,15 @@ function Cloudbilling(options: GlobalOptions) {
  * @property {string} units The whole units of the amount. For example if `currencyCode` is `&quot;USD&quot;`, then 1 unit is one US dollar.
  */
 /**
+ * @typedef Policy
+ * @memberOf! cloudbilling(v1)
+ * @type object
+ * @property {cloudbilling(v1).AuditConfig[]} auditConfigs Specifies cloud audit logging configuration for this policy.
+ * @property {cloudbilling(v1).Binding[]} bindings Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
+ * @property {string} etag `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
+ * @property {integer} version Deprecated.
+ */
+/**
  * @typedef PricingExpression
  * @memberOf! cloudbilling(v1)
  * @type object
@@ -885,6 +1125,13 @@ function Cloudbilling(options: GlobalOptions) {
  * @property {string} serviceId The identifier for the service. Example: &quot;DA34-426B-A397&quot;
  */
 /**
+ * @typedef SetIamPolicyRequest
+ * @memberOf! cloudbilling(v1)
+ * @type object
+ * @property {cloudbilling(v1).Policy} policy REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them.
+ * @property {string} updateMask OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: paths: &quot;bindings, etag&quot; This field is only used by Cloud IAM.
+ */
+/**
  * @typedef Sku
  * @memberOf! cloudbilling(v1)
  * @type object
@@ -895,6 +1142,18 @@ function Cloudbilling(options: GlobalOptions) {
  * @property {string} serviceProviderName Identifies the service provider. This is &#39;Google&#39; for first party services in Google Cloud Platform.
  * @property {string[]} serviceRegions List of service regions this SKU is offered at. Example: &quot;asia-east1&quot; Service regions can be found at https://cloud.google.com/about/locations/
  * @property {string} skuId The identifier for the SKU. Example: &quot;AA95-CD31-42FE&quot;
+ */
+/**
+ * @typedef TestIamPermissionsRequest
+ * @memberOf! cloudbilling(v1)
+ * @type object
+ * @property {string[]} permissions The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+ */
+/**
+ * @typedef TestIamPermissionsResponse
+ * @memberOf! cloudbilling(v1)
+ * @type object
+ * @property {string[]} permissions A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
  */
 /**
  * @typedef TierRate

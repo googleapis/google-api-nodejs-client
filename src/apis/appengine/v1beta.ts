@@ -1691,7 +1691,7 @@ function Appengine(options: GlobalOptions) {
  * @property {string} gcrDomain The Google Container Registry domain used for storing managed build docker images for this application.
  * @property {appengine(v1beta).IdentityAwareProxy} iap
  * @property {string} id Identifier of the Application resource. This identifier is equivalent to the project ID of the Google Cloud Platform project where you want to deploy your application. Example: myapp.
- * @property {string} locationId Location from which this application runs. Application instances run out of the data centers in the specified location, which is also where all of the application&#39;s end user content is stored.Defaults to us-central1.View the list of supported locations (https://cloud.google.com/appengine/docs/locations).
+ * @property {string} locationId Location from which this application runs. Application instances run out of the data centers in the specified location, which is also where all of the application&#39;s end user content is stored.Defaults to us-central.View the list of supported locations (https://cloud.google.com/appengine/docs/locations).
  * @property {string} name Full path to the Application resource in the API. Example: apps/myapp.@OutputOnly
  * @property {string} servingStatus Serving status of this application.
  */
@@ -2015,6 +2015,7 @@ function Appengine(options: GlobalOptions) {
  * @typedef Location
  * @memberOf! appengine(v1beta)
  * @type object
+ * @property {string} displayName The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
  * @property {object} labels Cross-service attributes for the location. For example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
  * @property {string} locationId The canonical id for this location. For example: &quot;us-east1&quot;.
  * @property {object} metadata Service-specific metadata. For example the available capacity at the given location.

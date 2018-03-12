@@ -81,8 +81,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -121,8 +121,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -158,8 +158,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -198,8 +198,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -242,8 +242,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -291,8 +291,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -340,8 +340,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -379,8 +379,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -420,8 +420,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -460,8 +460,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -503,8 +503,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {

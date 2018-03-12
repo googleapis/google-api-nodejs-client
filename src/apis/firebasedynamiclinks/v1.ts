@@ -185,8 +185,8 @@ function Firebasedynamiclinks(options: GlobalOptions) {
  * @typedef CreateShortDynamicLinkRequest
  * @memberOf! firebasedynamiclinks(v1)
  * @type object
- * @property {firebasedynamiclinks(v1).DynamicLinkInfo} dynamicLinkInfo Information about the Dynamic Link to be shortened. [Learn more](https://firebase.google.com/docs/dynamic-links/android#create-a-dynamic-link-programmatically).
- * @property {string} longDynamicLink Full long Dynamic Link URL with desired query parameters specified. For example, &quot;https://sample.app.goo.gl/?link=http://www.google.com&amp;apn=com.sample&quot;, [Learn more](https://firebase.google.com/docs/dynamic-links/android#create-a-dynamic-link-programmatically).
+ * @property {firebasedynamiclinks(v1).DynamicLinkInfo} dynamicLinkInfo Information about the Dynamic Link to be shortened. [Learn more](https://firebase.google.com/docs/reference/dynamic-links/link-shortener).
+ * @property {string} longDynamicLink Full long Dynamic Link URL with desired query parameters specified. For example, &quot;https://sample.app.goo.gl/?link=http://www.google.com&amp;apn=com.sample&quot;, [Learn more](https://firebase.google.com/docs/reference/dynamic-links/link-shortener).
  * @property {firebasedynamiclinks(v1).Suffix} suffix Short Dynamic Link suffix. Optional.
  */
 /**

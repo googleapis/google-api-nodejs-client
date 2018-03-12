@@ -24,7 +24,7 @@ import {createAPIRequest} from '../../lib/apirequest';
 
 
 /**
- * Google Proximity Beacon API
+ * Proximity Beacon API
  *
  * Registers, manages, indexes, and searches beacons.
  *

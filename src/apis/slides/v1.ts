@@ -94,8 +94,9 @@ function Slides(options: GlobalOptions) {
     }, /**
         * slides.presentations.create
         * @desc Creates a new presentation using the title given in the request.
-        * Other fields in the request are ignored. Returns the created
-        * presentation.
+        * If a presentationId is provided, uses it as the ID of the new
+        * presentation. Otherwise, a new presentationId is generated. Returns
+        * the created presentation.
         * @alias slides.presentations.create
         * @memberOf! slides(v1)
         *
@@ -313,7 +314,7 @@ function Slides(options: GlobalOptions) {
  * @type object
  * @property {slides(v1).PageElementProperties} elementProperties The element properties for the image.  When the aspect ratio of the provided size does not match the image aspect ratio, the image is scaled and centered with respect to the size in order to maintain aspect ratio. The provided transform is applied after this operation.  The PageElementProperties.size property is optional. If you don&#39;t specify the size, the default size of the image is used.  The PageElementProperties.transform property is optional. If you don&#39;t specify a transform, the image will be placed at the top left corner of the page.
  * @property {string} objectId A user-supplied object ID.  If you specify an ID, it must be unique among all pages and page elements in the presentation. The ID must start with an alphanumeric character or an underscore (matches regex `[a-zA-Z0-9_]`); remaining characters may include those as well as a hyphen or colon (matches regex `[a-zA-Z0-9_-:]`). The length of the ID must not be less than 5 or greater than 50.  If you don&#39;t specify an ID, a unique one is generated.
- * @property {string} url The image URL.  The image is fetched once at insertion time and a copy is stored for display inside the presentation. Images must be less than 50MB in size, cannot exceed 25 megapixels, and must be in either in PNG, JPEG, or GIF format.  The provided URL can be at most 2 kB in length.
+ * @property {string} url The image URL.  The image is fetched once at insertion time and a copy is stored for display inside the presentation. Images must be less than 50MB in size, cannot exceed 25 megapixels, and must be in one of PNG, JPEG, or GIF format.  The provided URL can be at most 2 kB in length.
  */
 /**
  * @typedef CreateImageResponse
@@ -793,7 +794,7 @@ function Slides(options: GlobalOptions) {
  * @type object
  * @property {slides(v1).SubstringMatchCriteria} containsText If set, this request will replace all of the shapes that contain the given text.
  * @property {string} imageReplaceMethod The image replace method.  If you specify both a `replace_method` and an `image_replace_method`, the `image_replace_method` takes precedence.  If you do not specify a value for `image_replace_method`, but specify a value for `replace_method`, then the specified `replace_method` value is used.  If you do not specify either, then CENTER_INSIDE is used.
- * @property {string} imageUrl The image URL.  The image is fetched once at insertion time and a copy is stored for display inside the presentation. Images must be less than 50MB in size, cannot exceed 25 megapixels, and must be in either in PNG, JPEG, or GIF format.  The provided URL can be at most 2 kB in length.
+ * @property {string} imageUrl The image URL.  The image is fetched once at insertion time and a copy is stored for display inside the presentation. Images must be less than 50MB in size, cannot exceed 25 megapixels, and must be in one of PNG, JPEG, or GIF format.  The provided URL can be at most 2 kB in length.
  * @property {string[]} pageObjectIds If non-empty, limits the matches to page elements only on the given pages.  Returns a 400 bad request error if given the page object ID of a notes page or a notes master, or if a page with that object ID doesn&#39;t exist in the presentation.
  * @property {string} replaceMethod The replace method. Deprecated: use `image_replace_method` instead.  If you specify both a `replace_method` and an `image_replace_method`, the `image_replace_method` takes precedence.
  */
@@ -839,7 +840,7 @@ function Slides(options: GlobalOptions) {
  * @type object
  * @property {string} imageObjectId The ID of the existing image that will be replaced.
  * @property {string} imageReplaceMethod The replacement method.
- * @property {string} url The URL of the new image.  The image is fetched once at insertion time and a copy is stored for display inside the presentation. Images must be less than 50MB in size, cannot exceed 25 megapixels, and must be in either in PNG, JPEG, or GIF format.  The provided URL can be at most 2 kB in length.
+ * @property {string} url The URL of the new image.  The image is fetched once at insertion time and a copy is stored for display inside the presentation. Images must be less than 50MB in size, cannot exceed 25 megapixels, and must be in one of PNG, JPEG, or GIF format.  The provided URL can be at most 2 kB in length.
  */
 /**
  * @typedef Request
@@ -991,7 +992,7 @@ function Slides(options: GlobalOptions) {
  * @typedef StretchedPictureFill
  * @memberOf! slides(v1)
  * @type object
- * @property {string} contentUrl Reading the content_url:  An URL to a picture with a default lifetime of 30 minutes. This URL is tagged with the account of the requester. Anyone with the URL effectively accesses the picture as the original requester. Access to the picture may be lost if the presentation&#39;s sharing settings change.  Writing the content_url:  The picture is fetched once at insertion time and a copy is stored for display inside the presentation. Pictures must be less than 50MB in size, cannot exceed 25 megapixels, and must be in either in PNG, JPEG, or GIF format.  The provided URL can be at most 2 kB in length.
+ * @property {string} contentUrl Reading the content_url:  An URL to a picture with a default lifetime of 30 minutes. This URL is tagged with the account of the requester. Anyone with the URL effectively accesses the picture as the original requester. Access to the picture may be lost if the presentation&#39;s sharing settings change.  Writing the content_url:  The picture is fetched once at insertion time and a copy is stored for display inside the presentation. Pictures must be less than 50MB in size, cannot exceed 25 megapixels, and must be in one of PNG, JPEG, or GIF format.  The provided URL can be at most 2 kB in length.
  * @property {slides(v1).Size} size The original size of the picture fill. This field is read-only.
  */
 /**

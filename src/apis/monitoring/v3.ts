@@ -45,6 +45,196 @@ function Monitoring(options: GlobalOptions) {
   self._options = options || {};
   self.projects =
       {
+        alertPolicies: {
+          /**
+           * monitoring.projects.alertPolicies.create
+           * @desc Creates a new alerting policy.
+           * @alias monitoring.projects.alertPolicies.create
+           * @memberOf! monitoring(v3)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.name The project in which to create the alerting policy. The format is projects/[PROJECT_ID].Note that this field names the parent container in which the alerting policy will be written, not the name of the created policy. The alerting policy that is returned will have a name that contains a normalized representation of this name as a prefix but adds a suffix of the form /alertPolicies/[POLICY_ID], identifying the policy in the container.
+           * @param {monitoring(v3).AlertPolicy} params.resource Request body data
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://monitoring.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v3/{name}/alertPolicies')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback!);
+          }, /**
+              * monitoring.projects.alertPolicies.delete
+              * @desc Deletes an alerting policy.
+              * @alias monitoring.projects.alertPolicies.delete
+              * @memberOf! monitoring(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.name The alerting policy to delete. The format is: projects/[PROJECT_ID]/alertPolicies/[ALERT_POLICY_ID] For more information, see AlertPolicy.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          delete (
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://monitoring.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'DELETE'
+                  },
+                  options),
+              params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback!);
+          }, /**
+              * monitoring.projects.alertPolicies.get
+              * @desc Gets a single alerting policy.
+              * @alias monitoring.projects.alertPolicies.get
+              * @memberOf! monitoring(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.name The alerting policy to retrieve. The format is projects/[PROJECT_ID]/alertPolicies/[ALERT_POLICY_ID]
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://monitoring.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback!);
+          }, /**
+              * monitoring.projects.alertPolicies.list
+              * @desc Lists the existing alerting policies for the project.
+              * @alias monitoring.projects.alertPolicies.list
+              * @memberOf! monitoring(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string=} params.filter If provided, this field specifies the criteria that must be met by alert policies to be included in the response.For more details, see sorting and filtering.
+              * @param {string} params.name The project whose alert policies are to be listed. The format is projects/[PROJECT_ID] Note that this field names the parent container in which the alerting policies to be listed are stored. To retrieve a single alerting policy by name, use the GetAlertPolicy operation, instead.
+              * @param {string=} params.orderBy A comma-separated list of fields by which to sort the result. Supports the same set of field references as the filter field. Entries can be prefixed with a minus sign to sort by the field in descending order.For more details, see sorting and filtering.
+              * @param {integer=} params.pageSize The maximum number of results to return in a single response.
+              * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return more results from the previous method call.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://monitoring.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v3/{name}/alertPolicies')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback!);
+          }, /**
+              * monitoring.projects.alertPolicies.patch
+              * @desc Updates an alerting policy. You can either replace the
+              * entire policy with a new one or replace only certain fields in
+              * the current alerting policy by specifying the fields to be
+              * updated via updateMask. Returns the updated alerting policy.
+              * @alias monitoring.projects.alertPolicies.patch
+              * @memberOf! monitoring(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.name Required if the policy exists. The resource name for this policy. The syntax is: projects/[PROJECT_ID]/alertPolicies/[ALERT_POLICY_ID] [ALERT_POLICY_ID] is assigned by Stackdriver Monitoring when the policy is created. When calling the alertPolicies.create method, do not include the name field in the alerting policy passed as part of the request.
+              * @param {string=} params.updateMask Optional. A list of alerting policy field names. If this field is not empty, each listed field in the existing alerting policy is set to the value of the corresponding field in the supplied policy (alert_policy), or to the field's default value if the field is not in the supplied alerting policy. Fields not listed retain their previous value.Examples of valid field masks include display_name, documentation, documentation.content, documentation.mime_type, user_labels, user_label.nameofkey, enabled, conditions, combiner, etc.If this field is empty, then the supplied alerting policy replaces the existing policy. It is the same as deleting the existing policy and adding the supplied policy, except for the following: The new policy will have the same [ALERT_POLICY_ID] as the former policy. This gives you continuity with the former policy in your notifications and incidents. Conditions in the new policy will keep their former [CONDITION_ID] if the supplied condition includes the name field with that [CONDITION_ID]. If the supplied condition omits the name field, then a new [CONDITION_ID] is created.
+              * @param {monitoring(v3).AlertPolicy} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          patch(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://monitoring.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'PATCH'
+                  },
+                  options),
+              params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback!);
+          }
+
+        },
         collectdTimeSeries: {
           /**
            * monitoring.projects.collectdTimeSeries.create
@@ -1196,6 +1386,422 @@ function Monitoring(options: GlobalOptions) {
           }
 
         },
+        notificationChannelDescriptors: {
+          /**
+           * monitoring.projects.notificationChannelDescriptors.get
+           * @desc Gets a single channel descriptor. The descriptor indicates
+           * which fields are expected / permitted for a notification channel of
+           * the given type.
+           * @alias monitoring.projects.notificationChannelDescriptors.get
+           * @memberOf! monitoring(v3)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.name The channel type for which to execute the request. The format is projects/[PROJECT_ID]/notificationChannelDescriptors/{channel_type}.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://monitoring.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback!);
+          }, /**
+              * monitoring.projects.notificationChannelDescriptors.list
+              * @desc Lists the descriptors for supported channel types. The use
+              * of descriptors makes it possible for new channel types to be
+              * dynamically added.
+              * @alias monitoring.projects.notificationChannelDescriptors.list
+              * @memberOf! monitoring(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.name The REST resource name of the parent from which to retrieve the notification channel descriptors. The expected syntax is: projects/[PROJECT_ID] Note that this names the parent container in which to look for the descriptors; to retrieve a single descriptor by name, use the GetNotificationChannelDescriptor operation, instead.
+              * @param {integer=} params.pageSize The maximum number of results to return in a single response. If not set to a positive number, a reasonable value will be chosen by the service.
+              * @param {string=} params.pageToken If non-empty, page_token must contain a value returned as the next_page_token in a previous response to request the next set of results.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://monitoring.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v3/{name}/notificationChannelDescriptors')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback!);
+          }
+
+        },
+        notificationChannels: {
+          /**
+           * monitoring.projects.notificationChannels.create
+           * @desc Creates a new notification channel, representing a single
+           * notification endpoint such as an email address, SMS number, or
+           * pagerduty service.
+           * @alias monitoring.projects.notificationChannels.create
+           * @memberOf! monitoring(v3)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.name The project on which to execute the request. The format is: projects/[PROJECT_ID] Note that this names the container into which the channel will be written. This does not name the newly created channel. The resulting channel's name will have a normalized version of this field as a prefix, but will add /notificationChannels/[CHANNEL_ID] to identify the channel.
+           * @param {monitoring(v3).NotificationChannel} params.resource Request body data
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://monitoring.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v3/{name}/notificationChannels')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback!);
+          }, /**
+              * monitoring.projects.notificationChannels.delete
+              * @desc Deletes a notification channel.
+              * @alias monitoring.projects.notificationChannels.delete
+              * @memberOf! monitoring(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {boolean=} params.force If true, the notification channel will be deleted regardless of its use in alert policies (the policies will be updated to remove the channel). If false, channels that are still referenced by an existing alerting policy will fail to be deleted in a delete operation.
+              * @param {string} params.name The channel for which to execute the request. The format is projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID].
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          delete (
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://monitoring.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'DELETE'
+                  },
+                  options),
+              params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback!);
+          }, /**
+              * monitoring.projects.notificationChannels.get
+              * @desc Gets a single notification channel. The channel includes
+              * the relevant configuration details with which the channel was
+              * created. However, the response may truncate or omit passwords,
+              * API keys, or other private key matter and thus the response may
+              * not be 100% identical to the information that was supplied in
+              * the call to the create method.
+              * @alias monitoring.projects.notificationChannels.get
+              * @memberOf! monitoring(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.name The channel for which to execute the request. The format is projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID].
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://monitoring.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback!);
+          }, /**
+              * monitoring.projects.notificationChannels.getVerificationCode
+              * @desc Requests a verification code for an already verified
+              * channel that can then be used in a call to
+              * VerifyNotificationChannel() on a different channel with an
+              * equivalent identity in the same or in a different project. This
+              * makes it possible to copy a channel between projects without
+              * requiring manual reverification of the channel. If the channel
+              * is not in the verified state, this method will fail (in other
+              * words, this may only be used if the
+              * SendNotificationChannelVerificationCode and
+              * VerifyNotificationChannel paths have already been used to put
+              * the given channel into the verified state).There is no guarantee
+              * that the verification codes returned by this method will be of a
+              * similar structure or form as the ones that are delivered to the
+              * channel via SendNotificationChannelVerificationCode; while
+              * VerifyNotificationChannel() will recognize both the codes
+              * delivered via SendNotificationChannelVerificationCode() and
+              * returned from GetNotificationChannelVerificationCode(), it is
+              * typically the case that the verification codes delivered via
+              * SendNotificationChannelVerificationCode() will be shorter and
+              * also have a shorter expiration (e.g. codes such as "G-123456")
+              * whereas GetVerificationCode() will typically return a much
+              * longer, websafe base 64 encoded string that has a longer
+              * expiration time.
+              * @alias
+              * monitoring.projects.notificationChannels.getVerificationCode
+              * @memberOf! monitoring(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.name The notification channel for which a verification code is to be generated and retrieved. This must name a channel that is already verified; if the specified channel is not verified, the request will fail.
+              * @param {monitoring(v3).GetNotificationChannelVerificationCodeRequest} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          getVerificationCode(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://monitoring.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v3/{name}:getVerificationCode')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback!);
+          }, /**
+              * monitoring.projects.notificationChannels.list
+              * @desc Lists the notification channels that have been created for
+              * the project.
+              * @alias monitoring.projects.notificationChannels.list
+              * @memberOf! monitoring(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string=} params.filter If provided, this field specifies the criteria that must be met by notification channels to be included in the response.For more details, see sorting and filtering.
+              * @param {string} params.name The project on which to execute the request. The format is projects/[PROJECT_ID]. That is, this names the container in which to look for the notification channels; it does not name a specific channel. To query a specific channel by REST resource name, use the GetNotificationChannel operation.
+              * @param {string=} params.orderBy A comma-separated list of fields by which to sort the result. Supports the same set of fields as in filter. Entries can be prefixed with a minus sign to sort in descending rather than ascending order.For more details, see sorting and filtering.
+              * @param {integer=} params.pageSize The maximum number of results to return in a single response. If not set to a positive number, a reasonable value will be chosen by the service.
+              * @param {string=} params.pageToken If non-empty, page_token must contain a value returned as the next_page_token in a previous response to request the next set of results.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://monitoring.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v3/{name}/notificationChannels')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback!);
+          }, /**
+              * monitoring.projects.notificationChannels.patch
+              * @desc Updates a notification channel. Fields not specified in
+              * the field mask remain unchanged.
+              * @alias monitoring.projects.notificationChannels.patch
+              * @memberOf! monitoring(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.name The full REST resource name for this channel. The syntax is: projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation.
+              * @param {string=} params.updateMask The fields to update.
+              * @param {monitoring(v3).NotificationChannel} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          patch(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://monitoring.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'PATCH'
+                  },
+                  options),
+              params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback!);
+          }, /**
+              * monitoring.projects.notificationChannels.sendVerificationCode
+              * @desc Causes a verification code to be delivered to the channel.
+              * The code can then be supplied in VerifyNotificationChannel to
+              * verify the channel.
+              * @alias
+              * monitoring.projects.notificationChannels.sendVerificationCode
+              * @memberOf! monitoring(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.name The notification channel to which to send a verification code.
+              * @param {monitoring(v3).SendNotificationChannelVerificationCodeRequest} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          sendVerificationCode(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://monitoring.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v3/{name}:sendVerificationCode')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback!);
+          }, /**
+              * monitoring.projects.notificationChannels.verify
+              * @desc Verifies a NotificationChannel by proving receipt of the
+              * code delivered to the channel as a result of calling
+              * SendNotificationChannelVerificationCode.
+              * @alias monitoring.projects.notificationChannels.verify
+              * @memberOf! monitoring(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.name The notification channel to verify.
+              * @param {monitoring(v3).VerifyNotificationChannelRequest} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          verify(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://monitoring.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v3/{name}:verify')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback!);
+          }
+
+        },
         timeSeries: {
           /**
            * monitoring.projects.timeSeries.create
@@ -1623,6 +2229,30 @@ function Monitoring(options: GlobalOptions) {
   };
 }
 /**
+ * @typedef Aggregation
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {string} alignmentPeriod The alignment period for per-time series alignment. If present, alignmentPeriod must be at least 60 seconds. After per-time series alignment, each time series will contain data points only on the period boundaries. If perSeriesAligner is not specified or equals ALIGN_NONE, then this field is ignored. If perSeriesAligner is specified and does not equal ALIGN_NONE, then this field must be defined; otherwise an error is returned.
+ * @property {string} crossSeriesReducer The approach to be used to combine time series. Not all reducer functions may be applied to all time series, depending on the metric type and the value type of the original time series. Reduction may change the metric type of value type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If crossSeriesReducer is specified, then perSeriesAligner must be specified and not equal ALIGN_NONE and alignmentPeriod must be specified; otherwise, an error is returned.
+ * @property {string[]} groupByFields The set of fields to preserve when crossSeriesReducer is specified. The groupByFields determine how the time series are partitioned into subsets prior to applying the aggregation function. Each subset contains time series that have the same value for each of the grouping fields. Each individual time series is a member of exactly one subset. The crossSeriesReducer is applied to each subset of time series. It is not possible to reduce across different resource types, so this field implicitly contains resource.type. Fields not specified in groupByFields are aggregated away. If groupByFields is not specified and all the time series have the same resource type, then the time series are aggregated into a single output time series. If crossSeriesReducer is not defined, this field is ignored.
+ * @property {string} perSeriesAligner The approach to be used to align individual time series. Not all alignment functions may be applied to all time series, depending on the metric type and value type of the original time series. Alignment may change the metric type or the value type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If crossSeriesReducer is specified, then perSeriesAligner must be specified and not equal ALIGN_NONE and alignmentPeriod must be specified; otherwise, an error is returned.
+ */
+/**
+ * @typedef AlertPolicy
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {string} combiner How to combine the results of multiple conditions to determine if an incident should be opened.
+ * @property {monitoring(v3).Condition[]} conditions A list of conditions for the policy. The conditions are combined by AND or OR according to the combiner field. If the combined conditions evaluate to true, then an incident is created. A policy can have from one to six conditions.
+ * @property {monitoring(v3).MutationRecord} creationRecord A read-only record of the creation of the alerting policy. If provided in a call to create or update, this field will be ignored.
+ * @property {string} displayName A short name or phrase used to identify the policy in dashboards, notifications, and incidents. To avoid confusion, don&#39;t use the same display name for multiple policies in the same project. The name is limited to 512 Unicode characters.
+ * @property {monitoring(v3).Documentation} documentation Documentation that is included with notifications and incidents related to this policy. Best practice is for the documentation to include information to help responders understand, mitigate, escalate, and correct the underlying problems detected by the alerting policy. Notification channels that have limited capacity might not show this documentation.
+ * @property {boolean} enabled Whether or not the policy is enabled. On write, the default interpretation if unset is that the policy is enabled. On read, clients should not make any assumption about the state if it has not been populated. The field should always be populated on List and Get operations, unless a field projection has been specified that strips it out.
+ * @property {monitoring(v3).MutationRecord} mutationRecord A read-only record of the most recent change to the alerting policy. If provided in a call to create or update, this field will be ignored.
+ * @property {string} name Required if the policy exists. The resource name for this policy. The syntax is: projects/[PROJECT_ID]/alertPolicies/[ALERT_POLICY_ID] [ALERT_POLICY_ID] is assigned by Stackdriver Monitoring when the policy is created. When calling the alertPolicies.create method, do not include the name field in the alerting policy passed as part of the request.
+ * @property {string[]} notificationChannels Identifies the notification channels to which notifications should be sent when incidents are opened or closed or when new violations occur on an already opened incident. Each element of this array corresponds to the name field in each of the NotificationChannel objects that are returned from the ListNotificationChannels method. The syntax of the entries in this field is: projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]
+ * @property {object} userLabels User-supplied key/value data to be used for organizing and identifying the AlertPolicy objects.The field can contain up to 64 entries. Each key and value is limited to 63 Unicode characters or 128 bytes, whichever is smaller. Labels and values can contain only lowercase letters, numerals, underscores, and dashes. Keys must begin with a letter.
+ */
+/**
  * @typedef BasicAuthentication
  * @memberOf! monitoring(v3)
  * @type object
@@ -1674,6 +2304,15 @@ function Monitoring(options: GlobalOptions) {
  * @property {integer} index The zero-based index in CollectdPayload.values within the parent CreateCollectdTimeSeriesRequest.collectd_payloads.
  */
 /**
+ * @typedef Condition
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {monitoring(v3).MetricAbsence} conditionAbsent A condition that checks that a time series continues to receive new data points.
+ * @property {monitoring(v3).MetricThreshold} conditionThreshold A condition that compares a time series against a threshold.
+ * @property {string} displayName A short name or phrase used to identify the condition in dashboards, notifications, and incidents. To avoid confusion, don&#39;t use the same display name for multiple conditions in the same policy.
+ * @property {string} name Required if the condition exists. The unique resource name for this condition. Its syntax is: projects/[PROJECT_ID]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID] [CONDITION_ID] is assigned by Stackdriver Monitoring when the condition is created as part of a new or updated alerting policy.When calling the alertPolicies.create method, do not include the name field in the conditions of the requested alerting policy. Stackdriver Monitoring creates the condition identifiers and includes them in the new policy.When calling the alertPolicies.update method to update a policy, including a condition name causes the existing condition to be updated. Conditions without names are added to the updated policy. Existing conditions are deleted if they are not updated.Best practice is to preserve [CONDITION_ID] if you make only small changes, such as those to condition thresholds, durations, or trigger values. Otherwise, treat the change as a new condition and let the existing condition be deleted.
+ */
+/**
  * @typedef ContentMatcher
  * @memberOf! monitoring(v3)
  * @type object
@@ -1711,6 +2350,13 @@ function Monitoring(options: GlobalOptions) {
  * @property {number} sumOfSquaredDeviation The sum of squared deviations from the mean of the values in the population. For values x_i this is: Sum[i=1..n]((x_i - mean)^2) Knuth, &quot;The Art of Computer Programming&quot;, Vol. 2, page 323, 3rd edition describes Welford&#39;s method for accumulating this sum in one pass.If count is zero then this field must be zero.
  */
 /**
+ * @typedef Documentation
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {string} content The text of the documentation, interpreted according to mime_type. The content may not exceed 8,192 Unicode characters and may not exceed more than 10,240 bytes when encoded in UTF-8 format, whichever is smaller.
+ * @property {string} mimeType The format of the content field. Presently, only the value &quot;text/markdown&quot; is supported. See Markdown (https://en.wikipedia.org/wiki/Markdown) for more information.
+ */
+/**
  * @typedef Empty
  * @memberOf! monitoring(v3)
  * @type object
@@ -1743,6 +2389,19 @@ function Monitoring(options: GlobalOptions) {
  * @property {monitoring(v3).Option[]} options The protocol buffer options.
  * @property {boolean} packed Whether to use alternative packed wire representation.
  * @property {string} typeUrl The field type URL, without the scheme, for message or enumeration types. Example: &quot;type.googleapis.com/google.protobuf.Timestamp&quot;.
+ */
+/**
+ * @typedef GetNotificationChannelVerificationCodeRequest
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {string} expireTime The desired expiration time. If specified, the API will guarantee that the returned code will not be valid after the specified timestamp; however, the API cannot guarantee that the returned code will be valid for at least as long as the requested time (the API puts an upper bound on the amount of time for which a code may be valid). If omitted, a default expiration will be used, which may be less than the max permissible expiration (so specifying an expiration may extend the code&#39;s lifetime over omitting an expiration, even though the API does impose an upper limit on the maximum expiration that is permitted).
+ */
+/**
+ * @typedef GetNotificationChannelVerificationCodeResponse
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {string} code The verification code, which may be used to verify other channels that have an equivalent identity (i.e. other channels of the same type with the same fingerprint such as other email channels with the same email address or other sms channels with the same number).
+ * @property {string} expireTime The expiration time associated with the code that was returned. If an expiration was provided in the request, this is the minimum of the requested expiration in the request and the max permitted expiration.
  */
 /**
  * @typedef Group
@@ -1792,6 +2451,13 @@ function Monitoring(options: GlobalOptions) {
  * @property {number} width Must be greater than 0.
  */
 /**
+ * @typedef ListAlertPoliciesResponse
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {monitoring(v3).AlertPolicy[]} alertPolicies The returned alert policies.
+ * @property {string} nextPageToken If there might be more results than were returned, then this field is set to a non-empty value. To see the additional results, use that value as pageToken in the next call to this method.
+ */
+/**
  * @typedef ListGroupMembersResponse
  * @memberOf! monitoring(v3)
  * @type object
@@ -1819,6 +2485,20 @@ function Monitoring(options: GlobalOptions) {
  * @type object
  * @property {string} nextPageToken If there are more results than have been returned, then this field is set to a non-empty value. To see the additional results, use that value as pageToken in the next call to this method.
  * @property {monitoring(v3).MonitoredResourceDescriptor[]} resourceDescriptors The monitored resource descriptors that are available to this project and that match filter, if present.
+ */
+/**
+ * @typedef ListNotificationChannelDescriptorsResponse
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {monitoring(v3).NotificationChannelDescriptor[]} channelDescriptors The monitored resource descriptors supported for the specified project, optionally filtered.
+ * @property {string} nextPageToken If not empty, indicates that there may be more results that match the request. Use the value in the page_token field in a subsequent request to fetch the next set of results. If empty, all results have been returned.
+ */
+/**
+ * @typedef ListNotificationChannelsResponse
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {string} nextPageToken If not empty, indicates that there may be more results that match the request. Use the value in the page_token field in a subsequent request to fetch the next set of results. If empty, all results have been returned.
+ * @property {monitoring(v3).NotificationChannel[]} notificationChannels The notification channels defined for the specified project.
  */
 /**
  * @typedef ListTimeSeriesResponse
@@ -1850,6 +2530,15 @@ function Monitoring(options: GlobalOptions) {
  * @property {string} type An existing metric type, see google.api.MetricDescriptor. For example, custom.googleapis.com/invoice/paid/amount.
  */
 /**
+ * @typedef MetricAbsence
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {monitoring(v3).Aggregation[]} aggregations Specifies the alignment of data points in individual time series as well as how to combine the retrieved time series together (such as when aggregating multiple streams on each resource to a single stream for each resource or when aggregating streams across all members of a group of resrouces). Multiple aggregations are applied in the order specified.This field is similar to the one in the MetricService.ListTimeSeries request. It is advisable to use the ListTimeSeries method when debugging this field.
+ * @property {string} duration The amount of time that a time series must fail to report new data to be considered failing. Currently, only values that are a multiple of a minute--e.g. 60, 120, or 300 seconds--are supported. If an invalid value is given, an error will be returned. The Duration.nanos field is ignored.
+ * @property {string} filter A filter that identifies which time series should be compared with the threshold.The filter is similar to the one that is specified in the MetricService.ListTimeSeries request (that call is useful to verify the time series that will be retrieved / processed) and must specify the metric type and optionally may contain restrictions on resource type, resource labels, and metric labels. This field may not exceed 2048 Unicode characters in length.
+ * @property {monitoring(v3).Trigger} trigger The number/percent of time series for which the comparison must hold in order for the condition to trigger. If unspecified, then the condition will trigger if the comparison is true for any of the time series that have been identified by filter and aggregations.
+ */
+/**
  * @typedef MetricDescriptor
  * @memberOf! monitoring(v3)
  * @type object
@@ -1861,6 +2550,19 @@ function Monitoring(options: GlobalOptions) {
  * @property {string} type The metric type, including its DNS name prefix. The type is not URL-encoded. All user-defined custom metric types have the DNS name custom.googleapis.com. Metric types should use a natural hierarchical grouping. For example: &quot;custom.googleapis.com/invoice/paid/amount&quot; &quot;appengine.googleapis.com/http/server/response_latencies&quot;
  * @property {string} unit Optional. The unit in which the metric value is reported. For example, kBy/s means kilobytes/sec, and 1 is the dimensionless unit. The supported units are a subset of The Unified Code for Units of Measure standard (http://unitsofmeasure.org/ucum.html).&lt;br&gt;&lt;br&gt; This field is part of the metric&#39;s documentation, but it is ignored by Stackdriver.
  * @property {string} valueType Whether the measurement is an integer, a floating-point number, etc. Some combinations of metric_kind and value_type might not be supported.
+ */
+/**
+ * @typedef MetricThreshold
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {monitoring(v3).Aggregation[]} aggregations Specifies the alignment of data points in individual time series as well as how to combine the retrieved time series together (such as when aggregating multiple streams on each resource to a single stream for each resource or when aggregating streams across all members of a group of resrouces). Multiple aggregations are applied in the order specified.This field is similar to the one in the MetricService.ListTimeSeries request. It is advisable to use the ListTimeSeries method when debugging this field.
+ * @property {string} comparison The comparison to apply between the time series (indicated by filter and aggregation) and the threshold (indicated by threshold_value). The comparison is applied on each time series, with the time series on the left-hand side and the threshold on the right-hand side.Only COMPARISON_LT and COMPARISON_GT are supported currently.
+ * @property {monitoring(v3).Aggregation[]} denominatorAggregations Specifies the alignment of data points in individual time series selected by denominatorFilter as well as how to combine the retrieved time series together (such as when aggregating multiple streams on each resource to a single stream for each resource or when aggregating streams across all members of a group of resources).When computing ratios, the aggregations and denominator_aggregations fields must use the same alignment period and produce time series that have the same periodicity and labels.This field is similar to the one in the MetricService.ListTimeSeries request. It is advisable to use the ListTimeSeries method when debugging this field.
+ * @property {string} denominatorFilter A filter that identifies a time series that should be used as the denominator of a ratio that will be compared with the threshold. If a denominator_filter is specified, the time series specified by the filter field will be used as the numerator.The filter is similar to the one that is specified in the MetricService.ListTimeSeries request (that call is useful to verify the time series that will be retrieved / processed) and must specify the metric type and optionally may contain restrictions on resource type, resource labels, and metric labels. This field may not exceed 2048 Unicode characters in length.
+ * @property {string} duration The amount of time that a time series must violate the threshold to be considered failing. Currently, only values that are a multiple of a minute--e.g. 60, 120, or 300 seconds--are supported. If an invalid value is given, an error will be returned. The Duration.nanos field is ignored. When choosing a duration, it is useful to keep in mind the frequency of the underlying time series data (which may also be affected by any alignments specified in the aggregation field); a good duration is long enough so that a single outlier does not generate spurious alerts, but short enough that unhealthy states are detected and alerted on quickly.
+ * @property {string} filter A filter that identifies which time series should be compared with the threshold.The filter is similar to the one that is specified in the MetricService.ListTimeSeries request (that call is useful to verify the time series that will be retrieved / processed) and must specify the metric type and optionally may contain restrictions on resource type, resource labels, and metric labels. This field may not exceed 2048 Unicode characters in length.
+ * @property {number} thresholdValue A value against which to compare the time series.
+ * @property {monitoring(v3).Trigger} trigger The number/percent of time series for which the comparison must hold in order for the condition to trigger. If unspecified, then the condition will trigger if the comparison is true for any of the time series that have been identified by filter and aggregations, or by the ratio, if denominator_filter and denominator_aggregations are specified.
  */
 /**
  * @typedef MonitoredResource
@@ -1885,6 +2587,37 @@ function Monitoring(options: GlobalOptions) {
  * @type object
  * @property {object} systemLabels Output only. Values for predefined system metadata labels. System labels are a kind of metadata extracted by Google Stackdriver. Stackdriver determines what system labels are useful and how to obtain their values. Some examples: &quot;machine_image&quot;, &quot;vpc&quot;, &quot;subnet_id&quot;, &quot;security_group&quot;, &quot;name&quot;, etc. System label values can be only strings, Boolean values, or a list of strings. For example: { &quot;name&quot;: &quot;my-test-instance&quot;,   &quot;security_group&quot;: [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;],   &quot;spot_instance&quot;: false }
  * @property {object} userLabels Output only. A map of user-defined metadata labels.
+ */
+/**
+ * @typedef MutationRecord
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {string} mutatedBy The email address of the user making the change.
+ * @property {string} mutateTime When the change occurred.
+ */
+/**
+ * @typedef NotificationChannel
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {string} description An optional human-readable description of this notification channel. This description may provide additional details, beyond the display name, for the channel. This may not exceeed 1024 Unicode characters.
+ * @property {string} displayName An optional human-readable name for this notification channel. It is recommended that you specify a non-empty and unique name in order to make it easier to identify the channels in your project, though this is not enforced. The display name is limited to 512 Unicode characters.
+ * @property {boolean} enabled Whether notifications are forwarded to the described channel. This makes it possible to disable delivery of notifications to a particular channel without removing the channel from all alerting policies that reference the channel. This is a more convenient approach when the change is temporary and you want to receive notifications from the same set of alerting policies on the channel at some point in the future.
+ * @property {object} labels Configuration fields that define the channel and its behavior. The permissible and required labels are specified in the NotificationChannelDescriptor.labels of the NotificationChannelDescriptor corresponding to the type field.
+ * @property {string} name The full REST resource name for this channel. The syntax is: projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation.
+ * @property {string} type The type of the notification channel. This field matches the value of the NotificationChannelDescriptor.type field.
+ * @property {object} userLabels User-supplied key/value data that does not need to conform to the corresponding NotificationChannelDescriptor&#39;s schema, unlike the labels field. This field is intended to be used for organizing and identifying the NotificationChannel objects.The field can contain up to 64 entries. Each key and value is limited to 63 Unicode characters or 128 bytes, whichever is smaller. Labels and values can contain only lowercase letters, numerals, underscores, and dashes. Keys must begin with a letter.
+ * @property {string} verificationStatus Indicates whether this channel has been verified or not. On a ListNotificationChannels or GetNotificationChannel operation, this field is expected to be populated.If the value is UNVERIFIED, then it indicates that the channel is non-functioning (it both requires verification and lacks verification); otherwise, it is assumed that the channel works.If the channel is neither VERIFIED nor UNVERIFIED, it implies that the channel is of a type that does not require verification or that this specific channel has been exempted from verification because it was created prior to verification being required for channels of this type.This field cannot be modified using a standard UpdateNotificationChannel operation. To change the value of this field, you must call VerifyNotificationChannel.
+ */
+/**
+ * @typedef NotificationChannelDescriptor
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {string} description A human-readable description of the notification channel type. The description may include a description of the properties of the channel and pointers to external documentation.
+ * @property {string} displayName A human-readable name for the notification channel type. This form of the name is suitable for a user interface.
+ * @property {monitoring(v3).LabelDescriptor[]} labels The set of labels that must be defined to identify a particular channel of the corresponding type. Each label includes a description for how that field should be populated.
+ * @property {string} name The full REST resource name for this descriptor. The syntax is: projects/[PROJECT_ID]/notificationChannelDescriptors/[TYPE] In the above, [TYPE] is the value of the type field.
+ * @property {string[]} supportedTiers The tiers that support this notification channel; the project service tier must be one of the supported_tiers.
+ * @property {string} type The type of notification channel, such as &quot;email&quot;, &quot;sms&quot;, etc. Notification channel types are globally unique.
  */
 /**
  * @typedef Option
@@ -1913,6 +2646,11 @@ function Monitoring(options: GlobalOptions) {
  * @type object
  * @property {string} groupId The group of resources being monitored. Should be only the group_id, not projects/&lt;project_id&gt;/groups/&lt;group_id&gt;.
  * @property {string} resourceType The resource type of the group members.
+ */
+/**
+ * @typedef SendNotificationChannelVerificationCodeRequest
+ * @memberOf! monitoring(v3)
+ * @type object
  */
 /**
  * @typedef SourceContext
@@ -1953,6 +2691,13 @@ function Monitoring(options: GlobalOptions) {
  * @property {string} valueType The value type of the time series. When listing time series, this value type might be different from the value type of the associated metric if this time series is an alignment or reduction of other time series.When creating a time series, this field is optional. If present, it must be the same as the type of the data in the points field.
  */
 /**
+ * @typedef Trigger
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {integer} count The absolute number of time series that must fail the predicate for the condition to be triggered.
+ * @property {number} percent The percentage of time series that must fail the predicate for the condition to be triggered.
+ */
+/**
  * @typedef Type
  * @memberOf! monitoring(v3)
  * @type object
@@ -1984,7 +2729,7 @@ function Monitoring(options: GlobalOptions) {
  * @property {boolean} isInternal Denotes whether this is a check that egresses from InternalCheckers.
  * @property {monitoring(v3).MonitoredResource} monitoredResource The monitored resource (https://cloud.google.com/monitoring/api/resources) associated with the configuration. The following monitored resource types are supported for uptime checks:  uptime_url  gce_instance  gae_app  aws_ec2_instance  aws_elb_load_balancer
  * @property {string} name A unique resource name for this UptimeCheckConfig. The format is:projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].This field should be omitted when creating the uptime check configuration; on create, the resource name is assigned by the server and included in the response.
- * @property {string} period How often, in seconds, the uptime check is performed. Currently, the only supported values are 60s (1 minute), 300s (5 minutes), 600s (10 minutes), and 900s (15 minutes). Required.
+ * @property {string} period How often, in seconds, the uptime check is performed. Currently, the only supported values are 60s (1 minute), 300s (5 minutes), 600s (10 minutes), and 900s (15 minutes). Optional, defaults to 300s.
  * @property {monitoring(v3).ResourceGroup} resourceGroup The group resource associated with the configuration.
  * @property {string[]} selectedRegions The list of regions from which the check will be run. If this field is specified, enough regions to include a minimum of 3 locations must be provided, or an error message is returned. Not specifying this field will result in uptime checks running from all regions.
  * @property {monitoring(v3).TcpCheck} tcpCheck Contains information needed to make a TCP check.
@@ -1997,6 +2742,12 @@ function Monitoring(options: GlobalOptions) {
  * @property {string} ipAddress The IP address from which the uptime check originates. This is a full IP address (not an IP address range). Most IP addresses, as of this publication, are in IPv4 format; however, one should not rely on the IP addresses being in IPv4 format indefinitely and should support interpreting this field in either IPv4 or IPv6 format.
  * @property {string} location A more specific location within the region that typically encodes a particular city/town/metro (and its containing state/province or country) within the broader umbrella region category.
  * @property {string} region A broad region category in which the IP address is located.
+ */
+/**
+ * @typedef VerifyNotificationChannelRequest
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {string} code The verification code that was delivered to the channel as a result of invoking the SendNotificationChannelVerificationCode API method or that was retrieved from a verified channel via GetNotificationChannelVerificationCode. For example, one might have &quot;G-123456&quot; or &quot;TKNZGhhd2EyN3I1MnRnMjRv&quot; (in general, one is only guaranteed that the code is valid UTF-8; one should not make any assumptions regarding the structure or format of the code).
  */
 
 export = Monitoring;

@@ -89,14 +89,18 @@ function Servicecontrol(options: GlobalOptions) {
       return createAPIRequest(parameters, callback!);
     }, /**
         * servicecontrol.services.check
-        * @desc Checks an operation with Google Service Control to decide
-        * whether the given operation should proceed. It should be called before
-        * the operation is executed.  If feasible, the client should cache the
-        * check results and reuse them for 60 seconds. In case of server errors,
-        * the client can rely on the cached results for longer time.  NOTE: the
-        * CheckRequest has the size limit of 64KB.  This method requires the
+        * @desc Checks whether an operation on a service should be allowed to
+        * proceed based on the configuration of the service and related
+        * policies. It must be called before the operation is executed.  If
+        * feasible, the client should cache the check results and reuse them for
+        * 60 seconds. In case of any server errors, the client should rely on
+        * the cached results for much longer time to avoid outage. WARNING:
+        * There is general 60s delay for the configuration and policy
+        * propagation, therefore callers MUST NOT depend on the `Check` method
+        * having the latest policy information.  NOTE: the CheckRequest has the
+        * size limit of 64KB.  This method requires the
         * `servicemanagement.services.check` permission on the specified
-        * service. For more information, see [Google Cloud
+        * service. For more information, see [Cloud
         * IAM](https://cloud.google.com/iam).
         * @alias servicecontrol.services.check
         * @memberOf! servicecontrol(v1)
@@ -523,7 +527,7 @@ function Servicecontrol(options: GlobalOptions) {
  * @property {string} consumerId Identity of the consumer who is using the service. This field should be filled in for the operations initiated by a consumer, but not for service-initiated operations that are not related to a specific consumer.  This can be in one of the following formats:   project:&lt;project_id&gt;,   project_number:&lt;project_number&gt;,   api_key:&lt;api_key&gt;.
  * @property {string} endTime End time of the operation. Required when the operation is used in ServiceController.Report, but optional when the operation is used in ServiceController.Check.
  * @property {string} importance DO NOT USE. This is an experimental field.
- * @property {object} labels Labels describing the operation. Only the following labels are allowed:  - Labels describing monitored resources as defined in   the service configuration. - Default labels of metric values. When specified, labels defined in the   metric value override these default. - The following labels defined by Google Cloud Platform:     - `cloud.googleapis.com/location` describing the location where the        operation happened,     - `servicecontrol.googleapis.com/user_agent` describing the user agent        of the API request,     - `servicecontrol.googleapis.com/service_agent` describing the service        used to handle the API request (e.g. ESP),     - `servicecontrol.googleapis.com/platform` describing the platform        where the API is served (e.g. GAE, GCE, GKE).
+ * @property {object} labels Labels describing the operation. Only the following labels are allowed:  - Labels describing monitored resources as defined in   the service configuration. - Default labels of metric values. When specified, labels defined in the   metric value override these default. - The following labels defined by Google Cloud Platform:     - `cloud.googleapis.com/location` describing the location where the        operation happened,     - `servicecontrol.googleapis.com/user_agent` describing the user agent        of the API request,     - `servicecontrol.googleapis.com/service_agent` describing the service        used to handle the API request (e.g. ESP),     - `servicecontrol.googleapis.com/platform` describing the platform        where the API is served, such as App Engine, Compute Engine, or        Kubernetes Engine.
  * @property {servicecontrol(v1).LogEntry[]} logEntries Represents information to be logged.
  * @property {servicecontrol(v1).MetricValueSet[]} metricValueSets Represents information about this operation. Each MetricValueSet corresponds to a metric defined in the service configuration. The data type used in the MetricValueSet must agree with the data type specified in the metric definition.  Within a single operation, it is not allowed to have more than one MetricValue instances that have the same metric names and identical label value combinations. If a request has such duplicated MetricValue instances, the entire request is rejected with an invalid argument error.
  * @property {string} operationId Identity of the operation. This must be unique within the scope of the service that generated the operation. If the service calls Check() and Report() on the same operation, the two calls should carry the same id.  UUID version 4 is recommended, though not required. In scenarios where an operation is computed from existing information and an idempotent id is desirable for deduplication purpose, UUID version 5 is recommended. See RFC 4122 for details.
