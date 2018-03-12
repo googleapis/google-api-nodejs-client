@@ -22,16 +22,16 @@ const drive = google.drive({
   version: 'v3',
   auth: sampleClient.oAuth2Client
 });
-const scopes = ['https://www.googleapis.com/auth/drive.metadata.readonly'];
+const scopes = ['https://www.googleapis.com/auth/drive.readonly'];
 
-function downloadDoc (callback) {
+function downloadDoc(callback) {
   // [START main_body]
-  const fileId = '0B7l5uajXUzaFa0x6cjJfZEkzZVE';
+  const fileId = process.argv[2] || callback('No fileId specified');
   const dest = fs.createWriteStream(`${os.tmpdir()}/photo.jpg`);
 
   drive.files.get(
-    {fileId, alt: 'media'},
-    {responseType: 'stream'},
+    { fileId, alt: 'media' },
+    { responseType: 'stream' },
     (err, res) => {
       if (err) {
         console.error(err);
@@ -56,7 +56,12 @@ if (module === require.main) {
     if (err) {
       throw err;
     }
-    downloadDoc(() => { /* download complete */ });
+    downloadDoc((err) => {
+      if (err) {
+        throw err;
+      }
+      /* download complete */
+    });
   });
 }
 
