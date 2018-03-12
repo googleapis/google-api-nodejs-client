@@ -22,20 +22,20 @@ const urlshortener = google.urlshortener('v1', nconf.get('api_key'));
 
 urlshortener.url.get({
   shortUrl: 'http://goo.gl/DdUKX'
-}, (err, result) => {
+}, (err, res) => {
   if (err) {
     throw err;
   }
-  console.log(result);
+  console.log(res.data);
 });
 
 urlshortener.url.insert({
   resource: {
     longUrl: 'http://somelongurl.com'
   }
-}, (err, result) => {
+}, (err, res) => {
   if (err) {
     throw err;
   }
-  console.log(result);
+  console.log(res.data);
 });

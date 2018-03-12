@@ -50,10 +50,10 @@ google.auth.getApplicationDefault((err, authClient) => {
   // Fetch the list of GCE zones within a project.
   // NOTE: You must fill in your valid project ID before running this sample!
   const projectId = 'fill in your project id here!';
-  compute.zones.list({ project: projectId, auth: authClient }, (err, result) => {
+  compute.zones.list({ project: projectId, auth: authClient }, (err, res) => {
     if (err) {
       throw err;
     }
-    console.log(result);
+    console.log(res.data);
   });
 });

@@ -21,15 +21,14 @@ const plus = google.plus({
   auth: sampleClient.oAuth2Client
 });
 
-function me () {
+function runSample () {
   plus.people.get({
     userId: 'me'
-  }, (err, me) => {
+  }, (err, res) => {
     if (err) {
       throw err;
     }
-    console.log(me);
-    process.exit();
+    console.log(res.data);
   });
 }
 
@@ -45,6 +44,6 @@ if (module === require.main) {
     if (err) {
       throw err;
     }
-    me();
+    runSample();
   });
 }

@@ -14,11 +14,6 @@
 'use strict';
 
 const {google} = require('googleapis');
-const drive = google.drive('v2');
-const nconf = require('nconf');
-const path = require('path');
-
-nconf.argv().env().file(path.join(__dirname, 'jwt.keys.json'));
 
 /**
  * The JWT authorization is ideal for performing server-to-server
@@ -27,36 +22,48 @@ nconf.argv().env().file(path.join(__dirname, 'jwt.keys.json'));
  * Suggested reading for Admin SDK users using service accounts:
  * https://developers.google.com/admin-sdk/directory/v1/guides/delegation
  *
- * Note on the private_key.pem:
- * Node.js currently does not support direct access to the keys stored within
- * PKCS12 file (see issue comment
- * https://github.com/joyent/node/issues/4050#issuecomment-8816304)
- * so the private key must be extracted and converted to a passphrase-less
- * RSA key: openssl pkcs12 -in key.p12 -nodes -nocerts > key.pem
- *
  * See the defaultauth.js sample for an alternate way of fetching compute credentials.
  */
 
-const authClient = new google.auth.JWT(
-  nconf.get('client_email'),
-  null,
-  nconf.get('private_key'),
-  // Scopes can be specified either as an array or as a single, space-delimited string
-  ['https://www.googleapis.com/auth/drive.readonly'],
-  // User to impersonate (leave empty if no impersonation needed)
-  'subject-account-email@example.com');
+const keys = require('./jwt.keys.json');
 
-authClient.authorize(err => {
-  if (err) {
-    throw err;
-  }
+// Create a new JWT client using the key file downloaded from the Google Developer Console
+const jwtClient = new google.auth.JWT({
+  email: keys.client_email,
+  key: keys.private_key,
+  scopes: 'https://www.googleapis.com/auth/drive.readonly'
+});
 
-  // Make an authorized request to list Drive files.
-  drive.files.list({ auth: authClient }, (err, res) => {
-    // handle err and response
+// Obtain a new drive client, making sure you pass along the auth client
+const drive = google.drive({
+  version: 'v2',
+  auth: jwtClient
+});
+
+// Make an authorized request to list Drive files.
+function runSample (callback) {
+  drive.files.list((err, res) => {
     if (err) {
       throw err;
     }
-    console.log(res);
+    console.log(res.data);
+    callback(res.data);
   });
-});
+}
+
+if (module === require.main) {
+  // Run `authorize` to obtain the right tokens for auth
+  jwtClient.authorize(err => {
+    if (err) {
+      throw err;
+    }
+    // Now that we have credentials, run the sample
+    runSample(() => { /* complete */ });
+  });
+}
+
+// Exports for unit testing purposes
+module.exports = {
+  runSample,
+  client: jwtClient
+};

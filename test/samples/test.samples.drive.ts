@@ -25,7 +25,8 @@ nock.disableNetConnect();
 const samples: any = {
   download: require('../../../samples/drive/download'),
   export: require('../../../samples/drive/export'),
-  list: require('../../../samples/drive/list')
+  list: require('../../../samples/drive/list'),
+  upload: require('../../../samples/drive/upload')
 };
 
 for (const p in samples) {
@@ -70,6 +71,17 @@ describe('Drive samples', () => {
     const scope =
         nock(Utils.baseUrl).get(`/drive/v3/files?pageSize=3`).reply(200, {});
     samples.list.listDocs(undefined, (data: {}) => {
+      assert(data);
+      scope.done();
+      done();
+    });
+  });
+
+  it('should upload a file', done => {
+    const scope = nock(Utils.baseUrl)
+                      .post(`/upload/drive/v3/files?uploadType=multipart`)
+                      .reply(200, {});
+    samples.upload.runSample(someFile, (data: {}) => {
       assert(data);
       scope.done();
       done();
