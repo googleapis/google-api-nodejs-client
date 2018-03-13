@@ -26,7 +26,11 @@ const scopes = ['https://www.googleapis.com/auth/drive.readonly'];
 
 function downloadDoc (callback) {
   // [START main_body]
-  const fileId = process.argv[2] || callback('No fileId specified');
+  if (!process.argv[2]) {
+    callback(new Error('File id not specified'));
+    return;
+  }
+  const fileId = process.argv[2];
   const dest = fs.createWriteStream(`${os.tmpdir()}/photo.jpg`);
 
   drive.files.get(
