@@ -24,9 +24,9 @@ const drive = google.drive({
 });
 const scopes = ['https://www.googleapis.com/auth/drive.readonly'];
 
-function downloadDoc(callback) {
+function downloadDoc (callback) {
   // [START main_body]
-  const fileId = process.argv[2] || callback("No fileId specified");
+  const fileId = process.argv[2] || callback('No fileId specified');
   const dest = fs.createWriteStream(`${os.tmpdir()}/photo.jpg`);
 
   drive.files.get(
@@ -56,7 +56,7 @@ if (module === require.main) {
     if (err) {
       throw err;
     }
-    ddownloadDoc((err) => {
+    downloadDoc((err) => {
       if (err) {
         throw err;
       }
