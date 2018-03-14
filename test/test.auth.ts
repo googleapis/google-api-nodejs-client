@@ -203,7 +203,6 @@ describe('OAuth2 client', () => {
 
     nock(Utils.baseUrl).get('/drive/v2/files/wat').reply(200);
     await pify(localDrive.files.get)({fileId: 'wat', auth: oauth2client});
-    console.log(`Creds: ${JSON.stringify(oauth2client.credentials)}`);
     assert.equal(JSON.stringify(oauth2client.credentials), JSON.stringify({
       access_token: 'abc123',
       refresh_token: 'abc',

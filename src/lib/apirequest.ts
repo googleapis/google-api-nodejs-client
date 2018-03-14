@@ -23,6 +23,10 @@ import {SchemaParameters} from './schema';
 
 const maxContentLength = Math.pow(2, 31);
 
+// tslint:disable-next-line no-var-requires
+const pkg = require('../../../package.json');
+const USER_AGENT = `google-api-nodejs-client/${pkg.version} (gzip)`;
+
 function isReadableStream(obj: stream.Readable|string) {
   return obj instanceof stream.Readable && typeof obj._read === 'function';
 }
@@ -205,6 +209,8 @@ export function createAPIRequest<T>(
   // to 10MB.  Setting to 2GB by default.
   // https://github.com/google/google-api-nodejs-client/issues/991
   options.maxContentLength = options.maxContentLength || maxContentLength;
+  options.headers['Accept-Encoding'] = 'gzip';
+  options.headers['User-Agent'] = USER_AGENT;
 
   // By default Axios treats any 2xx as valid, and all non 2xx status
   // codes as errors.  This is a problem for HTTP 304s when used along
