@@ -70,7 +70,7 @@ describe('Drive samples', () => {
   it('should list all the docs', done => {
     const scope =
         nock(Utils.baseUrl).get(`/drive/v3/files?pageSize=3`).reply(200, {});
-    samples.list.listDocs(undefined, (data: {}) => {
+    samples.list.runSample(undefined, (data: {}) => {
       assert(data);
       scope.done();
       done();
