@@ -19,20 +19,18 @@
  */
 
 const {google} = require('googleapis');
-const OAuth2Client = google.auth.OAuth2;
 const http = require('http');
 const url = require('url');
 const querystring = require('querystring');
 const opn = require('opn');
-const nconf = require('nconf');
-const path = require('path');
 const destroyer = require('server-destroy');
+const fs = require('fs');
+const path = require('path');
 
-nconf.argv().env()
-  .file(path.join(__dirname, 'oauth2.keys.json'));
-let keys = nconf.get('web');
-if (typeof keys === 'string') {
-  keys = JSON.parse(keys);
+const keyPath = path.join(__dirname, 'oauth2.keys.json');
+let keys = { redirect_uris: [''] };
+if (fs.existsSync(keyPath)) {
+  keys = require(keyPath).web;
 }
 
 class SampleClient {
@@ -40,7 +38,7 @@ class SampleClient {
     this._options = options || { scopes: [] };
 
     // create an oAuth client to authorize the API call
-    this.oAuth2Client = new OAuth2Client(
+    this.oAuth2Client = new google.auth.OAuth2(
       keys.client_id,
       keys.client_secret,
       keys.redirect_uris[0]

@@ -3,7 +3,6 @@ node_modules
 doc/
 npm-debug.log
 coverage
-.secrets.json
 # Empty API
 apis/iam/v1alpha1.js
 .nyc_output
@@ -13,3 +12,4 @@ apis/iam/v1alpha1.js
 .vscode
 **/*.d.ts
 **/credentials.json
+samples/*.keys.json
