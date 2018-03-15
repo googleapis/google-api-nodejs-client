@@ -1,4 +1,4 @@
-// Copyright 2016, Google, Inc.
+// Copyright 2018, Google, LLC.
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -16,17 +16,24 @@
 const {google} = require('googleapis');
 const sampleClient = require('../sampleclient');
 
-const drive = google.drive({
-  version: 'v3',
+const sheets = google.sheets({
+  version: 'v4',
   auth: sampleClient.oAuth2Client
 });
 
-function runSample (query, callback) {
-  const params = { pageSize: 3 };
-  params.q = query;
-  drive.files.list(params, (err, res) => {
+function runSample (spreadsheetId, range, callback) {
+  sheets.spreadsheets.values.append({
+    spreadsheetId,
+    range,
+    valueInputOption: 'USER_ENTERED',
+    resource: {
+      values: [
+        ['Justin', '1/1/2001', 'Website'],
+        ['Node.js', '2018-03-14', 'Fun']
+      ]
+    }
+  }, (err, res) => {
     if (err) {
-      console.error(err);
       throw err;
     }
     console.log(res.data);
@@ -35,12 +42,17 @@ function runSample (query, callback) {
 }
 
 if (module === require.main) {
-  const scopes = ['https://www.googleapis.com/auth/drive.metadata.readonly'];
+  const scopes = [
+    'https://www.googleapis.com/auth/drive',
+    'https://www.googleapis.com/auth/drive.file',
+    'https://www.googleapis.com/auth/spreadsheets'
+  ];
   sampleClient.authenticate(scopes, err => {
     if (err) {
       throw err;
     }
-    runSample(undefined, () => { /* complete */ });
+    const [spreadsheetId, range] = process.argv.slice(2);
+    runSample(spreadsheetId, range, () => { /* complete */ });
   });
 }
 
