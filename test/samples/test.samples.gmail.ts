@@ -24,7 +24,8 @@ nock.disableNetConnect();
 // tslint:disable: no-any
 const samples: any = {
   list: require('../../../samples/gmail/list'),
-  labels: require('../../../samples/gmail/labels')
+  labels: require('../../../samples/gmail/labels'),
+  watch: require('../../../samples/gmail/watch')
 };
 
 for (const p in samples) {
@@ -57,6 +58,16 @@ describe('gmail samples', () => {
                       .post(`/gmail/v1/users/me/messages/${messageId}/modify`)
                       .reply(200, {yes: true});
     samples.labels.runSample('add', messageId, labelId, (data: {}) => {
+      assert(data);
+      scope.done();
+      done();
+    });
+  });
+
+  it('should add a user watch', done => {
+    const scope =
+        nock(Utils.baseUrl).post(`/gmail/v1/users/me/watch`).reply(200, {});
+    samples.watch.runSample((data: {}) => {
       assert(data);
       scope.done();
       done();
