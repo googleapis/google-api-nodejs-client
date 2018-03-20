@@ -17,18 +17,19 @@ const {google} = require('googleapis');
 const sampleClient = require('../sampleclient');
 const fs = require('fs');
 const os = require('os');
+const uuid = require('uuid');
+const path = require('path');
 
 const drive = google.drive({
   version: 'v3',
   auth: sampleClient.oAuth2Client
 });
-const scopes = ['https://www.googleapis.com/auth/drive.metadata.readonly'];
 
-function downloadDoc (callback) {
-  // [START main_body]
-  const fileId = '0B7l5uajXUzaFa0x6cjJfZEkzZVE';
-  const dest = fs.createWriteStream(`${os.tmpdir()}/photo.jpg`);
-
+function runSample (fileId, callback) {
+  const filePath = path.join(os.tmpdir(), uuid.v4());
+  console.log(`writing to ${filePath}`);
+  const dest = fs.createWriteStream(filePath);
+  let progress = 0;
   drive.files.get(
     {fileId, alt: 'media'},
     {responseType: 'stream'},
@@ -37,31 +38,50 @@ function downloadDoc (callback) {
         console.error(err);
         throw err;
       }
-      res.data.on('end', () => {
-        console.log('Done downloading file.');
-        callback();
-      })
+      res.data
+        .on('end', () => {
+          console.log('Done downloading file.');
+          callback(filePath);
+        })
         .on('error', err => {
           console.error('Error downloading file.');
           throw err;
         })
+        .on('data', d => {
+          progress += d.length;
+          process.stdout.clearLine();
+          process.stdout.cursorTo(0);
+          process.stdout.write(`Downloaded ${progress} bytes`);
+        })
         .pipe(dest);
     });
-  // [END main_body]
 }
 
 // if invoked directly (not tests), authenticate and run the samples
 if (module === require.main) {
+  const scopes = [
+    'https://www.googleapis.com/auth/drive',
+    'https://www.googleapis.com/auth/drive.appdata',
+    'https://www.googleapis.com/auth/drive.file',
+    'https://www.googleapis.com/auth/drive.metadata',
+    'https://www.googleapis.com/auth/drive.metadata.readonly',
+    'https://www.googleapis.com/auth/drive.photos.readonly',
+    'https://www.googleapis.com/auth/drive.readonly'
+  ];
   sampleClient.authenticate(scopes, err => {
     if (err) {
       throw err;
     }
-    downloadDoc(() => { /* download complete */ });
+    if (process.argv.length !== 3) {
+      console.error('Usage: node samples/drive/download.js $FILE_ID');
+      process.exit();
+    }
+    runSample(process.argv[2], () => { /* download complete */ });
   });
 }
 
 // export functions for testing purposes
 module.exports = {
-  downloadDoc,
+  runSample,
   client: sampleClient.oAuth2Client
 };
