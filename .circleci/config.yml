@@ -8,7 +8,7 @@ remove_package_lock: &remove_package_lock
     echo "Workflow name: $WORKFLOW_NAME"
     if [ "$WORKFLOW_NAME" = "nightly" ]; then
       echo "Nightly build detected, removing package-lock.json"
-      rm -f package-lock.json samples/package-lock.json
+      rm -f package-lock.json
     else
       echo "Not a nightly build, skipping this step."
     fi
