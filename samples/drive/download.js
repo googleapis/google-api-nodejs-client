@@ -18,6 +18,7 @@ const sampleClient = require('../sampleclient');
 const fs = require('fs');
 const os = require('os');
 const uuid = require('uuid');
+const path = require('path');
 
 const drive = google.drive({
   version: 'v3',
@@ -25,7 +26,7 @@ const drive = google.drive({
 });
 
 function runSample (fileId, callback) {
-  const filePath = `${os.tmpdir()}/${uuid.v4()}`;
+  const filePath = path.join(os.tmpdir(), uuid.v4());
   console.log(`writing to ${filePath}`);
   const dest = fs.createWriteStream(filePath);
   let progress = 0;
