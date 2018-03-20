@@ -11,7 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """
 Get workflow name for the current build using CircleCI API.
 Would be great if this information is available in one of
@@ -27,6 +26,7 @@ import urllib2
 
 def main():
     try:
+        token = os.environ['CIRCLECI_TOKEN']
         username = os.environ['CIRCLE_PROJECT_USERNAME']
         reponame = os.environ['CIRCLE_PROJECT_REPONAME']
         build_num = os.environ['CIRCLE_BUILD_NUM']
@@ -37,8 +37,8 @@ def main():
 
     try:
         request = urllib2.Request(
-            "https://circleci.com/api/v1.1/project/github/%s/%s/%s" %
-            (username, reponame, build_num),
+            "https://circleci.com/api/v1.1/project/github/%s/%s/%s?circle-token=%s"
+            % (username, reponame, build_num, token),
             headers={"Accept": "application/json"})
         contents = urllib2.urlopen(request).read()
     except:
