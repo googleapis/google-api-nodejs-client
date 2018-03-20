@@ -65,14 +65,12 @@ describe('gmail samples', () => {
   });
 
   it('should add a user watch', done => {
-    const scope = nock(Utils.baseUrl)
-                      .post(`/gmail/v1/users/me/watch`)
-                      .reply(200, {});
+    const scope =
+        nock(Utils.baseUrl).post(`/gmail/v1/users/me/watch`).reply(200, {});
     samples.watch.runSample((data: {}) => {
       assert(data);
       scope.done();
       done();
     });
   });
-
 });

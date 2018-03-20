@@ -32,7 +32,7 @@ const gmail = google.gmail({
  */
 function runSample (callback) {
   gmail.users.watch({
-    userId: "me",
+    userId: 'me',
     resource: {
       // Replace with `projects/${PROJECT_ID}/topics/${TOPIC_NAME}`
       topicName: `projects/el-gato/topics/gmail`
