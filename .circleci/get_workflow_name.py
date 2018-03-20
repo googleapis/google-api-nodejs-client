@@ -26,14 +26,23 @@ import urllib2
 
 def main():
     try:
-        token = os.environ['CIRCLECI_TOKEN']
         username = os.environ['CIRCLE_PROJECT_USERNAME']
         reponame = os.environ['CIRCLE_PROJECT_REPONAME']
         build_num = os.environ['CIRCLE_BUILD_NUM']
     except:
         sys.stderr.write(
             'Looks like we are not inside CircleCI container. Exiting...\n')
-        return 1
+        print 'undefined'
+        return 0
+
+    try:
+        token = os.environ['CIRCLECI_TOKEN']
+    except:
+        sys.stderr.write(
+            'Looks like we we don\'t have CircleCI environment set up. Exiting...\n'
+        )
+        print 'undefined'
+        return 0
 
     try:
         request = urllib2.Request(
@@ -43,21 +52,24 @@ def main():
         contents = urllib2.urlopen(request).read()
     except:
         sys.stderr.write('Cannot query CircleCI API. Exiting...\n')
-        return 1
+        print 'undefined'
+        return 0
 
     try:
         build_info = json.loads(contents)
     except:
         sys.stderr.write(
             'Cannot parse JSON received from CircleCI API. Exiting...\n')
-        return 1
+        print 'undefined'
+        return 0
 
     try:
         workflow_name = build_info['workflows']['workflow_name']
     except:
         sys.stderr.write(
             'Cannot get workflow name from CircleCI build info. Exiting...\n')
-        return 1
+        print 'undefined'
+        return 0
 
     print workflow_name
     return 0
