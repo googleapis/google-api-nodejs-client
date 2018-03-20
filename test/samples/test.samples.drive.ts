@@ -47,8 +47,8 @@ describe('Drive samples', () => {
     const scope = nock(Utils.baseUrl)
                       .get(`/drive/v3/files/${fileId}?alt=media`)
                       .replyWithFile(200, someFile);
-    samples.download.downloadDoc(() => {
-      assert(fs.existsSync(`${os.tmpdir()}/photo.jpg`));
+    samples.download.runSample(fileId, (filePath: string) => {
+      assert(fs.existsSync(filePath));
       scope.done();
       done();
     });
