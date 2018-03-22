@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
 
@@ -21,7 +22,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
-
+// tslint:disable: class-name
+// tslint:disable: variable-name
+// tslint:disable: jsdoc-format
 
 /**
  * Google Play Developer API
@@ -38,101 +41,137 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Androidpublisher
  */
-function Androidpublisher(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.purchases = {
-    /**
-     * androidpublisher.purchases.cancel
-     * @desc Cancels a user's subscription purchase. The subscription remains
-     * valid until its expiration time.
-     * @alias androidpublisher.purchases.cancel
-     * @memberOf! androidpublisher(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-     * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
-     * @param {string} params.token The token provided to the user's device when the subscription was purchased.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    cancel(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v1/applications/{packageName}/subscriptions/{subscriptionId}/purchases/{token}/cancel')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['packageName', 'subscriptionId', 'token'],
-        pathParams: ['packageName', 'subscriptionId', 'token'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * androidpublisher.purchases.get
-        * @desc Checks whether a user's subscription purchase is valid and
-        * returns its expiry time.
-        * @alias androidpublisher.purchases.get
-        * @memberOf! androidpublisher(v1)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-        * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
-        * @param {string} params.token The token provided to the user's device when the subscription was purchased.
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v1/applications/{packageName}/subscriptions/{subscriptionId}/purchases/{token}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['packageName', 'subscriptionId', 'token'],
-        pathParams: ['packageName', 'subscriptionId', 'token'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }
+export class Androidpublisher {
+  _options: GlobalOptions;
+  google: GoogleApis;
+  root = this;
 
-  };
+  purchases: Resource$Purchases;
+
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    this._options = options || {};
+    this.google = google;
+
+    this.purchases = new Resource$Purchases(this);
+  }
 }
-/**
- * @typedef SubscriptionPurchase
- * @memberOf! androidpublisher(v1)
- * @type object
- * @property {boolean} autoRenewing Whether the subscription will automatically be renewed when it reaches its current expiry time.
- * @property {string} initiationTimestampMsec Time at which the subscription was granted, in milliseconds since the Epoch.
- * @property {string} kind This kind represents a subscriptionPurchase object in the androidpublisher service.
- * @property {string} validUntilTimestampMsec Time at which the subscription will expire, in milliseconds since the Epoch.
- */
 
-export = Androidpublisher;
+/**
+ * A SubscriptionPurchase resource indicates the status of a user&#39;s
+ * subscription purchase.
+ */
+export interface Schema$SubscriptionPurchase {
+  /**
+   * Whether the subscription will automatically be renewed when it reaches its
+   * current expiry time.
+   */
+  autoRenewing: boolean;
+  /**
+   * Time at which the subscription was granted, in milliseconds since the
+   * Epoch.
+   */
+  initiationTimestampMsec: string;
+  /**
+   * This kind represents a subscriptionPurchase object in the androidpublisher
+   * service.
+   */
+  kind: string;
+  /**
+   * Time at which the subscription will expire, in milliseconds since the
+   * Epoch.
+   */
+  validUntilTimestampMsec: string;
+}
+
+export class Resource$Purchases {
+  root: Androidpublisher;
+  constructor(root: Androidpublisher) {
+    this.root = root;
+  }
+
+  /**
+   * androidpublisher.purchases.cancel
+   * @desc Cancels a user's subscription purchase. The subscription remains
+   * valid until its expiration time.
+   * @alias androidpublisher.purchases.cancel
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
+   * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
+   * @param {string} params.token The token provided to the user's device when the subscription was purchased.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  cancel =
+      (params: any, options: MethodOptions|BodyResponseCallback<void>,
+       callback?: BodyResponseCallback<void>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl +
+                     '/androidpublisher/v1/applications/{packageName}/subscriptions/{subscriptionId}/purchases/{token}/cancel')
+                        .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'POST'
+              },
+              options),
+          params,
+          requiredParams: ['packageName', 'subscriptionId', 'token'],
+          pathParams: ['packageName', 'subscriptionId', 'token'],
+          context: this.root
+        };
+        createAPIRequest<void>(parameters, callback!);
+      };
+
+
+  /**
+   * androidpublisher.purchases.get
+   * @desc Checks whether a user's subscription purchase is valid and returns
+   * its expiry time.
+   * @alias androidpublisher.purchases.get
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
+   * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
+   * @param {string} params.token The token provided to the user's device when the subscription was purchased.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  get =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$SubscriptionPurchase>,
+       callback?: BodyResponseCallback<Schema$SubscriptionPurchase>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl +
+                     '/androidpublisher/v1/applications/{packageName}/subscriptions/{subscriptionId}/purchases/{token}')
+                        .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: ['packageName', 'subscriptionId', 'token'],
+          pathParams: ['packageName', 'subscriptionId', 'token'],
+          context: this.root
+        };
+        createAPIRequest<Schema$SubscriptionPurchase>(parameters, callback!);
+      };
+}

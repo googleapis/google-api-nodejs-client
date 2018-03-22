@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
 
@@ -21,7 +22,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
-
+// tslint:disable: class-name
+// tslint:disable: variable-name
+// tslint:disable: jsdoc-format
 
 /**
  * YouTube Reporting API
@@ -39,173 +42,692 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Youtubereporting
  */
-function Youtubereporting(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.jobs = {
-    /**
-     * youtubereporting.jobs.create
-     * @desc Creates a job and returns it.
-     * @alias youtubereporting.jobs.create
-     * @memberOf! youtubereporting(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
-     * @param {youtubereporting(v1).Job} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    create(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://youtubereporting.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1/jobs').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
+export class Youtubereporting {
+  _options: GlobalOptions;
+  google: GoogleApis;
+  root = this;
+
+  jobs: Resource$Jobs;
+  media: Resource$Media;
+  reportTypes: Resource$Reporttypes;
+
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    this._options = options || {};
+    this.google = google;
+
+    this.jobs = new Resource$Jobs(this);
+    this.media = new Resource$Media(this);
+    this.reportTypes = new Resource$Reporttypes(this);
+  }
+}
+
+/**
+ * A generic empty message that you can re-use to avoid defining duplicated
+ * empty messages in your APIs. A typical example is to use it as the request or
+ * the response type of an API method. For instance:      service Foo {
+ * rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The
+ * JSON representation for `Empty` is empty JSON object `{}`.
+ */
+export interface Schema$Empty {}
+/**
+ * gdata
+ */
+export interface Schema$GdataBlobstore2Info {
+  /**
+   * gdata
+   */
+  blobGeneration: string;
+  /**
+   * gdata
+   */
+  blobId: string;
+  /**
+   * gdata
+   */
+  downloadReadHandle: string;
+  /**
+   * gdata
+   */
+  readToken: string;
+  /**
+   * gdata
+   */
+  uploadMetadataContainer: string;
+}
+/**
+ * gdata
+ */
+export interface Schema$GdataCompositeMedia {
+  /**
+   * gdata
+   */
+  blobRef: string;
+  /**
+   * gdata
+   */
+  blobstore2Info: Schema$GdataBlobstore2Info;
+  /**
+   * gdata
+   */
+  cosmoBinaryReference: string;
+  /**
+   * gdata
+   */
+  crc32cHash: number;
+  /**
+   * gdata
+   */
+  inline: string;
+  /**
+   * gdata
+   */
+  length: string;
+  /**
+   * gdata
+   */
+  md5Hash: string;
+  /**
+   * gdata
+   */
+  objectId: Schema$GdataObjectId;
+  /**
+   * gdata
+   */
+  path: string;
+  /**
+   * gdata
+   */
+  referenceType: string;
+  /**
+   * gdata
+   */
+  sha1Hash: string;
+}
+/**
+ * gdata
+ */
+export interface Schema$GdataContentTypeInfo {
+  /**
+   * gdata
+   */
+  bestGuess: string;
+  /**
+   * gdata
+   */
+  fromBytes: string;
+  /**
+   * gdata
+   */
+  fromFileName: string;
+  /**
+   * gdata
+   */
+  fromHeader: string;
+  /**
+   * gdata
+   */
+  fromUrlPath: string;
+}
+/**
+ * gdata
+ */
+export interface Schema$GdataDiffChecksumsResponse {
+  /**
+   * gdata
+   */
+  checksumsLocation: Schema$GdataCompositeMedia;
+  /**
+   * gdata
+   */
+  chunkSizeBytes: string;
+  /**
+   * gdata
+   */
+  objectLocation: Schema$GdataCompositeMedia;
+  /**
+   * gdata
+   */
+  objectSizeBytes: string;
+  /**
+   * gdata
+   */
+  objectVersion: string;
+}
+/**
+ * gdata
+ */
+export interface Schema$GdataDiffDownloadResponse {
+  /**
+   * gdata
+   */
+  objectLocation: Schema$GdataCompositeMedia;
+}
+/**
+ * gdata
+ */
+export interface Schema$GdataDiffUploadRequest {
+  /**
+   * gdata
+   */
+  checksumsInfo: Schema$GdataCompositeMedia;
+  /**
+   * gdata
+   */
+  objectInfo: Schema$GdataCompositeMedia;
+  /**
+   * gdata
+   */
+  objectVersion: string;
+}
+/**
+ * gdata
+ */
+export interface Schema$GdataDiffUploadResponse {
+  /**
+   * gdata
+   */
+  objectVersion: string;
+  /**
+   * gdata
+   */
+  originalObject: Schema$GdataCompositeMedia;
+}
+/**
+ * gdata
+ */
+export interface Schema$GdataDiffVersionResponse {
+  /**
+   * gdata
+   */
+  objectSizeBytes: string;
+  /**
+   * gdata
+   */
+  objectVersion: string;
+}
+/**
+ * gdata
+ */
+export interface Schema$GdataDownloadParameters {
+  /**
+   * gdata
+   */
+  allowGzipCompression: boolean;
+  /**
+   * gdata
+   */
+  ignoreRange: boolean;
+}
+/**
+ * gdata
+ */
+export interface Schema$GdataMedia {
+  /**
+   * gdata
+   */
+  algorithm: string;
+  /**
+   * gdata
+   */
+  bigstoreObjectRef: string;
+  /**
+   * gdata
+   */
+  blobRef: string;
+  /**
+   * gdata
+   */
+  blobstore2Info: Schema$GdataBlobstore2Info;
+  /**
+   * gdata
+   */
+  compositeMedia: Schema$GdataCompositeMedia[];
+  /**
+   * gdata
+   */
+  contentType: string;
+  /**
+   * gdata
+   */
+  contentTypeInfo: Schema$GdataContentTypeInfo;
+  /**
+   * gdata
+   */
+  cosmoBinaryReference: string;
+  /**
+   * gdata
+   */
+  crc32cHash: number;
+  /**
+   * gdata
+   */
+  diffChecksumsResponse: Schema$GdataDiffChecksumsResponse;
+  /**
+   * gdata
+   */
+  diffDownloadResponse: Schema$GdataDiffDownloadResponse;
+  /**
+   * gdata
+   */
+  diffUploadRequest: Schema$GdataDiffUploadRequest;
+  /**
+   * gdata
+   */
+  diffUploadResponse: Schema$GdataDiffUploadResponse;
+  /**
+   * gdata
+   */
+  diffVersionResponse: Schema$GdataDiffVersionResponse;
+  /**
+   * gdata
+   */
+  downloadParameters: Schema$GdataDownloadParameters;
+  /**
+   * gdata
+   */
+  filename: string;
+  /**
+   * gdata
+   */
+  hash: string;
+  /**
+   * gdata
+   */
+  hashVerified: boolean;
+  /**
+   * gdata
+   */
+  inline: string;
+  /**
+   * gdata
+   */
+  isPotentialRetry: boolean;
+  /**
+   * gdata
+   */
+  length: string;
+  /**
+   * gdata
+   */
+  md5Hash: string;
+  /**
+   * gdata
+   */
+  mediaId: string;
+  /**
+   * gdata
+   */
+  objectId: Schema$GdataObjectId;
+  /**
+   * gdata
+   */
+  path: string;
+  /**
+   * gdata
+   */
+  referenceType: string;
+  /**
+   * gdata
+   */
+  sha1Hash: string;
+  /**
+   * gdata
+   */
+  sha256Hash: string;
+  /**
+   * gdata
+   */
+  timestamp: string;
+  /**
+   * gdata
+   */
+  token: string;
+}
+/**
+ * gdata
+ */
+export interface Schema$GdataObjectId {
+  /**
+   * gdata
+   */
+  bucketName: string;
+  /**
+   * gdata
+   */
+  generation: string;
+  /**
+   * gdata
+   */
+  objectName: string;
+}
+/**
+ * A job creating reports of a specific type.
+ */
+export interface Schema$Job {
+  /**
+   * The creation date/time of the job.
+   */
+  createTime: string;
+  /**
+   * The date/time when this job will expire/expired. After a job expired, no
+   * new reports are generated.
+   */
+  expireTime: string;
+  /**
+   * The server-generated ID of the job (max. 40 characters).
+   */
+  id: string;
+  /**
+   * The name of the job (max. 100 characters).
+   */
+  name: string;
+  /**
+   * The type of reports this job creates. Corresponds to the ID of a
+   * ReportType.
+   */
+  reportTypeId: string;
+  /**
+   * True if this a system-managed job that cannot be modified by the user;
+   * otherwise false.
+   */
+  systemManaged: boolean;
+}
+/**
+ * Response message for ReportingService.ListJobs.
+ */
+export interface Schema$ListJobsResponse {
+  /**
+   * The list of jobs.
+   */
+  jobs: Schema$Job[];
+  /**
+   * A token to retrieve next page of results. Pass this value in the
+   * ListJobsRequest.page_token field in the subsequent call to `ListJobs`
+   * method to retrieve the next page of results.
+   */
+  nextPageToken: string;
+}
+/**
+ * Response message for ReportingService.ListReports.
+ */
+export interface Schema$ListReportsResponse {
+  /**
+   * A token to retrieve next page of results. Pass this value in the
+   * ListReportsRequest.page_token field in the subsequent call to `ListReports`
+   * method to retrieve the next page of results.
+   */
+  nextPageToken: string;
+  /**
+   * The list of report types.
+   */
+  reports: Schema$Report[];
+}
+/**
+ * Response message for ReportingService.ListReportTypes.
+ */
+export interface Schema$ListReportTypesResponse {
+  /**
+   * A token to retrieve next page of results. Pass this value in the
+   * ListReportTypesRequest.page_token field in the subsequent call to
+   * `ListReportTypes` method to retrieve the next page of results.
+   */
+  nextPageToken: string;
+  /**
+   * The list of report types.
+   */
+  reportTypes: Schema$ReportType[];
+}
+/**
+ * A report&#39;s metadata including the URL from which the report itself can be
+ * downloaded.
+ */
+export interface Schema$Report {
+  /**
+   * The date/time when this report was created.
+   */
+  createTime: string;
+  /**
+   * The URL from which the report can be downloaded (max. 1000 characters).
+   */
+  downloadUrl: string;
+  /**
+   * The end of the time period that the report instance covers. The value is
+   * exclusive.
+   */
+  endTime: string;
+  /**
+   * The server-generated ID of the report.
+   */
+  id: string;
+  /**
+   * The date/time when the job this report belongs to will expire/expired.
+   */
+  jobExpireTime: string;
+  /**
+   * The ID of the job that created this report.
+   */
+  jobId: string;
+  /**
+   * The start of the time period that the report instance covers. The value is
+   * inclusive.
+   */
+  startTime: string;
+}
+/**
+ * A report type.
+ */
+export interface Schema$ReportType {
+  /**
+   * The date/time when this report type was/will be deprecated.
+   */
+  deprecateTime: string;
+  /**
+   * The ID of the report type (max. 100 characters).
+   */
+  id: string;
+  /**
+   * The name of the report type (max. 100 characters).
+   */
+  name: string;
+  /**
+   * True if this a system-managed report type; otherwise false. Reporting jobs
+   * for system-managed report types are created automatically and can thus not
+   * be used in the `CreateJob` method.
+   */
+  systemManaged: boolean;
+}
+
+export class Resource$Jobs {
+  root: Youtubereporting;
+  reports: Resource$Jobs$Reports;
+  constructor(root: Youtubereporting) {
+    this.root = root;
+    this.reports = new Resource$Jobs$Reports(root);
+  }
+
+  /**
+   * youtubereporting.jobs.create
+   * @desc Creates a job and returns it.
+   * @alias youtubereporting.jobs.create
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
+   * @param {().Job} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  create =
+      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Job>,
+       callback?: BodyResponseCallback<Schema$Job>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl =
+            options.rootUrl || 'https://youtubereporting.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/v1/jobs').replace(/([^:]\/)\/+/g, '$1'),
+                method: 'POST'
+              },
+              options),
+          params,
+          requiredParams: [],
+          pathParams: [],
+          context: this.root
+        };
+        createAPIRequest<Schema$Job>(parameters, callback!);
       };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * youtubereporting.jobs.delete
-        * @desc Deletes a job.
-        * @alias youtubereporting.jobs.delete
-        * @memberOf! youtubereporting(v1)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.jobId The ID of the job to delete.
-        * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    delete (
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://youtubereporting.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1/jobs/{jobId}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
-        params,
-        requiredParams: ['jobId'],
-        pathParams: ['jobId'],
-        context: self
+
+
+  /**
+   * youtubereporting.jobs.delete
+   * @desc Deletes a job.
+   * @alias youtubereporting.jobs.delete
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.jobId The ID of the job to delete.
+   * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  delete =
+      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+       callback?: BodyResponseCallback<Schema$Empty>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl =
+            options.rootUrl || 'https://youtubereporting.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/v1/jobs/{jobId}')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'DELETE'
+              },
+              options),
+          params,
+          requiredParams: ['jobId'],
+          pathParams: ['jobId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$Empty>(parameters, callback!);
       };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * youtubereporting.jobs.get
-        * @desc Gets a job.
-        * @alias youtubereporting.jobs.get
-        * @memberOf! youtubereporting(v1)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.jobId The ID of the job to retrieve.
-        * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://youtubereporting.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1/jobs/{jobId}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['jobId'],
-        pathParams: ['jobId'],
-        context: self
+
+
+  /**
+   * youtubereporting.jobs.get
+   * @desc Gets a job.
+   * @alias youtubereporting.jobs.get
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.jobId The ID of the job to retrieve.
+   * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  get =
+      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Job>,
+       callback?: BodyResponseCallback<Schema$Job>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl =
+            options.rootUrl || 'https://youtubereporting.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/v1/jobs/{jobId}')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: ['jobId'],
+          pathParams: ['jobId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$Job>(parameters, callback!);
       };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * youtubereporting.jobs.list
-        * @desc Lists jobs.
-        * @alias youtubereporting.jobs.list
-        * @memberOf! youtubereporting(v1)
-        *
-        * @param {object} params Parameters for request
-        * @param {boolean=} params.includeSystemManaged If set to true, also system-managed jobs will be returned; otherwise only user-created jobs will be returned. System-managed jobs can neither be modified nor deleted.
-        * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
-        * @param {integer=} params.pageSize Requested page size. Server may return fewer jobs than requested. If unspecified, server will pick an appropriate default.
-        * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListReportTypesResponse.next_page_token returned in response to the previous call to the `ListJobs` method.
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    list(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://youtubereporting.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1/jobs').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
+
+
+  /**
+   * youtubereporting.jobs.list
+   * @desc Lists jobs.
+   * @alias youtubereporting.jobs.list
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {boolean=} params.includeSystemManaged If set to true, also system-managed jobs will be returned; otherwise only user-created jobs will be returned. System-managed jobs can neither be modified nor deleted.
+   * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
+   * @param {integer=} params.pageSize Requested page size. Server may return fewer jobs than requested. If unspecified, server will pick an appropriate default.
+   * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListReportTypesResponse.next_page_token returned in response to the previous call to the `ListJobs` method.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  list =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
+       callback?: BodyResponseCallback<Schema$ListJobsResponse>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl =
+            options.rootUrl || 'https://youtubereporting.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/v1/jobs').replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: [],
+          pathParams: [],
+          context: this.root
+        };
+        createAPIRequest<Schema$ListJobsResponse>(parameters, callback!);
       };
-      return createAPIRequest(parameters, callback!);
-    },
-    reports: {
-      /**
-       * youtubereporting.jobs.reports.get
-       * @desc Gets the metadata of a specific report.
-       * @alias youtubereporting.jobs.reports.get
-       * @memberOf! youtubereporting(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.jobId The ID of the job.
-       * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
-       * @param {string} params.reportId The ID of the report to retrieve.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
+}
+export class Resource$Jobs$Reports {
+  root: Youtubereporting;
+  constructor(root: Youtubereporting) {
+    this.root = root;
+  }
+
+  /**
+   * youtubereporting.jobs.reports.get
+   * @desc Gets the metadata of a specific report.
+   * @alias youtubereporting.jobs.reports.get
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.jobId The ID of the job.
+   * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
+   * @param {string} params.reportId The ID of the report to retrieve.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  get =
+      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Report>,
+       callback?: BodyResponseCallback<Schema$Report>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -224,31 +746,35 @@ function Youtubereporting(options: GlobalOptions) {
           params,
           requiredParams: ['jobId', 'reportId'],
           pathParams: ['jobId', 'reportId'],
-          context: self
+          context: this.root
         };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * youtubereporting.jobs.reports.list
-          * @desc Lists reports created by a specific job. Returns NOT_FOUND if
-          * the job does not exist.
-          * @alias youtubereporting.jobs.reports.list
-          * @memberOf! youtubereporting(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string=} params.createdAfter If set, only reports created after the specified date/time are returned.
-          * @param {string} params.jobId The ID of the job.
-          * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
-          * @param {integer=} params.pageSize Requested page size. Server may return fewer report types than requested. If unspecified, server will pick an appropriate default.
-          * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListReportsResponse.next_page_token returned in response to the previous call to the `ListReports` method.
-          * @param {string=} params.startTimeAtOrAfter If set, only reports whose start time is greater than or equal the specified date/time are returned.
-          * @param {string=} params.startTimeBefore If set, only reports whose start time is smaller than the specified date/time are returned.
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      list(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
+        createAPIRequest<Schema$Report>(parameters, callback!);
+      };
+
+
+  /**
+   * youtubereporting.jobs.reports.list
+   * @desc Lists reports created by a specific job. Returns NOT_FOUND if the job
+   * does not exist.
+   * @alias youtubereporting.jobs.reports.list
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string=} params.createdAfter If set, only reports created after the specified date/time are returned.
+   * @param {string} params.jobId The ID of the job.
+   * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
+   * @param {integer=} params.pageSize Requested page size. Server may return fewer report types than requested. If unspecified, server will pick an appropriate default.
+   * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListReportsResponse.next_page_token returned in response to the previous call to the `ListReports` method.
+   * @param {string=} params.startTimeAtOrAfter If set, only reports whose start time is greater than or equal the specified date/time are returned.
+   * @param {string=} params.startTimeBefore If set, only reports whose start time is smaller than the specified date/time are returned.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  list =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$ListReportsResponse>,
+       callback?: BodyResponseCallback<Schema$ListReportsResponse>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -267,278 +793,106 @@ function Youtubereporting(options: GlobalOptions) {
           params,
           requiredParams: ['jobId'],
           pathParams: ['jobId'],
-          context: self
+          context: this.root
         };
-        return createAPIRequest(parameters, callback!);
-      }
-
-    }
-  };
-  self.media = {
-    /**
-     * youtubereporting.media.download
-     * @desc Method for media download. Download is supported on the URI
-     * `/v1/media/{+name}?alt=media`.
-     * @alias youtubereporting.media.download
-     * @memberOf! youtubereporting(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.resourceName Name of the media that is being downloaded.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    download(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://youtubereporting.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1/media/{resourceName}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['resourceName'],
-        pathParams: ['resourceName'],
-        context: self
+        createAPIRequest<Schema$ListReportsResponse>(parameters, callback!);
       };
-      return createAPIRequest(parameters, callback!);
-    }
-
-  };
-  self.reportTypes = {
-    /**
-     * youtubereporting.reportTypes.list
-     * @desc Lists report types.
-     * @alias youtubereporting.reportTypes.list
-     * @memberOf! youtubereporting(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.includeSystemManaged If set to true, also system-managed report types will be returned; otherwise only the report types that can be used to create new reporting jobs will be returned.
-     * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
-     * @param {integer=} params.pageSize Requested page size. Server may return fewer report types than requested. If unspecified, server will pick an appropriate default.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListReportTypesResponse.next_page_token returned in response to the previous call to the `ListReportTypes` method.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://youtubereporting.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1/reportTypes').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }
-
-  };
 }
-/**
- * @typedef Empty
- * @memberOf! youtubereporting(v1)
- * @type object
- */
-/**
- * @typedef GdataBlobstore2Info
- * @memberOf! youtubereporting(v1)
- * @type object
- * @property {string} blobGeneration gdata
- * @property {string} blobId gdata
- * @property {string} downloadReadHandle gdata
- * @property {string} readToken gdata
- * @property {string} uploadMetadataContainer gdata
- */
-/**
- * @typedef GdataCompositeMedia
- * @memberOf! youtubereporting(v1)
- * @type object
- * @property {string} blobRef gdata
- * @property {youtubereporting(v1).GdataBlobstore2Info} blobstore2Info gdata
- * @property {string} cosmoBinaryReference gdata
- * @property {integer} crc32cHash gdata
- * @property {string} inline gdata
- * @property {string} length gdata
- * @property {string} md5Hash gdata
- * @property {youtubereporting(v1).GdataObjectId} objectId gdata
- * @property {string} path gdata
- * @property {string} referenceType gdata
- * @property {string} sha1Hash gdata
- */
-/**
- * @typedef GdataContentTypeInfo
- * @memberOf! youtubereporting(v1)
- * @type object
- * @property {string} bestGuess gdata
- * @property {string} fromBytes gdata
- * @property {string} fromFileName gdata
- * @property {string} fromHeader gdata
- * @property {string} fromUrlPath gdata
- */
-/**
- * @typedef GdataDiffChecksumsResponse
- * @memberOf! youtubereporting(v1)
- * @type object
- * @property {youtubereporting(v1).GdataCompositeMedia} checksumsLocation gdata
- * @property {string} chunkSizeBytes gdata
- * @property {youtubereporting(v1).GdataCompositeMedia} objectLocation gdata
- * @property {string} objectSizeBytes gdata
- * @property {string} objectVersion gdata
- */
-/**
- * @typedef GdataDiffDownloadResponse
- * @memberOf! youtubereporting(v1)
- * @type object
- * @property {youtubereporting(v1).GdataCompositeMedia} objectLocation gdata
- */
-/**
- * @typedef GdataDiffUploadRequest
- * @memberOf! youtubereporting(v1)
- * @type object
- * @property {youtubereporting(v1).GdataCompositeMedia} checksumsInfo gdata
- * @property {youtubereporting(v1).GdataCompositeMedia} objectInfo gdata
- * @property {string} objectVersion gdata
- */
-/**
- * @typedef GdataDiffUploadResponse
- * @memberOf! youtubereporting(v1)
- * @type object
- * @property {string} objectVersion gdata
- * @property {youtubereporting(v1).GdataCompositeMedia} originalObject gdata
- */
-/**
- * @typedef GdataDiffVersionResponse
- * @memberOf! youtubereporting(v1)
- * @type object
- * @property {string} objectSizeBytes gdata
- * @property {string} objectVersion gdata
- */
-/**
- * @typedef GdataDownloadParameters
- * @memberOf! youtubereporting(v1)
- * @type object
- * @property {boolean} allowGzipCompression gdata
- * @property {boolean} ignoreRange gdata
- */
-/**
- * @typedef GdataMedia
- * @memberOf! youtubereporting(v1)
- * @type object
- * @property {string} algorithm gdata
- * @property {string} bigstoreObjectRef gdata
- * @property {string} blobRef gdata
- * @property {youtubereporting(v1).GdataBlobstore2Info} blobstore2Info gdata
- * @property {youtubereporting(v1).GdataCompositeMedia[]} compositeMedia gdata
- * @property {string} contentType gdata
- * @property {youtubereporting(v1).GdataContentTypeInfo} contentTypeInfo gdata
- * @property {string} cosmoBinaryReference gdata
- * @property {integer} crc32cHash gdata
- * @property {youtubereporting(v1).GdataDiffChecksumsResponse} diffChecksumsResponse gdata
- * @property {youtubereporting(v1).GdataDiffDownloadResponse} diffDownloadResponse gdata
- * @property {youtubereporting(v1).GdataDiffUploadRequest} diffUploadRequest gdata
- * @property {youtubereporting(v1).GdataDiffUploadResponse} diffUploadResponse gdata
- * @property {youtubereporting(v1).GdataDiffVersionResponse} diffVersionResponse gdata
- * @property {youtubereporting(v1).GdataDownloadParameters} downloadParameters gdata
- * @property {string} filename gdata
- * @property {string} hash gdata
- * @property {boolean} hashVerified gdata
- * @property {string} inline gdata
- * @property {boolean} isPotentialRetry gdata
- * @property {string} length gdata
- * @property {string} md5Hash gdata
- * @property {string} mediaId gdata
- * @property {youtubereporting(v1).GdataObjectId} objectId gdata
- * @property {string} path gdata
- * @property {string} referenceType gdata
- * @property {string} sha1Hash gdata
- * @property {string} sha256Hash gdata
- * @property {string} timestamp gdata
- * @property {string} token gdata
- */
-/**
- * @typedef GdataObjectId
- * @memberOf! youtubereporting(v1)
- * @type object
- * @property {string} bucketName gdata
- * @property {string} generation gdata
- * @property {string} objectName gdata
- */
-/**
- * @typedef Job
- * @memberOf! youtubereporting(v1)
- * @type object
- * @property {string} createTime The creation date/time of the job.
- * @property {string} expireTime The date/time when this job will expire/expired. After a job expired, no new reports are generated.
- * @property {string} id The server-generated ID of the job (max. 40 characters).
- * @property {string} name The name of the job (max. 100 characters).
- * @property {string} reportTypeId The type of reports this job creates. Corresponds to the ID of a ReportType.
- * @property {boolean} systemManaged True if this a system-managed job that cannot be modified by the user; otherwise false.
- */
-/**
- * @typedef ListJobsResponse
- * @memberOf! youtubereporting(v1)
- * @type object
- * @property {youtubereporting(v1).Job[]} jobs The list of jobs.
- * @property {string} nextPageToken A token to retrieve next page of results. Pass this value in the ListJobsRequest.page_token field in the subsequent call to `ListJobs` method to retrieve the next page of results.
- */
-/**
- * @typedef ListReportsResponse
- * @memberOf! youtubereporting(v1)
- * @type object
- * @property {string} nextPageToken A token to retrieve next page of results. Pass this value in the ListReportsRequest.page_token field in the subsequent call to `ListReports` method to retrieve the next page of results.
- * @property {youtubereporting(v1).Report[]} reports The list of report types.
- */
-/**
- * @typedef ListReportTypesResponse
- * @memberOf! youtubereporting(v1)
- * @type object
- * @property {string} nextPageToken A token to retrieve next page of results. Pass this value in the ListReportTypesRequest.page_token field in the subsequent call to `ListReportTypes` method to retrieve the next page of results.
- * @property {youtubereporting(v1).ReportType[]} reportTypes The list of report types.
- */
-/**
- * @typedef Report
- * @memberOf! youtubereporting(v1)
- * @type object
- * @property {string} createTime The date/time when this report was created.
- * @property {string} downloadUrl The URL from which the report can be downloaded (max. 1000 characters).
- * @property {string} endTime The end of the time period that the report instance covers. The value is exclusive.
- * @property {string} id The server-generated ID of the report.
- * @property {string} jobExpireTime The date/time when the job this report belongs to will expire/expired.
- * @property {string} jobId The ID of the job that created this report.
- * @property {string} startTime The start of the time period that the report instance covers. The value is inclusive.
- */
-/**
- * @typedef ReportType
- * @memberOf! youtubereporting(v1)
- * @type object
- * @property {string} deprecateTime The date/time when this report type was/will be deprecated.
- * @property {string} id The ID of the report type (max. 100 characters).
- * @property {string} name The name of the report type (max. 100 characters).
- * @property {boolean} systemManaged True if this a system-managed report type; otherwise false. Reporting jobs for system-managed report types are created automatically and can thus not be used in the `CreateJob` method.
- */
 
-export = Youtubereporting;
+
+export class Resource$Media {
+  root: Youtubereporting;
+  constructor(root: Youtubereporting) {
+    this.root = root;
+  }
+
+  /**
+   * youtubereporting.media.download
+   * @desc Method for media download. Download is supported on the URI
+   * `/v1/media/{+name}?alt=media`.
+   * @alias youtubereporting.media.download
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.resourceName Name of the media that is being downloaded.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  download =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$GdataMedia>,
+       callback?: BodyResponseCallback<Schema$GdataMedia>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl =
+            options.rootUrl || 'https://youtubereporting.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/v1/media/{resourceName}')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: ['resourceName'],
+          pathParams: ['resourceName'],
+          context: this.root
+        };
+        createAPIRequest<Schema$GdataMedia>(parameters, callback!);
+      };
+}
+
+export class Resource$Reporttypes {
+  root: Youtubereporting;
+  constructor(root: Youtubereporting) {
+    this.root = root;
+  }
+
+  /**
+   * youtubereporting.reportTypes.list
+   * @desc Lists report types.
+   * @alias youtubereporting.reportTypes.list
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {boolean=} params.includeSystemManaged If set to true, also system-managed report types will be returned; otherwise only the report types that can be used to create new reporting jobs will be returned.
+   * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
+   * @param {integer=} params.pageSize Requested page size. Server may return fewer report types than requested. If unspecified, server will pick an appropriate default.
+   * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListReportTypesResponse.next_page_token returned in response to the previous call to the `ListReportTypes` method.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  list =
+      (params: any,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$ListReportTypesResponse>,
+       callback?: BodyResponseCallback<Schema$ListReportTypesResponse>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl =
+            options.rootUrl || 'https://youtubereporting.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl + '/v1/reportTypes').replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: [],
+          pathParams: [],
+          context: this.root
+        };
+        createAPIRequest<Schema$ListReportTypesResponse>(parameters, callback!);
+      };
+}

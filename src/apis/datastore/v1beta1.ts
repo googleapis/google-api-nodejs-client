@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
 
@@ -21,7 +22,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
-
+// tslint:disable: class-name
+// tslint:disable: variable-name
+// tslint:disable: jsdoc-format
 
 /**
  * Google Cloud Datastore API
@@ -39,181 +42,383 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta1
  * @param {object=} options Options for Datastore
  */
-function Datastore(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.projects = {
-    /**
-     * datastore.projects.export
-     * @desc Exports a copy of all or a subset of entities from Google Cloud
-     * Datastore to another storage system, such as Google Cloud Storage. Recent
-     * updates to entities may not be reflected in the export. The export occurs
-     * in the background and its progress can be monitored and managed via the
-     * Operation resource that is created. The output of an export may only be
-     * used once the associated operation is done. If an export operation is
-     * cancelled before completion it may leave partial data behind in Google
-     * Cloud Storage.
-     * @alias datastore.projects.export
-     * @memberOf! datastore(v1beta1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.projectId Project ID against which to make the request.
-     * @param {datastore(v1beta1).GoogleDatastoreAdminV1beta1ExportEntitiesRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    export(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/projects/{projectId}:export')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['projectId'],
-        pathParams: ['projectId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * datastore.projects.import
-        * @desc Imports entities into Google Cloud Datastore. Existing entities
-        * with the same key are overwritten. The import occurs in the background
-        * and its progress can be monitored and managed via the Operation
-        * resource that is created. If an ImportEntities operation is cancelled,
-        * it is possible that a subset of the data has already been imported to
-        * Cloud Datastore.
-        * @alias datastore.projects.import
-        * @memberOf! datastore(v1beta1)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.projectId Project ID against which to make the request.
-        * @param {datastore(v1beta1).GoogleDatastoreAdminV1beta1ImportEntitiesRequest} params.resource Request body data
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    import(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/projects/{projectId}:import')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['projectId'],
-        pathParams: ['projectId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }
+export class Datastore {
+  _options: GlobalOptions;
+  google: GoogleApis;
+  root = this;
 
-  };
+  projects: Resource$Projects;
+
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    this._options = options || {};
+    this.google = google;
+
+    this.projects = new Resource$Projects(this);
+  }
+}
+
+/**
+ * Metadata common to all Datastore Admin operations.
+ */
+export interface Schema$GoogleDatastoreAdminV1beta1CommonMetadata {
+  /**
+   * The time the operation ended, either successfully or otherwise.
+   */
+  endTime: string;
+  /**
+   * The client-assigned labels which were provided when the operation was
+   * created. May also include additional labels.
+   */
+  labels: any;
+  /**
+   * The type of the operation. Can be used as a filter in
+   * ListOperationsRequest.
+   */
+  operationType: string;
+  /**
+   * The time that work began on the operation.
+   */
+  startTime: string;
+  /**
+   * The current state of the Operation.
+   */
+  state: string;
 }
 /**
- * @typedef GoogleDatastoreAdminV1beta1CommonMetadata
- * @memberOf! datastore(v1beta1)
- * @type object
- * @property {string} endTime The time the operation ended, either successfully or otherwise.
- * @property {object} labels The client-assigned labels which were provided when the operation was created. May also include additional labels.
- * @property {string} operationType The type of the operation. Can be used as a filter in ListOperationsRequest.
- * @property {string} startTime The time that work began on the operation.
- * @property {string} state The current state of the Operation.
+ * Identifies a subset of entities in a project. This is specified as
+ * combinations of kinds and namespaces (either or both of which may be all, as
+ * described in the following examples). Example usage:  Entire project:
+ * kinds=[], namespace_ids=[]  Kinds Foo and Bar in all namespaces:
+ * kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[]  Kinds Foo and Bar
+ * only in the default namespace:   kinds=[&#39;Foo&#39;, &#39;Bar&#39;],
+ * namespace_ids=[&#39;&#39;]  Kinds Foo and Bar in both the default and Baz
+ * namespaces:   kinds=[&#39;Foo&#39;, &#39;Bar&#39;],
+ * namespace_ids=[&#39;&#39;, &#39;Baz&#39;]  The entire Baz namespace:
+ * kinds=[], namespace_ids=[&#39;Baz&#39;]
  */
+export interface Schema$GoogleDatastoreAdminV1beta1EntityFilter {
+  /**
+   * If empty, then this represents all kinds.
+   */
+  kinds: string[];
+  /**
+   * An empty list represents all namespaces. This is the preferred usage for
+   * projects that don&#39;t use namespaces.  An empty string element represents
+   * the default namespace. This should be used if the project has data in
+   * non-default namespaces, but doesn&#39;t want to include them. Each
+   * namespace in this list must be unique.
+   */
+  namespaceIds: string[];
+}
 /**
- * @typedef GoogleDatastoreAdminV1beta1EntityFilter
- * @memberOf! datastore(v1beta1)
- * @type object
- * @property {string[]} kinds If empty, then this represents all kinds.
- * @property {string[]} namespaceIds An empty list represents all namespaces. This is the preferred usage for projects that don&#39;t use namespaces.  An empty string element represents the default namespace. This should be used if the project has data in non-default namespaces, but doesn&#39;t want to include them. Each namespace in this list must be unique.
+ * Metadata for ExportEntities operations.
  */
+export interface Schema$GoogleDatastoreAdminV1beta1ExportEntitiesMetadata {
+  /**
+   * Metadata common to all Datastore Admin operations.
+   */
+  common: Schema$GoogleDatastoreAdminV1beta1CommonMetadata;
+  /**
+   * Description of which entities are being exported.
+   */
+  entityFilter: Schema$GoogleDatastoreAdminV1beta1EntityFilter;
+  /**
+   * Location for the export metadata and data files. This will be the same
+   * value as the
+   * google.datastore.admin.v1beta1.ExportEntitiesRequest.output_url_prefix
+   * field. The final output location is provided in
+   * google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url.
+   */
+  outputUrlPrefix: string;
+  /**
+   * An estimate of the number of bytes processed.
+   */
+  progressBytes: Schema$GoogleDatastoreAdminV1beta1Progress;
+  /**
+   * An estimate of the number of entities processed.
+   */
+  progressEntities: Schema$GoogleDatastoreAdminV1beta1Progress;
+}
 /**
- * @typedef GoogleDatastoreAdminV1beta1ExportEntitiesMetadata
- * @memberOf! datastore(v1beta1)
- * @type object
- * @property {datastore(v1beta1).GoogleDatastoreAdminV1beta1CommonMetadata} common Metadata common to all Datastore Admin operations.
- * @property {datastore(v1beta1).GoogleDatastoreAdminV1beta1EntityFilter} entityFilter Description of which entities are being exported.
- * @property {string} outputUrlPrefix Location for the export metadata and data files. This will be the same value as the google.datastore.admin.v1beta1.ExportEntitiesRequest.output_url_prefix field. The final output location is provided in google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url.
- * @property {datastore(v1beta1).GoogleDatastoreAdminV1beta1Progress} progressBytes An estimate of the number of bytes processed.
- * @property {datastore(v1beta1).GoogleDatastoreAdminV1beta1Progress} progressEntities An estimate of the number of entities processed.
+ * The request for google.datastore.admin.v1beta1.DatastoreAdmin.ExportEntities.
  */
+export interface Schema$GoogleDatastoreAdminV1beta1ExportEntitiesRequest {
+  /**
+   * Description of what data from the project is included in the export.
+   */
+  entityFilter: Schema$GoogleDatastoreAdminV1beta1EntityFilter;
+  /**
+   * Client-assigned labels.
+   */
+  labels: any;
+  /**
+   * Location for the export metadata and data files.  The full resource URL of
+   * the external storage location. Currently, only Google Cloud Storage is
+   * supported. So output_url_prefix should be of the form:
+   * `gs://BUCKET_NAME[/NAMESPACE_PATH]`, where `BUCKET_NAME` is the name of the
+   * Cloud Storage bucket and `NAMESPACE_PATH` is an optional Cloud Storage
+   * namespace path (this is not a Cloud Datastore namespace). For more
+   * information about Cloud Storage namespace paths, see [Object name
+   * considerations](https://cloud.google.com/storage/docs/naming#object-considerations).
+   * The resulting files will be nested deeper than the specified URL prefix.
+   * The final output URL will be provided in the
+   * google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url field.
+   * That value should be used for subsequent ImportEntities operations.  By
+   * nesting the data files deeper, the same Cloud Storage bucket can be used in
+   * multiple ExportEntities operations without conflict.
+   */
+  outputUrlPrefix: string;
+}
 /**
- * @typedef GoogleDatastoreAdminV1beta1ExportEntitiesRequest
- * @memberOf! datastore(v1beta1)
- * @type object
- * @property {datastore(v1beta1).GoogleDatastoreAdminV1beta1EntityFilter} entityFilter Description of what data from the project is included in the export.
- * @property {object} labels Client-assigned labels.
- * @property {string} outputUrlPrefix Location for the export metadata and data files.  The full resource URL of the external storage location. Currently, only Google Cloud Storage is supported. So output_url_prefix should be of the form: `gs://BUCKET_NAME[/NAMESPACE_PATH]`, where `BUCKET_NAME` is the name of the Cloud Storage bucket and `NAMESPACE_PATH` is an optional Cloud Storage namespace path (this is not a Cloud Datastore namespace). For more information about Cloud Storage namespace paths, see [Object name considerations](https://cloud.google.com/storage/docs/naming#object-considerations).  The resulting files will be nested deeper than the specified URL prefix. The final output URL will be provided in the google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url field. That value should be used for subsequent ImportEntities operations.  By nesting the data files deeper, the same Cloud Storage bucket can be used in multiple ExportEntities operations without conflict.
+ * The response for
+ * google.datastore.admin.v1beta1.DatastoreAdmin.ExportEntities.
  */
+export interface Schema$GoogleDatastoreAdminV1beta1ExportEntitiesResponse {
+  /**
+   * Location of the output metadata file. This can be used to begin an import
+   * into Cloud Datastore (this project or another project). See
+   * google.datastore.admin.v1beta1.ImportEntitiesRequest.input_url. Only
+   * present if the operation completed successfully.
+   */
+  outputUrl: string;
+}
 /**
- * @typedef GoogleDatastoreAdminV1beta1ExportEntitiesResponse
- * @memberOf! datastore(v1beta1)
- * @type object
- * @property {string} outputUrl Location of the output metadata file. This can be used to begin an import into Cloud Datastore (this project or another project). See google.datastore.admin.v1beta1.ImportEntitiesRequest.input_url. Only present if the operation completed successfully.
+ * Metadata for ImportEntities operations.
  */
+export interface Schema$GoogleDatastoreAdminV1beta1ImportEntitiesMetadata {
+  /**
+   * Metadata common to all Datastore Admin operations.
+   */
+  common: Schema$GoogleDatastoreAdminV1beta1CommonMetadata;
+  /**
+   * Description of which entities are being imported.
+   */
+  entityFilter: Schema$GoogleDatastoreAdminV1beta1EntityFilter;
+  /**
+   * The location of the import metadata file. This will be the same value as
+   * the google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url field.
+   */
+  inputUrl: string;
+  /**
+   * An estimate of the number of bytes processed.
+   */
+  progressBytes: Schema$GoogleDatastoreAdminV1beta1Progress;
+  /**
+   * An estimate of the number of entities processed.
+   */
+  progressEntities: Schema$GoogleDatastoreAdminV1beta1Progress;
+}
 /**
- * @typedef GoogleDatastoreAdminV1beta1ImportEntitiesMetadata
- * @memberOf! datastore(v1beta1)
- * @type object
- * @property {datastore(v1beta1).GoogleDatastoreAdminV1beta1CommonMetadata} common Metadata common to all Datastore Admin operations.
- * @property {datastore(v1beta1).GoogleDatastoreAdminV1beta1EntityFilter} entityFilter Description of which entities are being imported.
- * @property {string} inputUrl The location of the import metadata file. This will be the same value as the google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url field.
- * @property {datastore(v1beta1).GoogleDatastoreAdminV1beta1Progress} progressBytes An estimate of the number of bytes processed.
- * @property {datastore(v1beta1).GoogleDatastoreAdminV1beta1Progress} progressEntities An estimate of the number of entities processed.
+ * The request for google.datastore.admin.v1beta1.DatastoreAdmin.ImportEntities.
  */
+export interface Schema$GoogleDatastoreAdminV1beta1ImportEntitiesRequest {
+  /**
+   * Optionally specify which kinds/namespaces are to be imported. If provided,
+   * the list must be a subset of the EntityFilter used in creating the export,
+   * otherwise a FAILED_PRECONDITION error will be returned. If no filter is
+   * specified then all entities from the export are imported.
+   */
+  entityFilter: Schema$GoogleDatastoreAdminV1beta1EntityFilter;
+  /**
+   * The full resource URL of the external storage location. Currently, only
+   * Google Cloud Storage is supported. So input_url should be of the form:
+   * `gs://BUCKET_NAME[/NAMESPACE_PATH]/OVERALL_EXPORT_METADATA_FILE`, where
+   * `BUCKET_NAME` is the name of the Cloud Storage bucket, `NAMESPACE_PATH` is
+   * an optional Cloud Storage namespace path (this is not a Cloud Datastore
+   * namespace), and `OVERALL_EXPORT_METADATA_FILE` is the metadata file written
+   * by the ExportEntities operation. For more information about Cloud Storage
+   * namespace paths, see [Object name
+   * considerations](https://cloud.google.com/storage/docs/naming#object-considerations).
+   * For more information, see
+   * google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url.
+   */
+  inputUrl: string;
+  /**
+   * Client-assigned labels.
+   */
+  labels: any;
+}
 /**
- * @typedef GoogleDatastoreAdminV1beta1ImportEntitiesRequest
- * @memberOf! datastore(v1beta1)
- * @type object
- * @property {datastore(v1beta1).GoogleDatastoreAdminV1beta1EntityFilter} entityFilter Optionally specify which kinds/namespaces are to be imported. If provided, the list must be a subset of the EntityFilter used in creating the export, otherwise a FAILED_PRECONDITION error will be returned. If no filter is specified then all entities from the export are imported.
- * @property {string} inputUrl The full resource URL of the external storage location. Currently, only Google Cloud Storage is supported. So input_url should be of the form: `gs://BUCKET_NAME[/NAMESPACE_PATH]/OVERALL_EXPORT_METADATA_FILE`, where `BUCKET_NAME` is the name of the Cloud Storage bucket, `NAMESPACE_PATH` is an optional Cloud Storage namespace path (this is not a Cloud Datastore namespace), and `OVERALL_EXPORT_METADATA_FILE` is the metadata file written by the ExportEntities operation. For more information about Cloud Storage namespace paths, see [Object name considerations](https://cloud.google.com/storage/docs/naming#object-considerations).  For more information, see google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url.
- * @property {object} labels Client-assigned labels.
+ * Measures the progress of a particular metric.
  */
+export interface Schema$GoogleDatastoreAdminV1beta1Progress {
+  /**
+   * The amount of work that has been completed. Note that this may be greater
+   * than work_estimated.
+   */
+  workCompleted: string;
+  /**
+   * An estimate of how much work needs to be performed. May be zero if the work
+   * estimate is unavailable.
+   */
+  workEstimated: string;
+}
 /**
- * @typedef GoogleDatastoreAdminV1beta1Progress
- * @memberOf! datastore(v1beta1)
- * @type object
- * @property {string} workCompleted The amount of work that has been completed. Note that this may be greater than work_estimated.
- * @property {string} workEstimated An estimate of how much work needs to be performed. May be zero if the work estimate is unavailable.
+ * This resource represents a long-running operation that is the result of a
+ * network API call.
  */
+export interface Schema$GoogleLongrunningOperation {
+  /**
+   * If the value is `false`, it means the operation is still in progress. If
+   * `true`, the operation is completed, and either `error` or `response` is
+   * available.
+   */
+  done: boolean;
+  /**
+   * The error result of the operation in case of failure or cancellation.
+   */
+  error: Schema$Status;
+  /**
+   * Service-specific metadata associated with the operation.  It typically
+   * contains progress information and common metadata such as create time. Some
+   * services might not provide such metadata.  Any method that returns a
+   * long-running operation should document the metadata type, if any.
+   */
+  metadata: any;
+  /**
+   * The server-assigned name, which is only unique within the same service that
+   * originally returns it. If you use the default HTTP mapping, the `name`
+   * should have the format of `operations/some/unique/name`.
+   */
+  name: string;
+  /**
+   * The normal response of the operation in case of success.  If the original
+   * method returns no data on success, such as `Delete`, the response is
+   * `google.protobuf.Empty`.  If the original method is standard
+   * `Get`/`Create`/`Update`, the response should be the resource.  For other
+   * methods, the response should have the type `XxxResponse`, where `Xxx` is
+   * the original method name.  For example, if the original method name is
+   * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+   */
+  response: any;
+}
 /**
- * @typedef GoogleLongrunningOperation
- * @memberOf! datastore(v1beta1)
- * @type object
- * @property {boolean} done If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
- * @property {datastore(v1beta1).Status} error The error result of the operation in case of failure or cancellation.
- * @property {object} metadata Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
- * @property {string} name The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should have the format of `operations/some/unique/name`.
- * @property {object} response The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+ * The `Status` type defines a logical error model that is suitable for
+ * different programming environments, including REST APIs and RPC APIs. It is
+ * used by [gRPC](https://github.com/grpc). The error model is designed to be:
+ * - Simple to use and understand for most users - Flexible enough to meet
+ * unexpected needs  # Overview  The `Status` message contains three pieces of
+ * data: error code, error message, and error details. The error code should be
+ * an enum value of google.rpc.Code, but it may accept additional error codes if
+ * needed.  The error message should be a developer-facing English message that
+ * helps developers *understand* and *resolve* the error. If a localized
+ * user-facing error message is needed, put the localized message in the error
+ * details or localize it in the client. The optional error details may contain
+ * arbitrary information about the error. There is a predefined set of error
+ * detail types in the package `google.rpc` that can be used for common error
+ * conditions.  # Language mapping  The `Status` message is the logical
+ * representation of the error model, but it is not necessarily the actual wire
+ * format. When the `Status` message is exposed in different client libraries
+ * and different wire protocols, it can be mapped differently. For example, it
+ * will likely be mapped to some exceptions in Java, but more likely mapped to
+ * some error codes in C.  # Other uses  The error model and the `Status`
+ * message can be used in a variety of environments, either with or without
+ * APIs, to provide a consistent developer experience across different
+ * environments.  Example uses of this error model include:  - Partial errors.
+ * If a service needs to return partial errors to the client,     it may embed
+ * the `Status` in the normal response to indicate the partial     errors.  -
+ * Workflow errors. A typical workflow has multiple steps. Each step may
+ * have a `Status` message for error reporting.  - Batch operations. If a client
+ * uses batch request and batch response, the     `Status` message should be
+ * used directly inside batch response, one for     each error sub-response.  -
+ * Asynchronous operations. If an API call embeds asynchronous operation
+ * results in its response, the status of those operations should be
+ * represented directly using the `Status` message.  - Logging. If some API
+ * errors are stored in logs, the message `Status` could     be used directly
+ * after any stripping needed for security/privacy reasons.
  */
-/**
- * @typedef Status
- * @memberOf! datastore(v1beta1)
- * @type object
- * @property {integer} code The status code, which should be an enum value of google.rpc.Code.
- * @property {object[]} details A list of messages that carry the error details.  There is a common set of message types for APIs to use.
- * @property {string} message A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
- */
+export interface Schema$Status {
+  /**
+   * The status code, which should be an enum value of google.rpc.Code.
+   */
+  code: number;
+  /**
+   * A list of messages that carry the error details.  There is a common set of
+   * message types for APIs to use.
+   */
+  details: any[];
+  /**
+   * A developer-facing error message, which should be in English. Any
+   * user-facing error message should be localized and sent in the
+   * google.rpc.Status.details field, or localized by the client.
+   */
+  message: string;
+}
 
-export = Datastore;
+export class Resource$Projects {
+  root: Datastore;
+  constructor(root: Datastore) {
+    this.root = root;
+  }
+
+  /**
+   * datastore.projects.export
+   * @desc Exports a copy of all or a subset of entities from Google Cloud
+   * Datastore to another storage system, such as Google Cloud Storage. Recent
+   * updates to entities may not be reflected in the export. The export occurs
+   * in the background and its progress can be monitored and managed via the
+   * Operation resource that is created. The output of an export may only be
+   * used once the associated operation is done. If an export operation is
+   * cancelled before completion it may leave partial data behind in Google
+   * Cloud Storage.
+   * @alias datastore.projects.export
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.projectId Project ID against which to make the request.
+   * @param {().GoogleDatastoreAdminV1beta1ExportEntitiesRequest} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  export =
+      (params: any,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+       callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/v1beta1/projects/{projectId}:export')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'POST'
+              },
+              options),
+          params,
+          requiredParams: ['projectId'],
+          pathParams: ['projectId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+            parameters, callback!);
+      };
+
+
+  /**
+   * datastore.projects.import
+   * @desc Imports entities into Google Cloud Datastore. Existing entities with
+   * the same key are overwritten. The import occurs in the background and its
+   * progress can be monitored and managed via the Operation resource that is
+   * created. If an ImportEntities operation is cancelled, it is possible that a
+   * subset of the data has already been imported to Cloud Datastore.
+   * @alias datastore.projects.import
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.projectId Project ID against which to make the request.
+   * @param {().GoogleDatastoreAdminV1beta1ImportEntitiesRequest} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>) => {if(typeof options === 'function') {
+    callback = options;
+    options = {};
+  } options = options || {}; const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1beta1/projects/{projectId}:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['projectId'], pathParams: ['projectId'], context: this.root}; createAPIRequest<Schema$GoogleLongrunningOperation>(parameters, callback!);};
+}

@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
 
@@ -21,7 +22,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
-
+// tslint:disable: class-name
+// tslint:disable: variable-name
+// tslint:disable: jsdoc-format
 
 /**
  * Google Play Custom App Publishing API
@@ -38,30 +41,69 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Playcustomapp
  */
-function Playcustomapp(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.accounts = {
-    customApps: {
-      /**
-       * playcustomapp.accounts.customApps.create
-       * @desc Create and publish a new custom app.
-       * @alias playcustomapp.accounts.customApps.create
-       * @memberOf! playcustomapp(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.account Developer account ID.
-       * @param  {object} params.resource Media resource metadata
-       * @param {object} params.media Media object
-       * @param {string} params.media.mimeType Media mime-type
-       * @param {string|object} params.media.body Media body contents
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      create(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
+export class Playcustomapp {
+  _options: GlobalOptions;
+  google: GoogleApis;
+  root = this;
+
+  accounts: Resource$Accounts;
+
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    this._options = options || {};
+    this.google = google;
+
+    this.accounts = new Resource$Accounts(this);
+  }
+}
+
+/**
+ * This resource represents a custom app.
+ */
+export interface Schema$CustomApp {
+  /**
+   * Default listing language in BCP 47 format.
+   */
+  languageCode: string;
+  /**
+   * Title for the Android app.
+   */
+  title: string;
+}
+
+export class Resource$Accounts {
+  root: Playcustomapp;
+  customApps: Resource$Accounts$Customapps;
+  constructor(root: Playcustomapp) {
+    this.root = root;
+    this.customApps = new Resource$Accounts$Customapps(root);
+  }
+}
+export class Resource$Accounts$Customapps {
+  root: Playcustomapp;
+  constructor(root: Playcustomapp) {
+    this.root = root;
+  }
+
+  /**
+   * playcustomapp.accounts.customApps.create
+   * @desc Create and publish a new custom app.
+   * @alias playcustomapp.accounts.customApps.create
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.account Developer account ID.
+   * @param  {object} params.resource Media resource metadata
+   * @param {object} params.media Media object
+   * @param {string} params.media.mimeType Media mime-type
+   * @param {string|object} params.media.body Media body contents
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  create =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$CustomApp>,
+       callback?: BodyResponseCallback<Schema$CustomApp>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -83,20 +125,8 @@ function Playcustomapp(options: GlobalOptions) {
                         .replace(/([^:]\/)\/+/g, '$1'),
           requiredParams: ['account'],
           pathParams: ['account'],
-          context: self
+          context: this.root
         };
-        return createAPIRequest(parameters, callback!);
-      }
-
-    }
-  };
+        createAPIRequest<Schema$CustomApp>(parameters, callback!);
+      };
 }
-/**
- * @typedef CustomApp
- * @memberOf! playcustomapp(v1)
- * @type object
- * @property {string} languageCode Default listing language in BCP 47 format.
- * @property {string} title Title for the Android app.
- */
-
-export = Playcustomapp;

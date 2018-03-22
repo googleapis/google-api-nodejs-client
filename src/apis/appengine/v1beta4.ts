@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
 
@@ -21,7 +22,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
-
+// tslint:disable: class-name
+// tslint:disable: variable-name
+// tslint:disable: jsdoc-format
 
 /**
  * App Engine Admin API
@@ -39,143 +42,1554 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta4
  * @param {object=} options Options for Appengine
  */
-function Appengine(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.apps = {
-    /**
-     * appengine.apps.create
-     * @desc Creates an App Engine application for a Google Cloud Platform
-     * project. Required fields: id - The ID of the target Cloud Platform
-     * project. location - The region
-     * (https://cloud.google.com/appengine/docs/locations) where you want the
-     * App Engine application located.For more information about App Engine
-     * applications, see Managing Projects, Applications, and Billing
-     * (https://cloud.google.com/appengine/docs/python/console/).
-     * @alias appengine.apps.create
-     * @memberOf! appengine(v1beta4)
-     *
-     * @param {object} params Parameters for request
-     * @param {appengine(v1beta4).Application} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    create(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta4/apps').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
+export class Appengine {
+  _options: GlobalOptions;
+  google: GoogleApis;
+  root = this;
+
+  apps: Resource$Apps;
+
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    this._options = options || {};
+    this.google = google;
+
+    this.apps = new Resource$Apps(this);
+  }
+}
+
+/**
+ * Google Cloud Endpoints
+ * (https://cloud.google.com/appengine/docs/python/endpoints/) configuration for
+ * API handlers.
+ */
+export interface Schema$ApiConfigHandler {
+  /**
+   * Action to take when users access resources that require authentication.
+   * Defaults to redirect.
+   */
+  authFailAction: string;
+  /**
+   * Level of login required to access this resource. Defaults to optional.
+   */
+  login: string;
+  /**
+   * Path to the script from the application root directory.
+   */
+  script: string;
+  /**
+   * Security (HTTPS) enforcement for this URL.
+   */
+  securityLevel: string;
+  /**
+   * URL to serve the endpoint at.
+   */
+  url: string;
+}
+/**
+ * Uses Google Cloud Endpoints to handle requests.
+ */
+export interface Schema$ApiEndpointHandler {
+  /**
+   * Path to the script from the application root directory.
+   */
+  scriptPath: string;
+}
+/**
+ * An Application resource contains the top-level configuration of an App Engine
+ * application.
+ */
+export interface Schema$Application {
+  /**
+   * Google Apps authentication domain that controls which users can access this
+   * application.Defaults to open access for any Google Account.
+   */
+  authDomain: string;
+  /**
+   * Google Cloud Storage bucket that can be used for storing files associated
+   * with this application. This bucket is associated with the application and
+   * can be used by the gcloud deployment commands.@OutputOnly
+   */
+  codeBucket: string;
+  /**
+   * Google Cloud Storage bucket that can be used by this application to store
+   * content.@OutputOnly
+   */
+  defaultBucket: string;
+  /**
+   * Cookie expiration policy for this application.
+   */
+  defaultCookieExpiration: string;
+  /**
+   * Hostname used to reach the application, as resolved by App
+   * Engine.@OutputOnly
+   */
+  defaultHostname: string;
+  /**
+   * HTTP path dispatch rules for requests to the application that do not
+   * explicitly target a module or version. Rules are
+   * order-dependent.@OutputOnly
+   */
+  dispatchRules: Schema$UrlDispatchRule[];
+  iap: Schema$IdentityAwareProxy;
+  /**
+   * Identifier of the Application resource. This identifier is equivalent to
+   * the project ID of the Google Cloud Platform project where you want to
+   * deploy your application. Example: myapp.
+   */
+  id: string;
+  /**
+   * Location from which this application will be run. Application instances
+   * will run out of data centers in the chosen location, which is also where
+   * all of the application&#39;s end user content is stored.Defaults to
+   * us-central.Options are:us-central - Central USeurope-west - Western
+   * Europeus-east1 - Eastern US
+   */
+  location: string;
+  /**
+   * Full path to the Application resource in the API. Example:
+   * apps/myapp.@OutputOnly
+   */
+  name: string;
+}
+/**
+ * Automatic scaling is based on request rate, response latencies, and other
+ * application metrics.
+ */
+export interface Schema$AutomaticScaling {
+  /**
+   * Amount of time that the Autoscaler
+   * (https://cloud.google.com/compute/docs/autoscaler/) should wait between
+   * changes to the number of virtual machines. Only applicable for VM runtimes.
+   */
+  coolDownPeriod: string;
+  /**
+   * Target scaling by CPU usage.
+   */
+  cpuUtilization: Schema$CpuUtilization;
+  /**
+   * Target scaling by disk usage.
+   */
+  diskUtilization: Schema$DiskUtilization;
+  /**
+   * Number of concurrent requests an automatic scaling instance can accept
+   * before the scheduler spawns a new instance.Defaults to a runtime-specific
+   * value.
+   */
+  maxConcurrentRequests: number;
+  /**
+   * Maximum number of idle instances that should be maintained for this
+   * version.
+   */
+  maxIdleInstances: number;
+  /**
+   * Maximum amount of time that a request should wait in the pending queue
+   * before starting a new instance to handle it.
+   */
+  maxPendingLatency: string;
+  /**
+   * Maximum number of instances that should be started to handle requests.
+   */
+  maxTotalInstances: number;
+  /**
+   * Minimum number of idle instances that should be maintained for this
+   * version. Only applicable for the default version of a module.
+   */
+  minIdleInstances: number;
+  /**
+   * Minimum amount of time a request should wait in the pending queue before
+   * starting a new instance to handle it.
+   */
+  minPendingLatency: string;
+  /**
+   * Minimum number of instances that should be maintained for this version.
+   */
+  minTotalInstances: number;
+  /**
+   * Target scaling by network usage.
+   */
+  networkUtilization: Schema$NetworkUtilization;
+  /**
+   * Target scaling by request utilization.
+   */
+  requestUtilization: Schema$RequestUtilization;
+}
+/**
+ * A module with basic scaling will create an instance when the application
+ * receives a request. The instance will be turned down when the app becomes
+ * idle. Basic scaling is ideal for work that is intermittent or driven by user
+ * activity.
+ */
+export interface Schema$BasicScaling {
+  /**
+   * Duration of time after the last request that an instance must wait before
+   * the instance is shut down.
+   */
+  idleTimeout: string;
+  /**
+   * Maximum number of instances to create for this version.
+   */
+  maxInstances: number;
+}
+/**
+ * Docker image that is used to create a container and start a VM instance for
+ * the version that you deploy. Only applicable for instances running in the App
+ * Engine flexible environment.
+ */
+export interface Schema$ContainerInfo {
+  /**
+   * URI to the hosted container image in Google Container Registry. The URI
+   * must be fully qualified and include a tag or digest. Examples:
+   * &quot;gcr.io/my-project/image:tag&quot; or
+   * &quot;gcr.io/my-project/image@digest&quot;
+   */
+  image: string;
+}
+/**
+ * Target scaling by CPU usage.
+ */
+export interface Schema$CpuUtilization {
+  /**
+   * Period of time over which CPU utilization is calculated.
+   */
+  aggregationWindowLength: string;
+  /**
+   * Target CPU utilization ratio to maintain when scaling. Must be between 0
+   * and 1.
+   */
+  targetUtilization: number;
+}
+/**
+ * Metadata for the given google.longrunning.Operation during a
+ * google.appengine.v1.CreateVersionRequest.
+ */
+export interface Schema$CreateVersionMetadataV1 {
+  /**
+   * The Cloud Build ID if one was created as part of the version create.
+   * @OutputOnly
+   */
+  cloudBuildId: string;
+}
+/**
+ * Metadata for the given google.longrunning.Operation during a
+ * google.appengine.v1alpha.CreateVersionRequest.
+ */
+export interface Schema$CreateVersionMetadataV1Alpha {
+  /**
+   * The Cloud Build ID if one was created as part of the version create.
+   * @OutputOnly
+   */
+  cloudBuildId: string;
+}
+/**
+ * Metadata for the given google.longrunning.Operation during a
+ * google.appengine.v1beta.CreateVersionRequest.
+ */
+export interface Schema$CreateVersionMetadataV1Beta {
+  /**
+   * The Cloud Build ID if one was created as part of the version create.
+   * @OutputOnly
+   */
+  cloudBuildId: string;
+}
+/**
+ * Request message for Instances.DebugInstance.
+ */
+export interface Schema$DebugInstanceRequest {
+  /**
+   * Public SSH key to add to the instance. Examples: [USERNAME]:ssh-rsa
+   * [KEY_VALUE] [USERNAME] [USERNAME]:ssh-rsa [KEY_VALUE] google-ssh
+   * {&quot;userName&quot;:&quot;[USERNAME]&quot;,&quot;expireOn&quot;:&quot;[EXPIRE_TIME]&quot;}For
+   * more information, see Adding and Removing SSH Keys
+   * (https://cloud.google.com/compute/docs/instances/adding-removing-ssh-keys).
+   */
+  sshKey: string;
+}
+/**
+ * Code and application artifacts used to deploy a version to App Engine.
+ */
+export interface Schema$Deployment {
+  /**
+   * The Docker image for the container that runs the version. Only applicable
+   * for instances running in the App Engine flexible environment.
+   */
+  container: Schema$ContainerInfo;
+  /**
+   * Manifest of the files stored in Google Cloud Storage that are included as
+   * part of this version. All files must be readable using the credentials
+   * supplied with this call.
+   */
+  files: any;
+  /**
+   * Origin of the source code for this deployment. There can be more than one
+   * source reference per version if source code is distributed among multiple
+   * repositories.
+   */
+  sourceReferences: Schema$SourceReference[];
+}
+/**
+ * Target scaling by disk usage. Only applicable for VM runtimes.
+ */
+export interface Schema$DiskUtilization {
+  /**
+   * Target bytes read per second.
+   */
+  targetReadBytesPerSec: number;
+  /**
+   * Target ops read per second.
+   */
+  targetReadOpsPerSec: number;
+  /**
+   * Target bytes written per second.
+   */
+  targetWriteBytesPerSec: number;
+  /**
+   * Target ops written per second.
+   */
+  targetWriteOpsPerSec: number;
+}
+/**
+ * Cloud Endpoints (https://cloud.google.com/endpoints) configuration. The
+ * Endpoints API Service provides tooling for serving Open API and gRPC
+ * endpoints via an NGINX proxy. Only valid for App Engine Flexible environment
+ * deployments..The fields here refer to the name and configuration id of a
+ * &quot;service&quot; resource in the Service Management API
+ * (https://cloud.google.com/service-management/overview).
+ */
+export interface Schema$EndpointsApiService {
+  /**
+   * Endpoints service configuration id as specified by the Service Management
+   * API. For example &quot;2016-09-19r1&quot;By default, the Endpoints service
+   * configuration id is fixed and config_id must be specified. To keep the
+   * Endpoints service configuration id updated with each rollout, specify
+   * RolloutStrategy.MANAGED and omit config_id.
+   */
+  configId: string;
+  /**
+   * Endpoints service name which is the name of the &quot;service&quot;
+   * resource in the Service Management API. For example
+   * &quot;myapi.endpoints.myproject.cloud.goog&quot;
+   */
+  name: string;
+  /**
+   * Endpoints rollout strategy. If FIXED, config_id must be specified. If
+   * MANAGED, config_id must be omitted.
+   */
+  rolloutStrategy: string;
+}
+/**
+ * Custom static error page to be served when an error occurs.
+ */
+export interface Schema$ErrorHandler {
+  /**
+   * Error condition this handler applies to.
+   */
+  errorCode: string;
+  /**
+   * MIME type of file. Defaults to text/html.
+   */
+  mimeType: string;
+  /**
+   * Static file content to be served for this error.
+   */
+  staticFile: string;
+}
+/**
+ * Single source file that is part of the version to be deployed. Each source
+ * file that is deployed must be specified separately.
+ */
+export interface Schema$FileInfo {
+  /**
+   * The MIME type of the file.Defaults to the value from Google Cloud Storage.
+   */
+  mimeType: string;
+  /**
+   * The SHA1 hash of the file, in hex.
+   */
+  sha1Sum: string;
+  /**
+   * URL source to use to fetch this file. Must be a URL to a resource in Google
+   * Cloud Storage in the form
+   * &#39;http(s)://storage.googleapis.com/&lt;bucket&gt;/&lt;object&gt;&#39;.
+   */
+  sourceUrl: string;
+}
+/**
+ * Health checking configuration for VM instances. Unhealthy instances are
+ * killed and replaced with new instances. Only applicable for instances in App
+ * Engine flexible environment.
+ */
+export interface Schema$HealthCheck {
+  /**
+   * Interval between health checks.
+   */
+  checkInterval: string;
+  /**
+   * Whether to explicitly disable health checks for this instance.
+   */
+  disableHealthCheck: boolean;
+  /**
+   * Number of consecutive successful health checks required before receiving
+   * traffic.
+   */
+  healthyThreshold: number;
+  /**
+   * Host header to send when performing an HTTP health check. Example:
+   * &quot;myapp.appspot.com&quot;
+   */
+  host: string;
+  /**
+   * Number of consecutive failed health checks required before an instance is
+   * restarted.
+   */
+  restartThreshold: number;
+  /**
+   * Time before the health check is considered failed.
+   */
+  timeout: string;
+  /**
+   * Number of consecutive failed health checks required before removing
+   * traffic.
+   */
+  unhealthyThreshold: number;
+}
+/**
+ * Identity-Aware Proxy
+ */
+export interface Schema$IdentityAwareProxy {
+  /**
+   * Whether the serving infrastructure will authenticate and authorize all
+   * incoming requests.If true, the oauth2_client_id and oauth2_client_secret
+   * fields must be non-empty.
+   */
+  enabled: boolean;
+  /**
+   * OAuth2 client ID to use for the authentication flow.
+   */
+  oauth2ClientId: string;
+  /**
+   * For security reasons, this value cannot be retrieved via the API. Instead,
+   * the SHA-256 hash of the value is returned in the
+   * oauth2_client_secret_sha256 field.@InputOnly
+   */
+  oauth2ClientSecret: string;
+  /**
+   * Hex-encoded SHA-256 hash of the client secret.@OutputOnly
+   */
+  oauth2ClientSecretSha256: string;
+}
+/**
+ * An Instance resource is the computing unit that App Engine uses to
+ * automatically scale an application.
+ */
+export interface Schema$Instance {
+  /**
+   * App Engine release this instance is running on.@OutputOnly
+   */
+  appEngineRelease: string;
+  /**
+   * Availability of the instance.@OutputOnly
+   */
+  availability: string;
+  /**
+   * Average latency (ms) over the last minute.@OutputOnly
+   */
+  averageLatency: number;
+  /**
+   * Number of errors since this instance was started.@OutputOnly
+   */
+  errors: number;
+  /**
+   * Relative name of the instance within the version. Example:
+   * instance-1.@OutputOnly
+   */
+  id: string;
+  /**
+   * Total memory in use (bytes).@OutputOnly
+   */
+  memoryUsage: string;
+  /**
+   * Full path to the Instance resource in the API. Example:
+   * apps/myapp/modules/default/versions/v1/instances/instance-1.@OutputOnly
+   */
+  name: string;
+  /**
+   * Average queries per second (QPS) over the last minute.@OutputOnly
+   */
+  qps: number;
+  /**
+   * Number of requests since this instance was started.@OutputOnly
+   */
+  requests: number;
+  /**
+   * Time that this instance was started.@OutputOnly
+   */
+  startTimestamp: string;
+  /**
+   * Virtual machine ID of this instance. Only applicable for instances in App
+   * Engine flexible environment.@OutputOnly
+   */
+  vmId: string;
+  /**
+   * The IP address of this instance. Only applicable for instances in App
+   * Engine flexible environment.@OutputOnly
+   */
+  vmIp: string;
+  /**
+   * Name of the virtual machine where this instance lives. Only applicable for
+   * instances in App Engine flexible environment.@OutputOnly
+   */
+  vmName: string;
+  /**
+   * Status of the virtual machine where this instance lives. Only applicable
+   * for instances in App Engine flexible environment.@OutputOnly
+   */
+  vmStatus: string;
+  /**
+   * Whether this instance is in debug mode. Only applicable for instances in
+   * App Engine flexible environment.@OutputOnly
+   */
+  vmUnlocked: boolean;
+  /**
+   * Zone where the virtual machine is located. Only applicable for instances in
+   * App Engine flexible environment.@OutputOnly
+   */
+  vmZoneName: string;
+}
+/**
+ * Third-party Python runtime library that is required by the application.
+ */
+export interface Schema$Library {
+  /**
+   * Name of the library. Example: &quot;django&quot;.
+   */
+  name: string;
+  /**
+   * Version of the library to select, or &quot;latest&quot;.
+   */
+  version: string;
+}
+/**
+ * Response message for Instances.ListInstances.
+ */
+export interface Schema$ListInstancesResponse {
+  /**
+   * The instances belonging to the requested version.
+   */
+  instances: Schema$Instance[];
+  /**
+   * Continuation token for fetching the next page of results.
+   */
+  nextPageToken: string;
+}
+/**
+ * The response message for Locations.ListLocations.
+ */
+export interface Schema$ListLocationsResponse {
+  /**
+   * A list of locations that matches the specified filter in the request.
+   */
+  locations: Schema$Location[];
+  /**
+   * The standard List next-page token.
+   */
+  nextPageToken: string;
+}
+/**
+ * Response message for Modules.ListModules.
+ */
+export interface Schema$ListModulesResponse {
+  /**
+   * The modules belonging to the requested application.
+   */
+  modules: Schema$Module[];
+  /**
+   * Continuation token for fetching the next page of results.
+   */
+  nextPageToken: string;
+}
+/**
+ * The response message for Operations.ListOperations.
+ */
+export interface Schema$ListOperationsResponse {
+  /**
+   * The standard List next-page token.
+   */
+  nextPageToken: string;
+  /**
+   * A list of operations that matches the specified filter in the request.
+   */
+  operations: Schema$Operation[];
+}
+/**
+ * Response message for Versions.ListVersions.
+ */
+export interface Schema$ListVersionsResponse {
+  /**
+   * Continuation token for fetching the next page of results.
+   */
+  nextPageToken: string;
+  /**
+   * The versions belonging to the requested module.
+   */
+  versions: Schema$Version[];
+}
+/**
+ * A resource that represents Google Cloud Platform location.
+ */
+export interface Schema$Location {
+  /**
+   * The friendly name for this location, typically a nearby city name. For
+   * example, &quot;Tokyo&quot;.
+   */
+  displayName: string;
+  /**
+   * Cross-service attributes for the location. For example
+   * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+   */
+  labels: any;
+  /**
+   * The canonical id for this location. For example: &quot;us-east1&quot;.
+   */
+  locationId: string;
+  /**
+   * Service-specific metadata. For example the available capacity at the given
+   * location.
+   */
+  metadata: any;
+  /**
+   * Resource name for the location, which may vary between implementations. For
+   * example: &quot;projects/example-project/locations/us-east1&quot;
+   */
+  name: string;
+}
+/**
+ * Metadata for the given google.cloud.location.Location.
+ */
+export interface Schema$LocationMetadata {
+  /**
+   * App Engine flexible environment is available in the given
+   * location.@OutputOnly
+   */
+  flexibleEnvironmentAvailable: boolean;
+  /**
+   * App Engine standard environment is available in the given
+   * location.@OutputOnly
+   */
+  standardEnvironmentAvailable: boolean;
+}
+/**
+ * A module with manual scaling runs continuously, allowing you to perform
+ * complex initialization and rely on the state of its memory over time.
+ */
+export interface Schema$ManualScaling {
+  /**
+   * Number of instances to assign to the module at the start. This number can
+   * later be altered by using the Modules API
+   * (https://cloud.google.com/appengine/docs/python/modules/functions)
+   * set_num_instances() function.
+   */
+  instances: number;
+}
+/**
+ * A Module resource is a logical component of an application that can share
+ * state and communicate in a secure fashion with other modules. For example, an
+ * application that handles customer requests might include separate modules to
+ * handle tasks such as backend data analysis or API requests from mobile
+ * devices. Each module has a collection of versions that define a specific set
+ * of code used to implement the functionality of that module.
+ */
+export interface Schema$Module {
+  /**
+   * Relative name of the module within the application. Example:
+   * default.@OutputOnly
+   */
+  id: string;
+  /**
+   * Full path to the Module resource in the API. Example:
+   * apps/myapp/modules/default.@OutputOnly
+   */
+  name: string;
+  /**
+   * Mapping that defines fractional HTTP traffic diversion to different
+   * versions within the module.
+   */
+  split: Schema$TrafficSplit;
+}
+/**
+ * Extra network settings. Only applicable for VM runtimes.
+ */
+export interface Schema$Network {
+  /**
+   * List of ports, or port pairs, to forward from the virtual machine to the
+   * application container.
+   */
+  forwardedPorts: string[];
+  /**
+   * Tag to apply to the VM instance during creation.
+   */
+  instanceTag: string;
+  /**
+   * Google Cloud Platform network where the virtual machines are created.
+   * Specify the short name, not the resource path.Defaults to default.
+   */
+  name: string;
+}
+/**
+ * Target scaling by network usage. Only applicable for VM runtimes.
+ */
+export interface Schema$NetworkUtilization {
+  /**
+   * Target bytes received per second.
+   */
+  targetReceivedBytesPerSec: number;
+  /**
+   * Target packets received per second.
+   */
+  targetReceivedPacketsPerSec: number;
+  /**
+   * Target bytes sent per second.
+   */
+  targetSentBytesPerSec: number;
+  /**
+   * Target packets sent per second.
+   */
+  targetSentPacketsPerSec: number;
+}
+/**
+ * This resource represents a long-running operation that is the result of a
+ * network API call.
+ */
+export interface Schema$Operation {
+  /**
+   * If the value is false, it means the operation is still in progress. If
+   * true, the operation is completed, and either error or response is
+   * available.
+   */
+  done: boolean;
+  /**
+   * The error result of the operation in case of failure or cancellation.
+   */
+  error: Schema$Status;
+  /**
+   * Service-specific metadata associated with the operation. It typically
+   * contains progress information and common metadata such as create time. Some
+   * services might not provide such metadata. Any method that returns a
+   * long-running operation should document the metadata type, if any.
+   */
+  metadata: any;
+  /**
+   * The server-assigned name, which is only unique within the same service that
+   * originally returns it. If you use the default HTTP mapping, the name should
+   * have the format of operations/some/unique/name.
+   */
+  name: string;
+  /**
+   * The normal response of the operation in case of success. If the original
+   * method returns no data on success, such as Delete, the response is
+   * google.protobuf.Empty. If the original method is standard
+   * Get/Create/Update, the response should be the resource. For other methods,
+   * the response should have the type XxxResponse, where Xxx is the original
+   * method name. For example, if the original method name is TakeSnapshot(),
+   * the inferred response type is TakeSnapshotResponse.
+   */
+  response: any;
+}
+/**
+ * Metadata for the given google.longrunning.Operation.
+ */
+export interface Schema$OperationMetadata {
+  /**
+   * Timestamp that this operation completed.@OutputOnly
+   */
+  endTime: string;
+  /**
+   * Timestamp that this operation was created.@OutputOnly
+   */
+  insertTime: string;
+  /**
+   * API method that initiated this operation. Example:
+   * google.appengine.v1beta4.Version.CreateVersion.@OutputOnly
+   */
+  method: string;
+  /**
+   * Type of this operation. Deprecated, use method field instead. Example:
+   * &quot;create_version&quot;.@OutputOnly
+   */
+  operationType: string;
+  /**
+   * Name of the resource that this operation is acting on. Example:
+   * apps/myapp/modules/default.@OutputOnly
+   */
+  target: string;
+  /**
+   * User who requested this operation.@OutputOnly
+   */
+  user: string;
+}
+/**
+ * Metadata for the given google.longrunning.Operation.
+ */
+export interface Schema$OperationMetadataV1 {
+  createVersionMetadata: Schema$CreateVersionMetadataV1;
+  /**
+   * Time that this operation completed.@OutputOnly
+   */
+  endTime: string;
+  /**
+   * Ephemeral message that may change every time the operation is polled.
+   * @OutputOnly
+   */
+  ephemeralMessage: string;
+  /**
+   * Time that this operation was created.@OutputOnly
+   */
+  insertTime: string;
+  /**
+   * API method that initiated this operation. Example:
+   * google.appengine.v1.Versions.CreateVersion.@OutputOnly
+   */
+  method: string;
+  /**
+   * Name of the resource that this operation is acting on. Example:
+   * apps/myapp/services/default.@OutputOnly
+   */
+  target: string;
+  /**
+   * User who requested this operation.@OutputOnly
+   */
+  user: string;
+  /**
+   * Durable messages that persist on every operation poll. @OutputOnly
+   */
+  warning: string[];
+}
+/**
+ * Metadata for the given google.longrunning.Operation.
+ */
+export interface Schema$OperationMetadataV1Alpha {
+  createVersionMetadata: Schema$CreateVersionMetadataV1Alpha;
+  /**
+   * Time that this operation completed.@OutputOnly
+   */
+  endTime: string;
+  /**
+   * Ephemeral message that may change every time the operation is polled.
+   * @OutputOnly
+   */
+  ephemeralMessage: string;
+  /**
+   * Time that this operation was created.@OutputOnly
+   */
+  insertTime: string;
+  /**
+   * API method that initiated this operation. Example:
+   * google.appengine.v1alpha.Versions.CreateVersion.@OutputOnly
+   */
+  method: string;
+  /**
+   * Name of the resource that this operation is acting on. Example:
+   * apps/myapp/services/default.@OutputOnly
+   */
+  target: string;
+  /**
+   * User who requested this operation.@OutputOnly
+   */
+  user: string;
+  /**
+   * Durable messages that persist on every operation poll. @OutputOnly
+   */
+  warning: string[];
+}
+/**
+ * Metadata for the given google.longrunning.Operation.
+ */
+export interface Schema$OperationMetadataV1Beta {
+  createVersionMetadata: Schema$CreateVersionMetadataV1Beta;
+  /**
+   * Time that this operation completed.@OutputOnly
+   */
+  endTime: string;
+  /**
+   * Ephemeral message that may change every time the operation is polled.
+   * @OutputOnly
+   */
+  ephemeralMessage: string;
+  /**
+   * Time that this operation was created.@OutputOnly
+   */
+  insertTime: string;
+  /**
+   * API method that initiated this operation. Example:
+   * google.appengine.v1beta.Versions.CreateVersion.@OutputOnly
+   */
+  method: string;
+  /**
+   * Name of the resource that this operation is acting on. Example:
+   * apps/myapp/services/default.@OutputOnly
+   */
+  target: string;
+  /**
+   * User who requested this operation.@OutputOnly
+   */
+  user: string;
+  /**
+   * Durable messages that persist on every operation poll. @OutputOnly
+   */
+  warning: string[];
+}
+/**
+ * Metadata for the given google.longrunning.Operation.
+ */
+export interface Schema$OperationMetadataV1Beta5 {
+  /**
+   * Timestamp that this operation completed.@OutputOnly
+   */
+  endTime: string;
+  /**
+   * Timestamp that this operation was created.@OutputOnly
+   */
+  insertTime: string;
+  /**
+   * API method name that initiated this operation. Example:
+   * google.appengine.v1beta5.Version.CreateVersion.@OutputOnly
+   */
+  method: string;
+  /**
+   * Name of the resource that this operation is acting on. Example:
+   * apps/myapp/services/default.@OutputOnly
+   */
+  target: string;
+  /**
+   * User who requested this operation.@OutputOnly
+   */
+  user: string;
+}
+/**
+ * Target scaling by request utilization. Only applicable for VM runtimes.
+ */
+export interface Schema$RequestUtilization {
+  /**
+   * Target number of concurrent requests.
+   */
+  targetConcurrentRequests: number;
+  /**
+   * Target requests per second.
+   */
+  targetRequestCountPerSec: number;
+}
+/**
+ * Machine resources for a version.
+ */
+export interface Schema$Resources {
+  /**
+   * Number of CPU cores needed.
+   */
+  cpu: number;
+  /**
+   * Disk size (GB) needed.
+   */
+  diskGb: number;
+  /**
+   * Memory (GB) needed.
+   */
+  memoryGb: number;
+  /**
+   * User specified volumes.
+   */
+  volumes: Schema$Volume[];
+}
+/**
+ * Executes a script to handle the request that matches the URL pattern.
+ */
+export interface Schema$ScriptHandler {
+  /**
+   * Path to the script from the application root directory.
+   */
+  scriptPath: string;
+}
+/**
+ * Reference to a particular snapshot of the source tree used to build and
+ * deploy the application.
+ */
+export interface Schema$SourceReference {
+  /**
+   * URI string identifying the repository. Example:
+   * &quot;https://source.developers.google.com/p/app-123/r/default&quot;
+   */
+  repository: string;
+  /**
+   * The canonical, persistent identifier of the deployed revision. Aliases that
+   * include tags or branch names are not allowed. Example (git):
+   * &quot;2198322f89e0bb2e25021667c2ed489d1fd34e6b&quot;
+   */
+  revisionId: string;
+}
+/**
+ * Files served directly to the user for a given URL, such as images, CSS
+ * stylesheets, or JavaScript source files. Static directory handlers make it
+ * easy to serve the entire contents of a directory as static files.
+ */
+export interface Schema$StaticDirectoryHandler {
+  /**
+   * Whether files should also be uploaded as code data. By default, files
+   * declared in static directory handlers are uploaded as static data and are
+   * only served to end users; they cannot be read by the application. If
+   * enabled, uploads are charged against both your code and static data storage
+   * resource quotas.
+   */
+  applicationReadable: boolean;
+  /**
+   * Path to the directory containing the static files from the application root
+   * directory. Everything after the end of the matched URL pattern is appended
+   * to static_dir to form the full path to the requested file.
+   */
+  directory: string;
+  /**
+   * Time a static file served by this handler should be cached.
+   */
+  expiration: string;
+  /**
+   * HTTP headers to use for all responses from these URLs.
+   */
+  httpHeaders: any;
+  /**
+   * MIME type used to serve all files served by this handler. Defaults to
+   * file-specific MIME types, which are direved from each file&#39;s filename
+   * extension.
+   */
+  mimeType: string;
+  /**
+   * Whether this handler should match the request if the file referenced by the
+   * handler does not exist.
+   */
+  requireMatchingFile: boolean;
+}
+/**
+ * Files served directly to the user for a given URL, such as images, CSS
+ * stylesheets, or JavaScript source files. Static file handlers describe which
+ * files in the application directory are static files, and which URLs serve
+ * them.
+ */
+export interface Schema$StaticFilesHandler {
+  /**
+   * Whether files should also be uploaded as code data. By default, files
+   * declared in static file handlers are uploaded as static data and are only
+   * served to end users; they cannot be read by the application. If enabled,
+   * uploads are charged against both your code and static data storage resource
+   * quotas.
+   */
+  applicationReadable: boolean;
+  /**
+   * Time a static file served by this handler should be cached.
+   */
+  expiration: string;
+  /**
+   * HTTP headers to use for all responses from these URLs.
+   */
+  httpHeaders: any;
+  /**
+   * MIME type used to serve all files served by this handler. Defaults to
+   * file-specific MIME types, which are derived from each file&#39;s filename
+   * extension.
+   */
+  mimeType: string;
+  /**
+   * Path to the static files matched by the URL pattern, from the application
+   * root directory. The path can refer to text matched in groupings in the URL
+   * pattern.
+   */
+  path: string;
+  /**
+   * Whether this handler should match the request if the file referenced by the
+   * handler does not exist.
+   */
+  requireMatchingFile: boolean;
+  /**
+   * Regular expression that matches the file paths for all files that should be
+   * referenced by this handler.
+   */
+  uploadPathRegex: string;
+}
+/**
+ * The Status type defines a logical error model that is suitable for different
+ * programming environments, including REST APIs and RPC APIs. It is used by
+ * gRPC (https://github.com/grpc). The error model is designed to be: Simple to
+ * use and understand for most users Flexible enough to meet unexpected
+ * needsOverviewThe Status message contains three pieces of data: error code,
+ * error message, and error details. The error code should be an enum value of
+ * google.rpc.Code, but it may accept additional error codes if needed. The
+ * error message should be a developer-facing English message that helps
+ * developers understand and resolve the error. If a localized user-facing error
+ * message is needed, put the localized message in the error details or localize
+ * it in the client. The optional error details may contain arbitrary
+ * information about the error. There is a predefined set of error detail types
+ * in the package google.rpc that can be used for common error
+ * conditions.Language mappingThe Status message is the logical representation
+ * of the error model, but it is not necessarily the actual wire format. When
+ * the Status message is exposed in different client libraries and different
+ * wire protocols, it can be mapped differently. For example, it will likely be
+ * mapped to some exceptions in Java, but more likely mapped to some error codes
+ * in C.Other usesThe error model and the Status message can be used in a
+ * variety of environments, either with or without APIs, to provide a consistent
+ * developer experience across different environments.Example uses of this error
+ * model include: Partial errors. If a service needs to return partial errors to
+ * the client, it may embed the Status in the normal response to indicate the
+ * partial errors. Workflow errors. A typical workflow has multiple steps. Each
+ * step may have a Status message for error reporting. Batch operations. If a
+ * client uses batch request and batch response, the Status message should be
+ * used directly inside batch response, one for each error sub-response.
+ * Asynchronous operations. If an API call embeds asynchronous operation results
+ * in its response, the status of those operations should be represented
+ * directly using the Status message. Logging. If some API errors are stored in
+ * logs, the message Status could be used directly after any stripping needed
+ * for security/privacy reasons.
+ */
+export interface Schema$Status {
+  /**
+   * The status code, which should be an enum value of google.rpc.Code.
+   */
+  code: number;
+  /**
+   * A list of messages that carry the error details. There is a common set of
+   * message types for APIs to use.
+   */
+  details: any[];
+  /**
+   * A developer-facing error message, which should be in English. Any
+   * user-facing error message should be localized and sent in the
+   * google.rpc.Status.details field, or localized by the client.
+   */
+  message: string;
+}
+/**
+ * Traffic routing configuration for versions within a single module. Traffic
+ * splits define how traffic directed to the module is assigned to versions.
+ */
+export interface Schema$TrafficSplit {
+  /**
+   * Mapping from version IDs within the module to fractional (0.000, 1]
+   * allocations of traffic for that version. Each version can be specified only
+   * once, but some versions in the module may not have any traffic allocation.
+   * Modules that have traffic allocated cannot be deleted until either the
+   * module is deleted or their traffic allocation is removed. Allocations must
+   * sum to 1. Up to two decimal place precision is supported for IP-based
+   * splits and up to three decimal places is supported for cookie-based splits.
+   */
+  allocations: any;
+  /**
+   * Mechanism used to determine which version a request is sent to. The traffic
+   * selection algorithm will be stable for either type until allocations are
+   * changed.
+   */
+  shardBy: string;
+}
+/**
+ * Rules to match an HTTP request and dispatch that request to a module.
+ */
+export interface Schema$UrlDispatchRule {
+  /**
+   * Domain name to match against. The wildcard &quot;*&quot; is supported if
+   * specified before a period: &quot;*.&quot;.Defaults to matching all domains:
+   * &quot;*&quot;.
+   */
+  domain: string;
+  /**
+   * Resource ID of a module in this application that should serve the matched
+   * request. The module must already exist. Example: default.
+   */
+  module: string;
+  /**
+   * Pathname within the host. Must start with a &quot;/&quot;. A single
+   * &quot;*&quot; can be included at the end of the path. The sum of the
+   * lengths of the domain and path may not exceed 100 characters.
+   */
+  path: string;
+}
+/**
+ * URL pattern and description of how the URL should be handled. App Engine can
+ * handle URLs by executing application code, or by serving static files
+ * uploaded with the version, such as images, CSS, or JavaScript.
+ */
+export interface Schema$UrlMap {
+  /**
+   * Uses API Endpoints to handle requests.
+   */
+  apiEndpoint: Schema$ApiEndpointHandler;
+  /**
+   * Action to take when users access resources that require authentication.
+   * Defaults to redirect.
+   */
+  authFailAction: string;
+  /**
+   * Level of login required to access this resource.
+   */
+  login: string;
+  /**
+   * 30x code to use when performing redirects for the secure field. Defaults to
+   * 302.
+   */
+  redirectHttpResponseCode: string;
+  /**
+   * Executes a script to handle the request that matches this URL pattern.
+   */
+  script: Schema$ScriptHandler;
+  /**
+   * Security (HTTPS) enforcement for this URL.
+   */
+  securityLevel: string;
+  /**
+   * Serves the entire contents of a directory as static files.This attribute is
+   * deprecated. You can mimic the behavior of static directories using static
+   * files.
+   */
+  staticDirectory: Schema$StaticDirectoryHandler;
+  /**
+   * Returns the contents of a file, such as an image, as the response.
+   */
+  staticFiles: Schema$StaticFilesHandler;
+  /**
+   * A URL prefix. Uses regular expression syntax, which means regexp special
+   * characters must be escaped, but should not contain groupings. All URLs that
+   * begin with this prefix are handled by this handler, using the portion of
+   * the URL after the prefix as part of the file path.
+   */
+  urlRegex: string;
+}
+/**
+ * A Version resource is a specific set of source code and configuration files
+ * that are deployed into a module.
+ */
+export interface Schema$Version {
+  /**
+   * Serving configuration for Google Cloud Endpoints
+   * (https://cloud.google.com/appengine/docs/python/endpoints/).Only returned
+   * in GET requests if view=FULL is set.
+   */
+  apiConfig: Schema$ApiConfigHandler;
+  /**
+   * Automatic scaling is based on request rate, response latencies, and other
+   * application metrics.
+   */
+  automaticScaling: Schema$AutomaticScaling;
+  /**
+   * A module with basic scaling will create an instance when the application
+   * receives a request. The instance will be turned down when the app becomes
+   * idle. Basic scaling is ideal for work that is intermittent or driven by
+   * user activity.
+   */
+  basicScaling: Schema$BasicScaling;
+  /**
+   * Metadata settings that are supplied to this version to enable beta runtime
+   * features.
+   */
+  betaSettings: any;
+  /**
+   * Time that this version was created.@OutputOnly
+   */
+  creationTime: string;
+  /**
+   * Duration that static files should be cached by web proxies and browsers.
+   * Only applicable if the corresponding StaticFilesHandler
+   * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#staticfileshandler)
+   * does not specify its own expiration time.Only returned in GET requests if
+   * view=FULL is set.
+   */
+  defaultExpiration: string;
+  /**
+   * Email address of the user who created this version.@OutputOnly
+   */
+  deployer: string;
+  /**
+   * Code and application artifacts that make up this version.Only returned in
+   * GET requests if view=FULL is set.
+   */
+  deployment: Schema$Deployment;
+  /**
+   * Cloud Endpoints configuration.If endpoints_api_service is set, the Cloud
+   * Endpoints Extensible Service Proxy will be provided to serve the API
+   * implemented by the app.
+   */
+  endpointsApiService: Schema$EndpointsApiService;
+  /**
+   * App Engine execution environment to use for this version.Defaults to 1.
+   */
+  env: string;
+  /**
+   * Environment variables made available to the application.Only returned in
+   * GET requests if view=FULL is set.
+   */
+  envVariables: any;
+  /**
+   * Custom static error pages. Limited to 10KB per page.Only returned in GET
+   * requests if view=FULL is set.
+   */
+  errorHandlers: Schema$ErrorHandler[];
+  /**
+   * An ordered list of URL-matching patterns that should be applied to incoming
+   * requests. The first matching URL handles the request and other request
+   * handlers are not attempted.Only returned in GET requests if view=FULL is
+   * set.
+   */
+  handlers: Schema$UrlMap[];
+  /**
+   * Configures health checking for VM instances. Unhealthy instances are
+   * stopped and replaced with new instances. Only applicable for VM
+   * runtimes.Only returned in GET requests if view=FULL is set.
+   */
+  healthCheck: Schema$HealthCheck;
+  /**
+   * Relative name of the version within the module. Example: v1. Version names
+   * can contain only lowercase letters, numbers, or hyphens. Reserved names:
+   * &quot;default&quot;, &quot;latest&quot;, and any name with the prefix
+   * &quot;ah-&quot;.
+   */
+  id: string;
+  /**
+   * Before an application can receive email or XMPP messages, the application
+   * must be configured to enable the service.
+   */
+  inboundServices: string[];
+  /**
+   * Instance class that is used to run this version. Valid values are:
+   * AutomaticScaling: F1, F2, F4, F4_1G ManualScaling or BasicScaling: B1, B2,
+   * B4, B8, B4_1GDefaults to F1 for AutomaticScaling and B1 for ManualScaling
+   * or BasicScaling.
+   */
+  instanceClass: string;
+  /**
+   * Configuration for third-party Python runtime libraries required by the
+   * application.Only returned in GET requests if view=FULL is set.
+   */
+  libraries: Schema$Library[];
+  /**
+   * A module with manual scaling runs continuously, allowing you to perform
+   * complex initialization and rely on the state of its memory over time.
+   */
+  manualScaling: Schema$ManualScaling;
+  /**
+   * Full path to the Version resource in the API. Example:
+   * apps/myapp/modules/default/versions/v1.@OutputOnly
+   */
+  name: string;
+  /**
+   * Extra network settings. Only applicable for VM runtimes.
+   */
+  network: Schema$Network;
+  /**
+   * Files that match this pattern will not be built into this version. Only
+   * applicable for Go runtimes.Only returned in GET requests if view=FULL is
+   * set.
+   */
+  nobuildFilesRegex: string;
+  /**
+   * Machine resources for this version. Only applicable for VM runtimes.
+   */
+  resources: Schema$Resources;
+  /**
+   * Desired runtime. Example: python27.
+   */
+  runtime: string;
+  /**
+   * The version of the API in the given runtime environment. Please see the
+   * app.yaml reference for valid values at
+   * https://cloud.google.com/appengine/docs/standard/&lt;language&gt;/config/appref
+   */
+  runtimeApiVersion: string;
+  /**
+   * Current serving status of this version. Only the versions with a SERVING
+   * status create instances and can be billed.SERVING_STATUS_UNSPECIFIED is an
+   * invalid value. Defaults to SERVING.
+   */
+  servingStatus: string;
+  /**
+   * Whether multiple requests can be dispatched to this version at once.
+   */
+  threadsafe: boolean;
+  /**
+   * Whether to deploy this version in a container on a virtual machine.
+   */
+  vm: boolean;
+}
+/**
+ * Volumes mounted within the app container. Only applicable for VM runtimes.
+ */
+export interface Schema$Volume {
+  /**
+   * Unique name for the volume.
+   */
+  name: string;
+  /**
+   * Volume size in gigabytes.
+   */
+  sizeGb: number;
+  /**
+   * Underlying volume type, e.g. &#39;tmpfs&#39;.
+   */
+  volumeType: string;
+}
+
+export class Resource$Apps {
+  root: Appengine;
+  locations: Resource$Apps$Locations;
+  modules: Resource$Apps$Modules;
+  operations: Resource$Apps$Operations;
+  constructor(root: Appengine) {
+    this.root = root;
+    this.locations = new Resource$Apps$Locations(root);
+    this.modules = new Resource$Apps$Modules(root);
+    this.operations = new Resource$Apps$Operations(root);
+  }
+
+  /**
+   * appengine.apps.create
+   * @desc Creates an App Engine application for a Google Cloud Platform
+   * project. Required fields: id - The ID of the target Cloud Platform project.
+   * location - The region (https://cloud.google.com/appengine/docs/locations)
+   * where you want the App Engine application located.For more information
+   * about App Engine applications, see Managing Projects, Applications, and
+   * Billing (https://cloud.google.com/appengine/docs/python/console/).
+   * @alias appengine.apps.create
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {().Application} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  create =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+       callback?: BodyResponseCallback<Schema$Operation>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/v1beta4/apps').replace(/([^:]\/)\/+/g, '$1'),
+                method: 'POST'
+              },
+              options),
+          params,
+          requiredParams: [],
+          pathParams: [],
+          context: this.root
+        };
+        createAPIRequest<Schema$Operation>(parameters, callback!);
       };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * appengine.apps.get
-        * @desc Gets information about an application.
-        * @alias appengine.apps.get
-        * @memberOf! appengine(v1beta4)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.appsId Part of `name`. Name of the application to get. Example: apps/myapp.
-        * @param {boolean=} params.ensureResourcesExist Certain resources associated with an application are created on-demand. Controls whether these resources should be created when performing the GET operation. If specified and any resources could not be created, the request will fail with an error code. Additionally, this parameter can cause the request to take longer to complete.
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta4/apps/{appsId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['appsId'],
-        pathParams: ['appsId'],
-        context: self
+
+
+  /**
+   * appengine.apps.get
+   * @desc Gets information about an application.
+   * @alias appengine.apps.get
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.appsId Part of `name`. Name of the application to get. Example: apps/myapp.
+   * @param {boolean=} params.ensureResourcesExist Certain resources associated with an application are created on-demand. Controls whether these resources should be created when performing the GET operation. If specified and any resources could not be created, the request will fail with an error code. Additionally, this parameter can cause the request to take longer to complete.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  get =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$Application>,
+       callback?: BodyResponseCallback<Schema$Application>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/v1beta4/apps/{appsId}')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: ['appsId'],
+          pathParams: ['appsId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$Application>(parameters, callback!);
       };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * appengine.apps.patch
-        * @desc Updates the specified Application resource. You can update the
-        * following fields: auth_domain
-        * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta4/apps#Application.FIELDS.auth_domain)
-        * default_cookie_expiration
-        * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta4/apps#Application.FIELDS.default_cookie_expiration)
-        * @alias appengine.apps.patch
-        * @memberOf! appengine(v1beta4)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.appsId Part of `name`. Name of the Application resource to update. Example: apps/myapp.
-        * @param {string=} params.mask Standard field mask for the set of fields to be updated.
-        * @param {appengine(v1beta4).Application} params.resource Request body data
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    patch(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta4/apps/{appsId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
-        params,
-        requiredParams: ['appsId'],
-        pathParams: ['appsId'],
-        context: self
+
+
+  /**
+   * appengine.apps.patch
+   * @desc Updates the specified Application resource. You can update the
+   * following fields: auth_domain
+   * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta4/apps#Application.FIELDS.auth_domain)
+   * default_cookie_expiration
+   * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta4/apps#Application.FIELDS.default_cookie_expiration)
+   * @alias appengine.apps.patch
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.appsId Part of `name`. Name of the Application resource to update. Example: apps/myapp.
+   * @param {string=} params.mask Standard field mask for the set of fields to be updated.
+   * @param {().Application} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  patch =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+       callback?: BodyResponseCallback<Schema$Operation>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/v1beta4/apps/{appsId}')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'PATCH'
+              },
+              options),
+          params,
+          requiredParams: ['appsId'],
+          pathParams: ['appsId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$Operation>(parameters, callback!);
       };
-      return createAPIRequest(parameters, callback!);
-    },
-    locations: {
-      /**
-       * appengine.apps.locations.get
-       * @desc Get information about a location.
-       * @alias appengine.apps.locations.get
-       * @memberOf! appengine(v1beta4)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.appsId Part of `name`. Resource name for the location.
-       * @param {string} params.locationsId Part of `name`. See documentation of `appsId`.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
+}
+export class Resource$Apps$Locations {
+  root: Appengine;
+  constructor(root: Appengine) {
+    this.root = root;
+  }
+
+  /**
+   * appengine.apps.locations.get
+   * @desc Gets information about a location.
+   * @alias appengine.apps.locations.get
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.appsId Part of `name`. Resource name for the location.
+   * @param {string} params.locationsId Part of `name`. See documentation of `appsId`.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  get =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$Location>,
+       callback?: BodyResponseCallback<Schema$Location>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -194,28 +1608,32 @@ function Appengine(options: GlobalOptions) {
           params,
           requiredParams: ['appsId', 'locationsId'],
           pathParams: ['appsId', 'locationsId'],
-          context: self
+          context: this.root
         };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * appengine.apps.locations.list
-          * @desc Lists information about the supported locations for this
-          * service.
-          * @alias appengine.apps.locations.list
-          * @memberOf! appengine(v1beta4)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.appsId Part of `name`. The resource that owns the locations collection, if applicable.
-          * @param {string=} params.filter The standard list filter.
-          * @param {integer=} params.pageSize The standard list page size.
-          * @param {string=} params.pageToken The standard list page token.
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      list(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
+        createAPIRequest<Schema$Location>(parameters, callback!);
+      };
+
+
+  /**
+   * appengine.apps.locations.list
+   * @desc Lists information about the supported locations for this service.
+   * @alias appengine.apps.locations.list
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.appsId Part of `name`. The resource that owns the locations collection, if applicable.
+   * @param {string=} params.filter The standard list filter.
+   * @param {integer=} params.pageSize The standard list page size.
+   * @param {string=} params.pageToken The standard list page token.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  list =
+      (params: any,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$ListLocationsResponse>,
+       callback?: BodyResponseCallback<Schema$ListLocationsResponse>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -233,29 +1651,37 @@ function Appengine(options: GlobalOptions) {
           params,
           requiredParams: ['appsId'],
           pathParams: ['appsId'],
-          context: self
+          context: this.root
         };
-        return createAPIRequest(parameters, callback!);
-      }
+        createAPIRequest<Schema$ListLocationsResponse>(parameters, callback!);
+      };
+}
 
-    },
-    modules: {
-      /**
-       * appengine.apps.modules.delete
-       * @desc Deletes the specified module and all enclosed versions.
-       * @alias appengine.apps.modules.delete
-       * @memberOf! appengine(v1beta4)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/modules/default.
-       * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete (
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
+export class Resource$Apps$Modules {
+  root: Appengine;
+  versions: Resource$Apps$Modules$Versions;
+  constructor(root: Appengine) {
+    this.root = root;
+    this.versions = new Resource$Apps$Modules$Versions(root);
+  }
+
+  /**
+   * appengine.apps.modules.delete
+   * @desc Deletes the specified module and all enclosed versions.
+   * @alias appengine.apps.modules.delete
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/modules/default.
+   * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  delete =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+       callback?: BodyResponseCallback<Schema$Operation>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -273,24 +1699,28 @@ function Appengine(options: GlobalOptions) {
           params,
           requiredParams: ['appsId', 'modulesId'],
           pathParams: ['appsId', 'modulesId'],
-          context: self
+          context: this.root
         };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * appengine.apps.modules.get
-          * @desc Gets the current configuration of the specified module.
-          * @alias appengine.apps.modules.get
-          * @memberOf! appengine(v1beta4)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/modules/default.
-          * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
+        createAPIRequest<Schema$Operation>(parameters, callback!);
+      };
+
+
+  /**
+   * appengine.apps.modules.get
+   * @desc Gets the current configuration of the specified module.
+   * @alias appengine.apps.modules.get
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/modules/default.
+   * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  get =
+      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Module>,
+       callback?: BodyResponseCallback<Schema$Module>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -308,26 +1738,30 @@ function Appengine(options: GlobalOptions) {
           params,
           requiredParams: ['appsId', 'modulesId'],
           pathParams: ['appsId', 'modulesId'],
-          context: self
+          context: this.root
         };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * appengine.apps.modules.list
-          * @desc Lists all the modules in the application.
-          * @alias appengine.apps.modules.list
-          * @memberOf! appengine(v1beta4)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp.
-          * @param {integer=} params.pageSize Maximum results to return per page.
-          * @param {string=} params.pageToken Continuation token for fetching the next page of results.
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      list(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
+        createAPIRequest<Schema$Module>(parameters, callback!);
+      };
+
+
+  /**
+   * appengine.apps.modules.list
+   * @desc Lists all the modules in the application.
+   * @alias appengine.apps.modules.list
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp.
+   * @param {integer=} params.pageSize Maximum results to return per page.
+   * @param {string=} params.pageToken Continuation token for fetching the next page of results.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  list =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$ListModulesResponse>,
+       callback?: BodyResponseCallback<Schema$ListModulesResponse>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -345,28 +1779,32 @@ function Appengine(options: GlobalOptions) {
           params,
           requiredParams: ['appsId'],
           pathParams: ['appsId'],
-          context: self
+          context: this.root
         };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * appengine.apps.modules.patch
-          * @desc Updates the configuration of the specified module.
-          * @alias appengine.apps.modules.patch
-          * @memberOf! appengine(v1beta4)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.appsId Part of `name`. Name of the resource to update. Example: apps/myapp/modules/default.
-          * @param {string=} params.mask Standard field mask for the set of fields to be updated.
-          * @param {boolean=} params.migrateTraffic Set to true to gradually shift traffic to one or more versions that you specify. By default, traffic is shifted immediately. For gradual traffic migration, the target versions must be located within instances that are configured for both warmup requests (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta4/apps.modules.versions#inboundservicetype) and automatic scaling (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta4/apps.modules.versions#automaticscaling). You must specify the shardBy (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta4/apps.modules#shardby) field in the Module resource. Gradual traffic migration is not supported in the App Engine flexible environment. For examples, see Migrating and Splitting Traffic (https://cloud.google.com/appengine/docs/admin-api/migrating-splitting-traffic).
-          * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
-          * @param {appengine(v1beta4).Module} params.resource Request body data
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      patch(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
+        createAPIRequest<Schema$ListModulesResponse>(parameters, callback!);
+      };
+
+
+  /**
+   * appengine.apps.modules.patch
+   * @desc Updates the configuration of the specified module.
+   * @alias appengine.apps.modules.patch
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.appsId Part of `name`. Name of the resource to update. Example: apps/myapp/modules/default.
+   * @param {string=} params.mask Standard field mask for the set of fields to be updated.
+   * @param {boolean=} params.migrateTraffic Set to true to gradually shift traffic to one or more versions that you specify. By default, traffic is shifted immediately. For gradual traffic migration, the target versions must be located within instances that are configured for both warmup requests (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta4/apps.modules.versions#inboundservicetype) and automatic scaling (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta4/apps.modules.versions#automaticscaling). You must specify the shardBy (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta4/apps.modules#shardby) field in the Module resource. Gradual traffic migration is not supported in the App Engine flexible environment. For examples, see Migrating and Splitting Traffic (https://cloud.google.com/appengine/docs/admin-api/migrating-splitting-traffic).
+   * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
+   * @param {().Module} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  patch =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+       callback?: BodyResponseCallback<Schema$Operation>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -384,431 +1822,469 @@ function Appengine(options: GlobalOptions) {
           params,
           requiredParams: ['appsId', 'modulesId'],
           pathParams: ['appsId', 'modulesId'],
-          context: self
+          context: this.root
         };
-        return createAPIRequest(parameters, callback!);
-      },
-      versions: {
-        /**
-         * appengine.apps.modules.versions.create
-         * @desc Deploys code and resource files to a new version.
-         * @alias appengine.apps.modules.versions.create
-         * @memberOf! appengine(v1beta4)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.appsId Part of `name`. Name of the resource to update. Example: apps/myapp/modules/default.
-         * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
-         * @param {appengine(v1beta4).Version} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        create(
-            params: any, options: MethodOptions|BodyResponseCallback<any>,
-            callback?: BodyResponseCallback<any>) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://appengine.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url: (rootUrl +
-                        '/v1beta4/apps/{appsId}/modules/{modulesId}/versions')
-                           .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'POST'
-                },
-                options),
-            params,
-            requiredParams: ['appsId', 'modulesId'],
-            pathParams: ['appsId', 'modulesId'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback!);
-        }, /**
-            * appengine.apps.modules.versions.delete
-            * @desc Deletes an existing version.
-            * @alias appengine.apps.modules.versions.delete
-            * @memberOf! appengine(v1beta4)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/modules/default/versions/v1.
-            * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
-            * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        delete (
-            params: any, options: MethodOptions|BodyResponseCallback<any>,
-            callback?: BodyResponseCallback<any>) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://appengine.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'DELETE'
-                },
-                options),
-            params,
-            requiredParams: ['appsId', 'modulesId', 'versionsId'],
-            pathParams: ['appsId', 'modulesId', 'versionsId'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback!);
-        }, /**
-            * appengine.apps.modules.versions.get
-            * @desc Gets the specified Version resource. By default, only a
-            * BASIC_VIEW will be returned. Specify the FULL_VIEW parameter to
-            * get the full resource.
-            * @alias appengine.apps.modules.versions.get
-            * @memberOf! appengine(v1beta4)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/modules/default/versions/v1.
-            * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
-            * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
-            * @param {string=} params.view Controls the set of fields returned in the Get response.
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-            callback?: BodyResponseCallback<any>) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://appengine.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'GET'
-                },
-                options),
-            params,
-            requiredParams: ['appsId', 'modulesId', 'versionsId'],
-            pathParams: ['appsId', 'modulesId', 'versionsId'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback!);
-        }, /**
-            * appengine.apps.modules.versions.list
-            * @desc Lists the versions of a module.
-            * @alias appengine.apps.modules.versions.list
-            * @memberOf! appengine(v1beta4)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/modules/default.
-            * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
-            * @param {integer=} params.pageSize Maximum results to return per page.
-            * @param {string=} params.pageToken Continuation token for fetching the next page of results.
-            * @param {string=} params.view Controls the set of fields returned in the List response.
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        list(
-            params: any, options: MethodOptions|BodyResponseCallback<any>,
-            callback?: BodyResponseCallback<any>) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://appengine.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url: (rootUrl +
-                        '/v1beta4/apps/{appsId}/modules/{modulesId}/versions')
-                           .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'GET'
-                },
-                options),
-            params,
-            requiredParams: ['appsId', 'modulesId'],
-            pathParams: ['appsId', 'modulesId'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback!);
-        }, /**
-            * appengine.apps.modules.versions.patch
-            * @desc Updates the specified Version resource. You can specify the
-            * following fields depending on the App Engine environment and type
-            * of scaling that the version resource uses: serving_status
-            * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta4/apps.modules.versions#Version.FIELDS.serving_status):
-            * For Version resources that use basic scaling, manual scaling, or
-            * run in  the App Engine flexible environment. instance_class
-            * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta4/apps.modules.versions#Version.FIELDS.instance_class):
-            * For Version resources that run in the App Engine standard
-            * environment. automatic_scaling.min_idle_instances
-            * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta4/apps.modules.versions#Version.FIELDS.automatic_scaling):
-            * For Version resources that use automatic scaling and run in the
-            * App  Engine standard environment.
-            * automatic_scaling.max_idle_instances
-            * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta4/apps.modules.versions#Version.FIELDS.automatic_scaling):
-            * For Version resources that use automatic scaling and run in the
-            * App  Engine standard environment.
-            * @alias appengine.apps.modules.versions.patch
-            * @memberOf! appengine(v1beta4)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.appsId Part of `name`. Name of the resource to update. Example: apps/myapp/modules/default/versions/1.
-            * @param {string=} params.mask Standard field mask for the set of fields to be updated.
-            * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
-            * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
-            * @param {appengine(v1beta4).Version} params.resource Request body data
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        patch(
-            params: any, options: MethodOptions|BodyResponseCallback<any>,
-            callback?: BodyResponseCallback<any>) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://appengine.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'PATCH'
-                },
-                options),
-            params,
-            requiredParams: ['appsId', 'modulesId', 'versionsId'],
-            pathParams: ['appsId', 'modulesId', 'versionsId'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback!);
-        },
-        instances: {
-          /**
-           * appengine.apps.modules.versions.instances.debug
-           * @desc Enables debugging on a VM instance. This allows you to use
-           * the SSH command to connect to the virtual machine where the
-           * instance lives. While in "debug mode", the instance continues to
-           * serve live traffic. You should delete the instance when you are
-           * done debugging and then allow the system to take over and determine
-           * if another instance should be started.Only applicable for instances
-           * in App Engine flexible environment.
-           * @alias appengine.apps.modules.versions.instances.debug
-           * @memberOf! appengine(v1beta4)
-           *
-           * @param {object} params Parameters for request
-           * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/modules/default/versions/v1/instances/instance-1.
-           * @param {string} params.instancesId Part of `name`. See documentation of `appsId`.
-           * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
-           * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
-           * @param {appengine(v1beta4).DebugInstanceRequest} params.resource Request body data
-           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-           * @param {callback} callback The callback that handles the response.
-           * @return {object} Request object
-           */
-          debug(
-              params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://appengine.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url:
-                        (rootUrl +
-                         '/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}/instances/{instancesId}:debug')
-                            .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'POST'
-                  },
-                  options),
-              params,
-              requiredParams:
-                  ['appsId', 'modulesId', 'versionsId', 'instancesId'],
-              pathParams: ['appsId', 'instancesId', 'modulesId', 'versionsId'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }, /**
-              * appengine.apps.modules.versions.instances.delete
-              * @desc Stops a running instance.
-              * @alias appengine.apps.modules.versions.instances.delete
-              * @memberOf! appengine(v1beta4)
-              *
-              * @param {object} params Parameters for request
-              * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/modules/default/versions/v1/instances/instance-1.
-              * @param {string} params.instancesId Part of `name`. See documentation of `appsId`.
-              * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
-              * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
-              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-              * @param {callback} callback The callback that handles the response.
-              * @return {object} Request object
-              */
-          delete (
-              params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://appengine.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url:
-                        (rootUrl +
-                         '/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}/instances/{instancesId}')
-                            .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'DELETE'
-                  },
-                  options),
-              params,
-              requiredParams:
-                  ['appsId', 'modulesId', 'versionsId', 'instancesId'],
-              pathParams: ['appsId', 'instancesId', 'modulesId', 'versionsId'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }, /**
-              * appengine.apps.modules.versions.instances.get
-              * @desc Gets instance information.
-              * @alias appengine.apps.modules.versions.instances.get
-              * @memberOf! appengine(v1beta4)
-              *
-              * @param {object} params Parameters for request
-              * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/modules/default/versions/v1/instances/instance-1.
-              * @param {string} params.instancesId Part of `name`. See documentation of `appsId`.
-              * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
-              * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
-              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-              * @param {callback} callback The callback that handles the response.
-              * @return {object} Request object
-              */
-          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://appengine.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url:
-                        (rootUrl +
-                         '/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}/instances/{instancesId}')
-                            .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'GET'
-                  },
-                  options),
-              params,
-              requiredParams:
-                  ['appsId', 'modulesId', 'versionsId', 'instancesId'],
-              pathParams: ['appsId', 'instancesId', 'modulesId', 'versionsId'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }, /**
-              * appengine.apps.modules.versions.instances.list
-              * @desc Lists the instances of a version.Tip: To aggregate details
-              * about instances over time, see the Stackdriver Monitoring API
-              * (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list).
-              * @alias appengine.apps.modules.versions.instances.list
-              * @memberOf! appengine(v1beta4)
-              *
-              * @param {object} params Parameters for request
-              * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/modules/default/versions/v1.
-              * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
-              * @param {integer=} params.pageSize Maximum results to return per page.
-              * @param {string=} params.pageToken Continuation token for fetching the next page of results.
-              * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
-              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-              * @param {callback} callback The callback that handles the response.
-              * @return {object} Request object
-              */
-          list(
-              params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://appengine.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url:
-                        (rootUrl +
-                         '/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}/instances')
-                            .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'GET'
-                  },
-                  options),
-              params,
-              requiredParams: ['appsId', 'modulesId', 'versionsId'],
-              pathParams: ['appsId', 'modulesId', 'versionsId'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }
+        createAPIRequest<Schema$Operation>(parameters, callback!);
+      };
+}
+export class Resource$Apps$Modules$Versions {
+  root: Appengine;
+  instances: Resource$Apps$Modules$Versions$Instances;
+  constructor(root: Appengine) {
+    this.root = root;
+    this.instances = new Resource$Apps$Modules$Versions$Instances(root);
+  }
 
+  /**
+   * appengine.apps.modules.versions.create
+   * @desc Deploys code and resource files to a new version.
+   * @alias appengine.apps.modules.versions.create
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.appsId Part of `name`. Name of the resource to update. Example: apps/myapp/modules/default.
+   * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
+   * @param {().Version} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  create =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+       callback?: BodyResponseCallback<Schema$Operation>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
         }
-      }
-    },
-    operations: {
-      /**
-       * appengine.apps.operations.get
-       * @desc Gets the latest state of a long-running operation. Clients can
-       * use this method to poll the operation result at intervals as
-       * recommended by the API service.
-       * @alias appengine.apps.operations.get
-       * @memberOf! appengine(v1beta4)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.appsId Part of `name`. The name of the operation resource.
-       * @param {string} params.operationsId Part of `name`. See documentation of `appsId`.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl +
+                      '/v1beta4/apps/{appsId}/modules/{modulesId}/versions')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'POST'
+              },
+              options),
+          params,
+          requiredParams: ['appsId', 'modulesId'],
+          pathParams: ['appsId', 'modulesId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$Operation>(parameters, callback!);
+      };
+
+
+  /**
+   * appengine.apps.modules.versions.delete
+   * @desc Deletes an existing version.
+   * @alias appengine.apps.modules.versions.delete
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/modules/default/versions/v1.
+   * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
+   * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  delete =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+       callback?: BodyResponseCallback<Schema$Operation>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl +
+                     '/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}')
+                        .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'DELETE'
+              },
+              options),
+          params,
+          requiredParams: ['appsId', 'modulesId', 'versionsId'],
+          pathParams: ['appsId', 'modulesId', 'versionsId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$Operation>(parameters, callback!);
+      };
+
+
+  /**
+   * appengine.apps.modules.versions.get
+   * @desc Gets the specified Version resource. By default, only a BASIC_VIEW
+   * will be returned. Specify the FULL_VIEW parameter to get the full resource.
+   * @alias appengine.apps.modules.versions.get
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/modules/default/versions/v1.
+   * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
+   * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
+   * @param {string=} params.view Controls the set of fields returned in the Get response.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  get =
+      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Version>,
+       callback?: BodyResponseCallback<Schema$Version>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl +
+                     '/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}')
+                        .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: ['appsId', 'modulesId', 'versionsId'],
+          pathParams: ['appsId', 'modulesId', 'versionsId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$Version>(parameters, callback!);
+      };
+
+
+  /**
+   * appengine.apps.modules.versions.list
+   * @desc Lists the versions of a module.
+   * @alias appengine.apps.modules.versions.list
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/modules/default.
+   * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
+   * @param {integer=} params.pageSize Maximum results to return per page.
+   * @param {string=} params.pageToken Continuation token for fetching the next page of results.
+   * @param {string=} params.view Controls the set of fields returned in the List response.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  list =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$ListVersionsResponse>,
+       callback?: BodyResponseCallback<Schema$ListVersionsResponse>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl +
+                      '/v1beta4/apps/{appsId}/modules/{modulesId}/versions')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: ['appsId', 'modulesId'],
+          pathParams: ['appsId', 'modulesId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$ListVersionsResponse>(parameters, callback!);
+      };
+
+
+  /**
+   * appengine.apps.modules.versions.patch
+   * @desc Updates the specified Version resource. You can specify the following
+   * fields depending on the App Engine environment and type of scaling that the
+   * version resource uses: serving_status
+   * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta4/apps.modules.versions#Version.FIELDS.serving_status):
+   * For Version resources that use basic scaling, manual scaling, or run in
+   * the App Engine flexible environment. instance_class
+   * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta4/apps.modules.versions#Version.FIELDS.instance_class):
+   * For Version resources that run in the App Engine standard environment.
+   * automatic_scaling.min_idle_instances
+   * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta4/apps.modules.versions#Version.FIELDS.automatic_scaling):
+   * For Version resources that use automatic scaling and run in the App  Engine
+   * standard environment. automatic_scaling.max_idle_instances
+   * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta4/apps.modules.versions#Version.FIELDS.automatic_scaling):
+   * For Version resources that use automatic scaling and run in the App  Engine
+   * standard environment.
+   * @alias appengine.apps.modules.versions.patch
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.appsId Part of `name`. Name of the resource to update. Example: apps/myapp/modules/default/versions/1.
+   * @param {string=} params.mask Standard field mask for the set of fields to be updated.
+   * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
+   * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
+   * @param {().Version} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  patch =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+       callback?: BodyResponseCallback<Schema$Operation>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl +
+                     '/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}')
+                        .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'PATCH'
+              },
+              options),
+          params,
+          requiredParams: ['appsId', 'modulesId', 'versionsId'],
+          pathParams: ['appsId', 'modulesId', 'versionsId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$Operation>(parameters, callback!);
+      };
+}
+export class Resource$Apps$Modules$Versions$Instances {
+  root: Appengine;
+  constructor(root: Appengine) {
+    this.root = root;
+  }
+
+  /**
+   * appengine.apps.modules.versions.instances.debug
+   * @desc Enables debugging on a VM instance. This allows you to use the SSH
+   * command to connect to the virtual machine where the instance lives. While
+   * in "debug mode", the instance continues to serve live traffic. You should
+   * delete the instance when you are done debugging and then allow the system
+   * to take over and determine if another instance should be started.Only
+   * applicable for instances in App Engine flexible environment.
+   * @alias appengine.apps.modules.versions.instances.debug
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/modules/default/versions/v1/instances/instance-1.
+   * @param {string} params.instancesId Part of `name`. See documentation of `appsId`.
+   * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
+   * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
+   * @param {().DebugInstanceRequest} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  debug =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+       callback?: BodyResponseCallback<Schema$Operation>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl +
+                     '/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}/instances/{instancesId}:debug')
+                        .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'POST'
+              },
+              options),
+          params,
+          requiredParams: ['appsId', 'modulesId', 'versionsId', 'instancesId'],
+          pathParams: ['appsId', 'instancesId', 'modulesId', 'versionsId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$Operation>(parameters, callback!);
+      };
+
+
+  /**
+   * appengine.apps.modules.versions.instances.delete
+   * @desc Stops a running instance.
+   * @alias appengine.apps.modules.versions.instances.delete
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/modules/default/versions/v1/instances/instance-1.
+   * @param {string} params.instancesId Part of `name`. See documentation of `appsId`.
+   * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
+   * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  delete =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+       callback?: BodyResponseCallback<Schema$Operation>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl +
+                     '/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}/instances/{instancesId}')
+                        .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'DELETE'
+              },
+              options),
+          params,
+          requiredParams: ['appsId', 'modulesId', 'versionsId', 'instancesId'],
+          pathParams: ['appsId', 'instancesId', 'modulesId', 'versionsId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$Operation>(parameters, callback!);
+      };
+
+
+  /**
+   * appengine.apps.modules.versions.instances.get
+   * @desc Gets instance information.
+   * @alias appengine.apps.modules.versions.instances.get
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/modules/default/versions/v1/instances/instance-1.
+   * @param {string} params.instancesId Part of `name`. See documentation of `appsId`.
+   * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
+   * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  get =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$Instance>,
+       callback?: BodyResponseCallback<Schema$Instance>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl +
+                     '/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}/instances/{instancesId}')
+                        .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: ['appsId', 'modulesId', 'versionsId', 'instancesId'],
+          pathParams: ['appsId', 'instancesId', 'modulesId', 'versionsId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$Instance>(parameters, callback!);
+      };
+
+
+  /**
+   * appengine.apps.modules.versions.instances.list
+   * @desc Lists the instances of a version.Tip: To aggregate details about
+   * instances over time, see the Stackdriver Monitoring API
+   * (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list).
+   * @alias appengine.apps.modules.versions.instances.list
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/modules/default/versions/v1.
+   * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
+   * @param {integer=} params.pageSize Maximum results to return per page.
+   * @param {string=} params.pageToken Continuation token for fetching the next page of results.
+   * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  list =
+      (params: any,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$ListInstancesResponse>,
+       callback?: BodyResponseCallback<Schema$ListInstancesResponse>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl +
+                     '/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}/instances')
+                        .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: ['appsId', 'modulesId', 'versionsId'],
+          pathParams: ['appsId', 'modulesId', 'versionsId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$ListInstancesResponse>(parameters, callback!);
+      };
+}
+
+
+
+export class Resource$Apps$Operations {
+  root: Appengine;
+  constructor(root: Appengine) {
+    this.root = root;
+  }
+
+  /**
+   * appengine.apps.operations.get
+   * @desc Gets the latest state of a long-running operation. Clients can use
+   * this method to poll the operation result at intervals as recommended by the
+   * API service.
+   * @alias appengine.apps.operations.get
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.appsId Part of `name`. The name of the operation resource.
+   * @param {string} params.operationsId Part of `name`. See documentation of `appsId`.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  get =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+       callback?: BodyResponseCallback<Schema$Operation>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -827,36 +2303,40 @@ function Appengine(options: GlobalOptions) {
           params,
           requiredParams: ['appsId', 'operationsId'],
           pathParams: ['appsId', 'operationsId'],
-          context: self
+          context: this.root
         };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * appengine.apps.operations.list
-          * @desc Lists operations that match the specified filter in the
-          * request. If the server doesn't support this method, it returns
-          * UNIMPLEMENTED.NOTE: the name binding allows API services to override
-          * the binding to use different resource name schemes, such as
-          * users/x/operations. To override the binding, API services can add a
-          * binding such as "/v1/{name=users/x}/operations" to their service
-          * configuration. For backwards compatibility, the default name
-          * includes the operations collection id, however overriding users must
-          * ensure the name binding is the parent resource, without the
-          * operations collection id.
-          * @alias appengine.apps.operations.list
-          * @memberOf! appengine(v1beta4)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.appsId Part of `name`. The name of the operation's parent resource.
-          * @param {string=} params.filter The standard list filter.
-          * @param {integer=} params.pageSize The standard list page size.
-          * @param {string=} params.pageToken The standard list page token.
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      list(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
+        createAPIRequest<Schema$Operation>(parameters, callback!);
+      };
+
+
+  /**
+   * appengine.apps.operations.list
+   * @desc Lists operations that match the specified filter in the request. If
+   * the server doesn't support this method, it returns UNIMPLEMENTED.NOTE: the
+   * name binding allows API services to override the binding to use different
+   * resource name schemes, such as users/x/operations. To override the binding,
+   * API services can add a binding such as "/v1/{name=users/x}/operations" to
+   * their service configuration. For backwards compatibility, the default name
+   * includes the operations collection id, however overriding users must ensure
+   * the name binding is the parent resource, without the operations collection
+   * id.
+   * @alias appengine.apps.operations.list
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.appsId Part of `name`. The name of the operation's parent resource.
+   * @param {string=} params.filter The standard list filter.
+   * @param {integer=} params.pageSize The standard list page size.
+   * @param {string=} params.pageToken The standard list page token.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  list =
+      (params: any,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$ListOperationsResponse>,
+       callback?: BodyResponseCallback<Schema$ListOperationsResponse>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -874,470 +2354,8 @@ function Appengine(options: GlobalOptions) {
           params,
           requiredParams: ['appsId'],
           pathParams: ['appsId'],
-          context: self
+          context: this.root
         };
-        return createAPIRequest(parameters, callback!);
-      }
-
-    }
-  };
+        createAPIRequest<Schema$ListOperationsResponse>(parameters, callback!);
+      };
 }
-/**
- * @typedef ApiConfigHandler
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {string} authFailAction Action to take when users access resources that require authentication. Defaults to redirect.
- * @property {string} login Level of login required to access this resource. Defaults to optional.
- * @property {string} script Path to the script from the application root directory.
- * @property {string} securityLevel Security (HTTPS) enforcement for this URL.
- * @property {string} url URL to serve the endpoint at.
- */
-/**
- * @typedef ApiEndpointHandler
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {string} scriptPath Path to the script from the application root directory.
- */
-/**
- * @typedef Application
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {string} authDomain Google Apps authentication domain that controls which users can access this application.Defaults to open access for any Google Account.
- * @property {string} codeBucket Google Cloud Storage bucket that can be used for storing files associated with this application. This bucket is associated with the application and can be used by the gcloud deployment commands.@OutputOnly
- * @property {string} defaultBucket Google Cloud Storage bucket that can be used by this application to store content.@OutputOnly
- * @property {string} defaultCookieExpiration Cookie expiration policy for this application.
- * @property {string} defaultHostname Hostname used to reach the application, as resolved by App Engine.@OutputOnly
- * @property {appengine(v1beta4).UrlDispatchRule[]} dispatchRules HTTP path dispatch rules for requests to the application that do not explicitly target a module or version. Rules are order-dependent.@OutputOnly
- * @property {appengine(v1beta4).IdentityAwareProxy} iap
- * @property {string} id Identifier of the Application resource. This identifier is equivalent to the project ID of the Google Cloud Platform project where you want to deploy your application. Example: myapp.
- * @property {string} location Location from which this application will be run. Application instances will run out of data centers in the chosen location, which is also where all of the application&#39;s end user content is stored.Defaults to us-central.Options are:us-central - Central USeurope-west - Western Europeus-east1 - Eastern US
- * @property {string} name Full path to the Application resource in the API. Example: apps/myapp.@OutputOnly
- */
-/**
- * @typedef AutomaticScaling
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {string} coolDownPeriod Amount of time that the Autoscaler (https://cloud.google.com/compute/docs/autoscaler/) should wait between changes to the number of virtual machines. Only applicable for VM runtimes.
- * @property {appengine(v1beta4).CpuUtilization} cpuUtilization Target scaling by CPU usage.
- * @property {appengine(v1beta4).DiskUtilization} diskUtilization Target scaling by disk usage.
- * @property {integer} maxConcurrentRequests Number of concurrent requests an automatic scaling instance can accept before the scheduler spawns a new instance.Defaults to a runtime-specific value.
- * @property {integer} maxIdleInstances Maximum number of idle instances that should be maintained for this version.
- * @property {string} maxPendingLatency Maximum amount of time that a request should wait in the pending queue before starting a new instance to handle it.
- * @property {integer} maxTotalInstances Maximum number of instances that should be started to handle requests.
- * @property {integer} minIdleInstances Minimum number of idle instances that should be maintained for this version. Only applicable for the default version of a module.
- * @property {string} minPendingLatency Minimum amount of time a request should wait in the pending queue before starting a new instance to handle it.
- * @property {integer} minTotalInstances Minimum number of instances that should be maintained for this version.
- * @property {appengine(v1beta4).NetworkUtilization} networkUtilization Target scaling by network usage.
- * @property {appengine(v1beta4).RequestUtilization} requestUtilization Target scaling by request utilization.
- */
-/**
- * @typedef BasicScaling
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {string} idleTimeout Duration of time after the last request that an instance must wait before the instance is shut down.
- * @property {integer} maxInstances Maximum number of instances to create for this version.
- */
-/**
- * @typedef ContainerInfo
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {string} image URI to the hosted container image in Google Container Registry. The URI must be fully qualified and include a tag or digest. Examples: &quot;gcr.io/my-project/image:tag&quot; or &quot;gcr.io/my-project/image@digest&quot;
- */
-/**
- * @typedef CpuUtilization
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {string} aggregationWindowLength Period of time over which CPU utilization is calculated.
- * @property {number} targetUtilization Target CPU utilization ratio to maintain when scaling. Must be between 0 and 1.
- */
-/**
- * @typedef CreateVersionMetadataV1Alpha
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {string} cloudBuildId The Cloud Build ID if one was created as part of the version create. @OutputOnly
- */
-/**
- * @typedef CreateVersionMetadataV1Beta
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {string} cloudBuildId The Cloud Build ID if one was created as part of the version create. @OutputOnly
- */
-/**
- * @typedef DebugInstanceRequest
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {string} sshKey Public SSH key to add to the instance. Examples: [USERNAME]:ssh-rsa [KEY_VALUE] [USERNAME] [USERNAME]:ssh-rsa [KEY_VALUE] google-ssh {&quot;userName&quot;:&quot;[USERNAME]&quot;,&quot;expireOn&quot;:&quot;[EXPIRE_TIME]&quot;}For more information, see Adding and Removing SSH Keys (https://cloud.google.com/compute/docs/instances/adding-removing-ssh-keys).
- */
-/**
- * @typedef Deployment
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {appengine(v1beta4).ContainerInfo} container The Docker image for the container that runs the version. Only applicable for instances running in the App Engine flexible environment.
- * @property {object} files Manifest of the files stored in Google Cloud Storage that are included as part of this version. All files must be readable using the credentials supplied with this call.
- * @property {appengine(v1beta4).SourceReference[]} sourceReferences Origin of the source code for this deployment. There can be more than one source reference per version if source code is distributed among multiple repositories.
- */
-/**
- * @typedef DiskUtilization
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {integer} targetReadBytesPerSec Target bytes read per second.
- * @property {integer} targetReadOpsPerSec Target ops read per second.
- * @property {integer} targetWriteBytesPerSec Target bytes written per second.
- * @property {integer} targetWriteOpsPerSec Target ops written per second.
- */
-/**
- * @typedef EndpointsApiService
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {string} configId Endpoints service configuration id as specified by the Service Management API. For example &quot;2016-09-19r1&quot;By default, the Endpoints service configuration id is fixed and config_id must be specified. To keep the Endpoints service configuration id updated with each rollout, specify RolloutStrategy.MANAGED and omit config_id.
- * @property {string} name Endpoints service name which is the name of the &quot;service&quot; resource in the Service Management API. For example &quot;myapi.endpoints.myproject.cloud.goog&quot;
- */
-/**
- * @typedef ErrorHandler
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {string} errorCode Error condition this handler applies to.
- * @property {string} mimeType MIME type of file. Defaults to text/html.
- * @property {string} staticFile Static file content to be served for this error.
- */
-/**
- * @typedef FileInfo
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {string} mimeType The MIME type of the file.Defaults to the value from Google Cloud Storage.
- * @property {string} sha1Sum The SHA1 hash of the file, in hex.
- * @property {string} sourceUrl URL source to use to fetch this file. Must be a URL to a resource in Google Cloud Storage in the form &#39;http(s)://storage.googleapis.com/&lt;bucket&gt;/&lt;object&gt;&#39;.
- */
-/**
- * @typedef HealthCheck
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {string} checkInterval Interval between health checks.
- * @property {boolean} disableHealthCheck Whether to explicitly disable health checks for this instance.
- * @property {integer} healthyThreshold Number of consecutive successful health checks required before receiving traffic.
- * @property {string} host Host header to send when performing an HTTP health check. Example: &quot;myapp.appspot.com&quot;
- * @property {integer} restartThreshold Number of consecutive failed health checks required before an instance is restarted.
- * @property {string} timeout Time before the health check is considered failed.
- * @property {integer} unhealthyThreshold Number of consecutive failed health checks required before removing traffic.
- */
-/**
- * @typedef IdentityAwareProxy
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {boolean} enabled Whether the serving infrastructure will authenticate and authorize all incoming requests.If true, the oauth2_client_id and oauth2_client_secret fields must be non-empty.
- * @property {string} oauth2ClientId OAuth2 client ID to use for the authentication flow.
- * @property {string} oauth2ClientSecret For security reasons, this value cannot be retrieved via the API. Instead, the SHA-256 hash of the value is returned in the oauth2_client_secret_sha256 field.@InputOnly
- * @property {string} oauth2ClientSecretSha256 Hex-encoded SHA-256 hash of the client secret.@OutputOnly
- */
-/**
- * @typedef Instance
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {string} appEngineRelease App Engine release this instance is running on.@OutputOnly
- * @property {string} availability Availability of the instance.@OutputOnly
- * @property {integer} averageLatency Average latency (ms) over the last minute.@OutputOnly
- * @property {integer} errors Number of errors since this instance was started.@OutputOnly
- * @property {string} id Relative name of the instance within the version. Example: instance-1.@OutputOnly
- * @property {string} memoryUsage Total memory in use (bytes).@OutputOnly
- * @property {string} name Full path to the Instance resource in the API. Example: apps/myapp/modules/default/versions/v1/instances/instance-1.@OutputOnly
- * @property {number} qps Average queries per second (QPS) over the last minute.@OutputOnly
- * @property {integer} requests Number of requests since this instance was started.@OutputOnly
- * @property {string} startTimestamp Time that this instance was started.@OutputOnly
- * @property {string} vmId Virtual machine ID of this instance. Only applicable for instances in App Engine flexible environment.@OutputOnly
- * @property {string} vmIp The IP address of this instance. Only applicable for instances in App Engine flexible environment.@OutputOnly
- * @property {string} vmName Name of the virtual machine where this instance lives. Only applicable for instances in App Engine flexible environment.@OutputOnly
- * @property {string} vmStatus Status of the virtual machine where this instance lives. Only applicable for instances in App Engine flexible environment.@OutputOnly
- * @property {boolean} vmUnlocked Whether this instance is in debug mode. Only applicable for instances in App Engine flexible environment.@OutputOnly
- * @property {string} vmZoneName Zone where the virtual machine is located. Only applicable for instances in App Engine flexible environment.@OutputOnly
- */
-/**
- * @typedef Library
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {string} name Name of the library. Example: &quot;django&quot;.
- * @property {string} version Version of the library to select, or &quot;latest&quot;.
- */
-/**
- * @typedef ListInstancesResponse
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {appengine(v1beta4).Instance[]} instances The instances belonging to the requested version.
- * @property {string} nextPageToken Continuation token for fetching the next page of results.
- */
-/**
- * @typedef ListLocationsResponse
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {appengine(v1beta4).Location[]} locations A list of locations that matches the specified filter in the request.
- * @property {string} nextPageToken The standard List next-page token.
- */
-/**
- * @typedef ListModulesResponse
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {appengine(v1beta4).Module[]} modules The modules belonging to the requested application.
- * @property {string} nextPageToken Continuation token for fetching the next page of results.
- */
-/**
- * @typedef ListOperationsResponse
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {string} nextPageToken The standard List next-page token.
- * @property {appengine(v1beta4).Operation[]} operations A list of operations that matches the specified filter in the request.
- */
-/**
- * @typedef ListVersionsResponse
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {string} nextPageToken Continuation token for fetching the next page of results.
- * @property {appengine(v1beta4).Version[]} versions The versions belonging to the requested module.
- */
-/**
- * @typedef Location
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {string} displayName The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
- * @property {object} labels Cross-service attributes for the location. For example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
- * @property {string} locationId The canonical id for this location. For example: &quot;us-east1&quot;.
- * @property {object} metadata Service-specific metadata. For example the available capacity at the given location.
- * @property {string} name Resource name for the location, which may vary between implementations. For example: &quot;projects/example-project/locations/us-east1&quot;
- */
-/**
- * @typedef LocationMetadata
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {boolean} flexibleEnvironmentAvailable App Engine flexible environment is available in the given location.@OutputOnly
- * @property {boolean} standardEnvironmentAvailable App Engine standard environment is available in the given location.@OutputOnly
- */
-/**
- * @typedef ManualScaling
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {integer} instances Number of instances to assign to the module at the start. This number can later be altered by using the Modules API (https://cloud.google.com/appengine/docs/python/modules/functions) set_num_instances() function.
- */
-/**
- * @typedef Module
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {string} id Relative name of the module within the application. Example: default.@OutputOnly
- * @property {string} name Full path to the Module resource in the API. Example: apps/myapp/modules/default.@OutputOnly
- * @property {appengine(v1beta4).TrafficSplit} split Mapping that defines fractional HTTP traffic diversion to different versions within the module.
- */
-/**
- * @typedef Network
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {string[]} forwardedPorts List of ports, or port pairs, to forward from the virtual machine to the application container.
- * @property {string} instanceTag Tag to apply to the VM instance during creation.
- * @property {string} name Google Cloud Platform network where the virtual machines are created. Specify the short name, not the resource path.Defaults to default.
- */
-/**
- * @typedef NetworkUtilization
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {integer} targetReceivedBytesPerSec Target bytes received per second.
- * @property {integer} targetReceivedPacketsPerSec Target packets received per second.
- * @property {integer} targetSentBytesPerSec Target bytes sent per second.
- * @property {integer} targetSentPacketsPerSec Target packets sent per second.
- */
-/**
- * @typedef Operation
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {boolean} done If the value is false, it means the operation is still in progress. If true, the operation is completed, and either error or response is available.
- * @property {appengine(v1beta4).Status} error The error result of the operation in case of failure or cancellation.
- * @property {object} metadata Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
- * @property {string} name The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the name should have the format of operations/some/unique/name.
- * @property {object} response The normal response of the operation in case of success. If the original method returns no data on success, such as Delete, the response is google.protobuf.Empty. If the original method is standard Get/Create/Update, the response should be the resource. For other methods, the response should have the type XxxResponse, where Xxx is the original method name. For example, if the original method name is TakeSnapshot(), the inferred response type is TakeSnapshotResponse.
- */
-/**
- * @typedef OperationMetadata
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {string} endTime Timestamp that this operation completed.@OutputOnly
- * @property {string} insertTime Timestamp that this operation was created.@OutputOnly
- * @property {string} method API method that initiated this operation. Example: google.appengine.v1beta4.Version.CreateVersion.@OutputOnly
- * @property {string} operationType Type of this operation. Deprecated, use method field instead. Example: &quot;create_version&quot;.@OutputOnly
- * @property {string} target Name of the resource that this operation is acting on. Example: apps/myapp/modules/default.@OutputOnly
- * @property {string} user User who requested this operation.@OutputOnly
- */
-/**
- * @typedef OperationMetadataV1
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {string} endTime Time that this operation completed.@OutputOnly
- * @property {string} ephemeralMessage Ephemeral message that may change every time the operation is polled. @OutputOnly
- * @property {string} insertTime Time that this operation was created.@OutputOnly
- * @property {string} method API method that initiated this operation. Example: google.appengine.v1.Versions.CreateVersion.@OutputOnly
- * @property {string} target Name of the resource that this operation is acting on. Example: apps/myapp/services/default.@OutputOnly
- * @property {string} user User who requested this operation.@OutputOnly
- * @property {string[]} warning Durable messages that persist on every operation poll. @OutputOnly
- */
-/**
- * @typedef OperationMetadataV1Alpha
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {appengine(v1beta4).CreateVersionMetadataV1Alpha} createVersionMetadata
- * @property {string} endTime Time that this operation completed.@OutputOnly
- * @property {string} ephemeralMessage Ephemeral message that may change every time the operation is polled. @OutputOnly
- * @property {string} insertTime Time that this operation was created.@OutputOnly
- * @property {string} method API method that initiated this operation. Example: google.appengine.v1alpha.Versions.CreateVersion.@OutputOnly
- * @property {string} target Name of the resource that this operation is acting on. Example: apps/myapp/services/default.@OutputOnly
- * @property {string} user User who requested this operation.@OutputOnly
- * @property {string[]} warning Durable messages that persist on every operation poll. @OutputOnly
- */
-/**
- * @typedef OperationMetadataV1Beta
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {appengine(v1beta4).CreateVersionMetadataV1Beta} createVersionMetadata
- * @property {string} endTime Time that this operation completed.@OutputOnly
- * @property {string} ephemeralMessage Ephemeral message that may change every time the operation is polled. @OutputOnly
- * @property {string} insertTime Time that this operation was created.@OutputOnly
- * @property {string} method API method that initiated this operation. Example: google.appengine.v1beta.Versions.CreateVersion.@OutputOnly
- * @property {string} target Name of the resource that this operation is acting on. Example: apps/myapp/services/default.@OutputOnly
- * @property {string} user User who requested this operation.@OutputOnly
- * @property {string[]} warning Durable messages that persist on every operation poll. @OutputOnly
- */
-/**
- * @typedef OperationMetadataV1Beta5
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {string} endTime Timestamp that this operation completed.@OutputOnly
- * @property {string} insertTime Timestamp that this operation was created.@OutputOnly
- * @property {string} method API method name that initiated this operation. Example: google.appengine.v1beta5.Version.CreateVersion.@OutputOnly
- * @property {string} target Name of the resource that this operation is acting on. Example: apps/myapp/services/default.@OutputOnly
- * @property {string} user User who requested this operation.@OutputOnly
- */
-/**
- * @typedef RequestUtilization
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {integer} targetConcurrentRequests Target number of concurrent requests.
- * @property {integer} targetRequestCountPerSec Target requests per second.
- */
-/**
- * @typedef Resources
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {number} cpu Number of CPU cores needed.
- * @property {number} diskGb Disk size (GB) needed.
- * @property {number} memoryGb Memory (GB) needed.
- * @property {appengine(v1beta4).Volume[]} volumes User specified volumes.
- */
-/**
- * @typedef ScriptHandler
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {string} scriptPath Path to the script from the application root directory.
- */
-/**
- * @typedef SourceReference
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {string} repository URI string identifying the repository. Example: &quot;https://source.developers.google.com/p/app-123/r/default&quot;
- * @property {string} revisionId The canonical, persistent identifier of the deployed revision. Aliases that include tags or branch names are not allowed. Example (git): &quot;2198322f89e0bb2e25021667c2ed489d1fd34e6b&quot;
- */
-/**
- * @typedef StaticDirectoryHandler
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {boolean} applicationReadable Whether files should also be uploaded as code data. By default, files declared in static directory handlers are uploaded as static data and are only served to end users; they cannot be read by the application. If enabled, uploads are charged against both your code and static data storage resource quotas.
- * @property {string} directory Path to the directory containing the static files from the application root directory. Everything after the end of the matched URL pattern is appended to static_dir to form the full path to the requested file.
- * @property {string} expiration Time a static file served by this handler should be cached.
- * @property {object} httpHeaders HTTP headers to use for all responses from these URLs.
- * @property {string} mimeType MIME type used to serve all files served by this handler. Defaults to file-specific MIME types, which are direved from each file&#39;s filename extension.
- * @property {boolean} requireMatchingFile Whether this handler should match the request if the file referenced by the handler does not exist.
- */
-/**
- * @typedef StaticFilesHandler
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {boolean} applicationReadable Whether files should also be uploaded as code data. By default, files declared in static file handlers are uploaded as static data and are only served to end users; they cannot be read by the application. If enabled, uploads are charged against both your code and static data storage resource quotas.
- * @property {string} expiration Time a static file served by this handler should be cached.
- * @property {object} httpHeaders HTTP headers to use for all responses from these URLs.
- * @property {string} mimeType MIME type used to serve all files served by this handler. Defaults to file-specific MIME types, which are derived from each file&#39;s filename extension.
- * @property {string} path Path to the static files matched by the URL pattern, from the application root directory. The path can refer to text matched in groupings in the URL pattern.
- * @property {boolean} requireMatchingFile Whether this handler should match the request if the file referenced by the handler does not exist.
- * @property {string} uploadPathRegex Regular expression that matches the file paths for all files that should be referenced by this handler.
- */
-/**
- * @typedef Status
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {integer} code The status code, which should be an enum value of google.rpc.Code.
- * @property {object[]} details A list of messages that carry the error details. There is a common set of message types for APIs to use.
- * @property {string} message A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
- */
-/**
- * @typedef TrafficSplit
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {object} allocations Mapping from version IDs within the module to fractional (0.000, 1] allocations of traffic for that version. Each version can be specified only once, but some versions in the module may not have any traffic allocation. Modules that have traffic allocated cannot be deleted until either the module is deleted or their traffic allocation is removed. Allocations must sum to 1. Up to two decimal place precision is supported for IP-based splits and up to three decimal places is supported for cookie-based splits.
- * @property {string} shardBy Mechanism used to determine which version a request is sent to. The traffic selection algorithm will be stable for either type until allocations are changed.
- */
-/**
- * @typedef UrlDispatchRule
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {string} domain Domain name to match against. The wildcard &quot;*&quot; is supported if specified before a period: &quot;*.&quot;.Defaults to matching all domains: &quot;*&quot;.
- * @property {string} module Resource ID of a module in this application that should serve the matched request. The module must already exist. Example: default.
- * @property {string} path Pathname within the host. Must start with a &quot;/&quot;. A single &quot;*&quot; can be included at the end of the path. The sum of the lengths of the domain and path may not exceed 100 characters.
- */
-/**
- * @typedef UrlMap
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {appengine(v1beta4).ApiEndpointHandler} apiEndpoint Uses API Endpoints to handle requests.
- * @property {string} authFailAction Action to take when users access resources that require authentication. Defaults to redirect.
- * @property {string} login Level of login required to access this resource.
- * @property {string} redirectHttpResponseCode 30x code to use when performing redirects for the secure field. Defaults to 302.
- * @property {appengine(v1beta4).ScriptHandler} script Executes a script to handle the request that matches this URL pattern.
- * @property {string} securityLevel Security (HTTPS) enforcement for this URL.
- * @property {appengine(v1beta4).StaticDirectoryHandler} staticDirectory Serves the entire contents of a directory as static files.This attribute is deprecated. You can mimic the behavior of static directories using static files.
- * @property {appengine(v1beta4).StaticFilesHandler} staticFiles Returns the contents of a file, such as an image, as the response.
- * @property {string} urlRegex A URL prefix. Uses regular expression syntax, which means regexp special characters must be escaped, but should not contain groupings. All URLs that begin with this prefix are handled by this handler, using the portion of the URL after the prefix as part of the file path.
- */
-/**
- * @typedef Version
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {appengine(v1beta4).ApiConfigHandler} apiConfig Serving configuration for Google Cloud Endpoints (https://cloud.google.com/appengine/docs/python/endpoints/).Only returned in GET requests if view=FULL is set.
- * @property {appengine(v1beta4).AutomaticScaling} automaticScaling Automatic scaling is based on request rate, response latencies, and other application metrics.
- * @property {appengine(v1beta4).BasicScaling} basicScaling A module with basic scaling will create an instance when the application receives a request. The instance will be turned down when the app becomes idle. Basic scaling is ideal for work that is intermittent or driven by user activity.
- * @property {object} betaSettings Metadata settings that are supplied to this version to enable beta runtime features.
- * @property {string} creationTime Time that this version was created.@OutputOnly
- * @property {string} defaultExpiration Duration that static files should be cached by web proxies and browsers. Only applicable if the corresponding StaticFilesHandler (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#staticfileshandler) does not specify its own expiration time.Only returned in GET requests if view=FULL is set.
- * @property {string} deployer Email address of the user who created this version.@OutputOnly
- * @property {appengine(v1beta4).Deployment} deployment Code and application artifacts that make up this version.Only returned in GET requests if view=FULL is set.
- * @property {appengine(v1beta4).EndpointsApiService} endpointsApiService Cloud Endpoints configuration.If endpoints_api_service is set, the Cloud Endpoints Extensible Service Proxy will be provided to serve the API implemented by the app.
- * @property {string} env App Engine execution environment to use for this version.Defaults to 1.
- * @property {object} envVariables Environment variables made available to the application.Only returned in GET requests if view=FULL is set.
- * @property {appengine(v1beta4).ErrorHandler[]} errorHandlers Custom static error pages. Limited to 10KB per page.Only returned in GET requests if view=FULL is set.
- * @property {appengine(v1beta4).UrlMap[]} handlers An ordered list of URL-matching patterns that should be applied to incoming requests. The first matching URL handles the request and other request handlers are not attempted.Only returned in GET requests if view=FULL is set.
- * @property {appengine(v1beta4).HealthCheck} healthCheck Configures health checking for VM instances. Unhealthy instances are stopped and replaced with new instances. Only applicable for VM runtimes.Only returned in GET requests if view=FULL is set.
- * @property {string} id Relative name of the version within the module. Example: v1. Version names can contain only lowercase letters, numbers, or hyphens. Reserved names: &quot;default&quot;, &quot;latest&quot;, and any name with the prefix &quot;ah-&quot;.
- * @property {string[]} inboundServices Before an application can receive email or XMPP messages, the application must be configured to enable the service.
- * @property {string} instanceClass Instance class that is used to run this version. Valid values are: AutomaticScaling: F1, F2, F4, F4_1G ManualScaling or BasicScaling: B1, B2, B4, B8, B4_1GDefaults to F1 for AutomaticScaling and B1 for ManualScaling or BasicScaling.
- * @property {appengine(v1beta4).Library[]} libraries Configuration for third-party Python runtime libraries required by the application.Only returned in GET requests if view=FULL is set.
- * @property {appengine(v1beta4).ManualScaling} manualScaling A module with manual scaling runs continuously, allowing you to perform complex initialization and rely on the state of its memory over time.
- * @property {string} name Full path to the Version resource in the API. Example: apps/myapp/modules/default/versions/v1.@OutputOnly
- * @property {appengine(v1beta4).Network} network Extra network settings. Only applicable for VM runtimes.
- * @property {string} nobuildFilesRegex Files that match this pattern will not be built into this version. Only applicable for Go runtimes.Only returned in GET requests if view=FULL is set.
- * @property {appengine(v1beta4).Resources} resources Machine resources for this version. Only applicable for VM runtimes.
- * @property {string} runtime Desired runtime. Example: python27.
- * @property {string} runtimeApiVersion The version of the API in the given runtime environment. Please see the app.yaml reference for valid values at https://cloud.google.com/appengine/docs/standard/&lt;language&gt;/config/appref
- * @property {string} servingStatus Current serving status of this version. Only the versions with a SERVING status create instances and can be billed.SERVING_STATUS_UNSPECIFIED is an invalid value. Defaults to SERVING.
- * @property {boolean} threadsafe Whether multiple requests can be dispatched to this version at once.
- * @property {boolean} vm Whether to deploy this version in a container on a virtual machine.
- */
-/**
- * @typedef Volume
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {string} name Unique name for the volume.
- * @property {number} sizeGb Volume size in gigabytes.
- * @property {string} volumeType Underlying volume type, e.g. &#39;tmpfs&#39;.
- */
-
-export = Appengine;

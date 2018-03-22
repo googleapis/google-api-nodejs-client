@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
 
@@ -21,7 +22,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
-
+// tslint:disable: class-name
+// tslint:disable: variable-name
+// tslint:disable: jsdoc-format
 
 /**
  * Google Abusive Experience Report API
@@ -39,104 +42,153 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Abusiveexperiencereport
  */
-function Abusiveexperiencereport(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.sites = {
-    /**
-     * abusiveexperiencereport.sites.get
-     * @desc Gets a summary of the abusive experience rating of a site.
-     * @alias abusiveexperiencereport.sites.get
-     * @memberOf! abusiveexperiencereport(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The required site name. This is the site property whose abusive experiences have been reviewed, and it must be URL-encoded. For example, sites/https%3A%2F%2Fwww.google.com. The server will return an error of BAD_REQUEST if this field is not filled in. Note that if the site property is not yet verified in Search Console, the reportUrl field returned by the API will lead to the verification page, prompting the user to go through that process before they can gain access to the Abusive Experience Report.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://abusiveexperiencereport.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }
+export class Abusiveexperiencereport {
+  _options: GlobalOptions;
+  google: GoogleApis;
+  root = this;
 
-  };
-  self.violatingSites = {
-    /**
-     * abusiveexperiencereport.violatingSites.list
-     * @desc Lists sites with Abusive Experience Report statuses of "Failing".
-     * @alias abusiveexperiencereport.violatingSites.list
-     * @memberOf! abusiveexperiencereport(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://abusiveexperiencereport.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1/violatingSites')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }
+  sites: Resource$Sites;
+  violatingSites: Resource$Violatingsites;
 
-  };
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    this._options = options || {};
+    this.google = google;
+
+    this.sites = new Resource$Sites(this);
+    this.violatingSites = new Resource$Violatingsites(this);
+  }
+}
+
+/**
+ * Response message for GetSiteSummary.
+ */
+export interface Schema$SiteSummaryResponse {
+  /**
+   * The status of the site reviewed for the abusive experiences.
+   */
+  abusiveStatus: string;
+  /**
+   * The date on which enforcement begins.
+   */
+  enforcementTime: string;
+  /**
+   * The abusive experience enforcement status of the site.
+   */
+  filterStatus: string;
+  /**
+   * The last time that the site changed status.
+   */
+  lastChangeTime: string;
+  /**
+   * A link that leads to a full abusive experience report.
+   */
+  reportUrl: string;
+  /**
+   * The name of the site reviewed.
+   */
+  reviewedSite: string;
+  /**
+   * Whether the site is currently under review.
+   */
+  underReview: boolean;
 }
 /**
- * @typedef SiteSummaryResponse
- * @memberOf! abusiveexperiencereport(v1)
- * @type object
- * @property {string} abusiveStatus The status of the site reviewed for the abusive experiences.
- * @property {string} enforcementTime The date on which enforcement begins.
- * @property {string} filterStatus The abusive experience enforcement status of the site.
- * @property {string} lastChangeTime The last time that the site changed status.
- * @property {string} reportUrl A link that leads to a full abusive experience report.
- * @property {string} reviewedSite The name of the site reviewed.
- * @property {boolean} underReview Whether the site is currently under review.
+ * Response message for ListViolatingSites.
  */
-/**
- * @typedef ViolatingSitesResponse
- * @memberOf! abusiveexperiencereport(v1)
- * @type object
- * @property {abusiveexperiencereport(v1).SiteSummaryResponse[]} violatingSites A list of summaries of violating sites.
- */
+export interface Schema$ViolatingSitesResponse {
+  /**
+   * A list of summaries of violating sites.
+   */
+  violatingSites: Schema$SiteSummaryResponse[];
+}
 
-export = Abusiveexperiencereport;
+export class Resource$Sites {
+  root: Abusiveexperiencereport;
+  constructor(root: Abusiveexperiencereport) {
+    this.root = root;
+  }
+
+  /**
+   * abusiveexperiencereport.sites.get
+   * @desc Gets a summary of the abusive experience rating of a site.
+   * @alias abusiveexperiencereport.sites.get
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.name The required site name. This is the site property whose abusive experiences have been reviewed, and it must be URL-encoded. For example, sites/https%3A%2F%2Fwww.google.com. The server will return an error of BAD_REQUEST if this field is not filled in. Note that if the site property is not yet verified in Search Console, the reportUrl field returned by the API will lead to the verification page, prompting the user to go through that process before they can gain access to the Abusive Experience Report.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  get =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$SiteSummaryResponse>,
+       callback?: BodyResponseCallback<Schema$SiteSummaryResponse>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl ||
+            'https://abusiveexperiencereport.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: this.root
+        };
+        createAPIRequest<Schema$SiteSummaryResponse>(parameters, callback!);
+      };
+}
+
+export class Resource$Violatingsites {
+  root: Abusiveexperiencereport;
+  constructor(root: Abusiveexperiencereport) {
+    this.root = root;
+  }
+
+  /**
+   * abusiveexperiencereport.violatingSites.list
+   * @desc Lists sites with Abusive Experience Report statuses of "Failing".
+   * @alias abusiveexperiencereport.violatingSites.list
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  list =
+      (params: any,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$ViolatingSitesResponse>,
+       callback?: BodyResponseCallback<Schema$ViolatingSitesResponse>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl ||
+            'https://abusiveexperiencereport.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/v1/violatingSites')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: [],
+          pathParams: [],
+          context: this.root
+        };
+        createAPIRequest<Schema$ViolatingSitesResponse>(parameters, callback!);
+      };
+}

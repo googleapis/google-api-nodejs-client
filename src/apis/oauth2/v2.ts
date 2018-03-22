@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
 
@@ -21,7 +22,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
-
+// tslint:disable: class-name
+// tslint:disable: variable-name
+// tslint:disable: jsdoc-format
 
 /**
  * Google OAuth2 API
@@ -38,9 +41,21 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2
  * @param {object=} options Options for Oauth2
  */
-function Oauth2(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
+export class Oauth2 {
+  _options: GlobalOptions;
+  google: GoogleApis;
+  root = this;
+
+  userinfo: Resource$Userinfo;
+
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    this._options = options || {};
+    this.google = google;
+
+    this.userinfo = new Resource$Userinfo(this);
+  }
+
+
   /**
    * oauth2.getCertForOpenIdConnect
    * @alias oauth2.getCertForOpenIdConnect
@@ -51,9 +66,9 @@ function Oauth2(options: GlobalOptions) {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  this.getCertForOpenIdConnect =
-      (params: any, options: MethodOptions|BodyResponseCallback<any>,
-       callback?: BodyResponseCallback<any>) => {
+  getCertForOpenIdConnect =
+      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Jwk>,
+       callback?: BodyResponseCallback<Schema$Jwk>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -71,10 +86,12 @@ function Oauth2(options: GlobalOptions) {
           params,
           requiredParams: [],
           pathParams: [],
-          context: self
+          context: this.root
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest<Schema$Jwk>(parameters, callback!);
       };
+
+
   /**
    * oauth2.tokeninfo
    * @alias oauth2.tokeninfo
@@ -88,9 +105,10 @@ function Oauth2(options: GlobalOptions) {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  this.tokeninfo =
-      (params: any, options: MethodOptions|BodyResponseCallback<any>,
-       callback?: BodyResponseCallback<any>) => {
+  tokeninfo =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$Tokeninfo>,
+       callback?: BodyResponseCallback<Schema$Tokeninfo>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -108,119 +126,193 @@ function Oauth2(options: GlobalOptions) {
           params,
           requiredParams: [],
           pathParams: [],
-          context: self
+          context: this.root
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest<Schema$Tokeninfo>(parameters, callback!);
       };
-  self.userinfo = {
-    /**
-     * oauth2.userinfo.get
-     * @alias oauth2.userinfo.get
-     * @memberOf! oauth2(v2)
-     *
-     * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/oauth2/v2/userinfo')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    },
-    v2: {
-      me: {
-        /**
-         * oauth2.userinfo.v2.me.get
-         * @alias oauth2.userinfo.v2.me.get
-         * @memberOf! oauth2(v2)
-         *
-         * @param {object=} params Parameters for request
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-            callback?: BodyResponseCallback<any>) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url: (rootUrl + '/userinfo/v2/me')
-                           .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'GET'
-                },
-                options),
-            params,
-            requiredParams: [],
-            pathParams: [],
-            context: self
-          };
-          return createAPIRequest(parameters, callback!);
-        }
-
-      }
-    }
-  };
 }
-/**
- * @typedef Jwk
- * @memberOf! oauth2(v2)
- * @type object
- * @property {object[]} keys
- */
-/**
- * @typedef Tokeninfo
- * @memberOf! oauth2(v2)
- * @type object
- * @property {string} access_type The access type granted with this token. It can be offline or online.
- * @property {string} audience Who is the intended audience for this token. In general the same as issued_to.
- * @property {string} email The email address of the user. Present only if the email scope is present in the request.
- * @property {integer} expires_in The expiry time of the token, as number of seconds left until expiry.
- * @property {string} issued_to To whom was the token issued to. In general the same as audience.
- * @property {string} scope The space separated list of scopes granted to this token.
- * @property {string} token_handle The token handle associated with this token.
- * @property {string} user_id The obfuscated user id.
- * @property {boolean} verified_email Boolean flag which is true if the email address is verified. Present only if the email scope is present in the request.
- */
-/**
- * @typedef Userinfoplus
- * @memberOf! oauth2(v2)
- * @type object
- * @property {string} email The user&#39;s email address.
- * @property {string} family_name The user&#39;s last name.
- * @property {string} gender The user&#39;s gender.
- * @property {string} given_name The user&#39;s first name.
- * @property {string} hd The hosted domain e.g. example.com if the user is Google apps user.
- * @property {string} id The obfuscated ID of the user.
- * @property {string} link URL of the profile page.
- * @property {string} locale The user&#39;s preferred locale.
- * @property {string} name The user&#39;s full name.
- * @property {string} picture URL of the user&#39;s picture image.
- * @property {boolean} verified_email Boolean flag which is true if the email address is verified. Always verified because we only return the user&#39;s primary email address.
- */
 
-export = Oauth2;
+export interface Schema$Jwk { keys: any[]; }
+export interface Schema$Tokeninfo {
+  /**
+   * The access type granted with this token. It can be offline or online.
+   */
+  access_type: string;
+  /**
+   * Who is the intended audience for this token. In general the same as
+   * issued_to.
+   */
+  audience: string;
+  /**
+   * The email address of the user. Present only if the email scope is present
+   * in the request.
+   */
+  email: string;
+  /**
+   * The expiry time of the token, as number of seconds left until expiry.
+   */
+  expires_in: number;
+  /**
+   * To whom was the token issued to. In general the same as audience.
+   */
+  issued_to: string;
+  /**
+   * The space separated list of scopes granted to this token.
+   */
+  scope: string;
+  /**
+   * The token handle associated with this token.
+   */
+  token_handle: string;
+  /**
+   * The obfuscated user id.
+   */
+  user_id: string;
+  /**
+   * Boolean flag which is true if the email address is verified. Present only
+   * if the email scope is present in the request.
+   */
+  verified_email: boolean;
+}
+export interface Schema$Userinfoplus {
+  /**
+   * The user&#39;s email address.
+   */
+  email: string;
+  /**
+   * The user&#39;s last name.
+   */
+  family_name: string;
+  /**
+   * The user&#39;s gender.
+   */
+  gender: string;
+  /**
+   * The user&#39;s first name.
+   */
+  given_name: string;
+  /**
+   * The hosted domain e.g. example.com if the user is Google apps user.
+   */
+  hd: string;
+  /**
+   * The obfuscated ID of the user.
+   */
+  id: string;
+  /**
+   * URL of the profile page.
+   */
+  link: string;
+  /**
+   * The user&#39;s preferred locale.
+   */
+  locale: string;
+  /**
+   * The user&#39;s full name.
+   */
+  name: string;
+  /**
+   * URL of the user&#39;s picture image.
+   */
+  picture: string;
+  /**
+   * Boolean flag which is true if the email address is verified. Always
+   * verified because we only return the user&#39;s primary email address.
+   */
+  verified_email: boolean;
+}
+
+export class Resource$Userinfo {
+  root: Oauth2;
+  v2: Resource$Userinfo$V2;
+  constructor(root: Oauth2) {
+    this.root = root;
+    this.v2 = new Resource$Userinfo$V2(root);
+  }
+
+  /**
+   * oauth2.userinfo.get
+   * @alias oauth2.userinfo.get
+   * @memberOf! ()
+   *
+   * @param {object=} params Parameters for request
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  get =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$Userinfoplus>,
+       callback?: BodyResponseCallback<Schema$Userinfoplus>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/oauth2/v2/userinfo')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: [],
+          pathParams: [],
+          context: this.root
+        };
+        createAPIRequest<Schema$Userinfoplus>(parameters, callback!);
+      };
+}
+export class Resource$Userinfo$V2 {
+  root: Oauth2;
+  me: Resource$Userinfo$V2$Me;
+  constructor(root: Oauth2) {
+    this.root = root;
+    this.me = new Resource$Userinfo$V2$Me(root);
+  }
+}
+export class Resource$Userinfo$V2$Me {
+  root: Oauth2;
+  constructor(root: Oauth2) {
+    this.root = root;
+  }
+
+  /**
+   * oauth2.userinfo.v2.me.get
+   * @alias oauth2.userinfo.v2.me.get
+   * @memberOf! ()
+   *
+   * @param {object=} params Parameters for request
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  get =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$Userinfoplus>,
+       callback?: BodyResponseCallback<Schema$Userinfoplus>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl + '/userinfo/v2/me').replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: [],
+          pathParams: [],
+          context: this.root
+        };
+        createAPIRequest<Schema$Userinfoplus>(parameters, callback!);
+      };
+}

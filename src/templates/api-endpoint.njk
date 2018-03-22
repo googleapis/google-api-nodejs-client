@@ -18,20 +18,23 @@
  * limitations under the License.
  */
 
-import {createAPIRequest} from '../../lib/apirequest';
+import { GoogleApis } from '../..';
+import { createAPIRequest } from '../../lib/apirequest';
 import { MethodOptions, GlobalOptions, BodyResponseCallback } from '../../lib/api';
 
-// TODO: We will eventually get the `any` in here cleared out, but in the interim we 
-// want to turn on no-implicit-any.  
+// TODO: We will eventually get the `any` in here cleared out, but in the interim we
+// want to turn on no-implicit-any.
 
 // tslint:disable: no-any
+// tslint:disable: class-name
+// tslint:disable: variable-name
+// tslint:disable: jsdoc-format
 
 {% set Name = api.name|capitalize %}
 {% if api.version %}
 {% set Version = api.version|replace('\.', '_')|capitalize %}
 {% endif %}
 {% set Namespace = [Name, Version]|join('') %}
-
 /**
  * {{ api.title }}
  *
@@ -47,43 +50,63 @@ import { MethodOptions, GlobalOptions, BodyResponseCallback } from '../../lib/ap
  * @variation {{ api.version }}
  * @param {object=} options Options for {{ Name }}
  */
-function {{ Name }} (options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
+export class {{ Name }} {
+
+  _options: GlobalOptions;
+  google: GoogleApis;
+  root = this;
+
+  {% if api.resources %}
+    {% for rname, r in api.resources|dictsort %}
+      {{ rname }}: Resource${{ rname|capitalize }};
+    {% endfor %}
+  {% endif %}
+
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    this._options = options || {};
+    this.google = google;
+
+    {% if api.resources %}
+      {% for rname, r in api.resources|dictsort %}
+        this.{{ rname }} = new Resource${{ rname|capitalize }}(this);
+      {% endfor %}
+    {% endif %}
+  }
+
 {% if api.methods %}
   {% for mname, m in api.methods|dictsort %}
-    {{ method.render(m, mname, api, true) }}
+    {{ method.render(m, mname, api, api) }}
   {% endfor %}
 {% endif %}
-{% if api.resources %}
-{% for rname, r in api.resources|dictsort %}
-  self.{{ rname }} = {
-    {{ resource.render(r, api, false) }}
-  };
+
+}
+
+{% if api.schemas %}
+{% for schemaName, schema in api.schemas|dictsort %}
+{% if schema.description %}
+/**
+  * {{ schema.description | cleanPaths | oneLine }}
+  */
+{% endif %}
+export interface Schema${{ schema.id }} {
+{% if schema.properties %}
+{% for pname, p in schema.properties|dictsort %}
+  {% if p.description %}
+    /**
+     * {{ p.description | cleanPaths | oneLine }}
+     */
+  {% endif %}
+  {% if p.$ref %}
+    {{ pname|cleanPropertyName }}: Schema${{ p.$ref }};
+  {% elif p.items and p.items.$ref %}
+    {{ pname|cleanPropertyName }}: Schema${{ p.items.$ref }}[];
+  {% else %}
+    {{ pname|cleanPropertyName }}: {{ p|getType|safe }};
+  {% endif %}
 {% endfor %}
 {% endif %}
 }
-{% if api.schemas %}
-{% for schemaName, schema in api.schemas|dictsort %}
-/**
- * @typedef {{ schema.id | oneLine }}
- * @memberOf! {{ api.name }}({{ api.version }})
- * @type {{ schema.type | oneLine }}
-{% if schema.properties %}
-{% for pname, p in schema.properties|dictsort %}
-{% if p.$ref %}
- * @property {{ lb }}{{ api.name }}({{ api.version }}).{{ p.$ref }}{{ rb }} {{ pname }} {{ p.description | cleanPaths | oneLine }}
-{% elif p.items and p.items.type %}
- * @property {{ lb }}{{ p.items.type }}[]{{ rb }} {{ pname }} {{ p.description | cleanPaths | oneLine }}
-{% elif p.items and p.items.$ref %}
- * @property {{ lb }}{{ api.name }}({{ api.version }}).{{ p.items.$ref }}[]{{ rb }} {{ pname }} {{ p.description | cleanPaths | oneLine }}
-{% else %}
- * @property {{ lb }}{{ p.type }}{{ rb }} {{ pname }} {{ p.description | cleanPaths | oneLine }}
-{% endif %}
-{% endfor %}
-{% endif %}
- */
 {% endfor %}
 {% endif %}
 
-export = {{ Name }};
+{{ resource.render(api, api, 'Resource$') }}

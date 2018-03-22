@@ -91,45 +91,6 @@ describe('Clients', () => {
     assert.equal(typeof oauth2.userinfo.v2.me.get, 'function');
   });
 
-  it('should be able to require all api files without error', () => {
-    function getFiles(dir: string, files?: string[]) {
-      files = files || [];
-      if (typeof files === 'undefined') {
-        files = [];
-      }
-      const files2 = fs.readdirSync(dir);
-      for (const i in files2) {
-        if (!files2.hasOwnProperty(i)) {
-          continue;
-        }
-        const name = dir + '/' + files2[i];
-        if (fs.statSync(name).isDirectory()) {
-          getFiles(name, files);
-        } else {
-          if (path.extname(name) === '.js') {
-            files.push(name);
-          }
-        }
-      }
-      return files;
-    }
-
-    const apiFiles = getFiles(path.join(__dirname, '/../src/apis'));
-
-    assert.doesNotThrow(() => {
-      for (const i in apiFiles) {
-        if (apiFiles.hasOwnProperty(i)) {
-          try {
-            require(apiFiles[i]);
-          } catch (err) {
-            console.error(err);
-            throw err;
-          }
-        }
-      }
-    });
-  });
-
   it('should support default params', async () => {
     const google = new GoogleApis();
     const datastore =

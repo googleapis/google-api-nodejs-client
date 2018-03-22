@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
 
@@ -21,7 +22,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
-
+// tslint:disable: class-name
+// tslint:disable: variable-name
+// tslint:disable: jsdoc-format
 
 /**
  * PageSpeed Insights API
@@ -39,71 +42,122 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Pagespeedonline
  */
-function Pagespeedonline(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.pagespeedapi = {
-    /**
-     * pagespeedonline.pagespeedapi.runpagespeed
-     * @desc Runs PageSpeed analysis on the page at the specified URL, and
-     * returns a PageSpeed score, a list of suggestions to make that page
-     * faster, and other information.
-     * @alias pagespeedonline.pagespeedapi.runpagespeed
-     * @memberOf! pagespeedonline(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.filter_third_party_resources Indicates if third party resources should be filtered out before PageSpeed analysis.
-     * @param {string=} params.locale The locale used to localize formatted results
-     * @param {string=} params.rule A PageSpeed rule to run; if none are given, all rules are run
-     * @param {boolean=} params.screenshot Indicates if binary data containing a screenshot should be included
-     * @param {string=} params.strategy The analysis strategy to use
-     * @param {string} params.url The URL to fetch and analyze
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    runpagespeed(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/pagespeedonline/v1/runPagespeed')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['url'],
-        pathParams: [],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }
+export class Pagespeedonline {
+  _options: GlobalOptions;
+  google: GoogleApis;
+  root = this;
 
-  };
+  pagespeedapi: Resource$Pagespeedapi;
+
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    this._options = options || {};
+    this.google = google;
+
+    this.pagespeedapi = new Resource$Pagespeedapi(this);
+  }
 }
-/**
- * @typedef Result
- * @memberOf! pagespeedonline(v1)
- * @type object
- * @property {string} captchaResult The captcha verify result
- * @property {object} formattedResults Localized PageSpeed results. Contains a ruleResults entry for each PageSpeed rule instantiated and run by the server.
- * @property {string} id Canonicalized and final URL for the document, after following page redirects (if any).
- * @property {string[]} invalidRules List of rules that were specified in the request, but which the server did not know how to instantiate.
- * @property {string} kind Kind of result.
- * @property {object} pageStats Summary statistics for the page, such as number of JavaScript bytes, number of HTML bytes, etc.
- * @property {integer} responseCode Response code for the document. 200 indicates a normal page load. 4xx/5xx indicates an error.
- * @property {integer} score The PageSpeed Score (0-100), which indicates how much faster a page could be. A high score indicates little room for improvement, while a lower score indicates more room for improvement.
- * @property {object} screenshot Base64-encoded screenshot of the page that was analyzed.
- * @property {string} title Title of the page, as displayed in the browser&#39;s title bar.
- * @property {object} version The version of PageSpeed used to generate these results.
- */
 
-export = Pagespeedonline;
+export interface Schema$Result {
+  /**
+   * The captcha verify result
+   */
+  captchaResult: string;
+  /**
+   * Localized PageSpeed results. Contains a ruleResults entry for each
+   * PageSpeed rule instantiated and run by the server.
+   */
+  formattedResults: any;
+  /**
+   * Canonicalized and final URL for the document, after following page
+   * redirects (if any).
+   */
+  id: string;
+  /**
+   * List of rules that were specified in the request, but which the server did
+   * not know how to instantiate.
+   */
+  invalidRules: string[];
+  /**
+   * Kind of result.
+   */
+  kind: string;
+  /**
+   * Summary statistics for the page, such as number of JavaScript bytes, number
+   * of HTML bytes, etc.
+   */
+  pageStats: any;
+  /**
+   * Response code for the document. 200 indicates a normal page load. 4xx/5xx
+   * indicates an error.
+   */
+  responseCode: number;
+  /**
+   * The PageSpeed Score (0-100), which indicates how much faster a page could
+   * be. A high score indicates little room for improvement, while a lower score
+   * indicates more room for improvement.
+   */
+  score: number;
+  /**
+   * Base64-encoded screenshot of the page that was analyzed.
+   */
+  screenshot: any;
+  /**
+   * Title of the page, as displayed in the browser&#39;s title bar.
+   */
+  title: string;
+  /**
+   * The version of PageSpeed used to generate these results.
+   */
+  version: any;
+}
+
+export class Resource$Pagespeedapi {
+  root: Pagespeedonline;
+  constructor(root: Pagespeedonline) {
+    this.root = root;
+  }
+
+  /**
+   * pagespeedonline.pagespeedapi.runpagespeed
+   * @desc Runs PageSpeed analysis on the page at the specified URL, and returns
+   * a PageSpeed score, a list of suggestions to make that page faster, and
+   * other information.
+   * @alias pagespeedonline.pagespeedapi.runpagespeed
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {boolean=} params.filter_third_party_resources Indicates if third party resources should be filtered out before PageSpeed analysis.
+   * @param {string=} params.locale The locale used to localize formatted results
+   * @param {string=} params.rule A PageSpeed rule to run; if none are given, all rules are run
+   * @param {boolean=} params.screenshot Indicates if binary data containing a screenshot should be included
+   * @param {string=} params.strategy The analysis strategy to use
+   * @param {string} params.url The URL to fetch and analyze
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  runpagespeed =
+      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Result>,
+       callback?: BodyResponseCallback<Schema$Result>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/pagespeedonline/v1/runPagespeed')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: ['url'],
+          pathParams: [],
+          context: this.root
+        };
+        createAPIRequest<Schema$Result>(parameters, callback!);
+      };
+}

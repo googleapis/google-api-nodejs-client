@@ -35,7 +35,7 @@ describe('GoogleApis#discover', () => {
     localApis.splice(localApis.indexOf('index.js.map'), 1);
 
     localApis.forEach((name) => {
-      assert(g2[name]);
+      assert(g2[name], `API '${name}' is not available on GoogleApis`);
       // Setting all APIs to null initially.
       g2[name] = null;
     });

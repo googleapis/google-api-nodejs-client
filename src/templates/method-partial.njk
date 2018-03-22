@@ -1,7 +1,8 @@
-{% macro render(m, mname, api, globalmethods) %}
+{% macro render(m, mname, api, rootApi) %}
 {% set lb = "{" %}
 {% set rb = "}" %}
 {% set pathParams = m.parameters|getPathParams|sort %}
+
 /**
  * {{ m.id }}
 {% if m.description %}
@@ -9,7 +10,7 @@
 {% endif %}
 {% if m.fragment %}
  * @example
-   {{ m.fragment|safe }}
+ * {{ m.fragment|safe }}
 {% endif %}
  * @alias {{ m.id }}
  * @memberOf! {{ api.name }}({{ api.version }})
@@ -38,25 +39,25 @@
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
-{% if globalmethods %}this.{{ mname }} = (params: any, options: MethodOptions|BodyResponseCallback<any>, callback?: BodyResponseCallback<any>) => { {% endif %}
-{% if not globalmethods %}{{ mname }} (params: any, options: MethodOptions|BodyResponseCallback<any>, callback?: BodyResponseCallback<any>) { {% endif %}
-
+{{ mname }} = (params: any, options: MethodOptions|BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>, callback?: BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>) => {
   if (typeof options === 'function') {
     callback = options;
     options = {};
   }
   options = options || {};
-  const rootUrl = options.rootUrl || {{ api.rootUrl|buildurl|safe }};
+  const rootUrl = options.rootUrl || {{ rootApi.rootUrl|buildurl|safe }};
   const parameters = {
     options: Object.assign({
-      url: (rootUrl + {{ ('/' + api.servicePath + m.path)|buildurl|safe }}).replace(/([^:]\/)\/+/g, '$1'),
+      url: (rootUrl + {{ ('/' + rootApi.servicePath + m.path)|buildurl|safe }}).replace(/([^:]\/)\/+/g, '$1'),
       method: '{{ m.httpMethod }}'
     }, options),
     params,
     {% if m.mediaUpload.protocols.simple.path %}mediaUrl: (rootUrl + {{ ('/' + m.mediaUpload.protocols.simple.path)|buildurl|safe }}).replace(/([^:]\/)\/+/g, '$1'),{% endif %}
     requiredParams: [{% if m.parameterOrder.length %}'{{ m.parameterOrder|join("', '")|safe }}'{% endif %}],
     pathParams: [{% if pathParams.length %}'{{ pathParams|join("', '")|safe }}'{% endif %}],
-    context: self
+    context: this.root
   };
-  return createAPIRequest(parameters, callback!);
-}{% if globalmethods %};{% endif %}{% endmacro %}
+  {% set responseType = "Schema$" + m.response.$ref|default() %}
+  createAPIRequest<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>(parameters, callback!);
+};
+{% endmacro %}

@@ -16,6 +16,10 @@
 import * as path from 'path';
 import * as util from 'util';
 import { APIList, ServiceOptions } from '../lib/api';
+{% for apiName, api in apis %}
+  {% for versionName, version in api %}import * as {{ apiName }}_{{ version|replace('.','_') }} from './{{ apiName }}/{{ version }}';
+{% endfor %}
+{% endfor %}
 
 export interface APIList {
   // tslint:disable-next-line: no-any
@@ -24,38 +28,37 @@ export interface APIList {
 
 const APIS: APIList = {
   {% for apiName, api in apis %}{{ apiName }}: {
-    {% for versionName, version in api %}'{{ version }}': require('./{{ apiName }}/{{ version }}'),
+    {% for versionName, version in api %}'{{ version }}': {{ apiName }}_{{ version|replace('.','_') }}.{{apiName|capitalize}},
     {% endfor %}
   },
   {% endfor %}
 };
 
-function getAPI(api: string, options: ServiceOptions|string) {
-  let version: string;
-  if (typeof options === 'string') {
-    version = options;
-    options = {};
-  } else if (typeof options === 'object') {
-    version = options.version!;
-    delete options.version;
-  } else {
-    throw new Error('Argument error: Accepts only string or object');
-  }
-  try {
-    const endpoint = APIS[api][path.basename(version)];
-    const ep = new endpoint(options);
-    ep.google = this;          // for drive.google.transporter
-    return Object.freeze(ep);  // create new & freeze
-  } catch (e) {
-    throw new Error(
-        `Unable to load endpoint ${api}("${version}"): ${e.message}`);
-  }
-}
-
 export class GeneratedAPIs {
+  private getAPI(api: string, options: ServiceOptions|string) {
+    let version: string;
+    if (typeof options === 'string') {
+      version = options;
+      options = {};
+    } else if (typeof options === 'object') {
+      version = options.version!;
+      delete options.version;
+    } else {
+      throw new Error('Argument error: Accepts only string or object');
+    }
+    try {
+      const endpoint = APIS[api][path.basename(version)];
+      const ep = new endpoint(options, this);
+      return Object.freeze(ep);  // create new & freeze
+    } catch (e) {
+      throw new Error(
+          `Unable to load endpoint ${api}("${version}"): ${e.message}`);
+    }
+  }
+
 {% for apiName, api in apis %}
 {{ apiName }}(options: ServiceOptions|string) {
-  return getAPI.call(this, '{{ apiName }}', options);
+  return this.getAPI('{{ apiName }}', options);
 }
 {% endfor %}
 }

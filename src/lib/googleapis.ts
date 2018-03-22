@@ -47,7 +47,7 @@ export class GoogleApis extends apis.GeneratedAPIs {
     super();
     this.options(options);
     // tslint:disable-next-line: no-any
-    this.addAPIs(apis as any);
+    // this.addAPIs(apis as any);
   }
 
   /**
@@ -121,7 +121,7 @@ export class GoogleApis extends apis.GeneratedAPIs {
   async discoverAPI(apiPath: string, options: {} = {}):
       Promise<Readonly<Endpoint>> {
     const endpointCreator = await this._discovery.discoverAPI(apiPath);
-    const ep = endpointCreator(options);
+    const ep = endpointCreator(options, this);
     ep.google = this;  // for drive.google.transporter
     return Object.freeze(ep);
   }

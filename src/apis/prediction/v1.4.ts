@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
 
@@ -21,7 +22,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
-
+// tslint:disable: class-name
+// tslint:disable: variable-name
+// tslint:disable: jsdoc-format
 
 /**
  * Prediction API
@@ -39,270 +42,358 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1.4
  * @param {object=} options Options for Prediction
  */
-function Prediction(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.hostedmodels = {
-    /**
-     * prediction.hostedmodels.predict
-     * @desc Submit input and request an output against a hosted model.
-     * @alias prediction.hostedmodels.predict
-     * @memberOf! prediction(v1.4)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.hostedModelName The name of a hosted model.
-     * @param {prediction(v1.4).Input} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    predict(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/prediction/v1.4/hostedmodels/{hostedModelName}/predict')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['hostedModelName'],
-        pathParams: ['hostedModelName'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }
+export class Prediction {
+  _options: GlobalOptions;
+  google: GoogleApis;
+  root = this;
 
-  };
-  self.trainedmodels = {
-    /**
-     * prediction.trainedmodels.delete
-     * @desc Delete a trained model.
-     * @alias prediction.trainedmodels.delete
-     * @memberOf! prediction(v1.4)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.id The unique name for the predictive model.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete (
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/prediction/v1.4/trainedmodels/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
-        params,
-        requiredParams: ['id'],
-        pathParams: ['id'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * prediction.trainedmodels.get
-        * @desc Check training status of your model.
-        * @alias prediction.trainedmodels.get
-        * @memberOf! prediction(v1.4)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.id The unique name for the predictive model.
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/prediction/v1.4/trainedmodels/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['id'],
-        pathParams: ['id'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * prediction.trainedmodels.insert
-        * @desc Begin training your model.
-        * @alias prediction.trainedmodels.insert
-        * @memberOf! prediction(v1.4)
-        *
-        * @param {object} params Parameters for request
-        * @param {prediction(v1.4).Training} params.resource Request body data
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    insert(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/prediction/v1.4/trainedmodels')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * prediction.trainedmodels.predict
-        * @desc Submit model id and request a prediction
-        * @alias prediction.trainedmodels.predict
-        * @memberOf! prediction(v1.4)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.id The unique name for the predictive model.
-        * @param {prediction(v1.4).Input} params.resource Request body data
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    predict(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/prediction/v1.4/trainedmodels/{id}/predict')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['id'],
-        pathParams: ['id'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * prediction.trainedmodels.update
-        * @desc Add new data to a trained model.
-        * @alias prediction.trainedmodels.update
-        * @memberOf! prediction(v1.4)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.id The unique name for the predictive model.
-        * @param {prediction(v1.4).Update} params.resource Request body data
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    update(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/prediction/v1.4/trainedmodels/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
-        params,
-        requiredParams: ['id'],
-        pathParams: ['id'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }
+  hostedmodels: Resource$Hostedmodels;
+  trainedmodels: Resource$Trainedmodels;
 
-  };
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    this._options = options || {};
+    this.google = google;
+
+    this.hostedmodels = new Resource$Hostedmodels(this);
+    this.trainedmodels = new Resource$Trainedmodels(this);
+  }
 }
-/**
- * @typedef Input
- * @memberOf! prediction(v1.4)
- * @type object
- * @property {object} input Input to the model for a prediction
- */
-/**
- * @typedef Output
- * @memberOf! prediction(v1.4)
- * @type object
- * @property {string} id The unique name for the predictive model.
- * @property {string} kind What kind of resource this is.
- * @property {string} outputLabel The most likely class label [Categorical models only].
- * @property {object[]} outputMulti A list of class labels with their estimated probabilities [Categorical models only].
- * @property {number} outputValue The estimated regression value [Regression models only].
- * @property {string} selfLink A URL to re-request this resource.
- */
-/**
- * @typedef Training
- * @memberOf! prediction(v1.4)
- * @type object
- * @property {object} dataAnalysis Data Analysis.
- * @property {string} id The unique name for the predictive model.
- * @property {string} kind What kind of resource this is.
- * @property {object} modelInfo Model metadata.
- * @property {string} selfLink A URL to re-request this resource.
- * @property {string} storageDataLocation Google storage location of the training data file.
- * @property {string} storagePMMLLocation Google storage location of the preprocessing pmml file.
- * @property {string} storagePMMLModelLocation Google storage location of the pmml model file.
- * @property {string} trainingStatus The current status of the training job. This can be one of following: RUNNING; DONE; ERROR; ERROR: TRAINING JOB NOT FOUND
- * @property {object[]} utility A class weighting function, which allows the importance weights for class labels to be specified [Categorical models only].
- */
-/**
- * @typedef Update
- * @memberOf! prediction(v1.4)
- * @type object
- * @property {any[]} csvInstance The input features for this instance
- * @property {string} label The class label of this instance
- * @property {string} output The generic output value - could be regression value or class label
- */
 
-export = Prediction;
+export interface Schema$Input {
+  /**
+   * Input to the model for a prediction
+   */
+  input: any;
+}
+export interface Schema$Output {
+  /**
+   * The unique name for the predictive model.
+   */
+  id: string;
+  /**
+   * What kind of resource this is.
+   */
+  kind: string;
+  /**
+   * The most likely class label [Categorical models only].
+   */
+  outputLabel: string;
+  /**
+   * A list of class labels with their estimated probabilities [Categorical
+   * models only].
+   */
+  outputMulti: any[];
+  /**
+   * The estimated regression value [Regression models only].
+   */
+  outputValue: number;
+  /**
+   * A URL to re-request this resource.
+   */
+  selfLink: string;
+}
+export interface Schema$Training {
+  /**
+   * Data Analysis.
+   */
+  dataAnalysis: any;
+  /**
+   * The unique name for the predictive model.
+   */
+  id: string;
+  /**
+   * What kind of resource this is.
+   */
+  kind: string;
+  /**
+   * Model metadata.
+   */
+  modelInfo: any;
+  /**
+   * A URL to re-request this resource.
+   */
+  selfLink: string;
+  /**
+   * Google storage location of the training data file.
+   */
+  storageDataLocation: string;
+  /**
+   * Google storage location of the preprocessing pmml file.
+   */
+  storagePMMLLocation: string;
+  /**
+   * Google storage location of the pmml model file.
+   */
+  storagePMMLModelLocation: string;
+  /**
+   * The current status of the training job. This can be one of following:
+   * RUNNING; DONE; ERROR; ERROR: TRAINING JOB NOT FOUND
+   */
+  trainingStatus: string;
+  /**
+   * A class weighting function, which allows the importance weights for class
+   * labels to be specified [Categorical models only].
+   */
+  utility: any[];
+}
+export interface Schema$Update {
+  /**
+   * The input features for this instance
+   */
+  csvInstance: any[];
+  /**
+   * The class label of this instance
+   */
+  label: string;
+  /**
+   * The generic output value - could be regression value or class label
+   */
+  output: string;
+}
+
+export class Resource$Hostedmodels {
+  root: Prediction;
+  constructor(root: Prediction) {
+    this.root = root;
+  }
+
+  /**
+   * prediction.hostedmodels.predict
+   * @desc Submit input and request an output against a hosted model.
+   * @alias prediction.hostedmodels.predict
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.hostedModelName The name of a hosted model.
+   * @param {().Input} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  predict =
+      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Output>,
+       callback?: BodyResponseCallback<Schema$Output>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl +
+                      '/prediction/v1.4/hostedmodels/{hostedModelName}/predict')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'POST'
+              },
+              options),
+          params,
+          requiredParams: ['hostedModelName'],
+          pathParams: ['hostedModelName'],
+          context: this.root
+        };
+        createAPIRequest<Schema$Output>(parameters, callback!);
+      };
+}
+
+export class Resource$Trainedmodels {
+  root: Prediction;
+  constructor(root: Prediction) {
+    this.root = root;
+  }
+
+  /**
+   * prediction.trainedmodels.delete
+   * @desc Delete a trained model.
+   * @alias prediction.trainedmodels.delete
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.id The unique name for the predictive model.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  delete =
+      (params: any, options: MethodOptions|BodyResponseCallback<void>,
+       callback?: BodyResponseCallback<void>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/prediction/v1.4/trainedmodels/{id}')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'DELETE'
+              },
+              options),
+          params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: this.root
+        };
+        createAPIRequest<void>(parameters, callback!);
+      };
+
+
+  /**
+   * prediction.trainedmodels.get
+   * @desc Check training status of your model.
+   * @alias prediction.trainedmodels.get
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.id The unique name for the predictive model.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  get =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$Training>,
+       callback?: BodyResponseCallback<Schema$Training>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/prediction/v1.4/trainedmodels/{id}')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: this.root
+        };
+        createAPIRequest<Schema$Training>(parameters, callback!);
+      };
+
+
+  /**
+   * prediction.trainedmodels.insert
+   * @desc Begin training your model.
+   * @alias prediction.trainedmodels.insert
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {().Training} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  insert =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$Training>,
+       callback?: BodyResponseCallback<Schema$Training>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/prediction/v1.4/trainedmodels')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'POST'
+              },
+              options),
+          params,
+          requiredParams: [],
+          pathParams: [],
+          context: this.root
+        };
+        createAPIRequest<Schema$Training>(parameters, callback!);
+      };
+
+
+  /**
+   * prediction.trainedmodels.predict
+   * @desc Submit model id and request a prediction
+   * @alias prediction.trainedmodels.predict
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.id The unique name for the predictive model.
+   * @param {().Input} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  predict =
+      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Output>,
+       callback?: BodyResponseCallback<Schema$Output>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/prediction/v1.4/trainedmodels/{id}/predict')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'POST'
+              },
+              options),
+          params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: this.root
+        };
+        createAPIRequest<Schema$Output>(parameters, callback!);
+      };
+
+
+  /**
+   * prediction.trainedmodels.update
+   * @desc Add new data to a trained model.
+   * @alias prediction.trainedmodels.update
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.id The unique name for the predictive model.
+   * @param {().Update} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  update =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$Training>,
+       callback?: BodyResponseCallback<Schema$Training>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/prediction/v1.4/trainedmodels/{id}')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'PUT'
+              },
+              options),
+          params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: this.root
+        };
+        createAPIRequest<Schema$Training>(parameters, callback!);
+      };
+}

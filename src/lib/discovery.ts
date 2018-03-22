@@ -17,14 +17,16 @@ import * as pify from 'pify';
 import * as url from 'url';
 import * as util from 'util';
 
+import {GoogleApis} from '..';
 import {GeneratedAPIs} from '../apis/index';
 
-import {APIRequestMethodParams, ServiceOptions} from './api';
+import {APIRequestMethodParams, GlobalOptions, ServiceOptions} from './api';
 import {createAPIRequest} from './apirequest';
 import {Endpoint} from './endpoint';
 import {Schema, Schemas} from './schema';
 
-export type EndpointCreator = (options: {}) => Endpoint;
+export type EndpointCreator = (options: GlobalOptions, google: GoogleApis) =>
+    Endpoint;
 
 const fsp = pify(fs);
 
@@ -104,10 +106,10 @@ export class Discovery {
           }
           try {
             const endpointCreator = versionIndex[set.api.name][version];
-            const ep = set.endpointCreator(options);
-            // tslint:disable-next-line: no-any
-            (ep as any).google = this;  // for drive.google.transporter
-            return Object.freeze(ep);   // create new & freeze
+            const ep =
+                // tslint:disable-next-line: no-any
+                set.endpointCreator(options as GlobalOptions, this as any);
+            return Object.freeze(ep);  // create new & freeze
           } catch (e) {
             throw new Error(util.format(
                 'Unable to load endpoint %s("%s"): %s', set.api.name, version,

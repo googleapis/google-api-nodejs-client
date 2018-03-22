@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
 
@@ -21,7 +22,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
-
+// tslint:disable: class-name
+// tslint:disable: variable-name
+// tslint:disable: jsdoc-format
 
 /**
  * Admin Data Transfer API
@@ -38,258 +41,384 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation datatransfer_v1
  * @param {object=} options Options for Admin
  */
-function Admin(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.applications = {
-    /**
-     * datatransfer.applications.get
-     * @desc Retrieves information about an application for the given
-     * application ID.
-     * @alias datatransfer.applications.get
-     * @memberOf! admin(datatransfer_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.applicationId ID of the application resource to be retrieved.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/admin/datatransfer/v1/applications/{applicationId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['applicationId'],
-        pathParams: ['applicationId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * datatransfer.applications.list
-        * @desc Lists the applications available for data transfer for a
-        * customer.
-        * @alias datatransfer.applications.list
-        * @memberOf! admin(datatransfer_v1)
-        *
-        * @param {object=} params Parameters for request
-        * @param {string=} params.customerId Immutable ID of the Google Apps account.
-        * @param {integer=} params.maxResults Maximum number of results to return. Default is 100.
-        * @param {string=} params.pageToken Token to specify next page in the list.
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    list(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/admin/datatransfer/v1/applications')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }
+export class Admin {
+  _options: GlobalOptions;
+  google: GoogleApis;
+  root = this;
 
-  };
-  self.transfers = {
-    /**
-     * datatransfer.transfers.get
-     * @desc Retrieves a data transfer request by its resource ID.
-     * @alias datatransfer.transfers.get
-     * @memberOf! admin(datatransfer_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.dataTransferId ID of the resource to be retrieved. This is returned in the response from the insert method.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/admin/datatransfer/v1/transfers/{dataTransferId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['dataTransferId'],
-        pathParams: ['dataTransferId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * datatransfer.transfers.insert
-        * @desc Inserts a data transfer request.
-        * @alias datatransfer.transfers.insert
-        * @memberOf! admin(datatransfer_v1)
-        *
-        * @param {object} params Parameters for request
-        * @param {admin(datatransfer_v1).DataTransfer} params.resource Request body data
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    insert(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/admin/datatransfer/v1/transfers')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * datatransfer.transfers.list
-        * @desc Lists the transfers for a customer by source user, destination
-        * user, or status.
-        * @alias datatransfer.transfers.list
-        * @memberOf! admin(datatransfer_v1)
-        *
-        * @param {object=} params Parameters for request
-        * @param {string=} params.customerId Immutable ID of the Google Apps account.
-        * @param {integer=} params.maxResults Maximum number of results to return. Default is 100.
-        * @param {string=} params.newOwnerUserId Destination user's profile ID.
-        * @param {string=} params.oldOwnerUserId Source user's profile ID.
-        * @param {string=} params.pageToken Token to specify the next page in the list.
-        * @param {string=} params.status Status of the transfer.
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    list(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/admin/datatransfer/v1/transfers')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }
+  applications: Resource$Applications;
+  transfers: Resource$Transfers;
 
-  };
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    this._options = options || {};
+    this.google = google;
+
+    this.applications = new Resource$Applications(this);
+    this.transfers = new Resource$Transfers(this);
+  }
+}
+
+/**
+ * The JSON template for an Application resource.
+ */
+export interface Schema$Application {
+  /**
+   * Etag of the resource.
+   */
+  etag: string;
+  /**
+   * The application&#39;s ID.
+   */
+  id: string;
+  /**
+   * Identifies the resource as a DataTransfer Application Resource.
+   */
+  kind: string;
+  /**
+   * The application&#39;s name.
+   */
+  name: string;
+  /**
+   * The list of all possible transfer parameters for this application. These
+   * parameters can be used to select the data of the user in this application
+   * to be transfered.
+   */
+  transferParams: Schema$ApplicationTransferParam[];
 }
 /**
- * @typedef Application
- * @memberOf! admin(datatransfer_v1)
- * @type object
- * @property {string} etag Etag of the resource.
- * @property {string} id The application&#39;s ID.
- * @property {string} kind Identifies the resource as a DataTransfer Application Resource.
- * @property {string} name The application&#39;s name.
- * @property {admin(datatransfer_v1).ApplicationTransferParam[]} transferParams The list of all possible transfer parameters for this application. These parameters can be used to select the data of the user in this application to be transfered.
+ * Template to map fields of ApplicationDataTransfer resource.
  */
+export interface Schema$ApplicationDataTransfer {
+  /**
+   * The application&#39;s ID.
+   */
+  applicationId: string;
+  /**
+   * The transfer parameters for the application. These parameters are used to
+   * select the data which will get transfered in context of this application.
+   */
+  applicationTransferParams: Schema$ApplicationTransferParam[];
+  /**
+   * Current status of transfer for this application. (Read-only)
+   */
+  applicationTransferStatus: string;
+}
 /**
- * @typedef ApplicationDataTransfer
- * @memberOf! admin(datatransfer_v1)
- * @type object
- * @property {string} applicationId The application&#39;s ID.
- * @property {admin(datatransfer_v1).ApplicationTransferParam[]} applicationTransferParams The transfer parameters for the application. These parameters are used to select the data which will get transfered in context of this application.
- * @property {string} applicationTransferStatus Current status of transfer for this application. (Read-only)
+ * Template for a collection of Applications.
  */
+export interface Schema$ApplicationsListResponse {
+  /**
+   * List of applications that support data transfer and are also installed for
+   * the customer.
+   */
+  applications: Schema$Application[];
+  /**
+   * ETag of the resource.
+   */
+  etag: string;
+  /**
+   * Identifies the resource as a collection of Applications.
+   */
+  kind: string;
+  /**
+   * Continuation token which will be used to specify next page in list API.
+   */
+  nextPageToken: string;
+}
 /**
- * @typedef ApplicationsListResponse
- * @memberOf! admin(datatransfer_v1)
- * @type object
- * @property {admin(datatransfer_v1).Application[]} applications List of applications that support data transfer and are also installed for the customer.
- * @property {string} etag ETag of the resource.
- * @property {string} kind Identifies the resource as a collection of Applications.
- * @property {string} nextPageToken Continuation token which will be used to specify next page in list API.
+ * Template for application transfer parameters.
  */
+export interface Schema$ApplicationTransferParam {
+  /**
+   * The type of the transfer parameter. eg: &#39;PRIVACY_LEVEL&#39;
+   */
+  key: string;
+  /**
+   * The value of the coressponding transfer parameter. eg: &#39;PRIVATE&#39; or
+   * &#39;SHARED&#39;
+   */
+  value: string[];
+}
 /**
- * @typedef ApplicationTransferParam
- * @memberOf! admin(datatransfer_v1)
- * @type object
- * @property {string} key The type of the transfer parameter. eg: &#39;PRIVACY_LEVEL&#39;
- * @property {string[]} value The value of the coressponding transfer parameter. eg: &#39;PRIVATE&#39; or &#39;SHARED&#39;
+ * The JSON template for a DataTransfer resource.
  */
+export interface Schema$DataTransfer {
+  /**
+   * List of per application data transfer resources. It contains data transfer
+   * details of the applications associated with this transfer resource. Note
+   * that this list is also used to specify the applications for which data
+   * transfer has to be done at the time of the transfer resource creation.
+   */
+  applicationDataTransfers: Schema$ApplicationDataTransfer[];
+  /**
+   * ETag of the resource.
+   */
+  etag: string;
+  /**
+   * The transfer&#39;s ID (Read-only).
+   */
+  id: string;
+  /**
+   * Identifies the resource as a DataTransfer request.
+   */
+  kind: string;
+  /**
+   * ID of the user to whom the data is being transfered.
+   */
+  newOwnerUserId: string;
+  /**
+   * ID of the user whose data is being transfered.
+   */
+  oldOwnerUserId: string;
+  /**
+   * Overall transfer status (Read-only).
+   */
+  overallTransferStatusCode: string;
+  /**
+   * The time at which the data transfer was requested (Read-only).
+   */
+  requestTime: string;
+}
 /**
- * @typedef DataTransfer
- * @memberOf! admin(datatransfer_v1)
- * @type object
- * @property {admin(datatransfer_v1).ApplicationDataTransfer[]} applicationDataTransfers List of per application data transfer resources. It contains data transfer details of the applications associated with this transfer resource. Note that this list is also used to specify the applications for which data transfer has to be done at the time of the transfer resource creation.
- * @property {string} etag ETag of the resource.
- * @property {string} id The transfer&#39;s ID (Read-only).
- * @property {string} kind Identifies the resource as a DataTransfer request.
- * @property {string} newOwnerUserId ID of the user to whom the data is being transfered.
- * @property {string} oldOwnerUserId ID of the user whose data is being transfered.
- * @property {string} overallTransferStatusCode Overall transfer status (Read-only).
- * @property {string} requestTime The time at which the data transfer was requested (Read-only).
+ * Template for a collection of DataTransfer resources.
  */
-/**
- * @typedef DataTransfersListResponse
- * @memberOf! admin(datatransfer_v1)
- * @type object
- * @property {admin(datatransfer_v1).DataTransfer[]} dataTransfers List of data transfer requests.
- * @property {string} etag ETag of the resource.
- * @property {string} kind Identifies the resource as a collection of data transfer requests.
- * @property {string} nextPageToken Continuation token which will be used to specify next page in list API.
- */
+export interface Schema$DataTransfersListResponse {
+  /**
+   * List of data transfer requests.
+   */
+  dataTransfers: Schema$DataTransfer[];
+  /**
+   * ETag of the resource.
+   */
+  etag: string;
+  /**
+   * Identifies the resource as a collection of data transfer requests.
+   */
+  kind: string;
+  /**
+   * Continuation token which will be used to specify next page in list API.
+   */
+  nextPageToken: string;
+}
 
-export = Admin;
+export class Resource$Applications {
+  root: Admin;
+  constructor(root: Admin) {
+    this.root = root;
+  }
+
+  /**
+   * datatransfer.applications.get
+   * @desc Retrieves information about an application for the given application
+   * ID.
+   * @alias datatransfer.applications.get
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.applicationId ID of the application resource to be retrieved.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  get =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$Application>,
+       callback?: BodyResponseCallback<Schema$Application>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl +
+                      '/admin/datatransfer/v1/applications/{applicationId}')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: ['applicationId'],
+          pathParams: ['applicationId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$Application>(parameters, callback!);
+      };
+
+
+  /**
+   * datatransfer.applications.list
+   * @desc Lists the applications available for data transfer for a customer.
+   * @alias datatransfer.applications.list
+   * @memberOf! ()
+   *
+   * @param {object=} params Parameters for request
+   * @param {string=} params.customerId Immutable ID of the Google Apps account.
+   * @param {integer=} params.maxResults Maximum number of results to return. Default is 100.
+   * @param {string=} params.pageToken Token to specify next page in the list.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  list =
+      (params: any,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$ApplicationsListResponse>,
+       callback?: BodyResponseCallback<Schema$ApplicationsListResponse>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/admin/datatransfer/v1/applications')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: [],
+          pathParams: [],
+          context: this.root
+        };
+        createAPIRequest<Schema$ApplicationsListResponse>(
+            parameters, callback!);
+      };
+}
+
+export class Resource$Transfers {
+  root: Admin;
+  constructor(root: Admin) {
+    this.root = root;
+  }
+
+  /**
+   * datatransfer.transfers.get
+   * @desc Retrieves a data transfer request by its resource ID.
+   * @alias datatransfer.transfers.get
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.dataTransferId ID of the resource to be retrieved. This is returned in the response from the insert method.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  get =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$DataTransfer>,
+       callback?: BodyResponseCallback<Schema$DataTransfer>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl +
+                      '/admin/datatransfer/v1/transfers/{dataTransferId}')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: ['dataTransferId'],
+          pathParams: ['dataTransferId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$DataTransfer>(parameters, callback!);
+      };
+
+
+  /**
+   * datatransfer.transfers.insert
+   * @desc Inserts a data transfer request.
+   * @alias datatransfer.transfers.insert
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {().DataTransfer} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  insert =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$DataTransfer>,
+       callback?: BodyResponseCallback<Schema$DataTransfer>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/admin/datatransfer/v1/transfers')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'POST'
+              },
+              options),
+          params,
+          requiredParams: [],
+          pathParams: [],
+          context: this.root
+        };
+        createAPIRequest<Schema$DataTransfer>(parameters, callback!);
+      };
+
+
+  /**
+   * datatransfer.transfers.list
+   * @desc Lists the transfers for a customer by source user, destination user,
+   * or status.
+   * @alias datatransfer.transfers.list
+   * @memberOf! ()
+   *
+   * @param {object=} params Parameters for request
+   * @param {string=} params.customerId Immutable ID of the Google Apps account.
+   * @param {integer=} params.maxResults Maximum number of results to return. Default is 100.
+   * @param {string=} params.newOwnerUserId Destination user's profile ID.
+   * @param {string=} params.oldOwnerUserId Source user's profile ID.
+   * @param {string=} params.pageToken Token to specify the next page in the list.
+   * @param {string=} params.status Status of the transfer.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  list =
+      (params: any,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$DataTransfersListResponse>,
+       callback?: BodyResponseCallback<Schema$DataTransfersListResponse>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/admin/datatransfer/v1/transfers')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: [],
+          pathParams: [],
+          context: this.root
+        };
+        createAPIRequest<Schema$DataTransfersListResponse>(
+            parameters, callback!);
+      };
+}
