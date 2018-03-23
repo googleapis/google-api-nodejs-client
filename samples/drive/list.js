@@ -21,35 +21,30 @@ const drive = google.drive({
   auth: sampleClient.oAuth2Client
 });
 
-function list (query) {
+function runSample (query, callback) {
   const params = { pageSize: 3 };
-  if (query) {
-    params.q = query;
-  }
-  drive.files.list(params, (err, result) => {
+  params.q = query;
+  drive.files.list(params, (err, res) => {
     if (err) {
+      console.error(err);
       throw err;
     }
-    console.log(result.files);
-    process.exit();
+    console.log(res.data);
+    callback(res.data);
   });
 }
 
-const scopes = [
-  'https://www.googleapis.com/auth/drive',
-  'https://www.googleapis.com/auth/drive.appdata',
-  'https://www.googleapis.com/auth/drive.file',
-  'https://www.googleapis.com/auth/drive.metadata',
-  'https://www.googleapis.com/auth/drive.metadata.readonly',
-  'https://www.googleapis.com/auth/drive.photos.readonly',
-  'https://www.googleapis.com/auth/drive.readonly'
-];
-
 if (module === require.main) {
+  const scopes = ['https://www.googleapis.com/auth/drive.metadata.readonly'];
   sampleClient.authenticate(scopes, err => {
     if (err) {
       throw err;
     }
-    list(process.argv.slice(2)[0]);
+    runSample(undefined, () => { /* complete */ });
   });
 }
+
+module.exports = {
+  runSample,
+  client: sampleClient.oAuth2Client
+};

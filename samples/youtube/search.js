@@ -27,12 +27,11 @@ function runSamples () {
   youtube.search.list({
     part: 'id,snippet',
     q: 'Node.js on Google Cloud'
-  }, (err, data) => {
+  }, (err, res) => {
     if (err) {
       throw err;
     }
-    console.log(data);
-    process.exit();
+    console.log(res.data);
   });
 }
 

@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Play Game Services API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Games
  */
-function Games(options) {
+function Games(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.achievementDefinitions = {
@@ -49,7 +56,9 @@ function Games(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -69,7 +78,7 @@ function Games(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -89,7 +98,9 @@ function Games(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    increment(params, options, callback) {
+    increment(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -110,7 +121,7 @@ function Games(options) {
         pathParams: ['achievementId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.achievements.list
         * @desc Lists the progress for all your application's achievements for
@@ -128,7 +139,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -148,7 +161,7 @@ function Games(options) {
         pathParams: ['playerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.achievements.reveal
         * @desc Sets the state of the achievement with the given ID to REVEALED
@@ -162,7 +175,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    reveal(params, options, callback) {
+    reveal(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -182,7 +197,7 @@ function Games(options) {
         pathParams: ['achievementId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.achievements.setStepsAtLeast
         * @desc Sets the steps for the currently authenticated player towards
@@ -199,7 +214,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setStepsAtLeast(params, options, callback) {
+    setStepsAtLeast(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -220,7 +237,7 @@ function Games(options) {
         pathParams: ['achievementId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.achievements.unlock
         * @desc Unlocks this achievement for the currently authenticated player.
@@ -233,7 +250,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    unlock(params, options, callback) {
+    unlock(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -253,7 +272,7 @@ function Games(options) {
         pathParams: ['achievementId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.achievements.updateMultiple
         * @desc Updates multiple achievements for the currently authenticated
@@ -267,7 +286,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    updateMultiple(params, options, callback) {
+    updateMultiple(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -287,7 +308,7 @@ function Games(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -308,7 +329,8 @@ function Games(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -328,7 +350,7 @@ function Games(options) {
         pathParams: ['applicationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.applications.played
         * @desc Indicate that the the currently authenticated user is playing
@@ -341,7 +363,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    played(params, options, callback) {
+    played(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -361,7 +385,7 @@ function Games(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.applications.verify
         * @desc Verifies the auth token provided with this request is for the
@@ -376,7 +400,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    verify(params, options, callback) {
+    verify(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -396,7 +422,7 @@ function Games(options) {
         pathParams: ['applicationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -416,7 +442,9 @@ function Games(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listByPlayer(params, options, callback) {
+    listByPlayer(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -435,7 +463,7 @@ function Games(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.events.listDefinitions
         * @desc Returns a list of the event definitions in this application.
@@ -450,7 +478,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    listDefinitions(params, options, callback) {
+    listDefinitions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -470,7 +500,7 @@ function Games(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.events.record
         * @desc Records a batch of changes to the number of times events have
@@ -485,7 +515,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    record(params, options, callback) {
+    record(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -504,7 +536,7 @@ function Games(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -522,7 +554,8 @@ function Games(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -542,7 +575,7 @@ function Games(options) {
         pathParams: ['leaderboardId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.leaderboards.list
         * @desc Lists all the leaderboard metadata for your application.
@@ -557,7 +590,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -577,7 +612,7 @@ function Games(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -593,7 +628,9 @@ function Games(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getMetagameConfig(params, options, callback) {
+    getMetagameConfig(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -613,7 +650,7 @@ function Games(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.metagame.listCategoriesByPlayer
         * @desc List play data aggregated per category for the player
@@ -631,7 +668,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    listCategoriesByPlayer(params, options, callback) {
+    listCategoriesByPlayer(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -652,7 +691,7 @@ function Games(options) {
         pathParams: ['collection', 'playerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -671,7 +710,8 @@ function Games(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -691,7 +731,7 @@ function Games(options) {
         pathParams: ['playerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.players.list
         * @desc Get the collection of players for the currently authenticated
@@ -708,7 +748,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -728,7 +770,7 @@ function Games(options) {
         pathParams: ['collection'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -746,7 +788,9 @@ function Games(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    remove(params, options, callback) {
+    remove(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -766,7 +810,7 @@ function Games(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.pushtokens.update
         * @desc Registers a push token for the current user and application.
@@ -779,7 +823,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -799,7 +845,7 @@ function Games(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -820,7 +866,9 @@ function Games(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    claim(params, options, callback) {
+    claim(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -841,7 +889,7 @@ function Games(options) {
         pathParams: ['milestoneId', 'questId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -860,7 +908,9 @@ function Games(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    accept(params, options, callback) {
+    accept(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -880,7 +930,7 @@ function Games(options) {
         pathParams: ['questId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.quests.list
         * @desc Get a list of quests for your application and the currently
@@ -897,7 +947,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -917,7 +969,7 @@ function Games(options) {
         pathParams: ['playerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -934,7 +986,9 @@ function Games(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    check(params, options, callback) {
+    check(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -954,7 +1008,7 @@ function Games(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -973,7 +1027,9 @@ function Games(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params, options, callback) {
+    create(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -993,7 +1049,7 @@ function Games(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.rooms.decline
         * @desc Decline an invitation to join a room. For internal use by the
@@ -1008,7 +1064,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    decline(params, options, callback) {
+    decline(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1028,7 +1086,7 @@ function Games(options) {
         pathParams: ['roomId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.rooms.dismiss
         * @desc Dismiss an invitation to join a room. For internal use by the
@@ -1042,7 +1100,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    dismiss(params, options, callback) {
+    dismiss(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1062,7 +1122,7 @@ function Games(options) {
         pathParams: ['roomId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.rooms.get
         * @desc Get the data for a room.
@@ -1076,7 +1136,8 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1096,7 +1157,7 @@ function Games(options) {
         pathParams: ['roomId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.rooms.join
         * @desc Join a room. For internal use by the Games SDK only. Calling
@@ -1112,7 +1173,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    join(params, options, callback) {
+    join(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1132,7 +1195,7 @@ function Games(options) {
         pathParams: ['roomId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.rooms.leave
         * @desc Leave a room. For internal use by the Games SDK only. Calling
@@ -1148,7 +1211,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    leave(params, options, callback) {
+    leave(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1168,7 +1233,7 @@ function Games(options) {
         pathParams: ['roomId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.rooms.list
         * @desc Returns invitations to join rooms.
@@ -1183,7 +1248,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1202,7 +1269,7 @@ function Games(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.rooms.reportStatus
         * @desc Updates sent by a client reporting the status of peers in a
@@ -1219,7 +1286,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    reportStatus(params, options, callback) {
+    reportStatus(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1239,7 +1308,7 @@ function Games(options) {
         pathParams: ['roomId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1266,7 +1335,8 @@ function Games(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1288,7 +1358,7 @@ function Games(options) {
         pathParams: ['leaderboardId', 'playerId', 'timeSpan'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.scores.list
         * @desc Lists the scores in a leaderboard, starting from the top.
@@ -1306,7 +1376,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1328,7 +1400,7 @@ function Games(options) {
         pathParams: ['collection', 'leaderboardId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.scores.listWindow
         * @desc Lists the scores in a leaderboard around (and including) a
@@ -1349,7 +1421,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    listWindow(params, options, callback) {
+    listWindow(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1371,7 +1445,7 @@ function Games(options) {
         pathParams: ['collection', 'leaderboardId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.scores.submit
         * @desc Submits a score to the specified leaderboard.
@@ -1387,7 +1461,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    submit(params, options, callback) {
+    submit(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1407,7 +1483,7 @@ function Games(options) {
         pathParams: ['leaderboardId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.scores.submitMultiple
         * @desc Submits multiple scores to leaderboards.
@@ -1421,7 +1497,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    submitMultiple(params, options, callback) {
+    submitMultiple(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1441,7 +1519,7 @@ function Games(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1459,7 +1537,8 @@ function Games(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1479,7 +1558,7 @@ function Games(options) {
         pathParams: ['snapshotId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.snapshots.list
         * @desc Retrieves a list of snapshots created by your application for
@@ -1496,7 +1575,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1516,7 +1597,7 @@ function Games(options) {
         pathParams: ['playerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1533,7 +1614,9 @@ function Games(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params, options, callback) {
+    cancel(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1553,7 +1636,7 @@ function Games(options) {
         pathParams: ['matchId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.turnBasedMatches.create
         * @desc Create a turn-based match.
@@ -1567,7 +1650,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    create(params, options, callback) {
+    create(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1587,7 +1672,7 @@ function Games(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.turnBasedMatches.decline
         * @desc Decline an invitation to play a turn-based match.
@@ -1601,7 +1686,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    decline(params, options, callback) {
+    decline(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1621,7 +1708,7 @@ function Games(options) {
         pathParams: ['matchId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.turnBasedMatches.dismiss
         * @desc Dismiss a turn-based match from the match list. The match will
@@ -1635,7 +1722,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    dismiss(params, options, callback) {
+    dismiss(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1655,7 +1744,7 @@ function Games(options) {
         pathParams: ['matchId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.turnBasedMatches.finish
         * @desc Finish a turn-based match. Each player should make this call
@@ -1672,7 +1761,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    finish(params, options, callback) {
+    finish(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1692,7 +1783,7 @@ function Games(options) {
         pathParams: ['matchId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.turnBasedMatches.get
         * @desc Get the data for a turn-based match.
@@ -1707,7 +1798,8 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1727,7 +1819,7 @@ function Games(options) {
         pathParams: ['matchId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.turnBasedMatches.join
         * @desc Join a turn-based match.
@@ -1741,7 +1833,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    join(params, options, callback) {
+    join(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1761,7 +1855,7 @@ function Games(options) {
         pathParams: ['matchId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.turnBasedMatches.leave
         * @desc Leave a turn-based match when it is not the current player's
@@ -1776,7 +1870,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    leave(params, options, callback) {
+    leave(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1796,7 +1892,7 @@ function Games(options) {
         pathParams: ['matchId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.turnBasedMatches.leaveTurn
         * @desc Leave a turn-based match during the current player's turn,
@@ -1813,7 +1909,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    leaveTurn(params, options, callback) {
+    leaveTurn(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1833,7 +1931,7 @@ function Games(options) {
         pathParams: ['matchId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.turnBasedMatches.list
         * @desc Returns turn-based matches the player is or was involved in.
@@ -1850,7 +1948,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1870,7 +1970,7 @@ function Games(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.turnBasedMatches.rematch
         * @desc Create a rematch of a match that was previously completed, with
@@ -1888,7 +1988,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    rematch(params, options, callback) {
+    rematch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1908,7 +2010,7 @@ function Games(options) {
         pathParams: ['matchId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.turnBasedMatches.sync
         * @desc Returns turn-based matches the player is or was involved in that
@@ -1928,7 +2030,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    sync(params, options, callback) {
+    sync(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1948,7 +2052,7 @@ function Games(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * games.turnBasedMatches.takeTurn
         * @desc Commit the results of a player turn.
@@ -1963,7 +2067,9 @@ function Games(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    takeTurn(params, options, callback) {
+    takeTurn(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1983,7 +2089,7 @@ function Games(options) {
         pathParams: ['matchId'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

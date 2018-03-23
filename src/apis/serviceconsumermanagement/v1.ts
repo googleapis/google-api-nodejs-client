@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Service Consumer Management API
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Serviceconsumermanagement
  */
-function Serviceconsumermanagement(options) {
+function Serviceconsumermanagement(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.operations = {
@@ -57,7 +64,9 @@ function Serviceconsumermanagement(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params, options, callback) {
+    cancel(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -78,7 +87,7 @@ function Serviceconsumermanagement(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * serviceconsumermanagement.operations.delete
         * @desc Deletes a long-running operation. This method indicates that the
@@ -94,7 +103,9 @@ function Serviceconsumermanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -114,7 +125,7 @@ function Serviceconsumermanagement(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * serviceconsumermanagement.operations.get
         * @desc Gets the latest state of a long-running operation.  Clients can
@@ -129,7 +140,8 @@ function Serviceconsumermanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -149,7 +161,7 @@ function Serviceconsumermanagement(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * serviceconsumermanagement.operations.list
         * @desc Lists operations that match the specified filter in the request.
@@ -173,7 +185,9 @@ function Serviceconsumermanagement(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -193,7 +207,7 @@ function Serviceconsumermanagement(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -213,7 +227,9 @@ function Serviceconsumermanagement(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search(params, options, callback) {
+    search(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -234,7 +250,7 @@ function Serviceconsumermanagement(options) {
         pathParams: ['parent'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     },
     tenancyUnits: {
       /**
@@ -254,7 +270,9 @@ function Serviceconsumermanagement(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      addProject(params, options, callback) {
+      addProject(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -275,7 +293,7 @@ function Serviceconsumermanagement(options) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * serviceconsumermanagement.services.tenancyUnits.create
           * @desc Creates a tenancy unit with no tenant resources.
@@ -289,7 +307,9 @@ function Serviceconsumermanagement(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      create(params, options, callback) {
+      create(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -310,7 +330,7 @@ function Serviceconsumermanagement(options) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * serviceconsumermanagement.services.tenancyUnits.delete
           * @desc Delete tenancy unit.  Before the tenancy unit is deleted,
@@ -325,7 +345,9 @@ function Serviceconsumermanagement(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (params, options, callback) {
+      delete (
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -345,7 +367,7 @@ function Serviceconsumermanagement(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * serviceconsumermanagement.services.tenancyUnits.list
           * @desc Find tenancy unit for a service and consumer. This method
@@ -364,7 +386,9 @@ function Serviceconsumermanagement(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -385,7 +409,7 @@ function Serviceconsumermanagement(options) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * serviceconsumermanagement.services.tenancyUnits.removeProject
           * @desc Removes specified project resource identified by tenant
@@ -403,7 +427,9 @@ function Serviceconsumermanagement(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      removeProject(params, options, callback) {
+      removeProject(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -424,7 +450,7 @@ function Serviceconsumermanagement(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }
@@ -545,6 +571,8 @@ function Serviceconsumermanagement(options) {
  * @typedef ContextRule
  * @memberOf! serviceconsumermanagement(v1)
  * @type object
+ * @property {string[]} allowedRequestExtensions A list of full type names or extension IDs of extensions allowed in grpc side channel from client to backend.
+ * @property {string[]} allowedResponseExtensions A list of full type names or extension IDs of extensions allowed in grpc side channel from backend to client.
  * @property {string[]} provided A list of full type names of provided contexts.
  * @property {string[]} requested A list of full type names of requested contexts.
  * @property {string} selector Selects the methods to which this rule applies.  Refer to selector for syntax details.
@@ -777,7 +805,7 @@ function Serviceconsumermanagement(options) {
  * @property {string} metricKind Whether the metric records instantaneous values, changes to a value, etc. Some combinations of `metric_kind` and `value_type` might not be supported.
  * @property {string} name The resource name of the metric descriptor.
  * @property {string} type The metric type, including its DNS name prefix. The type is not URL-encoded.  All user-defined custom metric types have the DNS name `custom.googleapis.com`.  Metric types should use a natural hierarchical grouping. For example:      &quot;custom.googleapis.com/invoice/paid/amount&quot;     &quot;appengine.googleapis.com/http/server/response_latencies&quot;
- * @property {string} unit The unit in which the metric value is reported. It is only applicable if the `value_type` is `INT64`, `DOUBLE`, or `DISTRIBUTION`. The supported units are a subset of [The Unified Code for Units of Measure](http://unitsofmeasure.org/ucum.html) standard:  **Basic units (UNIT)**  * `bit`   bit * `By`    byte * `s`     second * `min`   minute * `h`     hour * `d`     day  **Prefixes (PREFIX)**  * `k`     kilo    (10**3) * `M`     mega    (10**6) * `G`     giga    (10**9) * `T`     tera    (10**12) * `P`     peta    (10**15) * `E`     exa     (10**18) * `Z`     zetta   (10**21) * `Y`     yotta   (10**24) * `m`     milli   (10**-3) * `u`     micro   (10**-6) * `n`     nano    (10**-9) * `p`     pico    (10**-12) * `f`     femto   (10**-15) * `a`     atto    (10**-18) * `z`     zepto   (10**-21) * `y`     yocto   (10**-24) * `Ki`    kibi    (2**10) * `Mi`    mebi    (2**20) * `Gi`    gibi    (2**30) * `Ti`    tebi    (2**40)  **Grammar**  The grammar includes the dimensionless unit `1`, such as `1/s`.  The grammar also includes these connectors:  * `/`    division (as an infix operator, e.g. `1/s`). * `.`    multiplication (as an infix operator, e.g. `GBy.d`)  The grammar for a unit is as follows:      Expression = Component { &quot;.&quot; Component } { &quot;/&quot; Component } ;      Component = [ PREFIX ] UNIT [ Annotation ]               | Annotation               | &quot;1&quot;               ;      Annotation = &quot;{&quot; NAME &quot;}&quot; ;  Notes:  * `Annotation` is just a comment if it follows a `UNIT` and is    equivalent to `1` if it is used alone. For examples,    `{requests}/s == 1/s`, `By{transmitted}/s == By/s`. * `NAME` is a sequence of non-blank printable ASCII characters not    containing &#39;{&#39; or &#39;}&#39;.
+ * @property {string} unit The unit in which the metric value is reported. It is only applicable if the `value_type` is `INT64`, `DOUBLE`, or `DISTRIBUTION`. The supported units are a subset of [The Unified Code for Units of Measure](http://unitsofmeasure.org/ucum.html) standard:  **Basic units (UNIT)**  * `bit`   bit * `By`    byte * `s`     second * `min`   minute * `h`     hour * `d`     day  **Prefixes (PREFIX)**  * `k`     kilo    (10**3) * `M`     mega    (10**6) * `G`     giga    (10**9) * `T`     tera    (10**12) * `P`     peta    (10**15) * `E`     exa     (10**18) * `Z`     zetta   (10**21) * `Y`     yotta   (10**24) * `m`     milli   (10**-3) * `u`     micro   (10**-6) * `n`     nano    (10**-9) * `p`     pico    (10**-12) * `f`     femto   (10**-15) * `a`     atto    (10**-18) * `z`     zepto   (10**-21) * `y`     yocto   (10**-24) * `Ki`    kibi    (2**10) * `Mi`    mebi    (2**20) * `Gi`    gibi    (2**30) * `Ti`    tebi    (2**40)  **Grammar**  The grammar also includes these connectors:  * `/`    division (as an infix operator, e.g. `1/s`). * `.`    multiplication (as an infix operator, e.g. `GBy.d`)  The grammar for a unit is as follows:      Expression = Component { &quot;.&quot; Component } { &quot;/&quot; Component } ;      Component = ( [ PREFIX ] UNIT | &quot;%&quot; ) [ Annotation ]               | Annotation               | &quot;1&quot;               ;      Annotation = &quot;{&quot; NAME &quot;}&quot; ;  Notes:  * `Annotation` is just a comment if it follows a `UNIT` and is    equivalent to `1` if it is used alone. For examples,    `{requests}/s == 1/s`, `By{transmitted}/s == By/s`. * `NAME` is a sequence of non-blank printable ASCII characters not    containing &#39;{&#39; or &#39;}&#39;. * `1` represents dimensionless value 1, such as in `1/s`. * `%` represents dimensionless value 1/100, and annotates values giving    a percentage.
  * @property {string} valueType Whether the measurement is an integer, a floating-point number, etc. Some combinations of `metric_kind` and `value_type` might not be supported.
  */
 /**
@@ -981,7 +1009,7 @@ function Serviceconsumermanagement(options) {
  * @property {string} createTime @OutputOnly The time this tenancy unit was created.
  * @property {string} name Globally unique identifier of this tenancy unit &quot;services/{service}/{collection id}/{resource id}/tenancyUnits/{unit}&quot;
  * @property {string} service @OutputOnly Google Cloud API name of the service owning this tenancy unit. For example &#39;serviceconsumermanagement.googleapis.com&#39;.
- * @property {serviceconsumermanagement(v1).TenantResource[]} tenantResources Resources constituting the tenancy unit. There can be at most 512 tenant resources in a tenancy units.
+ * @property {serviceconsumermanagement(v1).TenantResource[]} tenantResources Resources constituting the tenancy unit. There can be at most 512 tenant resources in a tenancy unit.
  */
 /**
  * @typedef TenantProjectConfig
@@ -998,7 +1026,7 @@ function Serviceconsumermanagement(options) {
  * @typedef TenantProjectPolicy
  * @memberOf! serviceconsumermanagement(v1)
  * @type object
- * @property {serviceconsumermanagement(v1).PolicyBinding[]} policyBindings Additional policy bindings to be applied on the tenant project. At least one owner must be set in the bindings. Among the list of members as owners, at least one of them must be either `user` or `group` based.
+ * @property {serviceconsumermanagement(v1).PolicyBinding[]} policyBindings Policy bindings to be applied to the tenant project, in addition to the &#39;roles/owner&#39; role granted to the Service Consumer Management service account. At least one binding must have the role `roles/owner`. Among the list of members for `roles/owner`, at least one of them must be either `user` or `group` type.
  */
 /**
  * @typedef TenantResource

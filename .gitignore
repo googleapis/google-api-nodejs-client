@@ -1,9 +1,8 @@
-node_modules/*
+node_modules
 .idea
 doc/
 npm-debug.log
 coverage
-.secrets.json
 # Empty API
 apis/iam/v1alpha1.js
 .nyc_output
@@ -12,4 +11,5 @@ apis/iam/v1alpha1.js
 !samples/**/*.js
 .vscode
 **/*.d.ts
-yarn.lock
+**/credentials.json
+samples/*.keys.json

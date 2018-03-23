@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Identity Toolkit API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v3
  * @param {object=} options Options for Identitytoolkit
  */
-function Identitytoolkit(options) {
+function Identitytoolkit(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.relyingparty = {
@@ -47,7 +54,9 @@ function Identitytoolkit(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    createAuthUri(params, options, callback) {
+    createAuthUri(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -67,7 +76,7 @@ function Identitytoolkit(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * identitytoolkit.relyingparty.deleteAccount
         * @desc Delete user account.
@@ -80,7 +89,9 @@ function Identitytoolkit(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    deleteAccount(params, options, callback) {
+    deleteAccount(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -100,7 +111,7 @@ function Identitytoolkit(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * identitytoolkit.relyingparty.downloadAccount
         * @desc Batch download user accounts.
@@ -113,7 +124,9 @@ function Identitytoolkit(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    downloadAccount(params, options, callback) {
+    downloadAccount(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -134,7 +147,7 @@ function Identitytoolkit(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * identitytoolkit.relyingparty.emailLinkSignin
         * @desc Reset password for a user.
@@ -147,7 +160,9 @@ function Identitytoolkit(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    emailLinkSignin(params, options, callback) {
+    emailLinkSignin(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -168,7 +183,7 @@ function Identitytoolkit(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * identitytoolkit.relyingparty.getAccountInfo
         * @desc Returns the account info.
@@ -181,7 +196,9 @@ function Identitytoolkit(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getAccountInfo(params, options, callback) {
+    getAccountInfo(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -201,7 +218,7 @@ function Identitytoolkit(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * identitytoolkit.relyingparty.getOobConfirmationCode
         * @desc Get a code for user action confirmation.
@@ -214,7 +231,9 @@ function Identitytoolkit(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getOobConfirmationCode(params, options, callback) {
+    getOobConfirmationCode(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -235,7 +254,7 @@ function Identitytoolkit(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * identitytoolkit.relyingparty.getProjectConfig
         * @desc Get project configuration.
@@ -249,7 +268,9 @@ function Identitytoolkit(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getProjectConfig(params, options, callback) {
+    getProjectConfig(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -270,7 +291,7 @@ function Identitytoolkit(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * identitytoolkit.relyingparty.getPublicKeys
         * @desc Get token signing public key.
@@ -282,7 +303,9 @@ function Identitytoolkit(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getPublicKeys(params, options, callback) {
+    getPublicKeys(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -302,7 +325,7 @@ function Identitytoolkit(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * identitytoolkit.relyingparty.getRecaptchaParam
         * @desc Get recaptcha secure param.
@@ -314,7 +337,9 @@ function Identitytoolkit(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getRecaptchaParam(params, options, callback) {
+    getRecaptchaParam(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -335,7 +360,7 @@ function Identitytoolkit(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * identitytoolkit.relyingparty.resetPassword
         * @desc Reset password for a user.
@@ -348,7 +373,9 @@ function Identitytoolkit(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    resetPassword(params, options, callback) {
+    resetPassword(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -368,7 +395,7 @@ function Identitytoolkit(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * identitytoolkit.relyingparty.sendVerificationCode
         * @desc Send SMS verification code.
@@ -381,7 +408,9 @@ function Identitytoolkit(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    sendVerificationCode(params, options, callback) {
+    sendVerificationCode(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -402,7 +431,7 @@ function Identitytoolkit(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * identitytoolkit.relyingparty.setAccountInfo
         * @desc Set account info for a user.
@@ -415,7 +444,9 @@ function Identitytoolkit(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setAccountInfo(params, options, callback) {
+    setAccountInfo(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -435,7 +466,7 @@ function Identitytoolkit(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * identitytoolkit.relyingparty.setProjectConfig
         * @desc Set project configuration.
@@ -448,7 +479,9 @@ function Identitytoolkit(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setProjectConfig(params, options, callback) {
+    setProjectConfig(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -469,7 +502,7 @@ function Identitytoolkit(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * identitytoolkit.relyingparty.signOutUser
         * @desc Sign out user.
@@ -482,7 +515,9 @@ function Identitytoolkit(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    signOutUser(params, options, callback) {
+    signOutUser(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -502,7 +537,7 @@ function Identitytoolkit(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * identitytoolkit.relyingparty.signupNewUser
         * @desc Signup new user.
@@ -515,7 +550,9 @@ function Identitytoolkit(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    signupNewUser(params, options, callback) {
+    signupNewUser(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -535,7 +572,7 @@ function Identitytoolkit(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * identitytoolkit.relyingparty.uploadAccount
         * @desc Batch upload existing user accounts.
@@ -548,7 +585,9 @@ function Identitytoolkit(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    uploadAccount(params, options, callback) {
+    uploadAccount(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -568,7 +607,7 @@ function Identitytoolkit(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * identitytoolkit.relyingparty.verifyAssertion
         * @desc Verifies the assertion returned by the IdP.
@@ -581,7 +620,9 @@ function Identitytoolkit(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    verifyAssertion(params, options, callback) {
+    verifyAssertion(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -602,7 +643,7 @@ function Identitytoolkit(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * identitytoolkit.relyingparty.verifyCustomToken
         * @desc Verifies the developer asserted ID token.
@@ -615,7 +656,9 @@ function Identitytoolkit(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    verifyCustomToken(params, options, callback) {
+    verifyCustomToken(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -636,7 +679,7 @@ function Identitytoolkit(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * identitytoolkit.relyingparty.verifyPassword
         * @desc Verifies the user entered password.
@@ -649,7 +692,9 @@ function Identitytoolkit(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    verifyPassword(params, options, callback) {
+    verifyPassword(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -669,7 +714,7 @@ function Identitytoolkit(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * identitytoolkit.relyingparty.verifyPhoneNumber
         * @desc Verifies ownership of a phone number and creates/updates the
@@ -683,7 +728,9 @@ function Identitytoolkit(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    verifyPhoneNumber(params, options, callback) {
+    verifyPhoneNumber(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -704,7 +751,7 @@ function Identitytoolkit(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

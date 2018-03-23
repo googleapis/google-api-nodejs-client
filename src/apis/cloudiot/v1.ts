@@ -14,10 +14,17 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
 
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
+
 /**
- * Google Cloud IoT API
+ * Cloud IoT API
  *
  * Registers and manages IoT (Internet of Things) devices that connect to the
  * Google Cloud Platform.
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Cloudiot
  */
-function Cloudiot(options) {
+function Cloudiot(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.projects = {
@@ -53,7 +60,10 @@ function Cloudiot(options) {
                  * @param {callback} callback The callback that handles the response.
                  * @return {object} Request object
                  */
-                create(params, options, callback) {
+                create(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -74,7 +84,7 @@ function Cloudiot(options) {
                     pathParams: ['parent'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * cloudiot.projects.locations.registries.delete
                     * @desc Deletes a device registry configuration.
@@ -87,7 +97,10 @@ function Cloudiot(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                delete (params, options, callback) {
+                delete (
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -108,7 +121,7 @@ function Cloudiot(options) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * cloudiot.projects.locations.registries.get
                     * @desc Gets a device registry configuration.
@@ -121,7 +134,9 @@ function Cloudiot(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                get(params, options, callback) {
+                get(params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -142,7 +157,7 @@ function Cloudiot(options) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * cloudiot.projects.locations.registries.getIamPolicy
                     * @desc Gets the access control policy for a resource.
@@ -158,7 +173,10 @@ function Cloudiot(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                getIamPolicy(params, options, callback) {
+                getIamPolicy(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -179,7 +197,7 @@ function Cloudiot(options) {
                     pathParams: ['resource'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * cloudiot.projects.locations.registries.list
                     * @desc Lists device registries.
@@ -194,7 +212,10 @@ function Cloudiot(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                list(params, options, callback) {
+                list(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -215,7 +236,7 @@ function Cloudiot(options) {
                     pathParams: ['parent'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * cloudiot.projects.locations.registries.patch
                     * @desc Updates a device registry configuration.
@@ -230,7 +251,10 @@ function Cloudiot(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                patch(params, options, callback) {
+                patch(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -251,7 +275,7 @@ function Cloudiot(options) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * cloudiot.projects.locations.registries.setIamPolicy
                     * @desc Sets the access control policy on the specified
@@ -266,7 +290,10 @@ function Cloudiot(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                setIamPolicy(params, options, callback) {
+                setIamPolicy(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -287,7 +314,7 @@ function Cloudiot(options) {
                     pathParams: ['resource'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * cloudiot.projects.locations.registries.testIamPermissions
                     * @desc Returns permissions that a caller has on the
@@ -305,7 +332,10 @@ function Cloudiot(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                testIamPermissions(params, options, callback) {
+                testIamPermissions(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -326,7 +356,7 @@ function Cloudiot(options) {
                     pathParams: ['resource'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 },
                 devices: {
                   /**
@@ -343,7 +373,10 @@ function Cloudiot(options) {
                    * @param {callback} callback The callback that handles the response.
                    * @return {object} Request object
                    */
-                  create(params, options, callback) {
+                  create(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -364,7 +397,7 @@ function Cloudiot(options) {
                       pathParams: ['parent'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }, /**
                       * cloudiot.projects.locations.registries.devices.delete
                       * @desc Deletes a device.
@@ -378,7 +411,10 @@ function Cloudiot(options) {
                       * @param {callback} callback The callback that handles the response.
                       * @return {object} Request object
                       */
-                  delete (params, options, callback) {
+                  delete (
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -399,7 +435,7 @@ function Cloudiot(options) {
                       pathParams: ['name'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }, /**
                       * cloudiot.projects.locations.registries.devices.get
                       * @desc Gets details about a device.
@@ -414,7 +450,9 @@ function Cloudiot(options) {
                       * @param {callback} callback The callback that handles the response.
                       * @return {object} Request object
                       */
-                  get(params, options, callback) {
+                  get(params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -435,7 +473,7 @@ function Cloudiot(options) {
                       pathParams: ['name'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }, /**
                       * cloudiot.projects.locations.registries.devices.list
                       * @desc List devices in a device registry.
@@ -454,7 +492,10 @@ function Cloudiot(options) {
                       * @param {callback} callback The callback that handles the response.
                       * @return {object} Request object
                       */
-                  list(params, options, callback) {
+                  list(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -475,7 +516,7 @@ function Cloudiot(options) {
                       pathParams: ['parent'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }, /**
                       * cloudiot.projects.locations.registries.devices.modifyCloudToDeviceConfig
                       * @desc Modifies the configuration for the device, which
@@ -493,7 +534,10 @@ function Cloudiot(options) {
                       * @param {callback} callback The callback that handles the response.
                       * @return {object} Request object
                       */
-                  modifyCloudToDeviceConfig(params, options, callback) {
+                  modifyCloudToDeviceConfig(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -515,7 +559,7 @@ function Cloudiot(options) {
                       pathParams: ['name'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   }, /**
                       * cloudiot.projects.locations.registries.devices.patch
                       * @desc Updates a device.
@@ -531,7 +575,10 @@ function Cloudiot(options) {
                       * @param {callback} callback The callback that handles the response.
                       * @return {object} Request object
                       */
-                  patch(params, options, callback) {
+                  patch(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
@@ -552,7 +599,7 @@ function Cloudiot(options) {
                       pathParams: ['name'],
                       context: self
                     };
-                    return createAPIRequest(parameters, callback);
+                    return createAPIRequest(parameters, callback!);
                   },
                   configVersions: {
                     /**
@@ -570,7 +617,10 @@ function Cloudiot(options) {
                      * @param {callback} callback The callback that handles the response.
                      * @return {object} Request object
                      */
-                    list(params, options, callback) {
+                    list(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
                       if (typeof options === 'function') {
                         callback = options;
                         options = {};
@@ -591,7 +641,7 @@ function Cloudiot(options) {
                         pathParams: ['name'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback);
+                      return createAPIRequest(parameters, callback!);
                     }
 
                   },
@@ -611,7 +661,10 @@ function Cloudiot(options) {
                      * @param {callback} callback The callback that handles the response.
                      * @return {object} Request object
                      */
-                    list(params, options, callback) {
+                    list(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
                       if (typeof options === 'function') {
                         callback = options;
                         options = {};
@@ -632,7 +685,7 @@ function Cloudiot(options) {
                         pathParams: ['name'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback);
+                      return createAPIRequest(parameters, callback!);
                     }
 
                   }
@@ -645,7 +698,6 @@ function Cloudiot(options) {
  * @typedef Binding
  * @memberOf! cloudiot(v1)
  * @type object
- * @property {cloudiot(v1).Expr} condition The condition that is associated with this binding. NOTE: an unsatisfied condition will not allow user access via current binding. Different bindings, including their conditions, are examined independently. This field is only visible as GOOGLE_INTERNAL or CONDITION_TRUSTED_TESTER.
  * @property {string[]} members Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@gmail.com` or `joe@example.com`.   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: A Google Apps domain name that represents all the    users of that domain. For example, `google.com` or `example.com`.
  * @property {string} role Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. Required
  */
@@ -662,9 +714,9 @@ function Cloudiot(options) {
  * @property {cloudiot(v1).Status} lastErrorStatus [Output only] The error message of the most recent error, such as a failure to publish to Cloud Pub/Sub. &#39;last_error_time&#39; is the timestamp of this field. If no errors have occurred, this field has an empty message and the status code 0 == OK. Otherwise, this field is expected to have a status code other than OK.
  * @property {string} lastErrorTime [Output only] The time the most recent error occurred, such as a failure to publish to Cloud Pub/Sub. This field is the timestamp of &#39;last_error_status&#39;.
  * @property {string} lastEventTime [Output only] The last time a telemetry event was received. Timestamps are periodically collected and written to storage; they may be stale by a few minutes.
- * @property {string} lastHeartbeatTime [Output only] The last time a heartbeat was received. Timestamps are periodically collected and written to storage; they may be stale by a few minutes. This field is only for devices connecting through MQTT.
+ * @property {string} lastHeartbeatTime [Output only] The last time an MQTT `PINGREQ` was received. This field applies only to devices connecting through MQTT. MQTT clients usually only send `PINGREQ` messages if the connection is idle, and no other messages have been sent. Timestamps are periodically collected and written to storage; they may be stale by a few minutes.
  * @property {string} lastStateTime [Output only] The last time a state event was received. Timestamps are periodically collected and written to storage; they may be stale by a few minutes.
- * @property {object} metadata The metadata key-value pairs assigned to the device. This metadata is not interpreted or indexed by Cloud IoT Core. It can be used to add contextual information for the device.  Keys must conform to the regular expression [a-zA-Z0-9-_]+ and be less than 128 bytes in length.  Values are free-form strings. Each value must be less than or equal to 32 KB in size.  The total size of all keys and values must be less than 256 KB, and the maximum number of key-value pairs is 500.
+ * @property {object} metadata The metadata key-value pairs assigned to the device. This metadata is not interpreted or indexed by Cloud IoT Core. It can be used to add contextual information for the device.  Keys must conform to the regular expression a-zA-Z+ and be less than 128 bytes in length.  Values are free-form strings. Each value must be less than or equal to 32 KB in size.  The total size of all keys and values must be less than 256 KB, and the maximum number of key-value pairs is 500.
  * @property {string} name The resource path name. For example, `projects/p1/locations/us-central1/registries/registry0/devices/dev0` or `projects/p1/locations/us-central1/registries/registry0/devices/{num_id}`. When `name` is populated as a response from the service, it always ends in the device numeric ID.
  * @property {string} numId [Output only] A server-defined unique numeric ID for the device. This is a more compact way to identify devices, and it is globally unique.
  * @property {cloudiot(v1).DeviceState} state [Output only] The state most recently received from the device. If no state has been reported, this field is not present.
@@ -690,7 +742,7 @@ function Cloudiot(options) {
  * @memberOf! cloudiot(v1)
  * @type object
  * @property {cloudiot(v1).RegistryCredential[]} credentials The credentials used to verify the device credentials. No more than 10 credentials can be bound to a single registry at a time. The verification process occurs at the time of device creation or update. If this field is empty, no verification is performed. Otherwise, the credentials of a newly created device or added credentials of an updated device should be signed with one of these registry credentials.  Note, however, that existing devices will never be affected by modifications to this list of credentials: after a device has been successfully created in a registry, it should be able to connect even if its registry credentials are revoked, deleted, or modified.
- * @property {cloudiot(v1).EventNotificationConfig[]} eventNotificationConfigs The configuration for notification of telemetry events received from the device. All telemetry events that were successfully published by the device and acknowledged by Cloud IoT Core are guaranteed to be delivered to Cloud Pub/Sub. Only the first configuration is used. If you try to publish a device telemetry event using MQTT without specifying a Cloud Pub/Sub topic for the device&#39;s registry, the connection closes automatically. If you try to do so using an HTTP connection, an error is returned.
+ * @property {cloudiot(v1).EventNotificationConfig[]} eventNotificationConfigs The configuration for notification of telemetry events received from the device. All telemetry events that were successfully published by the device and acknowledged by Cloud IoT Core are guaranteed to be delivered to Cloud Pub/Sub. If multiple configurations match a message, only the first matching configuration is used. If you try to publish a device telemetry event using MQTT without specifying a Cloud Pub/Sub topic for the device&#39;s registry, the connection closes automatically. If you try to do so using an HTTP connection, an error is returned. Up to 10 configurations may be provided.
  * @property {cloudiot(v1).HttpConfig} httpConfig The DeviceService (HTTP) configuration for this device registry.
  * @property {string} id The identifier of this device registry. For example, `myRegistry`.
  * @property {cloudiot(v1).MqttConfig} mqttConfig The MQTT configuration for this device registry.
@@ -714,15 +766,7 @@ function Cloudiot(options) {
  * @memberOf! cloudiot(v1)
  * @type object
  * @property {string} pubsubTopicName A Cloud Pub/Sub topic name. For example, `projects/myProject/topics/deviceEvents`.
- */
-/**
- * @typedef Expr
- * @memberOf! cloudiot(v1)
- * @type object
- * @property {string} description An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
- * @property {string} expression Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
- * @property {string} location An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
- * @property {string} title An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
+ * @property {string} subfolderMatches If the subfolder name matches this string exactly, this configuration will be used. The string must not include the leading &#39;/&#39; character. If empty, all strings are matched. This field is used only for telemetry events; subfolders are not supported for state changes.
  */
 /**
  * @typedef GetIamPolicyRequest
@@ -808,7 +852,6 @@ function Cloudiot(options) {
  * @memberOf! cloudiot(v1)
  * @type object
  * @property {cloudiot(v1).Policy} policy REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them.
- * @property {string} updateMask OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: paths: &quot;bindings, etag&quot; This field is only used by Cloud IAM.
  */
 /**
  * @typedef StateNotificationConfig

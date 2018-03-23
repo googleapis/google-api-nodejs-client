@@ -14,7 +14,7 @@
 import {Compute, GoogleAuth, JWT, OAuth2Client} from 'google-auth-library';
 
 import * as apis from './../apis';
-import {APIEndpoint, APIRequestContextOptions} from './api';
+import {APIEndpoint, GlobalOptions} from './api';
 import {Discovery} from './discovery';
 import {Endpoint} from './endpoint';
 
@@ -30,7 +30,7 @@ export class AuthPlus extends GoogleAuth {
 export class GoogleApis extends apis.GeneratedAPIs {
   private _discovery = new Discovery({debug: false, includePrivate: false});
   auth = new AuthPlus();
-  _options: APIRequestContextOptions;
+  _options: GlobalOptions = {};
   [index: string]: APIEndpoint;
 
   /**
@@ -43,7 +43,7 @@ export class GoogleApis extends apis.GeneratedAPIs {
    * @class GoogleApis
    * @param {Object} [options] Configuration options.
    */
-  constructor(options?: {}) {
+  constructor(options?: GlobalOptions) {
     super();
     this.options(options);
     // tslint:disable-next-line: no-any
@@ -55,7 +55,7 @@ export class GoogleApis extends apis.GeneratedAPIs {
    *
    * @param  {Object} [options] Configuration options.
    */
-  options(options?: {}) {
+  options(options?: GlobalOptions) {
     this._options = options || {};
   }
 
@@ -71,7 +71,8 @@ export class GoogleApis extends apis.GeneratedAPIs {
   private addAPIs(apisToAdd: apis.GeneratedAPIs) {
     for (const apiName in apisToAdd) {
       if (apisToAdd.hasOwnProperty(apiName)) {
-        this[apiName] = apisToAdd[apiName].bind(this);
+        // tslint:disable-next-line: no-any
+        this[apiName] = (apisToAdd as any)[apiName].bind(this);
       }
     }
   }

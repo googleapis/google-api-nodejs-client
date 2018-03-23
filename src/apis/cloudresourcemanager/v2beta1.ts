@@ -14,10 +14,17 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
 
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
+
 /**
- * Google Cloud Resource Manager API
+ * Cloud Resource Manager API
  *
  * The Google Cloud Resource Manager API provides methods for creating, reading,
  * and updating project metadata.
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2beta1
  * @param {object=} options Options for Cloudresourcemanager
  */
-function Cloudresourcemanager(options) {
+function Cloudresourcemanager(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.folders = {
@@ -66,14 +73,16 @@ function Cloudresourcemanager(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params, options, callback) {
+    create(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -86,7 +95,7 @@ function Cloudresourcemanager(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.folders.delete
         * @desc Requests deletion of a Folder. The Folder is moved into the
@@ -104,14 +113,16 @@ function Cloudresourcemanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -124,7 +135,7 @@ function Cloudresourcemanager(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.folders.get
         * @desc Retrieves a Folder identified by the supplied resource name.
@@ -140,14 +151,15 @@ function Cloudresourcemanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -160,7 +172,7 @@ function Cloudresourcemanager(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.folders.getIamPolicy
         * @desc Gets the access control policy for a Folder. The returned policy
@@ -178,14 +190,16 @@ function Cloudresourcemanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getIamPolicy(params, options, callback) {
+    getIamPolicy(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -199,7 +213,7 @@ function Cloudresourcemanager(options) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.folders.list
         * @desc Lists the Folders that are direct descendants of supplied parent
@@ -220,14 +234,16 @@ function Cloudresourcemanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -240,7 +256,7 @@ function Cloudresourcemanager(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.folders.move
         * @desc Moves a Folder under a new resource parent. Returns an Operation
@@ -267,14 +283,16 @@ function Cloudresourcemanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    move(params, options, callback) {
+    move(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -288,7 +306,7 @@ function Cloudresourcemanager(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.folders.patch
         * @desc Updates a Folder, changing its display_name. Changes to the
@@ -314,14 +332,16 @@ function Cloudresourcemanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -334,7 +354,7 @@ function Cloudresourcemanager(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.folders.search
         * @desc Search for folders that match specific filter criteria. Search
@@ -351,14 +371,16 @@ function Cloudresourcemanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    search(params, options, callback) {
+    search(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -372,7 +394,7 @@ function Cloudresourcemanager(options) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.folders.setIamPolicy
         * @desc Sets the access control policy on a Folder, replacing any
@@ -390,14 +412,16 @@ function Cloudresourcemanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setIamPolicy(params, options, callback) {
+    setIamPolicy(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -411,7 +435,7 @@ function Cloudresourcemanager(options) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.folders.testIamPermissions
         * @desc Returns permissions that a caller has on the specified Folder.
@@ -428,14 +452,16 @@ function Cloudresourcemanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -449,7 +475,7 @@ function Cloudresourcemanager(options) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.folders.undelete
         * @desc Cancels the deletion request for a Folder. This method may only
@@ -469,14 +495,16 @@ function Cloudresourcemanager(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    undelete(params, options, callback) {
+    undelete(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -490,7 +518,7 @@ function Cloudresourcemanager(options) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };

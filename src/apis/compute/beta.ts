@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Compute Engine API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation beta
  * @param {object=} options Options for Compute
  */
-function Compute(options) {
+function Compute(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.acceleratorTypes = {
@@ -118,7 +125,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -140,7 +149,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.acceleratorTypes.get
         * @desc Returns the specified accelerator type. Get a list of available
@@ -216,7 +225,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -238,7 +248,7 @@ function Compute(options) {
         pathParams: ['acceleratorType', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.acceleratorTypes.list
         * @desc Retrieves a list of accelerator types available to the specified
@@ -326,7 +336,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -348,7 +360,7 @@ function Compute(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -436,7 +448,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -457,7 +471,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.addresses.delete
         * @desc Deletes the specified address resource.
@@ -532,7 +546,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -554,7 +570,7 @@ function Compute(options) {
         pathParams: ['address', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.addresses.get
         * @desc Returns the specified address resource.
@@ -628,7 +644,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -650,7 +667,7 @@ function Compute(options) {
         pathParams: ['address', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.addresses.insert
         * @desc Creates an address resource in the specified project using the
@@ -727,7 +744,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -749,7 +768,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.addresses.list
         * @desc Retrieves a list of addresses contained within the specified
@@ -837,7 +856,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -859,7 +880,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.addresses.setLabels
         * @desc Sets the labels on an Address. To learn more about labels, read
@@ -940,7 +961,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setLabels(params, options, callback) {
+    setLabels(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -962,7 +985,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.addresses.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -1039,7 +1062,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1061,7 +1086,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1149,7 +1174,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1170,7 +1197,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.autoscalers.delete
         * @desc Deletes the specified autoscaler.
@@ -1245,7 +1272,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1267,7 +1296,7 @@ function Compute(options) {
         pathParams: ['autoscaler', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.autoscalers.get
         * @desc Returns the specified autoscaler resource. Get a list of
@@ -1342,7 +1371,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1364,7 +1394,7 @@ function Compute(options) {
         pathParams: ['autoscaler', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.autoscalers.insert
         * @desc Creates an autoscaler in the specified project using the data
@@ -1441,7 +1471,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1462,7 +1494,7 @@ function Compute(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.autoscalers.list
         * @desc Retrieves a list of autoscalers contained within the specified
@@ -1550,7 +1582,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1571,7 +1605,7 @@ function Compute(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.autoscalers.patch
         * @desc Updates an autoscaler in the specified project using the data
@@ -1652,7 +1686,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1673,7 +1709,7 @@ function Compute(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.autoscalers.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -1750,7 +1786,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1772,7 +1810,7 @@ function Compute(options) {
         pathParams: ['project', 'resource', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.autoscalers.update
         * @desc Updates an autoscaler in the specified project using the data
@@ -1852,7 +1890,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1873,7 +1913,7 @@ function Compute(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1893,7 +1933,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addSignedUrlKey(params, options, callback) {
+    addSignedUrlKey(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1915,7 +1957,7 @@ function Compute(options) {
         pathParams: ['backendBucket', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.backendBuckets.delete
         * @desc Deletes the specified BackendBucket resource.
@@ -1987,7 +2029,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2009,7 +2053,7 @@ function Compute(options) {
         pathParams: ['backendBucket', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.backendBuckets.deleteSignedUrlKey
         * @desc Deletes the given Signed URL Key from the backend bucket.
@@ -2025,7 +2069,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    deleteSignedUrlKey(params, options, callback) {
+    deleteSignedUrlKey(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2047,7 +2093,7 @@ function Compute(options) {
         pathParams: ['backendBucket', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.backendBuckets.get
         * @desc Returns the specified BackendBucket resource. Get a list of
@@ -2119,7 +2165,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2141,7 +2188,7 @@ function Compute(options) {
         pathParams: ['backendBucket', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.backendBuckets.insert
         * @desc Creates a BackendBucket resource in the specified project using
@@ -2214,7 +2261,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2235,7 +2284,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.backendBuckets.list
         * @desc Retrieves the list of BackendBucket resources available to the
@@ -2319,7 +2368,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2340,7 +2391,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.backendBuckets.patch
         * @desc Updates the specified BackendBucket resource with the data
@@ -2421,7 +2472,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2443,7 +2496,7 @@ function Compute(options) {
         pathParams: ['backendBucket', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.backendBuckets.update
         * @desc Updates the specified BackendBucket resource with the data
@@ -2523,7 +2576,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2545,7 +2600,7 @@ function Compute(options) {
         pathParams: ['backendBucket', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -2565,7 +2620,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addSignedUrlKey(params, options, callback) {
+    addSignedUrlKey(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2587,7 +2644,7 @@ function Compute(options) {
         pathParams: ['backendService', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.backendServices.aggregatedList
         * @desc Retrieves the list of all BackendService resources, regional and
@@ -2672,7 +2729,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2694,7 +2753,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.backendServices.delete
         * @desc Deletes the specified BackendService resource.
@@ -2766,7 +2825,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2788,7 +2849,7 @@ function Compute(options) {
         pathParams: ['backendService', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.backendServices.deleteSignedUrlKey
         * @desc Deletes the given Signed URL Key from the specified backend
@@ -2805,7 +2866,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    deleteSignedUrlKey(params, options, callback) {
+    deleteSignedUrlKey(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2827,7 +2890,7 @@ function Compute(options) {
         pathParams: ['backendService', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.backendServices.get
         * @desc Returns the specified BackendService resource. Get a list of
@@ -2899,7 +2962,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2921,7 +2985,7 @@ function Compute(options) {
         pathParams: ['backendService', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.backendServices.getHealth
         * @desc Gets the most recent health check results for this
@@ -2997,7 +3061,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getHealth(params, options, callback) {
+    getHealth(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3019,7 +3085,7 @@ function Compute(options) {
         pathParams: ['backendService', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.backendServices.insert
         * @desc Creates a BackendService resource in the specified project using
@@ -3094,7 +3160,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3115,7 +3183,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.backendServices.list
         * @desc Retrieves the list of BackendService resources available to the
@@ -3199,7 +3267,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3220,7 +3290,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.backendServices.patch
         * @desc Patches the specified BackendService resource with the data
@@ -3303,7 +3373,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3325,7 +3397,7 @@ function Compute(options) {
         pathParams: ['backendService', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.backendServices.setSecurityPolicy
         * @desc Sets the security policy for the specified backend service.
@@ -3402,7 +3474,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setSecurityPolicy(params, options, callback) {
+    setSecurityPolicy(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3424,7 +3498,7 @@ function Compute(options) {
         pathParams: ['backendService', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.backendServices.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -3497,7 +3571,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3519,7 +3595,7 @@ function Compute(options) {
         pathParams: ['project', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.backendServices.update
         * @desc Updates the specified BackendService resource with the data
@@ -3601,7 +3677,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3623,7 +3701,7 @@ function Compute(options) {
         pathParams: ['backendService', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -3712,7 +3790,9 @@ function Compute(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        aggregatedList(params, options, callback) {
+        aggregatedList(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -3733,7 +3813,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.disks.createSnapshot
             * @desc Creates a snapshot of a specified persistent disk.
@@ -3814,7 +3894,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        createSnapshot(params, options, callback) {
+        createSnapshot(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -3836,7 +3918,7 @@ function Compute(options) {
             pathParams: ['disk', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.disks.delete
             * @desc Deletes the specified persistent disk. Deleting a disk
@@ -3914,7 +3996,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -3936,7 +4020,7 @@ function Compute(options) {
             pathParams: ['disk', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.disks.get
             * @desc Returns a specified persistent disk. Get a list of available
@@ -4011,7 +4095,8 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -4033,7 +4118,7 @@ function Compute(options) {
             pathParams: ['disk', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.disks.insert
             * @desc Creates a persistent disk in the specified project using the
@@ -4114,7 +4199,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        insert(params, options, callback) {
+        insert(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -4135,7 +4222,7 @@ function Compute(options) {
             pathParams: ['project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.disks.list
             * @desc Retrieves a list of persistent disks contained within the
@@ -4223,7 +4310,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -4244,7 +4333,7 @@ function Compute(options) {
             pathParams: ['project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.disks.resize
             * @desc Resizes the specified persistent disk. You can only increase
@@ -4325,7 +4414,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        resize(params, options, callback) {
+        resize(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -4347,7 +4438,7 @@ function Compute(options) {
             pathParams: ['disk', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.disks.setLabels
             * @desc Sets the labels on a disk. To learn more about labels, read
@@ -4428,7 +4519,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setLabels(params, options, callback) {
+        setLabels(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -4450,7 +4543,7 @@ function Compute(options) {
             pathParams: ['project', 'resource', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.disks.testIamPermissions
             * @desc Returns permissions that a caller has on the specified
@@ -4528,7 +4621,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        testIamPermissions(params, options, callback) {
+        testIamPermissions(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -4550,7 +4645,7 @@ function Compute(options) {
             pathParams: ['project', 'resource', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       };
@@ -4638,7 +4733,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4659,7 +4756,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.diskTypes.get
         * @desc Returns the specified disk type. Get a list of available disk
@@ -4734,7 +4831,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4756,7 +4854,7 @@ function Compute(options) {
         pathParams: ['diskType', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.diskTypes.list
         * @desc Retrieves a list of disk types available to the specified
@@ -4844,7 +4942,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4865,7 +4965,7 @@ function Compute(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -4941,7 +5041,9 @@ function Compute(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -4963,7 +5065,7 @@ function Compute(options) {
             pathParams: ['firewall', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.firewalls.get
             * @desc Returns the specified firewall.
@@ -5033,7 +5135,8 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -5055,7 +5158,7 @@ function Compute(options) {
             pathParams: ['firewall', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.firewalls.insert
             * @desc Creates a firewall rule in the specified project using the
@@ -5128,7 +5231,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        insert(params, options, callback) {
+        insert(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -5149,7 +5254,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.firewalls.list
             * @desc Retrieves the list of firewall rules available to the
@@ -5233,7 +5338,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -5254,7 +5361,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.firewalls.patch
             * @desc Updates the specified firewall rule with the data included
@@ -5334,7 +5441,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        patch(params, options, callback) {
+        patch(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -5356,7 +5465,7 @@ function Compute(options) {
             pathParams: ['firewall', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.firewalls.testIamPermissions
             * @desc Returns permissions that a caller has on the specified
@@ -5430,7 +5539,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        testIamPermissions(params, options, callback) {
+        testIamPermissions(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -5452,7 +5563,7 @@ function Compute(options) {
             pathParams: ['project', 'resource'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.firewalls.update
             * @desc Updates the specified firewall rule with the data included
@@ -5533,7 +5644,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        update(params, options, callback) {
+        update(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -5555,7 +5668,7 @@ function Compute(options) {
             pathParams: ['firewall', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       };
@@ -5643,7 +5756,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5665,7 +5780,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.forwardingRules.delete
         * @desc Deletes the specified ForwardingRule resource.
@@ -5741,7 +5856,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5763,7 +5880,7 @@ function Compute(options) {
         pathParams: ['forwardingRule', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.forwardingRules.get
         * @desc Returns the specified ForwardingRule resource.
@@ -5838,7 +5955,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5860,7 +5978,7 @@ function Compute(options) {
         pathParams: ['forwardingRule', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.forwardingRules.insert
         * @desc Creates a ForwardingRule resource in the specified project and
@@ -5937,7 +6055,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5959,7 +6079,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.forwardingRules.list
         * @desc Retrieves a list of ForwardingRule resources available to the
@@ -6047,7 +6167,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6069,7 +6191,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.forwardingRules.setLabels
         * @desc Sets the labels on the specified resource. To learn more about
@@ -6150,7 +6272,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setLabels(params, options, callback) {
+    setLabels(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6172,7 +6296,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.forwardingRules.setTarget
         * @desc Changes target URL for forwarding rule. The new target should be
@@ -6254,7 +6378,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setTarget(params, options, callback) {
+    setTarget(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6276,7 +6402,7 @@ function Compute(options) {
         pathParams: ['forwardingRule', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.forwardingRules.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -6353,7 +6479,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6375,7 +6503,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -6450,7 +6578,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6472,7 +6602,7 @@ function Compute(options) {
         pathParams: ['address', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.globalAddresses.get
         * @desc Returns the specified address resource. Get a list of available
@@ -6543,7 +6673,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6565,7 +6696,7 @@ function Compute(options) {
         pathParams: ['address', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.globalAddresses.insert
         * @desc Creates an address resource in the specified project using the
@@ -6638,7 +6769,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6659,7 +6792,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.globalAddresses.list
         * @desc Retrieves a list of global addresses.
@@ -6742,7 +6875,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6763,7 +6898,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.globalAddresses.setLabels
         * @desc Sets the labels on a GlobalAddress. To learn more about labels,
@@ -6839,7 +6974,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setLabels(params, options, callback) {
+    setLabels(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6861,7 +6998,7 @@ function Compute(options) {
         pathParams: ['project', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.globalAddresses.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -6934,7 +7071,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6956,7 +7095,7 @@ function Compute(options) {
         pathParams: ['project', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -7032,7 +7171,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7054,7 +7195,7 @@ function Compute(options) {
         pathParams: ['forwardingRule', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.globalForwardingRules.get
         * @desc Returns the specified GlobalForwardingRule resource. Get a list
@@ -7126,7 +7267,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7148,7 +7290,7 @@ function Compute(options) {
         pathParams: ['forwardingRule', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.globalForwardingRules.insert
         * @desc Creates a GlobalForwardingRule resource in the specified project
@@ -7219,7 +7361,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7240,7 +7384,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.globalForwardingRules.list
         * @desc Retrieves a list of GlobalForwardingRule resources available to
@@ -7324,7 +7468,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7345,7 +7491,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.globalForwardingRules.setLabels
         * @desc Sets the labels on the specified resource. To learn more about
@@ -7419,7 +7565,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setLabels(params, options, callback) {
+    setLabels(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7441,7 +7589,7 @@ function Compute(options) {
         pathParams: ['project', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.globalForwardingRules.setTarget
         * @desc Changes target URL for the GlobalForwardingRule resource. The
@@ -7517,7 +7665,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setTarget(params, options, callback) {
+    setTarget(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7539,7 +7689,7 @@ function Compute(options) {
         pathParams: ['forwardingRule', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.globalForwardingRules.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -7612,7 +7762,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7634,7 +7786,7 @@ function Compute(options) {
         pathParams: ['project', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -7722,7 +7874,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7743,7 +7897,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.globalOperations.delete
         * @desc Deletes the specified Operations resource.
@@ -7810,7 +7964,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7832,7 +7988,7 @@ function Compute(options) {
         pathParams: ['operation', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.globalOperations.get
         * @desc Retrieves the specified Operations resource. Get a list of
@@ -7903,7 +8059,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7925,7 +8082,7 @@ function Compute(options) {
         pathParams: ['operation', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.globalOperations.list
         * @desc Retrieves a list of Operation resources contained within the
@@ -8009,7 +8166,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -8030,7 +8189,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -8107,7 +8266,9 @@ function Compute(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -8129,7 +8290,7 @@ function Compute(options) {
             pathParams: ['healthCheck', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.healthChecks.get
             * @desc Returns the specified HealthCheck resource. Get a list of
@@ -8201,7 +8362,8 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -8223,7 +8385,7 @@ function Compute(options) {
             pathParams: ['healthCheck', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.healthChecks.insert
             * @desc Creates a HealthCheck resource in the specified project
@@ -8296,7 +8458,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        insert(params, options, callback) {
+        insert(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -8317,7 +8481,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.healthChecks.list
             * @desc Retrieves the list of HealthCheck resources available to the
@@ -8401,7 +8565,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -8422,7 +8588,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.healthChecks.patch
             * @desc Updates a HealthCheck resource in the specified project
@@ -8504,7 +8670,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        patch(params, options, callback) {
+        patch(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -8526,7 +8694,7 @@ function Compute(options) {
             pathParams: ['healthCheck', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.healthChecks.testIamPermissions
             * @desc Returns permissions that a caller has on the specified
@@ -8600,7 +8768,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        testIamPermissions(params, options, callback) {
+        testIamPermissions(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -8622,7 +8792,7 @@ function Compute(options) {
             pathParams: ['project', 'resource'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.healthChecks.update
             * @desc Updates a HealthCheck resource in the specified project
@@ -8702,7 +8872,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        update(params, options, callback) {
+        update(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -8724,7 +8896,7 @@ function Compute(options) {
             pathParams: ['healthCheck', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       };
@@ -8800,7 +8972,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -8822,7 +8996,7 @@ function Compute(options) {
         pathParams: ['httpHealthCheck', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.httpHealthChecks.get
         * @desc Returns the specified HttpHealthCheck resource. Get a list of
@@ -8894,7 +9068,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -8916,7 +9091,7 @@ function Compute(options) {
         pathParams: ['httpHealthCheck', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.httpHealthChecks.insert
         * @desc Creates a HttpHealthCheck resource in the specified project
@@ -8989,7 +9164,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -9010,7 +9187,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.httpHealthChecks.list
         * @desc Retrieves the list of HttpHealthCheck resources available to the
@@ -9094,7 +9271,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -9115,7 +9294,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.httpHealthChecks.patch
         * @desc Updates a HttpHealthCheck resource in the specified project
@@ -9196,7 +9375,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -9218,7 +9399,7 @@ function Compute(options) {
         pathParams: ['httpHealthCheck', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.httpHealthChecks.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -9291,7 +9472,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -9313,7 +9496,7 @@ function Compute(options) {
         pathParams: ['project', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.httpHealthChecks.update
         * @desc Updates a HttpHealthCheck resource in the specified project
@@ -9393,7 +9576,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -9415,7 +9600,7 @@ function Compute(options) {
         pathParams: ['httpHealthCheck', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -9491,7 +9676,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -9513,7 +9700,7 @@ function Compute(options) {
         pathParams: ['httpsHealthCheck', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.httpsHealthChecks.get
         * @desc Returns the specified HttpsHealthCheck resource. Get a list of
@@ -9585,7 +9772,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -9607,7 +9795,7 @@ function Compute(options) {
         pathParams: ['httpsHealthCheck', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.httpsHealthChecks.insert
         * @desc Creates a HttpsHealthCheck resource in the specified project
@@ -9680,7 +9868,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -9701,7 +9891,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.httpsHealthChecks.list
         * @desc Retrieves the list of HttpsHealthCheck resources available to
@@ -9785,7 +9975,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -9806,7 +9998,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.httpsHealthChecks.patch
         * @desc Updates a HttpsHealthCheck resource in the specified project
@@ -9887,7 +10079,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -9909,7 +10103,7 @@ function Compute(options) {
         pathParams: ['httpsHealthCheck', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.httpsHealthChecks.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -9982,7 +10176,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -10004,7 +10200,7 @@ function Compute(options) {
         pathParams: ['project', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.httpsHealthChecks.update
         * @desc Updates a HttpsHealthCheck resource in the specified project
@@ -10084,7 +10280,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -10106,7 +10304,7 @@ function Compute(options) {
         pathParams: ['httpsHealthCheck', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -10182,7 +10380,9 @@ function Compute(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -10204,7 +10404,7 @@ function Compute(options) {
             pathParams: ['image', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.images.deprecate
             * @desc Sets the deprecation status of an image.  If an empty
@@ -10281,7 +10481,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        deprecate(params, options, callback) {
+        deprecate(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -10303,7 +10505,7 @@ function Compute(options) {
             pathParams: ['image', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.images.get
             * @desc Returns the specified image. Get a list of available images
@@ -10374,7 +10576,8 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -10396,7 +10599,7 @@ function Compute(options) {
             pathParams: ['image', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.images.getFromFamily
             * @desc Returns the latest image that is part of an image family and
@@ -10467,7 +10670,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        getFromFamily(params, options, callback) {
+        getFromFamily(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -10489,7 +10694,7 @@ function Compute(options) {
             pathParams: ['family', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.images.insert
             * @desc Creates an image in the specified project using the data
@@ -10563,7 +10768,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        insert(params, options, callback) {
+        insert(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -10584,7 +10791,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.images.list
             * @desc Retrieves the list of custom images available to the
@@ -10673,7 +10880,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -10694,7 +10903,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.images.setLabels
             * @desc Sets the labels on an image. To learn more about labels,
@@ -10770,7 +10979,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setLabels(params, options, callback) {
+        setLabels(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -10792,7 +11003,7 @@ function Compute(options) {
             pathParams: ['project', 'resource'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.images.testIamPermissions
             * @desc Returns permissions that a caller has on the specified
@@ -10866,7 +11077,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        testIamPermissions(params, options, callback) {
+        testIamPermissions(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -10888,7 +11101,7 @@ function Compute(options) {
             pathParams: ['project', 'resource'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       };
@@ -10984,7 +11197,9 @@ function Compute(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        abandonInstances(params, options, callback) {
+        abandonInstances(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -11006,7 +11221,7 @@ function Compute(options) {
             pathParams: ['instanceGroupManager', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instanceGroupManagers.aggregatedList
             * @desc Retrieves the list of managed instance groups and groups
@@ -11093,7 +11308,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        aggregatedList(params, options, callback) {
+        aggregatedList(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -11115,7 +11332,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instanceGroupManagers.delete
             * @desc Deletes the specified managed instance group and all of the
@@ -11192,7 +11409,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -11214,7 +11433,7 @@ function Compute(options) {
             pathParams: ['instanceGroupManager', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instanceGroupManagers.deleteInstances
             * @desc Schedules a group action to delete the specified instances
@@ -11304,7 +11523,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        deleteInstances(params, options, callback) {
+        deleteInstances(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -11326,7 +11547,7 @@ function Compute(options) {
             pathParams: ['instanceGroupManager', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instanceGroupManagers.get
             * @desc Returns all of the details about the specified managed
@@ -11401,7 +11622,8 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -11423,7 +11645,7 @@ function Compute(options) {
             pathParams: ['instanceGroupManager', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instanceGroupManagers.insert
             * @desc Creates a managed instance group using the information that
@@ -11507,7 +11729,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        insert(params, options, callback) {
+        insert(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -11529,7 +11753,7 @@ function Compute(options) {
             pathParams: ['project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instanceGroupManagers.list
             * @desc Retrieves a list of managed instance groups that are
@@ -11617,7 +11841,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -11639,7 +11865,7 @@ function Compute(options) {
             pathParams: ['project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instanceGroupManagers.listManagedInstances
             * @desc Lists all of the instances in the managed instance group.
@@ -11740,7 +11966,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        listManagedInstances(params, options, callback) {
+        listManagedInstances(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -11762,7 +11990,7 @@ function Compute(options) {
             pathParams: ['instanceGroupManager', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instanceGroupManagers.patch
             * @desc Updates a managed instance group using the information that
@@ -11850,7 +12078,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        patch(params, options, callback) {
+        patch(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -11872,7 +12102,7 @@ function Compute(options) {
             pathParams: ['instanceGroupManager', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instanceGroupManagers.recreateInstances
             * @desc Schedules a group action to recreate the specified instances
@@ -11961,7 +12191,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        recreateInstances(params, options, callback) {
+        recreateInstances(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -11983,7 +12215,7 @@ function Compute(options) {
             pathParams: ['instanceGroupManager', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instanceGroupManagers.resize
             * @desc Resizes the managed instance group. If you increase the
@@ -12075,7 +12307,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        resize(params, options, callback) {
+        resize(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -12097,7 +12331,7 @@ function Compute(options) {
             pathParams: ['instanceGroupManager', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instanceGroupManagers.resizeAdvanced
             * @desc Resizes the managed instance group with advanced
@@ -12188,7 +12422,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        resizeAdvanced(params, options, callback) {
+        resizeAdvanced(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -12210,7 +12446,7 @@ function Compute(options) {
             pathParams: ['instanceGroupManager', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instanceGroupManagers.setAutoHealingPolicies
             * @desc Modifies the autohealing policies.
@@ -12289,7 +12525,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setAutoHealingPolicies(params, options, callback) {
+        setAutoHealingPolicies(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -12311,7 +12549,7 @@ function Compute(options) {
             pathParams: ['instanceGroupManager', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instanceGroupManagers.setInstanceTemplate
             * @desc Specifies the instance template to use when creating new
@@ -12392,7 +12630,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setInstanceTemplate(params, options, callback) {
+        setInstanceTemplate(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -12414,7 +12654,7 @@ function Compute(options) {
             pathParams: ['instanceGroupManager', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instanceGroupManagers.setTargetPools
             * @desc Modifies the target pools to which all instances in this
@@ -12499,7 +12739,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setTargetPools(params, options, callback) {
+        setTargetPools(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -12521,7 +12763,7 @@ function Compute(options) {
             pathParams: ['instanceGroupManager', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instanceGroupManagers.testIamPermissions
             * @desc Returns permissions that a caller has on the specified
@@ -12599,7 +12841,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        testIamPermissions(params, options, callback) {
+        testIamPermissions(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -12621,7 +12865,7 @@ function Compute(options) {
             pathParams: ['project', 'resource', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instanceGroupManagers.update
             * @desc Updates a managed instance group using the information that
@@ -12707,7 +12951,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        update(params, options, callback) {
+        update(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -12729,7 +12975,7 @@ function Compute(options) {
             pathParams: ['instanceGroupManager', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       };
@@ -12816,7 +13062,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addInstances(params, options, callback) {
+    addInstances(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -12838,7 +13086,7 @@ function Compute(options) {
         pathParams: ['instanceGroup', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.instanceGroups.aggregatedList
         * @desc Retrieves the list of instance groups and sorts them by zone.
@@ -12922,7 +13170,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -12944,7 +13194,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.instanceGroups.delete
         * @desc Deletes the specified instance group. The instances in the group
@@ -13022,7 +13272,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -13044,7 +13296,7 @@ function Compute(options) {
         pathParams: ['instanceGroup', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.instanceGroups.get
         * @desc Returns the specified instance group. Get a list of available
@@ -13120,7 +13372,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -13142,7 +13395,7 @@ function Compute(options) {
         pathParams: ['instanceGroup', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.instanceGroups.insert
         * @desc Creates an instance group in the specified project using the
@@ -13219,7 +13472,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -13241,7 +13496,7 @@ function Compute(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.instanceGroups.list
         * @desc Retrieves the list of instance groups that are located in the
@@ -13329,7 +13584,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -13351,7 +13608,7 @@ function Compute(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.instanceGroups.listInstances
         * @desc Lists the instances in the specified instance group.
@@ -13448,7 +13705,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    listInstances(params, options, callback) {
+    listInstances(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -13470,7 +13729,7 @@ function Compute(options) {
         pathParams: ['instanceGroup', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.instanceGroups.removeInstances
         * @desc Removes one or more instances from the specified instance group,
@@ -13553,7 +13812,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    removeInstances(params, options, callback) {
+    removeInstances(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -13575,7 +13836,7 @@ function Compute(options) {
         pathParams: ['instanceGroup', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.instanceGroups.setNamedPorts
         * @desc Sets the named ports for the specified instance group.
@@ -13654,7 +13915,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setNamedPorts(params, options, callback) {
+    setNamedPorts(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -13676,7 +13939,7 @@ function Compute(options) {
         pathParams: ['instanceGroup', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.instanceGroups.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -13753,7 +14016,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -13775,2885 +14040,2938 @@ function Compute(options) {
         pathParams: ['project', 'resource', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
-  self.instances =
-      {
-        /**
-         * compute.instances.addAccessConfig
-         * @desc Adds an access config to an instance's network interface.
-         * @example
-         * // BEFORE RUNNING:
-         * // ---------------
-         * // 1. If not already done, enable the Compute Engine API
-         * //    and check the quota for your project at
-         * //    https://console.developers.google.com/apis/api/compute
-         * // 2. This sample uses Application Default Credentials for
-         * authentication.
-         * //    If not already done, install the gcloud CLI from
-         * //    https://cloud.google.com/sdk and run
-         * //    `gcloud beta auth application-default login`.
-         * //    For more information, see
-         * //
-         * https://developers.google.com/identity/protocols/application-default-credentials
-         * // 3. Install the Node.js client library by running
-         * //    `npm install googleapis --save`
-         *
-         * var google = require('googleapis');
-         * var compute = google.compute('beta');
-         *
-         * authorize(function(authClient) {
-         *   var request = {
-         *     // Project ID for this request.
-         *     project: 'my-project',  // TODO: Update placeholder value.
-         *
-         *     // The name of the zone for this request.
-         *     zone: 'my-zone',  // TODO: Update placeholder value.
-         *
-         *     // The instance name for this request.
-         *     instance: 'my-instance',  // TODO: Update placeholder value.
-         *
-         *     // The name of the network interface to add to this instance.
-         *     networkInterface: '',  // TODO: Update placeholder value.
-         *
-         *     resource: {
-         *       // TODO: Add desired properties to the request body.
-         *     },
-         *
-         *     auth: authClient,
-         *   };
-         *
-         *   compute.instances.addAccessConfig(request, function(err, response)
-         * { if (err) { console.error(err); return;
-         *     }
-         *
-         *     // TODO: Change code below to process the `response` object:
-         *     console.log(JSON.stringify(response, null, 2));
-         *   });
-         * });
-         *
-         * function authorize(callback) {
-         *   google.auth.getApplicationDefault(function(err, authClient) {
-         *     if (err) {
-         *       console.error('authentication failed: ', err);
-         *       return;
-         *     }
-         *     if (authClient.createScopedRequired &&
-         * authClient.createScopedRequired()) { var scopes =
-         * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-         * authClient.createScoped(scopes);
-         *     }
-         *     callback(authClient);
-         *   });
-         * }
-         * @alias compute.instances.addAccessConfig
-         * @memberOf! compute(beta)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.instance The instance name for this request.
-         * @param {string} params.networkInterface The name of the network interface to add to this instance.
-         * @param {string} params.project Project ID for this request.
-         * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-         * @param {string} params.zone The name of the zone for this request.
-         * @param {compute(beta).AccessConfig} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        addAccessConfig(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/addAccessConfig')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'POST'
-                },
-                options),
-            params,
-            requiredParams: ['project', 'zone', 'instance', 'networkInterface'],
-            pathParams: ['instance', 'project', 'zone'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.instances.aggregatedList
-            * @desc Retrieves aggregated list of instances.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   var handlePage = function(err, response) {
-            *     if (err) {
-            *       console.error(err);
-            *       return;
-            *     }
-            *
-            *     var itemsPage = response['items'];
-            *     if (!itemsPage) {
-            *       return;
-            *     }
-            *     Object.keys(itemsPage).forEach(function(name) {
-            *       // TODO: Change code below to process each `name` property:
-            *       console.log(name + ': ' + JSON.stringify(itemsPage[name],
-            * null, 2));
-            *     });
-            *
-            *     if (response.nextPageToken) {
-            *       request.pageToken = response.nextPageToken;
-            *       compute.instances.aggregatedList(request, handlePage);
-            *     }
-            *   };
-            *
-            *   compute.instances.aggregatedList(request, handlePage);
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.instances.aggregatedList
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-            * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
-            * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-            * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-            * @param {string} params.project Project ID for this request.
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        aggregatedList(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url: (rootUrl +
-                        '/compute/beta/projects/{project}/aggregated/instances')
-                           .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'GET'
-                },
-                options),
-            params,
-            requiredParams: ['project'],
-            pathParams: ['project'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.instances.attachDisk
-            * @desc Attaches an existing Disk resource to an instance. You must
-            * first create the disk before you can attach it. It is not possible
-            * to create and attach a disk at the same time. For more
-            * information, read Adding a persistent disk to your instance.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     // The name of the zone for this request.
-            *     zone: 'my-zone',  // TODO: Update placeholder value.
-            *
-            *     // The instance name for this request.
-            *     instance: 'my-instance',  // TODO: Update placeholder value.
-            *
-            *     resource: {
-            *       // TODO: Add desired properties to the request body.
-            *     },
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   compute.instances.attachDisk(request, function(err, response) {
-            *     if (err) {
-            *       console.error(err);
-            *       return;
-            *     }
-            *
-            *     // TODO: Change code below to process the `response` object:
-            *     console.log(JSON.stringify(response, null, 2));
-            *   });
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.instances.attachDisk
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.instance The instance name for this request.
-            * @param {string} params.project Project ID for this request.
-            * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-            * @param {string} params.zone The name of the zone for this request.
-            * @param {compute(beta).AttachedDisk} params.resource Request body data
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        attachDisk(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/attachDisk')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'POST'
-                },
-                options),
-            params,
-            requiredParams: ['project', 'zone', 'instance'],
-            pathParams: ['instance', 'project', 'zone'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.instances.delete
-            * @desc Deletes the specified Instance resource. For more
-            * information, see Stopping or Deleting an Instance.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     // The name of the zone for this request.
-            *     zone: 'my-zone',  // TODO: Update placeholder value.
-            *
-            *     // Name of the instance resource to delete.
-            *     instance: 'my-instance',  // TODO: Update placeholder value.
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   compute.instances.delete(request, function(err, response) {
-            *     if (err) {
-            *       console.error(err);
-            *       return;
-            *     }
-            *
-            *     // TODO: Change code below to process the `response` object:
-            *     console.log(JSON.stringify(response, null, 2));
-            *   });
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.instances.delete
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.instance Name of the instance resource to delete.
-            * @param {string} params.project Project ID for this request.
-            * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-            * @param {string} params.zone The name of the zone for this request.
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        delete (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'DELETE'
-                },
-                options),
-            params,
-            requiredParams: ['project', 'zone', 'instance'],
-            pathParams: ['instance', 'project', 'zone'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.instances.deleteAccessConfig
-            * @desc Deletes an access config from an instance's network
-            * interface.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     // The name of the zone for this request.
-            *     zone: 'my-zone',  // TODO: Update placeholder value.
-            *
-            *     // The instance name for this request.
-            *     instance: 'my-instance',  // TODO: Update placeholder value.
-            *
-            *     // The name of the access config to delete.
-            *     accessConfig: '',  // TODO: Update placeholder value.
-            *
-            *     // The name of the network interface.
-            *     networkInterface: '',  // TODO: Update placeholder value.
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   compute.instances.deleteAccessConfig(request, function(err,
-            * response) { if (err) { console.error(err); return;
-            *     }
-            *
-            *     // TODO: Change code below to process the `response` object:
-            *     console.log(JSON.stringify(response, null, 2));
-            *   });
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.instances.deleteAccessConfig
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.accessConfig The name of the access config to delete.
-            * @param {string} params.instance The instance name for this request.
-            * @param {string} params.networkInterface The name of the network interface.
-            * @param {string} params.project Project ID for this request.
-            * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-            * @param {string} params.zone The name of the zone for this request.
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        deleteAccessConfig(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/deleteAccessConfig')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'POST'
-                },
-                options),
-            params,
-            requiredParams: [
-              'project', 'zone', 'instance', 'accessConfig', 'networkInterface'
-            ],
-            pathParams: ['instance', 'project', 'zone'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.instances.detachDisk
-            * @desc Detaches a disk from an instance.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     // The name of the zone for this request.
-            *     zone: 'my-zone',  // TODO: Update placeholder value.
-            *
-            *     // Instance name.
-            *     instance: 'my-instance',  // TODO: Update placeholder value.
-            *
-            *     // Disk device name to detach.
-            *     deviceName: '',  // TODO: Update placeholder value.
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   compute.instances.detachDisk(request, function(err, response) {
-            *     if (err) {
-            *       console.error(err);
-            *       return;
-            *     }
-            *
-            *     // TODO: Change code below to process the `response` object:
-            *     console.log(JSON.stringify(response, null, 2));
-            *   });
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.instances.detachDisk
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.deviceName Disk device name to detach.
-            * @param {string} params.instance Instance name.
-            * @param {string} params.project Project ID for this request.
-            * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-            * @param {string} params.zone The name of the zone for this request.
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        detachDisk(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/detachDisk')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'POST'
-                },
-                options),
-            params,
-            requiredParams: ['project', 'zone', 'instance', 'deviceName'],
-            pathParams: ['instance', 'project', 'zone'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.instances.get
-            * @desc Returns the specified Instance resource. Get a list of
-            * available instances by making a list() request.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     // The name of the zone for this request.
-            *     zone: 'my-zone',  // TODO: Update placeholder value.
-            *
-            *     // Name of the instance resource to return.
-            *     instance: 'my-instance',  // TODO: Update placeholder value.
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   compute.instances.get(request, function(err, response) {
-            *     if (err) {
-            *       console.error(err);
-            *       return;
-            *     }
-            *
-            *     // TODO: Change code below to process the `response` object:
-            *     console.log(JSON.stringify(response, null, 2));
-            *   });
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.instances.get
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.instance Name of the instance resource to return.
-            * @param {string} params.project Project ID for this request.
-            * @param {string} params.zone The name of the zone for this request.
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        get(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'GET'
-                },
-                options),
-            params,
-            requiredParams: ['project', 'zone', 'instance'],
-            pathParams: ['instance', 'project', 'zone'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.instances.getSerialPortOutput
-            * @desc Returns the specified instance's serial port output.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     // The name of the zone for this request.
-            *     zone: 'my-zone',  // TODO: Update placeholder value.
-            *
-            *     // Name of the instance scoping this request.
-            *     instance: 'my-instance',  // TODO: Update placeholder value.
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   compute.instances.getSerialPortOutput(request, function(err,
-            * response) { if (err) { console.error(err); return;
-            *     }
-            *
-            *     // TODO: Change code below to process the `response` object:
-            *     console.log(JSON.stringify(response, null, 2));
-            *   });
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.instances.getSerialPortOutput
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.instance Name of the instance scoping this request.
-            * @param {integer=} params.port Specifies which COM or serial port to retrieve data from.
-            * @param {string} params.project Project ID for this request.
-            * @param {string=} params.start Returns output starting from a specific byte position. Use this to page through output when the output is too large to return in a single request. For the initial request, leave this field unspecified. For subsequent calls, this field should be set to the next value returned in the previous call.
-            * @param {string} params.zone The name of the zone for this request.
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        getSerialPortOutput(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/serialPort')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'GET'
-                },
-                options),
-            params,
-            requiredParams: ['project', 'zone', 'instance'],
-            pathParams: ['instance', 'project', 'zone'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.instances.insert
-            * @desc Creates an instance resource in the specified project using
-            * the data included in the request.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     // The name of the zone for this request.
-            *     zone: 'my-zone',  // TODO: Update placeholder value.
-            *
-            *     resource: {
-            *       // TODO: Add desired properties to the request body.
-            *     },
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   compute.instances.insert(request, function(err, response) {
-            *     if (err) {
-            *       console.error(err);
-            *       return;
-            *     }
-            *
-            *     // TODO: Change code below to process the `response` object:
-            *     console.log(JSON.stringify(response, null, 2));
-            *   });
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.instances.insert
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.project Project ID for this request.
-            * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-            * @param {string=} params.sourceInstanceTemplate Specifies instance template to create the instance.  This field is optional. It can be a full or partial URL. For example, the following are all valid URLs to an instance template:   - https://www.googleapis.com/compute/v1/projects/project/global/global/instanceTemplates/instanceTemplate  - projects/project/global/global/instanceTemplates/instanceTemplate  - global/instancesTemplates/instanceTemplate
-            * @param {string} params.zone The name of the zone for this request.
-            * @param {compute(beta).Instance} params.resource Request body data
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        insert(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/zones/{zone}/instances')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'POST'
-                },
-                options),
-            params,
-            requiredParams: ['project', 'zone'],
-            pathParams: ['project', 'zone'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.instances.list
-            * @desc Retrieves the list of instances contained within the
-            * specified zone.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     // The name of the zone for this request.
-            *     zone: 'my-zone',  // TODO: Update placeholder value.
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   var handlePage = function(err, response) {
-            *     if (err) {
-            *       console.error(err);
-            *       return;
-            *     }
-            *
-            *     var itemsPage = response['items'];
-            *     if (!itemsPage) {
-            *       return;
-            *     }
-            *     for (var i = 0; i < itemsPage.length; i++) {
-            *       // TODO: Change code below to process each resource in
-            * `itemsPage`: console.log(JSON.stringify(itemsPage[i], null, 2));
-            *     }
-            *
-            *     if (response.nextPageToken) {
-            *       request.pageToken = response.nextPageToken;
-            *       compute.instances.list(request, handlePage);
-            *     }
-            *   };
-            *
-            *   compute.instances.list(request, handlePage);
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.instances.list
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-            * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
-            * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-            * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-            * @param {string} params.project Project ID for this request.
-            * @param {string} params.zone The name of the zone for this request.
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        list(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/zones/{zone}/instances')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'GET'
-                },
-                options),
-            params,
-            requiredParams: ['project', 'zone'],
-            pathParams: ['project', 'zone'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.instances.listReferrers
-            * @desc Retrieves the list of referrers to instances contained
-            * within the specified zone.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     // The name of the zone for this request.
-            *     zone: 'my-zone',  // TODO: Update placeholder value.
-            *
-            *     // Name of the target instance scoping this request, or '-' if
-            * the request should span over all
-            *     // instances in the container.
-            *     instance: 'my-instance',  // TODO: Update placeholder value.
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   var handlePage = function(err, response) {
-            *     if (err) {
-            *       console.error(err);
-            *       return;
-            *     }
-            *
-            *     var itemsPage = response['items'];
-            *     if (!itemsPage) {
-            *       return;
-            *     }
-            *     for (var i = 0; i < itemsPage.length; i++) {
-            *       // TODO: Change code below to process each resource in
-            * `itemsPage`: console.log(JSON.stringify(itemsPage[i], null, 2));
-            *     }
-            *
-            *     if (response.nextPageToken) {
-            *       request.pageToken = response.nextPageToken;
-            *       compute.instances.listReferrers(request, handlePage);
-            *     }
-            *   };
-            *
-            *   compute.instances.listReferrers(request, handlePage);
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.instances.listReferrers
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-            * @param {string} params.instance Name of the target instance scoping this request, or '-' if the request should span over all instances in the container.
-            * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
-            * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-            * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-            * @param {string} params.project Project ID for this request.
-            * @param {string} params.zone The name of the zone for this request.
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        listReferrers(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/referrers')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'GET'
-                },
-                options),
-            params,
-            requiredParams: ['project', 'zone', 'instance'],
-            pathParams: ['instance', 'project', 'zone'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.instances.reset
-            * @desc Performs a reset on the instance. For more information, see
-            * Resetting an instance.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     // The name of the zone for this request.
-            *     zone: 'my-zone',  // TODO: Update placeholder value.
-            *
-            *     // Name of the instance scoping this request.
-            *     instance: 'my-instance',  // TODO: Update placeholder value.
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   compute.instances.reset(request, function(err, response) {
-            *     if (err) {
-            *       console.error(err);
-            *       return;
-            *     }
-            *
-            *     // TODO: Change code below to process the `response` object:
-            *     console.log(JSON.stringify(response, null, 2));
-            *   });
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.instances.reset
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.instance Name of the instance scoping this request.
-            * @param {string} params.project Project ID for this request.
-            * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-            * @param {string} params.zone The name of the zone for this request.
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        reset(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/reset')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'POST'
-                },
-                options),
-            params,
-            requiredParams: ['project', 'zone', 'instance'],
-            pathParams: ['instance', 'project', 'zone'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.instances.setDeletionProtection
-            * @desc Sets deletion protection on the instance.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     // The name of the zone for this request.
-            *     zone: 'my-zone',  // TODO: Update placeholder value.
-            *
-            *     // Name of the resource for this request.
-            *     resource_: 'my-resource',  // TODO: Update placeholder value.
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   compute.instances.setDeletionProtection(request, function(err,
-            * response) { if (err) { console.error(err); return;
-            *     }
-            *
-            *     // TODO: Change code below to process the `response` object:
-            *     console.log(JSON.stringify(response, null, 2));
-            *   });
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.instances.setDeletionProtection
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {boolean=} params.deletionProtection Whether the resource should be protected against deletion.
-            * @param {string} params.project Project ID for this request.
-            * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-            * @param {string} params.resource_ Name of the resource for this request.
-            * @param {string} params.zone The name of the zone for this request.
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        setDeletionProtection(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/zones/{zone}/instances/{resource}/setDeletionProtection')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'POST'
-                },
-                options),
-            params,
-            requiredParams: ['project', 'zone', 'resource'],
-            pathParams: ['project', 'resource', 'zone'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.instances.setDiskAutoDelete
-            * @desc Sets the auto-delete flag for a disk attached to an
-            * instance.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     // The name of the zone for this request.
-            *     zone: 'my-zone',  // TODO: Update placeholder value.
-            *
-            *     // The instance name.
-            *     instance: 'my-instance',  // TODO: Update placeholder value.
-            *
-            *     // Whether to auto-delete the disk when the instance is
-            * deleted. autoDelete: false,  // TODO: Update placeholder value.
-            *
-            *     // The device name of the disk to modify.
-            *     deviceName: '',  // TODO: Update placeholder value.
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   compute.instances.setDiskAutoDelete(request, function(err,
-            * response) { if (err) { console.error(err); return;
-            *     }
-            *
-            *     // TODO: Change code below to process the `response` object:
-            *     console.log(JSON.stringify(response, null, 2));
-            *   });
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.instances.setDiskAutoDelete
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {boolean} params.autoDelete Whether to auto-delete the disk when the instance is deleted.
-            * @param {string} params.deviceName The device name of the disk to modify.
-            * @param {string} params.instance The instance name.
-            * @param {string} params.project Project ID for this request.
-            * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-            * @param {string} params.zone The name of the zone for this request.
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        setDiskAutoDelete(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setDiskAutoDelete')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'POST'
-                },
-                options),
-            params,
-            requiredParams:
-                ['project', 'zone', 'instance', 'autoDelete', 'deviceName'],
-            pathParams: ['instance', 'project', 'zone'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.instances.setLabels
-            * @desc Sets labels on an instance. To learn more about labels, read
-            * the Labeling Resources documentation.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     // The name of the zone for this request.
-            *     zone: 'my-zone',  // TODO: Update placeholder value.
-            *
-            *     // Name of the instance scoping this request.
-            *     instance: 'my-instance',  // TODO: Update placeholder value.
-            *
-            *     resource: {
-            *       // TODO: Add desired properties to the request body.
-            *     },
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   compute.instances.setLabels(request, function(err, response) {
-            *     if (err) {
-            *       console.error(err);
-            *       return;
-            *     }
-            *
-            *     // TODO: Change code below to process the `response` object:
-            *     console.log(JSON.stringify(response, null, 2));
-            *   });
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.instances.setLabels
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.instance Name of the instance scoping this request.
-            * @param {string} params.project Project ID for this request.
-            * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-            * @param {string} params.zone The name of the zone for this request.
-            * @param {compute(beta).InstancesSetLabelsRequest} params.resource Request body data
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        setLabels(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setLabels')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'POST'
-                },
-                options),
-            params,
-            requiredParams: ['project', 'zone', 'instance'],
-            pathParams: ['instance', 'project', 'zone'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.instances.setMachineResources
-            * @desc Changes the number and/or type of accelerator for a stopped
-            * instance to the values specified in the request.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     // The name of the zone for this request.
-            *     zone: 'my-zone',  // TODO: Update placeholder value.
-            *
-            *     // Name of the instance scoping this request.
-            *     instance: 'my-instance',  // TODO: Update placeholder value.
-            *
-            *     resource: {
-            *       // TODO: Add desired properties to the request body.
-            *     },
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   compute.instances.setMachineResources(request, function(err,
-            * response) { if (err) { console.error(err); return;
-            *     }
-            *
-            *     // TODO: Change code below to process the `response` object:
-            *     console.log(JSON.stringify(response, null, 2));
-            *   });
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.instances.setMachineResources
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.instance Name of the instance scoping this request.
-            * @param {string} params.project Project ID for this request.
-            * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-            * @param {string} params.zone The name of the zone for this request.
-            * @param {compute(beta).InstancesSetMachineResourcesRequest} params.resource Request body data
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        setMachineResources(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setMachineResources')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'POST'
-                },
-                options),
-            params,
-            requiredParams: ['project', 'zone', 'instance'],
-            pathParams: ['instance', 'project', 'zone'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.instances.setMachineType
-            * @desc Changes the machine type for a stopped instance to the
-            * machine type specified in the request.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     // The name of the zone for this request.
-            *     zone: 'my-zone',  // TODO: Update placeholder value.
-            *
-            *     // Name of the instance scoping this request.
-            *     instance: 'my-instance',  // TODO: Update placeholder value.
-            *
-            *     resource: {
-            *       // TODO: Add desired properties to the request body.
-            *     },
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   compute.instances.setMachineType(request, function(err,
-            * response) { if (err) { console.error(err); return;
-            *     }
-            *
-            *     // TODO: Change code below to process the `response` object:
-            *     console.log(JSON.stringify(response, null, 2));
-            *   });
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.instances.setMachineType
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.instance Name of the instance scoping this request.
-            * @param {string} params.project Project ID for this request.
-            * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-            * @param {string} params.zone The name of the zone for this request.
-            * @param {compute(beta).InstancesSetMachineTypeRequest} params.resource Request body data
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        setMachineType(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setMachineType')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'POST'
-                },
-                options),
-            params,
-            requiredParams: ['project', 'zone', 'instance'],
-            pathParams: ['instance', 'project', 'zone'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.instances.setMetadata
-            * @desc Sets metadata for the specified instance to the data
-            * included in the request.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     // The name of the zone for this request.
-            *     zone: 'my-zone',  // TODO: Update placeholder value.
-            *
-            *     // Name of the instance scoping this request.
-            *     instance: 'my-instance',  // TODO: Update placeholder value.
-            *
-            *     resource: {
-            *       // TODO: Add desired properties to the request body.
-            *     },
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   compute.instances.setMetadata(request, function(err, response) {
-            *     if (err) {
-            *       console.error(err);
-            *       return;
-            *     }
-            *
-            *     // TODO: Change code below to process the `response` object:
-            *     console.log(JSON.stringify(response, null, 2));
-            *   });
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.instances.setMetadata
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.instance Name of the instance scoping this request.
-            * @param {string} params.project Project ID for this request.
-            * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-            * @param {string} params.zone The name of the zone for this request.
-            * @param {compute(beta).Metadata} params.resource Request body data
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        setMetadata(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setMetadata')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'POST'
-                },
-                options),
-            params,
-            requiredParams: ['project', 'zone', 'instance'],
-            pathParams: ['instance', 'project', 'zone'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.instances.setMinCpuPlatform
-            * @desc Changes the minimum CPU platform that this instance should
-            * use. This method can only be called on a stopped instance. For
-            * more information, read Specifying a Minimum CPU Platform.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     // The name of the zone for this request.
-            *     zone: 'my-zone',  // TODO: Update placeholder value.
-            *
-            *     // Name of the instance scoping this request.
-            *     instance: 'my-instance',  // TODO: Update placeholder value.
-            *
-            *     resource: {
-            *       // TODO: Add desired properties to the request body.
-            *     },
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   compute.instances.setMinCpuPlatform(request, function(err,
-            * response) { if (err) { console.error(err); return;
-            *     }
-            *
-            *     // TODO: Change code below to process the `response` object:
-            *     console.log(JSON.stringify(response, null, 2));
-            *   });
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.instances.setMinCpuPlatform
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.instance Name of the instance scoping this request.
-            * @param {string} params.project Project ID for this request.
-            * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-            * @param {string} params.zone The name of the zone for this request.
-            * @param {compute(beta).InstancesSetMinCpuPlatformRequest} params.resource Request body data
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        setMinCpuPlatform(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setMinCpuPlatform')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'POST'
-                },
-                options),
-            params,
-            requiredParams: ['project', 'zone', 'instance'],
-            pathParams: ['instance', 'project', 'zone'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.instances.setScheduling
-            * @desc Sets an instance's scheduling options.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     // The name of the zone for this request.
-            *     zone: 'my-zone',  // TODO: Update placeholder value.
-            *
-            *     // Instance name.
-            *     instance: 'my-instance',  // TODO: Update placeholder value.
-            *
-            *     resource: {
-            *       // TODO: Add desired properties to the request body.
-            *     },
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   compute.instances.setScheduling(request, function(err, response)
-            * { if (err) { console.error(err); return;
-            *     }
-            *
-            *     // TODO: Change code below to process the `response` object:
-            *     console.log(JSON.stringify(response, null, 2));
-            *   });
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.instances.setScheduling
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.instance Instance name.
-            * @param {string} params.project Project ID for this request.
-            * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-            * @param {string} params.zone The name of the zone for this request.
-            * @param {compute(beta).Scheduling} params.resource Request body data
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        setScheduling(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setScheduling')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'POST'
-                },
-                options),
-            params,
-            requiredParams: ['project', 'zone', 'instance'],
-            pathParams: ['instance', 'project', 'zone'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.instances.setServiceAccount
-            * @desc Sets the service account on the instance. For more
-            * information, read Changing the service account and access scopes
-            * for an instance.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     // The name of the zone for this request.
-            *     zone: 'my-zone',  // TODO: Update placeholder value.
-            *
-            *     // Name of the instance resource to start.
-            *     instance: 'my-instance',  // TODO: Update placeholder value.
-            *
-            *     resource: {
-            *       // TODO: Add desired properties to the request body.
-            *     },
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   compute.instances.setServiceAccount(request, function(err,
-            * response) { if (err) { console.error(err); return;
-            *     }
-            *
-            *     // TODO: Change code below to process the `response` object:
-            *     console.log(JSON.stringify(response, null, 2));
-            *   });
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.instances.setServiceAccount
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.instance Name of the instance resource to start.
-            * @param {string} params.project Project ID for this request.
-            * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-            * @param {string} params.zone The name of the zone for this request.
-            * @param {compute(beta).InstancesSetServiceAccountRequest} params.resource Request body data
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        setServiceAccount(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setServiceAccount')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'POST'
-                },
-                options),
-            params,
-            requiredParams: ['project', 'zone', 'instance'],
-            pathParams: ['instance', 'project', 'zone'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.instances.setTags
-            * @desc Sets tags for the specified instance to the data included in
-            * the request.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     // The name of the zone for this request.
-            *     zone: 'my-zone',  // TODO: Update placeholder value.
-            *
-            *     // Name of the instance scoping this request.
-            *     instance: 'my-instance',  // TODO: Update placeholder value.
-            *
-            *     resource: {
-            *       // TODO: Add desired properties to the request body.
-            *     },
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   compute.instances.setTags(request, function(err, response) {
-            *     if (err) {
-            *       console.error(err);
-            *       return;
-            *     }
-            *
-            *     // TODO: Change code below to process the `response` object:
-            *     console.log(JSON.stringify(response, null, 2));
-            *   });
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.instances.setTags
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.instance Name of the instance scoping this request.
-            * @param {string} params.project Project ID for this request.
-            * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-            * @param {string} params.zone The name of the zone for this request.
-            * @param {compute(beta).Tags} params.resource Request body data
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        setTags(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setTags')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'POST'
-                },
-                options),
-            params,
-            requiredParams: ['project', 'zone', 'instance'],
-            pathParams: ['instance', 'project', 'zone'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.instances.start
-            * @desc Starts an instance that was stopped using the using the
-            * instances().stop method. For more information, see Restart an
-            * instance.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     // The name of the zone for this request.
-            *     zone: 'my-zone',  // TODO: Update placeholder value.
-            *
-            *     // Name of the instance resource to start.
-            *     instance: 'my-instance',  // TODO: Update placeholder value.
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   compute.instances.start(request, function(err, response) {
-            *     if (err) {
-            *       console.error(err);
-            *       return;
-            *     }
-            *
-            *     // TODO: Change code below to process the `response` object:
-            *     console.log(JSON.stringify(response, null, 2));
-            *   });
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.instances.start
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.instance Name of the instance resource to start.
-            * @param {string} params.project Project ID for this request.
-            * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-            * @param {string} params.zone The name of the zone for this request.
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        start(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/start')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'POST'
-                },
-                options),
-            params,
-            requiredParams: ['project', 'zone', 'instance'],
-            pathParams: ['instance', 'project', 'zone'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.instances.startWithEncryptionKey
-            * @desc Starts an instance that was stopped using the using the
-            * instances().stop method. For more information, see Restart an
-            * instance.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     // The name of the zone for this request.
-            *     zone: 'my-zone',  // TODO: Update placeholder value.
-            *
-            *     // Name of the instance resource to start.
-            *     instance: 'my-instance',  // TODO: Update placeholder value.
-            *
-            *     resource: {
-            *       // TODO: Add desired properties to the request body.
-            *     },
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   compute.instances.startWithEncryptionKey(request, function(err,
-            * response) { if (err) { console.error(err); return;
-            *     }
-            *
-            *     // TODO: Change code below to process the `response` object:
-            *     console.log(JSON.stringify(response, null, 2));
-            *   });
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.instances.startWithEncryptionKey
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.instance Name of the instance resource to start.
-            * @param {string} params.project Project ID for this request.
-            * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-            * @param {string} params.zone The name of the zone for this request.
-            * @param {compute(beta).InstancesStartWithEncryptionKeyRequest} params.resource Request body data
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        startWithEncryptionKey(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/startWithEncryptionKey')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'POST'
-                },
-                options),
-            params,
-            requiredParams: ['project', 'zone', 'instance'],
-            pathParams: ['instance', 'project', 'zone'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.instances.stop
-            * @desc Stops a running instance, shutting it down cleanly, and
-            * allows you to restart the instance at a later time. Stopped
-            * instances do not incur VM usage charges while they are stopped.
-            * However, resources that the VM is using, such as persistent disks
-            * and static IP addresses, will continue to be charged until they
-            * are deleted. For more information, see Stopping an instance.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     // The name of the zone for this request.
-            *     zone: 'my-zone',  // TODO: Update placeholder value.
-            *
-            *     // Name of the instance resource to stop.
-            *     instance: 'my-instance',  // TODO: Update placeholder value.
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   compute.instances.stop(request, function(err, response) {
-            *     if (err) {
-            *       console.error(err);
-            *       return;
-            *     }
-            *
-            *     // TODO: Change code below to process the `response` object:
-            *     console.log(JSON.stringify(response, null, 2));
-            *   });
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.instances.stop
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.instance Name of the instance resource to stop.
-            * @param {string} params.project Project ID for this request.
-            * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-            * @param {string} params.zone The name of the zone for this request.
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        stop(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/stop')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'POST'
-                },
-                options),
-            params,
-            requiredParams: ['project', 'zone', 'instance'],
-            pathParams: ['instance', 'project', 'zone'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.instances.testIamPermissions
-            * @desc Returns permissions that a caller has on the specified
-            * resource.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     // The name of the zone for this request.
-            *     zone: 'my-zone',  // TODO: Update placeholder value.
-            *
-            *     // Name of the resource for this request.
-            *     resource_: 'my-resource',  // TODO: Update placeholder value.
-            *
-            *     resource: {
-            *       // TODO: Add desired properties to the request body.
-            *     },
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   compute.instances.testIamPermissions(request, function(err,
-            * response) { if (err) { console.error(err); return;
-            *     }
-            *
-            *     // TODO: Change code below to process the `response` object:
-            *     console.log(JSON.stringify(response, null, 2));
-            *   });
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.instances.testIamPermissions
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.project Project ID for this request.
-            * @param {string} params.resource_ Name of the resource for this request.
-            * @param {string} params.zone The name of the zone for this request.
-            * @param {compute(beta).TestPermissionsRequest} params.resource Request body data
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        testIamPermissions(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/zones/{zone}/instances/{resource}/testIamPermissions')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'POST'
-                },
-                options),
-            params,
-            requiredParams: ['project', 'zone', 'resource'],
-            pathParams: ['project', 'resource', 'zone'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.instances.updateAccessConfig
-            * @desc Updates the specified access config from an instance's
-            * network interface with the data included in the request. This
-            * method supports PATCH semantics and uses the JSON merge patch
-            * format and processing rules.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     // The name of the zone for this request.
-            *     zone: 'my-zone',  // TODO: Update placeholder value.
-            *
-            *     // The instance name for this request.
-            *     instance: 'my-instance',  // TODO: Update placeholder value.
-            *
-            *     // The name of the network interface where the access config
-            * is attached. networkInterface: '',  // TODO: Update placeholder
-            * value.
-            *
-            *     resource: {
-            *       // TODO: Add desired properties to the request body.
-            *     },
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   compute.instances.updateAccessConfig(request, function(err,
-            * response) { if (err) { console.error(err); return;
-            *     }
-            *
-            *     // TODO: Change code below to process the `response` object:
-            *     console.log(JSON.stringify(response, null, 2));
-            *   });
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.instances.updateAccessConfig
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.instance The instance name for this request.
-            * @param {string} params.networkInterface The name of the network interface where the access config is attached.
-            * @param {string} params.project Project ID for this request.
-            * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-            * @param {string} params.zone The name of the zone for this request.
-            * @param {compute(beta).AccessConfig} params.resource Request body data
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        updateAccessConfig(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/updateAccessConfig')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'POST'
-                },
-                options),
-            params,
-            requiredParams: ['project', 'zone', 'instance', 'networkInterface'],
-            pathParams: ['instance', 'project', 'zone'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }, /**
-            * compute.instances.updateNetworkInterface
-            * @desc Updates an instance's network interface. This method follows
-            * PATCH semantics.
-            * @example
-            * // BEFORE RUNNING:
-            * // ---------------
-            * // 1. If not already done, enable the Compute Engine API
-            * //    and check the quota for your project at
-            * //    https://console.developers.google.com/apis/api/compute
-            * // 2. This sample uses Application Default Credentials for
-            * authentication.
-            * //    If not already done, install the gcloud CLI from
-            * //    https://cloud.google.com/sdk and run
-            * //    `gcloud beta auth application-default login`.
-            * //    For more information, see
-            * //
-            * https://developers.google.com/identity/protocols/application-default-credentials
-            * // 3. Install the Node.js client library by running
-            * //    `npm install googleapis --save`
-            *
-            * var google = require('googleapis');
-            * var compute = google.compute('beta');
-            *
-            * authorize(function(authClient) {
-            *   var request = {
-            *     // Project ID for this request.
-            *     project: 'my-project',  // TODO: Update placeholder value.
-            *
-            *     // The name of the zone for this request.
-            *     zone: 'my-zone',  // TODO: Update placeholder value.
-            *
-            *     // The instance name for this request.
-            *     instance: 'my-instance',  // TODO: Update placeholder value.
-            *
-            *     // The name of the network interface to update.
-            *     networkInterface: '',  // TODO: Update placeholder value.
-            *
-            *     resource: {
-            *       // TODO: Add desired properties to the request body. Only
-            * these properties
-            *       // will be changed.
-            *     },
-            *
-            *     auth: authClient,
-            *   };
-            *
-            *   compute.instances.updateNetworkInterface(request, function(err,
-            * response) { if (err) { console.error(err); return;
-            *     }
-            *
-            *     // TODO: Change code below to process the `response` object:
-            *     console.log(JSON.stringify(response, null, 2));
-            *   });
-            * });
-            *
-            * function authorize(callback) {
-            *   google.auth.getApplicationDefault(function(err, authClient) {
-            *     if (err) {
-            *       console.error('authentication failed: ', err);
-            *       return;
-            *     }
-            *     if (authClient.createScopedRequired &&
-            * authClient.createScopedRequired()) { var scopes =
-            * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-            * authClient.createScoped(scopes);
-            *     }
-            *     callback(authClient);
-            *   });
-            * }
-            * @alias compute.instances.updateNetworkInterface
-            * @memberOf! compute(beta)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.instance The instance name for this request.
-            * @param {string} params.networkInterface The name of the network interface to update.
-            * @param {string} params.project Project ID for this request.
-            * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-            * @param {string} params.zone The name of the zone for this request.
-            * @param {compute(beta).NetworkInterface} params.resource Request body data
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        updateNetworkInterface(params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url:
-                      (rootUrl +
-                       '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/updateNetworkInterface')
-                          .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'PATCH'
-                },
-                options),
-            params,
-            requiredParams: ['project', 'zone', 'instance', 'networkInterface'],
-            pathParams: ['instance', 'project', 'zone'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback);
-        }
-
+  self.instances = {
+    /**
+     * compute.instances.addAccessConfig
+     * @desc Adds an access config to an instance's network interface.
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for
+     * authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //
+     * https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     // The name of the zone for this request.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
+     *
+     *     // The instance name for this request.
+     *     instance: 'my-instance',  // TODO: Update placeholder value.
+     *
+     *     // The name of the network interface to add to this instance.
+     *     networkInterface: '',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   compute.instances.addAccessConfig(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired &&
+     * authClient.createScopedRequired()) { var scopes =
+     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+     * authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     * @alias compute.instances.addAccessConfig
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance The instance name for this request.
+     * @param {string} params.networkInterface The name of the network interface to add to this instance.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {compute(beta).AccessConfig} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    addAccessConfig(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/addAccessConfig')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance', 'networkInterface'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
       };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * compute.instances.aggregatedList
+        * @desc Retrieves aggregated list of instances.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   var handlePage = function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     var itemsPage = response['items'];
+        *     if (!itemsPage) {
+        *       return;
+        *     }
+        *     Object.keys(itemsPage).forEach(function(name) {
+        *       // TODO: Change code below to process each `name` property:
+        *       console.log(name + ': ' + JSON.stringify(itemsPage[name], null,
+        * 2));
+        *     });
+        *
+        *     if (response.nextPageToken) {
+        *       request.pageToken = response.nextPageToken;
+        *       compute.instances.aggregatedList(request, handlePage);
+        *     }
+        *   };
+        *
+        *   compute.instances.aggregatedList(request, handlePage);
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.instances.aggregatedList
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+        * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+        * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+        * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+        * @param {string} params.project Project ID for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/compute/beta/projects/{project}/aggregated/instances')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * compute.instances.attachDisk
+        * @desc Attaches an existing Disk resource to an instance. You must
+        * first create the disk before you can attach it. It is not possible to
+        * create and attach a disk at the same time. For more information, read
+        * Adding a persistent disk to your instance.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // The name of the zone for this request.
+        *     zone: 'my-zone',  // TODO: Update placeholder value.
+        *
+        *     // The instance name for this request.
+        *     instance: 'my-instance',  // TODO: Update placeholder value.
+        *
+        *     resource: {
+        *       // TODO: Add desired properties to the request body.
+        *     },
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.instances.attachDisk(request, function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.instances.attachDisk
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.forceAttach Whether to force attach the disk even if it's currently attached to another instance. This is only available for regional disks.
+        * @param {string} params.instance The instance name for this request.
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {string} params.zone The name of the zone for this request.
+        * @param {compute(beta).AttachedDisk} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    attachDisk(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/attachDisk')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * compute.instances.delete
+        * @desc Deletes the specified Instance resource. For more information,
+        * see Stopping or Deleting an Instance.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // The name of the zone for this request.
+        *     zone: 'my-zone',  // TODO: Update placeholder value.
+        *
+        *     // Name of the instance resource to delete.
+        *     instance: 'my-instance',  // TODO: Update placeholder value.
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.instances.delete(request, function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.instances.delete
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.instance Name of the instance resource to delete.
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {string} params.zone The name of the zone for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * compute.instances.deleteAccessConfig
+        * @desc Deletes an access config from an instance's network interface.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // The name of the zone for this request.
+        *     zone: 'my-zone',  // TODO: Update placeholder value.
+        *
+        *     // The instance name for this request.
+        *     instance: 'my-instance',  // TODO: Update placeholder value.
+        *
+        *     // The name of the access config to delete.
+        *     accessConfig: '',  // TODO: Update placeholder value.
+        *
+        *     // The name of the network interface.
+        *     networkInterface: '',  // TODO: Update placeholder value.
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.instances.deleteAccessConfig(request, function(err,
+        * response) { if (err) { console.error(err); return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.instances.deleteAccessConfig
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.accessConfig The name of the access config to delete.
+        * @param {string} params.instance The instance name for this request.
+        * @param {string} params.networkInterface The name of the network interface.
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {string} params.zone The name of the zone for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    deleteAccessConfig(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/deleteAccessConfig')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams:
+            ['project', 'zone', 'instance', 'accessConfig', 'networkInterface'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * compute.instances.detachDisk
+        * @desc Detaches a disk from an instance.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // The name of the zone for this request.
+        *     zone: 'my-zone',  // TODO: Update placeholder value.
+        *
+        *     // Instance name.
+        *     instance: 'my-instance',  // TODO: Update placeholder value.
+        *
+        *     // Disk device name to detach.
+        *     deviceName: '',  // TODO: Update placeholder value.
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.instances.detachDisk(request, function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.instances.detachDisk
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.deviceName Disk device name to detach.
+        * @param {string} params.instance Instance name.
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {string} params.zone The name of the zone for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    detachDisk(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/detachDisk')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance', 'deviceName'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * compute.instances.get
+        * @desc Returns the specified Instance resource. Get a list of available
+        * instances by making a list() request.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // The name of the zone for this request.
+        *     zone: 'my-zone',  // TODO: Update placeholder value.
+        *
+        *     // Name of the instance resource to return.
+        *     instance: 'my-instance',  // TODO: Update placeholder value.
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.instances.get(request, function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.instances.get
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.instance Name of the instance resource to return.
+        * @param {string} params.project Project ID for this request.
+        * @param {string} params.zone The name of the zone for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * compute.instances.getSerialPortOutput
+        * @desc Returns the specified instance's serial port output.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // The name of the zone for this request.
+        *     zone: 'my-zone',  // TODO: Update placeholder value.
+        *
+        *     // Name of the instance scoping this request.
+        *     instance: 'my-instance',  // TODO: Update placeholder value.
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.instances.getSerialPortOutput(request, function(err,
+        * response) { if (err) { console.error(err); return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.instances.getSerialPortOutput
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.instance Name of the instance scoping this request.
+        * @param {integer=} params.port Specifies which COM or serial port to retrieve data from.
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.start Returns output starting from a specific byte position. Use this to page through output when the output is too large to return in a single request. For the initial request, leave this field unspecified. For subsequent calls, this field should be set to the next value returned in the previous call.
+        * @param {string} params.zone The name of the zone for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    getSerialPortOutput(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/serialPort')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * compute.instances.insert
+        * @desc Creates an instance resource in the specified project using the
+        * data included in the request.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // The name of the zone for this request.
+        *     zone: 'my-zone',  // TODO: Update placeholder value.
+        *
+        *     resource: {
+        *       // TODO: Add desired properties to the request body.
+        *     },
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.instances.insert(request, function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.instances.insert
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {string=} params.sourceInstanceTemplate Specifies instance template to create the instance.  This field is optional. It can be a full or partial URL. For example, the following are all valid URLs to an instance template:   - https://www.googleapis.com/compute/v1/projects/project/global/global/instanceTemplates/instanceTemplate  - projects/project/global/global/instanceTemplates/instanceTemplate  - global/instancesTemplates/instanceTemplate
+        * @param {string} params.zone The name of the zone for this request.
+        * @param {compute(beta).Instance} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/compute/beta/projects/{project}/zones/{zone}/instances')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * compute.instances.list
+        * @desc Retrieves the list of instances contained within the specified
+        * zone.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // The name of the zone for this request.
+        *     zone: 'my-zone',  // TODO: Update placeholder value.
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   var handlePage = function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     var itemsPage = response['items'];
+        *     if (!itemsPage) {
+        *       return;
+        *     }
+        *     for (var i = 0; i < itemsPage.length; i++) {
+        *       // TODO: Change code below to process each resource in
+        * `itemsPage`: console.log(JSON.stringify(itemsPage[i], null, 2));
+        *     }
+        *
+        *     if (response.nextPageToken) {
+        *       request.pageToken = response.nextPageToken;
+        *       compute.instances.list(request, handlePage);
+        *     }
+        *   };
+        *
+        *   compute.instances.list(request, handlePage);
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.instances.list
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+        * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+        * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+        * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+        * @param {string} params.project Project ID for this request.
+        * @param {string} params.zone The name of the zone for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/compute/beta/projects/{project}/zones/{zone}/instances')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * compute.instances.listReferrers
+        * @desc Retrieves the list of referrers to instances contained within
+        * the specified zone.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // The name of the zone for this request.
+        *     zone: 'my-zone',  // TODO: Update placeholder value.
+        *
+        *     // Name of the target instance scoping this request, or '-' if the
+        * request should span over all
+        *     // instances in the container.
+        *     instance: 'my-instance',  // TODO: Update placeholder value.
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   var handlePage = function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     var itemsPage = response['items'];
+        *     if (!itemsPage) {
+        *       return;
+        *     }
+        *     for (var i = 0; i < itemsPage.length; i++) {
+        *       // TODO: Change code below to process each resource in
+        * `itemsPage`: console.log(JSON.stringify(itemsPage[i], null, 2));
+        *     }
+        *
+        *     if (response.nextPageToken) {
+        *       request.pageToken = response.nextPageToken;
+        *       compute.instances.listReferrers(request, handlePage);
+        *     }
+        *   };
+        *
+        *   compute.instances.listReferrers(request, handlePage);
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.instances.listReferrers
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+        * @param {string} params.instance Name of the target instance scoping this request, or '-' if the request should span over all instances in the container.
+        * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+        * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+        * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+        * @param {string} params.project Project ID for this request.
+        * @param {string} params.zone The name of the zone for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    listReferrers(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/referrers')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * compute.instances.reset
+        * @desc Performs a reset on the instance. For more information, see
+        * Resetting an instance.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // The name of the zone for this request.
+        *     zone: 'my-zone',  // TODO: Update placeholder value.
+        *
+        *     // Name of the instance scoping this request.
+        *     instance: 'my-instance',  // TODO: Update placeholder value.
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.instances.reset(request, function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.instances.reset
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.instance Name of the instance scoping this request.
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {string} params.zone The name of the zone for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    reset(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/reset')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * compute.instances.setDeletionProtection
+        * @desc Sets deletion protection on the instance.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // The name of the zone for this request.
+        *     zone: 'my-zone',  // TODO: Update placeholder value.
+        *
+        *     // Name of the resource for this request.
+        *     resource_: 'my-resource',  // TODO: Update placeholder value.
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.instances.setDeletionProtection(request, function(err,
+        * response) { if (err) { console.error(err); return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.instances.setDeletionProtection
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.deletionProtection Whether the resource should be protected against deletion.
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {string} params.resource_ Name of the resource for this request.
+        * @param {string} params.zone The name of the zone for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    setDeletionProtection(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{resource}/setDeletionProtection')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'resource'],
+        pathParams: ['project', 'resource', 'zone'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * compute.instances.setDiskAutoDelete
+        * @desc Sets the auto-delete flag for a disk attached to an instance.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // The name of the zone for this request.
+        *     zone: 'my-zone',  // TODO: Update placeholder value.
+        *
+        *     // The instance name.
+        *     instance: 'my-instance',  // TODO: Update placeholder value.
+        *
+        *     // Whether to auto-delete the disk when the instance is deleted.
+        *     autoDelete: false,  // TODO: Update placeholder value.
+        *
+        *     // The device name of the disk to modify.
+        *     deviceName: '',  // TODO: Update placeholder value.
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.instances.setDiskAutoDelete(request, function(err, response)
+        * { if (err) { console.error(err); return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.instances.setDiskAutoDelete
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean} params.autoDelete Whether to auto-delete the disk when the instance is deleted.
+        * @param {string} params.deviceName The device name of the disk to modify.
+        * @param {string} params.instance The instance name.
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {string} params.zone The name of the zone for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    setDiskAutoDelete(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setDiskAutoDelete')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams:
+            ['project', 'zone', 'instance', 'autoDelete', 'deviceName'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * compute.instances.setLabels
+        * @desc Sets labels on an instance. To learn more about labels, read the
+        * Labeling Resources documentation.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // The name of the zone for this request.
+        *     zone: 'my-zone',  // TODO: Update placeholder value.
+        *
+        *     // Name of the instance scoping this request.
+        *     instance: 'my-instance',  // TODO: Update placeholder value.
+        *
+        *     resource: {
+        *       // TODO: Add desired properties to the request body.
+        *     },
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.instances.setLabels(request, function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.instances.setLabels
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.instance Name of the instance scoping this request.
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {string} params.zone The name of the zone for this request.
+        * @param {compute(beta).InstancesSetLabelsRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    setLabels(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setLabels')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * compute.instances.setMachineResources
+        * @desc Changes the number and/or type of accelerator for a stopped
+        * instance to the values specified in the request.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // The name of the zone for this request.
+        *     zone: 'my-zone',  // TODO: Update placeholder value.
+        *
+        *     // Name of the instance scoping this request.
+        *     instance: 'my-instance',  // TODO: Update placeholder value.
+        *
+        *     resource: {
+        *       // TODO: Add desired properties to the request body.
+        *     },
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.instances.setMachineResources(request, function(err,
+        * response) { if (err) { console.error(err); return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.instances.setMachineResources
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.instance Name of the instance scoping this request.
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {string} params.zone The name of the zone for this request.
+        * @param {compute(beta).InstancesSetMachineResourcesRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    setMachineResources(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setMachineResources')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * compute.instances.setMachineType
+        * @desc Changes the machine type for a stopped instance to the machine
+        * type specified in the request.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // The name of the zone for this request.
+        *     zone: 'my-zone',  // TODO: Update placeholder value.
+        *
+        *     // Name of the instance scoping this request.
+        *     instance: 'my-instance',  // TODO: Update placeholder value.
+        *
+        *     resource: {
+        *       // TODO: Add desired properties to the request body.
+        *     },
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.instances.setMachineType(request, function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.instances.setMachineType
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.instance Name of the instance scoping this request.
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {string} params.zone The name of the zone for this request.
+        * @param {compute(beta).InstancesSetMachineTypeRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    setMachineType(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setMachineType')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * compute.instances.setMetadata
+        * @desc Sets metadata for the specified instance to the data included in
+        * the request.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // The name of the zone for this request.
+        *     zone: 'my-zone',  // TODO: Update placeholder value.
+        *
+        *     // Name of the instance scoping this request.
+        *     instance: 'my-instance',  // TODO: Update placeholder value.
+        *
+        *     resource: {
+        *       // TODO: Add desired properties to the request body.
+        *     },
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.instances.setMetadata(request, function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.instances.setMetadata
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.instance Name of the instance scoping this request.
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {string} params.zone The name of the zone for this request.
+        * @param {compute(beta).Metadata} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    setMetadata(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setMetadata')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * compute.instances.setMinCpuPlatform
+        * @desc Changes the minimum CPU platform that this instance should use.
+        * This method can only be called on a stopped instance. For more
+        * information, read Specifying a Minimum CPU Platform.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // The name of the zone for this request.
+        *     zone: 'my-zone',  // TODO: Update placeholder value.
+        *
+        *     // Name of the instance scoping this request.
+        *     instance: 'my-instance',  // TODO: Update placeholder value.
+        *
+        *     resource: {
+        *       // TODO: Add desired properties to the request body.
+        *     },
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.instances.setMinCpuPlatform(request, function(err, response)
+        * { if (err) { console.error(err); return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.instances.setMinCpuPlatform
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.instance Name of the instance scoping this request.
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {string} params.zone The name of the zone for this request.
+        * @param {compute(beta).InstancesSetMinCpuPlatformRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    setMinCpuPlatform(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setMinCpuPlatform')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * compute.instances.setScheduling
+        * @desc Sets an instance's scheduling options.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // The name of the zone for this request.
+        *     zone: 'my-zone',  // TODO: Update placeholder value.
+        *
+        *     // Instance name.
+        *     instance: 'my-instance',  // TODO: Update placeholder value.
+        *
+        *     resource: {
+        *       // TODO: Add desired properties to the request body.
+        *     },
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.instances.setScheduling(request, function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.instances.setScheduling
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.instance Instance name.
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {string} params.zone The name of the zone for this request.
+        * @param {compute(beta).Scheduling} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    setScheduling(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setScheduling')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * compute.instances.setServiceAccount
+        * @desc Sets the service account on the instance. For more information,
+        * read Changing the service account and access scopes for an instance.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // The name of the zone for this request.
+        *     zone: 'my-zone',  // TODO: Update placeholder value.
+        *
+        *     // Name of the instance resource to start.
+        *     instance: 'my-instance',  // TODO: Update placeholder value.
+        *
+        *     resource: {
+        *       // TODO: Add desired properties to the request body.
+        *     },
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.instances.setServiceAccount(request, function(err, response)
+        * { if (err) { console.error(err); return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.instances.setServiceAccount
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.instance Name of the instance resource to start.
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {string} params.zone The name of the zone for this request.
+        * @param {compute(beta).InstancesSetServiceAccountRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    setServiceAccount(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setServiceAccount')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * compute.instances.setTags
+        * @desc Sets tags for the specified instance to the data included in the
+        * request.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // The name of the zone for this request.
+        *     zone: 'my-zone',  // TODO: Update placeholder value.
+        *
+        *     // Name of the instance scoping this request.
+        *     instance: 'my-instance',  // TODO: Update placeholder value.
+        *
+        *     resource: {
+        *       // TODO: Add desired properties to the request body.
+        *     },
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.instances.setTags(request, function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.instances.setTags
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.instance Name of the instance scoping this request.
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {string} params.zone The name of the zone for this request.
+        * @param {compute(beta).Tags} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    setTags(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setTags')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * compute.instances.start
+        * @desc Starts an instance that was stopped using the using the
+        * instances().stop method. For more information, see Restart an
+        * instance.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // The name of the zone for this request.
+        *     zone: 'my-zone',  // TODO: Update placeholder value.
+        *
+        *     // Name of the instance resource to start.
+        *     instance: 'my-instance',  // TODO: Update placeholder value.
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.instances.start(request, function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.instances.start
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.instance Name of the instance resource to start.
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {string} params.zone The name of the zone for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    start(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/start')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * compute.instances.startWithEncryptionKey
+        * @desc Starts an instance that was stopped using the using the
+        * instances().stop method. For more information, see Restart an
+        * instance.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // The name of the zone for this request.
+        *     zone: 'my-zone',  // TODO: Update placeholder value.
+        *
+        *     // Name of the instance resource to start.
+        *     instance: 'my-instance',  // TODO: Update placeholder value.
+        *
+        *     resource: {
+        *       // TODO: Add desired properties to the request body.
+        *     },
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.instances.startWithEncryptionKey(request, function(err,
+        * response) { if (err) { console.error(err); return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.instances.startWithEncryptionKey
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.instance Name of the instance resource to start.
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {string} params.zone The name of the zone for this request.
+        * @param {compute(beta).InstancesStartWithEncryptionKeyRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    startWithEncryptionKey(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/startWithEncryptionKey')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * compute.instances.stop
+        * @desc Stops a running instance, shutting it down cleanly, and allows
+        * you to restart the instance at a later time. Stopped instances do not
+        * incur VM usage charges while they are stopped. However, resources that
+        * the VM is using, such as persistent disks and static IP addresses,
+        * will continue to be charged until they are deleted. For more
+        * information, see Stopping an instance.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // The name of the zone for this request.
+        *     zone: 'my-zone',  // TODO: Update placeholder value.
+        *
+        *     // Name of the instance resource to stop.
+        *     instance: 'my-instance',  // TODO: Update placeholder value.
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.instances.stop(request, function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.instances.stop
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.instance Name of the instance resource to stop.
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {string} params.zone The name of the zone for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    stop(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/stop')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * compute.instances.testIamPermissions
+        * @desc Returns permissions that a caller has on the specified resource.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // The name of the zone for this request.
+        *     zone: 'my-zone',  // TODO: Update placeholder value.
+        *
+        *     // Name of the resource for this request.
+        *     resource_: 'my-resource',  // TODO: Update placeholder value.
+        *
+        *     resource: {
+        *       // TODO: Add desired properties to the request body.
+        *     },
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.instances.testIamPermissions(request, function(err,
+        * response) { if (err) { console.error(err); return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.instances.testIamPermissions
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project Project ID for this request.
+        * @param {string} params.resource_ Name of the resource for this request.
+        * @param {string} params.zone The name of the zone for this request.
+        * @param {compute(beta).TestPermissionsRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{resource}/testIamPermissions')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'resource'],
+        pathParams: ['project', 'resource', 'zone'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * compute.instances.updateAccessConfig
+        * @desc Updates the specified access config from an instance's network
+        * interface with the data included in the request. This method supports
+        * PATCH semantics and uses the JSON merge patch format and processing
+        * rules.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // The name of the zone for this request.
+        *     zone: 'my-zone',  // TODO: Update placeholder value.
+        *
+        *     // The instance name for this request.
+        *     instance: 'my-instance',  // TODO: Update placeholder value.
+        *
+        *     // The name of the network interface where the access config is
+        * attached. networkInterface: '',  // TODO: Update placeholder value.
+        *
+        *     resource: {
+        *       // TODO: Add desired properties to the request body.
+        *     },
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.instances.updateAccessConfig(request, function(err,
+        * response) { if (err) { console.error(err); return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.instances.updateAccessConfig
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.instance The instance name for this request.
+        * @param {string} params.networkInterface The name of the network interface where the access config is attached.
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {string} params.zone The name of the zone for this request.
+        * @param {compute(beta).AccessConfig} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    updateAccessConfig(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/updateAccessConfig')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance', 'networkInterface'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * compute.instances.updateNetworkInterface
+        * @desc Updates an instance's network interface. This method follows
+        * PATCH semantics.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Compute Engine API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/compute
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var compute = google.compute('beta');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Project ID for this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // The name of the zone for this request.
+        *     zone: 'my-zone',  // TODO: Update placeholder value.
+        *
+        *     // The instance name for this request.
+        *     instance: 'my-instance',  // TODO: Update placeholder value.
+        *
+        *     // The name of the network interface to update.
+        *     networkInterface: '',  // TODO: Update placeholder value.
+        *
+        *     resource: {
+        *       // TODO: Add desired properties to the request body. Only these
+        * properties
+        *       // will be changed.
+        *     },
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   compute.instances.updateNetworkInterface(request, function(err,
+        * response) { if (err) { console.error(err); return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias compute.instances.updateNetworkInterface
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.instance The instance name for this request.
+        * @param {string} params.networkInterface The name of the network interface to update.
+        * @param {string} params.project Project ID for this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {string} params.zone The name of the zone for this request.
+        * @param {compute(beta).NetworkInterface} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    updateNetworkInterface(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/updateNetworkInterface')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance', 'networkInterface'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }
+
+  };
   self.instanceTemplates = {
     /**
      * compute.instanceTemplates.delete
@@ -16728,7 +17046,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -16750,7 +17070,7 @@ function Compute(options) {
         pathParams: ['instanceTemplate', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.instanceTemplates.get
         * @desc Returns the specified instance template. Get a list of available
@@ -16822,7 +17142,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -16844,7 +17165,7 @@ function Compute(options) {
         pathParams: ['instanceTemplate', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.instanceTemplates.insert
         * @desc Creates an instance template in the specified project using the
@@ -16920,7 +17241,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -16941,7 +17264,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.instanceTemplates.list
         * @desc Retrieves a list of instance templates that are contained within
@@ -17025,7 +17348,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -17046,7 +17371,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.instanceTemplates.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -17119,7 +17444,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -17141,7 +17468,7 @@ function Compute(options) {
         pathParams: ['project', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -17230,7 +17557,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -17252,7 +17581,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.interconnectAttachments.delete
         * @desc Deletes the specified interconnect attachment.
@@ -17326,7 +17655,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -17348,7 +17679,7 @@ function Compute(options) {
         pathParams: ['interconnectAttachment', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.interconnectAttachments.get
         * @desc Returns the specified interconnect attachment.
@@ -17421,7 +17752,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -17443,7 +17775,7 @@ function Compute(options) {
         pathParams: ['interconnectAttachment', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.interconnectAttachments.insert
         * @desc Creates an InterconnectAttachment in the specified project using
@@ -17518,7 +17850,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -17540,7 +17874,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.interconnectAttachments.list
         * @desc Retrieves the list of interconnect attachments contained within
@@ -17628,7 +17962,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -17650,7 +17986,50 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * compute.interconnectAttachments.patch
+        * @desc Updates the specified interconnect attachment with the data
+        * included in the request. This method supports PATCH semantics and uses
+        * the JSON merge patch format and processing rules.
+        * @alias compute.interconnectAttachments.patch
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.interconnectAttachment Name of the interconnect attachment to patch.
+        * @param {string} params.project Project ID for this request.
+        * @param {string} params.region Name of the region scoping this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {compute(beta).InterconnectAttachment} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/regions/{region}/interconnectAttachments/{interconnectAttachment}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'interconnectAttachment'],
+        pathParams: ['interconnectAttachment', 'project', 'region'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.interconnectAttachments.setLabels
         * @desc Sets the labels on an InterconnectAttachment. To learn more
@@ -17668,7 +18047,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setLabels(params, options, callback) {
+    setLabels(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -17690,7 +18071,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.interconnectAttachments.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -17767,7 +18148,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -17789,7 +18172,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -17865,7 +18248,8 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -17887,7 +18271,7 @@ function Compute(options) {
         pathParams: ['interconnectLocation', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.interconnectLocations.list
         * @desc Retrieves the list of interconnect locations available to the
@@ -17971,7 +18355,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -17993,7 +18379,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -18070,7 +18456,9 @@ function Compute(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -18092,7 +18480,7 @@ function Compute(options) {
             pathParams: ['interconnect', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.interconnects.get
             * @desc Returns the specified interconnect. Get a list of available
@@ -18164,7 +18552,8 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -18186,7 +18575,7 @@ function Compute(options) {
             pathParams: ['interconnect', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.interconnects.insert
             * @desc Creates a Interconnect in the specified project using the
@@ -18259,7 +18648,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        insert(params, options, callback) {
+        insert(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -18280,7 +18671,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.interconnects.list
             * @desc Retrieves the list of interconnect available to the
@@ -18364,7 +18755,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -18385,7 +18778,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.interconnects.patch
             * @desc Updates the specified interconnect with the data included in
@@ -18466,7 +18859,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        patch(params, options, callback) {
+        patch(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -18488,7 +18883,7 @@ function Compute(options) {
             pathParams: ['interconnect', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.interconnects.setLabels
             * @desc Sets the labels on an Interconnect. To learn more about
@@ -18504,7 +18899,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setLabels(params, options, callback) {
+        setLabels(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -18526,7 +18923,7 @@ function Compute(options) {
             pathParams: ['project', 'resource'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.interconnects.testIamPermissions
             * @desc Returns permissions that a caller has on the specified
@@ -18600,7 +18997,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        testIamPermissions(params, options, callback) {
+        testIamPermissions(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -18622,7 +19021,7 @@ function Compute(options) {
             pathParams: ['project', 'resource'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       };
@@ -18641,7 +19040,8 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -18663,7 +19063,7 @@ function Compute(options) {
         pathParams: ['licenseCode', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -18682,7 +19082,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -18704,7 +19106,7 @@ function Compute(options) {
         pathParams: ['license', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.licenses.get
         * @desc Returns the specified License resource.
@@ -18774,7 +19176,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -18796,7 +19199,7 @@ function Compute(options) {
         pathParams: ['license', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.licenses.insert
         * @desc Create a License resource in the specified project.
@@ -18811,7 +19214,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -18832,7 +19237,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.licenses.list
         * @desc Retrieves the list of licenses available in the specified
@@ -18854,7 +19259,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -18875,7 +19282,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -18963,7 +19370,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -18984,7 +19393,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.machineTypes.get
         * @desc Returns the specified machine type. Get a list of available
@@ -19060,7 +19469,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -19082,7 +19492,7 @@ function Compute(options) {
         pathParams: ['machineType', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.machineTypes.list
         * @desc Retrieves a list of machine types available to the specified
@@ -19170,7 +19580,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -19192,7 +19604,7 @@ function Compute(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -19273,7 +19685,9 @@ function Compute(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        addPeering(params, options, callback) {
+        addPeering(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -19295,7 +19709,7 @@ function Compute(options) {
             pathParams: ['network', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.networks.delete
             * @desc Deletes the specified network.
@@ -19366,7 +19780,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -19388,7 +19804,7 @@ function Compute(options) {
             pathParams: ['network', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.networks.get
             * @desc Returns the specified network. Get a list of available
@@ -19459,7 +19875,8 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -19481,7 +19898,7 @@ function Compute(options) {
             pathParams: ['network', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.networks.insert
             * @desc Creates a network in the specified project using the data
@@ -19554,7 +19971,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        insert(params, options, callback) {
+        insert(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -19575,7 +19994,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.networks.list
             * @desc Retrieves the list of networks available to the specified
@@ -19659,7 +20078,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -19680,7 +20101,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.networks.patch
             * @desc Patches the specified network with the data included in the
@@ -19760,7 +20181,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        patch(params, options, callback) {
+        patch(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -19782,7 +20205,7 @@ function Compute(options) {
             pathParams: ['network', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.networks.removePeering
             * @desc Removes a peering from the specified network.
@@ -19856,7 +20279,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        removePeering(params, options, callback) {
+        removePeering(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -19878,7 +20303,7 @@ function Compute(options) {
             pathParams: ['network', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.networks.switchToCustomMode
             * @desc Switches the network mode from auto subnet mode to custom
@@ -19948,7 +20373,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        switchToCustomMode(params, options, callback) {
+        switchToCustomMode(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -19970,7 +20397,7 @@ function Compute(options) {
             pathParams: ['network', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.networks.testIamPermissions
             * @desc Returns permissions that a caller has on the specified
@@ -20044,7 +20471,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        testIamPermissions(params, options, callback) {
+        testIamPermissions(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -20066,7 +20495,7 @@ function Compute(options) {
             pathParams: ['project', 'resource'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       };
@@ -20138,7 +20567,9 @@ function Compute(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        disableXpnHost(params, options, callback) {
+        disableXpnHost(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -20159,7 +20590,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.projects.disableXpnResource
             * @desc Disable a serivce resource (a.k.a service project)
@@ -20230,7 +20661,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        disableXpnResource(params, options, callback) {
+        disableXpnResource(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -20251,7 +20684,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.projects.enableXpnHost
             * @desc Enable this project as a shared VPC host project.
@@ -20316,7 +20749,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        enableXpnHost(params, options, callback) {
+        enableXpnHost(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -20337,7 +20772,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.projects.enableXpnResource
             * @desc Enable service resource (a.k.a service project) for a host
@@ -20409,7 +20844,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        enableXpnResource(params, options, callback) {
+        enableXpnResource(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -20430,7 +20867,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.projects.get
             * @desc Returns the specified Project resource.
@@ -20496,7 +20933,8 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -20516,7 +20954,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.projects.getXpnHost
             * @desc Get the shared VPC host project that this project links to.
@@ -20583,7 +21021,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        getXpnHost(params, options, callback) {
+        getXpnHost(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -20603,7 +21043,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.projects.getXpnResources
             * @desc Get service resources (a.k.a service project) associated
@@ -20688,7 +21128,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        getXpnResources(params, options, callback) {
+        getXpnResources(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -20709,7 +21151,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.projects.listXpnHosts
             * @desc List all shared VPC host projects visible to the user in an
@@ -20798,7 +21240,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        listXpnHosts(params, options, callback) {
+        listXpnHosts(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -20819,7 +21263,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.projects.moveDisk
             * @desc Moves a persistent disk from one zone to another.
@@ -20891,7 +21335,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        moveDisk(params, options, callback) {
+        moveDisk(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -20911,7 +21357,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.projects.moveInstance
             * @desc Moves an instance and its attached persistent disks from one
@@ -20984,7 +21430,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        moveInstance(params, options, callback) {
+        moveInstance(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -21005,7 +21453,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.projects.setCommonInstanceMetadata
             * @desc Sets metadata common to all instances within the specified
@@ -21076,7 +21524,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setCommonInstanceMetadata(params, options, callback) {
+        setCommonInstanceMetadata(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -21098,7 +21548,48 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
+        }, /**
+            * compute.projects.setDefaultNetworkTier
+            * @desc Sets the default network tier of the project. The default
+            * network tier is used when an address/forwardingRule/instance is
+            * created without specifying the network tier field.
+            * @alias compute.projects.setDefaultNetworkTier
+            * @memberOf! compute(beta)
+            *
+            * @param {object} params Parameters for request
+            * @param {string} params.project Project ID for this request.
+            * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+            * @param {compute(beta).ProjectsSetDefaultNetworkTierRequest} params.resource Request body data
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        setDefaultNetworkTier(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url:
+                      (rootUrl +
+                       '/compute/beta/projects/{project}/setDefaultNetworkTier')
+                          .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'POST'
+                },
+                options),
+            params,
+            requiredParams: ['project'],
+            pathParams: ['project'],
+            context: self
+          };
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.projects.setUsageExportBucket
             * @desc Enables the usage export feature and sets the usage export
@@ -21170,7 +21661,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setUsageExportBucket(params, options, callback) {
+        setUsageExportBucket(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -21191,7 +21684,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       };
@@ -21271,7 +21764,9 @@ function Compute(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -21293,7 +21788,7 @@ function Compute(options) {
             pathParams: ['autoscaler', 'project', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.regionAutoscalers.get
             * @desc Returns the specified autoscaler.
@@ -21368,7 +21863,8 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -21390,7 +21886,7 @@ function Compute(options) {
             pathParams: ['autoscaler', 'project', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.regionAutoscalers.insert
             * @desc Creates an autoscaler in the specified project using the
@@ -21465,7 +21961,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        insert(params, options, callback) {
+        insert(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -21487,7 +21985,7 @@ function Compute(options) {
             pathParams: ['project', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.regionAutoscalers.list
             * @desc Retrieves a list of autoscalers contained within the
@@ -21575,7 +22073,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -21597,7 +22097,7 @@ function Compute(options) {
             pathParams: ['project', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.regionAutoscalers.patch
             * @desc Updates an autoscaler in the specified project using the
@@ -21676,7 +22176,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        patch(params, options, callback) {
+        patch(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -21698,7 +22200,7 @@ function Compute(options) {
             pathParams: ['project', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.regionAutoscalers.testIamPermissions
             * @desc Returns permissions that a caller has on the specified
@@ -21776,7 +22278,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        testIamPermissions(params, options, callback) {
+        testIamPermissions(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -21798,7 +22302,7 @@ function Compute(options) {
             pathParams: ['project', 'region', 'resource'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.regionAutoscalers.update
             * @desc Updates an autoscaler in the specified project using the
@@ -21876,7 +22380,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        update(params, options, callback) {
+        update(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -21898,7 +22404,7 @@ function Compute(options) {
             pathParams: ['project', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       };
@@ -21978,7 +22484,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -22000,7 +22508,7 @@ function Compute(options) {
         pathParams: ['backendService', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionBackendServices.get
         * @desc Returns the specified regional BackendService resource.
@@ -22075,7 +22583,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -22097,7 +22606,7 @@ function Compute(options) {
         pathParams: ['backendService', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionBackendServices.getHealth
         * @desc Gets the most recent health check results for this regional
@@ -22175,7 +22684,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getHealth(params, options, callback) {
+    getHealth(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -22197,7 +22708,7 @@ function Compute(options) {
         pathParams: ['backendService', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionBackendServices.insert
         * @desc Creates a regional BackendService resource in the specified
@@ -22275,7 +22786,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -22297,7 +22810,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionBackendServices.list
         * @desc Retrieves the list of regional BackendService resources
@@ -22385,7 +22898,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -22407,7 +22922,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionBackendServices.patch
         * @desc Updates the specified regional BackendService resource with the
@@ -22493,7 +23008,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -22515,7 +23032,7 @@ function Compute(options) {
         pathParams: ['backendService', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionBackendServices.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -22592,7 +23109,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -22614,7 +23133,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionBackendServices.update
         * @desc Updates the specified regional BackendService resource with the
@@ -22698,7 +23217,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -22720,7 +23241,7 @@ function Compute(options) {
         pathParams: ['backendService', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -22808,7 +23329,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -22829,7 +23352,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionCommitments.get
         * @desc Returns the specified commitment resource. Get a list of
@@ -22904,7 +23427,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -22926,7 +23450,7 @@ function Compute(options) {
         pathParams: ['commitment', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionCommitments.insert
         * @desc Creates a commitment in the specified project using the data
@@ -23003,7 +23527,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -23025,7 +23551,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionCommitments.list
         * @desc Retrieves a list of commitments contained within the specified
@@ -23113,7 +23639,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -23135,7 +23663,429 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
+    }
+
+  };
+  self.regionDisks =
+      {
+        /**
+         * compute.regionDisks.createSnapshot
+         * @desc Creates a snapshot of this regional disk.
+         * @alias compute.regionDisks.createSnapshot
+         * @memberOf! compute(beta)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.disk Name of the regional persistent disk to snapshot.
+         * @param {string} params.project Project ID for this request.
+         * @param {string} params.region Name of the region for this request.
+         * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+         * @param {compute(beta).Snapshot} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        createSnapshot(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url:
+                      (rootUrl +
+                       '/compute/beta/projects/{project}/regions/{region}/disks/{disk}/createSnapshot')
+                          .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'POST'
+                },
+                options),
+            params,
+            requiredParams: ['project', 'region', 'disk'],
+            pathParams: ['disk', 'project', 'region'],
+            context: self
+          };
+          return createAPIRequest(parameters, callback!);
+        }, /**
+            * compute.regionDisks.delete
+            * @desc Deletes the specified regional persistent disk. Deleting a
+            * regional disk removes all the replicas of its data permanently and
+            * is irreversible. However, deleting a disk does not delete any
+            * snapshots previously made from the disk. You must separately
+            * delete snapshots.
+            * @alias compute.regionDisks.delete
+            * @memberOf! compute(beta)
+            *
+            * @param {object} params Parameters for request
+            * @param {string} params.disk Name of the regional persistent disk to delete.
+            * @param {string} params.project Project ID for this request.
+            * @param {string} params.region Name of the region for this request.
+            * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url:
+                      (rootUrl +
+                       '/compute/beta/projects/{project}/regions/{region}/disks/{disk}')
+                          .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'DELETE'
+                },
+                options),
+            params,
+            requiredParams: ['project', 'region', 'disk'],
+            pathParams: ['disk', 'project', 'region'],
+            context: self
+          };
+          return createAPIRequest(parameters, callback!);
+        }, /**
+            * compute.regionDisks.get
+            * @desc Returns a specified regional persistent disk.
+            * @alias compute.regionDisks.get
+            * @memberOf! compute(beta)
+            *
+            * @param {object} params Parameters for request
+            * @param {string} params.disk Name of the regional persistent disk to return.
+            * @param {string} params.project Project ID for this request.
+            * @param {string} params.region Name of the region for this request.
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url:
+                      (rootUrl +
+                       '/compute/beta/projects/{project}/regions/{region}/disks/{disk}')
+                          .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'GET'
+                },
+                options),
+            params,
+            requiredParams: ['project', 'region', 'disk'],
+            pathParams: ['disk', 'project', 'region'],
+            context: self
+          };
+          return createAPIRequest(parameters, callback!);
+        }, /**
+            * compute.regionDisks.insert
+            * @desc Creates a persistent regional disk in the specified project
+            * using the data included in the request.
+            * @alias compute.regionDisks.insert
+            * @memberOf! compute(beta)
+            *
+            * @param {object} params Parameters for request
+            * @param {string} params.project Project ID for this request.
+            * @param {string} params.region Name of the region for this request.
+            * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+            * @param {string=} params.sourceImage Optional. Source image to restore onto a disk.
+            * @param {compute(beta).Disk} params.resource Request body data
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        insert(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url:
+                      (rootUrl +
+                       '/compute/beta/projects/{project}/regions/{region}/disks')
+                          .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'POST'
+                },
+                options),
+            params,
+            requiredParams: ['project', 'region'],
+            pathParams: ['project', 'region'],
+            context: self
+          };
+          return createAPIRequest(parameters, callback!);
+        }, /**
+            * compute.regionDisks.list
+            * @desc Retrieves the list of persistent disks contained within the
+            * specified region.
+            * @alias compute.regionDisks.list
+            * @memberOf! compute(beta)
+            *
+            * @param {object} params Parameters for request
+            * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+            * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+            * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+            * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+            * @param {string} params.project Project ID for this request.
+            * @param {string} params.region Name of the region for this request.
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url:
+                      (rootUrl +
+                       '/compute/beta/projects/{project}/regions/{region}/disks')
+                          .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'GET'
+                },
+                options),
+            params,
+            requiredParams: ['project', 'region'],
+            pathParams: ['project', 'region'],
+            context: self
+          };
+          return createAPIRequest(parameters, callback!);
+        }, /**
+            * compute.regionDisks.resize
+            * @desc Resizes the specified regional persistent disk.
+            * @alias compute.regionDisks.resize
+            * @memberOf! compute(beta)
+            *
+            * @param {object} params Parameters for request
+            * @param {string} params.disk Name of the regional persistent disk.
+            * @param {string} params.project The project ID for this request.
+            * @param {string} params.region Name of the region for this request.
+            * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+            * @param {compute(beta).RegionDisksResizeRequest} params.resource Request body data
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        resize(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url:
+                      (rootUrl +
+                       '/compute/beta/projects/{project}/regions/{region}/disks/{disk}/resize')
+                          .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'POST'
+                },
+                options),
+            params,
+            requiredParams: ['project', 'region', 'disk'],
+            pathParams: ['disk', 'project', 'region'],
+            context: self
+          };
+          return createAPIRequest(parameters, callback!);
+        }, /**
+            * compute.regionDisks.setLabels
+            * @desc Sets the labels on the target regional disk.
+            * @alias compute.regionDisks.setLabels
+            * @memberOf! compute(beta)
+            *
+            * @param {object} params Parameters for request
+            * @param {string} params.project Project ID for this request.
+            * @param {string} params.region The region for this request.
+            * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+            * @param {string} params.resource_ Name of the resource for this request.
+            * @param {compute(beta).RegionSetLabelsRequest} params.resource Request body data
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        setLabels(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url:
+                      (rootUrl +
+                       '/compute/beta/projects/{project}/regions/{region}/disks/{resource}/setLabels')
+                          .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'POST'
+                },
+                options),
+            params,
+            requiredParams: ['project', 'region', 'resource'],
+            pathParams: ['project', 'region', 'resource'],
+            context: self
+          };
+          return createAPIRequest(parameters, callback!);
+        }, /**
+            * compute.regionDisks.testIamPermissions
+            * @desc Returns permissions that a caller has on the specified
+            * resource.
+            * @alias compute.regionDisks.testIamPermissions
+            * @memberOf! compute(beta)
+            *
+            * @param {object} params Parameters for request
+            * @param {string} params.project Project ID for this request.
+            * @param {string} params.region The name of the region for this request.
+            * @param {string} params.resource_ Name of the resource for this request.
+            * @param {compute(beta).TestPermissionsRequest} params.resource Request body data
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        testIamPermissions(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url:
+                      (rootUrl +
+                       '/compute/beta/projects/{project}/regions/{region}/disks/{resource}/testIamPermissions')
+                          .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'POST'
+                },
+                options),
+            params,
+            requiredParams: ['project', 'region', 'resource'],
+            pathParams: ['project', 'region', 'resource'],
+            context: self
+          };
+          return createAPIRequest(parameters, callback!);
+        }
+
+      };
+  self.regionDiskTypes = {
+    /**
+     * compute.regionDiskTypes.get
+     * @desc Returns the specified regional disk type. Get a list of available
+     * disk types by making a list() request.
+     * @alias compute.regionDiskTypes.get
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.diskType Name of the disk type to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/regions/{region}/diskTypes/{diskType}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'diskType'],
+        pathParams: ['diskType', 'project', 'region'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * compute.regionDiskTypes.list
+        * @desc Retrieves a list of regional disk types available to the
+        * specified project.
+        * @alias compute.regionDiskTypes.list
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+        * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+        * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+        * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+        * @param {string} params.project Project ID for this request.
+        * @param {string} params.region The name of the region for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/regions/{region}/diskTypes')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -23230,7 +24180,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    abandonInstances(params, options, callback) {
+    abandonInstances(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -23252,7 +24204,7 @@ function Compute(options) {
         pathParams: ['instanceGroupManager', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionInstanceGroupManagers.delete
         * @desc Deletes the specified managed instance group and all of the
@@ -23327,7 +24279,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -23349,7 +24303,7 @@ function Compute(options) {
         pathParams: ['instanceGroupManager', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionInstanceGroupManagers.deleteInstances
         * @desc Schedules a group action to delete the specified instances in
@@ -23439,7 +24393,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    deleteInstances(params, options, callback) {
+    deleteInstances(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -23461,7 +24417,7 @@ function Compute(options) {
         pathParams: ['instanceGroupManager', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionInstanceGroupManagers.get
         * @desc Returns all of the details about the specified managed instance
@@ -23535,7 +24491,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -23557,7 +24514,7 @@ function Compute(options) {
         pathParams: ['instanceGroupManager', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionInstanceGroupManagers.insert
         * @desc Creates a managed instance group using the information that you
@@ -23638,7 +24595,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -23660,7 +24619,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionInstanceGroupManagers.list
         * @desc Retrieves the list of managed instance groups that are contained
@@ -23748,7 +24707,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -23770,7 +24731,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionInstanceGroupManagers.listManagedInstances
         * @desc Lists the instances in the managed instance group and instances
@@ -23867,7 +24828,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    listManagedInstances(params, options, callback) {
+    listManagedInstances(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -23889,7 +24852,7 @@ function Compute(options) {
         pathParams: ['instanceGroupManager', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionInstanceGroupManagers.patch
         * @desc Updates a managed instance group using the information that you
@@ -23976,7 +24939,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -23998,7 +24963,7 @@ function Compute(options) {
         pathParams: ['instanceGroupManager', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionInstanceGroupManagers.recreateInstances
         * @desc Schedules a group action to recreate the specified instances in
@@ -24087,7 +25052,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    recreateInstances(params, options, callback) {
+    recreateInstances(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -24109,7 +25076,7 @@ function Compute(options) {
         pathParams: ['instanceGroupManager', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionInstanceGroupManagers.resize
         * @desc Changes the intended size for the managed instance group. If you
@@ -24197,7 +25164,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    resize(params, options, callback) {
+    resize(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -24219,7 +25188,7 @@ function Compute(options) {
         pathParams: ['instanceGroupManager', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionInstanceGroupManagers.setAutoHealingPolicies
         * @desc Modifies the autohealing policy for the instances in this
@@ -24299,7 +25268,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setAutoHealingPolicies(params, options, callback) {
+    setAutoHealingPolicies(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -24321,7 +25292,7 @@ function Compute(options) {
         pathParams: ['instanceGroupManager', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionInstanceGroupManagers.setInstanceTemplate
         * @desc Sets the instance template to use when creating new instances or
@@ -24402,7 +25373,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setInstanceTemplate(params, options, callback) {
+    setInstanceTemplate(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -24424,7 +25397,7 @@ function Compute(options) {
         pathParams: ['instanceGroupManager', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionInstanceGroupManagers.setTargetPools
         * @desc Modifies the target pools to which all new instances in this
@@ -24504,7 +25477,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setTargetPools(params, options, callback) {
+    setTargetPools(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -24526,7 +25501,7 @@ function Compute(options) {
         pathParams: ['instanceGroupManager', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionInstanceGroupManagers.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -24603,7 +25578,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -24625,7 +25602,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionInstanceGroupManagers.update
         * @desc Updates a managed instance group using the information that you
@@ -24710,7 +25687,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -24732,7 +25711,7 @@ function Compute(options) {
         pathParams: ['instanceGroupManager', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -24811,7 +25790,8 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -24833,7 +25813,7 @@ function Compute(options) {
         pathParams: ['instanceGroup', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionInstanceGroups.list
         * @desc Retrieves the list of instance group resources contained within
@@ -24921,7 +25901,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -24943,7 +25925,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionInstanceGroups.listInstances
         * @desc Lists the instances in the specified instance group and displays
@@ -25043,7 +26025,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    listInstances(params, options, callback) {
+    listInstances(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -25065,7 +26049,7 @@ function Compute(options) {
         pathParams: ['instanceGroup', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionInstanceGroups.setNamedPorts
         * @desc Sets the named ports for the specified regional instance group.
@@ -25144,7 +26128,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setNamedPorts(params, options, callback) {
+    setNamedPorts(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -25166,7 +26152,7 @@ function Compute(options) {
         pathParams: ['instanceGroup', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionInstanceGroups.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -25243,7 +26229,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -25265,7 +26253,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -25340,7 +26328,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -25362,7 +26352,7 @@ function Compute(options) {
         pathParams: ['operation', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionOperations.get
         * @desc Retrieves the specified region-specific Operations resource.
@@ -25436,7 +26426,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -25458,7 +26449,7 @@ function Compute(options) {
         pathParams: ['operation', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionOperations.list
         * @desc Retrieves a list of Operation resources contained within the
@@ -25546,7 +26537,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -25568,7 +26561,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -25643,7 +26636,8 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -25664,7 +26658,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regions.list
         * @desc Retrieves the list of region resources available to the
@@ -25748,7 +26742,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -25768,7 +26764,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -25856,7 +26852,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -25877,7 +26875,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.routers.delete
         * @desc Deletes the specified Router resource.
@@ -25952,7 +26950,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -25974,7 +26974,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'router'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.routers.get
         * @desc Returns the specified Router resource. Get a list of available
@@ -26049,7 +27049,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -26071,7 +27072,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'router'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.routers.getRouterStatus
         * @desc Retrieves runtime information of the specified router.
@@ -26145,7 +27146,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getRouterStatus(params, options, callback) {
+    getRouterStatus(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -26167,7 +27170,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'router'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.routers.insert
         * @desc Creates a Router resource in the specified project and region
@@ -26244,7 +27247,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -26265,7 +27270,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.routers.list
         * @desc Retrieves a list of Router resources available to the specified
@@ -26353,7 +27358,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -26374,7 +27381,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.routers.patch
         * @desc Patches the specified Router resource with the data included in
@@ -26458,7 +27465,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -26480,7 +27489,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'router'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.routers.preview
         * @desc Preview fields auto-generated during router create and update
@@ -26560,7 +27569,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    preview(params, options, callback) {
+    preview(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -26582,7 +27593,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'router'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.routers.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -26659,7 +27670,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -26681,7 +27694,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.routers.update
         * @desc Updates the specified Router resource with the data included in
@@ -26764,7 +27777,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -26786,7 +27801,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'router'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -26861,7 +27876,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -26882,7 +27899,7 @@ function Compute(options) {
         pathParams: ['project', 'route'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.routes.get
         * @desc Returns the specified Route resource. Get a list of available
@@ -26953,7 +27970,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -26974,7 +27992,7 @@ function Compute(options) {
         pathParams: ['project', 'route'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.routes.insert
         * @desc Creates a Route resource in the specified project using the data
@@ -27047,7 +28065,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -27067,7 +28087,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.routes.list
         * @desc Retrieves the list of Route resources available to the specified
@@ -27151,7 +28171,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -27171,7 +28193,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.routes.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -27246,7 +28268,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -27268,7 +28292,7 @@ function Compute(options) {
         pathParams: ['project', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -27287,7 +28311,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addRule(params, options, callback) {
+    addRule(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -27309,7 +28335,7 @@ function Compute(options) {
         pathParams: ['project', 'securityPolicy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.securityPolicies.delete
         * @desc Deletes the specified policy.
@@ -27381,7 +28407,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -27403,7 +28431,7 @@ function Compute(options) {
         pathParams: ['project', 'securityPolicy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.securityPolicies.get
         * @desc List all of the ordered rules present in a single specified
@@ -27475,7 +28503,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -27497,7 +28526,7 @@ function Compute(options) {
         pathParams: ['project', 'securityPolicy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.securityPolicies.getRule
         * @desc Gets a rule at the specified priority.
@@ -27512,7 +28541,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getRule(params, options, callback) {
+    getRule(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -27534,7 +28565,7 @@ function Compute(options) {
         pathParams: ['project', 'securityPolicy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.securityPolicies.insert
         * @desc Creates a new policy in the specified project using the data
@@ -27607,7 +28638,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -27628,7 +28661,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.securityPolicies.list
         * @desc List all the policies that have been configured for the
@@ -27712,7 +28745,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -27733,7 +28768,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.securityPolicies.patch
         * @desc Patches the specified policy with the data included in the
@@ -27813,7 +28848,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -27835,7 +28872,7 @@ function Compute(options) {
         pathParams: ['project', 'securityPolicy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.securityPolicies.patchRule
         * @desc Patches a rule at the specified priority.
@@ -27851,7 +28888,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patchRule(params, options, callback) {
+    patchRule(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -27873,7 +28912,7 @@ function Compute(options) {
         pathParams: ['project', 'securityPolicy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.securityPolicies.removeRule
         * @desc Deletes a rule at the specified priority.
@@ -27888,7 +28927,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    removeRule(params, options, callback) {
+    removeRule(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -27910,7 +28951,7 @@ function Compute(options) {
         pathParams: ['project', 'securityPolicy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.securityPolicies.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -27983,7 +29024,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -28005,7 +29048,7 @@ function Compute(options) {
         pathParams: ['project', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -28084,7 +29127,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -28106,7 +29151,7 @@ function Compute(options) {
         pathParams: ['project', 'snapshot'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.snapshots.get
         * @desc Returns the specified Snapshot resource. Get a list of available
@@ -28177,7 +29222,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -28199,7 +29245,7 @@ function Compute(options) {
         pathParams: ['project', 'snapshot'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.snapshots.list
         * @desc Retrieves the list of Snapshot resources contained within the
@@ -28283,7 +29329,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -28304,7 +29352,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.snapshots.setLabels
         * @desc Sets the labels on a snapshot. To learn more about labels, read
@@ -28380,7 +29428,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setLabels(params, options, callback) {
+    setLabels(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -28402,7 +29452,7 @@ function Compute(options) {
         pathParams: ['project', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.snapshots.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -28475,7 +29525,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -28497,7 +29549,7 @@ function Compute(options) {
         pathParams: ['project', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -28573,7 +29625,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -28595,7 +29649,7 @@ function Compute(options) {
         pathParams: ['project', 'sslCertificate'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.sslCertificates.get
         * @desc Returns the specified SslCertificate resource. Get a list of
@@ -28667,7 +29721,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -28689,7 +29744,7 @@ function Compute(options) {
         pathParams: ['project', 'sslCertificate'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.sslCertificates.insert
         * @desc Creates a SslCertificate resource in the specified project using
@@ -28762,7 +29817,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -28783,7 +29840,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.sslCertificates.list
         * @desc Retrieves the list of SslCertificate resources available to the
@@ -28867,7 +29924,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -28888,7 +29947,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.sslCertificates.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -28961,7 +30020,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -28983,7 +30044,7 @@ function Compute(options) {
         pathParams: ['project', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -29004,7 +30065,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -29026,7 +30089,7 @@ function Compute(options) {
         pathParams: ['project', 'sslPolicy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.sslPolicies.get
         * @desc List all of the ordered rules present in a single specified
@@ -29041,7 +30104,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -29063,7 +30127,7 @@ function Compute(options) {
         pathParams: ['project', 'sslPolicy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.sslPolicies.insert
         * @desc Returns the specified SSL policy resource. Get a list of
@@ -29079,7 +30143,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -29100,7 +30166,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.sslPolicies.list
         * @desc List all the SSL policies that have been configured for the
@@ -29118,7 +30184,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -29139,7 +30207,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.sslPolicies.listAvailableFeatures
         * @desc Lists all features that can be specified in the SSL policy when
@@ -29157,7 +30225,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    listAvailableFeatures(params, options, callback) {
+    listAvailableFeatures(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -29179,7 +30249,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.sslPolicies.patch
         * @desc Patches the specified SSL policy with the data included in the
@@ -29196,7 +30266,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -29218,7 +30290,7 @@ function Compute(options) {
         pathParams: ['project', 'sslPolicy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.sslPolicies.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -29233,7 +30305,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -29255,7 +30329,7 @@ function Compute(options) {
         pathParams: ['project', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -29343,7 +30417,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -29364,7 +30440,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.subnetworks.delete
         * @desc Deletes the specified subnetwork.
@@ -29439,7 +30515,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -29461,7 +30539,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'subnetwork'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.subnetworks.expandIpCidrRange
         * @desc Expands the IP CIDR range of the subnetwork to a specified
@@ -29540,7 +30618,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    expandIpCidrRange(params, options, callback) {
+    expandIpCidrRange(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -29562,7 +30642,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'subnetwork'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.subnetworks.get
         * @desc Returns the specified subnetwork. Get a list of available
@@ -29637,7 +30717,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -29659,7 +30740,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'subnetwork'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.subnetworks.getIamPolicy
         * @desc Gets the access control policy for a resource. May be empty if
@@ -29734,7 +30815,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getIamPolicy(params, options, callback) {
+    getIamPolicy(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -29756,7 +30839,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.subnetworks.insert
         * @desc Creates a subnetwork in the specified project using the data
@@ -29833,7 +30916,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -29855,7 +30940,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.subnetworks.list
         * @desc Retrieves a list of subnetworks available to the specified
@@ -29943,7 +31028,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -29965,7 +31052,48 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * compute.subnetworks.listUsable
+        * @desc Retrieves an aggregated list of usable subnetworks.
+        * @alias compute.subnetworks.listUsable
+        * @memberOf! compute(beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+        * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+        * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+        * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+        * @param {string} params.project Project ID for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    listUsable(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/aggregated/subnetworks/listUsable')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.subnetworks.patch
         * @desc Patches the specified subnetwork with the data included in the
@@ -30051,7 +31179,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -30073,7 +31203,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'subnetwork'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.subnetworks.setIamPolicy
         * @desc Sets the access control policy on the specified resource.
@@ -30153,7 +31283,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setIamPolicy(params, options, callback) {
+    setIamPolicy(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -30175,7 +31307,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.subnetworks.setPrivateIpGoogleAccess
         * @desc Set whether VMs in this subnet can access Google services
@@ -30254,7 +31386,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setPrivateIpGoogleAccess(params, options, callback) {
+    setPrivateIpGoogleAccess(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -30276,7 +31410,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'subnetwork'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.subnetworks.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -30353,7 +31487,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -30375,7 +31511,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -30451,7 +31587,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -30473,7 +31611,7 @@ function Compute(options) {
         pathParams: ['project', 'targetHttpProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetHttpProxies.get
         * @desc Returns the specified TargetHttpProxy resource. Get a list of
@@ -30545,7 +31683,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -30567,7 +31706,7 @@ function Compute(options) {
         pathParams: ['project', 'targetHttpProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetHttpProxies.insert
         * @desc Creates a TargetHttpProxy resource in the specified project
@@ -30640,7 +31779,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -30661,7 +31802,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetHttpProxies.list
         * @desc Retrieves the list of TargetHttpProxy resources available to the
@@ -30745,7 +31886,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -30766,7 +31909,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetHttpProxies.setUrlMap
         * @desc Changes the URL map for TargetHttpProxy.
@@ -30841,7 +31984,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setUrlMap(params, options, callback) {
+    setUrlMap(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -30863,7 +32008,7 @@ function Compute(options) {
         pathParams: ['project', 'targetHttpProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetHttpProxies.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -30936,7 +32081,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -30958,7 +32105,7 @@ function Compute(options) {
         pathParams: ['project', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -31034,7 +32181,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -31056,7 +32205,7 @@ function Compute(options) {
         pathParams: ['project', 'targetHttpsProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetHttpsProxies.get
         * @desc Returns the specified TargetHttpsProxy resource. Get a list of
@@ -31128,7 +32277,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -31150,7 +32300,7 @@ function Compute(options) {
         pathParams: ['project', 'targetHttpsProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetHttpsProxies.insert
         * @desc Creates a TargetHttpsProxy resource in the specified project
@@ -31223,7 +32373,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -31245,7 +32397,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetHttpsProxies.list
         * @desc Retrieves the list of TargetHttpsProxy resources available to
@@ -31329,7 +32481,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -31351,7 +32505,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetHttpsProxies.setQuicOverride
         * @desc Sets the QUIC override policy for TargetHttpsProxy.
@@ -31367,7 +32521,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setQuicOverride(params, options, callback) {
+    setQuicOverride(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -31389,7 +32545,7 @@ function Compute(options) {
         pathParams: ['project', 'targetHttpsProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetHttpsProxies.setSslCertificates
         * @desc Replaces SslCertificates for TargetHttpsProxy.
@@ -31464,7 +32620,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setSslCertificates(params, options, callback) {
+    setSslCertificates(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -31486,7 +32644,7 @@ function Compute(options) {
         pathParams: ['project', 'targetHttpsProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetHttpsProxies.setSslPolicy
         * @desc Sets the SSL policy for TargetHttpsProxy. The SSL policy
@@ -31505,7 +32663,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setSslPolicy(params, options, callback) {
+    setSslPolicy(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -31527,7 +32687,7 @@ function Compute(options) {
         pathParams: ['project', 'targetHttpsProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetHttpsProxies.setUrlMap
         * @desc Changes the URL map for TargetHttpsProxy.
@@ -31602,7 +32762,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setUrlMap(params, options, callback) {
+    setUrlMap(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -31624,7 +32786,7 @@ function Compute(options) {
         pathParams: ['project', 'targetHttpsProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetHttpsProxies.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -31697,7 +32859,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -31719,7 +32883,7 @@ function Compute(options) {
         pathParams: ['project', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -31807,7 +32971,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -31829,7 +32995,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetInstances.delete
         * @desc Deletes the specified TargetInstance resource.
@@ -31905,7 +33071,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -31927,7 +33095,7 @@ function Compute(options) {
         pathParams: ['project', 'targetInstance', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetInstances.get
         * @desc Returns the specified TargetInstance resource. Get a list of
@@ -32003,7 +33171,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -32025,7 +33194,7 @@ function Compute(options) {
         pathParams: ['project', 'targetInstance', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetInstances.insert
         * @desc Creates a TargetInstance resource in the specified project and
@@ -32102,7 +33271,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -32124,7 +33295,7 @@ function Compute(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetInstances.list
         * @desc Retrieves a list of TargetInstance resources available to the
@@ -32212,7 +33383,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -32234,7 +33407,7 @@ function Compute(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetInstances.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -32311,7 +33484,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -32333,7 +33508,7 @@ function Compute(options) {
         pathParams: ['project', 'resource', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -32417,7 +33592,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addHealthCheck(params, options, callback) {
+    addHealthCheck(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -32439,7 +33616,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'targetPool'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetPools.addInstance
         * @desc Adds an instance to a target pool.
@@ -32519,7 +33696,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    addInstance(params, options, callback) {
+    addInstance(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -32541,7 +33720,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'targetPool'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetPools.aggregatedList
         * @desc Retrieves an aggregated list of target pools.
@@ -32625,7 +33804,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -32646,7 +33827,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetPools.delete
         * @desc Deletes the specified target pool.
@@ -32721,7 +33902,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -32743,7 +33926,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'targetPool'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetPools.get
         * @desc Returns the specified target pool. Get a list of available
@@ -32818,7 +34001,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -32840,7 +34024,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'targetPool'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetPools.getHealth
         * @desc Gets the most recent health check results for each IP for the
@@ -32921,7 +34105,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getHealth(params, options, callback) {
+    getHealth(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -32943,7 +34129,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'targetPool'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetPools.insert
         * @desc Creates a target pool in the specified project and region using
@@ -33020,7 +34206,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -33042,7 +34230,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetPools.list
         * @desc Retrieves a list of target pools available to the specified
@@ -33130,7 +34318,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -33152,7 +34342,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetPools.removeHealthCheck
         * @desc Removes health check URL from a target pool.
@@ -33230,7 +34420,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    removeHealthCheck(params, options, callback) {
+    removeHealthCheck(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -33252,7 +34444,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'targetPool'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetPools.removeInstance
         * @desc Removes instance URL from a target pool.
@@ -33330,7 +34522,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    removeInstance(params, options, callback) {
+    removeInstance(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -33352,7 +34546,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'targetPool'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetPools.setBackup
         * @desc Changes a backup target pool's configurations.
@@ -33433,7 +34627,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setBackup(params, options, callback) {
+    setBackup(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -33455,7 +34651,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'targetPool'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetPools.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -33532,7 +34728,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -33554,7 +34752,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -33630,7 +34828,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -33652,7 +34852,7 @@ function Compute(options) {
         pathParams: ['project', 'targetSslProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetSslProxies.get
         * @desc Returns the specified TargetSslProxy resource. Get a list of
@@ -33724,7 +34924,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -33746,7 +34947,7 @@ function Compute(options) {
         pathParams: ['project', 'targetSslProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetSslProxies.insert
         * @desc Creates a TargetSslProxy resource in the specified project using
@@ -33819,7 +35020,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -33840,7 +35043,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetSslProxies.list
         * @desc Retrieves the list of TargetSslProxy resources available to the
@@ -33924,7 +35127,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -33945,7 +35150,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetSslProxies.setBackendService
         * @desc Changes the BackendService for TargetSslProxy.
@@ -34020,7 +35225,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setBackendService(params, options, callback) {
+    setBackendService(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -34042,7 +35249,7 @@ function Compute(options) {
         pathParams: ['project', 'targetSslProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetSslProxies.setProxyHeader
         * @desc Changes the ProxyHeaderType for TargetSslProxy.
@@ -34117,7 +35324,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setProxyHeader(params, options, callback) {
+    setProxyHeader(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -34139,7 +35348,7 @@ function Compute(options) {
         pathParams: ['project', 'targetSslProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetSslProxies.setSslCertificates
         * @desc Changes SslCertificates for TargetSslProxy.
@@ -34214,7 +35423,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setSslCertificates(params, options, callback) {
+    setSslCertificates(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -34236,7 +35447,7 @@ function Compute(options) {
         pathParams: ['project', 'targetSslProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetSslProxies.setSslPolicy
         * @desc Sets the SSL policy for TargetSslProxy. The SSL policy specifies
@@ -34255,7 +35466,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setSslPolicy(params, options, callback) {
+    setSslPolicy(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -34277,7 +35490,7 @@ function Compute(options) {
         pathParams: ['project', 'targetSslProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetSslProxies.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -34350,7 +35563,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -34372,7 +35587,7 @@ function Compute(options) {
         pathParams: ['project', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -34448,7 +35663,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -34470,7 +35687,7 @@ function Compute(options) {
         pathParams: ['project', 'targetTcpProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetTcpProxies.get
         * @desc Returns the specified TargetTcpProxy resource. Get a list of
@@ -34542,7 +35759,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -34564,7 +35782,7 @@ function Compute(options) {
         pathParams: ['project', 'targetTcpProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetTcpProxies.insert
         * @desc Creates a TargetTcpProxy resource in the specified project using
@@ -34637,7 +35855,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -34658,7 +35878,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetTcpProxies.list
         * @desc Retrieves the list of TargetTcpProxy resources available to the
@@ -34742,7 +35962,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -34763,7 +35985,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetTcpProxies.setBackendService
         * @desc Changes the BackendService for TargetTcpProxy.
@@ -34838,7 +36060,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setBackendService(params, options, callback) {
+    setBackendService(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -34860,7 +36084,7 @@ function Compute(options) {
         pathParams: ['project', 'targetTcpProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetTcpProxies.setProxyHeader
         * @desc Changes the ProxyHeaderType for TargetTcpProxy.
@@ -34935,7 +36159,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setProxyHeader(params, options, callback) {
+    setProxyHeader(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -34957,7 +36183,7 @@ function Compute(options) {
         pathParams: ['project', 'targetTcpProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -35045,7 +36271,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -35067,7 +36295,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetVpnGateways.delete
         * @desc Deletes the specified target VPN gateway.
@@ -35143,7 +36371,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -35165,7 +36395,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'targetVpnGateway'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetVpnGateways.get
         * @desc Returns the specified target VPN gateway. Get a list of
@@ -35241,7 +36471,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -35263,7 +36494,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'targetVpnGateway'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetVpnGateways.insert
         * @desc Creates a target VPN gateway in the specified project and region
@@ -35340,7 +36571,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -35362,7 +36595,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetVpnGateways.list
         * @desc Retrieves a list of target VPN gateways available to the
@@ -35450,7 +36683,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -35472,7 +36707,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetVpnGateways.setLabels
         * @desc Sets the labels on a TargetVpnGateway. To learn more about
@@ -35490,7 +36725,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setLabels(params, options, callback) {
+    setLabels(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -35512,7 +36749,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetVpnGateways.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -35589,7 +36826,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -35611,7 +36850,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -35687,7 +36926,9 @@ function Compute(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -35709,7 +36950,7 @@ function Compute(options) {
             pathParams: ['project', 'urlMap'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.urlMaps.get
             * @desc Returns the specified UrlMap resource. Get a list of
@@ -35780,7 +37021,8 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -35802,7 +37044,7 @@ function Compute(options) {
             pathParams: ['project', 'urlMap'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.urlMaps.insert
             * @desc Creates a UrlMap resource in the specified project using the
@@ -35875,7 +37117,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        insert(params, options, callback) {
+        insert(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -35896,7 +37140,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.urlMaps.invalidateCache
             * @desc Initiates a cache invalidation operation, invalidating the
@@ -35971,7 +37215,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        invalidateCache(params, options, callback) {
+        invalidateCache(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -35993,7 +37239,7 @@ function Compute(options) {
             pathParams: ['project', 'urlMap'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.urlMaps.list
             * @desc Retrieves the list of UrlMap resources available to the
@@ -36077,7 +37323,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -36098,7 +37346,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.urlMaps.patch
             * @desc Patches the specified UrlMap resource with the data included
@@ -36178,7 +37426,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        patch(params, options, callback) {
+        patch(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -36200,7 +37450,7 @@ function Compute(options) {
             pathParams: ['project', 'urlMap'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.urlMaps.testIamPermissions
             * @desc Returns permissions that a caller has on the specified
@@ -36274,7 +37524,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        testIamPermissions(params, options, callback) {
+        testIamPermissions(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -36296,7 +37548,7 @@ function Compute(options) {
             pathParams: ['project', 'resource'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.urlMaps.update
             * @desc Updates the specified UrlMap resource with the data included
@@ -36375,7 +37627,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        update(params, options, callback) {
+        update(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -36397,7 +37651,7 @@ function Compute(options) {
             pathParams: ['project', 'urlMap'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.urlMaps.validate
             * @desc Runs static validation for the UrlMap. In particular, the
@@ -36474,7 +37728,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        validate(params, options, callback) {
+        validate(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -36496,7 +37752,7 @@ function Compute(options) {
             pathParams: ['project', 'urlMap'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       };
@@ -36584,7 +37840,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -36605,7 +37863,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.vpnTunnels.delete
         * @desc Deletes the specified VpnTunnel resource.
@@ -36680,7 +37938,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -36702,7 +37962,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'vpnTunnel'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.vpnTunnels.get
         * @desc Returns the specified VpnTunnel resource. Get a list of
@@ -36777,7 +38037,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -36799,7 +38060,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'vpnTunnel'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.vpnTunnels.insert
         * @desc Creates a VpnTunnel resource in the specified project and region
@@ -36876,7 +38137,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -36898,7 +38161,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.vpnTunnels.list
         * @desc Retrieves a list of VpnTunnel resources contained in the
@@ -36986,7 +38249,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -37008,7 +38273,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.vpnTunnels.setLabels
         * @desc Sets the labels on a VpnTunnel. To learn more about labels, read
@@ -37026,7 +38291,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setLabels(params, options, callback) {
+    setLabels(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -37048,7 +38315,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.vpnTunnels.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -37125,7 +38392,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    testIamPermissions(params, options, callback) {
+    testIamPermissions(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -37147,7 +38416,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -37222,7 +38491,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -37244,7 +38515,7 @@ function Compute(options) {
         pathParams: ['operation', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.zoneOperations.get
         * @desc Retrieves the specified zone-specific Operations resource.
@@ -37318,7 +38589,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -37340,7 +38612,7 @@ function Compute(options) {
         pathParams: ['operation', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.zoneOperations.list
         * @desc Retrieves a list of Operation resources contained within the
@@ -37428,7 +38700,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -37449,7 +38723,7 @@ function Compute(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -37524,7 +38798,8 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -37544,7 +38819,7 @@ function Compute(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.zones.list
         * @desc Retrieves the list of Zone resources available to the specified
@@ -37628,7 +38903,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -37648,7 +38925,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -37710,6 +38987,7 @@ function Compute(options) {
  * @property {string} kind [Output Only] Type of the resource. Always compute#accessConfig for access configs.
  * @property {string} name The name of this access configuration. The default and recommended name is External NAT but you can use any arbitrary string you would like. For example, My external IP or Network Access.
  * @property {string} natIP An external IP address associated with this instance. Specify an unused static external IP address available to the project or leave this field undefined to use an IP from a shared ephemeral IP address pool. If you specify a static external IP address, it must live in the same region as the zone of the instance.
+ * @property {string} networkTier This signifies the networking tier used for configuring this access configuration and can only take the following values: PREMIUM, STANDARD.  If an AccessConfig is specified without a valid external IP address, an ephemeral IP will be created with this networkTier.  If an AccessConfig with a valid external IP address is specified, it must match that of the networkTier associated with the Address resource owning that IP.
  * @property {string} publicPtrDomainName The DNS domain name for the public PTR record. This field can only be set when the set_public_ptr field is enabled.
  * @property {boolean} setPublicPtr Specifies whether a public DNS ?PTR? record should be created to map the external IP address of the instance to a DNS domain name.
  * @property {string} type The type of configuration. The default and only option is ONE_TO_ONE_NAT.
@@ -37727,7 +39005,8 @@ function Compute(options) {
  * @property {string} kind [Output Only] Type of the resource. Always compute#address for addresses.
  * @property {string} labelFingerprint A fingerprint for the labels being applied to this Address, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels.  To see the latest fingerprint, make a get() request to retrieve an Address.
  * @property {object} labels Labels to apply to this Address resource. These can be later modified by the setLabels method. Each label key/value must comply with RFC1035. Label values may be empty.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} networkTier This signifies the networking tier used for configuring this Address and can only take the following values: PREMIUM , STANDARD.  If this field is not specified, it is assumed to be PREMIUM.
  * @property {string} region [Output Only] URL of the region where the regional address resides. This field is not applicable to global addresses. You must specify this field as part of the HTTP request URL. You cannot set this field in the request body.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} status [Output Only] The status of the address, which can be one of RESERVING, RESERVED, or IN_USE. An address that is RESERVING is currently in the process of being reserved. A RESERVED address is currently reserved and available to use. An IN_USE address is currently being used by another resource and is not available.
@@ -37830,7 +39109,7 @@ function Compute(options) {
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of the resource. Always compute#autoscaler for autoscalers.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} region [Output Only] URL of the region where the instance group resides (for autoscalers living in regional scope).
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} status [Output Only] The status of the autoscaler configuration.
@@ -37932,7 +39211,7 @@ function Compute(options) {
  * @property {boolean} enableCdn If true, enable Cloud CDN for this BackendBucket.
  * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {string} kind Type of the resource.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  */
 /**
@@ -37970,7 +39249,7 @@ function Compute(options) {
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of resource. Always compute#backendService for backend services.
  * @property {string} loadBalancingScheme Indicates whether the backend service will be used with internal or external load balancing. A backend service created for one type of load balancing cannot be used with the other. Possible values are INTERNAL and EXTERNAL.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {integer} port Deprecated in favor of portName. The TCP port to connect on the backend. The default value is 80.  This cannot be used for internal load balancing.
  * @property {string} portName Name of backend port. The same name should appear in the instance groups referenced by this service. Required when the load balancing scheme is EXTERNAL.  When the load balancing scheme is INTERNAL, this field is not used.
  * @property {string} protocol The protocol this BackendService uses to communicate with backends.  Possible values are HTTP, HTTPS, TCP, and SSL. The default is HTTP.  For internal load balancing, the possible values are TCP and UDP, and the default is TCP.
@@ -38067,7 +39346,7 @@ function Compute(options) {
  * @property {string} endTimestamp [Output Only] Commitment end time in RFC3339 text format.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of the resource. Always compute#commitment for commitments.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} plan The plan for this commitment, which determines duration and discount rate. The currently supported plans are TWELVE_MONTH (1 year), and THIRTY_SIX_MONTH (3 years).
  * @property {string} region [Output Only] URL of the region where this commitment may be used.
  * @property {compute(beta).ResourceCommitment[]} resources List of commitment amounts for particular resources. Note that VCPU and MEMORY resource commitments must occur together.
@@ -38163,8 +39442,10 @@ function Compute(options) {
  * @property {string} lastDetachTimestamp [Output Only] Last detach timestamp in RFC3339 text format.
  * @property {string[]} licenseCodes Integer license codes indicating which licenses are attached to this disk.
  * @property {string[]} licenses Any applicable publicly visible licenses.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} options Internal use only.
+ * @property {string} region [Output Only] URL of the region where the disk resides. Only applicable for regional resources. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
+ * @property {string[]} replicaZones URLs of the zones where the disk should be replicated to. Only applicable for regional resources.
  * @property {string} selfLink [Output Only] Server-defined fully-qualified URL for this resource.
  * @property {string} sizeGb Size of the persistent disk, specified in GB. You can specify this field when creating a persistent disk using the sourceImage or sourceSnapshot parameter, or specify it alone to create an empty persistent disk.  If you specify this field along with sourceImage or sourceSnapshot, the value of sizeGb must not be less than the size of the sourceImage or the size of the snapshot. Acceptable values are 1 to 65536, inclusive.
  * @property {string} sourceImage The source image used to create this disk. If the source image is deleted, this field will not be set.  To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-8 to use the latest Debian 8 image: projects/debian-cloud/global/images/family/debian-8   Alternatively, use a specific version of a public operating system image: projects/debian-cloud/global/images/debian-8-jessie-vYYYYMMDD   To create a disk with a custom image that you created, specify the image name in the following format: global/images/my-custom-image   You can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name: global/images/family/my-image-family
@@ -38175,7 +39456,7 @@ function Compute(options) {
  * @property {string} sourceSnapshotId [Output Only] The unique ID of the snapshot used to create this disk. This value identifies the exact snapshot that was used to create this persistent disk. For example, if you created the persistent disk from a snapshot that was later deleted and recreated under the same name, the source snapshot ID would identify the exact version of the snapshot that was used.
  * @property {string} status [Output Only] The status of disk creation.
  * @property {string} storageType [Deprecated] Storage type of the persistent disk.
- * @property {string} type URL of the disk type resource describing which disk type to use to create the disk. Provide this when creating the disk.
+ * @property {string} type URL of the disk type resource describing which disk type to use to create the disk. Provide this when creating the disk. For example: project/zones/zone/diskTypes/pd-standard or pd-ssd
  * @property {string[]} users [Output Only] Links to the users of the disk (attached instances) in form: project/zones/zone/instances/instance
  * @property {string} zone [Output Only] URL of the zone where the disk resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
  */
@@ -38197,7 +39478,7 @@ function Compute(options) {
  * @property {boolean} autoDelete Specifies whether the disk will be auto-deleted when the instance is deleted (but not when the disk is detached from the instance).
  * @property {string} customImage The custom source image to be used to restore this disk when instantiating this instance template.
  * @property {string} deviceName Specifies the device name of the disk to which the configurations apply to.
- * @property {string} instantiateFrom Specifies whether to include the disk and what image to use.
+ * @property {string} instantiateFrom Specifies whether to include the disk and what image to use. Possible values are:   - source-image: to use the same image that was used to create the source instance&#39;s corresponding disk. Applicable to the boot disk and additional read-write disks.  - source-image-family: to use the same image family that was used to create the source instance&#39;s corresponding disk. Applicable to the boot disk and additional read-write disks.  - custom-image: to use a user-provided image url for disk creation. Applicable to the boot disk and additional read-write disks.  - attach-read-only: to attach a read-only disk. Applicable to read-only disks.  - do-not-include: to exclude a disk from the template. Applicable to additional read-write disks, local SSDs, and read-only disks.
  */
 /**
  * @typedef DiskList
@@ -38307,7 +39588,7 @@ function Compute(options) {
  * @property {string} direction Direction of traffic to which this firewall applies; default is INGRESS. Note: For INGRESS traffic, it is NOT supported to specify destinationRanges; For EGRESS traffic, it is NOT supported to specify sourceRanges OR sourceTags.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of the resource. Always compute#firewall for firewall rules.
- * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} network URL of the network resource for this firewall rule. If not specified when creating a firewall rule, the default network is used: global/networks/default If you choose to specify this property, you can specify the network as a full or partial URL. For example, the following are all valid URLs:   - https://www.googleapis.com/compute/v1/projects/myproject/global/networks/my-network  - projects/myproject/global/networks/my-network  - global/networks/default
  * @property {integer} priority Priority for this rule. This is an integer between 0 and 65535, both inclusive. When not specified, the value assumed is 1000. Relative priorities determine precedence of conflicting rules. Lower value of priority implies higher precedence (eg, a rule with priority 0 has higher precedence than a rule with priority 1). DENY rules take precedence over ALLOW rules having equal priority.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
@@ -38351,13 +39632,14 @@ function Compute(options) {
  * @property {string} labelFingerprint A fingerprint for the labels being applied to this resource, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels.  To see the latest fingerprint, make a get() request to retrieve a ForwardingRule.
  * @property {object} labels Labels to apply to this resource. These can be later modified by the setLabels method. Each label key/value pair must comply with RFC1035. Label values may be empty.
  * @property {string} loadBalancingScheme This signifies what the ForwardingRule will be used for and can only take the following values: INTERNAL, EXTERNAL The value of INTERNAL means that this will be used for Internal Network Load Balancing (TCP, UDP). The value of EXTERNAL means that this will be used for External Load Balancing (HTTP(S) LB, External TCP/UDP LB, SSL Proxy)
- * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} network This field is not used for external load balancing.  For internal load balancing, this field identifies the network that the load balanced IP should belong to for this Forwarding Rule. If this field is not specified, the default network will be used.
- * @property {string} portRange This field is used along with the target field for TargetHttpProxy, TargetHttpsProxy, TargetSslProxy, TargetTcpProxy, TargetVpnGateway, TargetPool, TargetInstance.  Applicable only when IPProtocol is TCP, UDP, or SCTP, only packets addressed to ports in the specified range will be forwarded to target. Forwarding rules with the same [IPAddress, IPProtocol] pair must have disjoint port ranges.  Some types of forwarding target have constraints on the acceptable ports:   - TargetHttpProxy: 80, 8080  - TargetHttpsProxy: 443  - TargetTcpProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1883, 5222  - TargetSslProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1883, 5222  - TargetVpnGateway: 500, 4500
+ * @property {string} networkTier This signifies the networking tier used for configuring this load balancer and can only take the following values: PREMIUM , STANDARD.  For regional ForwardingRule, the valid values are PREMIUM and STANDARD. For GlobalForwardingRule, the valid value is PREMIUM.  If this field is not specified, it is assumed to be PREMIUM. If IPAddress is specified, this value must be equal to the networkTier of the Address.
+ * @property {string} portRange This field is used along with the target field for TargetHttpProxy, TargetHttpsProxy, TargetSslProxy, TargetTcpProxy, TargetVpnGateway, TargetPool, TargetInstance.  Applicable only when IPProtocol is TCP, UDP, or SCTP, only packets addressed to ports in the specified range will be forwarded to target. Forwarding rules with the same [IPAddress, IPProtocol] pair must have disjoint port ranges.  Some types of forwarding target have constraints on the acceptable ports:   - TargetHttpProxy: 80, 8080  - TargetHttpsProxy: 443  - TargetTcpProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1688, 1883, 5222  - TargetSslProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1688, 1883, 5222  - TargetVpnGateway: 500, 4500
  * @property {string[]} ports This field is used along with the backend_service field for internal load balancing.  When the load balancing scheme is INTERNAL, a single port or a comma separated list of ports can be configured. Only packets addressed to these ports will be forwarded to the backends configured with this forwarding rule.  You may specify a maximum of up to 5 ports.
  * @property {string} region [Output Only] URL of the region where the regional forwarding rule resides. This field is not applicable to global forwarding rules. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
- * @property {string} serviceLabel An optional prefix to the service name for this Forwarding Rule. If specified, will be the first label of the fully qualified service name.  The label must be 1-63 characters long, and comply with RFC1035. Specifically, the label must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.  This field is only used for internal load balancing.
+ * @property {string} serviceLabel An optional prefix to the service name for this Forwarding Rule. If specified, will be the first label of the fully qualified service name.  The label must be 1-63 characters long, and comply with RFC1035. Specifically, the label must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.  This field is only used for internal load balancing.
  * @property {string} serviceName [Output Only] The internal fully qualified service name for this Forwarding Rule.  This field is only used for internal load balancing.
  * @property {string} subnetwork This field is not used for external load balancing.  For internal load balancing, this field identifies the subnetwork that the load balanced IP should belong to for this Forwarding Rule.  If the network specified is in auto subnet mode, this field is optional. However, if the network is in custom subnet mode, a subnetwork must be specified.
  * @property {string} target The URL of the target resource to receive the matched traffic. For regional forwarding rules, this target must live in the same region as the forwarding rule. For global forwarding rules, this target must be a global load balancing resource. The forwarded traffic must be of a type appropriate to the target object.
@@ -38396,7 +39678,7 @@ function Compute(options) {
  * @memberOf! compute(beta)
  * @type object
  * @property {string} labelFingerprint The fingerprint of the previous set of labels for this resource, used to detect conflicts. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash when updating or changing labels. Make a get() request to the resource to get the latest fingerprint.
- * @property {object} labels A list of labels to apply for this resource. Each label key &amp; value must comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash. For example, &quot;webserver-frontend&quot;: &quot;images&quot;. A label value can also be empty (e.g. &quot;my-label&quot;: &quot;&quot;).
+ * @property {object} labels A list of labels to apply for this resource. Each label key &amp; value must comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash. For example, &quot;webserver-frontend&quot;: &quot;images&quot;. A label value can also be empty (e.g. &quot;my-label&quot;: &quot;&quot;).
  */
 /**
  * @typedef GuestOsFeature
@@ -38416,7 +39698,7 @@ function Compute(options) {
  * @property {compute(beta).HTTPSHealthCheck} httpsHealthCheck
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind Type of the resource.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {compute(beta).SSLHealthCheck} sslHealthCheck
  * @property {compute(beta).TCPHealthCheck} tcpHealthCheck
@@ -38470,7 +39752,7 @@ function Compute(options) {
  * @property {string} host The value of the host header in the HTTP health check request. If left empty (default value), the public IP on behalf of which this health check is performed will be used.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of the resource. Always compute#httpHealthCheck for HTTP health checks.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {integer} port The TCP port number for the HTTP health check request. The default value is 80.
  * @property {string} requestPath The request path of the HTTP health check request. The default value is /.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
@@ -38510,7 +39792,7 @@ function Compute(options) {
  * @property {string} host The value of the host header in the HTTPS health check request. If left empty (default value), the public IP on behalf of which this health check is performed will be used.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind Type of the resource.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {integer} port The TCP port number for the HTTPS health check request. The default value is 443.
  * @property {string} requestPath The request path of the HTTPS health check request. The default value is &quot;/&quot;.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
@@ -38557,7 +39839,7 @@ function Compute(options) {
  * @property {object} labels Labels to apply to this image. These can be later modified by the setLabels method.
  * @property {string[]} licenseCodes Integer license codes indicating which licenses are attached to this image.
  * @property {string[]} licenses Any applicable license URI.
- * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {object} rawDisk The parameters of the raw disk image.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} sourceDisk URL of the source disk used to create this image. This can be a full or valid partial URL. You must provide either this property or the rawDisk.source property but not both to create an image. For example, the following are valid values:   - https://www.googleapis.com/compute/v1/projects/project/zones/zone/disks/disk  - projects/project/zones/zone/disks/disk  - zones/zone/disks/disk
@@ -38601,7 +39883,7 @@ function Compute(options) {
  * @property {string} machineType Full or partial URL of the machine type resource to use for this instance, in the format: zones/zone/machineTypes/machine-type. This is provided by the client when the instance is created. For example, the following is a valid partial url to a predefined machine type: zones/us-central1-f/machineTypes/n1-standard-1   To create a custom machine type, provide a URL to a machine type in the following format, where CPUS is 1 or an even number up to 32 (2, 4, 6, ... 24, etc), and MEMORY is the total memory for this instance. Memory must be a multiple of 256 MB and must be supplied in MB (e.g. 5 GB of memory is 5120 MB): zones/zone/machineTypes/custom-CPUS-MEMORY   For example: zones/us-central1-f/machineTypes/custom-4-5120   For a full list of restrictions, read the Specifications for custom machine types.
  * @property {compute(beta).Metadata} metadata The metadata key/value pairs assigned to this instance. This includes custom metadata and predefined keys.
  * @property {string} minCpuPlatform Specifies a minimum CPU platform for the VM instance. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: &quot;Intel Haswell&quot; or minCpuPlatform: &quot;Intel Sandy Bridge&quot;.
- * @property {string} name The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {compute(beta).NetworkInterface[]} networkInterfaces An array of network configurations for this instance. These specify how interfaces are configured to interact with other network services, such as connecting to the internet. Multiple interfaces are supported per instance.
  * @property {compute(beta).Scheduling} scheduling Sets the scheduling options for this instance.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
@@ -38967,7 +40249,7 @@ function Compute(options) {
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
  * @property {string} id [Output Only] A unique identifier for this instance template. The server defines this identifier.
  * @property {string} kind [Output Only] The resource type, which is always compute#instanceTemplate for instance templates.
- * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {compute(beta).InstanceProperties} properties The instance properties for this instance template.
  * @property {string} selfLink [Output Only] The URL for this instance template. The server defines this URL.
  * @property {string} sourceInstance The source instance used to create the template. You can provide this as a partial or full URL to the resource. For example, the following are valid values:   - https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance  - projects/project/zones/zone/instances/instance
@@ -39012,7 +40294,7 @@ function Compute(options) {
  * @property {object} labels Labels to apply to this Interconnect resource. These can be later modified by the setLabels method. Each label key/value must comply with RFC1035. Label values may be empty.
  * @property {string} linkType Type of link requested. This field indicates speed of each of the links in the bundle, not the entire bundle. Only 10G per link is allowed for a dedicated interconnect. Options: Ethernet_10G_LR
  * @property {string} location URL of the InterconnectLocation object that represents where this connection is to be provisioned.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} nocContactEmail Email address to contact the customer NOC for operations and maintenance notifications regarding this Interconnect. If specified, this will be used for notifications in addition to all other forms described, such as Stackdriver logs alerting and Cloud Notifications.
  * @property {string} operationalStatus [Output Only] The current status of whether or not this Interconnect is functional.
  * @property {string} peerIpAddress [Output Only] IP address configured on the customer side of the Interconnect link. The customer should configure this IP address during turnup when prompted by Google NOC. This can be used only for ping tests.
@@ -39024,6 +40306,8 @@ function Compute(options) {
  * @typedef InterconnectAttachment
  * @memberOf! compute(beta)
  * @type object
+ * @property {boolean} adminEnabled Determines whether this Attachment will carry packets. Not present for PARTNER_PROVIDER.
+ * @property {string[]} candidateSubnets Up to 16 candidate prefixes that can be used to restrict the allocation of cloudRouterIpAddress and customerRouterIpAddress for this attachment. All prefixes must be within link-local address space (169.254.0.0/16) and must be /29 or shorter (/28, /27, etc). Google will attempt to select an unused /29 from the supplied candidate prefix(es). The request will fail if all possible /29s are in use on Google?s edge. If not supplied, Google will randomly select an unused /29 from all of link-local space.
  * @property {string} cloudRouterIpAddress [Output Only] IPv4 address + prefix length to be configured on Cloud Router Interface for this interconnect attachment.
  * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
  * @property {string} customerRouterIpAddress [Output Only] IPv4 address + prefix length to be configured on the customer router subinterface for this interconnect attachment.
@@ -39034,12 +40318,14 @@ function Compute(options) {
  * @property {string} kind [Output Only] Type of the resource. Always compute#interconnectAttachment for interconnect attachments.
  * @property {string} labelFingerprint A fingerprint for the labels being applied to this InterconnectAttachment, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels.  To see the latest fingerprint, make a get() request to retrieve an InterconnectAttachment.
  * @property {object} labels Labels to apply to this InterconnectAttachment resource. These can be later modified by the setLabels method. Each label key/value must comply with RFC1035. Label values may be empty.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} operationalStatus [Output Only] The current status of whether or not this interconnect attachment is functional.
  * @property {compute(beta).InterconnectAttachmentPrivateInfo} privateInterconnectInfo [Output Only] Information specific to an InterconnectAttachment. This property is populated if the interconnect that this is attached to is of type DEDICATED.
  * @property {string} region [Output Only] URL of the region where the regional interconnect attachment resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
  * @property {string} router URL of the cloud router to be used for dynamic routing. This router must be in the same region as this InterconnectAttachment. The InterconnectAttachment will automatically connect the Interconnect to the network &amp; region within which the Cloud Router is configured.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} type
+ * @property {integer} vlanTag8021q Available only for DEDICATED and PARTNER_PROVIDER. Desired VLAN tag for this attachment, in the range 2-4094. This field refers to 802.1q VLAN tag, also known as IEEE 802.1Q Only specified at creation time.
  */
 /**
  * @typedef InterconnectAttachmentAggregatedList
@@ -39324,7 +40610,7 @@ function Compute(options) {
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} IPv4Range The range of internal addresses that are legal on this network. This range is a CIDR specification, for example: 192.168.0.0/16. Provided by the client when the network is created.
  * @property {string} kind [Output Only] Type of the resource. Always compute#network for networks.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {compute(beta).NetworkPeering[]} peerings [Output Only] List of network peerings for the resource.
  * @property {compute(beta).NetworkRoutingConfig} routingConfig The network-level routing configuration for this network. Used by Cloud Router to determine what type of network-wide routing behavior to enforce.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
@@ -39359,7 +40645,7 @@ function Compute(options) {
  * @memberOf! compute(beta)
  * @type object
  * @property {boolean} autoCreateRoutes Whether full mesh connectivity is created and managed automatically. When it is set to true, Google Compute Engine will automatically create and manage the routes between two networks when the state is ACTIVE. Otherwise, user needs to create routes manually to route packets to peer network.
- * @property {string} name Name of this peering. Provided by the client when the peering is created. The name must comply with RFC1035. Specifically, the name must be 1-63 characters long and match regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all the following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of this peering. Provided by the client when the peering is created. The name must comply with RFC1035. Specifically, the name must be 1-63 characters long and match regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all the following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} network The URL of the peer network. It can be either full URL or partial URL. The peer network may belong to a different project. If the partial URL does not contain project, it is assumed that the peer network is in the same project as the current network.
  * @property {string} state [Output Only] State for the peering.
  * @property {string} stateDetails [Output Only] Details about the current state of the peering.
@@ -39461,7 +40747,7 @@ function Compute(options) {
  * @typedef Policy
  * @memberOf! compute(beta)
  * @type object
- * @property {compute(beta).AuditConfig[]} auditConfigs Specifies cloud audit logging configuration for this policy. This field is only visible as GOOGLE_INTERNAL or IAM_AUDIT_CONFIG.
+ * @property {compute(beta).AuditConfig[]} auditConfigs Specifies cloud audit logging configuration for this policy.
  * @property {compute(beta).Binding[]} bindings Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
  * @property {string} etag `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
  * @property {boolean} iamOwned
@@ -39474,6 +40760,7 @@ function Compute(options) {
  * @type object
  * @property {compute(beta).Metadata} commonInstanceMetadata Metadata key/value pairs available to all instances contained in this project. See Custom metadata for more information.
  * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} defaultNetworkTier This signifies the default network tier used for configuring resources of the project and can only take the following values: PREMIUM, STANDARD. Initially the default network tier is PREMIUM.
  * @property {string} defaultServiceAccount [Output Only] Default service account used by VMs running in this project.
  * @property {string} description An optional textual description of the resource.
  * @property {string[]} enabledFeatures Restricted features enabled for use on this project.
@@ -39510,6 +40797,12 @@ function Compute(options) {
  * @memberOf! compute(beta)
  * @type object
  * @property {string} organization Optional organization ID managed by Cloud Resource Manager, for which to list shared VPC host projects. If not specified, the organization will be inferred from the project.
+ */
+/**
+ * @typedef ProjectsSetDefaultNetworkTierRequest
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} networkTier Default network tier to be set.
  */
 /**
  * @typedef Quota
@@ -39550,6 +40843,23 @@ function Compute(options) {
  * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(beta).Autoscaler[]} items A list of Autoscaler resources.
  * @property {string} kind Type of resource.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
+ */
+/**
+ * @typedef RegionDisksResizeRequest
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} sizeGb The new size of the regional persistent disk, which is specified in GB.
+ */
+/**
+ * @typedef RegionDiskTypeList
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(beta).DiskType[]} items A list of DiskType resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#regionDiskTypeList for region disk types.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  * @property {object} warning [Output Only] Informational warning message.
@@ -39685,7 +40995,7 @@ function Compute(options) {
  * @property {string} destRange The destination range of outgoing packets that this route applies to. Only IPv4 is supported.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of this resource. Always compute#routes for Route resources.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} network Fully-qualified URL of the network that this route applies to.
  * @property {string} nextHopGateway The URL to a gateway that should handle matching packets. You can only specify the internet gateway using a full or partial valid URL:  projects/&lt;project-id&gt;/global/gateways/default-internet-gateway
  * @property {string} nextHopInstance The URL to an instance that should handle matching packets. You can specify this as a full or partial URL. For example: https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
@@ -39720,7 +41030,7 @@ function Compute(options) {
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {compute(beta).RouterInterface[]} interfaces Router interfaces. Each interface requires either one linked resource (e.g. linkedVpnTunnel), or IP address and IP address range (e.g. ipRange), or both.
  * @property {string} kind [Output Only] Type of resource. Always compute#router for routers.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} network URI of the network to which this router belongs.
  * @property {string} region [Output Only] URI of the region where the router resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
@@ -39859,7 +41169,7 @@ function Compute(options) {
  * @property {string} fingerprint Specifies a fingerprint for this resource, which is essentially a hash of the metadata&#39;s contents and used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update metadata. You must always provide an up-to-date fingerprint hash in order to update or change metadata.  To see the latest fingerprint, make get() request to the security policy.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output only] Type of the resource. Always compute#securityPolicyfor security policies
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {compute(beta).SecurityPolicyRule[]} rules List of rules that belong to this policy. There must always be a default rule (rule with priority 2147483647 and match &quot;*&quot;). If no rules are provided when creating a security policy, a default rule with action &quot;allow&quot; will be added.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  */
@@ -39895,14 +41205,14 @@ function Compute(options) {
  * @memberOf! compute(beta)
  * @type object
  * @property {compute(beta).SecurityPolicyRuleMatcherConfig} config The configuration options available when specifying versioned_expr. This field must be specified if versioned_expr is specified and cannot be specified if versioned_expr is not specified.
- * @property {string[]} srcIpRanges CIDR IP address range. Only IPv4 is supported.
+ * @property {string[]} srcIpRanges CIDR IP address range.
  * @property {string} versionedExpr Preconfigured versioned expression. If this field is specified, config must also be specified. Available preconfigured expressions along with their requirements are: SRC_IPS_V1 - must specify the corresponding src_ip_range field in config.
  */
 /**
  * @typedef SecurityPolicyRuleMatcherConfig
  * @memberOf! compute(beta)
  * @type object
- * @property {string[]} srcIpRanges CIDR IP address range. Only IPv4 is supported.
+ * @property {string[]} srcIpRanges CIDR IP address range.
  */
 /**
  * @typedef SerialPortOutput
@@ -39925,7 +41235,7 @@ function Compute(options) {
  * @typedef SignedUrlKey
  * @memberOf! compute(beta)
  * @type object
- * @property {string} keyName Name of the key. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} keyName Name of the key. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} keyValue 128-bit key value used for signing the URL. The key value must be a valid RFC 4648 Section 5 base64url encoded string.
  */
 /**
@@ -39941,7 +41251,7 @@ function Compute(options) {
  * @property {object} labels Labels to apply to this snapshot. These can be later modified by the setLabels method. Label values may be empty.
  * @property {string[]} licenseCodes Integer license codes indicating which licenses are attached to this snapshot.
  * @property {string[]} licenses [Output Only] A list of public visible licenses that apply to this snapshot. This can be because the original image had licenses attached (such as a Windows image).
- * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {compute(beta).CustomerEncryptionKey} snapshotEncryptionKey Encrypts the snapshot using a customer-supplied encryption key.  After you encrypt a snapshot using a customer-supplied key, you must provide the same key if you use the image later For example, you must provide the encryption key when you create a disk from the encrypted snapshot in a future request.  Customer-supplied encryption keys do not protect access to metadata of the disk.  If you do not provide an encryption key when creating the snapshot, then the snapshot will be encrypted using an automatically generated key and you do not need to provide a key to use the snapshot later.
  * @property {string} sourceDisk [Output Only] The source disk used to create this snapshot.
@@ -39977,7 +41287,7 @@ function Compute(options) {
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of the resource. Always compute#sslCertificate for SSL certificates.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} privateKey A write-only private key in PEM format. Only insert requests will include this field.
  * @property {string} selfLink [Output only] Server-defined URL for the resource.
  */
@@ -40031,7 +41341,7 @@ function Compute(options) {
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output only] Type of the resource. Always compute#sslPolicyfor SSL policies.
  * @property {string} minTlsVersion The minimum version of SSL protocol that can be used by the clients to establish a connection with the load balancer. This can be one of TLS_1_0, TLS_1_1, TLS_1_2, TLS_1_3.
- * @property {string} name Name of the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} profile Profile specifies the set of SSL features that can be used by the load balancer when negotiating SSL with clients. This can be one of COMPATIBLE, MODERN, RESTRICTED, or CUSTOM. If using CUSTOM, the set of SSL features to enable must be specified in the customFeatures field.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {object[]} warnings [Output Only] If potential misconfigurations are detected for this SSL policy, this field will be populated with warning messages.
@@ -40054,7 +41364,7 @@ function Compute(options) {
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} ipCidrRange The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork. For example, 10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and non-overlapping within a network. Only IPv4 is supported. This field can be set only at resource creation time.
  * @property {string} kind [Output Only] Type of the resource. Always compute#subnetwork for Subnetwork resources.
- * @property {string} name The name of the resource, provided by the client when initially creating the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name The name of the resource, provided by the client when initially creating the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} network The URL of the network to which this subnetwork belongs, provided by the client when initially creating the subnetwork. Only networks that are in the distributed mode can have subnetworks. This field can be set only at resource creation time.
  * @property {boolean} privateIpGoogleAccess Whether the VMs in this subnet can access Google services without assigned external IP addresses. This field can be both set at resource creation time and updated using setPrivateIpGoogleAccess.
  * @property {string} region URL of the region where the Subnetwork resides. This field can be set only at resource creation time.
@@ -40124,7 +41434,7 @@ function Compute(options) {
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of resource. Always compute#targetHttpProxy for target HTTP proxies.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} urlMap URL to the UrlMap resource that defines the mapping from URL to the BackendService.
  */
@@ -40159,7 +41469,7 @@ function Compute(options) {
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of resource. Always compute#targetHttpsProxy for target HTTPS proxies.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} quicOverride Specifies the QUIC override policy for this TargetHttpsProxy resource. This determines whether the load balancer will attempt to negotiate QUIC with clients or not. Can specify one of NONE, ENABLE, or DISABLE. Specify ENABLE to always enable QUIC, Enables QUIC when set to ENABLE, and disables QUIC when set to DISABLE. If NONE is specified, uses the QUIC policy with no user overrides, which is equivalent to DISABLE. Not specifying this field is equivalent to specifying NONE.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string[]} sslCertificates URLs to SslCertificate resources that are used to authenticate connections between users and the load balancer. Currently, exactly one SSL certificate must be specified.
@@ -40186,7 +41496,7 @@ function Compute(options) {
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} instance A URL to the virtual machine instance that handles traffic for this target instance. When creating a target instance, you can provide the fully-qualified URL or a valid partial URL to the desired virtual machine. For example, the following are all valid URLs:  - https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance  - projects/project/zones/zone/instances/instance  - zones/zone/instances/instance
  * @property {string} kind [Output Only] The type of the resource. Always compute#targetInstance for target instances.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} natPolicy NAT option controlling how IPs are NAT&#39;ed to the instance. Currently only NO_NAT (default value) is supported.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} zone [Output Only] URL of the zone where the target instance resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
@@ -40232,7 +41542,7 @@ function Compute(options) {
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string[]} instances A list of resource URLs to the virtual machine instances serving this pool. They must live in zones contained in the same region as this pool.
  * @property {string} kind [Output Only] Type of the resource. Always compute#targetPool for target pools.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} region [Output Only] URL of the region where the target pool resides.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} sessionAffinity Sesssion affinity option, must be one of the following values: NONE: Connections from the same client IP may go to any instance in the pool. CLIENT_IP: Connections from the same client IP will go to the same instance in the pool while that instance remains healthy. CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol will go to the same instance in the pool while that instance remains healthy.
@@ -40329,7 +41639,7 @@ function Compute(options) {
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of the resource. Always compute#targetSslProxy for target SSL proxies.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} proxyHeader Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} service URL to the BackendService resource.
@@ -40367,7 +41677,7 @@ function Compute(options) {
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of the resource. Always compute#targetTcpProxy for target TCP proxies.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} proxyHeader Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} service URL to the BackendService resource.
@@ -40394,7 +41704,7 @@ function Compute(options) {
  * @property {string} kind [Output Only] Type of resource. Always compute#targetVpnGateway for target VPN gateways.
  * @property {string} labelFingerprint A fingerprint for the labels being applied to this TargetVpnGateway, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels.  To see the latest fingerprint, make a get() request to retrieve an TargetVpnGateway.
  * @property {object} labels Labels to apply to this TargetVpnGateway resource. These can be later modified by the setLabels method. Each label key/value must comply with RFC1035. Label values may be empty.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} network URL of the network to which this VPN gateway is attached. Provided by the client when the VPN gateway is created.
  * @property {string} region [Output Only] URL of the region where the target VPN gateway resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
@@ -40481,7 +41791,7 @@ function Compute(options) {
  * @property {compute(beta).HostRule[]} hostRules The list of HostRules to use against the URL.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of the resource. Always compute#urlMaps for url maps.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {compute(beta).PathMatcher[]} pathMatchers The list of named PathMatchers to use against the URL.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {compute(beta).UrlMapTest[]} tests The list of expected URL mapping tests. Request to update this UrlMap will succeed only if all of the test cases pass. You can specify a maximum of 100 tests per UrlMap.
@@ -40534,6 +41844,25 @@ function Compute(options) {
  * @property {boolean} testPassed If successfully loaded, this field indicates whether the test passed. If false, &#39;testFailures&#39;s indicate the reason of failure.
  */
 /**
+ * @typedef UsableSubnetwork
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} ipCidrRange The range of internal addresses that are owned by this subnetwork.
+ * @property {string} network Network URL.
+ * @property {string} subnetwork Subnetwork URL.
+ */
+/**
+ * @typedef UsableSubnetworksAggregatedList
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(beta).UsableSubnetwork[]} items [Output] A list of usable subnetwork URLs.
+ * @property {string} kind [Output Only] Type of resource. Always compute#usableSubnetworksAggregatedList for aggregated lists of usable subnetworks.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
+ */
+/**
  * @typedef UsageExportLocation
  * @memberOf! compute(beta)
  * @type object
@@ -40553,7 +41882,7 @@ function Compute(options) {
  * @property {string} labelFingerprint A fingerprint for the labels being applied to this VpnTunnel, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels.  To see the latest fingerprint, make a get() request to retrieve a VpnTunnel.
  * @property {object} labels Labels to apply to this VpnTunnel. These can be later modified by the setLabels method. Each label key/value pair must comply with RFC1035. Label values may be empty.
  * @property {string[]} localTrafficSelector Local traffic selector to use when establishing the VPN tunnel with peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges should be disjoint. Only IPv4 is supported.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} peerIp IP address of the peer VPN gateway. Only IPv4 is supported.
  * @property {string} region [Output Only] URL of the region where the VPN tunnel resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
  * @property {string[]} remoteTrafficSelector Remote traffic selectors to use when establishing the VPN tunnel with peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges should be disjoint. Only IPv4 is supported.

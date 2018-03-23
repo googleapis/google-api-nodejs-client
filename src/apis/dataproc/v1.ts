@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Cloud Dataproc API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Dataproc
  */
-function Dataproc(options) {
+function Dataproc(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.projects = {
@@ -105,18 +112,22 @@ function Dataproc(options) {
          * @param {object} params Parameters for request
          * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the cluster belongs to.
          * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+         * @param {string=} params.requestId Optional. A unique id used to identify the request. If the server receives two CreateClusterRequest requests with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
          * @param {dataproc(v1).Cluster} params.resource Request body data
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create(params, options, callback) {
+        create(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
           }
           options = options || {};
-          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+          const rootUrl =
+              options.rootUrl || 'https://content-dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -131,7 +142,7 @@ function Dataproc(options) {
             pathParams: ['projectId', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.clusters.delete
             * @desc Deletes a cluster in a project.
@@ -199,19 +210,24 @@ function Dataproc(options) {
             *
             * @param {object} params Parameters for request
             * @param {string} params.clusterName Required. The cluster name.
+            * @param {string=} params.clusterUuid Optional. Specifying the cluster_uuid means the RPC should fail (with error NOT_FOUND) if cluster with specified UUID does not exist.
             * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the cluster belongs to.
             * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+            * @param {string=} params.requestId Optional. A unique id used to identify the request. If the server receives two DeleteClusterRequest requests with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
           }
           options = options || {};
-          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+          const rootUrl =
+              options.rootUrl || 'https://content-dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -227,7 +243,7 @@ function Dataproc(options) {
             pathParams: ['clusterName', 'projectId', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.clusters.diagnose
             * @desc Gets cluster diagnostic information. After the operation
@@ -308,13 +324,16 @@ function Dataproc(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        diagnose(params, options, callback) {
+        diagnose(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
           }
           options = options || {};
-          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+          const rootUrl =
+              options.rootUrl || 'https://content-dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -330,7 +349,7 @@ function Dataproc(options) {
             pathParams: ['clusterName', 'projectId', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.clusters.get
             * @desc Gets the resource representation for a cluster in a project.
@@ -404,13 +423,15 @@ function Dataproc(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
           }
           options = options || {};
-          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+          const rootUrl =
+              options.rootUrl || 'https://content-dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -426,7 +447,7 @@ function Dataproc(options) {
             pathParams: ['clusterName', 'projectId', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.clusters.list
             * @desc Lists all regions/{region}/clusters in a project.
@@ -515,13 +536,16 @@ function Dataproc(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
           }
           options = options || {};
-          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+          const rootUrl =
+              options.rootUrl || 'https://content-dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -536,7 +560,7 @@ function Dataproc(options) {
             pathParams: ['projectId', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.clusters.patch
             * @desc Updates a cluster in a project.
@@ -613,19 +637,23 @@ function Dataproc(options) {
             * @param {string=} params.gracefulDecommissionTimeout Optional. Timeout for graceful YARN decomissioning. Graceful decommissioning allows removing nodes from the cluster without interrupting jobs in progress. Timeout specifies how long to wait for jobs in progress to finish before forcefully removing nodes (and potentially interrupting jobs). Default timeout is 0 (for forceful decommission), and the maximum allowed timeout is 1 day.Only supported on Dataproc image versions 1.2 and higher.
             * @param {string} params.projectId Required. The ID of the Google Cloud Platform project the cluster belongs to.
             * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+            * @param {string=} params.requestId Optional. A unique id used to identify the request. If the server receives two UpdateClusterRequest requests with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
             * @param {string=} params.updateMask Required. Specifies the path, relative to Cluster, of the field to update. For example, to change the number of workers in a cluster to 5, the update_mask parameter would be specified as config.worker_config.num_instances, and the PATCH request body would specify the new value, as follows: {   "config":{     "workerConfig":{       "numInstances":"5"     }   } } Similarly, to change the number of preemptible workers in a cluster to 5, the update_mask parameter would be config.secondary_worker_config.num_instances, and the PATCH request body would be set as follows: {   "config":{     "secondaryWorkerConfig":{       "numInstances":"5"     }   } } <strong>Note:</strong> Currently, only the following fields can be updated:<table>  <tbody>  <tr>  <td><strong>Mask</strong></td>  <td><strong>Purpose</strong></td>  </tr>  <tr>  <td><strong><em>labels</em></strong></td>  <td>Update labels</td>  </tr>  <tr>  <td><strong><em>config.worker_config.num_instances</em></strong></td>  <td>Resize primary worker group</td>  </tr>  <tr>  <td><strong><em>config.secondary_worker_config.num_instances</em></strong></td>  <td>Resize secondary worker group</td>  </tr>  </tbody>  </table>
             * @param {dataproc(v1).Cluster} params.resource Request body data
             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        patch(params, options, callback) {
+        patch(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
           }
           options = options || {};
-          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+          const rootUrl =
+              options.rootUrl || 'https://content-dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -641,7 +669,7 @@ function Dataproc(options) {
             pathParams: ['clusterName', 'projectId', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       },
@@ -725,13 +753,16 @@ function Dataproc(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        cancel(params, options, callback) {
+        cancel(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
           }
           options = options || {};
-          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+          const rootUrl =
+              options.rootUrl || 'https://content-dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -747,7 +778,7 @@ function Dataproc(options) {
             pathParams: ['jobId', 'projectId', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.jobs.delete
             * @desc Deletes the job from the project. If the job is active, the
@@ -820,13 +851,16 @@ function Dataproc(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
           }
           options = options || {};
-          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+          const rootUrl =
+              options.rootUrl || 'https://content-dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -842,7 +876,7 @@ function Dataproc(options) {
             pathParams: ['jobId', 'projectId', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.jobs.get
             * @desc Gets the resource representation for a job in a project.
@@ -915,13 +949,15 @@ function Dataproc(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
           }
           options = options || {};
-          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+          const rootUrl =
+              options.rootUrl || 'https://content-dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -937,7 +973,7 @@ function Dataproc(options) {
             pathParams: ['jobId', 'projectId', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.jobs.list
             * @desc Lists regions/{region}/jobs in a project.
@@ -1026,13 +1062,16 @@ function Dataproc(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
           }
           options = options || {};
-          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+          const rootUrl =
+              options.rootUrl || 'https://content-dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -1047,7 +1086,7 @@ function Dataproc(options) {
             pathParams: ['projectId', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.jobs.patch
             * @desc Updates a job in a project.
@@ -1128,13 +1167,16 @@ function Dataproc(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        patch(params, options, callback) {
+        patch(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
           }
           options = options || {};
-          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+          const rootUrl =
+              options.rootUrl || 'https://content-dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -1150,7 +1192,7 @@ function Dataproc(options) {
             pathParams: ['jobId', 'projectId', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.jobs.submit
             * @desc Submits a job to a cluster.
@@ -1224,13 +1266,16 @@ function Dataproc(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        submit(params, options, callback) {
+        submit(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
           }
           options = options || {};
-          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+          const rootUrl =
+              options.rootUrl || 'https://content-dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -1245,7 +1290,7 @@ function Dataproc(options) {
             pathParams: ['projectId', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       },
@@ -1321,13 +1366,16 @@ function Dataproc(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        cancel(params, options, callback) {
+        cancel(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
           }
           options = options || {};
-          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+          const rootUrl =
+              options.rootUrl || 'https://content-dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -1341,7 +1389,7 @@ function Dataproc(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.operations.delete
             * @desc Deletes a long-running operation. This method indicates that
@@ -1407,13 +1455,16 @@ function Dataproc(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
           }
           options = options || {};
-          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+          const rootUrl =
+              options.rootUrl || 'https://content-dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -1426,7 +1477,7 @@ function Dataproc(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.operations.get
             * @desc Gets the latest state of a long-running operation. Clients
@@ -1494,13 +1545,15 @@ function Dataproc(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
           }
           options = options || {};
-          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+          const rootUrl =
+              options.rootUrl || 'https://content-dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -1513,7 +1566,7 @@ function Dataproc(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.operations.list
             * @desc Lists operations that match the specified filter in the
@@ -1607,13 +1660,16 @@ function Dataproc(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
           }
           options = options || {};
-          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+          const rootUrl =
+              options.rootUrl || 'https://content-dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -1626,7 +1682,7 @@ function Dataproc(options) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       }
@@ -1638,7 +1694,7 @@ function Dataproc(options) {
  * @memberOf! dataproc(v1)
  * @type object
  * @property {integer} acceleratorCount The number of the accelerator cards of this type exposed to this instance.
- * @property {string} acceleratorTypeUri Full URL, partial URI, or short name of the accelerator type resource to expose to this instance. See Google Compute Engine AcceleratorTypes( /compute/docs/reference/beta/acceleratorTypes)Examples * https://www.googleapis.com/compute/beta/projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80 * projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80 * nvidia-tesla-k80
+ * @property {string} acceleratorTypeUri Full URL, partial URI, or short name of the accelerator type resource to expose to this instance. See Compute Engine AcceleratorTypes.Examples: https://www.googleapis.com/compute/beta/projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80 projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80 nvidia-tesla-k80
  */
 /**
  * @typedef CancelJobRequest
@@ -1662,13 +1718,13 @@ function Dataproc(options) {
  * @typedef ClusterConfig
  * @memberOf! dataproc(v1)
  * @type object
- * @property {string} configBucket Optional. A Google Cloud Storage staging bucket used for sharing generated SSH keys and config. If you do not specify a staging bucket, Cloud Dataproc will determine an appropriate Cloud Storage location (US, ASIA, or EU) for your cluster&#39;s staging bucket according to the Google Compute Engine zone where your cluster is deployed, and then it will create and manage this project-level, per-location bucket for you.
- * @property {dataproc(v1).GceClusterConfig} gceClusterConfig Required. The shared Google Compute Engine config settings for all instances in a cluster.
+ * @property {string} configBucket Optional. A Cloud Storage staging bucket used for sharing generated SSH keys and config. If you do not specify a staging bucket, Cloud Dataproc will determine an appropriate Cloud Storage location (US, ASIA, or EU) for your cluster&#39;s staging bucket according to the Google Compute Engine zone where your cluster is deployed, and then it will create and manage this project-level, per-location bucket for you.
+ * @property {dataproc(v1).GceClusterConfig} gceClusterConfig Required. The shared Compute Engine config settings for all instances in a cluster.
  * @property {dataproc(v1).NodeInitializationAction[]} initializationActions Optional. Commands to execute on each node after config is completed. By default, executables are run on master and all worker nodes. You can test a node&#39;s role metadata to run an executable on a master or worker node, as shown below using curl (you can also use wget): ROLE=$(curl -H Metadata-Flavor:Google http://metadata/computeMetadata/v1/instance/attributes/dataproc-role) if [[ &quot;${ROLE}&quot; == &#39;Master&#39; ]]; then   ... master specific actions ... else   ... worker specific actions ... fi
- * @property {dataproc(v1).InstanceGroupConfig} masterConfig Optional. The Google Compute Engine config settings for the master instance in a cluster.
- * @property {dataproc(v1).InstanceGroupConfig} secondaryWorkerConfig Optional. The Google Compute Engine config settings for additional worker instances in a cluster.
+ * @property {dataproc(v1).InstanceGroupConfig} masterConfig Optional. The Compute Engine config settings for the master instance in a cluster.
+ * @property {dataproc(v1).InstanceGroupConfig} secondaryWorkerConfig Optional. The Compute Engine config settings for additional worker instances in a cluster.
  * @property {dataproc(v1).SoftwareConfig} softwareConfig Optional. The config settings for software inside the cluster.
- * @property {dataproc(v1).InstanceGroupConfig} workerConfig Optional. The Google Compute Engine config settings for worker instances in a cluster.
+ * @property {dataproc(v1).InstanceGroupConfig} workerConfig Optional. The Compute Engine config settings for worker instances in a cluster.
  */
 /**
  * @typedef ClusterMetrics
@@ -1736,13 +1792,13 @@ function Dataproc(options) {
  * @memberOf! dataproc(v1)
  * @type object
  * @property {boolean} internalIpOnly Optional. If true, all instances in the cluster will only have internal IP addresses. By default, clusters are not restricted to internal IP addresses, and will have ephemeral external IP addresses assigned to each instance. This internal_ip_only restriction can only be enabled for subnetwork enabled networks, and all off-cluster dependencies must be configured to be accessible without external IP addresses.
- * @property {object} metadata The Google Compute Engine metadata entries to add to all instances (see Project and instance metadata (https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
- * @property {string} networkUri Optional. The Google Compute Engine network to be used for machine communications. Cannot be specified with subnetwork_uri. If neither network_uri nor subnetwork_uri is specified, the &quot;default&quot; network of the project is used, if it exists. Cannot be a &quot;Custom Subnet Network&quot; (see Using Subnetworks for more information).A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default projects/[project_id]/regions/global/default default
- * @property {string} serviceAccount Optional. The service account of the instances. Defaults to the default Google Compute Engine service account. Custom service accounts need permissions equivalent to the folloing IAM roles: roles/logging.logWriter roles/storage.objectAdmin(see https://cloud.google.com/compute/docs/access/service-accounts#custom_service_accounts for more information). Example: [account_id]@[project_id].iam.gserviceaccount.com
+ * @property {object} metadata The Compute Engine metadata entries to add to all instances (see Project and instance metadata (https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
+ * @property {string} networkUri Optional. The Compute Engine network to be used for machine communications. Cannot be specified with subnetwork_uri. If neither network_uri nor subnetwork_uri is specified, the &quot;default&quot; network of the project is used, if it exists. Cannot be a &quot;Custom Subnet Network&quot; (see Using Subnetworks for more information).A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default projects/[project_id]/regions/global/default default
+ * @property {string} serviceAccount Optional. The service account of the instances. Defaults to the default Compute Engine service account. Custom service accounts need permissions equivalent to the folloing IAM roles: roles/logging.logWriter roles/storage.objectAdmin(see https://cloud.google.com/compute/docs/access/service-accounts#custom_service_accounts for more information). Example: [account_id]@[project_id].iam.gserviceaccount.com
  * @property {string[]} serviceAccountScopes Optional. The URIs of service account scopes to be included in Google Compute Engine instances. The following base set of scopes is always included: https://www.googleapis.com/auth/cloud.useraccounts.readonly https://www.googleapis.com/auth/devstorage.read_write https://www.googleapis.com/auth/logging.writeIf no scopes are specified, the following defaults are also provided: https://www.googleapis.com/auth/bigquery https://www.googleapis.com/auth/bigtable.admin.table https://www.googleapis.com/auth/bigtable.data https://www.googleapis.com/auth/devstorage.full_control
- * @property {string} subnetworkUri Optional. The Google Compute Engine subnetwork to be used for machine communications. Cannot be specified with network_uri.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/sub0 projects/[project_id]/regions/us-east1/sub0 sub0
- * @property {string[]} tags The Google Compute Engine tags to add to all instances (see Tagging instances).
- * @property {string} zoneUri Optional. The zone where the Google Compute Engine cluster will be located. On a create request, it is required in the &quot;global&quot; region. If omitted in a non-global Cloud Dataproc region, the service will pick a zone in the corresponding Compute Engine region. On a get request, zone will always be present.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone] projects/[project_id]/zones/[zone] us-central1-f
+ * @property {string} subnetworkUri Optional. The Compute Engine subnetwork to be used for machine communications. Cannot be specified with network_uri.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/sub0 projects/[project_id]/regions/us-east1/sub0 sub0
+ * @property {string[]} tags The Compute Engine tags to add to all instances (see Tagging instances).
+ * @property {string} zoneUri Optional. The zone where the Compute Engine cluster will be located. On a create request, it is required in the &quot;global&quot; region. If omitted in a non-global Cloud Dataproc region, the service will pick a zone in the corresponding Compute Engine region. On a get request, zone will always be present.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone] projects/[project_id]/zones/[zone] us-central1-f
  */
 /**
  * @typedef HadoopJob
@@ -1772,13 +1828,13 @@ function Dataproc(options) {
  * @typedef InstanceGroupConfig
  * @memberOf! dataproc(v1)
  * @type object
- * @property {dataproc(v1).AcceleratorConfig[]} accelerators Optional. The Google Compute Engine accelerator configuration for these instances.Beta Feature: This feature is still under development. It may be changed before final release.
+ * @property {dataproc(v1).AcceleratorConfig[]} accelerators Optional. The Compute Engine accelerator configuration for these instances.Beta Feature: This feature is still under development. It may be changed before final release.
  * @property {dataproc(v1).DiskConfig} diskConfig Optional. Disk option config settings.
- * @property {string} imageUri Output only. The Google Compute Engine image resource used for cluster instances. Inferred from SoftwareConfig.image_version.
+ * @property {string} imageUri Output only. The Compute Engine image resource used for cluster instances. Inferred from SoftwareConfig.image_version.
  * @property {string[]} instanceNames Optional. The list of instance names. Cloud Dataproc derives the names from cluster_name, num_instances, and the instance group if not set by user (recommended practice is to let Cloud Dataproc derive the name).
  * @property {boolean} isPreemptible Optional. Specifies that this instance group contains preemptible instances.
- * @property {string} machineTypeUri Optional. The Google Compute Engine machine type used for cluster instances.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2 projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2 n1-standard-2
- * @property {dataproc(v1).ManagedGroupConfig} managedGroupConfig Output only. The config for Google Compute Engine Instance Group Manager that manages this group. This is only used for preemptible instance groups.
+ * @property {string} machineTypeUri Optional. The Compute Engine machine type used for cluster instances.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2 projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2 n1-standard-2
+ * @property {dataproc(v1).ManagedGroupConfig} managedGroupConfig Output only. The config for Compute Engine Instance Group Manager that manages this group. This is only used for preemptible instance groups.
  * @property {integer} numInstances Optional. The number of VM instances in the instance group. For master instance groups, must be set to 1.
  */
 /**
@@ -1868,7 +1924,7 @@ function Dataproc(options) {
  * @typedef NodeInitializationAction
  * @memberOf! dataproc(v1)
  * @type object
- * @property {string} executableFile Required. Google Cloud Storage URI of executable file.
+ * @property {string} executableFile Required. Cloud Storage URI of executable file.
  * @property {string} executionTimeout Optional. Amount of time executable has to complete. Default is 10 minutes. Cluster creation fails with an explanatory error message (the name of the executable that caused the error and the exceeded timeout period) if the executable is not completed at end of the timeout period.
  */
 /**
@@ -1956,6 +2012,7 @@ function Dataproc(options) {
  * @memberOf! dataproc(v1)
  * @type object
  * @property {dataproc(v1).Job} job Required. The job resource.
+ * @property {string} requestId Optional. A unique id used to identify the request. If the server receives two SubmitJobRequest requests with the same id, then the second request will be ignored and the first Job created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
  */
 /**
  * @typedef YarnApplication

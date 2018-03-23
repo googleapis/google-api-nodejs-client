@@ -16,60 +16,52 @@
 const {google} = require('googleapis');
 const sampleClient = require('../sampleclient');
 const fs = require('fs');
+const os = require('os');
 
 const drive = google.drive({
   version: 'v3',
   auth: sampleClient.oAuth2Client
 });
+const scopes = ['https://www.googleapis.com/auth/drive.metadata.readonly'];
 
-function download (fileId) {
-  drive.files.get({
-    fileId: fileId
-  }, (err, metadata) => {
+function exportDoc (callback) {
+  // [START main_body]
+  const fileId = '1ZdR3L3qP4Bkq8noWLJHSr_iBau0DNT4Kli4SxNc2YEo';
+  const dest = fs.createWriteStream(`${os.tmpdir()}/resume.pdf`);
+
+  drive.files.export(
+    { fileId, mimeType: 'application/pdf' },
+    { responseType: 'stream' },
+    (err, res) => {
+      if (err) {
+        console.error(err);
+        throw err;
+      }
+      res.data.on('end', () => {
+        console.log('Done downloading document.');
+        callback();
+      })
+        .on('error', err => {
+          console.error('Error downloading document.');
+          throw err;
+        })
+        .pipe(dest);
+    });
+  // [END main_body]
+}
+
+// if invoked directly (not tests), authenticate and run the samples
+if (module === require.main) {
+  sampleClient.authenticate(scopes, err => {
     if (err) {
       throw err;
     }
-    console.log('Downloading %s...', metadata.name);
-    const dest = fs.createWriteStream(metadata.name + '.pdf');
-
-    drive.files.export({
-      fileId: fileId,
-      mimeType: 'application/pdf'
-    })
-      .on('error', err => {
-        console.error('Error downloading file!');
-        throw err;
-      })
-      .pipe(dest);
-
-    dest
-      .on('finish', () => {
-        console.log('Downloaded %s!', metadata.name);
-        process.exit();
-      })
-      .on('error', err => {
-        console.error('Error writing file!');
-        throw err;
-      });
+    exportDoc(() => { /* export complete */ });
   });
 }
 
-const scopes = [
-  'https://www.googleapis.com/auth/drive.metadata.readonly',
-  'https://www.googleapis.com/auth/drive.photos.readonly',
-  'https://www.googleapis.com/auth/drive.readonly'
-];
-
-if (module === require.main) {
-  const args = process.argv.slice(2);
-  if (!args[0]) {
-    throw new Error('fileId required!');
-  } else {
-    sampleClient.authenticate(scopes, (err, authClient) => {
-      if (err) {
-        throw err;
-      }
-      download(args[0]);
-    });
-  }
-}
+// export functions for testing purposes
+module.exports = {
+  exportDoc,
+  client: sampleClient.oAuth2Client
+};

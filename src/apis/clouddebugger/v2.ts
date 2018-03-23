@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Stackdriver Debugger API
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2
  * @param {object=} options Options for Clouddebugger
  */
-function Clouddebugger(options) {
+function Clouddebugger(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.controller = {
@@ -108,7 +115,9 @@ function Clouddebugger(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      register(params, options, callback) {
+      register(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -129,7 +138,7 @@ function Clouddebugger(options) {
           pathParams: [],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       },
       breakpoints: {
         /**
@@ -207,7 +216,9 @@ function Clouddebugger(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -229,7 +240,7 @@ function Clouddebugger(options) {
             pathParams: ['debuggeeId'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * clouddebugger.controller.debuggees.breakpoints.update
             * @desc Updates the breakpoint state or mutable fields. The entire
@@ -312,7 +323,9 @@ function Clouddebugger(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        update(params, options, callback) {
+        update(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -335,7 +348,7 @@ function Clouddebugger(options) {
             pathParams: ['debuggeeId', 'id'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       }
@@ -405,7 +418,9 @@ function Clouddebugger(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -426,7 +441,7 @@ function Clouddebugger(options) {
           pathParams: [],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       },
       breakpoints: {
         /**
@@ -495,7 +510,9 @@ function Clouddebugger(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -518,7 +535,7 @@ function Clouddebugger(options) {
             pathParams: ['breakpointId', 'debuggeeId'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * clouddebugger.debugger.debuggees.breakpoints.get
             * @desc Gets breakpoint information.
@@ -589,7 +606,8 @@ function Clouddebugger(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -612,7 +630,7 @@ function Clouddebugger(options) {
             pathParams: ['breakpointId', 'debuggeeId'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * clouddebugger.debugger.debuggees.breakpoints.list
             * @desc Lists all breakpoints for the debuggee.
@@ -683,7 +701,9 @@ function Clouddebugger(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -705,7 +725,7 @@ function Clouddebugger(options) {
             pathParams: ['debuggeeId'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * clouddebugger.debugger.debuggees.breakpoints.set
             * @desc Sets the breakpoint to the debuggee.
@@ -776,7 +796,8 @@ function Clouddebugger(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        set(params, options, callback) {
+        set(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -798,7 +819,7 @@ function Clouddebugger(options) {
             pathParams: ['debuggeeId'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       }

@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Cloud Spanner API
@@ -32,7 +39,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Spanner
  */
-function Spanner(options) {
+function Spanner(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.projects =
@@ -50,7 +57,8 @@ function Spanner(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          get(params, options, callback) {
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -70,7 +78,7 @@ function Spanner(options) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }, /**
               * spanner.projects.instanceConfigs.list
               * @desc Lists the supported instance configurations for a given
@@ -86,7 +94,9 @@ function Spanner(options) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          list(params, options, callback) {
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -107,7 +117,7 @@ function Spanner(options) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback);
+            return createAPIRequest(parameters, callback!);
           }
 
         },
@@ -147,7 +157,9 @@ function Spanner(options) {
                * @param {callback} callback The callback that handles the response.
                * @return {object} Request object
                */
-              create(params, options, callback) {
+              create(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -168,7 +180,7 @@ function Spanner(options) {
                   pathParams: ['parent'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * spanner.projects.instances.delete
                   * @desc Deletes an instance.  Immediately upon completion of
@@ -186,7 +198,9 @@ function Spanner(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              delete (params, options, callback) {
+              delete (
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -207,7 +221,7 @@ function Spanner(options) {
                   pathParams: ['name'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * spanner.projects.instances.get
                   * @desc Gets information about a particular instance.
@@ -220,7 +234,8 @@ function Spanner(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              get(params, options, callback) {
+              get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -241,7 +256,7 @@ function Spanner(options) {
                   pathParams: ['name'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * spanner.projects.instances.getIamPolicy
                   * @desc Gets the access control policy for an instance
@@ -258,7 +273,9 @@ function Spanner(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              getIamPolicy(params, options, callback) {
+              getIamPolicy(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -279,7 +296,7 @@ function Spanner(options) {
                   pathParams: ['resource'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * spanner.projects.instances.list
                   * @desc Lists all instances in the given project.
@@ -295,7 +312,9 @@ function Spanner(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              list(params, options, callback) {
+              list(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -316,7 +335,7 @@ function Spanner(options) {
                   pathParams: ['parent'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * spanner.projects.instances.patch
                   * @desc Updates an instance, and begins allocating or
@@ -356,7 +375,9 @@ function Spanner(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              patch(params, options, callback) {
+              patch(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -377,7 +398,7 @@ function Spanner(options) {
                   pathParams: ['name'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * spanner.projects.instances.setIamPolicy
                   * @desc Sets the access control policy on an instance
@@ -393,7 +414,9 @@ function Spanner(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              setIamPolicy(params, options, callback) {
+              setIamPolicy(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -414,7 +437,7 @@ function Spanner(options) {
                   pathParams: ['resource'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               }, /**
                   * spanner.projects.instances.testIamPermissions
                   * @desc Returns permissions that the caller has on the
@@ -433,7 +456,9 @@ function Spanner(options) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              testIamPermissions(params, options, callback) {
+              testIamPermissions(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
@@ -454,7 +479,7 @@ function Spanner(options) {
                   pathParams: ['resource'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback);
+                return createAPIRequest(parameters, callback!);
               },
               databases:
                   {
@@ -477,7 +502,10 @@ function Spanner(options) {
                      * @param {callback} callback The callback that handles the response.
                      * @return {object} Request object
                      */
-                    create(params, options, callback) {
+                    create(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
                       if (typeof options === 'function') {
                         callback = options;
                         options = {};
@@ -498,7 +526,7 @@ function Spanner(options) {
                         pathParams: ['parent'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback);
+                      return createAPIRequest(parameters, callback!);
                     }, /**
                         * spanner.projects.instances.databases.dropDatabase
                         * @desc Drops (aka deletes) a Cloud Spanner database.
@@ -512,7 +540,10 @@ function Spanner(options) {
                         * @param {callback} callback The callback that handles the response.
                         * @return {object} Request object
                         */
-                    dropDatabase(params, options, callback) {
+                    dropDatabase(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
                       if (typeof options === 'function') {
                         callback = options;
                         options = {};
@@ -533,7 +564,7 @@ function Spanner(options) {
                         pathParams: ['database'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback);
+                      return createAPIRequest(parameters, callback!);
                     }, /**
                         * spanner.projects.instances.databases.get
                         * @desc Gets the state of a Cloud Spanner database.
@@ -546,7 +577,9 @@ function Spanner(options) {
                         * @param {callback} callback The callback that handles the response.
                         * @return {object} Request object
                         */
-                    get(params, options, callback) {
+                    get(params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
                       if (typeof options === 'function') {
                         callback = options;
                         options = {};
@@ -567,7 +600,7 @@ function Spanner(options) {
                         pathParams: ['name'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback);
+                      return createAPIRequest(parameters, callback!);
                     }, /**
                         * spanner.projects.instances.databases.getDdl
                         * @desc Returns the schema of a Cloud Spanner database
@@ -583,7 +616,10 @@ function Spanner(options) {
                         * @param {callback} callback The callback that handles the response.
                         * @return {object} Request object
                         */
-                    getDdl(params, options, callback) {
+                    getDdl(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
                       if (typeof options === 'function') {
                         callback = options;
                         options = {};
@@ -604,7 +640,7 @@ function Spanner(options) {
                         pathParams: ['database'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback);
+                      return createAPIRequest(parameters, callback!);
                     }, /**
                         * spanner.projects.instances.databases.getIamPolicy
                         * @desc Gets the access control policy for a database
@@ -623,7 +659,10 @@ function Spanner(options) {
                         * @param {callback} callback The callback that handles the response.
                         * @return {object} Request object
                         */
-                    getIamPolicy(params, options, callback) {
+                    getIamPolicy(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
                       if (typeof options === 'function') {
                         callback = options;
                         options = {};
@@ -644,7 +683,7 @@ function Spanner(options) {
                         pathParams: ['resource'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback);
+                      return createAPIRequest(parameters, callback!);
                     }, /**
                         * spanner.projects.instances.databases.list
                         * @desc Lists Cloud Spanner databases.
@@ -659,7 +698,10 @@ function Spanner(options) {
                         * @param {callback} callback The callback that handles the response.
                         * @return {object} Request object
                         */
-                    list(params, options, callback) {
+                    list(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
                       if (typeof options === 'function') {
                         callback = options;
                         options = {};
@@ -680,7 +722,7 @@ function Spanner(options) {
                         pathParams: ['parent'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback);
+                      return createAPIRequest(parameters, callback!);
                     }, /**
                         * spanner.projects.instances.databases.setIamPolicy
                         * @desc Sets the access control policy on a database
@@ -698,7 +740,10 @@ function Spanner(options) {
                         * @param {callback} callback The callback that handles the response.
                         * @return {object} Request object
                         */
-                    setIamPolicy(params, options, callback) {
+                    setIamPolicy(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
                       if (typeof options === 'function') {
                         callback = options;
                         options = {};
@@ -719,7 +764,7 @@ function Spanner(options) {
                         pathParams: ['resource'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback);
+                      return createAPIRequest(parameters, callback!);
                     }, /**
                         * spanner.projects.instances.databases.testIamPermissions
                         * @desc Returns permissions that the caller has on the
@@ -740,7 +785,10 @@ function Spanner(options) {
                         * @param {callback} callback The callback that handles the response.
                         * @return {object} Request object
                         */
-                    testIamPermissions(params, options, callback) {
+                    testIamPermissions(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
                       if (typeof options === 'function') {
                         callback = options;
                         options = {};
@@ -762,7 +810,7 @@ function Spanner(options) {
                         pathParams: ['resource'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback);
+                      return createAPIRequest(parameters, callback!);
                     }, /**
                         * spanner.projects.instances.databases.updateDdl
                         * @desc Updates the schema of a Cloud Spanner database
@@ -783,7 +831,10 @@ function Spanner(options) {
                         * @param {callback} callback The callback that handles the response.
                         * @return {object} Request object
                         */
-                    updateDdl(params, options, callback) {
+                    updateDdl(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
                       if (typeof options === 'function') {
                         callback = options;
                         options = {};
@@ -804,7 +855,7 @@ function Spanner(options) {
                         pathParams: ['database'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback);
+                      return createAPIRequest(parameters, callback!);
                     },
                     operations: {
                       /**
@@ -831,7 +882,10 @@ function Spanner(options) {
                        * @param {callback} callback The callback that handles the response.
                        * @return {object} Request object
                        */
-                      cancel(params, options, callback) {
+                      cancel(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
                         if (typeof options === 'function') {
                           callback = options;
                           options = {};
@@ -852,7 +906,7 @@ function Spanner(options) {
                           pathParams: ['name'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback);
+                        return createAPIRequest(parameters, callback!);
                       }, /**
                           * spanner.projects.instances.databases.operations.delete
                           * @desc Deletes a long-running operation. This method
@@ -870,7 +924,10 @@ function Spanner(options) {
                           * @param {callback} callback The callback that handles the response.
                           * @return {object} Request object
                           */
-                      delete (params, options, callback) {
+                      delete (
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
                         if (typeof options === 'function') {
                           callback = options;
                           options = {};
@@ -891,7 +948,7 @@ function Spanner(options) {
                           pathParams: ['name'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback);
+                        return createAPIRequest(parameters, callback!);
                       }, /**
                           * spanner.projects.instances.databases.operations.get
                           * @desc Gets the latest state of a long-running
@@ -908,7 +965,9 @@ function Spanner(options) {
                           * @param {callback} callback The callback that handles the response.
                           * @return {object} Request object
                           */
-                      get(params, options, callback) {
+                      get(params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
                         if (typeof options === 'function') {
                           callback = options;
                           options = {};
@@ -929,7 +988,7 @@ function Spanner(options) {
                           pathParams: ['name'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback);
+                        return createAPIRequest(parameters, callback!);
                       }, /**
                           * spanner.projects.instances.databases.operations.list
                           * @desc Lists operations that match the specified
@@ -958,7 +1017,10 @@ function Spanner(options) {
                           * @param {callback} callback The callback that handles the response.
                           * @return {object} Request object
                           */
-                      list(params, options, callback) {
+                      list(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
                         if (typeof options === 'function') {
                           callback = options;
                           options = {};
@@ -979,7 +1041,7 @@ function Spanner(options) {
                           pathParams: ['name'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback);
+                        return createAPIRequest(parameters, callback!);
                       }
 
                     },
@@ -1000,7 +1062,10 @@ function Spanner(options) {
                        * @param {callback} callback The callback that handles the response.
                        * @return {object} Request object
                        */
-                      beginTransaction(params, options, callback) {
+                      beginTransaction(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
                         if (typeof options === 'function') {
                           callback = options;
                           options = {};
@@ -1022,7 +1087,7 @@ function Spanner(options) {
                           pathParams: ['session'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback);
+                        return createAPIRequest(parameters, callback!);
                       }, /**
                           * spanner.projects.instances.databases.sessions.commit
                           * @desc Commits a transaction. The request includes
@@ -1045,7 +1110,10 @@ function Spanner(options) {
                           * @param {callback} callback The callback that handles the response.
                           * @return {object} Request object
                           */
-                      commit(params, options, callback) {
+                      commit(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
                         if (typeof options === 'function') {
                           callback = options;
                           options = {};
@@ -1066,7 +1134,7 @@ function Spanner(options) {
                           pathParams: ['session'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback);
+                        return createAPIRequest(parameters, callback!);
                       }, /**
                           * spanner.projects.instances.databases.sessions.create
                           * @desc Creates a new session. A session can be used
@@ -1098,7 +1166,10 @@ function Spanner(options) {
                           * @param {callback} callback The callback that handles the response.
                           * @return {object} Request object
                           */
-                      create(params, options, callback) {
+                      create(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
                         if (typeof options === 'function') {
                           callback = options;
                           options = {};
@@ -1119,7 +1190,7 @@ function Spanner(options) {
                           pathParams: ['database'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback);
+                        return createAPIRequest(parameters, callback!);
                       }, /**
                           * spanner.projects.instances.databases.sessions.delete
                           * @desc Ends a session, releasing server resources
@@ -1134,7 +1205,10 @@ function Spanner(options) {
                           * @param {callback} callback The callback that handles the response.
                           * @return {object} Request object
                           */
-                      delete (params, options, callback) {
+                      delete (
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
                         if (typeof options === 'function') {
                           callback = options;
                           options = {};
@@ -1155,7 +1229,7 @@ function Spanner(options) {
                           pathParams: ['name'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback);
+                        return createAPIRequest(parameters, callback!);
                       }, /**
                           * spanner.projects.instances.databases.sessions.executeSql
                           * @desc Executes an SQL query, returning all rows in a
@@ -1180,7 +1254,10 @@ function Spanner(options) {
                           * @param {callback} callback The callback that handles the response.
                           * @return {object} Request object
                           */
-                      executeSql(params, options, callback) {
+                      executeSql(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
                         if (typeof options === 'function') {
                           callback = options;
                           options = {};
@@ -1201,7 +1278,7 @@ function Spanner(options) {
                           pathParams: ['session'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback);
+                        return createAPIRequest(parameters, callback!);
                       }, /**
                           * spanner.projects.instances.databases.sessions.executeStreamingSql
                           * @desc Like ExecuteSql, except returns the result set
@@ -1220,7 +1297,10 @@ function Spanner(options) {
                           * @param {callback} callback The callback that handles the response.
                           * @return {object} Request object
                           */
-                      executeStreamingSql(params, options, callback) {
+                      executeStreamingSql(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
                         if (typeof options === 'function') {
                           callback = options;
                           options = {};
@@ -1242,7 +1322,7 @@ function Spanner(options) {
                           pathParams: ['session'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback);
+                        return createAPIRequest(parameters, callback!);
                       }, /**
                           * spanner.projects.instances.databases.sessions.get
                           * @desc Gets a session. Returns `NOT_FOUND` if the
@@ -1258,7 +1338,9 @@ function Spanner(options) {
                           * @param {callback} callback The callback that handles the response.
                           * @return {object} Request object
                           */
-                      get(params, options, callback) {
+                      get(params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
                         if (typeof options === 'function') {
                           callback = options;
                           options = {};
@@ -1279,7 +1361,7 @@ function Spanner(options) {
                           pathParams: ['name'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback);
+                        return createAPIRequest(parameters, callback!);
                       }, /**
                           * spanner.projects.instances.databases.sessions.list
                           * @desc Lists all sessions in a given database.
@@ -1296,7 +1378,10 @@ function Spanner(options) {
                           * @param {callback} callback The callback that handles the response.
                           * @return {object} Request object
                           */
-                      list(params, options, callback) {
+                      list(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
                         if (typeof options === 'function') {
                           callback = options;
                           options = {};
@@ -1317,7 +1402,104 @@ function Spanner(options) {
                           pathParams: ['database'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback);
+                        return createAPIRequest(parameters, callback!);
+                      }, /**
+                          * spanner.projects.instances.databases.sessions.partitionQuery
+                          * @desc Creates a set of partition tokens that can be
+                          * used to execute a query operation in parallel.  Each
+                          * of the returned partition tokens can be used by
+                          * ExecuteStreamingSql to specify a subset of the query
+                          * result to read.  The same session and read-only
+                          * transaction must be used by the
+                          * PartitionQueryRequest used to create the partition
+                          * tokens and the ExecuteSqlRequests that use the
+                          * partition tokens. Partition tokens become invalid
+                          * when the session used to create them is deleted or
+                          * begins a new transaction.
+                          * @alias
+                          * spanner.projects.instances.databases.sessions.partitionQuery
+                          * @memberOf! spanner(v1)
+                          *
+                          * @param {object} params Parameters for request
+                          * @param {string} params.session Required. The session used to create the partitions.
+                          * @param {spanner(v1).PartitionQueryRequest} params.resource Request body data
+                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                          * @param {callback} callback The callback that handles the response.
+                          * @return {object} Request object
+                          */
+                      partitionQuery(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
+                        if (typeof options === 'function') {
+                          callback = options;
+                          options = {};
+                        }
+                        options = options || {};
+                        const rootUrl = options.rootUrl ||
+                            'https://spanner.googleapis.com/';
+                        const parameters = {
+                          options: Object.assign(
+                              {
+                                url: (rootUrl + '/v1/{session}:partitionQuery')
+                                         .replace(/([^:]\/)\/+/g, '$1'),
+                                method: 'POST'
+                              },
+                              options),
+                          params,
+                          requiredParams: ['session'],
+                          pathParams: ['session'],
+                          context: self
+                        };
+                        return createAPIRequest(parameters, callback!);
+                      }, /**
+                          * spanner.projects.instances.databases.sessions.partitionRead
+                          * @desc Creates a set of partition tokens that can be
+                          * used to execute a read operation in parallel.  Each
+                          * of the returned partition tokens can be used by
+                          * StreamingRead to specify a subset of the read result
+                          * to read.  The same session and read-only transaction
+                          * must be used by the PartitionReadRequest used to
+                          * create the partition tokens and the ReadRequests
+                          * that use the partition tokens. Partition tokens
+                          * become invalid when the session used to create them
+                          * is deleted or begins a new transaction.
+                          * @alias
+                          * spanner.projects.instances.databases.sessions.partitionRead
+                          * @memberOf! spanner(v1)
+                          *
+                          * @param {object} params Parameters for request
+                          * @param {string} params.session Required. The session used to create the partitions.
+                          * @param {spanner(v1).PartitionReadRequest} params.resource Request body data
+                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                          * @param {callback} callback The callback that handles the response.
+                          * @return {object} Request object
+                          */
+                      partitionRead(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
+                        if (typeof options === 'function') {
+                          callback = options;
+                          options = {};
+                        }
+                        options = options || {};
+                        const rootUrl = options.rootUrl ||
+                            'https://spanner.googleapis.com/';
+                        const parameters = {
+                          options: Object.assign(
+                              {
+                                url: (rootUrl + '/v1/{session}:partitionRead')
+                                         .replace(/([^:]\/)\/+/g, '$1'),
+                                method: 'POST'
+                              },
+                              options),
+                          params,
+                          requiredParams: ['session'],
+                          pathParams: ['session'],
+                          context: self
+                        };
+                        return createAPIRequest(parameters, callback!);
                       }, /**
                           * spanner.projects.instances.databases.sessions.read
                           * @desc Reads rows from the database using key lookups
@@ -1342,7 +1524,10 @@ function Spanner(options) {
                           * @param {callback} callback The callback that handles the response.
                           * @return {object} Request object
                           */
-                      read(params, options, callback) {
+                      read(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
                         if (typeof options === 'function') {
                           callback = options;
                           options = {};
@@ -1363,7 +1548,7 @@ function Spanner(options) {
                           pathParams: ['session'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback);
+                        return createAPIRequest(parameters, callback!);
                       }, /**
                           * spanner.projects.instances.databases.sessions.rollback
                           * @desc Rolls back a transaction, releasing any locks
@@ -1385,7 +1570,10 @@ function Spanner(options) {
                           * @param {callback} callback The callback that handles the response.
                           * @return {object} Request object
                           */
-                      rollback(params, options, callback) {
+                      rollback(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
                         if (typeof options === 'function') {
                           callback = options;
                           options = {};
@@ -1406,7 +1594,7 @@ function Spanner(options) {
                           pathParams: ['session'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback);
+                        return createAPIRequest(parameters, callback!);
                       }, /**
                           * spanner.projects.instances.databases.sessions.streamingRead
                           * @desc Like Read, except returns the result set as a
@@ -1425,7 +1613,10 @@ function Spanner(options) {
                           * @param {callback} callback The callback that handles the response.
                           * @return {object} Request object
                           */
-                      streamingRead(params, options, callback) {
+                      streamingRead(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
                         if (typeof options === 'function') {
                           callback = options;
                           options = {};
@@ -1446,7 +1637,7 @@ function Spanner(options) {
                           pathParams: ['session'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback);
+                        return createAPIRequest(parameters, callback!);
                       }
 
                     }
@@ -1474,7 +1665,10 @@ function Spanner(options) {
                  * @param {callback} callback The callback that handles the response.
                  * @return {object} Request object
                  */
-                cancel(params, options, callback) {
+                cancel(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1495,7 +1689,7 @@ function Spanner(options) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * spanner.projects.instances.operations.delete
                     * @desc Deletes a long-running operation. This method
@@ -1512,7 +1706,10 @@ function Spanner(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                delete (params, options, callback) {
+                delete (
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1533,7 +1730,7 @@ function Spanner(options) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * spanner.projects.instances.operations.get
                     * @desc Gets the latest state of a long-running operation.
@@ -1548,7 +1745,9 @@ function Spanner(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                get(params, options, callback) {
+                get(params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1569,7 +1768,7 @@ function Spanner(options) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }, /**
                     * spanner.projects.instances.operations.list
                     * @desc Lists operations that match the specified filter in
@@ -1595,7 +1794,10 @@ function Spanner(options) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                list(params, options, callback) {
+                list(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
@@ -1616,7 +1818,7 @@ function Spanner(options) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback);
+                  return createAPIRequest(parameters, callback!);
                 }
 
               }
@@ -1704,7 +1906,7 @@ function Spanner(options) {
  * @typedef Delete
  * @memberOf! spanner(v1)
  * @type object
- * @property {spanner(v1).KeySet} keySet Required. The primary keys of the rows within table to delete.
+ * @property {spanner(v1).KeySet} keySet Required. The primary keys of the rows within table to delete. Delete is idempotent. The transaction will succeed even if some or all rows do not exist.
  * @property {string} table Required. The table whose rows will be deleted.
  */
 /**
@@ -1718,7 +1920,8 @@ function Spanner(options) {
  * @type object
  * @property {object} params The SQL query string can contain parameter placeholders. A parameter placeholder consists of `&#39;@&#39;` followed by the parameter name. Parameter names consist of any combination of letters, numbers, and underscores.  Parameters can appear anywhere that a literal value is expected.  The same parameter name can be used more than once, for example:   `&quot;WHERE id &gt; @msg_id AND id &lt; @msg_id + 100&quot;`  It is an error to execute an SQL query with unbound parameters.  Parameter values are specified using `params`, which is a JSON object whose keys are parameter names, and whose values are the corresponding parameter values.
  * @property {object} paramTypes It is not always possible for Cloud Spanner to infer the right SQL type from a JSON value.  For example, values of type `BYTES` and values of type `STRING` both appear in params as JSON strings.  In these cases, `param_types` can be used to specify the exact SQL type for some or all of the SQL query parameters. See the definition of Type for more information about SQL types.
- * @property {string} queryMode Used to control the amount of debugging information returned in ResultSetStats.
+ * @property {string} partitionToken If present, results will be restricted to the specified partition previously created using PartitionQuery().  There must be an exact match for the values of fields common to this message and the PartitionQueryRequest message used to create this partition_token.
+ * @property {string} queryMode Used to control the amount of debugging information returned in ResultSetStats. If partition_token is set, query_mode can only be set to QueryMode.NORMAL.
  * @property {string} resumeToken If this request is resuming a previously interrupted SQL query execution, `resume_token` should be copied from the last PartialResultSet yielded before the interruption. Doing this enables the new SQL query execution to resume where the last one left off. The rest of the request parameters must exactly match the request that yielded this token.
  * @property {string} sql Required. The SQL query string.
  * @property {spanner(v1).TransactionSelector} transaction The transaction to use. If none is provided, the default is a temporary read-only transaction with strong concurrency.
@@ -1842,6 +2045,47 @@ function Spanner(options) {
  * @property {any[]} values A streamed result set consists of a stream of values, which might be split into many `PartialResultSet` messages to accommodate large rows and/or large values. Every N complete values defines a row, where N is equal to the number of entries in metadata.row_type.fields.  Most values are encoded based on type as described here.  It is possible that the last value in values is &quot;chunked&quot;, meaning that the rest of the value is sent in subsequent `PartialResultSet`(s). This is denoted by the chunked_value field. Two or more chunked values can be merged to form a complete value as follows:    * `bool/number/null`: cannot be chunked   * `string`: concatenate the strings   * `list`: concatenate the lists. If the last element in a list is a     `string`, `list`, or `object`, merge it with the first element in     the next list by applying these rules recursively.   * `object`: concatenate the (field name, field value) pairs. If a     field name is duplicated, then apply these rules recursively     to merge the field values.  Some examples of merging:      # Strings are concatenated.     &quot;foo&quot;, &quot;bar&quot; =&gt; &quot;foobar&quot;      # Lists of non-strings are concatenated.     [2, 3], [4] =&gt; [2, 3, 4]      # Lists are concatenated, but the last and first elements are merged     # because they are strings.     [&quot;a&quot;, &quot;b&quot;], [&quot;c&quot;, &quot;d&quot;] =&gt; [&quot;a&quot;, &quot;bc&quot;, &quot;d&quot;]      # Lists are concatenated, but the last and first elements are merged     # because they are lists. Recursively, the last and first elements     # of the inner lists are merged because they are strings.     [&quot;a&quot;, [&quot;b&quot;, &quot;c&quot;]], [[&quot;d&quot;], &quot;e&quot;] =&gt; [&quot;a&quot;, [&quot;b&quot;, &quot;cd&quot;], &quot;e&quot;]      # Non-overlapping object fields are combined.     {&quot;a&quot;: &quot;1&quot;}, {&quot;b&quot;: &quot;2&quot;} =&gt; {&quot;a&quot;: &quot;1&quot;, &quot;b&quot;: 2&quot;}      # Overlapping object fields are merged.     {&quot;a&quot;: &quot;1&quot;}, {&quot;a&quot;: &quot;2&quot;} =&gt; {&quot;a&quot;: &quot;12&quot;}      # Examples of merging objects containing lists of strings.     {&quot;a&quot;: [&quot;1&quot;]}, {&quot;a&quot;: [&quot;2&quot;]} =&gt; {&quot;a&quot;: [&quot;12&quot;]}  For a more complete example, suppose a streaming SQL query is yielding a result set whose rows contain a single string field. The following `PartialResultSet`s might be yielded:      {       &quot;metadata&quot;: { ... }       &quot;values&quot;: [&quot;Hello&quot;, &quot;W&quot;]       &quot;chunked_value&quot;: true       &quot;resume_token&quot;: &quot;Af65...&quot;     }     {       &quot;values&quot;: [&quot;orl&quot;]       &quot;chunked_value&quot;: true       &quot;resume_token&quot;: &quot;Bqp2...&quot;     }     {       &quot;values&quot;: [&quot;d&quot;]       &quot;resume_token&quot;: &quot;Zx1B...&quot;     }  This sequence of `PartialResultSet`s encodes two rows, one containing the field value `&quot;Hello&quot;`, and a second containing the field value `&quot;World&quot; = &quot;W&quot; + &quot;orl&quot; + &quot;d&quot;`.
  */
 /**
+ * @typedef Partition
+ * @memberOf! spanner(v1)
+ * @type object
+ * @property {string} partitionToken This token can be passed to Read, StreamingRead, ExecuteSql, or ExecuteStreamingSql requests to restrict the results to those identified by this partition token.
+ */
+/**
+ * @typedef PartitionOptions
+ * @memberOf! spanner(v1)
+ * @type object
+ * @property {string} maxPartitions **Note:** This hint is currently ignored by PartitionQuery and PartitionRead requests.  The desired maximum number of partitions to return.  For example, this may be set to the number of workers available.  The default for this option is currently 10,000. The maximum value is currently 200,000.  This is only a hint.  The actual number of partitions returned may be smaller or larger than this maximum count request.
+ * @property {string} partitionSizeBytes **Note:** This hint is currently ignored by PartitionQuery and PartitionRead requests.  The desired data size for each partition generated.  The default for this option is currently 1 GiB.  This is only a hint. The actual size of each partition may be smaller or larger than this size request.
+ */
+/**
+ * @typedef PartitionQueryRequest
+ * @memberOf! spanner(v1)
+ * @type object
+ * @property {object} params The SQL query string can contain parameter placeholders. A parameter placeholder consists of `&#39;@&#39;` followed by the parameter name. Parameter names consist of any combination of letters, numbers, and underscores.  Parameters can appear anywhere that a literal value is expected.  The same parameter name can be used more than once, for example:   `&quot;WHERE id &gt; @msg_id AND id &lt; @msg_id + 100&quot;`  It is an error to execute an SQL query with unbound parameters.  Parameter values are specified using `params`, which is a JSON object whose keys are parameter names, and whose values are the corresponding parameter values.
+ * @property {object} paramTypes It is not always possible for Cloud Spanner to infer the right SQL type from a JSON value.  For example, values of type `BYTES` and values of type `STRING` both appear in params as JSON strings.  In these cases, `param_types` can be used to specify the exact SQL type for some or all of the SQL query parameters. See the definition of Type for more information about SQL types.
+ * @property {spanner(v1).PartitionOptions} partitionOptions Additional options that affect how many partitions are created.
+ * @property {string} sql The query request to generate partitions for. The request will fail if the query is not root partitionable. The query plan of a root partitionable query has a single distributed union operator. A distributed union operator conceptually divides one or more tables into multiple splits, remotely evaluates a subquery independently on each split, and then unions all results.
+ * @property {spanner(v1).TransactionSelector} transaction Read only snapshot transactions are supported, read/write and single use transactions are not.
+ */
+/**
+ * @typedef PartitionReadRequest
+ * @memberOf! spanner(v1)
+ * @type object
+ * @property {string[]} columns The columns of table to be returned for each row matching this request.
+ * @property {string} index If non-empty, the name of an index on table. This index is used instead of the table primary key when interpreting key_set and sorting result rows. See key_set for further information.
+ * @property {spanner(v1).KeySet} keySet Required. `key_set` identifies the rows to be yielded. `key_set` names the primary keys of the rows in table to be yielded, unless index is present. If index is present, then key_set instead names index keys in index.  It is not an error for the `key_set` to name rows that do not exist in the database. Read yields nothing for nonexistent rows.
+ * @property {spanner(v1).PartitionOptions} partitionOptions Additional options that affect how many partitions are created.
+ * @property {string} table Required. The name of the table in the database to be read.
+ * @property {spanner(v1).TransactionSelector} transaction Read only snapshot transactions are supported, read/write and single use transactions are not.
+ */
+/**
+ * @typedef PartitionResponse
+ * @memberOf! spanner(v1)
+ * @type object
+ * @property {spanner(v1).Partition[]} partitions Partitions created by this request.
+ * @property {spanner(v1).Transaction} transaction Transaction created by this request.
+ */
+/**
  * @typedef PlanNode
  * @memberOf! spanner(v1)
  * @type object
@@ -1859,7 +2103,7 @@ function Spanner(options) {
  * @type object
  * @property {spanner(v1).Binding[]} bindings Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
  * @property {string} etag `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
- * @property {integer} version Version of the `Policy`. The default version is 0.
+ * @property {integer} version Deprecated.
  */
 /**
  * @typedef QueryPlan
@@ -1884,8 +2128,9 @@ function Spanner(options) {
  * @type object
  * @property {string[]} columns The columns of table to be returned for each row matching this request.
  * @property {string} index If non-empty, the name of an index on table. This index is used instead of the table primary key when interpreting key_set and sorting result rows. See key_set for further information.
- * @property {spanner(v1).KeySet} keySet Required. `key_set` identifies the rows to be yielded. `key_set` names the primary keys of the rows in table to be yielded, unless index is present. If index is present, then key_set instead names index keys in index.  Rows are yielded in table primary key order (if index is empty) or index key order (if index is non-empty).  It is not an error for the `key_set` to name rows that do not exist in the database. Read yields nothing for nonexistent rows.
- * @property {string} limit If greater than zero, only the first `limit` rows are yielded. If `limit` is zero, the default is no limit.
+ * @property {spanner(v1).KeySet} keySet Required. `key_set` identifies the rows to be yielded. `key_set` names the primary keys of the rows in table to be yielded, unless index is present. If index is present, then key_set instead names index keys in index.  If the partition_token field is empty, rows are yielded in table primary key order (if index is empty) or index key order (if index is non-empty).  If the partition_token field is not empty, rows will be yielded in an unspecified order.  It is not an error for the `key_set` to name rows that do not exist in the database. Read yields nothing for nonexistent rows.
+ * @property {string} limit If greater than zero, only the first `limit` rows are yielded. If `limit` is zero, the default is no limit. A limit cannot be specified if `partition_token` is set.
+ * @property {string} partitionToken If present, results will be restricted to the specified partition previously created using PartitionRead().    There must be an exact match for the values of fields common to this message and the PartitionReadRequest message used to create this partition_token.
  * @property {string} resumeToken If this request is resuming a previously interrupted read, `resume_token` should be copied from the last PartialResultSet yielded before the interruption. Doing this enables the new read to resume where the last read left off. The rest of the request parameters must exactly match the request that yielded this token.
  * @property {string} table Required. The name of the table in the database to be read.
  * @property {spanner(v1).TransactionSelector} transaction The transaction to use. If none is provided, the default is a temporary read-only transaction with strong concurrency.

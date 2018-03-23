@@ -34,6 +34,18 @@ async function testContentType(drive: APIEndpoint) {
   assert(res.request.headers['content-type'].indexOf('application/json') === 0);
 }
 
+async function testGzip(drive: APIEndpoint) {
+  nock(Utils.baseUrl)
+      .get(
+          '/drive/v2/files', undefined,
+          {reqheaders: {'Accept-Encoding': 'gzip'}})
+      .reply(200, {});
+  const res = await pify(drive.files.list)();
+  assert.deepEqual(res.data, {});
+  // note: axios strips the `content-encoding` header from the response,
+  // so that cannot be checked here.
+}
+
 async function testBody(drive: APIEndpoint) {
   nock(Utils.baseUrl).get('/drive/v2/files').reply(200);
   const res = await pify(drive.files.list)();
@@ -117,6 +129,11 @@ describe('Transporters', () => {
     await testContentType(remoteDrive);
   });
 
+  it('should add the proper gzip headers', async () => {
+    await testGzip(localDrive);
+    await testGzip(remoteDrive);
+  });
+
   it('should not add body for GET requests', async () => {
     await testBody(localDrive);
     await testBody(remoteDrive);
@@ -176,6 +193,12 @@ describe('Transporters', () => {
         done();
       });
     });
+  });
+
+  it('should return 304 responses as success', async () => {
+    const scope = nock(Utils.baseUrl).get('/drive/v2/files').reply(304);
+    const res = await pify(localDrive.files.list)();
+    assert.equal(res.status, 304);
   });
 
   it('should handle 5xx responses that include errors', (done) => {

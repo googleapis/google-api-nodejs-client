@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Google Cloud Testing API
@@ -32,9 +39,48 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Testing
  */
-function Testing(options) {
+function Testing(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
+  self.applicationDetailService = {
+    /**
+     * testing.applicationDetailService.getApkDetails
+     * @desc Request the details of an Android application APK.
+     * @alias testing.applicationDetailService.getApkDetails
+     * @memberOf! testing(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {testing(v1).FileReference} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getApkDetails(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://testing.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/applicationDetailService/getApkDetails')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
+    }
+
+  };
   self.projects = {
     testMatrices: {
       /**
@@ -56,7 +102,9 @@ function Testing(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      cancel(params, options, callback) {
+      cancel(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -78,7 +126,7 @@ function Testing(options) {
           pathParams: ['projectId', 'testMatrixId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * testing.projects.testMatrices.create
           * @desc Request to run a matrix of tests according to the given
@@ -100,7 +148,9 @@ function Testing(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      create(params, options, callback) {
+      create(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -120,7 +170,7 @@ function Testing(options) {
           pathParams: ['projectId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * testing.projects.testMatrices.get
           * @desc Check the status of a test matrix.  May return any of the
@@ -137,7 +187,8 @@ function Testing(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -158,7 +209,7 @@ function Testing(options) {
           pathParams: ['projectId', 'testMatrixId'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }
@@ -180,7 +231,8 @@ function Testing(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -200,7 +252,7 @@ function Testing(options) {
         pathParams: ['environmentType'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -282,6 +334,7 @@ function Testing(options) {
  * @property {integer} maxDepth The max depth of the traversal stack Robo can explore. Needs to be at least 2 to make Robo explore the app beyond the first activity. Default is 50. Optional
  * @property {integer} maxSteps The max number of steps Robo can execute. Default is no limit. Optional
  * @property {testing(v1).RoboDirective[]} roboDirectives A set of directives Robo should apply during the crawl. This allows users to customize the crawl. For example, the username and password for a test account can be provided. Optional
+ * @property {testing(v1).FileReference} roboScript A JSON file with a sequence of actions Robo should perform as a prologue for the crawl. Optional
  * @property {testing(v1).RoboStartingIntent[]} startingIntents The intents used to launch the app for the crawl. If none are provided, then the main launcher activity is launched. If some are provided, then only those provided are launched (the main launcher activity must be provided explicitly).
  */
 /**
@@ -311,6 +364,29 @@ function Testing(options) {
  * @property {testing(v1).Date} releaseDate The date this Android version became available in the market. @OutputOnly
  * @property {string[]} tags Tags for this dimension. Examples: &quot;default&quot;, &quot;preview&quot;, &quot;deprecated&quot;
  * @property {string} versionString A string representing this version of the Android OS. Examples: &quot;4.3&quot;, &quot;4.4&quot; @OutputOnly
+ */
+/**
+ * @typedef Apk
+ * @memberOf! testing(v1)
+ * @type object
+ * @property {testing(v1).FileReference} location The path to an APK to be installed on the device before the test begins. Optional
+ * @property {string} packageName The java package for the APK to be installed. Optional, value is determined by examining the application&#39;s manifest.
+ */
+/**
+ * @typedef ApkDetail
+ * @memberOf! testing(v1)
+ * @type object
+ * @property {testing(v1).ApkManifest} apkManifest
+ */
+/**
+ * @typedef ApkManifest
+ * @memberOf! testing(v1)
+ * @type object
+ * @property {string} applicationLabel User-readable name for the application.
+ * @property {testing(v1).IntentFilter[]} intentFilters
+ * @property {integer} maxSdkVersion Maximum API level on which the application is designed to run.
+ * @property {integer} minSdkVersion Minimum API level required for the application to run.
+ * @property {string} packageName Full Java-style package name for this application, e.g. &quot;com.example.foo&quot;.
  */
 /**
  * @typedef CancelTestMatrixResponse
@@ -345,6 +421,7 @@ function Testing(options) {
  * @memberOf! testing(v1)
  * @type object
  * @property {testing(v1).ObbFile} obbFile A reference to an opaque binary blob file
+ * @property {testing(v1).RegularFile} regularFile A reference to a regular file
  */
 /**
  * @typedef Distribution
@@ -380,6 +457,12 @@ function Testing(options) {
  * @property {string} gcsPath A path to a file in Google Cloud Storage. Example: gs://build-app-1414623860166/app-debug-unaligned.apk
  */
 /**
+ * @typedef GetApkDetailsResponse
+ * @memberOf! testing(v1)
+ * @type object
+ * @property {testing(v1).ApkDetail} apkDetail Details of the Android APK.
+ */
+/**
  * @typedef GoogleAuto
  * @memberOf! testing(v1)
  * @type object
@@ -389,6 +472,14 @@ function Testing(options) {
  * @memberOf! testing(v1)
  * @type object
  * @property {string} gcsPath The path to a directory in GCS that will eventually contain the results for this test. The requesting user must have write access on the bucket in the supplied path. Required
+ */
+/**
+ * @typedef IntentFilter
+ * @memberOf! testing(v1)
+ * @type object
+ * @property {string[]} actionNames The android:name value of the &lt;action&gt; tag
+ * @property {string[]} categoryNames The android:name value of the &lt;category&gt; tag
+ * @property {string} mimeType The android:mimeType value of the &lt;data&gt; tag
  */
 /**
  * @typedef LauncherActivityIntent
@@ -432,6 +523,13 @@ function Testing(options) {
  * @property {string} id The id for this orientation. Example: &quot;portrait&quot; @OutputOnly
  * @property {string} name A human-friendly name for this orientation. Example: &quot;portrait&quot; @OutputOnly
  * @property {string[]} tags Tags for this dimension. Examples: &quot;default&quot;
+ */
+/**
+ * @typedef RegularFile
+ * @memberOf! testing(v1)
+ * @type object
+ * @property {testing(v1).FileReference} content Required
+ * @property {string} devicePath Where to put the content on the device. Must be an absolute, whitelisted path. If the file exists, it will be replaced. The following device-side directories and any of their subdirectories are whitelisted: &lt;p&gt;${EXTERNAL_STORAGE}, or /sdcard&lt;/p&gt; &lt;p&gt;${ANDROID_DATA}/local/tmp, or /data/local/tmp&lt;/p&gt; &lt;p&gt;Specifying a path outside of these directory trees is invalid.  &lt;p&gt; The paths /sdcard and /data will be made available and treated as implicit path substitutions. E.g. if /sdcard on a particular device does not map to external storage, the system will replace it with the external storage path prefix for that device and copy the file there.  &lt;p&gt; It is strongly advised to use the &lt;a href= &quot;http://developer.android.com/reference/android/os/Environment.html&quot;&gt; Environment API&lt;/a&gt; in app and test code to access files on the device in a portable way. Required
  */
 /**
  * @typedef ResultStorage
@@ -512,6 +610,7 @@ function Testing(options) {
  * @memberOf! testing(v1)
  * @type object
  * @property {testing(v1).Account} account The device will be logged in on this account for the duration of the test. Optional
+ * @property {testing(v1).Apk[]} additionalApks APKs to install in addition to those being directly tested. Currently capped at 100. Optional
  * @property {string[]} directoriesToPull List of directories on the device to upload to GCS at the end of the test; they must be absolute paths under /sdcard or /data/local/tmp. Path names are restricted to characters a-z A-Z 0-9 _ - . + and /  Note: The paths /sdcard and /data will be made available and treated as implicit path substitutions. E.g. if /sdcard on a particular device does not map to external storage, the system will replace it with the external storage path prefix for that device.  Optional
  * @property {testing(v1).EnvironmentVariable[]} environmentVariables Environment variables to set for the test (only applicable for instrumentation tests).
  * @property {testing(v1).DeviceFile[]} filesToPush List of files to push to the device before starting the test.  Optional
@@ -527,7 +626,7 @@ function Testing(options) {
  * @property {boolean} autoGoogleLogin Enables automatic Google account login. If set, the service will automatically generate a Google test account and add it to the device, before executing the test. Note that test accounts might be reused. Many applications show their full set of functionalities when an account is present on the device. Logging into the device with these generated accounts allows testing more functionalities. Default is false. Optional
  * @property {boolean} disablePerformanceMetrics Disables performance metrics recording; may reduce test latency.
  * @property {boolean} disableVideoRecording Disables video recording; may reduce test latency.
- * @property {testing(v1).TestSetup} testSetup Test setup requirements e.g. files to install, bootstrap scripts Optional
+ * @property {testing(v1).TestSetup} testSetup Test setup requirements for Android e.g. files to install, bootstrap scripts. Optional
  * @property {string} testTimeout Max time a test execution is allowed to run before it is automatically cancelled. Optional, default is 5 min.
  */
 /**

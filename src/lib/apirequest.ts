@@ -18,8 +18,14 @@ import * as stream from 'stream';
 import * as parseString from 'string-template';
 import * as uuid from 'uuid';
 
-import {APIRequestParams} from './api';
+import {APIRequestParams, GlobalOptions} from './api';
 import {SchemaParameters} from './schema';
+
+const maxContentLength = Math.pow(2, 31);
+
+// tslint:disable-next-line no-var-requires
+const pkg = require('../../../package.json');
+const USER_AGENT = `google-api-nodejs-client/${pkg.version} (gzip)`;
 
 function isReadableStream(obj: stream.Readable|string) {
   return obj instanceof stream.Readable && typeof obj._read === 'function';
@@ -137,7 +143,7 @@ export function createAPIRequest<T>(
   // if authClient is actually a string, use it as an API KEY
   if (typeof authClient === 'string') {
     params.key = params.key || authClient;
-    authClient = null;
+    authClient = undefined;
   }
 
   if (parameters.mediaUrl && media.body) {
@@ -156,6 +162,7 @@ export function createAPIRequest<T>(
       const boundary = uuid.v4();
       const finale = `--${boundary}--`;
       const rStream = new stream.PassThrough();
+      const pStream = new ProgressStream();
       const isStream = isReadableStream(multipart[1].body);
       headers['Content-Type'] = `multipart/related; boundary=${boundary}`;
       for (const part of multipart) {
@@ -166,7 +173,15 @@ export function createAPIRequest<T>(
           rStream.push(part.body);
           rStream.push('\r\n');
         } else {
-          part.body.pipe(rStream, {end: false});
+          // Axios does not natively support onUploadProgress in node.js.
+          // Pipe through the pStream first to read the number of bytes read
+          // for the purpose of tracking progress.
+          pStream.on('progress', bytesRead => {
+            if (options.onUploadProgress) {
+              options.onUploadProgress({bytesRead});
+            }
+          });
+          part.body.pipe(pStream).pipe(rStream, {end: false});
           part.body.on('end', () => {
             rStream.push('\r\n');
             rStream.push(finale);
@@ -190,6 +205,21 @@ export function createAPIRequest<T>(
 
   options.headers = headers;
   options.params = params;
+  // We need to set a default content size, or the max defaults
+  // to 10MB.  Setting to 2GB by default.
+  // https://github.com/google/google-api-nodejs-client/issues/991
+  options.maxContentLength = options.maxContentLength || maxContentLength;
+  options.headers['Accept-Encoding'] = 'gzip';
+  options.headers['User-Agent'] = USER_AGENT;
+
+  // By default Axios treats any 2xx as valid, and all non 2xx status
+  // codes as errors.  This is a problem for HTTP 304s when used along
+  // with an eTag.
+  if (!options.validateStatus) {
+    options.validateStatus = (status) => {
+      return (status >= 200 && status < 300) || status === 304;
+    };
+  }
 
   // Combine the AxiosRequestConfig options passed with this specific
   // API call witht the global options configured at the API Context
@@ -207,5 +237,20 @@ export function createAPIRequest<T>(
     return authClient.request(mergedOptions, callback);
   } else {
     return (new DefaultTransporter()).request(mergedOptions, callback);
+  }
+}
+
+/**
+ * Basic Passthrough Stream that records the number of bytes read
+ * every time the cursor is moved.
+ */
+class ProgressStream extends stream.Transform {
+  bytesRead = 0;
+  // tslint:disable-next-line: no-any
+  _transform(chunk: any, encoding: string, callback: Function) {
+    this.bytesRead += chunk.length;
+    this.emit('progress', this.bytesRead);
+    this.push(chunk);
+    callback();
   }
 }

@@ -33,7 +33,7 @@ function runSamples () {
     if (err) {
       throw err;
     }
-    console.log(res);
+    console.log(res.data);
   });
 
   // update with no metadata
@@ -48,7 +48,7 @@ function runSamples () {
     if (err) {
       throw err;
     }
-    console.log(res);
+    console.log(res.data);
   });
 
   // update example with metadata update
@@ -66,7 +66,7 @@ function runSamples () {
     if (err) {
       throw err;
     }
-    console.log(res);
+    console.log(res.data);
   });
 }
 

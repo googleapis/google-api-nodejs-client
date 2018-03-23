@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Cloud Source Repositories API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Sourcerepo
  */
-function Sourcerepo(options) {
+function Sourcerepo(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.projects = {
@@ -50,7 +57,9 @@ function Sourcerepo(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create(params, options, callback) {
+      create(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -70,7 +79,7 @@ function Sourcerepo(options) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * sourcerepo.projects.repos.delete
           * @desc Deletes a repo.
@@ -83,7 +92,9 @@ function Sourcerepo(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (params, options, callback) {
+      delete (
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -102,7 +113,7 @@ function Sourcerepo(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * sourcerepo.projects.repos.get
           * @desc Returns information about a repo.
@@ -115,7 +126,8 @@ function Sourcerepo(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      get(params, options, callback) {
+      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -134,7 +146,7 @@ function Sourcerepo(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * sourcerepo.projects.repos.getIamPolicy
           * @desc Gets the access control policy for a resource. Returns an
@@ -148,7 +160,9 @@ function Sourcerepo(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      getIamPolicy(params, options, callback) {
+      getIamPolicy(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -168,7 +182,7 @@ function Sourcerepo(options) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * sourcerepo.projects.repos.list
           * @desc Returns all repos belonging to a project. The sizes of the
@@ -185,7 +199,9 @@ function Sourcerepo(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      list(params, options, callback) {
+      list(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -205,7 +221,7 @@ function Sourcerepo(options) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * sourcerepo.projects.repos.setIamPolicy
           * @desc Sets the access control policy on the specified resource.
@@ -220,7 +236,9 @@ function Sourcerepo(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      setIamPolicy(params, options, callback) {
+      setIamPolicy(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -240,7 +258,7 @@ function Sourcerepo(options) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }, /**
           * sourcerepo.projects.repos.testIamPermissions
           * @desc Returns permissions that a caller has on the specified
@@ -256,7 +274,9 @@ function Sourcerepo(options) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      testIamPermissions(params, options, callback) {
+      testIamPermissions(
+          params: any, options: MethodOptions|BodyResponseCallback<any>,
+          callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -276,7 +296,7 @@ function Sourcerepo(options) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback);
+        return createAPIRequest(parameters, callback!);
       }
 
     }
@@ -287,7 +307,6 @@ function Sourcerepo(options) {
  * @memberOf! sourcerepo(v1)
  * @type object
  * @property {sourcerepo(v1).AuditLogConfig[]} auditLogConfigs The configuration for logging of each type of permission. Next ID: 4
- * @property {string[]} exemptedMembers
  * @property {string} service Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
  */
 /**
@@ -301,7 +320,6 @@ function Sourcerepo(options) {
  * @typedef Binding
  * @memberOf! sourcerepo(v1)
  * @type object
- * @property {sourcerepo(v1).Expr} condition The condition that is associated with this binding. NOTE: an unsatisfied condition will not allow user access via current binding. Different bindings, including their conditions, are examined independently. This field is GOOGLE_INTERNAL.
  * @property {string[]} members Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@gmail.com` or `joe@example.com`.   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: A Google Apps domain name that represents all the    users of that domain. For example, `google.com` or `example.com`.
  * @property {string} role Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. Required
  */
@@ -309,15 +327,6 @@ function Sourcerepo(options) {
  * @typedef Empty
  * @memberOf! sourcerepo(v1)
  * @type object
- */
-/**
- * @typedef Expr
- * @memberOf! sourcerepo(v1)
- * @type object
- * @property {string} description An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
- * @property {string} expression Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
- * @property {string} location An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
- * @property {string} title An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
  */
 /**
  * @typedef ListReposResponse
@@ -341,8 +350,7 @@ function Sourcerepo(options) {
  * @property {sourcerepo(v1).AuditConfig[]} auditConfigs Specifies cloud audit logging configuration for this policy.
  * @property {sourcerepo(v1).Binding[]} bindings Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
  * @property {string} etag `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
- * @property {boolean} iamOwned
- * @property {integer} version Version of the `Policy`. The default version is 0.
+ * @property {integer} version Deprecated.
  */
 /**
  * @typedef Repo

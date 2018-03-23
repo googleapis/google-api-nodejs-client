@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
+
+// TODO: We will eventually get the `any` in here cleared out, but in the
+// interim we want to turn on no-implicit-any.
+
+// tslint:disable: no-any
+
 
 /**
  * Compute Engine API
@@ -31,7 +38,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Compute
  */
-function Compute(options) {
+function Compute(options: GlobalOptions) {
   const self = this;
   self._options = options || {};
   self.acceleratorTypes = {
@@ -118,7 +125,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -140,7 +149,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.acceleratorTypes.get
         * @desc Returns the specified accelerator type. Get a list of available
@@ -216,7 +225,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -238,7 +248,7 @@ function Compute(options) {
         pathParams: ['acceleratorType', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.acceleratorTypes.list
         * @desc Retrieves a list of accelerator types available to the specified
@@ -326,7 +336,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -348,7 +360,7 @@ function Compute(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -436,7 +448,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -457,7 +471,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.addresses.delete
         * @desc Deletes the specified address resource.
@@ -532,7 +546,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -554,7 +570,7 @@ function Compute(options) {
         pathParams: ['address', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.addresses.get
         * @desc Returns the specified address resource.
@@ -628,7 +644,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -650,7 +667,7 @@ function Compute(options) {
         pathParams: ['address', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.addresses.insert
         * @desc Creates an address resource in the specified project using the
@@ -727,7 +744,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -748,7 +767,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.addresses.list
         * @desc Retrieves a list of addresses contained within the specified
@@ -836,7 +855,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -857,7 +878,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -945,7 +966,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -966,7 +989,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.autoscalers.delete
         * @desc Deletes the specified autoscaler.
@@ -1041,7 +1064,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1063,7 +1088,7 @@ function Compute(options) {
         pathParams: ['autoscaler', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.autoscalers.get
         * @desc Returns the specified autoscaler resource. Get a list of
@@ -1138,7 +1163,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1160,7 +1186,7 @@ function Compute(options) {
         pathParams: ['autoscaler', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.autoscalers.insert
         * @desc Creates an autoscaler in the specified project using the data
@@ -1237,7 +1263,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1258,7 +1286,7 @@ function Compute(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.autoscalers.list
         * @desc Retrieves a list of autoscalers contained within the specified
@@ -1346,7 +1374,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1367,7 +1397,7 @@ function Compute(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.autoscalers.patch
         * @desc Updates an autoscaler in the specified project using the data
@@ -1448,7 +1478,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1469,7 +1501,7 @@ function Compute(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.autoscalers.update
         * @desc Updates an autoscaler in the specified project using the data
@@ -1549,7 +1581,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1570,7 +1604,7 @@ function Compute(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1647,7 +1681,9 @@ function Compute(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -1669,7 +1705,7 @@ function Compute(options) {
             pathParams: ['backendBucket', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.backendBuckets.get
             * @desc Returns the specified BackendBucket resource. Get a list of
@@ -1741,7 +1777,8 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -1763,7 +1800,7 @@ function Compute(options) {
             pathParams: ['backendBucket', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.backendBuckets.insert
             * @desc Creates a BackendBucket resource in the specified project
@@ -1836,7 +1873,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        insert(params, options, callback) {
+        insert(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -1857,7 +1896,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.backendBuckets.list
             * @desc Retrieves the list of BackendBucket resources available to
@@ -1941,7 +1980,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -1962,7 +2003,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.backendBuckets.patch
             * @desc Updates the specified BackendBucket resource with the data
@@ -2043,7 +2084,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        patch(params, options, callback) {
+        patch(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -2065,7 +2108,7 @@ function Compute(options) {
             pathParams: ['backendBucket', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.backendBuckets.update
             * @desc Updates the specified BackendBucket resource with the data
@@ -2145,7 +2188,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        update(params, options, callback) {
+        update(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -2167,7 +2212,7 @@ function Compute(options) {
             pathParams: ['backendBucket', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       };
@@ -2256,7 +2301,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2277,7 +2324,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.backendServices.delete
         * @desc Deletes the specified BackendService resource.
@@ -2349,7 +2396,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2371,7 +2420,7 @@ function Compute(options) {
         pathParams: ['backendService', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.backendServices.get
         * @desc Returns the specified BackendService resource. Get a list of
@@ -2443,7 +2492,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2465,7 +2515,7 @@ function Compute(options) {
         pathParams: ['backendService', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.backendServices.getHealth
         * @desc Gets the most recent health check results for this
@@ -2541,7 +2591,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getHealth(params, options, callback) {
+    getHealth(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2563,7 +2615,7 @@ function Compute(options) {
         pathParams: ['backendService', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.backendServices.insert
         * @desc Creates a BackendService resource in the specified project using
@@ -2638,7 +2690,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2659,7 +2713,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.backendServices.list
         * @desc Retrieves the list of BackendService resources available to the
@@ -2743,7 +2797,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2764,7 +2820,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.backendServices.patch
         * @desc Patches the specified BackendService resource with the data
@@ -2847,7 +2903,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2869,7 +2927,7 @@ function Compute(options) {
         pathParams: ['backendService', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.backendServices.update
         * @desc Updates the specified BackendService resource with the data
@@ -2951,7 +3009,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2973,7 +3033,7 @@ function Compute(options) {
         pathParams: ['backendService', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -3062,7 +3122,9 @@ function Compute(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        aggregatedList(params, options, callback) {
+        aggregatedList(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -3083,7 +3145,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.disks.createSnapshot
             * @desc Creates a snapshot of a specified persistent disk.
@@ -3164,7 +3226,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        createSnapshot(params, options, callback) {
+        createSnapshot(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -3186,7 +3250,7 @@ function Compute(options) {
             pathParams: ['disk', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.disks.delete
             * @desc Deletes the specified persistent disk. Deleting a disk
@@ -3264,7 +3328,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -3286,7 +3352,7 @@ function Compute(options) {
             pathParams: ['disk', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.disks.get
             * @desc Returns a specified persistent disk. Get a list of available
@@ -3361,7 +3427,8 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -3383,7 +3450,7 @@ function Compute(options) {
             pathParams: ['disk', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.disks.insert
             * @desc Creates a persistent disk in the specified project using the
@@ -3464,7 +3531,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        insert(params, options, callback) {
+        insert(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -3485,7 +3554,7 @@ function Compute(options) {
             pathParams: ['project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.disks.list
             * @desc Retrieves a list of persistent disks contained within the
@@ -3573,7 +3642,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -3594,7 +3665,7 @@ function Compute(options) {
             pathParams: ['project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.disks.resize
             * @desc Resizes the specified persistent disk. You can only increase
@@ -3675,7 +3746,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        resize(params, options, callback) {
+        resize(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -3697,7 +3770,7 @@ function Compute(options) {
             pathParams: ['disk', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.disks.setLabels
             * @desc Sets the labels on a disk. To learn more about labels, read
@@ -3778,7 +3851,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setLabels(params, options, callback) {
+        setLabels(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -3800,7 +3875,7 @@ function Compute(options) {
             pathParams: ['project', 'resource', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       };
@@ -3888,7 +3963,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -3909,7 +3986,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.diskTypes.get
         * @desc Returns the specified disk type. Get a list of available disk
@@ -3984,7 +4061,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4006,7 +4084,7 @@ function Compute(options) {
         pathParams: ['diskType', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.diskTypes.list
         * @desc Retrieves a list of disk types available to the specified
@@ -4094,7 +4172,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4115,7 +4195,7 @@ function Compute(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -4190,7 +4270,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4212,7 +4294,7 @@ function Compute(options) {
         pathParams: ['firewall', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.firewalls.get
         * @desc Returns the specified firewall.
@@ -4282,7 +4364,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4304,7 +4387,7 @@ function Compute(options) {
         pathParams: ['firewall', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.firewalls.insert
         * @desc Creates a firewall rule in the specified project using the data
@@ -4377,7 +4460,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4397,7 +4482,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.firewalls.list
         * @desc Retrieves the list of firewall rules available to the specified
@@ -4481,7 +4566,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4501,7 +4588,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.firewalls.patch
         * @desc Updates the specified firewall rule with the data included in
@@ -4581,7 +4668,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4603,11 +4692,11 @@ function Compute(options) {
         pathParams: ['firewall', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.firewalls.update
         * @desc Updates the specified firewall rule with the data included in
-        * the request. Using PUT method, can only update following fields of
+        * the request. The PUT method can only update the following fields of
         * firewall rule: allowed, description, sourceRanges, sourceTags,
         * targetTags.
         * @example
@@ -4684,7 +4773,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4706,7 +4797,7 @@ function Compute(options) {
         pathParams: ['firewall', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -4794,7 +4885,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4815,7 +4908,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.forwardingRules.delete
         * @desc Deletes the specified ForwardingRule resource.
@@ -4891,7 +4984,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -4913,7 +5008,7 @@ function Compute(options) {
         pathParams: ['forwardingRule', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.forwardingRules.get
         * @desc Returns the specified ForwardingRule resource.
@@ -4988,7 +5083,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5010,7 +5106,7 @@ function Compute(options) {
         pathParams: ['forwardingRule', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.forwardingRules.insert
         * @desc Creates a ForwardingRule resource in the specified project and
@@ -5087,7 +5183,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5109,7 +5207,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.forwardingRules.list
         * @desc Retrieves a list of ForwardingRule resources available to the
@@ -5197,7 +5295,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5219,7 +5319,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.forwardingRules.setTarget
         * @desc Changes target URL for forwarding rule. The new target should be
@@ -5301,7 +5401,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setTarget(params, options, callback) {
+    setTarget(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5323,7 +5425,7 @@ function Compute(options) {
         pathParams: ['forwardingRule', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -5398,7 +5500,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5419,7 +5523,7 @@ function Compute(options) {
         pathParams: ['address', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.globalAddresses.get
         * @desc Returns the specified address resource. Get a list of available
@@ -5490,7 +5594,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5511,7 +5616,7 @@ function Compute(options) {
         pathParams: ['address', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.globalAddresses.insert
         * @desc Creates an address resource in the specified project using the
@@ -5584,7 +5689,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5604,7 +5711,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.globalAddresses.list
         * @desc Retrieves a list of global addresses.
@@ -5687,7 +5794,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5707,7 +5816,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -5783,7 +5892,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5805,7 +5916,7 @@ function Compute(options) {
         pathParams: ['forwardingRule', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.globalForwardingRules.get
         * @desc Returns the specified GlobalForwardingRule resource. Get a list
@@ -5877,7 +5988,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5899,7 +6011,7 @@ function Compute(options) {
         pathParams: ['forwardingRule', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.globalForwardingRules.insert
         * @desc Creates a GlobalForwardingRule resource in the specified project
@@ -5970,7 +6082,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -5991,7 +6105,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.globalForwardingRules.list
         * @desc Retrieves a list of GlobalForwardingRule resources available to
@@ -6075,7 +6189,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6096,7 +6212,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.globalForwardingRules.setTarget
         * @desc Changes target URL for the GlobalForwardingRule resource. The
@@ -6172,7 +6288,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setTarget(params, options, callback) {
+    setTarget(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6194,7 +6312,7 @@ function Compute(options) {
         pathParams: ['forwardingRule', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -6282,7 +6400,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6303,7 +6423,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.globalOperations.delete
         * @desc Deletes the specified Operations resource.
@@ -6370,7 +6490,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6392,7 +6514,7 @@ function Compute(options) {
         pathParams: ['operation', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.globalOperations.get
         * @desc Retrieves the specified Operations resource. Get a list of
@@ -6463,7 +6585,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6485,7 +6608,7 @@ function Compute(options) {
         pathParams: ['operation', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.globalOperations.list
         * @desc Retrieves a list of Operation resources contained within the
@@ -6569,7 +6692,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -6590,7 +6715,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -6667,7 +6792,9 @@ function Compute(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -6689,7 +6816,7 @@ function Compute(options) {
             pathParams: ['healthCheck', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.healthChecks.get
             * @desc Returns the specified HealthCheck resource. Get a list of
@@ -6761,7 +6888,8 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -6783,7 +6911,7 @@ function Compute(options) {
             pathParams: ['healthCheck', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.healthChecks.insert
             * @desc Creates a HealthCheck resource in the specified project
@@ -6856,7 +6984,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        insert(params, options, callback) {
+        insert(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -6877,7 +7007,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.healthChecks.list
             * @desc Retrieves the list of HealthCheck resources available to the
@@ -6961,7 +7091,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -6982,7 +7114,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.healthChecks.patch
             * @desc Updates a HealthCheck resource in the specified project
@@ -7064,7 +7196,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        patch(params, options, callback) {
+        patch(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -7086,7 +7220,7 @@ function Compute(options) {
             pathParams: ['healthCheck', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.healthChecks.update
             * @desc Updates a HealthCheck resource in the specified project
@@ -7166,7 +7300,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        update(params, options, callback) {
+        update(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -7188,7 +7324,7 @@ function Compute(options) {
             pathParams: ['healthCheck', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       };
@@ -7264,7 +7400,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7286,7 +7424,7 @@ function Compute(options) {
         pathParams: ['httpHealthCheck', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.httpHealthChecks.get
         * @desc Returns the specified HttpHealthCheck resource. Get a list of
@@ -7358,7 +7496,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7380,7 +7519,7 @@ function Compute(options) {
         pathParams: ['httpHealthCheck', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.httpHealthChecks.insert
         * @desc Creates a HttpHealthCheck resource in the specified project
@@ -7453,7 +7592,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7474,7 +7615,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.httpHealthChecks.list
         * @desc Retrieves the list of HttpHealthCheck resources available to the
@@ -7558,7 +7699,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7579,7 +7722,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.httpHealthChecks.patch
         * @desc Updates a HttpHealthCheck resource in the specified project
@@ -7660,7 +7803,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7682,7 +7827,7 @@ function Compute(options) {
         pathParams: ['httpHealthCheck', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.httpHealthChecks.update
         * @desc Updates a HttpHealthCheck resource in the specified project
@@ -7762,7 +7907,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7784,7 +7931,7 @@ function Compute(options) {
         pathParams: ['httpHealthCheck', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -7860,7 +8007,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7882,7 +8031,7 @@ function Compute(options) {
         pathParams: ['httpsHealthCheck', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.httpsHealthChecks.get
         * @desc Returns the specified HttpsHealthCheck resource. Get a list of
@@ -7954,7 +8103,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -7976,7 +8126,7 @@ function Compute(options) {
         pathParams: ['httpsHealthCheck', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.httpsHealthChecks.insert
         * @desc Creates a HttpsHealthCheck resource in the specified project
@@ -8049,7 +8199,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -8070,7 +8222,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.httpsHealthChecks.list
         * @desc Retrieves the list of HttpsHealthCheck resources available to
@@ -8154,7 +8306,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -8175,7 +8329,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.httpsHealthChecks.patch
         * @desc Updates a HttpsHealthCheck resource in the specified project
@@ -8256,7 +8410,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -8278,7 +8434,7 @@ function Compute(options) {
         pathParams: ['httpsHealthCheck', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.httpsHealthChecks.update
         * @desc Updates a HttpsHealthCheck resource in the specified project
@@ -8358,7 +8514,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -8380,7 +8538,7 @@ function Compute(options) {
         pathParams: ['httpsHealthCheck', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -8456,7 +8614,9 @@ function Compute(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -8477,7 +8637,7 @@ function Compute(options) {
             pathParams: ['image', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.images.deprecate
             * @desc Sets the deprecation status of an image.  If an empty
@@ -8554,7 +8714,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        deprecate(params, options, callback) {
+        deprecate(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -8576,7 +8738,7 @@ function Compute(options) {
             pathParams: ['image', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.images.get
             * @desc Returns the specified image. Get a list of available images
@@ -8647,7 +8809,8 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -8668,7 +8831,7 @@ function Compute(options) {
             pathParams: ['image', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.images.getFromFamily
             * @desc Returns the latest image that is part of an image family and
@@ -8739,7 +8902,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        getFromFamily(params, options, callback) {
+        getFromFamily(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -8761,7 +8926,7 @@ function Compute(options) {
             pathParams: ['family', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.images.insert
             * @desc Creates an image in the specified project using the data
@@ -8835,7 +9000,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        insert(params, options, callback) {
+        insert(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -8856,7 +9023,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.images.list
             * @desc Retrieves the list of custom images available to the
@@ -8945,7 +9112,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -8966,7 +9135,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.images.setLabels
             * @desc Sets the labels on an image. To learn more about labels,
@@ -9042,7 +9211,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setLabels(params, options, callback) {
+        setLabels(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -9064,7 +9235,7 @@ function Compute(options) {
             pathParams: ['project', 'resource'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       };
@@ -9160,7 +9331,9 @@ function Compute(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        abandonInstances(params, options, callback) {
+        abandonInstances(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -9182,7 +9355,7 @@ function Compute(options) {
             pathParams: ['instanceGroupManager', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instanceGroupManagers.aggregatedList
             * @desc Retrieves the list of managed instance groups and groups
@@ -9269,7 +9442,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        aggregatedList(params, options, callback) {
+        aggregatedList(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -9291,7 +9466,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instanceGroupManagers.delete
             * @desc Deletes the specified managed instance group and all of the
@@ -9368,7 +9543,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -9390,7 +9567,7 @@ function Compute(options) {
             pathParams: ['instanceGroupManager', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instanceGroupManagers.deleteInstances
             * @desc Schedules a group action to delete the specified instances
@@ -9480,7 +9657,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        deleteInstances(params, options, callback) {
+        deleteInstances(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -9502,7 +9681,7 @@ function Compute(options) {
             pathParams: ['instanceGroupManager', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instanceGroupManagers.get
             * @desc Returns all of the details about the specified managed
@@ -9577,7 +9756,8 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -9599,7 +9779,7 @@ function Compute(options) {
             pathParams: ['instanceGroupManager', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instanceGroupManagers.insert
             * @desc Creates a managed instance group using the information that
@@ -9683,7 +9863,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        insert(params, options, callback) {
+        insert(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -9705,7 +9887,7 @@ function Compute(options) {
             pathParams: ['project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instanceGroupManagers.list
             * @desc Retrieves a list of managed instance groups that are
@@ -9793,7 +9975,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -9815,7 +9999,7 @@ function Compute(options) {
             pathParams: ['project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instanceGroupManagers.listManagedInstances
             * @desc Lists all of the instances in the managed instance group.
@@ -9897,7 +10081,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        listManagedInstances(params, options, callback) {
+        listManagedInstances(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -9919,7 +10105,7 @@ function Compute(options) {
             pathParams: ['instanceGroupManager', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instanceGroupManagers.recreateInstances
             * @desc Schedules a group action to recreate the specified instances
@@ -10008,7 +10194,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        recreateInstances(params, options, callback) {
+        recreateInstances(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -10030,7 +10218,7 @@ function Compute(options) {
             pathParams: ['instanceGroupManager', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instanceGroupManagers.resize
             * @desc Resizes the managed instance group. If you increase the
@@ -10122,7 +10310,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        resize(params, options, callback) {
+        resize(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -10144,7 +10334,7 @@ function Compute(options) {
             pathParams: ['instanceGroupManager', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instanceGroupManagers.setInstanceTemplate
             * @desc Specifies the instance template to use when creating new
@@ -10225,7 +10415,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setInstanceTemplate(params, options, callback) {
+        setInstanceTemplate(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -10247,7 +10439,7 @@ function Compute(options) {
             pathParams: ['instanceGroupManager', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instanceGroupManagers.setTargetPools
             * @desc Modifies the target pools to which all instances in this
@@ -10332,7 +10524,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setTargetPools(params, options, callback) {
+        setTargetPools(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -10354,7 +10548,7 @@ function Compute(options) {
             pathParams: ['instanceGroupManager', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       };
@@ -10441,7 +10635,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addInstances(params, options, callback) {
+    addInstances(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -10463,7 +10659,7 @@ function Compute(options) {
         pathParams: ['instanceGroup', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.instanceGroups.aggregatedList
         * @desc Retrieves the list of instance groups and sorts them by zone.
@@ -10547,7 +10743,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -10568,7 +10766,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.instanceGroups.delete
         * @desc Deletes the specified instance group. The instances in the group
@@ -10646,7 +10844,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -10668,7 +10868,7 @@ function Compute(options) {
         pathParams: ['instanceGroup', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.instanceGroups.get
         * @desc Returns the specified instance group. Get a list of available
@@ -10744,7 +10944,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -10766,7 +10967,7 @@ function Compute(options) {
         pathParams: ['instanceGroup', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.instanceGroups.insert
         * @desc Creates an instance group in the specified project using the
@@ -10843,7 +11044,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -10865,7 +11068,7 @@ function Compute(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.instanceGroups.list
         * @desc Retrieves the list of instance groups that are located in the
@@ -10953,7 +11156,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -10975,7 +11180,7 @@ function Compute(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.instanceGroups.listInstances
         * @desc Lists the instances in the specified instance group.
@@ -11072,7 +11277,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    listInstances(params, options, callback) {
+    listInstances(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -11094,7 +11301,7 @@ function Compute(options) {
         pathParams: ['instanceGroup', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.instanceGroups.removeInstances
         * @desc Removes one or more instances from the specified instance group,
@@ -11177,7 +11384,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    removeInstances(params, options, callback) {
+    removeInstances(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -11199,7 +11408,7 @@ function Compute(options) {
         pathParams: ['instanceGroup', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.instanceGroups.setNamedPorts
         * @desc Sets the named ports for the specified instance group.
@@ -11278,7 +11487,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setNamedPorts(params, options, callback) {
+    setNamedPorts(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -11300,7 +11511,7 @@ function Compute(options) {
         pathParams: ['instanceGroup', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -11387,7 +11598,9 @@ function Compute(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        addAccessConfig(params, options, callback) {
+        addAccessConfig(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -11409,7 +11622,7 @@ function Compute(options) {
             pathParams: ['instance', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instances.aggregatedList
             * @desc Retrieves aggregated list of instances.
@@ -11493,7 +11706,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        aggregatedList(params, options, callback) {
+        aggregatedList(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -11514,7 +11729,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instances.attachDisk
             * @desc Attaches an existing Disk resource to an instance. You must
@@ -11597,7 +11812,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        attachDisk(params, options, callback) {
+        attachDisk(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -11619,7 +11836,7 @@ function Compute(options) {
             pathParams: ['instance', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instances.delete
             * @desc Deletes the specified Instance resource. For more
@@ -11695,7 +11912,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -11717,7 +11936,7 @@ function Compute(options) {
             pathParams: ['instance', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instances.deleteAccessConfig
             * @desc Deletes an access config from an instance's network
@@ -11799,7 +12018,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        deleteAccessConfig(params, options, callback) {
+        deleteAccessConfig(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -11823,7 +12044,7 @@ function Compute(options) {
             pathParams: ['instance', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instances.detachDisk
             * @desc Detaches a disk from an instance.
@@ -11902,7 +12123,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        detachDisk(params, options, callback) {
+        detachDisk(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -11924,7 +12147,7 @@ function Compute(options) {
             pathParams: ['instance', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instances.get
             * @desc Returns the specified Instance resource. Get a list of
@@ -11999,7 +12222,8 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -12021,7 +12245,7 @@ function Compute(options) {
             pathParams: ['instance', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instances.getSerialPortOutput
             * @desc Returns the specified instance's serial port output.
@@ -12095,7 +12319,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        getSerialPortOutput(params, options, callback) {
+        getSerialPortOutput(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -12117,7 +12343,7 @@ function Compute(options) {
             pathParams: ['instance', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instances.insert
             * @desc Creates an instance resource in the specified project using
@@ -12194,7 +12420,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        insert(params, options, callback) {
+        insert(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -12215,7 +12443,7 @@ function Compute(options) {
             pathParams: ['project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instances.list
             * @desc Retrieves the list of instances contained within the
@@ -12303,7 +12531,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -12324,7 +12554,51 @@ function Compute(options) {
             pathParams: ['project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
+        }, /**
+            * compute.instances.listReferrers
+            * @desc Retrieves the list of referrers to instances contained
+            * within the specified zone.
+            * @alias compute.instances.listReferrers
+            * @memberOf! compute(v1)
+            *
+            * @param {object} params Parameters for request
+            * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+            * @param {string} params.instance Name of the target instance scoping this request, or '-' if the request should span over all instances in the container.
+            * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+            * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+            * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+            * @param {string} params.project Project ID for this request.
+            * @param {string} params.zone The name of the zone for this request.
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        listReferrers(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url:
+                      (rootUrl +
+                       '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/referrers')
+                          .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'GET'
+                },
+                options),
+            params,
+            requiredParams: ['project', 'zone', 'instance'],
+            pathParams: ['instance', 'project', 'zone'],
+            context: self
+          };
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instances.reset
             * @desc Performs a reset on the instance. For more information, see
@@ -12400,7 +12674,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        reset(params, options, callback) {
+        reset(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -12422,7 +12698,7 @@ function Compute(options) {
             pathParams: ['instance', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instances.setDeletionProtection
             * @desc Sets deletion protection on the instance.
@@ -12496,7 +12772,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setDeletionProtection(params, options, callback) {
+        setDeletionProtection(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -12518,7 +12796,7 @@ function Compute(options) {
             pathParams: ['project', 'resource', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instances.setDiskAutoDelete
             * @desc Sets the auto-delete flag for a disk attached to an
@@ -12600,7 +12878,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setDiskAutoDelete(params, options, callback) {
+        setDiskAutoDelete(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -12623,7 +12903,7 @@ function Compute(options) {
             pathParams: ['instance', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instances.setLabels
             * @desc Sets labels on an instance. To learn more about labels, read
@@ -12704,7 +12984,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setLabels(params, options, callback) {
+        setLabels(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -12726,7 +13008,7 @@ function Compute(options) {
             pathParams: ['instance', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instances.setMachineResources
             * @desc Changes the number and/or type of accelerator for a stopped
@@ -12805,7 +13087,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setMachineResources(params, options, callback) {
+        setMachineResources(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -12827,7 +13111,7 @@ function Compute(options) {
             pathParams: ['instance', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instances.setMachineType
             * @desc Changes the machine type for a stopped instance to the
@@ -12906,7 +13190,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setMachineType(params, options, callback) {
+        setMachineType(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -12928,7 +13214,7 @@ function Compute(options) {
             pathParams: ['instance', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instances.setMetadata
             * @desc Sets metadata for the specified instance to the data
@@ -13009,7 +13295,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setMetadata(params, options, callback) {
+        setMetadata(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -13031,7 +13319,7 @@ function Compute(options) {
             pathParams: ['instance', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instances.setMinCpuPlatform
             * @desc Changes the minimum CPU platform that this instance should
@@ -13111,7 +13399,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setMinCpuPlatform(params, options, callback) {
+        setMinCpuPlatform(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -13133,7 +13423,7 @@ function Compute(options) {
             pathParams: ['instance', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instances.setScheduling
             * @desc Sets an instance's scheduling options.
@@ -13211,7 +13501,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setScheduling(params, options, callback) {
+        setScheduling(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -13233,7 +13525,7 @@ function Compute(options) {
             pathParams: ['instance', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instances.setServiceAccount
             * @desc Sets the service account on the instance. For more
@@ -13313,7 +13605,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setServiceAccount(params, options, callback) {
+        setServiceAccount(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -13335,7 +13629,7 @@ function Compute(options) {
             pathParams: ['instance', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instances.setTags
             * @desc Sets tags for the specified instance to the data included in
@@ -13416,7 +13710,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setTags(params, options, callback) {
+        setTags(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -13438,7 +13734,7 @@ function Compute(options) {
             pathParams: ['instance', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instances.start
             * @desc Starts an instance that was stopped using the using the
@@ -13515,7 +13811,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        start(params, options, callback) {
+        start(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -13537,7 +13835,7 @@ function Compute(options) {
             pathParams: ['instance', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instances.startWithEncryptionKey
             * @desc Starts an instance that was stopped using the using the
@@ -13617,7 +13915,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        startWithEncryptionKey(params, options, callback) {
+        startWithEncryptionKey(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -13639,7 +13939,7 @@ function Compute(options) {
             pathParams: ['instance', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.instances.stop
             * @desc Stops a running instance, shutting it down cleanly, and
@@ -13719,7 +14019,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        stop(params, options, callback) {
+        stop(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -13741,7 +14043,95 @@ function Compute(options) {
             pathParams: ['instance', 'project', 'zone'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
+        }, /**
+            * compute.instances.updateAccessConfig
+            * @desc Updates the specified access config from an instance's
+            * network interface with the data included in the request. This
+            * method supports PATCH semantics and uses the JSON merge patch
+            * format and processing rules.
+            * @alias compute.instances.updateAccessConfig
+            * @memberOf! compute(v1)
+            *
+            * @param {object} params Parameters for request
+            * @param {string} params.instance The instance name for this request.
+            * @param {string} params.networkInterface The name of the network interface where the access config is attached.
+            * @param {string} params.project Project ID for this request.
+            * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+            * @param {string} params.zone The name of the zone for this request.
+            * @param {compute(v1).AccessConfig} params.resource Request body data
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        updateAccessConfig(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url:
+                      (rootUrl +
+                       '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/updateAccessConfig')
+                          .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'POST'
+                },
+                options),
+            params,
+            requiredParams: ['project', 'zone', 'instance', 'networkInterface'],
+            pathParams: ['instance', 'project', 'zone'],
+            context: self
+          };
+          return createAPIRequest(parameters, callback!);
+        }, /**
+            * compute.instances.updateNetworkInterface
+            * @desc Updates an instance's network interface. This method follows
+            * PATCH semantics.
+            * @alias compute.instances.updateNetworkInterface
+            * @memberOf! compute(v1)
+            *
+            * @param {object} params Parameters for request
+            * @param {string} params.instance The instance name for this request.
+            * @param {string} params.networkInterface The name of the network interface to update.
+            * @param {string} params.project Project ID for this request.
+            * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+            * @param {string} params.zone The name of the zone for this request.
+            * @param {compute(v1).NetworkInterface} params.resource Request body data
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        updateNetworkInterface(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url:
+                      (rootUrl +
+                       '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/updateNetworkInterface')
+                          .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'PATCH'
+                },
+                options),
+            params,
+            requiredParams: ['project', 'zone', 'instance', 'networkInterface'],
+            pathParams: ['instance', 'project', 'zone'],
+            context: self
+          };
+          return createAPIRequest(parameters, callback!);
         }
 
       };
@@ -13819,7 +14209,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -13841,7 +14233,7 @@ function Compute(options) {
         pathParams: ['instanceTemplate', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.instanceTemplates.get
         * @desc Returns the specified instance template. Get a list of available
@@ -13913,7 +14305,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -13935,7 +14328,7 @@ function Compute(options) {
         pathParams: ['instanceTemplate', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.instanceTemplates.insert
         * @desc Creates an instance template in the specified project using the
@@ -14011,7 +14404,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -14032,7 +14427,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.instanceTemplates.list
         * @desc Retrieves a list of instance templates that are contained within
@@ -14116,7 +14511,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -14137,7 +14534,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -14226,7 +14623,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -14248,7 +14647,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.interconnectAttachments.delete
         * @desc Deletes the specified interconnect attachment.
@@ -14322,7 +14721,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -14344,7 +14745,7 @@ function Compute(options) {
         pathParams: ['interconnectAttachment', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.interconnectAttachments.get
         * @desc Returns the specified interconnect attachment.
@@ -14417,7 +14818,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -14439,7 +14841,7 @@ function Compute(options) {
         pathParams: ['interconnectAttachment', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.interconnectAttachments.insert
         * @desc Creates an InterconnectAttachment in the specified project using
@@ -14514,7 +14916,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -14536,7 +14940,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.interconnectAttachments.list
         * @desc Retrieves the list of interconnect attachments contained within
@@ -14624,7 +15028,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -14646,7 +15052,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -14722,7 +15128,8 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -14744,7 +15151,7 @@ function Compute(options) {
         pathParams: ['interconnectLocation', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.interconnectLocations.list
         * @desc Retrieves the list of interconnect locations available to the
@@ -14828,7 +15235,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -14850,7 +15259,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -14927,7 +15336,9 @@ function Compute(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -14949,7 +15360,7 @@ function Compute(options) {
             pathParams: ['interconnect', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.interconnects.get
             * @desc Returns the specified interconnect. Get a list of available
@@ -15021,7 +15432,8 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -15043,7 +15455,7 @@ function Compute(options) {
             pathParams: ['interconnect', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.interconnects.insert
             * @desc Creates a Interconnect in the specified project using the
@@ -15116,7 +15528,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        insert(params, options, callback) {
+        insert(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -15137,7 +15551,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.interconnects.list
             * @desc Retrieves the list of interconnect available to the
@@ -15221,7 +15635,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -15242,7 +15658,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.interconnects.patch
             * @desc Updates the specified interconnect with the data included in
@@ -15323,7 +15739,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        patch(params, options, callback) {
+        patch(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -15345,7 +15763,7 @@ function Compute(options) {
             pathParams: ['interconnect', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       };
@@ -15419,7 +15837,8 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -15440,7 +15859,7 @@ function Compute(options) {
         pathParams: ['license', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -15528,7 +15947,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -15549,7 +15970,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.machineTypes.get
         * @desc Returns the specified machine type. Get a list of available
@@ -15625,7 +16046,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -15647,7 +16069,7 @@ function Compute(options) {
         pathParams: ['machineType', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.machineTypes.list
         * @desc Retrieves a list of machine types available to the specified
@@ -15735,7 +16157,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -15756,7 +16180,7 @@ function Compute(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -15837,7 +16261,9 @@ function Compute(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        addPeering(params, options, callback) {
+        addPeering(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -15859,7 +16285,7 @@ function Compute(options) {
             pathParams: ['network', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.networks.delete
             * @desc Deletes the specified network.
@@ -15930,7 +16356,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -15952,7 +16380,7 @@ function Compute(options) {
             pathParams: ['network', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.networks.get
             * @desc Returns the specified network. Get a list of available
@@ -16023,7 +16451,8 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -16045,7 +16474,7 @@ function Compute(options) {
             pathParams: ['network', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.networks.insert
             * @desc Creates a network in the specified project using the data
@@ -16118,7 +16547,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        insert(params, options, callback) {
+        insert(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -16139,7 +16570,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.networks.list
             * @desc Retrieves the list of networks available to the specified
@@ -16223,7 +16654,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -16244,7 +16677,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.networks.patch
             * @desc Patches the specified network with the data included in the
@@ -16324,7 +16757,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        patch(params, options, callback) {
+        patch(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -16346,7 +16781,7 @@ function Compute(options) {
             pathParams: ['network', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.networks.removePeering
             * @desc Removes a peering from the specified network.
@@ -16420,7 +16855,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        removePeering(params, options, callback) {
+        removePeering(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -16442,7 +16879,7 @@ function Compute(options) {
             pathParams: ['network', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.networks.switchToCustomMode
             * @desc Switches the network mode from auto subnet mode to custom
@@ -16512,7 +16949,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        switchToCustomMode(params, options, callback) {
+        switchToCustomMode(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -16534,7 +16973,7 @@ function Compute(options) {
             pathParams: ['network', 'project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       };
@@ -16606,7 +17045,9 @@ function Compute(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        disableXpnHost(params, options, callback) {
+        disableXpnHost(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -16627,7 +17068,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.projects.disableXpnResource
             * @desc Disable a serivce resource (a.k.a service project)
@@ -16698,7 +17139,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        disableXpnResource(params, options, callback) {
+        disableXpnResource(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -16719,7 +17162,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.projects.enableXpnHost
             * @desc Enable this project as a shared VPC host project.
@@ -16784,7 +17227,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        enableXpnHost(params, options, callback) {
+        enableXpnHost(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -16805,7 +17250,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.projects.enableXpnResource
             * @desc Enable service resource (a.k.a service project) for a host
@@ -16877,7 +17322,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        enableXpnResource(params, options, callback) {
+        enableXpnResource(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -16898,7 +17345,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.projects.get
             * @desc Returns the specified Project resource.
@@ -16964,7 +17411,8 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -16984,7 +17432,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.projects.getXpnHost
             * @desc Get the shared VPC host project that this project links to.
@@ -17051,7 +17499,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        getXpnHost(params, options, callback) {
+        getXpnHost(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -17071,7 +17521,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.projects.getXpnResources
             * @desc Get service resources (a.k.a service project) associated
@@ -17156,7 +17606,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        getXpnResources(params, options, callback) {
+        getXpnResources(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -17177,7 +17629,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.projects.listXpnHosts
             * @desc List all shared VPC host projects visible to the user in an
@@ -17266,7 +17718,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        listXpnHosts(params, options, callback) {
+        listXpnHosts(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -17286,7 +17740,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.projects.moveDisk
             * @desc Moves a persistent disk from one zone to another.
@@ -17358,7 +17812,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        moveDisk(params, options, callback) {
+        moveDisk(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -17378,7 +17834,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.projects.moveInstance
             * @desc Moves an instance and its attached persistent disks from one
@@ -17451,7 +17907,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        moveInstance(params, options, callback) {
+        moveInstance(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -17471,7 +17929,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.projects.setCommonInstanceMetadata
             * @desc Sets metadata common to all instances within the specified
@@ -17542,7 +18000,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setCommonInstanceMetadata(params, options, callback) {
+        setCommonInstanceMetadata(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -17564,7 +18024,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.projects.setUsageExportBucket
             * @desc Enables the usage export feature and sets the usage export
@@ -17636,7 +18096,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        setUsageExportBucket(params, options, callback) {
+        setUsageExportBucket(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -17657,7 +18119,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       };
@@ -17737,7 +18199,9 @@ function Compute(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -17759,7 +18223,7 @@ function Compute(options) {
             pathParams: ['autoscaler', 'project', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.regionAutoscalers.get
             * @desc Returns the specified autoscaler.
@@ -17834,7 +18298,8 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -17856,7 +18321,7 @@ function Compute(options) {
             pathParams: ['autoscaler', 'project', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.regionAutoscalers.insert
             * @desc Creates an autoscaler in the specified project using the
@@ -17931,7 +18396,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        insert(params, options, callback) {
+        insert(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -17953,7 +18420,7 @@ function Compute(options) {
             pathParams: ['project', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.regionAutoscalers.list
             * @desc Retrieves a list of autoscalers contained within the
@@ -18041,7 +18508,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -18063,7 +18532,7 @@ function Compute(options) {
             pathParams: ['project', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.regionAutoscalers.patch
             * @desc Updates an autoscaler in the specified project using the
@@ -18142,7 +18611,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        patch(params, options, callback) {
+        patch(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -18164,7 +18635,7 @@ function Compute(options) {
             pathParams: ['project', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.regionAutoscalers.update
             * @desc Updates an autoscaler in the specified project using the
@@ -18242,7 +18713,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        update(params, options, callback) {
+        update(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -18264,7 +18737,7 @@ function Compute(options) {
             pathParams: ['project', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       };
@@ -18344,7 +18817,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -18366,7 +18841,7 @@ function Compute(options) {
         pathParams: ['backendService', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionBackendServices.get
         * @desc Returns the specified regional BackendService resource.
@@ -18441,7 +18916,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -18463,7 +18939,7 @@ function Compute(options) {
         pathParams: ['backendService', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionBackendServices.getHealth
         * @desc Gets the most recent health check results for this regional
@@ -18533,7 +19009,7 @@ function Compute(options) {
         * @memberOf! compute(v1)
         *
         * @param {object} params Parameters for request
-        * @param {string} params.backendService Name of the BackendService resource to which the queried instance belongs.
+        * @param {string} params.backendService Name of the BackendService resource for which to get health.
         * @param {string} params.project
         * @param {string} params.region Name of the region scoping this request.
         * @param {compute(v1).ResourceGroupReference} params.resource Request body data
@@ -18541,7 +19017,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getHealth(params, options, callback) {
+    getHealth(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -18563,7 +19041,7 @@ function Compute(options) {
         pathParams: ['backendService', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionBackendServices.insert
         * @desc Creates a regional BackendService resource in the specified
@@ -18641,7 +19119,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -18663,7 +19143,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionBackendServices.list
         * @desc Retrieves the list of regional BackendService resources
@@ -18751,7 +19231,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -18773,7 +19255,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionBackendServices.patch
         * @desc Updates the specified regional BackendService resource with the
@@ -18859,7 +19341,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -18881,7 +19365,7 @@ function Compute(options) {
         pathParams: ['backendService', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionBackendServices.update
         * @desc Updates the specified regional BackendService resource with the
@@ -18965,7 +19449,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -18987,7 +19473,7 @@ function Compute(options) {
         pathParams: ['backendService', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -19075,7 +19561,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -19096,7 +19584,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionCommitments.get
         * @desc Returns the specified commitment resource. Get a list of
@@ -19171,7 +19659,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -19193,7 +19682,7 @@ function Compute(options) {
         pathParams: ['commitment', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionCommitments.insert
         * @desc Creates a commitment in the specified project using the data
@@ -19270,7 +19759,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -19292,7 +19783,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionCommitments.list
         * @desc Retrieves a list of commitments contained within the specified
@@ -19380,7 +19871,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -19402,7 +19895,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -19497,7 +19990,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    abandonInstances(params, options, callback) {
+    abandonInstances(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -19519,7 +20014,7 @@ function Compute(options) {
         pathParams: ['instanceGroupManager', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionInstanceGroupManagers.delete
         * @desc Deletes the specified managed instance group and all of the
@@ -19594,7 +20089,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -19616,7 +20113,7 @@ function Compute(options) {
         pathParams: ['instanceGroupManager', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionInstanceGroupManagers.deleteInstances
         * @desc Schedules a group action to delete the specified instances in
@@ -19706,7 +20203,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    deleteInstances(params, options, callback) {
+    deleteInstances(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -19728,7 +20227,7 @@ function Compute(options) {
         pathParams: ['instanceGroupManager', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionInstanceGroupManagers.get
         * @desc Returns all of the details about the specified managed instance
@@ -19802,7 +20301,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -19824,7 +20324,7 @@ function Compute(options) {
         pathParams: ['instanceGroupManager', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionInstanceGroupManagers.insert
         * @desc Creates a managed instance group using the information that you
@@ -19905,7 +20405,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -19927,7 +20429,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionInstanceGroupManagers.list
         * @desc Retrieves the list of managed instance groups that are contained
@@ -20015,7 +20517,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -20037,7 +20541,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionInstanceGroupManagers.listManagedInstances
         * @desc Lists the instances in the managed instance group and instances
@@ -20116,7 +20620,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    listManagedInstances(params, options, callback) {
+    listManagedInstances(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -20138,7 +20644,7 @@ function Compute(options) {
         pathParams: ['instanceGroupManager', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionInstanceGroupManagers.recreateInstances
         * @desc Schedules a group action to recreate the specified instances in
@@ -20227,7 +20733,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    recreateInstances(params, options, callback) {
+    recreateInstances(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -20249,7 +20757,7 @@ function Compute(options) {
         pathParams: ['instanceGroupManager', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionInstanceGroupManagers.resize
         * @desc Changes the intended size for the managed instance group. If you
@@ -20337,7 +20845,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    resize(params, options, callback) {
+    resize(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -20359,7 +20869,7 @@ function Compute(options) {
         pathParams: ['instanceGroupManager', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionInstanceGroupManagers.setInstanceTemplate
         * @desc Sets the instance template to use when creating new instances or
@@ -20440,7 +20950,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setInstanceTemplate(params, options, callback) {
+    setInstanceTemplate(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -20462,7 +20974,7 @@ function Compute(options) {
         pathParams: ['instanceGroupManager', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionInstanceGroupManagers.setTargetPools
         * @desc Modifies the target pools to which all new instances in this
@@ -20542,7 +21054,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setTargetPools(params, options, callback) {
+    setTargetPools(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -20564,7 +21078,7 @@ function Compute(options) {
         pathParams: ['instanceGroupManager', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -20643,7 +21157,8 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -20665,7 +21180,7 @@ function Compute(options) {
         pathParams: ['instanceGroup', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionInstanceGroups.list
         * @desc Retrieves the list of instance group resources contained within
@@ -20753,7 +21268,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -20775,7 +21292,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionInstanceGroups.listInstances
         * @desc Lists the instances in the specified instance group and displays
@@ -20875,7 +21392,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    listInstances(params, options, callback) {
+    listInstances(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -20897,7 +21416,7 @@ function Compute(options) {
         pathParams: ['instanceGroup', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionInstanceGroups.setNamedPorts
         * @desc Sets the named ports for the specified regional instance group.
@@ -20976,7 +21495,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setNamedPorts(params, options, callback) {
+    setNamedPorts(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -20998,7 +21519,7 @@ function Compute(options) {
         pathParams: ['instanceGroup', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -21073,7 +21594,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -21095,7 +21618,7 @@ function Compute(options) {
         pathParams: ['operation', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionOperations.get
         * @desc Retrieves the specified region-specific Operations resource.
@@ -21169,7 +21692,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -21191,7 +21715,7 @@ function Compute(options) {
         pathParams: ['operation', 'project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regionOperations.list
         * @desc Retrieves a list of Operation resources contained within the
@@ -21279,7 +21803,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -21301,7 +21827,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -21376,7 +21902,8 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -21396,7 +21923,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.regions.list
         * @desc Retrieves the list of region resources available to the
@@ -21480,7 +22007,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -21500,7 +22029,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -21588,7 +22117,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -21609,7 +22140,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.routers.delete
         * @desc Deletes the specified Router resource.
@@ -21684,7 +22215,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -21706,7 +22239,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'router'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.routers.get
         * @desc Returns the specified Router resource. Get a list of available
@@ -21781,7 +22314,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -21803,7 +22337,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'router'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.routers.getRouterStatus
         * @desc Retrieves runtime information of the specified router.
@@ -21877,7 +22411,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getRouterStatus(params, options, callback) {
+    getRouterStatus(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -21899,7 +22435,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'router'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.routers.insert
         * @desc Creates a Router resource in the specified project and region
@@ -21976,7 +22512,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -21997,7 +22535,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.routers.list
         * @desc Retrieves a list of Router resources available to the specified
@@ -22085,7 +22623,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -22106,7 +22646,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.routers.patch
         * @desc Patches the specified Router resource with the data included in
@@ -22190,7 +22730,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    patch(params, options, callback) {
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -22212,7 +22754,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'router'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.routers.preview
         * @desc Preview fields auto-generated during router create and update
@@ -22292,7 +22834,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    preview(params, options, callback) {
+    preview(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -22314,7 +22858,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'router'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.routers.update
         * @desc Updates the specified Router resource with the data included in
@@ -22397,7 +22941,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    update(params, options, callback) {
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -22419,7 +22965,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'router'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -22494,7 +23040,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -22515,7 +23063,7 @@ function Compute(options) {
         pathParams: ['project', 'route'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.routes.get
         * @desc Returns the specified Route resource. Get a list of available
@@ -22586,7 +23134,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -22607,7 +23156,7 @@ function Compute(options) {
         pathParams: ['project', 'route'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.routes.insert
         * @desc Creates a Route resource in the specified project using the data
@@ -22680,7 +23229,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -22700,7 +23251,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.routes.list
         * @desc Retrieves the list of Route resources available to the specified
@@ -22784,7 +23335,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -22804,7 +23357,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -22883,7 +23436,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -22905,7 +23460,7 @@ function Compute(options) {
         pathParams: ['project', 'snapshot'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.snapshots.get
         * @desc Returns the specified Snapshot resource. Get a list of available
@@ -22976,7 +23531,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -22998,7 +23554,7 @@ function Compute(options) {
         pathParams: ['project', 'snapshot'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.snapshots.list
         * @desc Retrieves the list of Snapshot resources contained within the
@@ -23082,7 +23638,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -23102,7 +23660,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.snapshots.setLabels
         * @desc Sets the labels on a snapshot. To learn more about labels, read
@@ -23178,7 +23736,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setLabels(params, options, callback) {
+    setLabels(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -23200,7 +23760,7 @@ function Compute(options) {
         pathParams: ['project', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -23276,7 +23836,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -23298,7 +23860,7 @@ function Compute(options) {
         pathParams: ['project', 'sslCertificate'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.sslCertificates.get
         * @desc Returns the specified SslCertificate resource. Get a list of
@@ -23370,7 +23932,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -23392,7 +23955,7 @@ function Compute(options) {
         pathParams: ['project', 'sslCertificate'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.sslCertificates.insert
         * @desc Creates a SslCertificate resource in the specified project using
@@ -23465,7 +24028,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -23486,7 +24051,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.sslCertificates.list
         * @desc Retrieves the list of SslCertificate resources available to the
@@ -23570,7 +24135,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -23591,7 +24158,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -23679,7 +24246,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -23700,7 +24269,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.subnetworks.delete
         * @desc Deletes the specified subnetwork.
@@ -23775,7 +24344,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -23797,7 +24368,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'subnetwork'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.subnetworks.expandIpCidrRange
         * @desc Expands the IP CIDR range of the subnetwork to a specified
@@ -23876,7 +24447,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    expandIpCidrRange(params, options, callback) {
+    expandIpCidrRange(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -23898,7 +24471,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'subnetwork'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.subnetworks.get
         * @desc Returns the specified subnetwork. Get a list of available
@@ -23973,7 +24546,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -23995,7 +24569,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'subnetwork'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.subnetworks.insert
         * @desc Creates a subnetwork in the specified project using the data
@@ -24072,7 +24646,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -24094,7 +24670,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.subnetworks.list
         * @desc Retrieves a list of subnetworks available to the specified
@@ -24182,7 +24758,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -24204,7 +24782,52 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
+    }, /**
+        * compute.subnetworks.patch
+        * @desc Patches the specified subnetwork with the data included in the
+        * request. Only the following fields within the subnetwork resource can
+        * be specified in the request: secondary_ip_range and
+        * allow_subnet_cidr_routes_overlap. It is also mandatory to specify the
+        * current fingeprint of the subnetwork resource being patched.
+        * @alias compute.subnetworks.patch
+        * @memberOf! compute(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project Project ID for this request.
+        * @param {string} params.region Name of the region scoping this request.
+        * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        * @param {string} params.subnetwork Name of the Subnetwork resource to patch.
+        * @param {compute(v1).Subnetwork} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'subnetwork'],
+        pathParams: ['project', 'region', 'subnetwork'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.subnetworks.setPrivateIpGoogleAccess
         * @desc Set whether VMs in this subnet can access Google services
@@ -24283,7 +24906,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setPrivateIpGoogleAccess(params, options, callback) {
+    setPrivateIpGoogleAccess(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -24305,7 +24930,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'subnetwork'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -24381,7 +25006,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -24403,7 +25030,7 @@ function Compute(options) {
         pathParams: ['project', 'targetHttpProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetHttpProxies.get
         * @desc Returns the specified TargetHttpProxy resource. Get a list of
@@ -24475,7 +25102,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -24497,7 +25125,7 @@ function Compute(options) {
         pathParams: ['project', 'targetHttpProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetHttpProxies.insert
         * @desc Creates a TargetHttpProxy resource in the specified project
@@ -24570,7 +25198,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -24591,7 +25221,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetHttpProxies.list
         * @desc Retrieves the list of TargetHttpProxy resources available to the
@@ -24675,7 +25305,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -24696,7 +25328,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetHttpProxies.setUrlMap
         * @desc Changes the URL map for TargetHttpProxy.
@@ -24771,7 +25403,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setUrlMap(params, options, callback) {
+    setUrlMap(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -24793,7 +25427,7 @@ function Compute(options) {
         pathParams: ['project', 'targetHttpProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -24869,7 +25503,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -24891,7 +25527,7 @@ function Compute(options) {
         pathParams: ['project', 'targetHttpsProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetHttpsProxies.get
         * @desc Returns the specified TargetHttpsProxy resource. Get a list of
@@ -24963,7 +25599,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -24985,7 +25622,7 @@ function Compute(options) {
         pathParams: ['project', 'targetHttpsProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetHttpsProxies.insert
         * @desc Creates a TargetHttpsProxy resource in the specified project
@@ -25058,7 +25695,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -25079,7 +25718,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetHttpsProxies.list
         * @desc Retrieves the list of TargetHttpsProxy resources available to
@@ -25163,7 +25802,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -25184,7 +25825,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetHttpsProxies.setSslCertificates
         * @desc Replaces SslCertificates for TargetHttpsProxy.
@@ -25259,7 +25900,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setSslCertificates(params, options, callback) {
+    setSslCertificates(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -25281,7 +25924,7 @@ function Compute(options) {
         pathParams: ['project', 'targetHttpsProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetHttpsProxies.setUrlMap
         * @desc Changes the URL map for TargetHttpsProxy.
@@ -25356,7 +25999,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setUrlMap(params, options, callback) {
+    setUrlMap(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -25378,7 +26023,7 @@ function Compute(options) {
         pathParams: ['project', 'targetHttpsProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -25466,7 +26111,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -25487,7 +26134,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetInstances.delete
         * @desc Deletes the specified TargetInstance resource.
@@ -25563,7 +26210,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -25585,7 +26234,7 @@ function Compute(options) {
         pathParams: ['project', 'targetInstance', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetInstances.get
         * @desc Returns the specified TargetInstance resource. Get a list of
@@ -25661,7 +26310,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -25683,7 +26333,7 @@ function Compute(options) {
         pathParams: ['project', 'targetInstance', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetInstances.insert
         * @desc Creates a TargetInstance resource in the specified project and
@@ -25760,7 +26410,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -25782,7 +26434,7 @@ function Compute(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetInstances.list
         * @desc Retrieves a list of TargetInstance resources available to the
@@ -25870,7 +26522,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -25892,7 +26546,7 @@ function Compute(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -25976,7 +26630,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addHealthCheck(params, options, callback) {
+    addHealthCheck(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -25998,7 +26654,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'targetPool'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetPools.addInstance
         * @desc Adds an instance to a target pool.
@@ -26078,7 +26734,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    addInstance(params, options, callback) {
+    addInstance(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -26100,7 +26758,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'targetPool'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetPools.aggregatedList
         * @desc Retrieves an aggregated list of target pools.
@@ -26184,7 +26842,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -26205,7 +26865,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetPools.delete
         * @desc Deletes the specified target pool.
@@ -26280,7 +26940,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -26302,7 +26964,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'targetPool'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetPools.get
         * @desc Returns the specified target pool. Get a list of available
@@ -26377,7 +27039,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -26399,7 +27062,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'targetPool'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetPools.getHealth
         * @desc Gets the most recent health check results for each IP for the
@@ -26480,7 +27143,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    getHealth(params, options, callback) {
+    getHealth(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -26502,7 +27167,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'targetPool'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetPools.insert
         * @desc Creates a target pool in the specified project and region using
@@ -26579,7 +27244,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -26601,7 +27268,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetPools.list
         * @desc Retrieves a list of target pools available to the specified
@@ -26689,7 +27356,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -26711,7 +27380,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetPools.removeHealthCheck
         * @desc Removes health check URL from a target pool.
@@ -26789,7 +27458,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    removeHealthCheck(params, options, callback) {
+    removeHealthCheck(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -26811,7 +27482,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'targetPool'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetPools.removeInstance
         * @desc Removes instance URL from a target pool.
@@ -26889,7 +27560,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    removeInstance(params, options, callback) {
+    removeInstance(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -26911,7 +27584,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'targetPool'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetPools.setBackup
         * @desc Changes a backup target pool's configurations.
@@ -26992,7 +27665,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setBackup(params, options, callback) {
+    setBackup(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -27014,7 +27689,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'targetPool'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -27090,7 +27765,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -27112,7 +27789,7 @@ function Compute(options) {
         pathParams: ['project', 'targetSslProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetSslProxies.get
         * @desc Returns the specified TargetSslProxy resource. Get a list of
@@ -27184,7 +27861,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -27206,7 +27884,7 @@ function Compute(options) {
         pathParams: ['project', 'targetSslProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetSslProxies.insert
         * @desc Creates a TargetSslProxy resource in the specified project using
@@ -27279,7 +27957,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -27300,7 +27980,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetSslProxies.list
         * @desc Retrieves the list of TargetSslProxy resources available to the
@@ -27384,7 +28064,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -27405,7 +28087,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetSslProxies.setBackendService
         * @desc Changes the BackendService for TargetSslProxy.
@@ -27480,7 +28162,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setBackendService(params, options, callback) {
+    setBackendService(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -27502,7 +28186,7 @@ function Compute(options) {
         pathParams: ['project', 'targetSslProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetSslProxies.setProxyHeader
         * @desc Changes the ProxyHeaderType for TargetSslProxy.
@@ -27577,7 +28261,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setProxyHeader(params, options, callback) {
+    setProxyHeader(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -27599,7 +28285,7 @@ function Compute(options) {
         pathParams: ['project', 'targetSslProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetSslProxies.setSslCertificates
         * @desc Changes SslCertificates for TargetSslProxy.
@@ -27674,7 +28360,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setSslCertificates(params, options, callback) {
+    setSslCertificates(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -27696,7 +28384,7 @@ function Compute(options) {
         pathParams: ['project', 'targetSslProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -27772,7 +28460,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -27794,7 +28484,7 @@ function Compute(options) {
         pathParams: ['project', 'targetTcpProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetTcpProxies.get
         * @desc Returns the specified TargetTcpProxy resource. Get a list of
@@ -27866,7 +28556,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -27888,7 +28579,7 @@ function Compute(options) {
         pathParams: ['project', 'targetTcpProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetTcpProxies.insert
         * @desc Creates a TargetTcpProxy resource in the specified project using
@@ -27961,7 +28652,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -27982,7 +28675,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetTcpProxies.list
         * @desc Retrieves the list of TargetTcpProxy resources available to the
@@ -28066,7 +28759,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -28087,7 +28782,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetTcpProxies.setBackendService
         * @desc Changes the BackendService for TargetTcpProxy.
@@ -28162,7 +28857,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setBackendService(params, options, callback) {
+    setBackendService(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -28184,7 +28881,7 @@ function Compute(options) {
         pathParams: ['project', 'targetTcpProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetTcpProxies.setProxyHeader
         * @desc Changes the ProxyHeaderType for TargetTcpProxy.
@@ -28259,7 +28956,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    setProxyHeader(params, options, callback) {
+    setProxyHeader(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -28281,7 +28980,7 @@ function Compute(options) {
         pathParams: ['project', 'targetTcpProxy'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -28369,7 +29068,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -28391,7 +29092,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetVpnGateways.delete
         * @desc Deletes the specified target VPN gateway.
@@ -28467,7 +29168,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -28489,7 +29192,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'targetVpnGateway'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetVpnGateways.get
         * @desc Returns the specified target VPN gateway. Get a list of
@@ -28565,7 +29268,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -28587,7 +29291,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'targetVpnGateway'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetVpnGateways.insert
         * @desc Creates a target VPN gateway in the specified project and region
@@ -28664,7 +29368,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -28686,7 +29392,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.targetVpnGateways.list
         * @desc Retrieves a list of target VPN gateways available to the
@@ -28774,7 +29480,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -28796,7 +29504,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -28872,7 +29580,9 @@ function Compute(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete (params, options, callback) {
+        delete (
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -28894,7 +29604,7 @@ function Compute(options) {
             pathParams: ['project', 'urlMap'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.urlMaps.get
             * @desc Returns the specified UrlMap resource. Get a list of
@@ -28965,7 +29675,8 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        get(params, options, callback) {
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -28987,7 +29698,7 @@ function Compute(options) {
             pathParams: ['project', 'urlMap'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.urlMaps.insert
             * @desc Creates a UrlMap resource in the specified project using the
@@ -29060,7 +29771,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        insert(params, options, callback) {
+        insert(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -29081,7 +29794,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.urlMaps.invalidateCache
             * @desc Initiates a cache invalidation operation, invalidating the
@@ -29156,7 +29869,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        invalidateCache(params, options, callback) {
+        invalidateCache(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -29178,7 +29893,7 @@ function Compute(options) {
             pathParams: ['project', 'urlMap'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.urlMaps.list
             * @desc Retrieves the list of UrlMap resources available to the
@@ -29262,7 +29977,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        list(params, options, callback) {
+        list(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -29283,7 +30000,7 @@ function Compute(options) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.urlMaps.patch
             * @desc Patches the specified UrlMap resource with the data included
@@ -29363,7 +30080,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        patch(params, options, callback) {
+        patch(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -29385,7 +30104,7 @@ function Compute(options) {
             pathParams: ['project', 'urlMap'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.urlMaps.update
             * @desc Updates the specified UrlMap resource with the data included
@@ -29464,7 +30183,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        update(params, options, callback) {
+        update(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -29486,7 +30207,7 @@ function Compute(options) {
             pathParams: ['project', 'urlMap'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }, /**
             * compute.urlMaps.validate
             * @desc Runs static validation for the UrlMap. In particular, the
@@ -29563,7 +30284,9 @@ function Compute(options) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        validate(params, options, callback) {
+        validate(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -29585,7 +30308,7 @@ function Compute(options) {
             pathParams: ['project', 'urlMap'],
             context: self
           };
-          return createAPIRequest(parameters, callback);
+          return createAPIRequest(parameters, callback!);
         }
 
       };
@@ -29673,7 +30396,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList(params, options, callback) {
+    aggregatedList(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -29694,7 +30419,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.vpnTunnels.delete
         * @desc Deletes the specified VpnTunnel resource.
@@ -29769,7 +30494,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -29791,7 +30518,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'vpnTunnel'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.vpnTunnels.get
         * @desc Returns the specified VpnTunnel resource. Get a list of
@@ -29866,7 +30593,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -29888,7 +30616,7 @@ function Compute(options) {
         pathParams: ['project', 'region', 'vpnTunnel'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.vpnTunnels.insert
         * @desc Creates a VpnTunnel resource in the specified project and region
@@ -29965,7 +30693,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    insert(params, options, callback) {
+    insert(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -29987,7 +30717,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.vpnTunnels.list
         * @desc Retrieves a list of VpnTunnel resources contained in the
@@ -30075,7 +30805,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -30097,7 +30829,7 @@ function Compute(options) {
         pathParams: ['project', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -30172,7 +30904,9 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (params, options, callback) {
+    delete (
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -30194,7 +30928,7 @@ function Compute(options) {
         pathParams: ['operation', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.zoneOperations.get
         * @desc Retrieves the specified zone-specific Operations resource.
@@ -30268,7 +31002,8 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -30290,7 +31025,7 @@ function Compute(options) {
         pathParams: ['operation', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.zoneOperations.list
         * @desc Retrieves a list of Operation resources contained within the
@@ -30378,7 +31113,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -30399,7 +31136,7 @@ function Compute(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -30474,7 +31211,8 @@ function Compute(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params, options, callback) {
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -30494,7 +31232,7 @@ function Compute(options) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }, /**
         * compute.zones.list
         * @desc Retrieves the list of Zone resources available to the specified
@@ -30578,7 +31316,9 @@ function Compute(options) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    list(params, options, callback) {
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -30598,7 +31338,7 @@ function Compute(options) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback);
+      return createAPIRequest(parameters, callback!);
     }
 
   };
@@ -30622,7 +31362,7 @@ function Compute(options) {
  * @property {integer} maximumCardsPerInstance [Output Only] Maximum accelerator cards allowed per instance.
  * @property {string} name [Output Only] Name of the resource.
  * @property {string} selfLink [Output Only] Server-defined fully-qualified URL for this resource.
- * @property {string} zone [Output Only] The name of the zone where the accelerator type resides, such as us-central1-a.
+ * @property {string} zone [Output Only] The name of the zone where the accelerator type resides, such as us-central1-a. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
  */
 /**
  * @typedef AcceleratorTypeAggregatedList
@@ -30660,6 +31400,8 @@ function Compute(options) {
  * @property {string} kind [Output Only] Type of the resource. Always compute#accessConfig for access configs.
  * @property {string} name The name of this access configuration. The default and recommended name is External NAT but you can use any arbitrary string you would like. For example, My external IP or Network Access.
  * @property {string} natIP An external IP address associated with this instance. Specify an unused static external IP address available to the project or leave this field undefined to use an IP from a shared ephemeral IP address pool. If you specify a static external IP address, it must live in the same region as the zone of the instance.
+ * @property {string} publicPtrDomainName The DNS domain name for the public PTR record. This field can only be set when the set_public_ptr field is enabled.
+ * @property {boolean} setPublicPtr Specifies whether a public DNS ?PTR? record should be created to map the external IP address of the instance to a DNS domain name.
  * @property {string} type The type of configuration. The default and only option is ONE_TO_ONE_NAT.
  */
 /**
@@ -30673,8 +31415,8 @@ function Compute(options) {
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} ipVersion The IP Version that will be used by this address. Valid options are IPV4 or IPV6. This can only be specified for a global address.
  * @property {string} kind [Output Only] Type of the resource. Always compute#address for addresses.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
- * @property {string} region [Output Only] URL of the region where the regional address resides. This field is not applicable to global addresses.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} region [Output Only] URL of the region where the regional address resides. This field is not applicable to global addresses. You must specify this field as part of the HTTP request URL. You cannot set this field in the request body.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} status [Output Only] The status of the address, which can be one of RESERVING, RESERVED, or IN_USE. An address that is RESERVING is currently in the process of being reserved. A RESERVED address is currently reserved and available to use. An IN_USE address is currently being used by another resource and is not available.
  * @property {string} subnetwork The URL of the subnetwork in which to reserve the address. If an IP address is specified, it must be within the subnetwork&#39;s IP range. This field can only be used with INTERNAL type with GCE_ENDPOINT/DNS_RESOLVER purposes.
@@ -30724,6 +31466,7 @@ function Compute(options) {
  * @property {boolean} boot Indicates that this is a boot disk. The virtual machine will use the first partition of the disk for its root filesystem.
  * @property {string} deviceName Specifies a unique device name of your choice that is reflected into the /dev/disk/by-id/google-* tree of a Linux operating system running within the instance. This name can be used to reference the device for mounting, resizing, and so on, from within the instance.  If not specified, the server chooses a default device name to apply to this disk, in the form persistent-disks-x, where x is a number assigned by Google Compute Engine. This field is only applicable for persistent disks.
  * @property {compute(v1).CustomerEncryptionKey} diskEncryptionKey Encrypts or decrypts a disk using a customer-supplied encryption key.  If you are creating a new disk, this field encrypts the new disk using an encryption key that you provide. If you are attaching an existing disk that is already encrypted, this field decrypts the disk using the customer-supplied encryption key.  If you encrypt a disk using a customer-supplied key, you must provide the same key again when you attempt to use this resource at a later time. For example, you must provide the key when you create a snapshot or an image from the disk or when you attach the disk to a virtual machine instance.  If you do not provide an encryption key, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the disk later.  Instance templates do not store customer-supplied encryption keys, so you cannot use your own keys to encrypt disks in a managed instance group.
+ * @property {compute(v1).GuestOsFeature[]} guestOsFeatures A list of features to enable on the guest operating system. Applicable only for bootable images. Read  Enabling guest operating system features to see a list of available options.
  * @property {integer} index [Output Only] A zero-based index to this disk, where 0 is reserved for the boot disk. If you have many disks attached to an instance, each disk would have a unique index number.
  * @property {compute(v1).AttachedDiskInitializeParams} initializeParams [Input Only] Specifies the parameters for a new disk that will be created alongside the new instance. Use initialization parameters to create boot disks or local SSDs attached to the new instance.  This property is mutually exclusive with the source property; you can only define one or the other, but not both.
  * @property {string} interface Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. Persistent disks must always use SCSI and the request will fail if you attempt to attach a persistent disk in any other format than SCSI. Local SSDs can use either NVME or SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance.
@@ -30739,9 +31482,9 @@ function Compute(options) {
  * @type object
  * @property {string} diskName Specifies the disk name. If not specified, the default is to use the name of the instance.
  * @property {string} diskSizeGb Specifies the size of the disk in base-2 GB.
- * @property {string} diskType Specifies the disk type to use to create the instance. If not specified, the default is pd-standard, specified using the full URL. For example:  https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/pd-standard   Other values include pd-ssd and local-ssd. If you define this field, you can provide either the full or partial URL. For example, the following are valid values:   - https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType  - projects/project/zones/zone/diskTypes/diskType  - zones/zone/diskTypes/diskType  Note that for InstanceTemplate, this is the name of the disk type, not URL.
+ * @property {string} diskType Specifies the disk type to use to create the instance. If not specified, the default is pd-standard, specified using the full URL. For example: https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/pd-standard   Other values include pd-ssd and local-ssd. If you define this field, you can provide either the full or partial URL. For example, the following are valid values:   - https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType  - projects/project/zones/zone/diskTypes/diskType  - zones/zone/diskTypes/diskType  Note that for InstanceTemplate, this is the name of the disk type, not URL.
  * @property {object} labels Labels to apply to this disk. These can be later modified by the disks.setLabels method. This field is only applicable for persistent disks.
- * @property {string} sourceImage The source image to create this disk. When creating a new instance, one of initializeParams.sourceImage or disks.source is required except for local SSD.  To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-8 to use the latest Debian 8 image:  projects/debian-cloud/global/images/family/debian-8   Alternatively, use a specific version of a public operating system image:  projects/debian-cloud/global/images/debian-8-jessie-vYYYYMMDD   To create a disk with a custom image that you created, specify the image name in the following format:  global/images/my-custom-image   You can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name:  global/images/family/my-image-family   If the source image is deleted later, this field will not be set.
+ * @property {string} sourceImage The source image to create this disk. When creating a new instance, one of initializeParams.sourceImage or disks.source is required except for local SSD.  To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-8 to use the latest Debian 8 image: projects/debian-cloud/global/images/family/debian-8   Alternatively, use a specific version of a public operating system image: projects/debian-cloud/global/images/debian-8-jessie-vYYYYMMDD   To create a disk with a custom image that you created, specify the image name in the following format: global/images/my-custom-image   You can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name: global/images/family/my-image-family   If the source image is deleted later, this field will not be set.
  * @property {compute(v1).CustomerEncryptionKey} sourceImageEncryptionKey The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.  Instance templates do not store customer-supplied encryption keys, so you cannot create disks for instances in a managed instance group if the source images are encrypted with your own keys.
  */
 /**
@@ -30753,7 +31496,7 @@ function Compute(options) {
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of the resource. Always compute#autoscaler for autoscalers.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} region [Output Only] URL of the region where the instance group resides (for autoscalers living in regional scope).
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} status [Output Only] The status of the autoscaler configuration.
@@ -30852,7 +31595,7 @@ function Compute(options) {
  * @property {boolean} enableCdn If true, enable Cloud CDN for this BackendBucket.
  * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {string} kind Type of the resource.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  */
 /**
@@ -30883,11 +31626,11 @@ function Compute(options) {
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of resource. Always compute#backendService for backend services.
  * @property {string} loadBalancingScheme Indicates whether the backend service will be used with internal or external load balancing. A backend service created for one type of load balancing cannot be used with the other. Possible values are INTERNAL and EXTERNAL.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {integer} port Deprecated in favor of portName. The TCP port to connect on the backend. The default value is 80.  This cannot be used for internal load balancing.
  * @property {string} portName Name of backend port. The same name should appear in the instance groups referenced by this service. Required when the load balancing scheme is EXTERNAL.  When the load balancing scheme is INTERNAL, this field is not used.
  * @property {string} protocol The protocol this BackendService uses to communicate with backends.  Possible values are HTTP, HTTPS, TCP, and SSL. The default is HTTP.  For internal load balancing, the possible values are TCP and UDP, and the default is TCP.
- * @property {string} region [Output Only] URL of the region where the regional backend service resides. This field is not applicable to global backend services.
+ * @property {string} region [Output Only] URL of the region where the regional backend service resides. This field is not applicable to global backend services. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} sessionAffinity Type of session affinity to use. The default is NONE.  When the load balancing scheme is EXTERNAL, can be NONE, CLIENT_IP, or GENERATED_COOKIE.  When the load balancing scheme is INTERNAL, can be NONE, CLIENT_IP, CLIENT_IP_PROTO, or CLIENT_IP_PORT_PROTO.  When the protocol is UDP, this field is not used.
  * @property {integer} timeoutSec How many seconds to wait for the backend before considering it a failed request. Default is 30 seconds.
@@ -30969,7 +31712,7 @@ function Compute(options) {
  * @property {string} endTimestamp [Output Only] Commitment end time in RFC3339 text format.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of the resource. Always compute#commitment for commitments.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} plan The plan for this commitment, which determines duration and discount rate. The currently supported plans are TWELVE_MONTH (1 year), and THIRTY_SIX_MONTH (3 years).
  * @property {string} region [Output Only] URL of the region where this commitment may be used.
  * @property {compute(v1).ResourceCommitment[]} resources List of commitment amounts for particular resources. Note that VCPU and MEMORY resource commitments must occur together.
@@ -31044,6 +31787,7 @@ function Compute(options) {
  * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
  * @property {compute(v1).CustomerEncryptionKey} diskEncryptionKey Encrypts the disk using a customer-supplied encryption key.  After you encrypt a disk with a customer-supplied key, you must provide the same key if you use the disk later (e.g. to create a disk snapshot or an image, or to attach the disk to a virtual machine).  Customer-supplied encryption keys do not protect access to metadata of the disk.  If you do not provide an encryption key when creating the disk, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the disk later.
+ * @property {compute(v1).GuestOsFeature[]} guestOsFeatures A list of features to enable on the guest operating system. Applicable only for bootable images. Read  Enabling guest operating system features to see a list of available options.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of the resource. Always compute#disk for disks.
  * @property {string} labelFingerprint A fingerprint for the labels being applied to this disk, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels.  To see the latest fingerprint, make a get() request to retrieve a disk.
@@ -31051,20 +31795,20 @@ function Compute(options) {
  * @property {string} lastAttachTimestamp [Output Only] Last attach timestamp in RFC3339 text format.
  * @property {string} lastDetachTimestamp [Output Only] Last detach timestamp in RFC3339 text format.
  * @property {string[]} licenses Any applicable publicly visible licenses.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} options Internal use only.
  * @property {string} selfLink [Output Only] Server-defined fully-qualified URL for this resource.
  * @property {string} sizeGb Size of the persistent disk, specified in GB. You can specify this field when creating a persistent disk using the sourceImage or sourceSnapshot parameter, or specify it alone to create an empty persistent disk.  If you specify this field along with sourceImage or sourceSnapshot, the value of sizeGb must not be less than the size of the sourceImage or the size of the snapshot. Acceptable values are 1 to 65536, inclusive.
- * @property {string} sourceImage The source image used to create this disk. If the source image is deleted, this field will not be set.  To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-8 to use the latest Debian 8 image:  projects/debian-cloud/global/images/family/debian-8   Alternatively, use a specific version of a public operating system image:  projects/debian-cloud/global/images/debian-8-jessie-vYYYYMMDD   To create a disk with a custom image that you created, specify the image name in the following format:  global/images/my-custom-image   You can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name:  global/images/family/my-image-family
+ * @property {string} sourceImage The source image used to create this disk. If the source image is deleted, this field will not be set.  To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-8 to use the latest Debian 8 image: projects/debian-cloud/global/images/family/debian-8   Alternatively, use a specific version of a public operating system image: projects/debian-cloud/global/images/debian-8-jessie-vYYYYMMDD   To create a disk with a custom image that you created, specify the image name in the following format: global/images/my-custom-image   You can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name: global/images/family/my-image-family
  * @property {compute(v1).CustomerEncryptionKey} sourceImageEncryptionKey The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.
  * @property {string} sourceImageId [Output Only] The ID value of the image used to create this disk. This value identifies the exact image that was used to create this persistent disk. For example, if you created the persistent disk from an image that was later deleted and recreated under the same name, the source image ID would identify the exact version of the image that was used.
  * @property {string} sourceSnapshot The source snapshot used to create this disk. You can provide this as a partial or full URL to the resource. For example, the following are valid values:   - https://www.googleapis.com/compute/v1/projects/project/global/snapshots/snapshot  - projects/project/global/snapshots/snapshot  - global/snapshots/snapshot
  * @property {compute(v1).CustomerEncryptionKey} sourceSnapshotEncryptionKey The customer-supplied encryption key of the source snapshot. Required if the source snapshot is protected by a customer-supplied encryption key.
  * @property {string} sourceSnapshotId [Output Only] The unique ID of the snapshot used to create this disk. This value identifies the exact snapshot that was used to create this persistent disk. For example, if you created the persistent disk from a snapshot that was later deleted and recreated under the same name, the source snapshot ID would identify the exact version of the snapshot that was used.
  * @property {string} status [Output Only] The status of disk creation.
- * @property {string} type URL of the disk type resource describing which disk type to use to create the disk. Provide this when creating the disk.
+ * @property {string} type URL of the disk type resource describing which disk type to use to create the disk. Provide this when creating the disk. For example: project/zones/zone/diskTypes/pd-standard or pd-ssd
  * @property {string[]} users [Output Only] Links to the users of the disk (attached instances) in form: project/zones/zone/instances/instance
- * @property {string} zone [Output Only] URL of the zone where the disk resides.
+ * @property {string} zone [Output Only] URL of the zone where the disk resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
  */
 /**
  * @typedef DiskAggregatedList
@@ -31121,7 +31865,7 @@ function Compute(options) {
  * @property {string} name [Output Only] Name of the resource.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} validDiskSize [Output Only] An optional textual description of the valid disk size, such as &quot;10GB-10TB&quot;.
- * @property {string} zone [Output Only] URL of the zone where the disk type resides.
+ * @property {string} zone [Output Only] URL of the zone where the disk type resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
  */
 /**
  * @typedef DiskTypeAggregatedList
@@ -31158,13 +31902,13 @@ function Compute(options) {
  * @type object
  * @property {object[]} allowed The list of ALLOW rules specified by this firewall. Each rule specifies a protocol and port-range tuple that describes a permitted connection.
  * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
- * @property {object[]} denied The list of DENY rules specified by this firewall. Each rule specifies a protocol and port-range tuple that describes a permitted connection.
+ * @property {object[]} denied The list of DENY rules specified by this firewall. Each rule specifies a protocol and port-range tuple that describes a denied connection.
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
  * @property {string[]} destinationRanges If destination ranges are specified, the firewall will apply only to traffic that has destination IP address in these ranges. These ranges must be expressed in CIDR format. Only IPv4 is supported.
  * @property {string} direction Direction of traffic to which this firewall applies; default is INGRESS. Note: For INGRESS traffic, it is NOT supported to specify destinationRanges; For EGRESS traffic, it is NOT supported to specify sourceRanges OR sourceTags.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of the resource. Always compute#firewall for firewall rules.
- * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} network URL of the network resource for this firewall rule. If not specified when creating a firewall rule, the default network is used: global/networks/default If you choose to specify this property, you can specify the network as a full or partial URL. For example, the following are all valid URLs:   - https://www.googleapis.com/compute/v1/projects/myproject/global/networks/my-network  - projects/myproject/global/networks/my-network  - global/networks/default
  * @property {integer} priority Priority for this rule. This is an integer between 0 and 65535, both inclusive. When not specified, the value assumed is 1000. Relative priorities determine precedence of conflicting rules. Lower value of priority implies higher precedence (eg, a rule with priority 0 has higher precedence than a rule with priority 1). DENY rules take precedence over ALLOW rules having equal priority.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
@@ -31198,14 +31942,14 @@ function Compute(options) {
  * @property {string} ipVersion The IP Version that will be used by this forwarding rule. Valid options are IPV4 or IPV6. This can only be specified for a global forwarding rule.
  * @property {string} kind [Output Only] Type of the resource. Always compute#forwardingRule for Forwarding Rule resources.
  * @property {string} loadBalancingScheme This signifies what the ForwardingRule will be used for and can only take the following values: INTERNAL, EXTERNAL The value of INTERNAL means that this will be used for Internal Network Load Balancing (TCP, UDP). The value of EXTERNAL means that this will be used for External Load Balancing (HTTP(S) LB, External TCP/UDP LB, SSL Proxy)
- * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} network This field is not used for external load balancing.  For internal load balancing, this field identifies the network that the load balanced IP should belong to for this Forwarding Rule. If this field is not specified, the default network will be used.
- * @property {string} portRange This field is used along with the target field for TargetHttpProxy, TargetHttpsProxy, TargetSslProxy, TargetTcpProxy, TargetVpnGateway, TargetPool, TargetInstance.  Applicable only when IPProtocol is TCP, UDP, or SCTP, only packets addressed to ports in the specified range will be forwarded to target. Forwarding rules with the same [IPAddress, IPProtocol] pair must have disjoint port ranges.  Some types of forwarding target have constraints on the acceptable ports:   - TargetHttpProxy: 80, 8080  - TargetHttpsProxy: 443  - TargetTcpProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1883, 5222  - TargetSslProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1883, 5222  - TargetVpnGateway: 500, 4500 -
+ * @property {string} portRange This field is used along with the target field for TargetHttpProxy, TargetHttpsProxy, TargetSslProxy, TargetTcpProxy, TargetVpnGateway, TargetPool, TargetInstance.  Applicable only when IPProtocol is TCP, UDP, or SCTP, only packets addressed to ports in the specified range will be forwarded to target. Forwarding rules with the same [IPAddress, IPProtocol] pair must have disjoint port ranges.  Some types of forwarding target have constraints on the acceptable ports:   - TargetHttpProxy: 80, 8080  - TargetHttpsProxy: 443  - TargetTcpProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1688, 1883, 5222  - TargetSslProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1688, 1883, 5222  - TargetVpnGateway: 500, 4500
  * @property {string[]} ports This field is used along with the backend_service field for internal load balancing.  When the load balancing scheme is INTERNAL, a single port or a comma separated list of ports can be configured. Only packets addressed to these ports will be forwarded to the backends configured with this forwarding rule.  You may specify a maximum of up to 5 ports.
- * @property {string} region [Output Only] URL of the region where the regional forwarding rule resides. This field is not applicable to global forwarding rules.
+ * @property {string} region [Output Only] URL of the region where the regional forwarding rule resides. This field is not applicable to global forwarding rules. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} subnetwork This field is not used for external load balancing.  For internal load balancing, this field identifies the subnetwork that the load balanced IP should belong to for this Forwarding Rule.  If the network specified is in auto subnet mode, this field is optional. However, if the network is in custom subnet mode, a subnetwork must be specified.
- * @property {string} target The URL of the target resource to receive the matched traffic. For regional forwarding rules, this target must live in the same region as the forwarding rule. For global forwarding rules, this target must be a global load balancing resource. The forwarded traffic must be of a type appropriate to the target object.  This field is not used for internal load balancing.
+ * @property {string} target The URL of the target resource to receive the matched traffic. For regional forwarding rules, this target must live in the same region as the forwarding rule. For global forwarding rules, this target must be a global load balancing resource. The forwarded traffic must be of a type appropriate to the target object.
  */
 /**
  * @typedef ForwardingRuleAggregatedList
@@ -31241,7 +31985,7 @@ function Compute(options) {
  * @memberOf! compute(v1)
  * @type object
  * @property {string} labelFingerprint The fingerprint of the previous set of labels for this resource, used to detect conflicts. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash when updating or changing labels. Make a get() request to the resource to get the latest fingerprint.
- * @property {object} labels A list of labels to apply for this resource. Each label key &amp; value must comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash. For example, &quot;webserver-frontend&quot;: &quot;images&quot;. A label value can also be empty (e.g. &quot;my-label&quot;: &quot;&quot;).
+ * @property {object} labels A list of labels to apply for this resource. Each label key &amp; value must comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash. For example, &quot;webserver-frontend&quot;: &quot;images&quot;. A label value can also be empty (e.g. &quot;my-label&quot;: &quot;&quot;).
  */
 /**
  * @typedef GuestOsFeature
@@ -31261,7 +32005,7 @@ function Compute(options) {
  * @property {compute(v1).HTTPSHealthCheck} httpsHealthCheck
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind Type of the resource.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {compute(v1).SSLHealthCheck} sslHealthCheck
  * @property {compute(v1).TCPHealthCheck} tcpHealthCheck
@@ -31314,7 +32058,7 @@ function Compute(options) {
  * @property {string} host The value of the host header in the HTTP health check request. If left empty (default value), the public IP on behalf of which this health check is performed will be used.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of the resource. Always compute#httpHealthCheck for HTTP health checks.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {integer} port The TCP port number for the HTTP health check request. The default value is 80.
  * @property {string} requestPath The request path of the HTTP health check request. The default value is /.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
@@ -31353,7 +32097,7 @@ function Compute(options) {
  * @property {string} host The value of the host header in the HTTPS health check request. If left empty (default value), the public IP on behalf of which this health check is performed will be used.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind Type of the resource.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {integer} port The TCP port number for the HTTPS health check request. The default value is 443.
  * @property {string} requestPath The request path of the HTTPS health check request. The default value is &quot;/&quot;.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
@@ -31398,7 +32142,7 @@ function Compute(options) {
  * @property {string} labelFingerprint A fingerprint for the labels being applied to this image, which is essentially a hash of the labels used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels.  To see the latest fingerprint, make a get() request to retrieve an image.
  * @property {object} labels Labels to apply to this image. These can be later modified by the setLabels method.
  * @property {string[]} licenses Any applicable license URI.
- * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {object} rawDisk The parameters of the raw disk image.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} sourceDisk URL of the source disk used to create this image. This can be a full or valid partial URL. You must provide either this property or the rawDisk.source property but not both to create an image. For example, the following are valid values:   - https://www.googleapis.com/compute/v1/projects/project/zones/zone/disks/disk  - projects/project/zones/zone/disks/disk  - zones/zone/disks/disk
@@ -31407,6 +32151,9 @@ function Compute(options) {
  * @property {string} sourceImage URL of the source image used to create this image. This can be a full or valid partial URL. You must provide exactly one of:   - this property, or   - the rawDisk.source property, or   - the sourceDisk property   in order to create an image.
  * @property {compute(v1).CustomerEncryptionKey} sourceImageEncryptionKey The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.
  * @property {string} sourceImageId [Output Only] The ID value of the image used to create this image. This value may be used to determine whether the image was taken from the current or a previous instance of a given image name.
+ * @property {string} sourceSnapshot URL of the source snapshot used to create this image. This can be a full or valid partial URL. You must provide exactly one of:   - this property, or   - the sourceImage property, or   - the rawDisk.source property, or   - the sourceDisk property   in order to create an image.
+ * @property {compute(v1).CustomerEncryptionKey} sourceSnapshotEncryptionKey The customer-supplied encryption key of the source snapshot. Required if the source snapshot is protected by a customer-supplied encryption key.
+ * @property {string} sourceSnapshotId [Output Only] The ID value of the snapshot used to create this image. This value may be used to determine whether the snapshot was taken from the current or a previous instance of a given snapshot name.
  * @property {string} sourceType The type of the image used to create this disk. The default and only value is RAW
  * @property {string} status [Output Only] The status of the image. An image can be used to create other resources, such as instances, only after the image has been successfully created and the status is set to READY. Possible values are FAILED, PENDING, or READY.
  */
@@ -31436,10 +32183,10 @@ function Compute(options) {
  * @property {string} kind [Output Only] Type of the resource. Always compute#instance for instances.
  * @property {string} labelFingerprint A fingerprint for this request, which is essentially a hash of the metadata&#39;s contents and used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update metadata. You must always provide an up-to-date fingerprint hash in order to update or change metadata.  To see the latest fingerprint, make get() request to the instance.
  * @property {object} labels Labels to apply to this instance. These can be later modified by the setLabels method.
- * @property {string} machineType Full or partial URL of the machine type resource to use for this instance, in the format: zones/zone/machineTypes/machine-type. This is provided by the client when the instance is created. For example, the following is a valid partial url to a predefined machine type:  zones/us-central1-f/machineTypes/n1-standard-1   To create a custom machine type, provide a URL to a machine type in the following format, where CPUS is 1 or an even number up to 32 (2, 4, 6, ... 24, etc), and MEMORY is the total memory for this instance. Memory must be a multiple of 256 MB and must be supplied in MB (e.g. 5 GB of memory is 5120 MB):  zones/zone/machineTypes/custom-CPUS-MEMORY   For example: zones/us-central1-f/machineTypes/custom-4-5120   For a full list of restrictions, read the Specifications for custom machine types.
+ * @property {string} machineType Full or partial URL of the machine type resource to use for this instance, in the format: zones/zone/machineTypes/machine-type. This is provided by the client when the instance is created. For example, the following is a valid partial url to a predefined machine type: zones/us-central1-f/machineTypes/n1-standard-1   To create a custom machine type, provide a URL to a machine type in the following format, where CPUS is 1 or an even number up to 32 (2, 4, 6, ... 24, etc), and MEMORY is the total memory for this instance. Memory must be a multiple of 256 MB and must be supplied in MB (e.g. 5 GB of memory is 5120 MB): zones/zone/machineTypes/custom-CPUS-MEMORY   For example: zones/us-central1-f/machineTypes/custom-4-5120   For a full list of restrictions, read the Specifications for custom machine types.
  * @property {compute(v1).Metadata} metadata The metadata key/value pairs assigned to this instance. This includes custom metadata and predefined keys.
  * @property {string} minCpuPlatform Specifies a minimum CPU platform for the VM instance. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: &quot;Intel Haswell&quot; or minCpuPlatform: &quot;Intel Sandy Bridge&quot;.
- * @property {string} name The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {compute(v1).NetworkInterface[]} networkInterfaces An array of network configurations for this instance. These specify how interfaces are configured to interact with other network services, such as connecting to the internet. Multiple interfaces are supported per instance.
  * @property {compute(v1).Scheduling} scheduling Sets the scheduling options for this instance.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
@@ -31448,7 +32195,7 @@ function Compute(options) {
  * @property {string} status [Output Only] The status of the instance. One of the following values: PROVISIONING, STAGING, RUNNING, STOPPING, STOPPED, SUSPENDING, SUSPENDED, and TERMINATED.
  * @property {string} statusMessage [Output Only] An optional, human-readable explanation of the status.
  * @property {compute(v1).Tags} tags A list of tags to apply to this instance. Tags are used to identify valid sources or targets for network firewalls and are specified by the client during instance creation. The tags can be later modified by the setTags method. Each tag within the list must comply with RFC1035.
- * @property {string} zone [Output Only] URL of the zone where the instance resides.
+ * @property {string} zone [Output Only] URL of the zone where the instance resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
  */
 /**
  * @typedef InstanceAggregatedList
@@ -31656,6 +32403,17 @@ function Compute(options) {
  * @property {object} warning [Output Only] Informational warning message.
  */
 /**
+ * @typedef InstanceListReferrers
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(v1).Reference[]} items A list of Reference resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#instanceListReferrers for lists of Instance referrers.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
+ */
+/**
  * @typedef InstanceMoveRequest
  * @memberOf! compute(v1)
  * @type object
@@ -31738,7 +32496,7 @@ function Compute(options) {
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
  * @property {string} id [Output Only] A unique identifier for this instance template. The server defines this identifier.
  * @property {string} kind [Output Only] The resource type, which is always compute#instanceTemplate for instance templates.
- * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {compute(v1).InstanceProperties} properties The instance properties for this instance template.
  * @property {string} selfLink [Output Only] The URL for this instance template. The server defines this URL.
  */
@@ -31779,7 +32537,7 @@ function Compute(options) {
  * @property {string} kind [Output Only] Type of the resource. Always compute#interconnect for interconnects.
  * @property {string} linkType Type of link requested. This field indicates speed of each of the links in the bundle, not the entire bundle. Only 10G per link is allowed for a dedicated interconnect. Options: Ethernet_10G_LR
  * @property {string} location URL of the InterconnectLocation object that represents where this connection is to be provisioned.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} nocContactEmail Email address to contact the customer NOC for operations and maintenance notifications regarding this Interconnect. If specified, this will be used for notifications in addition to all other forms described, such as Stackdriver logs alerting and Cloud Notifications.
  * @property {string} operationalStatus [Output Only] The current status of whether or not this Interconnect is functional.
  * @property {string} peerIpAddress [Output Only] IP address configured on the customer side of the Interconnect link. The customer should configure this IP address during turnup when prompted by Google NOC. This can be used only for ping tests.
@@ -31799,10 +32557,10 @@ function Compute(options) {
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} interconnect URL of the underlying Interconnect object that this attachment&#39;s traffic will traverse through.
  * @property {string} kind [Output Only] Type of the resource. Always compute#interconnectAttachment for interconnect attachments.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} operationalStatus [Output Only] The current status of whether or not this interconnect attachment is functional.
  * @property {compute(v1).InterconnectAttachmentPrivateInfo} privateInterconnectInfo [Output Only] Information specific to an InterconnectAttachment. This property is populated if the interconnect that this is attached to is of type DEDICATED.
- * @property {string} region [Output Only] URL of the region where the regional interconnect attachment resides.
+ * @property {string} region [Output Only] URL of the region where the regional interconnect attachment resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
  * @property {string} router URL of the cloud router to be used for dynamic routing. This router must be in the same region as this InterconnectAttachment. The InterconnectAttachment will automatically connect the Interconnect to the network &amp; region within which the Cloud Router is configured.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  */
@@ -31973,7 +32731,7 @@ function Compute(options) {
  * @typedef ManagedInstance
  * @memberOf! compute(v1)
  * @type object
- * @property {string} currentAction [Output Only] The current action that the managed instance group has scheduled for the instance. Possible values:  - NONE The instance is running, and the managed instance group does not have any scheduled actions for this instance.  - CREATING The managed instance group is creating this instance. If the group fails to create this instance, it will try again until it is successful.  - CREATING_WITHOUT_RETRIES The managed instance group is attempting to create this instance only once. If the group fails to create this instance, it does not try again and the group&#39;s targetSize value is decreased instead.  - RECREATING The managed instance group is recreating this instance.  - DELETING The managed instance group is permanently deleting this instance.  - ABANDONING The managed instance group is abandoning this instance. The instance will be removed from the instance group and from any target pools that are associated with this group.  - RESTARTING The managed instance group is restarting the instance.  - REFRESHING The managed instance group is applying configuration changes to the instance without stopping it. For example, the group can update the target pool list for an instance without stopping that instance.
+ * @property {string} currentAction [Output Only] The current action that the managed instance group has scheduled for the instance. Possible values:  - NONE The instance is running, and the managed instance group does not have any scheduled actions for this instance.  - CREATING The managed instance group is creating this instance. If the group fails to create this instance, it will try again until it is successful.  - CREATING_WITHOUT_RETRIES The managed instance group is attempting to create this instance only once. If the group fails to create this instance, it does not try again and the group&#39;s targetSize value is decreased instead.  - RECREATING The managed instance group is recreating this instance.  - DELETING The managed instance group is permanently deleting this instance.  - ABANDONING The managed instance group is abandoning this instance. The instance will be removed from the instance group and from any target pools that are associated with this group.  - RESTARTING The managed instance group is restarting the instance.  - REFRESHING The managed instance group is applying configuration changes to the instance without stopping it. For example, the group can update the target pool list for an instance without stopping that instance.  - VERIFYING The managed instance group has created the instance and it is in the process of being verified.
  * @property {string} id [Output only] The unique identifier for this resource. This field is empty when instance does not exist.
  * @property {string} instance [Output Only] The URL of the instance. The URL can exist even if the instance has not yet been created.
  * @property {string} instanceStatus [Output Only] The status of the instance. This field is empty when the instance does not exist.
@@ -32011,7 +32769,7 @@ function Compute(options) {
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} IPv4Range The range of internal addresses that are legal on this network. This range is a CIDR specification, for example: 192.168.0.0/16. Provided by the client when the network is created.
  * @property {string} kind [Output Only] Type of the resource. Always compute#network for networks.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {compute(v1).NetworkPeering[]} peerings [Output Only] List of network peerings for the resource.
  * @property {compute(v1).NetworkRoutingConfig} routingConfig The network-level routing configuration for this network. Used by Cloud Router to determine what type of network-wide routing behavior to enforce.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
@@ -32023,6 +32781,7 @@ function Compute(options) {
  * @type object
  * @property {compute(v1).AccessConfig[]} accessConfigs An array of configurations for this interface. Currently, only one access config, ONE_TO_ONE_NAT, is supported. If there are no accessConfigs specified, then this instance will have no external internet access.
  * @property {compute(v1).AliasIpRange[]} aliasIpRanges An array of alias IP ranges for this network interface. Can only be specified for network interfaces on subnet-mode networks.
+ * @property {string} fingerprint Fingerprint hash of contents stored in this network interface. This field will be ignored when inserting an Instance or adding a NetworkInterface. An up-to-date fingerprint must be provided in order to update the NetworkInterface.
  * @property {string} kind [Output Only] Type of the resource. Always compute#networkInterface for network interfaces.
  * @property {string} name [Output Only] The name of the network interface, generated by the server. For network devices, these are eth0, eth1, etc.
  * @property {string} network URL of the network resource for this instance. When creating an instance, if neither the network nor the subnetwork is specified, the default network global/networks/default is used; if the network is not specified but the subnetwork is specified, the network is inferred.  This field is optional when creating a firewall rule. If not specified when creating a firewall rule, the default network global/networks/default is used.  If you specify this property, you can specify the network as a full or partial URL. For example, the following are all valid URLs:   - https://www.googleapis.com/compute/v1/projects/project/global/networks/network  - projects/project/global/networks/network  - global/networks/default
@@ -32045,7 +32804,7 @@ function Compute(options) {
  * @memberOf! compute(v1)
  * @type object
  * @property {boolean} autoCreateRoutes Whether full mesh connectivity is created and managed automatically. When it is set to true, Google Compute Engine will automatically create and manage the routes between two networks when the state is ACTIVE. Otherwise, user needs to create routes manually to route packets to peer network.
- * @property {string} name Name of this peering. Provided by the client when the peering is created. The name must comply with RFC1035. Specifically, the name must be 1-63 characters long and match regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all the following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of this peering. Provided by the client when the peering is created. The name must comply with RFC1035. Specifically, the name must be 1-63 characters long and match regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all the following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} network The URL of the peer network. It can be either full URL or partial URL. The peer network may belong to a different project. If the partial URL does not contain project, it is assumed that the peer network is in the same project as the current network.
  * @property {string} state [Output Only] State for the peering.
  * @property {string} stateDetails [Output Only] Details about the current state of the peering.
@@ -32087,7 +32846,7 @@ function Compute(options) {
  * @property {string} name [Output Only] Name of the resource.
  * @property {string} operationType [Output Only] The type of operation, such as insert, update, or delete, and so on.
  * @property {integer} progress [Output Only] An optional progress indicator that ranges from 0 to 100. There is no requirement that this be linear or support any granularity of operations. This should not be used to guess when the operation will be complete. This number should monotonically increase as the operation progresses.
- * @property {string} region [Output Only] The URL of the region where the operation resides. Only available when performing regional operations.
+ * @property {string} region [Output Only] The URL of the region where the operation resides. Only available when performing regional operations. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} startTime [Output Only] The time that this operation was started by the server. This value is in RFC3339 text format.
  * @property {string} status [Output Only] The status of the operation, which can be one of the following: PENDING, RUNNING, or DONE.
@@ -32096,7 +32855,7 @@ function Compute(options) {
  * @property {string} targetLink [Output Only] The URL of the resource that the operation modifies. For operations related to creating a snapshot, this points to the persistent disk that the snapshot was created from.
  * @property {string} user [Output Only] User who requested the operation, for example: user@example.com.
  * @property {object[]} warnings [Output Only] If warning messages are generated during processing of the operation, this field will be populated.
- * @property {string} zone [Output Only] The URL of the zone where the operation resides. Only available when performing per-zone operations.
+ * @property {string} zone [Output Only] The URL of the zone where the operation resides. Only available when performing per-zone operations. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
  */
 /**
  * @typedef OperationAggregatedList
@@ -32193,6 +32952,15 @@ function Compute(options) {
  * @property {number} limit [Output Only] Quota limit for this metric.
  * @property {string} metric [Output Only] Name of the quota metric.
  * @property {number} usage [Output Only] Current usage of this metric.
+ */
+/**
+ * @typedef Reference
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} kind [Output Only] Type of the resource. Always compute#reference for references.
+ * @property {string} referenceType A description of the reference type with no implied semantics. Possible values include:   - MEMBER_OF
+ * @property {string} referrer URL of the resource which refers to the target.
+ * @property {string} target URL of the resource to which this reference points.
  */
 /**
  * @typedef Region
@@ -32337,7 +33105,7 @@ function Compute(options) {
  * @property {string} destRange The destination range of outgoing packets that this route applies to. Only IPv4 is supported.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of this resource. Always compute#routes for Route resources.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} network Fully-qualified URL of the network that this route applies to.
  * @property {string} nextHopGateway The URL to a gateway that should handle matching packets. You can only specify the internet gateway using a full or partial valid URL:  projects/&lt;project-id&gt;/global/gateways/default-internet-gateway
  * @property {string} nextHopInstance The URL to an instance that should handle matching packets. You can specify this as a full or partial URL. For example: https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
@@ -32372,10 +33140,17 @@ function Compute(options) {
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {compute(v1).RouterInterface[]} interfaces Router interfaces. Each interface requires either one linked resource (e.g. linkedVpnTunnel), or IP address and IP address range (e.g. ipRange), or both.
  * @property {string} kind [Output Only] Type of resource. Always compute#router for routers.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} network URI of the network to which this router belongs.
- * @property {string} region [Output Only] URI of the region where the router resides.
+ * @property {string} region [Output Only] URI of the region where the router resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ */
+/**
+ * @typedef RouterAdvertisedIpRange
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} description User-specified description for the IP range.
+ * @property {string} range The IP range to advertise. The value must be a CIDR-formatted string.
  */
 /**
  * @typedef RouterAggregatedList
@@ -32392,13 +33167,19 @@ function Compute(options) {
  * @typedef RouterBgp
  * @memberOf! compute(v1)
  * @type object
+ * @property {string[]} advertisedGroups User-specified list of prefix groups to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and is advertised to all peers of the router. These groups will be advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
+ * @property {compute(v1).RouterAdvertisedIpRange[]} advertisedIpRanges User-specified list of individual IP ranges to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and is advertised to all peers of the router. These IP ranges will be advertised in addition to any specified groups. Leave this field blank to advertise no custom IP ranges.
+ * @property {string} advertiseMode User-specified flag to indicate which mode to use for advertisement.
  * @property {integer} asn Local BGP Autonomous System Number (ASN). Must be an RFC6996 private ASN, either 16-bit or 32-bit. The value will be fixed for this router resource. All VPN tunnels that link to this router will have the same local ASN.
  */
 /**
  * @typedef RouterBgpPeer
  * @memberOf! compute(v1)
  * @type object
+ * @property {string[]} advertisedGroups User-specified list of prefix groups to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in Bgp message). These groups will be advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
+ * @property {compute(v1).RouterAdvertisedIpRange[]} advertisedIpRanges User-specified list of individual IP ranges to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in Bgp message). These IP ranges will be advertised in addition to any specified groups. Leave this field blank to advertise no custom IP ranges.
  * @property {integer} advertisedRoutePriority The priority of routes advertised to this BGP peer. In the case where there is more than one matching route of maximum length, the routes with lowest priority value win.
+ * @property {string} advertiseMode User-specified flag to indicate which mode to use for advertisement.
  * @property {string} interfaceName Name of the interface the BGP peer is associated with.
  * @property {string} ipAddress IP address of the interface inside Google Cloud Platform. Only IPv4 is supported.
  * @property {string} name Name of this BGP peer. The name must be 1-63 characters long and comply with RFC1035.
@@ -32506,7 +33287,7 @@ function Compute(options) {
  * @property {string} labelFingerprint A fingerprint for the labels being applied to this snapshot, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels.  To see the latest fingerprint, make a get() request to retrieve a snapshot.
  * @property {object} labels Labels to apply to this snapshot. These can be later modified by the setLabels method. Label values may be empty.
  * @property {string[]} licenses [Output Only] A list of public visible licenses that apply to this snapshot. This can be because the original image had licenses attached (such as a Windows image).
- * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {compute(v1).CustomerEncryptionKey} snapshotEncryptionKey Encrypts the snapshot using a customer-supplied encryption key.  After you encrypt a snapshot using a customer-supplied key, you must provide the same key if you use the image later For example, you must provide the encryption key when you create a disk from the encrypted snapshot in a future request.  Customer-supplied encryption keys do not protect access to metadata of the disk.  If you do not provide an encryption key when creating the snapshot, then the snapshot will be encrypted using an automatically generated key and you do not need to provide a key to use the snapshot later.
  * @property {string} sourceDisk [Output Only] The source disk used to create this snapshot.
@@ -32536,7 +33317,7 @@ function Compute(options) {
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of the resource. Always compute#sslCertificate for SSL certificates.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} privateKey A write-only private key in PEM format. Only insert requests will include this field.
  * @property {string} selfLink [Output only] Server-defined URL for the resource.
  */
@@ -32567,11 +33348,12 @@ function Compute(options) {
  * @type object
  * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
  * @property {string} description An optional description of this resource. Provide this property when you create the resource. This field can be set only at resource creation time.
- * @property {string} gatewayAddress [Output Only] The gateway address for default routes to reach destination addresses outside this subnetwork. This field can be set only at resource creation time.
+ * @property {string} fingerprint Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a Subnetwork. An up-to-date fingerprint must be provided in order to update the Subnetwork.
+ * @property {string} gatewayAddress [Output Only] The gateway address for default routes to reach destination addresses outside this subnetwork.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} ipCidrRange The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork. For example, 10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and non-overlapping within a network. Only IPv4 is supported. This field can be set only at resource creation time.
  * @property {string} kind [Output Only] Type of the resource. Always compute#subnetwork for Subnetwork resources.
- * @property {string} name The name of the resource, provided by the client when initially creating the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name The name of the resource, provided by the client when initially creating the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} network The URL of the network to which this subnetwork belongs, provided by the client when initially creating the subnetwork. Only networks that are in the distributed mode can have subnetworks. This field can be set only at resource creation time.
  * @property {boolean} privateIpGoogleAccess Whether the VMs in this subnet can access Google services without assigned external IP addresses. This field can be both set at resource creation time and updated using setPrivateIpGoogleAccess.
  * @property {string} region URL of the region where the Subnetwork resides. This field can be set only at resource creation time.
@@ -32641,7 +33423,7 @@ function Compute(options) {
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of resource. Always compute#targetHttpProxy for target HTTP proxies.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} urlMap URL to the UrlMap resource that defines the mapping from URL to the BackendService.
  */
@@ -32670,7 +33452,7 @@ function Compute(options) {
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of resource. Always compute#targetHttpsProxy for target HTTPS proxies.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string[]} sslCertificates URLs to SslCertificate resources that are used to authenticate connections between users and the load balancer. Currently, exactly one SSL certificate must be specified.
  * @property {string} urlMap A fully-qualified or valid partial URL to the UrlMap resource that defines the mapping from URL to the BackendService. For example, the following are all valid URLs for specifying a URL map:   - https://www.googleapis.compute/v1/projects/project/global/urlMaps/url-map  - projects/project/global/urlMaps/url-map  - global/urlMaps/url-map
@@ -32695,10 +33477,10 @@ function Compute(options) {
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} instance A URL to the virtual machine instance that handles traffic for this target instance. When creating a target instance, you can provide the fully-qualified URL or a valid partial URL to the desired virtual machine. For example, the following are all valid URLs:  - https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance  - projects/project/zones/zone/instances/instance  - zones/zone/instances/instance
  * @property {string} kind [Output Only] The type of the resource. Always compute#targetInstance for target instances.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} natPolicy NAT option controlling how IPs are NAT&#39;ed to the instance. Currently only NO_NAT (default value) is supported.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
- * @property {string} zone [Output Only] URL of the zone where the target instance resides.
+ * @property {string} zone [Output Only] URL of the zone where the target instance resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
  */
 /**
  * @typedef TargetInstanceAggregatedList
@@ -32741,7 +33523,7 @@ function Compute(options) {
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string[]} instances A list of resource URLs to the virtual machine instances serving this pool. They must live in zones contained in the same region as this pool.
  * @property {string} kind [Output Only] Type of the resource. Always compute#targetPool for target pools.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} region [Output Only] URL of the region where the target pool resides.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} sessionAffinity Sesssion affinity option, must be one of the following values: NONE: Connections from the same client IP may go to any instance in the pool. CLIENT_IP: Connections from the same client IP will go to the same instance in the pool while that instance remains healthy. CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol will go to the same instance in the pool while that instance remains healthy.
@@ -32838,7 +33620,7 @@ function Compute(options) {
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of the resource. Always compute#targetSslProxy for target SSL proxies.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} proxyHeader Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} service URL to the BackendService resource.
@@ -32875,7 +33657,7 @@ function Compute(options) {
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of the resource. Always compute#targetTcpProxy for target TCP proxies.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} proxyHeader Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} service URL to the BackendService resource.
@@ -32900,9 +33682,9 @@ function Compute(options) {
  * @property {string[]} forwardingRules [Output Only] A list of URLs to the ForwardingRule resources. ForwardingRules are created using compute.forwardingRules.insert and associated to a VPN gateway.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of resource. Always compute#targetVpnGateway for target VPN gateways.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} network URL of the network to which this VPN gateway is attached. Provided by the client when the VPN gateway is created.
- * @property {string} region [Output Only] URL of the region where the target VPN gateway resides.
+ * @property {string} region [Output Only] URL of the region where the target VPN gateway resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} status [Output Only] The status of the VPN gateway.
  * @property {string[]} tunnels [Output Only] A list of URLs to VpnTunnel resources. VpnTunnels are created using compute.vpntunnels.insert method and associated to a VPN gateway.
@@ -32966,10 +33748,10 @@ function Compute(options) {
  * @property {compute(v1).HostRule[]} hostRules The list of HostRules to use against the URL.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of the resource. Always compute#urlMaps for url maps.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {compute(v1).PathMatcher[]} pathMatchers The list of named PathMatchers to use against the URL.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
- * @property {compute(v1).UrlMapTest[]} tests The list of expected URL mappings. Request to update this UrlMap will succeed only if all of the test cases pass.
+ * @property {compute(v1).UrlMapTest[]} tests The list of expected URL mapping tests. Request to update this UrlMap will succeed only if all of the test cases pass. You can specify a maximum of 100 tests per UrlMap.
  */
 /**
  * @typedef UrlMapList
@@ -33036,16 +33818,16 @@ function Compute(options) {
  * @property {integer} ikeVersion IKE protocol version to use when establishing the VPN tunnel with peer VPN gateway. Acceptable IKE versions are 1 or 2. Default version is 2.
  * @property {string} kind [Output Only] Type of resource. Always compute#vpnTunnel for VPN tunnels.
  * @property {string[]} localTrafficSelector Local traffic selector to use when establishing the VPN tunnel with peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges should be disjoint. Only IPv4 is supported.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} peerIp IP address of the peer VPN gateway. Only IPv4 is supported.
- * @property {string} region [Output Only] URL of the region where the VPN tunnel resides.
+ * @property {string} region [Output Only] URL of the region where the VPN tunnel resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
  * @property {string[]} remoteTrafficSelector Remote traffic selectors to use when establishing the VPN tunnel with peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges should be disjoint. Only IPv4 is supported.
  * @property {string} router URL of router resource to be used for dynamic routing.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} sharedSecret Shared secret used to set the secure session between the Cloud VPN gateway and the peer VPN gateway.
  * @property {string} sharedSecretHash Hash of the shared secret.
  * @property {string} status [Output Only] The status of the VPN tunnel.
- * @property {string} targetVpnGateway URL of the VPN gateway with which this VPN tunnel is associated. Provided by the client when the VPN tunnel is created.
+ * @property {string} targetVpnGateway URL of the Target VPN gateway with which this VPN tunnel is associated. Provided by the client when the VPN tunnel is created.
  */
 /**
  * @typedef VpnTunnelAggregatedList
