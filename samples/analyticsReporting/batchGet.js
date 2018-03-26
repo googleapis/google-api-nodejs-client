@@ -21,7 +21,7 @@ const analyticsreporting = google.analyticsreporting({
   auth: sampleClient.oAuth2Client
 });
 
-function runSample(callback) {
+function runSample (callback) {
   analyticsreporting.reports.batchGet({
     resource: {
       reportRequests: [{
@@ -31,13 +31,13 @@ function runSample(callback) {
             startDate: '2018-03-17',
             endDate: '2018-03-24'
           }, {
-            startDate: "14daysAgo",
-            endDate: "7daysAgo"
+            startDate: '14daysAgo',
+            endDate: '7daysAgo'
           }
         ],
         metrics: [
           {
-            expression: "ga:users"
+            expression: 'ga:users'
           }
         ]
       }]

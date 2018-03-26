@@ -36,13 +36,11 @@ describe('analyticsReporting samples', () => {
   });
 
   it('should batchGet', done => {
-    const scope =
-        nock(baseUrl).post(`/v4/reports:batchGet`).reply(200, {});
+    const scope = nock(baseUrl).post(`/v4/reports:batchGet`).reply(200, {});
     samples.batchGet.runSample((data: {}) => {
       assert(data);
       scope.done();
       done();
     });
   });
-
 });
