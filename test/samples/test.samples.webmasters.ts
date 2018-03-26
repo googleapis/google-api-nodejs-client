@@ -12,18 +12,14 @@
 // limitations under the License.
 
 import * as assert from 'assert';
-import * as fs from 'fs';
 import * as nock from 'nock';
-import * as os from 'os';
-import * as path from 'path';
-
-const baseUrl = 'https://sheets.googleapis.com';
+import {Utils} from './../utils';
 
 nock.disableNetConnect();
 
 // tslint:disable: no-any
 const samples: any = {
-  append: require('../../../samples/sheets/append')
+  query: require('../../../samples/webmasters/query')
 };
 
 for (const p in samples) {
@@ -32,19 +28,17 @@ for (const p in samples) {
   }
 }
 
-describe('sheets samples', () => {
+describe('webmaster samples', () => {
   afterEach(() => {
     nock.cleanAll();
   });
 
-  it('should append values', done => {
-    const range = 'A1:A10';
-    const scope = nock(baseUrl)
-                      .post(`/v4/spreadsheets/aSheetId/values/${
-                          encodeURIComponent(
-                              range)}:append?valueInputOption=USER_ENTERED`)
-                      .reply(200, {});
-    samples.append.runSample('aSheetId', 'A1:A10', (data: {}) => {
+  it('should query analytics', done => {
+    const siteUrl = 'http://jbeckwith.com';
+    const path = `/webmasters/v3/sites/${
+        encodeURIComponent(siteUrl)}/searchAnalytics/query`;
+    const scope = nock(Utils.baseUrl).post(path).reply(200, {});
+    samples.query.runSample((data: {}) => {
       assert(data);
       scope.done();
       done();
