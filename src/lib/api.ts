@@ -16,6 +16,8 @@ import {OAuth2Client} from 'google-auth-library/build/src/auth/oauth2client';
 import {OutgoingHttpHeaders} from 'http';
 import * as stream from 'stream';
 
+import {GoogleApis} from '..';
+
 import {Endpoint} from './endpoint';
 import {SchemaParameters} from './schema';
 
@@ -29,7 +31,7 @@ export interface APIRequestParams {
 }
 
 export interface APIRequestContext {
-  google: {_options: GlobalOptions;};
+  google: GoogleApis;
   _options: GlobalOptions;
 }
 

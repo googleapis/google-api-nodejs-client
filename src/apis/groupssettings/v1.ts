@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
 
@@ -21,7 +22,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
-
+// tslint:disable: class-name
+// tslint:disable: variable-name
+// tslint:disable: jsdoc-format
 
 /**
  * Groups Settings API
@@ -38,156 +41,284 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Groupssettings
  */
-function Groupssettings(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.groups = {
-    /**
-     * groupsSettings.groups.get
-     * @desc Gets one resource by id.
-     * @alias groupsSettings.groups.get
-     * @memberOf! groupssettings(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.groupUniqueId The resource ID
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/groups/v1/groups/{groupUniqueId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['groupUniqueId'],
-        pathParams: ['groupUniqueId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * groupsSettings.groups.patch
-        * @desc Updates an existing resource. This method supports patch
-        * semantics.
-        * @alias groupsSettings.groups.patch
-        * @memberOf! groupssettings(v1)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.groupUniqueId The resource ID
-        * @param {groupssettings(v1).Groups} params.resource Request body data
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    patch(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/groups/v1/groups/{groupUniqueId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
-        params,
-        requiredParams: ['groupUniqueId'],
-        pathParams: ['groupUniqueId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * groupsSettings.groups.update
-        * @desc Updates an existing resource.
-        * @alias groupsSettings.groups.update
-        * @memberOf! groupssettings(v1)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.groupUniqueId The resource ID
-        * @param {groupssettings(v1).Groups} params.resource Request body data
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    update(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/groups/v1/groups/{groupUniqueId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
-        params,
-        requiredParams: ['groupUniqueId'],
-        pathParams: ['groupUniqueId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }
+export class Groupssettings {
+  _options: GlobalOptions;
+  google: GoogleApis;
+  root = this;
 
-  };
+  groups: Resource$Groups;
+
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    this._options = options || {};
+    this.google = google;
+
+    this.groups = new Resource$Groups(this);
+  }
 }
-/**
- * @typedef Groups
- * @memberOf! groupssettings(v1)
- * @type object
- * @property {string} allowExternalMembers Are external members allowed to join the group.
- * @property {string} allowGoogleCommunication Is google allowed to contact admins.
- * @property {string} allowWebPosting If posting from web is allowed.
- * @property {string} archiveOnly If the group is archive only
- * @property {string} customFooterText Custom footer text.
- * @property {string} customReplyTo Default email to which reply to any message should go.
- * @property {string} defaultMessageDenyNotificationText Default message deny notification message
- * @property {string} description Description of the group
- * @property {string} email Email id of the group
- * @property {string} includeCustomFooter Whether to include custom footer.
- * @property {string} includeInGlobalAddressList If this groups should be included in global address list or not.
- * @property {string} isArchived If the contents of the group are archived.
- * @property {string} kind The type of the resource.
- * @property {integer} maxMessageBytes Maximum message size allowed.
- * @property {string} membersCanPostAsTheGroup Can members post using the group email address.
- * @property {string} messageDisplayFont Default message display font. Possible values are: DEFAULT_FONT FIXED_WIDTH_FONT
- * @property {string} messageModerationLevel Moderation level for messages. Possible values are: MODERATE_ALL_MESSAGES MODERATE_NON_MEMBERS MODERATE_NEW_MEMBERS MODERATE_NONE
- * @property {string} name Name of the Group
- * @property {string} primaryLanguage Primary language for the group.
- * @property {string} replyTo Whome should the default reply to a message go to. Possible values are: REPLY_TO_CUSTOM REPLY_TO_SENDER REPLY_TO_LIST REPLY_TO_OWNER REPLY_TO_IGNORE REPLY_TO_MANAGERS
- * @property {string} sendMessageDenyNotification Should the member be notified if his message is denied by owner.
- * @property {string} showInGroupDirectory Is the group listed in groups directory
- * @property {string} spamModerationLevel Moderation level for messages detected as spam. Possible values are: ALLOW MODERATE SILENTLY_MODERATE REJECT
- * @property {string} whoCanAdd Permissions to add members. Possible values are: ALL_MANAGERS_CAN_ADD ALL_MEMBERS_CAN_ADD NONE_CAN_ADD
- * @property {string} whoCanContactOwner Permission to contact owner of the group via web UI. Possible values are: ANYONE_CAN_CONTACT ALL_IN_DOMAIN_CAN_CONTACT ALL_MEMBERS_CAN_CONTACT ALL_MANAGERS_CAN_CONTACT
- * @property {string} whoCanInvite Permissions to invite members. Possible values are: ALL_MEMBERS_CAN_INVITE ALL_MANAGERS_CAN_INVITE NONE_CAN_INVITE
- * @property {string} whoCanJoin Permissions to join the group. Possible values are: ANYONE_CAN_JOIN ALL_IN_DOMAIN_CAN_JOIN INVITED_CAN_JOIN CAN_REQUEST_TO_JOIN
- * @property {string} whoCanLeaveGroup Permission to leave the group. Possible values are: ALL_MANAGERS_CAN_LEAVE ALL_MEMBERS_CAN_LEAVE NONE_CAN_LEAVE
- * @property {string} whoCanPostMessage Permissions to post messages to the group. Possible values are: NONE_CAN_POST ALL_MANAGERS_CAN_POST ALL_MEMBERS_CAN_POST ALL_OWNERS_CAN_POST ALL_IN_DOMAIN_CAN_POST ANYONE_CAN_POST
- * @property {string} whoCanViewGroup Permissions to view group. Possible values are: ANYONE_CAN_VIEW ALL_IN_DOMAIN_CAN_VIEW ALL_MEMBERS_CAN_VIEW ALL_MANAGERS_CAN_VIEW
- * @property {string} whoCanViewMembership Permissions to view membership. Possible values are: ALL_IN_DOMAIN_CAN_VIEW ALL_MEMBERS_CAN_VIEW ALL_MANAGERS_CAN_VIEW
- */
 
-export = Groupssettings;
+/**
+ * JSON template for Group resource
+ */
+export interface Schema$Groups {
+  /**
+   * Are external members allowed to join the group.
+   */
+  allowExternalMembers: string;
+  /**
+   * Is google allowed to contact admins.
+   */
+  allowGoogleCommunication: string;
+  /**
+   * If posting from web is allowed.
+   */
+  allowWebPosting: string;
+  /**
+   * If the group is archive only
+   */
+  archiveOnly: string;
+  /**
+   * Custom footer text.
+   */
+  customFooterText: string;
+  /**
+   * Default email to which reply to any message should go.
+   */
+  customReplyTo: string;
+  /**
+   * Default message deny notification message
+   */
+  defaultMessageDenyNotificationText: string;
+  /**
+   * Description of the group
+   */
+  description: string;
+  /**
+   * Email id of the group
+   */
+  email: string;
+  /**
+   * Whether to include custom footer.
+   */
+  includeCustomFooter: string;
+  /**
+   * If this groups should be included in global address list or not.
+   */
+  includeInGlobalAddressList: string;
+  /**
+   * If the contents of the group are archived.
+   */
+  isArchived: string;
+  /**
+   * The type of the resource.
+   */
+  kind: string;
+  /**
+   * Maximum message size allowed.
+   */
+  maxMessageBytes: number;
+  /**
+   * Can members post using the group email address.
+   */
+  membersCanPostAsTheGroup: string;
+  /**
+   * Default message display font. Possible values are: DEFAULT_FONT
+   * FIXED_WIDTH_FONT
+   */
+  messageDisplayFont: string;
+  /**
+   * Moderation level for messages. Possible values are: MODERATE_ALL_MESSAGES
+   * MODERATE_NON_MEMBERS MODERATE_NEW_MEMBERS MODERATE_NONE
+   */
+  messageModerationLevel: string;
+  /**
+   * Name of the Group
+   */
+  name: string;
+  /**
+   * Primary language for the group.
+   */
+  primaryLanguage: string;
+  /**
+   * Whome should the default reply to a message go to. Possible values are:
+   * REPLY_TO_CUSTOM REPLY_TO_SENDER REPLY_TO_LIST REPLY_TO_OWNER
+   * REPLY_TO_IGNORE REPLY_TO_MANAGERS
+   */
+  replyTo: string;
+  /**
+   * Should the member be notified if his message is denied by owner.
+   */
+  sendMessageDenyNotification: string;
+  /**
+   * Is the group listed in groups directory
+   */
+  showInGroupDirectory: string;
+  /**
+   * Moderation level for messages detected as spam. Possible values are: ALLOW
+   * MODERATE SILENTLY_MODERATE REJECT
+   */
+  spamModerationLevel: string;
+  /**
+   * Permissions to add members. Possible values are: ALL_MANAGERS_CAN_ADD
+   * ALL_MEMBERS_CAN_ADD NONE_CAN_ADD
+   */
+  whoCanAdd: string;
+  /**
+   * Permission to contact owner of the group via web UI. Possible values are:
+   * ANYONE_CAN_CONTACT ALL_IN_DOMAIN_CAN_CONTACT ALL_MEMBERS_CAN_CONTACT
+   * ALL_MANAGERS_CAN_CONTACT
+   */
+  whoCanContactOwner: string;
+  /**
+   * Permissions to invite members. Possible values are: ALL_MEMBERS_CAN_INVITE
+   * ALL_MANAGERS_CAN_INVITE NONE_CAN_INVITE
+   */
+  whoCanInvite: string;
+  /**
+   * Permissions to join the group. Possible values are: ANYONE_CAN_JOIN
+   * ALL_IN_DOMAIN_CAN_JOIN INVITED_CAN_JOIN CAN_REQUEST_TO_JOIN
+   */
+  whoCanJoin: string;
+  /**
+   * Permission to leave the group. Possible values are: ALL_MANAGERS_CAN_LEAVE
+   * ALL_MEMBERS_CAN_LEAVE NONE_CAN_LEAVE
+   */
+  whoCanLeaveGroup: string;
+  /**
+   * Permissions to post messages to the group. Possible values are:
+   * NONE_CAN_POST ALL_MANAGERS_CAN_POST ALL_MEMBERS_CAN_POST
+   * ALL_OWNERS_CAN_POST ALL_IN_DOMAIN_CAN_POST ANYONE_CAN_POST
+   */
+  whoCanPostMessage: string;
+  /**
+   * Permissions to view group. Possible values are: ANYONE_CAN_VIEW
+   * ALL_IN_DOMAIN_CAN_VIEW ALL_MEMBERS_CAN_VIEW ALL_MANAGERS_CAN_VIEW
+   */
+  whoCanViewGroup: string;
+  /**
+   * Permissions to view membership. Possible values are: ALL_IN_DOMAIN_CAN_VIEW
+   * ALL_MEMBERS_CAN_VIEW ALL_MANAGERS_CAN_VIEW
+   */
+  whoCanViewMembership: string;
+}
+
+export class Resource$Groups {
+  root: Groupssettings;
+  constructor(root: Groupssettings) {
+    this.root = root;
+  }
+
+  /**
+   * groupsSettings.groups.get
+   * @desc Gets one resource by id.
+   * @alias groupsSettings.groups.get
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.groupUniqueId The resource ID
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  get =
+      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Groups>,
+       callback?: BodyResponseCallback<Schema$Groups>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/groups/v1/groups/{groupUniqueId}')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: ['groupUniqueId'],
+          pathParams: ['groupUniqueId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$Groups>(parameters, callback!);
+      };
+
+
+  /**
+   * groupsSettings.groups.patch
+   * @desc Updates an existing resource. This method supports patch semantics.
+   * @alias groupsSettings.groups.patch
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.groupUniqueId The resource ID
+   * @param {().Groups} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  patch =
+      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Groups>,
+       callback?: BodyResponseCallback<Schema$Groups>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/groups/v1/groups/{groupUniqueId}')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'PATCH'
+              },
+              options),
+          params,
+          requiredParams: ['groupUniqueId'],
+          pathParams: ['groupUniqueId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$Groups>(parameters, callback!);
+      };
+
+
+  /**
+   * groupsSettings.groups.update
+   * @desc Updates an existing resource.
+   * @alias groupsSettings.groups.update
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.groupUniqueId The resource ID
+   * @param {().Groups} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  update =
+      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Groups>,
+       callback?: BodyResponseCallback<Schema$Groups>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/groups/v1/groups/{groupUniqueId}')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'PUT'
+              },
+              options),
+          params,
+          requiredParams: ['groupUniqueId'],
+          pathParams: ['groupUniqueId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$Groups>(parameters, callback!);
+      };
+}

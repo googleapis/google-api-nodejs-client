@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
 
@@ -21,7 +22,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
-
+// tslint:disable: class-name
+// tslint:disable: variable-name
+// tslint:disable: jsdoc-format
 
 /**
  * Manufacturer Center API
@@ -38,34 +41,434 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Manufacturers
  */
-function Manufacturers(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.accounts = {
-    products: {
-      /**
-       * manufacturers.accounts.products.delete
-       * @desc Deletes the product from a Manufacturer Center account.
-       * @alias manufacturers.accounts.products.delete
-       * @memberOf! manufacturers(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.name Name in the format `{target_country}:{content_language}:{product_id}`.  `target_country`   - The target country of the product as a CLDR territory                      code (for example, US).  `content_language` - The content language of the product as a two-letter                      ISO 639-1 language code (for example, en).  `product_id`     -   The ID of the product. For more information, see                      https://support.google.com/manufacturers/answer/6124116#id.
-       * @param {string} params.parent Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID of the Manufacturer Center account.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete (
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
+export class Manufacturers {
+  _options: GlobalOptions;
+  google: GoogleApis;
+  root = this;
+
+  accounts: Resource$Accounts;
+
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    this._options = options || {};
+    this.google = google;
+
+    this.accounts = new Resource$Accounts(this);
+  }
+}
+
+/**
+ * Attributes of the product. For more information, see
+ * https://support.google.com/manufacturers/answer/6124116.
+ */
+export interface Schema$Attributes {
+  /**
+   * The additional images of the product. For more information, see
+   * https://support.google.com/manufacturers/answer/6124116#addlimage.
+   */
+  additionalImageLink: Schema$Image[];
+  /**
+   * The target age group of the product. For more information, see
+   * https://support.google.com/manufacturers/answer/6124116#agegroup.
+   */
+  ageGroup: string;
+  /**
+   * The brand name of the product. For more information, see
+   * https://support.google.com/manufacturers/answer/6124116#brand.
+   */
+  brand: string;
+  /**
+   * The capacity of the product. For more information, see
+   * https://support.google.com/manufacturers/answer/6124116#capacity.
+   */
+  capacity: Schema$Capacity;
+  /**
+   * The color of the product. For more information, see
+   * https://support.google.com/manufacturers/answer/6124116#color.
+   */
+  color: string;
+  /**
+   * The count of the product. For more information, see
+   * https://support.google.com/manufacturers/answer/6124116#count.
+   */
+  count: Schema$Count;
+  /**
+   * The description of the product. For more information, see
+   * https://support.google.com/manufacturers/answer/6124116#description.
+   */
+  description: string;
+  /**
+   * The disclosure date of the product. For more information, see
+   * https://support.google.com/manufacturers/answer/6124116#disclosure.
+   */
+  disclosureDate: string;
+  /**
+   * The rich format description of the product. For more information, see
+   * https://support.google.com/manufacturers/answer/6124116#featuredesc.
+   */
+  featureDescription: Schema$FeatureDescription[];
+  /**
+   * The flavor of the product. For more information, see
+   * https://support.google.com/manufacturers/answer/6124116#flavor.
+   */
+  flavor: string;
+  /**
+   * The format of the product. For more information, see
+   * https://support.google.com/manufacturers/answer/6124116#format.
+   */
+  format: string;
+  /**
+   * The target gender of the product. For more information, see
+   * https://support.google.com/manufacturers/answer/6124116#gender.
+   */
+  gender: string;
+  /**
+   * The Global Trade Item Number (GTIN) of the product. For more information,
+   * see https://support.google.com/manufacturers/answer/6124116#gtin.
+   */
+  gtin: string[];
+  /**
+   * The image of the product. For more information, see
+   * https://support.google.com/manufacturers/answer/6124116#image.
+   */
+  imageLink: Schema$Image;
+  /**
+   * The item group id of the product. For more information, see
+   * https://support.google.com/manufacturers/answer/6124116#itemgroupid.
+   */
+  itemGroupId: string;
+  /**
+   * The material of the product. For more information, see
+   * https://support.google.com/manufacturers/answer/6124116#material.
+   */
+  material: string;
+  /**
+   * The Manufacturer Part Number (MPN) of the product. For more information,
+   * see https://support.google.com/manufacturers/answer/6124116#mpn.
+   */
+  mpn: string;
+  /**
+   * The pattern of the product. For more information, see
+   * https://support.google.com/manufacturers/answer/6124116#pattern.
+   */
+  pattern: string;
+  /**
+   * The details of the product. For more information, see
+   * https://support.google.com/manufacturers/answer/6124116#productdetail.
+   */
+  productDetail: Schema$ProductDetail[];
+  /**
+   * The name of the group of products related to the product. For more
+   * information, see
+   * https://support.google.com/manufacturers/answer/6124116#productline.
+   */
+  productLine: string;
+  /**
+   * The canonical name of the product. For more information, see
+   * https://support.google.com/manufacturers/answer/6124116#productname.
+   */
+  productName: string;
+  /**
+   * The URL of the detail page of the product. For more information, see
+   * https://support.google.com/manufacturers/answer/6124116#productpage.
+   */
+  productPageUrl: string;
+  /**
+   * The type or category of the product. For more information, see
+   * https://support.google.com/manufacturers/answer/6124116#producttype.
+   */
+  productType: string[];
+  /**
+   * The release date of the product. For more information, see
+   * https://support.google.com/manufacturers/answer/6124116#release.
+   */
+  releaseDate: string;
+  /**
+   * The scent of the product. For more information, see
+   * https://support.google.com/manufacturers/answer/6124116#scent.
+   */
+  scent: string;
+  /**
+   * The size of the product. For more information, see
+   * https://support.google.com/manufacturers/answer/6124116#size.
+   */
+  size: string;
+  /**
+   * The size system of the product. For more information, see
+   * https://support.google.com/manufacturers/answer/6124116#sizesystem.
+   */
+  sizeSystem: string;
+  /**
+   * The size type of the product. For more information, see
+   * https://support.google.com/manufacturers/answer/6124116#sizetype.
+   */
+  sizeType: string;
+  /**
+   * The suggested retail price (MSRP) of the product. For more information, see
+   * https://support.google.com/manufacturers/answer/6124116#price.
+   */
+  suggestedRetailPrice: Schema$Price;
+  /**
+   * The target client id. Should only be used in the accounts of the data
+   * partners.
+   */
+  targetClientId: string;
+  /**
+   * The theme of the product. For more information, see
+   * https://support.google.com/manufacturers/answer/6124116#theme.
+   */
+  theme: string;
+  /**
+   * The title of the product. For more information, see
+   * https://support.google.com/manufacturers/answer/6124116#title.
+   */
+  title: string;
+  /**
+   * The videos of the product. For more information, see
+   * https://support.google.com/manufacturers/answer/6124116#video.
+   */
+  videoLink: string[];
+}
+/**
+ * The capacity of a product. For more information, see
+ * https://support.google.com/manufacturers/answer/6124116#capacity.
+ */
+export interface Schema$Capacity {
+  /**
+   * The unit of the capacity, i.e., MB, GB, or TB.
+   */
+  unit: string;
+  /**
+   * The numeric value of the capacity.
+   */
+  value: string;
+}
+/**
+ * The number of products in a single package. For more information, see
+ * https://support.google.com/manufacturers/answer/6124116#count.
+ */
+export interface Schema$Count {
+  /**
+   * The unit in which these products are counted.
+   */
+  unit: string;
+  /**
+   * The numeric value of the number of products in a package.
+   */
+  value: string;
+}
+/**
+ * A generic empty message that you can re-use to avoid defining duplicated
+ * empty messages in your APIs. A typical example is to use it as the request or
+ * the response type of an API method. For instance:      service Foo {
+ * rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The
+ * JSON representation for `Empty` is empty JSON object `{}`.
+ */
+export interface Schema$Empty {}
+/**
+ * A feature description of the product. For more information, see
+ * https://support.google.com/manufacturers/answer/6124116#featuredesc.
+ */
+export interface Schema$FeatureDescription {
+  /**
+   * A short description of the feature.
+   */
+  headline: string;
+  /**
+   * An optional image describing the feature.
+   */
+  image: Schema$Image;
+  /**
+   * A detailed description of the feature.
+   */
+  text: string;
+}
+/**
+ * An image.
+ */
+export interface Schema$Image {
+  /**
+   * The URL of the image. For crawled images, this is the provided URL. For
+   * uploaded images, this is a serving URL from Google if the image has been
+   * processed successfully.
+   */
+  imageUrl: string;
+  /**
+   * The status of the image. @OutputOnly
+   */
+  status: string;
+  /**
+   * The type of the image, i.e., crawled or uploaded. @OutputOnly
+   */
+  type: string;
+}
+/**
+ * Product issue.
+ */
+export interface Schema$Issue {
+  /**
+   * If present, the attribute that triggered the issue. For more information
+   * about attributes, see
+   * https://support.google.com/manufacturers/answer/6124116.
+   */
+  attribute: string;
+  /**
+   * Longer description of the issue focused on how to resolve it.
+   */
+  description: string;
+  /**
+   * The severity of the issue.
+   */
+  severity: string;
+  /**
+   * The timestamp when this issue appeared.
+   */
+  timestamp: string;
+  /**
+   * The server-generated type of the issue, for example,
+   * “INCORRECT_TEXT_FORMATTING”, “IMAGE_NOT_SERVEABLE”, etc.
+   */
+  type: string;
+}
+export interface Schema$ListProductsResponse {
+  /**
+   * The token for the retrieval of the next page of product statuses.
+   */
+  nextPageToken: string;
+  /**
+   * List of the products.
+   */
+  products: Schema$Product[];
+}
+/**
+ * A price.
+ */
+export interface Schema$Price {
+  /**
+   * The numeric value of the price.
+   */
+  amount: string;
+  /**
+   * The currency in which the price is denoted.
+   */
+  currency: string;
+}
+/**
+ * Product data.
+ */
+export interface Schema$Product {
+  /**
+   * The content language of the product as a two-letter ISO 639-1 language code
+   * (for example, en). @OutputOnly
+   */
+  contentLanguage: string;
+  /**
+   * Final attributes of the product. The final attributes are obtained by
+   * overriding the uploaded attributes with the manually provided and deleted
+   * attributes. Google systems only process, evaluate, review, and/or use final
+   * attributes. @OutputOnly
+   */
+  finalAttributes: Schema$Attributes;
+  /**
+   * A server-generated list of issues associated with the product. @OutputOnly
+   */
+  issues: Schema$Issue[];
+  /**
+   * Names of the attributes of the product deleted manually via the
+   * Manufacturer Center UI. @OutputOnly
+   */
+  manuallyDeletedAttributes: string[];
+  /**
+   * Attributes of the product provided manually via the Manufacturer Center UI.
+   * @OutputOnly
+   */
+  manuallyProvidedAttributes: Schema$Attributes;
+  /**
+   * Name in the format `{target_country}:{content_language}:{product_id}`.
+   * `target_country`   - The target country of the product as a CLDR territory
+   * code (for example, US).  `content_language` - The content language of the
+   * product as a two-letter                      ISO 639-1 language code (for
+   * example, en).  `product_id`     -   The ID of the product. For more
+   * information, see
+   * https://support.google.com/manufacturers/answer/6124116#id. @OutputOnly
+   */
+  name: string;
+  /**
+   * Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID of
+   * the Manufacturer Center account. @OutputOnly
+   */
+  parent: string;
+  /**
+   * The ID of the product. For more information, see
+   * https://support.google.com/manufacturers/answer/6124116#id. @OutputOnly
+   */
+  productId: string;
+  /**
+   * The target country of the product as a CLDR territory code (for example,
+   * US). @OutputOnly
+   */
+  targetCountry: string;
+  /**
+   * Attributes of the product uploaded via the Manufacturer Center API or via
+   * feeds.
+   */
+  uploadedAttributes: Schema$Attributes;
+}
+/**
+ * A product detail of the product. For more information, see
+ * https://support.google.com/manufacturers/answer/6124116#productdetail.
+ */
+export interface Schema$ProductDetail {
+  /**
+   * The name of the attribute.
+   */
+  attributeName: string;
+  /**
+   * The value of the attribute.
+   */
+  attributeValue: string;
+  /**
+   * A short section name that can be reused between multiple product details.
+   */
+  sectionName: string;
+}
+
+export class Resource$Accounts {
+  root: Manufacturers;
+  products: Resource$Accounts$Products;
+  constructor(root: Manufacturers) {
+    this.root = root;
+    this.products = new Resource$Accounts$Products(root);
+  }
+}
+export class Resource$Accounts$Products {
+  root: Manufacturers;
+  constructor(root: Manufacturers) {
+    this.root = root;
+  }
+
+  /**
+   * manufacturers.accounts.products.delete
+   * @desc Deletes the product from a Manufacturer Center account.
+   * @alias manufacturers.accounts.products.delete
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.name Name in the format `{target_country}:{content_language}:{product_id}`.  `target_country`   - The target country of the product as a CLDR territory                      code (for example, US).  `content_language` - The content language of the product as a two-letter                      ISO 639-1 language code (for example, en).  `product_id`     -   The ID of the product. For more information, see                      https://support.google.com/manufacturers/answer/6124116#id.
+   * @param {string} params.parent Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID of the Manufacturer Center account.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  delete =
+      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+       callback?: BodyResponseCallback<Schema$Empty>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
         options = options || {};
         const rootUrl =
-            options.rootUrl || 'https://manufacturers.googleapis.com/';
+            options.rootUrl || 'https://content-manufacturers.googleapis.com/';
         const parameters = {
           options: Object.assign(
               {
@@ -77,35 +480,39 @@ function Manufacturers(options: GlobalOptions) {
           params,
           requiredParams: ['parent', 'name'],
           pathParams: ['name', 'parent'],
-          context: self
+          context: this.root
         };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * manufacturers.accounts.products.get
-          * @desc Gets the product from a Manufacturer Center account, including
-          * product issues.  A recently updated product takes around 15 minutes
-          * to process. Changes are only visible after it has been processed.
-          * While some issues may be available once the product has been
-          * processed, other issues may take days to appear.
-          * @alias manufacturers.accounts.products.get
-          * @memberOf! manufacturers(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.name Name in the format `{target_country}:{content_language}:{product_id}`.  `target_country`   - The target country of the product as a CLDR territory                      code (for example, US).  `content_language` - The content language of the product as a two-letter                      ISO 639-1 language code (for example, en).  `product_id`     -   The ID of the product. For more information, see                      https://support.google.com/manufacturers/answer/6124116#id.
-          * @param {string} params.parent Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID of the Manufacturer Center account.
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
+        createAPIRequest<Schema$Empty>(parameters, callback!);
+      };
+
+
+  /**
+   * manufacturers.accounts.products.get
+   * @desc Gets the product from a Manufacturer Center account, including
+   * product issues.  A recently updated product takes around 15 minutes to
+   * process. Changes are only visible after it has been processed. While some
+   * issues may be available once the product has been processed, other issues
+   * may take days to appear.
+   * @alias manufacturers.accounts.products.get
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.name Name in the format `{target_country}:{content_language}:{product_id}`.  `target_country`   - The target country of the product as a CLDR territory                      code (for example, US).  `content_language` - The content language of the product as a two-letter                      ISO 639-1 language code (for example, en).  `product_id`     -   The ID of the product. For more information, see                      https://support.google.com/manufacturers/answer/6124116#id.
+   * @param {string} params.parent Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID of the Manufacturer Center account.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  get =
+      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Product>,
+       callback?: BodyResponseCallback<Schema$Product>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
         options = options || {};
         const rootUrl =
-            options.rootUrl || 'https://manufacturers.googleapis.com/';
+            options.rootUrl || 'https://content-manufacturers.googleapis.com/';
         const parameters = {
           options: Object.assign(
               {
@@ -117,33 +524,37 @@ function Manufacturers(options: GlobalOptions) {
           params,
           requiredParams: ['parent', 'name'],
           pathParams: ['name', 'parent'],
-          context: self
+          context: this.root
         };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * manufacturers.accounts.products.list
-          * @desc Lists all the products in a Manufacturer Center account.
-          * @alias manufacturers.accounts.products.list
-          * @memberOf! manufacturers(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {integer=} params.pageSize Maximum number of product statuses to return in the response, used for paging.
-          * @param {string=} params.pageToken The token returned by the previous request.
-          * @param {string} params.parent Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID of the Manufacturer Center account.
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      list(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
+        createAPIRequest<Schema$Product>(parameters, callback!);
+      };
+
+
+  /**
+   * manufacturers.accounts.products.list
+   * @desc Lists all the products in a Manufacturer Center account.
+   * @alias manufacturers.accounts.products.list
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {integer=} params.pageSize Maximum number of product statuses to return in the response, used for paging.
+   * @param {string=} params.pageToken The token returned by the previous request.
+   * @param {string} params.parent Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID of the Manufacturer Center account.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  list =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$ListProductsResponse>,
+       callback?: BodyResponseCallback<Schema$ListProductsResponse>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
         options = options || {};
         const rootUrl =
-            options.rootUrl || 'https://manufacturers.googleapis.com/';
+            options.rootUrl || 'https://content-manufacturers.googleapis.com/';
         const parameters = {
           options: Object.assign(
               {
@@ -155,45 +566,47 @@ function Manufacturers(options: GlobalOptions) {
           params,
           requiredParams: ['parent'],
           pathParams: ['parent'],
-          context: self
+          context: this.root
         };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * manufacturers.accounts.products.update
-          * @desc Inserts or updates the attributes of the product in a
-          * Manufacturer Center account.  Creates a product with the provided
-          * attributes. If the product already exists, then all attributes are
-          * replaced with the new ones. The checks at upload time are minimal.
-          * All required attributes need to be present for a product to be
-          * valid. Issues may show up later after the API has accepted a new
-          * upload for a product and it is possible to overwrite an existing
-          * valid product with an invalid product. To detect this, you should
-          * retrieve the product and check it for issues once the new version is
-          * available.  Uploaded attributes first need to be processed before
-          * they can be retrieved. Until then, new products will be unavailable,
-          * and retrieval of previously uploaded products will return the
-          * original state of the product.
-          * @alias manufacturers.accounts.products.update
-          * @memberOf! manufacturers(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.name Name in the format `{target_country}:{content_language}:{product_id}`.  `target_country`   - The target country of the product as a CLDR territory                      code (for example, US).  `content_language` - The content language of the product as a two-letter                      ISO 639-1 language code (for example, en).  `product_id`     -   The ID of the product. For more information, see                      https://support.google.com/manufacturers/answer/6124116#id.
-          * @param {string} params.parent Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID of the Manufacturer Center account.
-          * @param {manufacturers(v1).Attributes} params.resource Request body data
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      update(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
+        createAPIRequest<Schema$ListProductsResponse>(parameters, callback!);
+      };
+
+
+  /**
+   * manufacturers.accounts.products.update
+   * @desc Inserts or updates the attributes of the product in a Manufacturer
+   * Center account.  Creates a product with the provided attributes. If the
+   * product already exists, then all attributes are replaced with the new ones.
+   * The checks at upload time are minimal. All required attributes need to be
+   * present for a product to be valid. Issues may show up later after the API
+   * has accepted a new upload for a product and it is possible to overwrite an
+   * existing valid product with an invalid product. To detect this, you should
+   * retrieve the product and check it for issues once the new version is
+   * available.  Uploaded attributes first need to be processed before they can
+   * be retrieved. Until then, new products will be unavailable, and retrieval
+   * of previously uploaded products will return the original state of the
+   * product.
+   * @alias manufacturers.accounts.products.update
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.name Name in the format `{target_country}:{content_language}:{product_id}`.  `target_country`   - The target country of the product as a CLDR territory                      code (for example, US).  `content_language` - The content language of the product as a two-letter                      ISO 639-1 language code (for example, en).  `product_id`     -   The ID of the product. For more information, see                      https://support.google.com/manufacturers/answer/6124116#id.
+   * @param {string} params.parent Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID of the Manufacturer Center account.
+   * @param {().Attributes} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  update =
+      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+       callback?: BodyResponseCallback<Schema$Empty>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
         options = options || {};
         const rootUrl =
-            options.rootUrl || 'https://manufacturers.googleapis.com/';
+            options.rootUrl || 'https://content-manufacturers.googleapis.com/';
         const parameters = {
           options: Object.assign(
               {
@@ -205,133 +618,8 @@ function Manufacturers(options: GlobalOptions) {
           params,
           requiredParams: ['parent', 'name'],
           pathParams: ['name', 'parent'],
-          context: self
+          context: this.root
         };
-        return createAPIRequest(parameters, callback!);
-      }
-
-    }
-  };
+        createAPIRequest<Schema$Empty>(parameters, callback!);
+      };
 }
-/**
- * @typedef Attributes
- * @memberOf! manufacturers(v1)
- * @type object
- * @property {manufacturers(v1).Image[]} additionalImageLink The additional images of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#addlimage.
- * @property {string} ageGroup The target age group of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#agegroup.
- * @property {string} brand The brand name of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#brand.
- * @property {manufacturers(v1).Capacity} capacity The capacity of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#capacity.
- * @property {string} color The color of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#color.
- * @property {manufacturers(v1).Count} count The count of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#count.
- * @property {string} description The description of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#description.
- * @property {string} disclosureDate The disclosure date of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#disclosure.
- * @property {manufacturers(v1).FeatureDescription[]} featureDescription The rich format description of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#featuredesc.
- * @property {string} flavor The flavor of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#flavor.
- * @property {string} format The format of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#format.
- * @property {string} gender The target gender of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#gender.
- * @property {string[]} gtin The Global Trade Item Number (GTIN) of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#gtin.
- * @property {manufacturers(v1).Image} imageLink The image of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#image.
- * @property {string} itemGroupId The item group id of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#itemgroupid.
- * @property {string} material The material of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#material.
- * @property {string} mpn The Manufacturer Part Number (MPN) of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#mpn.
- * @property {string} pattern The pattern of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#pattern.
- * @property {manufacturers(v1).ProductDetail[]} productDetail The details of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#productdetail.
- * @property {string} productLine The name of the group of products related to the product. For more information, see https://support.google.com/manufacturers/answer/6124116#productline.
- * @property {string} productName The canonical name of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#productname.
- * @property {string} productPageUrl The URL of the detail page of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#productpage.
- * @property {string[]} productType The type or category of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#producttype.
- * @property {string} releaseDate The release date of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#release.
- * @property {string} scent The scent of the product. For more information, see  https://support.google.com/manufacturers/answer/6124116#scent.
- * @property {string} size The size of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#size.
- * @property {string} sizeSystem The size system of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#sizesystem.
- * @property {string} sizeType The size type of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#sizetype.
- * @property {manufacturers(v1).Price} suggestedRetailPrice The suggested retail price (MSRP) of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#price.
- * @property {string} targetClientId The target client id. Should only be used in the accounts of the data partners.
- * @property {string} theme The theme of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#theme.
- * @property {string} title The title of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#title.
- * @property {string[]} videoLink The videos of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#video.
- */
-/**
- * @typedef Capacity
- * @memberOf! manufacturers(v1)
- * @type object
- * @property {string} unit The unit of the capacity, i.e., MB, GB, or TB.
- * @property {string} value The numeric value of the capacity.
- */
-/**
- * @typedef Count
- * @memberOf! manufacturers(v1)
- * @type object
- * @property {string} unit The unit in which these products are counted.
- * @property {string} value The numeric value of the number of products in a package.
- */
-/**
- * @typedef Empty
- * @memberOf! manufacturers(v1)
- * @type object
- */
-/**
- * @typedef FeatureDescription
- * @memberOf! manufacturers(v1)
- * @type object
- * @property {string} headline A short description of the feature.
- * @property {manufacturers(v1).Image} image An optional image describing the feature.
- * @property {string} text A detailed description of the feature.
- */
-/**
- * @typedef Image
- * @memberOf! manufacturers(v1)
- * @type object
- * @property {string} imageUrl The URL of the image. For crawled images, this is the provided URL. For uploaded images, this is a serving URL from Google if the image has been processed successfully.
- * @property {string} status The status of the image. @OutputOnly
- * @property {string} type The type of the image, i.e., crawled or uploaded. @OutputOnly
- */
-/**
- * @typedef Issue
- * @memberOf! manufacturers(v1)
- * @type object
- * @property {string} attribute If present, the attribute that triggered the issue. For more information about attributes, see https://support.google.com/manufacturers/answer/6124116.
- * @property {string} description Longer description of the issue focused on how to resolve it.
- * @property {string} severity The severity of the issue.
- * @property {string} timestamp The timestamp when this issue appeared.
- * @property {string} type The server-generated type of the issue, for example, “INCORRECT_TEXT_FORMATTING”, “IMAGE_NOT_SERVEABLE”, etc.
- */
-/**
- * @typedef ListProductsResponse
- * @memberOf! manufacturers(v1)
- * @type object
- * @property {string} nextPageToken The token for the retrieval of the next page of product statuses.
- * @property {manufacturers(v1).Product[]} products List of the products.
- */
-/**
- * @typedef Price
- * @memberOf! manufacturers(v1)
- * @type object
- * @property {string} amount The numeric value of the price.
- * @property {string} currency The currency in which the price is denoted.
- */
-/**
- * @typedef Product
- * @memberOf! manufacturers(v1)
- * @type object
- * @property {string} contentLanguage The content language of the product as a two-letter ISO 639-1 language code (for example, en). @OutputOnly
- * @property {manufacturers(v1).Attributes} finalAttributes Final attributes of the product. The final attributes are obtained by overriding the uploaded attributes with the manually provided and deleted attributes. Google systems only process, evaluate, review, and/or use final attributes. @OutputOnly
- * @property {manufacturers(v1).Issue[]} issues A server-generated list of issues associated with the product. @OutputOnly
- * @property {string[]} manuallyDeletedAttributes Names of the attributes of the product deleted manually via the Manufacturer Center UI. @OutputOnly
- * @property {manufacturers(v1).Attributes} manuallyProvidedAttributes Attributes of the product provided manually via the Manufacturer Center UI. @OutputOnly
- * @property {string} name Name in the format `{target_country}:{content_language}:{product_id}`.  `target_country`   - The target country of the product as a CLDR territory                      code (for example, US).  `content_language` - The content language of the product as a two-letter                      ISO 639-1 language code (for example, en).  `product_id`     -   The ID of the product. For more information, see                      https://support.google.com/manufacturers/answer/6124116#id. @OutputOnly
- * @property {string} parent Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID of the Manufacturer Center account. @OutputOnly
- * @property {string} productId The ID of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#id. @OutputOnly
- * @property {string} targetCountry The target country of the product as a CLDR territory code (for example, US). @OutputOnly
- * @property {manufacturers(v1).Attributes} uploadedAttributes Attributes of the product uploaded via the Manufacturer Center API or via feeds.
- */
-/**
- * @typedef ProductDetail
- * @memberOf! manufacturers(v1)
- * @type object
- * @property {string} attributeName The name of the attribute.
- * @property {string} attributeValue The value of the attribute.
- * @property {string} sectionName A short section name that can be reused between multiple product details.
- */
-
-export = Manufacturers;

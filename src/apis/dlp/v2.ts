@@ -35,12 +35,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  *
  * @example
  * const google = require('googleapis');
- * const dlp = google.dlp('v2beta2');
+ * const dlp = google.dlp('v2');
  *
  * @namespace dlp
  * @type {Function}
- * @version v2beta2
- * @variation v2beta2
+ * @version v2
+ * @variation v2
  * @param {object=} options Options for Dlp
  */
 export class Dlp {
@@ -62,6 +62,60 @@ export class Dlp {
   }
 }
 
+/**
+ * A task to execute on the completion of a job.
+ */
+export interface Schema$GooglePrivacyDlpV2Action {
+  /**
+   * Publish a notification to a pubsub topic.
+   */
+  pubSub: Schema$GooglePrivacyDlpV2PublishToPubSub;
+  /**
+   * Save resulting findings in a provided location.
+   */
+  saveFindings: Schema$GooglePrivacyDlpV2SaveFindings;
+}
+/**
+ * Result of a risk analysis operation request.
+ */
+export interface Schema$GooglePrivacyDlpV2AnalyzeDataSourceRiskDetails {
+  categoricalStatsResult: Schema$GooglePrivacyDlpV2CategoricalStatsResult;
+  kAnonymityResult: Schema$GooglePrivacyDlpV2KAnonymityResult;
+  kMapEstimationResult: Schema$GooglePrivacyDlpV2KMapEstimationResult;
+  lDiversityResult: Schema$GooglePrivacyDlpV2LDiversityResult;
+  numericalStatsResult: Schema$GooglePrivacyDlpV2NumericalStatsResult;
+  /**
+   * Privacy metric to compute.
+   */
+  requestedPrivacyMetric: Schema$GooglePrivacyDlpV2PrivacyMetric;
+  /**
+   * Input dataset to compute metrics over.
+   */
+  requestedSourceTable: Schema$GooglePrivacyDlpV2BigQueryTable;
+}
+/**
+ * An auxiliary table contains statistical information on the relative frequency
+ * of different quasi-identifiers values. It has one or several
+ * quasi-identifiers columns, and one column that indicates the relative
+ * frequency of each quasi-identifier tuple. If a tuple is present in the data
+ * but not in the auxiliary table, the corresponding relative frequency is
+ * assumed to be zero (and thus, the tuple is highly reidentifiable).
+ */
+export interface Schema$GooglePrivacyDlpV2AuxiliaryTable {
+  /**
+   * Quasi-identifier columns. [required]
+   */
+  quasiIds: Schema$GooglePrivacyDlpV2QuasiIdField[];
+  /**
+   * The relative frequency column must contain a floating-point number between
+   * 0 and 1 (inclusive). Null values are assumed to be zero. [required]
+   */
+  relativeFrequency: Schema$GooglePrivacyDlpV2FieldId;
+  /**
+   * Auxiliary table location. [required]
+   */
+  table: Schema$GooglePrivacyDlpV2BigQueryTable;
+}
 /**
  * An auxiliary table contains statistical information on the relative frequency
  * of different quasi-identifiers values. It has one or several
@@ -859,80 +913,9 @@ export interface Schema$GooglePrivacyDlpV2beta1WordList {
   words: string[];
 }
 /**
- * A task to execute on the completion of a job.
- */
-export interface Schema$GooglePrivacyDlpV2beta2Action {
-  /**
-   * Publish a notification to a pubsub topic.
-   */
-  pubSub: Schema$GooglePrivacyDlpV2beta2PublishToPubSub;
-  /**
-   * Save resulting findings in a provided location.
-   */
-  saveFindings: Schema$GooglePrivacyDlpV2beta2SaveFindings;
-}
-/**
- * Result of a risk analysis operation request.
- */
-export interface Schema$GooglePrivacyDlpV2beta2AnalyzeDataSourceRiskDetails {
-  categoricalStatsResult: Schema$GooglePrivacyDlpV2beta2CategoricalStatsResult;
-  kAnonymityResult: Schema$GooglePrivacyDlpV2beta2KAnonymityResult;
-  kMapEstimationResult: Schema$GooglePrivacyDlpV2beta2KMapEstimationResult;
-  lDiversityResult: Schema$GooglePrivacyDlpV2beta2LDiversityResult;
-  numericalStatsResult: Schema$GooglePrivacyDlpV2beta2NumericalStatsResult;
-  /**
-   * Privacy metric to compute.
-   */
-  requestedPrivacyMetric: Schema$GooglePrivacyDlpV2beta2PrivacyMetric;
-  /**
-   * Input dataset to compute metrics over.
-   */
-  requestedSourceTable: Schema$GooglePrivacyDlpV2beta2BigQueryTable;
-}
-/**
- * Request for creating a risk analysis DlpJob.
- */
-export interface Schema$GooglePrivacyDlpV2beta2AnalyzeDataSourceRiskRequest {
-  /**
-   * Configuration for this risk analysis job.
-   */
-  jobConfig: Schema$GooglePrivacyDlpV2beta2RiskAnalysisJobConfig;
-  /**
-   * Optional job ID to use for the created job. If not provided, a job ID will
-   * automatically be generated. Must be unique within the project. The job ID
-   * can contain uppercase and lowercase letters, numbers, and hyphens; that is,
-   * it must match the regular expression: `[a-zA-Z\\d-]+`. The maximum length
-   * is 100 characters. Can be empty to allow the system to generate one.
-   */
-  jobId: string;
-}
-/**
- * An auxiliary table contains statistical information on the relative frequency
- * of different quasi-identifiers values. It has one or several
- * quasi-identifiers columns, and one column that indicates the relative
- * frequency of each quasi-identifier tuple. If a tuple is present in the data
- * but not in the auxiliary table, the corresponding relative frequency is
- * assumed to be zero (and thus, the tuple is highly reidentifiable).
- */
-export interface Schema$GooglePrivacyDlpV2beta2AuxiliaryTable {
-  /**
-   * Quasi-identifier columns. [required]
-   */
-  quasiIds: Schema$GooglePrivacyDlpV2beta2QuasiIdField[];
-  /**
-   * The relative frequency column must contain a floating-point number between
-   * 0 and 1 (inclusive). Null values are assumed to be zero. [required]
-   */
-  relativeFrequency: Schema$GooglePrivacyDlpV2beta2FieldId;
-  /**
-   * Auxiliary table location. [required]
-   */
-  table: Schema$GooglePrivacyDlpV2beta2BigQueryTable;
-}
-/**
  * Row key for identifying a record in BigQuery table.
  */
-export interface Schema$GooglePrivacyDlpV2beta2BigQueryKey {
+export interface Schema$GooglePrivacyDlpV2BigQueryKey {
   /**
    * Absolute number of the row from the beginning of the table at the time of
    * scanning.
@@ -941,21 +924,21 @@ export interface Schema$GooglePrivacyDlpV2beta2BigQueryKey {
   /**
    * Complete BigQuery table reference.
    */
-  tableReference: Schema$GooglePrivacyDlpV2beta2BigQueryTable;
+  tableReference: Schema$GooglePrivacyDlpV2BigQueryTable;
 }
 /**
  * Options defining BigQuery table and row identifiers.
  */
-export interface Schema$GooglePrivacyDlpV2beta2BigQueryOptions {
+export interface Schema$GooglePrivacyDlpV2BigQueryOptions {
   /**
    * References to fields uniquely identifying rows within the table. Nested
    * fields in the format, like `person.birthdate.year`, are allowed.
    */
-  identifyingFields: Schema$GooglePrivacyDlpV2beta2FieldId[];
+  identifyingFields: Schema$GooglePrivacyDlpV2FieldId[];
   /**
    * Complete BigQuery table reference.
    */
-  tableReference: Schema$GooglePrivacyDlpV2beta2BigQueryTable;
+  tableReference: Schema$GooglePrivacyDlpV2BigQueryTable;
 }
 /**
  * Message defining the location of a BigQuery table. A table is uniquely
@@ -964,7 +947,7 @@ export interface Schema$GooglePrivacyDlpV2beta2BigQueryOptions {
  * `&lt;project_id&gt;:&lt;dataset_id&gt;.&lt;table_id&gt;` or
  * `&lt;project_id&gt;.&lt;dataset_id&gt;.&lt;table_id&gt;`.
  */
-export interface Schema$GooglePrivacyDlpV2beta2BigQueryTable {
+export interface Schema$GooglePrivacyDlpV2BigQueryTable {
   /**
    * Dataset ID of the table.
    */
@@ -980,23 +963,44 @@ export interface Schema$GooglePrivacyDlpV2beta2BigQueryTable {
   tableId: string;
 }
 /**
+ * Bounding box encompassing detected text within an image.
+ */
+export interface Schema$GooglePrivacyDlpV2BoundingBox {
+  /**
+   * Height of the bounding box in pixels.
+   */
+  height: number;
+  /**
+   * Left coordinate of the bounding box. (0,0) is upper left.
+   */
+  left: number;
+  /**
+   * Top coordinate of the bounding box. (0,0) is upper left.
+   */
+  top: number;
+  /**
+   * Width of the bounding box in pixels.
+   */
+  width: number;
+}
+/**
  * Bucket is represented as a range, along with replacement values.
  */
-export interface Schema$GooglePrivacyDlpV2beta2Bucket {
+export interface Schema$GooglePrivacyDlpV2Bucket {
   /**
    * Upper bound of the range, exclusive; type must match min.
    */
-  max: Schema$GooglePrivacyDlpV2beta2Value;
+  max: Schema$GooglePrivacyDlpV2Value;
   /**
    * Lower bound of the range, inclusive. Type should be the same as max if
    * used.
    */
-  min: Schema$GooglePrivacyDlpV2beta2Value;
+  min: Schema$GooglePrivacyDlpV2Value;
   /**
    * Replacement value for this bucket. If not provided the default behavior
    * will be to hyphenate the min-max range.
    */
-  replacementValue: Schema$GooglePrivacyDlpV2beta2Value;
+  replacementValue: Schema$GooglePrivacyDlpV2Value;
 }
 /**
  * Generalization function that buckets values based on ranges. The ranges and
@@ -1007,29 +1011,42 @@ export interface Schema$GooglePrivacyDlpV2beta2Bucket {
  * converting the type of the data to be transformed to match the type of the
  * bound before comparing.
  */
-export interface Schema$GooglePrivacyDlpV2beta2BucketingConfig {
+export interface Schema$GooglePrivacyDlpV2BucketingConfig {
   /**
    * Set of buckets. Ranges must be non-overlapping.
    */
-  buckets: Schema$GooglePrivacyDlpV2beta2Bucket[];
+  buckets: Schema$GooglePrivacyDlpV2Bucket[];
+}
+/**
+ * Container for bytes to inspect or redact.
+ */
+export interface Schema$GooglePrivacyDlpV2ByteContentItem {
+  /**
+   * Content data to inspect or redact.
+   */
+  data: string;
+  /**
+   * The type of data stored in the bytes string. Default will be TEXT_UTF8.
+   */
+  type: string;
 }
 /**
  * The request message for canceling a DLP job.
  */
-export interface Schema$GooglePrivacyDlpV2beta2CancelDlpJobRequest {}
+export interface Schema$GooglePrivacyDlpV2CancelDlpJobRequest {}
 /**
  * Compute numerical stats over an individual column, including number of
  * distinct values and value count distribution.
  */
-export interface Schema$GooglePrivacyDlpV2beta2CategoricalStatsConfig {
+export interface Schema$GooglePrivacyDlpV2CategoricalStatsConfig {
   /**
    * Field to compute categorical stats on. All column types are supported
    * except for arrays and structs. However, it may be more informative to use
    * NumericalStats when the field type is supported, depending on the data.
    */
-  field: Schema$GooglePrivacyDlpV2beta2FieldId;
+  field: Schema$GooglePrivacyDlpV2FieldId;
 }
-export interface Schema$GooglePrivacyDlpV2beta2CategoricalStatsHistogramBucket {
+export interface Schema$GooglePrivacyDlpV2CategoricalStatsHistogramBucket {
   /**
    * Total number of values in this bucket.
    */
@@ -1042,7 +1059,7 @@ export interface Schema$GooglePrivacyDlpV2beta2CategoricalStatsHistogramBucket {
    * Sample of value frequencies in this bucket. The total number of values
    * returned per bucket is capped at 20.
    */
-  bucketValues: Schema$GooglePrivacyDlpV2beta2ValueFrequency[];
+  bucketValues: Schema$GooglePrivacyDlpV2ValueFrequency[];
   /**
    * Lower bound on the value frequency of the values in this bucket.
    */
@@ -1055,12 +1072,12 @@ export interface Schema$GooglePrivacyDlpV2beta2CategoricalStatsHistogramBucket {
 /**
  * Result of the categorical stats computation.
  */
-export interface Schema$GooglePrivacyDlpV2beta2CategoricalStatsResult {
+export interface Schema$GooglePrivacyDlpV2CategoricalStatsResult {
   /**
    * Histogram of value frequencies in the column.
    */
   valueFrequencyHistogramBuckets:
-      Schema$GooglePrivacyDlpV2beta2CategoricalStatsHistogramBucket[];
+      Schema$GooglePrivacyDlpV2CategoricalStatsHistogramBucket[];
 }
 /**
  * Partially mask a string by replacing a given number of characters with a
@@ -1070,13 +1087,13 @@ export interface Schema$GooglePrivacyDlpV2beta2CategoricalStatsResult {
  * data&#39;s type. (This allows you to take a long like 123 and modify it to a
  * string like **3.
  */
-export interface Schema$GooglePrivacyDlpV2beta2CharacterMaskConfig {
+export interface Schema$GooglePrivacyDlpV2CharacterMaskConfig {
   /**
    * When masking a string, items in this list will be skipped when replacing.
    * For example, if your string is 555-555-5555 and you ask us to skip `-` and
    * mask 5 chars with * we would produce ***-*55-5555.
    */
-  charactersToIgnore: Schema$GooglePrivacyDlpV2beta2CharsToIgnore[];
+  charactersToIgnore: Schema$GooglePrivacyDlpV2CharsToIgnore[];
   /**
    * Character to mask the sensitive values&amp;mdash;for example, &quot;*&quot;
    * for an alphabetic string such as name, or &quot;0&quot; for a numeric
@@ -1103,39 +1120,26 @@ export interface Schema$GooglePrivacyDlpV2beta2CharacterMaskConfig {
  * Characters to skip when doing deidentification of a value. These will be left
  * alone and skipped.
  */
-export interface Schema$GooglePrivacyDlpV2beta2CharsToIgnore {
+export interface Schema$GooglePrivacyDlpV2CharsToIgnore {
   charactersToSkip: string;
   commonCharactersToIgnore: string;
-}
-/**
- * Record key for a finding in a Cloud Storage file.
- */
-export interface Schema$GooglePrivacyDlpV2beta2CloudStorageKey {
-  /**
-   * Path to the file.
-   */
-  filePath: string;
-  /**
-   * Byte offset of the referenced data in the file.
-   */
-  startOffset: string;
 }
 /**
  * Options defining a file or a set of files (path ending with *) within a
  * Google Cloud Storage bucket.
  */
-export interface Schema$GooglePrivacyDlpV2beta2CloudStorageOptions {
+export interface Schema$GooglePrivacyDlpV2CloudStorageOptions {
   /**
    * Max number of bytes to scan from a file. If a scanned file&#39;s size is
    * bigger than this value then the rest of the bytes are omitted.
    */
   bytesLimitPerFile: string;
-  fileSet: Schema$GooglePrivacyDlpV2beta2FileSet;
+  fileSet: Schema$GooglePrivacyDlpV2FileSet;
 }
 /**
  * Represents a color in the RGB color space.
  */
-export interface Schema$GooglePrivacyDlpV2beta2Color {
+export interface Schema$GooglePrivacyDlpV2Color {
   /**
    * The amount of blue in the color as a value in the interval [0, 1].
    */
@@ -1161,11 +1165,11 @@ export interface Schema$GooglePrivacyDlpV2beta2Color {
  * format of &#39;HH:mm:ss&#39;.  If we fail to compare do to type mismatch, a
  * warning will be given and the condition will evaluate to false.
  */
-export interface Schema$GooglePrivacyDlpV2beta2Condition {
+export interface Schema$GooglePrivacyDlpV2Condition {
   /**
    * Field within the record this condition is evaluated against. [required]
    */
-  field: Schema$GooglePrivacyDlpV2beta2FieldId;
+  field: Schema$GooglePrivacyDlpV2FieldId;
   /**
    * Operator used to compare the field or infoType to the value. [required]
    */
@@ -1173,45 +1177,74 @@ export interface Schema$GooglePrivacyDlpV2beta2Condition {
   /**
    * Value to compare against. [Required, except for `EXISTS` tests.]
    */
-  value: Schema$GooglePrivacyDlpV2beta2Value;
+  value: Schema$GooglePrivacyDlpV2Value;
 }
 /**
  * A collection of conditions.
  */
-export interface Schema$GooglePrivacyDlpV2beta2Conditions {
-  conditions: Schema$GooglePrivacyDlpV2beta2Condition[];
+export interface Schema$GooglePrivacyDlpV2Conditions {
+  conditions: Schema$GooglePrivacyDlpV2Condition[];
 }
 /**
  * Container structure for the content to inspect.
  */
-export interface Schema$GooglePrivacyDlpV2beta2ContentItem {
+export interface Schema$GooglePrivacyDlpV2ContentItem {
   /**
-   * Content data to inspect or redact.
+   * Content data to inspect or redact. Replaces `type` and `data`.
    */
-  data: string;
+  byteItem: Schema$GooglePrivacyDlpV2ByteContentItem;
   /**
    * Structured content for inspection.
    */
-  table: Schema$GooglePrivacyDlpV2beta2Table;
-  /**
-   * Type of the content, as defined in Content-Type HTTP header. Supported
-   * types are: all &quot;text&quot; types, octet streams, PNG images, JPEG
-   * images.
-   */
-  type: string;
+  table: Schema$GooglePrivacyDlpV2Table;
   /**
    * String data to inspect or redact.
    */
   value: string;
 }
 /**
+ * Findings container location data.
+ */
+export interface Schema$GooglePrivacyDlpV2ContentLocation {
+  /**
+   * Name of the container where the finding is located. The top level name is
+   * the source file name or table name. Nested names could be absent if the
+   * embedded object has no string identifier (for an example an image contained
+   * within a document).
+   */
+  containerName: string;
+  /**
+   * Findings container modification timestamp, if applicable. For Google Cloud
+   * Storage contains last file modification timestamp. For BigQuery table
+   * contains last_modified_time property. For Datastore - not populated.
+   */
+  containerTimestamp: string;
+  /**
+   * Findings container version, if available (&quot;generation&quot; for Google
+   * Cloud Storage).
+   */
+  containerVersion: string;
+  /**
+   * Location data for document files.
+   */
+  documentLocation: Schema$GooglePrivacyDlpV2DocumentLocation;
+  /**
+   * Location within an image&#39;s pixels.
+   */
+  imageLocation: Schema$GooglePrivacyDlpV2ImageLocation;
+  /**
+   * Location within a row or record of a database table.
+   */
+  recordLocation: Schema$GooglePrivacyDlpV2RecordLocation;
+}
+/**
  * Request message for CreateDeidentifyTemplate.
  */
-export interface Schema$GooglePrivacyDlpV2beta2CreateDeidentifyTemplateRequest {
+export interface Schema$GooglePrivacyDlpV2CreateDeidentifyTemplateRequest {
   /**
    * The DeidentifyTemplate to create.
    */
-  deidentifyTemplate: Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate;
+  deidentifyTemplate: Schema$GooglePrivacyDlpV2DeidentifyTemplate;
   /**
    * The template id can contain uppercase and lowercase letters, numbers, and
    * hyphens; that is, it must match the regular expression: `[a-zA-Z\\d-]+`.
@@ -1221,13 +1254,28 @@ export interface Schema$GooglePrivacyDlpV2beta2CreateDeidentifyTemplateRequest {
   templateId: string;
 }
 /**
+ * Request message for CreateDlpJobRequest. Used to initiate long running jobs
+ * such as calculating risk metrics or inspecting Google Cloud Storage.
+ */
+export interface Schema$GooglePrivacyDlpV2CreateDlpJobRequest {
+  inspectJob: Schema$GooglePrivacyDlpV2InspectJobConfig;
+  /**
+   * The job id can contain uppercase and lowercase letters, numbers, and
+   * hyphens; that is, it must match the regular expression: `[a-zA-Z\\d-]+`.
+   * The maximum length is 100 characters. Can be empty to allow the system to
+   * generate one.
+   */
+  jobId: string;
+  riskJob: Schema$GooglePrivacyDlpV2RiskAnalysisJobConfig;
+}
+/**
  * Request message for CreateInspectTemplate.
  */
-export interface Schema$GooglePrivacyDlpV2beta2CreateInspectTemplateRequest {
+export interface Schema$GooglePrivacyDlpV2CreateInspectTemplateRequest {
   /**
    * The InspectTemplate to create.
    */
-  inspectTemplate: Schema$GooglePrivacyDlpV2beta2InspectTemplate;
+  inspectTemplate: Schema$GooglePrivacyDlpV2InspectTemplate;
   /**
    * The template id can contain uppercase and lowercase letters, numbers, and
    * hyphens; that is, it must match the regular expression: `[a-zA-Z\\d-]+`.
@@ -1239,11 +1287,11 @@ export interface Schema$GooglePrivacyDlpV2beta2CreateInspectTemplateRequest {
 /**
  * Request message for CreateJobTrigger.
  */
-export interface Schema$GooglePrivacyDlpV2beta2CreateJobTriggerRequest {
+export interface Schema$GooglePrivacyDlpV2CreateJobTriggerRequest {
   /**
    * The JobTrigger to create.
    */
-  jobTrigger: Schema$GooglePrivacyDlpV2beta2JobTrigger;
+  jobTrigger: Schema$GooglePrivacyDlpV2JobTrigger;
   /**
    * The trigger id can contain uppercase and lowercase letters, numbers, and
    * hyphens; that is, it must match the regular expression: `[a-zA-Z\\d-]+`.
@@ -1259,11 +1307,11 @@ export interface Schema$GooglePrivacyDlpV2beta2CreateJobTriggerRequest {
  * 41D1567F7F99F1DC2A5FAB886DEE5BEE). Currently, only string and integer values
  * can be hashed.
  */
-export interface Schema$GooglePrivacyDlpV2beta2CryptoHashConfig {
+export interface Schema$GooglePrivacyDlpV2CryptoHashConfig {
   /**
    * The key used by the hash function.
    */
-  cryptoKey: Schema$GooglePrivacyDlpV2beta2CryptoKey;
+  cryptoKey: Schema$GooglePrivacyDlpV2CryptoKey;
 }
 /**
  * This is a data encryption key (DEK) (as opposed to a key encryption key (KEK)
@@ -1271,10 +1319,10 @@ export interface Schema$GooglePrivacyDlpV2beta2CryptoHashConfig {
  * appropriate IAM policy on the KMS CryptoKey (KEK) to ensure an attacker
  * cannot unwrap the data crypto key.
  */
-export interface Schema$GooglePrivacyDlpV2beta2CryptoKey {
-  kmsWrapped: Schema$GooglePrivacyDlpV2beta2KmsWrappedCryptoKey;
-  transient: Schema$GooglePrivacyDlpV2beta2TransientCryptoKey;
-  unwrapped: Schema$GooglePrivacyDlpV2beta2UnwrappedCryptoKey;
+export interface Schema$GooglePrivacyDlpV2CryptoKey {
+  kmsWrapped: Schema$GooglePrivacyDlpV2KmsWrappedCryptoKey;
+  transient: Schema$GooglePrivacyDlpV2TransientCryptoKey;
+  unwrapped: Schema$GooglePrivacyDlpV2UnwrappedCryptoKey;
 }
 /**
  * Replaces an identifier with a surrogate using FPE with the FFX mode of
@@ -1286,7 +1334,7 @@ export interface Schema$GooglePrivacyDlpV2beta2CryptoKey {
  * identifier is the empty string, it will be skipped. See
  * [Pseudonymization](/dlp/docs/pseudonymization) for example usage.
  */
-export interface Schema$GooglePrivacyDlpV2beta2CryptoReplaceFfxFpeConfig {
+export interface Schema$GooglePrivacyDlpV2CryptoReplaceFfxFpeConfig {
   commonAlphabet: string;
   /**
    * The &#39;tweak&#39;, a context may be used for higher security since the
@@ -1302,11 +1350,11 @@ export interface Schema$GooglePrivacyDlpV2beta2CryptoReplaceFfxFpeConfig {
    * single byte of value 1 - a string is encoded in UTF-8 format followed by a
    * single byte of value  å 2
    */
-  context: Schema$GooglePrivacyDlpV2beta2FieldId;
+  context: Schema$GooglePrivacyDlpV2FieldId;
   /**
    * The key used by the encryption algorithm. [required]
    */
-  cryptoKey: Schema$GooglePrivacyDlpV2beta2CryptoKey;
+  cryptoKey: Schema$GooglePrivacyDlpV2CryptoKey;
   /**
    * This is supported by mapping these to the alphanumeric characters that the
    * FFX mode natively supports. This happens before/after
@@ -1329,7 +1377,7 @@ export interface Schema$GooglePrivacyDlpV2beta2CryptoReplaceFfxFpeConfig {
    * is &#39;abc&#39;, the full replacement value will be:
    * &#39;MY_TOKEN_INFO_TYPE(3):abc&#39;  This annotation identifies the
    * surrogate when inspecting content using the custom infoType
-   * [`SurrogateType`](/dlp/docs/reference/rest/v2beta2/InspectConfig#surrogatetype).
+   * [`SurrogateType`](/dlp/docs/reference/rest/v2/InspectConfig#surrogatetype).
    * This facilitates reversal of the surrogate when it occurs in free text.  In
    * order for inspection to work properly, the name of this infoType must not
    * occur naturally anywhere in your data; otherwise, inspection may find a
@@ -1341,28 +1389,28 @@ export interface Schema$GooglePrivacyDlpV2beta2CryptoReplaceFfxFpeConfig {
    * entered from a regular ASCII keyboard, the symbol with the hex code point
    * 29DD might be used like so: ⧝MY_TOKEN_TYPE
    */
-  surrogateInfoType: Schema$GooglePrivacyDlpV2beta2InfoType;
+  surrogateInfoType: Schema$GooglePrivacyDlpV2InfoType;
 }
 /**
  * Custom information type provided by the user. Used to find domain-specific
  * sensitive information configurable to the data in question.
  */
-export interface Schema$GooglePrivacyDlpV2beta2CustomInfoType {
+export interface Schema$GooglePrivacyDlpV2CustomInfoType {
   /**
    * Set of detection rules to apply to all findings of this custom info type.
    * Rules are applied in order that they are specified. Not supported for the
    * `surrogate_type` custom info type.
    */
-  detectionRules: Schema$GooglePrivacyDlpV2beta2DetectionRule[];
+  detectionRules: Schema$GooglePrivacyDlpV2DetectionRule[];
   /**
    * Dictionary-based custom info type.
    */
-  dictionary: Schema$GooglePrivacyDlpV2beta2Dictionary;
+  dictionary: Schema$GooglePrivacyDlpV2Dictionary;
   /**
    * Info type configuration. All custom info types must have configurations
    * that do not conflict with built-in info types or other custom info types.
    */
-  infoType: Schema$GooglePrivacyDlpV2beta2InfoType;
+  infoType: Schema$GooglePrivacyDlpV2InfoType;
   /**
    * Likelihood to return for this custom info type. This base value can be
    * altered by a detection rule if the finding meets the criteria specified by
@@ -1372,51 +1420,51 @@ export interface Schema$GooglePrivacyDlpV2beta2CustomInfoType {
   /**
    * Regex-based custom info type.
    */
-  regex: Schema$GooglePrivacyDlpV2beta2Regex;
+  regex: Schema$GooglePrivacyDlpV2Regex;
   /**
    * Surrogate info type.
    */
-  surrogateType: Schema$GooglePrivacyDlpV2beta2SurrogateType;
+  surrogateType: Schema$GooglePrivacyDlpV2SurrogateType;
 }
 /**
  * Record key for a finding in Cloud Datastore.
  */
-export interface Schema$GooglePrivacyDlpV2beta2DatastoreKey {
+export interface Schema$GooglePrivacyDlpV2DatastoreKey {
   /**
    * Datastore entity key.
    */
-  entityKey: Schema$GooglePrivacyDlpV2beta2Key;
+  entityKey: Schema$GooglePrivacyDlpV2Key;
 }
 /**
  * Options defining a data set within Google Cloud Datastore.
  */
-export interface Schema$GooglePrivacyDlpV2beta2DatastoreOptions {
+export interface Schema$GooglePrivacyDlpV2DatastoreOptions {
   /**
    * The kind to process.
    */
-  kind: Schema$GooglePrivacyDlpV2beta2KindExpression;
+  kind: Schema$GooglePrivacyDlpV2KindExpression;
   /**
    * A partition ID identifies a grouping of entities. The grouping is always by
    * project and namespace, however the namespace ID may be empty.
    */
-  partitionId: Schema$GooglePrivacyDlpV2beta2PartitionId;
+  partitionId: Schema$GooglePrivacyDlpV2PartitionId;
 }
 /**
  * Shifts dates by random number of days, with option to be consistent for the
  * same context.
  */
-export interface Schema$GooglePrivacyDlpV2beta2DateShiftConfig {
+export interface Schema$GooglePrivacyDlpV2DateShiftConfig {
   /**
    * Points to the field that contains the context, for example, an entity id.
    * If set, must also set method. If set, shift will be consistent for the
    * given context.
    */
-  context: Schema$GooglePrivacyDlpV2beta2FieldId;
+  context: Schema$GooglePrivacyDlpV2FieldId;
   /**
    * Causes the shift to be computed based on this key and the context. This
    * results in the same shift for the same context and crypto_key.
    */
-  cryptoKey: Schema$GooglePrivacyDlpV2beta2CryptoKey;
+  cryptoKey: Schema$GooglePrivacyDlpV2CryptoKey;
   /**
    * For example, -5 means shift date to at most 5 days back in the past.
    * [Required]
@@ -1433,7 +1481,7 @@ export interface Schema$GooglePrivacyDlpV2beta2DateShiftConfig {
 /**
  * Message for a date time object.
  */
-export interface Schema$GooglePrivacyDlpV2beta2DateTime {
+export interface Schema$GooglePrivacyDlpV2DateTime {
   /**
    * One or more of the following must be set. All fields are optional, but when
    * set must be valid date or time values.
@@ -1441,35 +1489,34 @@ export interface Schema$GooglePrivacyDlpV2beta2DateTime {
   date: Schema$GoogleTypeDate;
   dayOfWeek: string;
   time: Schema$GoogleTypeTimeOfDay;
-  timeZone: Schema$GooglePrivacyDlpV2beta2TimeZone;
+  timeZone: Schema$GooglePrivacyDlpV2TimeZone;
 }
 /**
  * The configuration that controls how the data will change.
  */
-export interface Schema$GooglePrivacyDlpV2beta2DeidentifyConfig {
+export interface Schema$GooglePrivacyDlpV2DeidentifyConfig {
   /**
    * Treat the dataset as free-form text and apply the same free text
    * transformation everywhere.
    */
-  infoTypeTransformations:
-      Schema$GooglePrivacyDlpV2beta2InfoTypeTransformations;
+  infoTypeTransformations: Schema$GooglePrivacyDlpV2InfoTypeTransformations;
   /**
    * Treat the dataset as structured. Transformations can be applied to specific
    * locations within structured datasets, such as transforming a column within
    * a table.
    */
-  recordTransformations: Schema$GooglePrivacyDlpV2beta2RecordTransformations;
+  recordTransformations: Schema$GooglePrivacyDlpV2RecordTransformations;
 }
 /**
  * Request to de-identify a list of items.
  */
-export interface Schema$GooglePrivacyDlpV2beta2DeidentifyContentRequest {
+export interface Schema$GooglePrivacyDlpV2DeidentifyContentRequest {
   /**
    * Configuration for the de-identification of the content item. Items
    * specified here will override the template referenced by the
    * deidentify_template_name argument.
    */
-  deidentifyConfig: Schema$GooglePrivacyDlpV2beta2DeidentifyConfig;
+  deidentifyConfig: Schema$GooglePrivacyDlpV2DeidentifyConfig;
   /**
    * Optional template to use. Any configuration directly specified in
    * deidentify_config will override those set in the template. Singular fields
@@ -1482,7 +1529,7 @@ export interface Schema$GooglePrivacyDlpV2beta2DeidentifyContentRequest {
    * Configuration for the inspector. Items specified here will override the
    * template referenced by the inspect_template_name argument.
    */
-  inspectConfig: Schema$GooglePrivacyDlpV2beta2InspectConfig;
+  inspectConfig: Schema$GooglePrivacyDlpV2InspectConfig;
   /**
    * Optional template to use. Any configuration directly specified in
    * inspect_config will override those set in the template. Singular fields
@@ -1494,25 +1541,25 @@ export interface Schema$GooglePrivacyDlpV2beta2DeidentifyContentRequest {
   /**
    * The item to de-identify. Will be treated as text.
    */
-  item: Schema$GooglePrivacyDlpV2beta2ContentItem;
+  item: Schema$GooglePrivacyDlpV2ContentItem;
 }
 /**
  * Results of de-identifying a ContentItem.
  */
-export interface Schema$GooglePrivacyDlpV2beta2DeidentifyContentResponse {
+export interface Schema$GooglePrivacyDlpV2DeidentifyContentResponse {
   /**
    * The de-identified item.
    */
-  item: Schema$GooglePrivacyDlpV2beta2ContentItem;
+  item: Schema$GooglePrivacyDlpV2ContentItem;
   /**
    * An overview of the changes that were made on the `item`.
    */
-  overview: Schema$GooglePrivacyDlpV2beta2TransformationOverview;
+  overview: Schema$GooglePrivacyDlpV2TransformationOverview;
 }
 /**
  * The DeidentifyTemplates contains instructions on how to deidentify content.
  */
-export interface Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate {
+export interface Schema$GooglePrivacyDlpV2DeidentifyTemplate {
   /**
    * The creation timestamp of a inspectTemplate, output only field.
    */
@@ -1520,7 +1567,7 @@ export interface Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate {
   /**
    * ///////////// // The core content of the template  // ///////////////
    */
-  deidentifyConfig: Schema$GooglePrivacyDlpV2beta2DeidentifyConfig;
+  deidentifyConfig: Schema$GooglePrivacyDlpV2DeidentifyConfig;
   /**
    * Short description (max 256 chars).
    */
@@ -1545,11 +1592,11 @@ export interface Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate {
  * circumstances, depending on the specific details of the rule. Not supported
  * for the `surrogate_type` custom info type.
  */
-export interface Schema$GooglePrivacyDlpV2beta2DetectionRule {
+export interface Schema$GooglePrivacyDlpV2DetectionRule {
   /**
    * Hotword-based detection rule.
    */
-  hotwordRule: Schema$GooglePrivacyDlpV2beta2HotwordRule;
+  hotwordRule: Schema$GooglePrivacyDlpV2HotwordRule;
 }
 /**
  * Custom information type based on a dictionary of words or phrases. This can
@@ -1569,16 +1616,16 @@ export interface Schema$GooglePrivacyDlpV2beta2DetectionRule {
  * or digits may result in unexpected findings because such characters are
  * treated as whitespace.
  */
-export interface Schema$GooglePrivacyDlpV2beta2Dictionary {
+export interface Schema$GooglePrivacyDlpV2Dictionary {
   /**
    * List of words or phrases to search for.
    */
-  wordList: Schema$GooglePrivacyDlpV2beta2WordList;
+  wordList: Schema$GooglePrivacyDlpV2WordList;
 }
 /**
  * Combines all of the information about a DLP job.
  */
-export interface Schema$GooglePrivacyDlpV2beta2DlpJob {
+export interface Schema$GooglePrivacyDlpV2DlpJob {
   /**
    * Time when the job was created.
    */
@@ -1590,11 +1637,11 @@ export interface Schema$GooglePrivacyDlpV2beta2DlpJob {
   /**
    * A stream of errors encountered running the job.
    */
-  errorResults: Schema$GoogleRpcStatus[];
+  errors: Schema$GooglePrivacyDlpV2Error[];
   /**
    * Results from inspecting a data source.
    */
-  inspectDetails: Schema$GooglePrivacyDlpV2beta2InspectDataSourceDetails;
+  inspectDetails: Schema$GooglePrivacyDlpV2InspectDataSourceDetails;
   /**
    * If created by a job trigger, the resource name of the trigger that
    * instantiated the job.
@@ -1607,7 +1654,7 @@ export interface Schema$GooglePrivacyDlpV2beta2DlpJob {
   /**
    * Results from analyzing risk of a data source.
    */
-  riskDetails: Schema$GooglePrivacyDlpV2beta2AnalyzeDataSourceRiskDetails;
+  riskDetails: Schema$GooglePrivacyDlpV2AnalyzeDataSourceRiskDetails;
   /**
    * Time when the job started.
    */
@@ -1622,22 +1669,20 @@ export interface Schema$GooglePrivacyDlpV2beta2DlpJob {
   type: string;
 }
 /**
- * An entity in a dataset is a field or set of fields that correspond to a
- * single person. For example, in medical records the `EntityId` might be a
- * patient identifier, or for financial records it might be an account
- * identifier. This message is used when generalizations or analysis must be
- * consistent across multiple rows pertaining to the same entity.
+ * Location of a finding within a document.
  */
-export interface Schema$GooglePrivacyDlpV2beta2EntityId {
+export interface Schema$GooglePrivacyDlpV2DocumentLocation {
   /**
-   * Composite key indicating which field contains the entity identifier.
+   * Offset of the line, from the beginning of the file, where the finding is
+   * located.
    */
-  field: Schema$GooglePrivacyDlpV2beta2FieldId;
+  fileOffset: string;
 }
 /**
- * The results of an unsuccessful activation of the JobTrigger.
+ * Details information about an error encountered during job execution or the
+ * results of an unsuccessful activation of the JobTrigger. Output only field.
  */
-export interface Schema$GooglePrivacyDlpV2beta2Error {
+export interface Schema$GooglePrivacyDlpV2Error {
   details: Schema$GoogleRpcStatus;
   /**
    * The times the error occurred.
@@ -1647,8 +1692,8 @@ export interface Schema$GooglePrivacyDlpV2beta2Error {
 /**
  * An expression, consisting or an operator and conditions.
  */
-export interface Schema$GooglePrivacyDlpV2beta2Expressions {
-  conditions: Schema$GooglePrivacyDlpV2beta2Conditions;
+export interface Schema$GooglePrivacyDlpV2Expressions {
+  conditions: Schema$GooglePrivacyDlpV2Conditions;
   /**
    * The operator to apply to the result of conditions. Default and currently
    * only supported value is `AND`.
@@ -1658,7 +1703,7 @@ export interface Schema$GooglePrivacyDlpV2beta2Expressions {
 /**
  * General identifier of a data field in a storage service.
  */
-export interface Schema$GooglePrivacyDlpV2beta2FieldId {
+export interface Schema$GooglePrivacyDlpV2FieldId {
   /**
    * Name describing the field.
    */
@@ -1667,7 +1712,7 @@ export interface Schema$GooglePrivacyDlpV2beta2FieldId {
 /**
  * The transformation to apply to the field.
  */
-export interface Schema$GooglePrivacyDlpV2beta2FieldTransformation {
+export interface Schema$GooglePrivacyDlpV2FieldTransformation {
   /**
    * Only apply the transformation if the condition evaluates to true for the
    * given `RecordCondition`. The conditions are allowed to reference fields
@@ -1676,27 +1721,25 @@ export interface Schema$GooglePrivacyDlpV2beta2FieldTransformation {
    * zip code column for the same record is within a specific range. - Redact a
    * field if the date of birth field is greater than 85.
    */
-  condition: Schema$GooglePrivacyDlpV2beta2RecordCondition;
+  condition: Schema$GooglePrivacyDlpV2RecordCondition;
   /**
    * Input field(s) to apply the transformation to. [required]
    */
-  fields: Schema$GooglePrivacyDlpV2beta2FieldId[];
+  fields: Schema$GooglePrivacyDlpV2FieldId[];
   /**
    * Treat the contents of the field as free text, and selectively transform
    * content that matches an `InfoType`.
    */
-  infoTypeTransformations:
-      Schema$GooglePrivacyDlpV2beta2InfoTypeTransformations;
+  infoTypeTransformations: Schema$GooglePrivacyDlpV2InfoTypeTransformations;
   /**
    * Apply the transformation to the entire field.
    */
-  primitiveTransformation:
-      Schema$GooglePrivacyDlpV2beta2PrimitiveTransformation;
+  primitiveTransformation: Schema$GooglePrivacyDlpV2PrimitiveTransformation;
 }
 /**
  * Set of files to scan.
  */
-export interface Schema$GooglePrivacyDlpV2beta2FileSet {
+export interface Schema$GooglePrivacyDlpV2FileSet {
   /**
    * The url, in the format `gs://&lt;bucket&gt;/&lt;path&gt;`. Trailing
    * wildcard in the path is allowed.
@@ -1706,7 +1749,7 @@ export interface Schema$GooglePrivacyDlpV2beta2FileSet {
 /**
  * Represents a piece of potentially sensitive content.
  */
-export interface Schema$GooglePrivacyDlpV2beta2Finding {
+export interface Schema$GooglePrivacyDlpV2Finding {
   /**
    * Timestamp when finding was detected.
    */
@@ -1715,7 +1758,7 @@ export interface Schema$GooglePrivacyDlpV2beta2Finding {
    * The type of content that might have been found. Provided if requested by
    * the `InspectConfig`.
    */
-  infoType: Schema$GooglePrivacyDlpV2beta2InfoType;
+  infoType: Schema$GooglePrivacyDlpV2InfoType;
   /**
    * Estimate of how likely it is that the `info_type` is correct.
    */
@@ -1723,7 +1766,7 @@ export interface Schema$GooglePrivacyDlpV2beta2Finding {
   /**
    * Where the content was found.
    */
-  location: Schema$GooglePrivacyDlpV2beta2Location;
+  location: Schema$GooglePrivacyDlpV2Location;
   /**
    * The content that was found. Even if the content is not textual, it may be
    * converted to a textual representation here. Provided if requested by the
@@ -1736,13 +1779,13 @@ export interface Schema$GooglePrivacyDlpV2beta2Finding {
    * to true and a supported infoType was requested. Currently supported
    * infoTypes: DATE, DATE_OF_BIRTH and TIME.
    */
-  quoteInfo: Schema$GooglePrivacyDlpV2beta2QuoteInfo;
+  quoteInfo: Schema$GooglePrivacyDlpV2QuoteInfo;
 }
-export interface Schema$GooglePrivacyDlpV2beta2FindingLimits {
+export interface Schema$GooglePrivacyDlpV2FindingLimits {
   /**
    * Configuration of findings limit given for specified infoTypes.
    */
-  maxFindingsPerInfoType: Schema$GooglePrivacyDlpV2beta2InfoTypeLimit[];
+  maxFindingsPerInfoType: Schema$GooglePrivacyDlpV2InfoTypeLimit[];
   /**
    * Max number of findings that will be returned for each item scanned. When
    * set within `InspectDataSourceRequest`, the maximum returned is 1000
@@ -1769,7 +1812,7 @@ export interface Schema$GooglePrivacyDlpV2beta2FindingLimits {
  * first attempt converting the type of the data to be transformed to match the
  * type of the bound before comparing.
  */
-export interface Schema$GooglePrivacyDlpV2beta2FixedSizeBucketingConfig {
+export interface Schema$GooglePrivacyDlpV2FixedSizeBucketingConfig {
   /**
    * Size of each bucket (except for minimum and maximum buckets). So if
    * `lower_bound` = 10, `upper_bound` = 89, and `bucket_size` = 10, then the
@@ -1782,28 +1825,28 @@ export interface Schema$GooglePrivacyDlpV2beta2FixedSizeBucketingConfig {
    * grouped together into a single bucket; for example if `lower_bound` = 10,
    * then all values less than 10 are replaced with the value “-10”. [Required].
    */
-  lowerBound: Schema$GooglePrivacyDlpV2beta2Value;
+  lowerBound: Schema$GooglePrivacyDlpV2Value;
   /**
    * Upper bound value of buckets. All values greater than upper_bound are
    * grouped together into a single bucket; for example if `upper_bound` = 89,
    * then all values greater than 89 are replaced with the value “89+”.
    * [Required].
    */
-  upperBound: Schema$GooglePrivacyDlpV2beta2Value;
+  upperBound: Schema$GooglePrivacyDlpV2Value;
 }
 /**
  * Detection rule that adjusts the likelihood of findings within a certain
  * proximity of hotwords.
  */
-export interface Schema$GooglePrivacyDlpV2beta2HotwordRule {
+export interface Schema$GooglePrivacyDlpV2HotwordRule {
   /**
    * Regex pattern defining what qualifies as a hotword.
    */
-  hotwordRegex: Schema$GooglePrivacyDlpV2beta2Regex;
+  hotwordRegex: Schema$GooglePrivacyDlpV2Regex;
   /**
    * Likelihood adjustment to apply to all matching findings.
    */
-  likelihoodAdjustment: Schema$GooglePrivacyDlpV2beta2LikelihoodAdjustment;
+  likelihoodAdjustment: Schema$GooglePrivacyDlpV2LikelihoodAdjustment;
   /**
    * Proximity of the finding within which the entire hotword must reside. The
    * total length of the window cannot exceed 1000 characters. Note that the
@@ -1814,40 +1857,28 @@ export interface Schema$GooglePrivacyDlpV2beta2HotwordRule {
    * office using the hotword regex &quot;\(xxx\)&quot;, where &quot;xxx&quot;
    * is the area code in question.
    */
-  proximity: Schema$GooglePrivacyDlpV2beta2Proximity;
+  proximity: Schema$GooglePrivacyDlpV2Proximity;
 }
 /**
- * Bounding box encompassing detected text within an image.
+ * Location of the finding within an image.
  */
-export interface Schema$GooglePrivacyDlpV2beta2ImageLocation {
+export interface Schema$GooglePrivacyDlpV2ImageLocation {
   /**
-   * Height of the bounding box in pixels.
+   * Bounding boxes locating the pixels within the image containing the finding.
    */
-  height: number;
-  /**
-   * Left coordinate of the bounding box. (0,0) is upper left.
-   */
-  left: number;
-  /**
-   * Top coordinate of the bounding box. (0,0) is upper left.
-   */
-  top: number;
-  /**
-   * Width of the bounding box in pixels.
-   */
-  width: number;
+  boundingBoxes: Schema$GooglePrivacyDlpV2BoundingBox[];
 }
 /**
  * Configuration for determining how redaction of images should occur.
  */
-export interface Schema$GooglePrivacyDlpV2beta2ImageRedactionConfig {
+export interface Schema$GooglePrivacyDlpV2ImageRedactionConfig {
   /**
    * Only one per info_type should be provided per request. If not specified,
    * and redact_all_text is false, the DLP API will redact all text that it
    * matches against all info_types that are found, but not specified in another
    * ImageRedactionConfig.
    */
-  infoType: Schema$GooglePrivacyDlpV2beta2InfoType;
+  infoType: Schema$GooglePrivacyDlpV2InfoType;
   /**
    * If true, all text found in the image, regardless whether it matches an
    * info_type, is redacted.
@@ -1857,12 +1888,12 @@ export interface Schema$GooglePrivacyDlpV2beta2ImageRedactionConfig {
    * The color to use when redacting content from an image. If not specified,
    * the default is black.
    */
-  redactionColor: Schema$GooglePrivacyDlpV2beta2Color;
+  redactionColor: Schema$GooglePrivacyDlpV2Color;
 }
 /**
  * Type of information detected by the API.
  */
-export interface Schema$GooglePrivacyDlpV2beta2InfoType {
+export interface Schema$GooglePrivacyDlpV2InfoType {
   /**
    * Name of the information type.
    */
@@ -1871,7 +1902,7 @@ export interface Schema$GooglePrivacyDlpV2beta2InfoType {
 /**
  * InfoType description.
  */
-export interface Schema$GooglePrivacyDlpV2beta2InfoTypeDescription {
+export interface Schema$GooglePrivacyDlpV2InfoTypeDescription {
   /**
    * Human readable form of the infoType name.
    */
@@ -1889,14 +1920,14 @@ export interface Schema$GooglePrivacyDlpV2beta2InfoTypeDescription {
  * Max findings configuration per infoType, per content item or long running
  * DlpJob.
  */
-export interface Schema$GooglePrivacyDlpV2beta2InfoTypeLimit {
+export interface Schema$GooglePrivacyDlpV2InfoTypeLimit {
   /**
    * Type of information the findings limit applies to. Only one limit per
    * info_type should be provided. If InfoTypeLimit does not have an info_type,
    * the DLP API applies the limit against all info_types that are found but not
    * specified in another InfoTypeLimit.
    */
-  infoType: Schema$GooglePrivacyDlpV2beta2InfoType;
+  infoType: Schema$GooglePrivacyDlpV2InfoType;
   /**
    * Max findings limit for the given infoType.
    */
@@ -1905,7 +1936,7 @@ export interface Schema$GooglePrivacyDlpV2beta2InfoTypeLimit {
 /**
  * Statistics regarding a specific InfoType.
  */
-export interface Schema$GooglePrivacyDlpV2beta2InfoTypeStatistics {
+export interface Schema$GooglePrivacyDlpV2InfoTypeStats {
   /**
    * Number of findings for this infoType.
    */
@@ -1913,44 +1944,48 @@ export interface Schema$GooglePrivacyDlpV2beta2InfoTypeStatistics {
   /**
    * The type of finding this stat is for.
    */
-  infoType: Schema$GooglePrivacyDlpV2beta2InfoType;
+  infoType: Schema$GooglePrivacyDlpV2InfoType;
 }
 /**
  * A transformation to apply to text that is identified as a specific info_type.
  */
-export interface Schema$GooglePrivacyDlpV2beta2InfoTypeTransformation {
+export interface Schema$GooglePrivacyDlpV2InfoTypeTransformation {
   /**
    * InfoTypes to apply the transformation to. Empty list will match all
    * available infoTypes for this transformation.
    */
-  infoTypes: Schema$GooglePrivacyDlpV2beta2InfoType[];
+  infoTypes: Schema$GooglePrivacyDlpV2InfoType[];
   /**
    * Primitive transformation to apply to the infoType. [required]
    */
-  primitiveTransformation:
-      Schema$GooglePrivacyDlpV2beta2PrimitiveTransformation;
+  primitiveTransformation: Schema$GooglePrivacyDlpV2PrimitiveTransformation;
 }
 /**
  * A type of transformation that will scan unstructured text and apply various
  * `PrimitiveTransformation`s to each finding, where the transformation is
  * applied to only values that were identified as a specific info_type.
  */
-export interface Schema$GooglePrivacyDlpV2beta2InfoTypeTransformations {
+export interface Schema$GooglePrivacyDlpV2InfoTypeTransformations {
   /**
    * Transformation for each infoType. Cannot specify more than one for a given
    * infoType. [required]
    */
-  transformations: Schema$GooglePrivacyDlpV2beta2InfoTypeTransformation[];
+  transformations: Schema$GooglePrivacyDlpV2InfoTypeTransformation[];
 }
 /**
  * Configuration description of the scanning process. When used with
  * redactContent only info_types and min_likelihood are currently used.
  */
-export interface Schema$GooglePrivacyDlpV2beta2InspectConfig {
+export interface Schema$GooglePrivacyDlpV2InspectConfig {
+  /**
+   * List of options defining data content to scan. If empty, text, images, and
+   * other content will be included.
+   */
+  contentOptions: string[];
   /**
    * Custom infoTypes provided by the user.
    */
-  customInfoTypes: Schema$GooglePrivacyDlpV2beta2CustomInfoType[];
+  customInfoTypes: Schema$GooglePrivacyDlpV2CustomInfoType[];
   /**
    * When true, excludes type information of the findings.
    */
@@ -1965,8 +2000,8 @@ export interface Schema$GooglePrivacyDlpV2beta2InspectConfig {
    * InfoType values returned by ListInfoTypes or found in documentation. Empty
    * info_types runs all enabled detectors.
    */
-  infoTypes: Schema$GooglePrivacyDlpV2beta2InfoType[];
-  limits: Schema$GooglePrivacyDlpV2beta2FindingLimits;
+  infoTypes: Schema$GooglePrivacyDlpV2InfoType[];
+  limits: Schema$GooglePrivacyDlpV2FindingLimits;
   /**
    * Only returns findings equal or above this threshold. The default is
    * POSSIBLE.
@@ -1976,12 +2011,12 @@ export interface Schema$GooglePrivacyDlpV2beta2InspectConfig {
 /**
  * Request to search for potentially sensitive info in a ContentItem.
  */
-export interface Schema$GooglePrivacyDlpV2beta2InspectContentRequest {
+export interface Schema$GooglePrivacyDlpV2InspectContentRequest {
   /**
    * Configuration for the inspector. What specified here will override the
    * template referenced by the inspect_template_name argument.
    */
-  inspectConfig: Schema$GooglePrivacyDlpV2beta2InspectConfig;
+  inspectConfig: Schema$GooglePrivacyDlpV2InspectConfig;
   /**
    * Optional template to use. Any configuration directly specified in
    * inspect_config will override those set in the template. Singular fields
@@ -1993,58 +2028,40 @@ export interface Schema$GooglePrivacyDlpV2beta2InspectContentRequest {
   /**
    * The item to inspect.
    */
-  item: Schema$GooglePrivacyDlpV2beta2ContentItem;
+  item: Schema$GooglePrivacyDlpV2ContentItem;
 }
 /**
  * Results of inspecting an item.
  */
-export interface Schema$GooglePrivacyDlpV2beta2InspectContentResponse {
+export interface Schema$GooglePrivacyDlpV2InspectContentResponse {
   /**
    * The findings.
    */
-  result: Schema$GooglePrivacyDlpV2beta2InspectResult;
+  result: Schema$GooglePrivacyDlpV2InspectResult;
 }
 /**
  * The results of an inspect DataSource job.
  */
-export interface Schema$GooglePrivacyDlpV2beta2InspectDataSourceDetails {
+export interface Schema$GooglePrivacyDlpV2InspectDataSourceDetails {
   /**
    * The configuration used for this job.
    */
-  requestedOptions: Schema$GooglePrivacyDlpV2beta2RequestedOptions;
+  requestedOptions: Schema$GooglePrivacyDlpV2RequestedOptions;
   /**
    * A summary of the outcome of this inspect job.
    */
-  result: Schema$GooglePrivacyDlpV2beta2Result;
+  result: Schema$GooglePrivacyDlpV2Result;
 }
-/**
- * Request for scheduling a scan of a data subset from a Google Platform data
- * repository.
- */
-export interface Schema$GooglePrivacyDlpV2beta2InspectDataSourceRequest {
-  /**
-   * A configuration for the job.
-   */
-  jobConfig: Schema$GooglePrivacyDlpV2beta2InspectJobConfig;
-  /**
-   * Optional job ID to use for the created job. If not provided, a job ID will
-   * automatically be generated. Must be unique within the project. The job ID
-   * can contain uppercase and lowercase letters, numbers, and hyphens; that is,
-   * it must match the regular expression: `[a-zA-Z\\d-]+`. The maximum length
-   * is 100 characters. Can be empty to allow the system to generate one.
-   */
-  jobId: string;
-}
-export interface Schema$GooglePrivacyDlpV2beta2InspectJobConfig {
+export interface Schema$GooglePrivacyDlpV2InspectJobConfig {
   /**
    * Actions to execute at the completion of the job. Are executed in the order
    * provided.
    */
-  actions: Schema$GooglePrivacyDlpV2beta2Action[];
+  actions: Schema$GooglePrivacyDlpV2Action[];
   /**
    * How and what to scan for.
    */
-  inspectConfig: Schema$GooglePrivacyDlpV2beta2InspectConfig;
+  inspectConfig: Schema$GooglePrivacyDlpV2InspectConfig;
   /**
    * If provided, will be used as the default for all values in InspectConfig.
    * `inspect_config` will be merged into the values persisted as part of the
@@ -2052,22 +2069,18 @@ export interface Schema$GooglePrivacyDlpV2beta2InspectJobConfig {
    */
   inspectTemplateName: string;
   /**
-   * Where to put the findings.
-   */
-  outputConfig: Schema$GooglePrivacyDlpV2beta2OutputStorageConfig;
-  /**
    * The data to scan.
    */
-  storageConfig: Schema$GooglePrivacyDlpV2beta2StorageConfig;
+  storageConfig: Schema$GooglePrivacyDlpV2StorageConfig;
 }
 /**
  * All the findings for a single scanned item.
  */
-export interface Schema$GooglePrivacyDlpV2beta2InspectResult {
+export interface Schema$GooglePrivacyDlpV2InspectResult {
   /**
    * List of findings for an item.
    */
-  findings: Schema$GooglePrivacyDlpV2beta2Finding[];
+  findings: Schema$GooglePrivacyDlpV2Finding[];
   /**
    * If true, then this item might have more findings than were returned, and
    * the findings returned are an arbitrary subset of all findings. The findings
@@ -2082,7 +2095,7 @@ export interface Schema$GooglePrivacyDlpV2beta2InspectResult {
  * to be detected) to be used anywhere you otherwise would normally specify
  * InspectConfig.
  */
-export interface Schema$GooglePrivacyDlpV2beta2InspectTemplate {
+export interface Schema$GooglePrivacyDlpV2InspectTemplate {
   /**
    * The creation timestamp of a inspectTemplate, output only field.
    */
@@ -2098,7 +2111,7 @@ export interface Schema$GooglePrivacyDlpV2beta2InspectTemplate {
   /**
    * The core content of the template. Configuration of the scanning process.
    */
-  inspectConfig: Schema$GooglePrivacyDlpV2beta2InspectConfig;
+  inspectConfig: Schema$GooglePrivacyDlpV2InspectConfig;
   /**
    * The template name. Output only.  The template will have one of the
    * following formats: `projects/PROJECT_ID/inspectTemplates/TEMPLATE_ID` OR
@@ -2113,7 +2126,7 @@ export interface Schema$GooglePrivacyDlpV2beta2InspectTemplate {
 /**
  * Contains a configuration to make dlp api calls on a repeating basis.
  */
-export interface Schema$GooglePrivacyDlpV2beta2JobTrigger {
+export interface Schema$GooglePrivacyDlpV2JobTrigger {
   /**
    * The creation timestamp of a triggeredJob, output only field.
    */
@@ -2132,10 +2145,10 @@ export interface Schema$GooglePrivacyDlpV2beta2JobTrigger {
    * the last 100 errors. Whenever the JobTrigger is modified this list will be
    * cleared. Output only field.
    */
-  errors: Schema$GooglePrivacyDlpV2beta2Error[];
-  inspectJob: Schema$GooglePrivacyDlpV2beta2InspectJobConfig;
+  errors: Schema$GooglePrivacyDlpV2Error[];
+  inspectJob: Schema$GooglePrivacyDlpV2InspectJobConfig;
   /**
-   * The timestamp of the last time this trigger executed.
+   * The timestamp of the last time this trigger executed, output only field.
    */
   lastRunTime: string;
   /**
@@ -2153,7 +2166,7 @@ export interface Schema$GooglePrivacyDlpV2beta2JobTrigger {
    * needs to trigger for a job to be started. The list may contain only a
    * single Schedule trigger and must have at least one object.
    */
-  triggers: Schema$GooglePrivacyDlpV2beta2Trigger[];
+  triggers: Schema$GooglePrivacyDlpV2Trigger[];
   /**
    * The last update timestamp of a triggeredJob, output only field.
    */
@@ -2162,32 +2175,19 @@ export interface Schema$GooglePrivacyDlpV2beta2JobTrigger {
 /**
  * k-anonymity metric, used for analysis of reidentification risk.
  */
-export interface Schema$GooglePrivacyDlpV2beta2KAnonymityConfig {
-  /**
-   * Optional message indicating that each distinct entity_id should not
-   * contribute to the k-anonymity count more than once per equivalence class.
-   * If an entity_id appears on several rows with different quasi-identifier
-   * tuples, it will contribute to each count exactly once.  This can lead to
-   * unexpected results. Consider a table where ID 1 is associated to
-   * quasi-identifier &quot;foo&quot;, ID 2 to &quot;bar&quot;, and ID 3 to
-   * *both* quasi-identifiers &quot;foo&quot; and &quot;bar&quot; (on separate
-   * rows), and where this ID is used as entity_id. Then, the anonymity value
-   * associated to ID 3 will be 2, even if it is the only ID to be associated to
-   * both values &quot;foo&quot; and &quot;bar&quot;.
-   */
-  entityId: Schema$GooglePrivacyDlpV2beta2EntityId;
+export interface Schema$GooglePrivacyDlpV2KAnonymityConfig {
   /**
    * Set of fields to compute k-anonymity over. When multiple fields are
    * specified, they are considered a single composite key. Structs and repeated
    * data types are not supported; however, nested fields are supported so long
    * as they are not structs themselves or nested within a repeated field.
    */
-  quasiIds: Schema$GooglePrivacyDlpV2beta2FieldId[];
+  quasiIds: Schema$GooglePrivacyDlpV2FieldId[];
 }
 /**
  * The set of columns&#39; values that share the same ldiversity value
  */
-export interface Schema$GooglePrivacyDlpV2beta2KAnonymityEquivalenceClass {
+export interface Schema$GooglePrivacyDlpV2KAnonymityEquivalenceClass {
   /**
    * Size of the equivalence class, for example number of rows with the above
    * set of values.
@@ -2198,9 +2198,9 @@ export interface Schema$GooglePrivacyDlpV2beta2KAnonymityEquivalenceClass {
    * quasi-identifier column in the original KAnonymity metric message. The
    * order is always the same as the original request.
    */
-  quasiIdsValues: Schema$GooglePrivacyDlpV2beta2Value[];
+  quasiIdsValues: Schema$GooglePrivacyDlpV2Value[];
 }
-export interface Schema$GooglePrivacyDlpV2beta2KAnonymityHistogramBucket {
+export interface Schema$GooglePrivacyDlpV2KAnonymityHistogramBucket {
   /**
    * Total number of equivalence classes in this bucket.
    */
@@ -2213,7 +2213,7 @@ export interface Schema$GooglePrivacyDlpV2beta2KAnonymityHistogramBucket {
    * Sample of equivalence classes in this bucket. The total number of classes
    * returned per bucket is capped at 20.
    */
-  bucketValues: Schema$GooglePrivacyDlpV2beta2KAnonymityEquivalenceClass[];
+  bucketValues: Schema$GooglePrivacyDlpV2KAnonymityEquivalenceClass[];
   /**
    * Lower bound on the size of the equivalence classes in this bucket.
    */
@@ -2226,12 +2226,12 @@ export interface Schema$GooglePrivacyDlpV2beta2KAnonymityHistogramBucket {
 /**
  * Result of the k-anonymity computation.
  */
-export interface Schema$GooglePrivacyDlpV2beta2KAnonymityResult {
+export interface Schema$GooglePrivacyDlpV2KAnonymityResult {
   /**
    * Histogram of k-anonymity equivalence classes.
    */
   equivalenceClassHistogramBuckets:
-      Schema$GooglePrivacyDlpV2beta2KAnonymityHistogramBucket[];
+      Schema$GooglePrivacyDlpV2KAnonymityHistogramBucket[];
 }
 /**
  * A unique identifier for a Datastore entity. If a key&#39;s partition ID or
@@ -2239,12 +2239,12 @@ export interface Schema$GooglePrivacyDlpV2beta2KAnonymityResult {
  * reserved/read-only. A reserved/read-only key is forbidden in certain
  * documented contexts.
  */
-export interface Schema$GooglePrivacyDlpV2beta2Key {
+export interface Schema$GooglePrivacyDlpV2Key {
   /**
    * Entities are partitioned into subsets, currently identified by a project ID
    * and namespace ID. Queries are scoped to a single partition.
    */
-  partitionId: Schema$GooglePrivacyDlpV2beta2PartitionId;
+  partitionId: Schema$GooglePrivacyDlpV2PartitionId;
   /**
    * The entity path. An entity path consists of one or more elements composed
    * of a kind and a string or numerical identifier, which identify entities.
@@ -2254,12 +2254,12 @@ export interface Schema$GooglePrivacyDlpV2beta2Key {
    * path are called the element&#39;s _ancestors_.  A path can never be empty,
    * and a path can have at most 100 elements.
    */
-  path: Schema$GooglePrivacyDlpV2beta2PathElement[];
+  path: Schema$GooglePrivacyDlpV2PathElement[];
 }
 /**
  * A representation of a Datastore kind.
  */
-export interface Schema$GooglePrivacyDlpV2beta2KindExpression {
+export interface Schema$GooglePrivacyDlpV2KindExpression {
   /**
    * The name of the kind.
    */
@@ -2273,18 +2273,18 @@ export interface Schema$GooglePrivacyDlpV2beta2KindExpression {
  * statistical model (indicated as one or several BigQuery tables), or by
  * extrapolating from the distribution of values in the input dataset.
  */
-export interface Schema$GooglePrivacyDlpV2beta2KMapEstimationConfig {
+export interface Schema$GooglePrivacyDlpV2KMapEstimationConfig {
   /**
    * Several auxiliary tables can be used in the analysis. Each custom_tag used
    * to tag a quasi-identifiers column must appear in exactly one column of one
    * auxiliary table.
    */
-  auxiliaryTables: Schema$GooglePrivacyDlpV2beta2AuxiliaryTable[];
+  auxiliaryTables: Schema$GooglePrivacyDlpV2AuxiliaryTable[];
   /**
    * Fields considered to be quasi-identifiers. No two columns can have the same
    * tag. [required]
    */
-  quasiIds: Schema$GooglePrivacyDlpV2beta2TaggedField[];
+  quasiIds: Schema$GooglePrivacyDlpV2TaggedField[];
   /**
    * ISO 3166-1 alpha-2 region code to use in the statistical modeling. Required
    * if no column is tagged with a region-specific InfoType (like US_ZIP_5) or a
@@ -2300,7 +2300,7 @@ export interface Schema$GooglePrivacyDlpV2beta2KMapEstimationConfig {
  * max_anonymity = 1: the frequency field then corresponds to the number of
  * uniquely identifiable records.
  */
-export interface Schema$GooglePrivacyDlpV2beta2KMapEstimationHistogramBucket {
+export interface Schema$GooglePrivacyDlpV2KMapEstimationHistogramBucket {
   /**
    * Number of records within these anonymity bounds.
    */
@@ -2313,7 +2313,7 @@ export interface Schema$GooglePrivacyDlpV2beta2KMapEstimationHistogramBucket {
    * Sample of quasi-identifier tuple values in this bucket. The total number of
    * classes returned per bucket is capped at 20.
    */
-  bucketValues: Schema$GooglePrivacyDlpV2beta2KMapEstimationQuasiIdValues[];
+  bucketValues: Schema$GooglePrivacyDlpV2KMapEstimationQuasiIdValues[];
   /**
    * Always greater than or equal to min_anonymity.
    */
@@ -2326,7 +2326,7 @@ export interface Schema$GooglePrivacyDlpV2beta2KMapEstimationHistogramBucket {
 /**
  * A tuple of values for the quasi-identifier columns.
  */
-export interface Schema$GooglePrivacyDlpV2beta2KMapEstimationQuasiIdValues {
+export interface Schema$GooglePrivacyDlpV2KMapEstimationQuasiIdValues {
   /**
    * The estimated anonymity for these quasi-identifier values.
    */
@@ -2334,13 +2334,13 @@ export interface Schema$GooglePrivacyDlpV2beta2KMapEstimationQuasiIdValues {
   /**
    * The quasi-identifier values.
    */
-  quasiIdsValues: Schema$GooglePrivacyDlpV2beta2Value[];
+  quasiIdsValues: Schema$GooglePrivacyDlpV2Value[];
 }
 /**
  * Result of the reidentifiability analysis. Note that these results are an
  * estimation, not exact values.
  */
-export interface Schema$GooglePrivacyDlpV2beta2KMapEstimationResult {
+export interface Schema$GooglePrivacyDlpV2KMapEstimationResult {
   /**
    * The intervals [min_anonymity, max_anonymity] do not overlap. If a value
    * doesn&#39;t correspond to any such interval, the associated frequency is
@@ -2351,14 +2351,14 @@ export interface Schema$GooglePrivacyDlpV2beta2KMapEstimationResult {
    * than 10.
    */
   kMapEstimationHistogram:
-      Schema$GooglePrivacyDlpV2beta2KMapEstimationHistogramBucket[];
+      Schema$GooglePrivacyDlpV2KMapEstimationHistogramBucket[];
 }
 /**
  * Include to use an existing data crypto key wrapped by KMS. Authorization
  * requires the following IAM permissions when sending a request to perform a
  * crypto transformation using a kms-wrapped crypto key: dlp.kms.encrypt
  */
-export interface Schema$GooglePrivacyDlpV2beta2KmsWrappedCryptoKey {
+export interface Schema$GooglePrivacyDlpV2KmsWrappedCryptoKey {
   /**
    * The resource name of the KMS CryptoKey to use for unwrapping. [required]
    */
@@ -2371,22 +2371,22 @@ export interface Schema$GooglePrivacyDlpV2beta2KmsWrappedCryptoKey {
 /**
  * l-diversity metric, used for analysis of reidentification risk.
  */
-export interface Schema$GooglePrivacyDlpV2beta2LDiversityConfig {
+export interface Schema$GooglePrivacyDlpV2LDiversityConfig {
   /**
    * Set of quasi-identifiers indicating how equivalence classes are defined for
    * the l-diversity computation. When multiple fields are specified, they are
    * considered a single composite key.
    */
-  quasiIds: Schema$GooglePrivacyDlpV2beta2FieldId[];
+  quasiIds: Schema$GooglePrivacyDlpV2FieldId[];
   /**
    * Sensitive field for computing the l-value.
    */
-  sensitiveAttribute: Schema$GooglePrivacyDlpV2beta2FieldId;
+  sensitiveAttribute: Schema$GooglePrivacyDlpV2FieldId;
 }
 /**
  * The set of columns&#39; values that share the same ldiversity value.
  */
-export interface Schema$GooglePrivacyDlpV2beta2LDiversityEquivalenceClass {
+export interface Schema$GooglePrivacyDlpV2LDiversityEquivalenceClass {
   /**
    * Size of the k-anonymity equivalence class.
    */
@@ -2399,13 +2399,13 @@ export interface Schema$GooglePrivacyDlpV2beta2LDiversityEquivalenceClass {
    * Quasi-identifier values defining the k-anonymity equivalence class. The
    * order is always the same as the original request.
    */
-  quasiIdsValues: Schema$GooglePrivacyDlpV2beta2Value[];
+  quasiIdsValues: Schema$GooglePrivacyDlpV2Value[];
   /**
    * Estimated frequencies of top sensitive values.
    */
-  topSensitiveValues: Schema$GooglePrivacyDlpV2beta2ValueFrequency[];
+  topSensitiveValues: Schema$GooglePrivacyDlpV2ValueFrequency[];
 }
-export interface Schema$GooglePrivacyDlpV2beta2LDiversityHistogramBucket {
+export interface Schema$GooglePrivacyDlpV2LDiversityHistogramBucket {
   /**
    * Total number of equivalence classes in this bucket.
    */
@@ -2418,7 +2418,7 @@ export interface Schema$GooglePrivacyDlpV2beta2LDiversityHistogramBucket {
    * Sample of equivalence classes in this bucket. The total number of classes
    * returned per bucket is capped at 20.
    */
-  bucketValues: Schema$GooglePrivacyDlpV2beta2LDiversityEquivalenceClass[];
+  bucketValues: Schema$GooglePrivacyDlpV2LDiversityEquivalenceClass[];
   /**
    * Lower bound on the sensitive value frequencies of the equivalence classes
    * in this bucket.
@@ -2433,18 +2433,18 @@ export interface Schema$GooglePrivacyDlpV2beta2LDiversityHistogramBucket {
 /**
  * Result of the l-diversity computation.
  */
-export interface Schema$GooglePrivacyDlpV2beta2LDiversityResult {
+export interface Schema$GooglePrivacyDlpV2LDiversityResult {
   /**
    * Histogram of l-diversity equivalence class sensitive value frequencies.
    */
   sensitiveValueFrequencyHistogramBuckets:
-      Schema$GooglePrivacyDlpV2beta2LDiversityHistogramBucket[];
+      Schema$GooglePrivacyDlpV2LDiversityHistogramBucket[];
 }
 /**
  * Message for specifying an adjustment to the likelihood of a finding as part
  * of a detection rule.
  */
-export interface Schema$GooglePrivacyDlpV2beta2LikelihoodAdjustment {
+export interface Schema$GooglePrivacyDlpV2LikelihoodAdjustment {
   /**
    * Set the likelihood of a finding to a fixed value.
    */
@@ -2463,12 +2463,12 @@ export interface Schema$GooglePrivacyDlpV2beta2LikelihoodAdjustment {
 /**
  * Response message for ListDeidentifyTemplates.
  */
-export interface Schema$GooglePrivacyDlpV2beta2ListDeidentifyTemplatesResponse {
+export interface Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse {
   /**
    * List of deidentify templates, up to page_size in
    * ListDeidentifyTemplatesRequest.
    */
-  deidentifyTemplates: Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate[];
+  deidentifyTemplates: Schema$GooglePrivacyDlpV2DeidentifyTemplate[];
   /**
    * If the next page is available then the next page token to be used in
    * following ListDeidentifyTemplates request.
@@ -2478,11 +2478,11 @@ export interface Schema$GooglePrivacyDlpV2beta2ListDeidentifyTemplatesResponse {
 /**
  * The response message for listing DLP jobs.
  */
-export interface Schema$GooglePrivacyDlpV2beta2ListDlpJobsResponse {
+export interface Schema$GooglePrivacyDlpV2ListDlpJobsResponse {
   /**
    * A list of DlpJobs that matches the specified filter in the request.
    */
-  jobs: Schema$GooglePrivacyDlpV2beta2DlpJob[];
+  jobs: Schema$GooglePrivacyDlpV2DlpJob[];
   /**
    * The standard List next-page token.
    */
@@ -2491,20 +2491,20 @@ export interface Schema$GooglePrivacyDlpV2beta2ListDlpJobsResponse {
 /**
  * Response to the ListInfoTypes request.
  */
-export interface Schema$GooglePrivacyDlpV2beta2ListInfoTypesResponse {
+export interface Schema$GooglePrivacyDlpV2ListInfoTypesResponse {
   /**
    * Set of sensitive infoTypes.
    */
-  infoTypes: Schema$GooglePrivacyDlpV2beta2InfoTypeDescription[];
+  infoTypes: Schema$GooglePrivacyDlpV2InfoTypeDescription[];
 }
 /**
  * Response message for ListInspectTemplates.
  */
-export interface Schema$GooglePrivacyDlpV2beta2ListInspectTemplatesResponse {
+export interface Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse {
   /**
    * List of inspectTemplates, up to page_size in ListInspectTemplatesRequest.
    */
-  inspectTemplates: Schema$GooglePrivacyDlpV2beta2InspectTemplate[];
+  inspectTemplates: Schema$GooglePrivacyDlpV2InspectTemplate[];
   /**
    * If the next page is available then the next page token to be used in
    * following ListInspectTemplates request.
@@ -2514,11 +2514,11 @@ export interface Schema$GooglePrivacyDlpV2beta2ListInspectTemplatesResponse {
 /**
  * Response message for ListJobTriggers.
  */
-export interface Schema$GooglePrivacyDlpV2beta2ListJobTriggersResponse {
+export interface Schema$GooglePrivacyDlpV2ListJobTriggersResponse {
   /**
    * List of triggeredJobs, up to page_size in ListJobTriggersRequest.
    */
-  jobTriggers: Schema$GooglePrivacyDlpV2beta2JobTrigger[];
+  jobTriggers: Schema$GooglePrivacyDlpV2JobTrigger[];
   /**
    * If the next page is available then the next page token to be used in
    * following ListJobTriggers request.
@@ -2528,75 +2528,58 @@ export interface Schema$GooglePrivacyDlpV2beta2ListJobTriggersResponse {
 /**
  * Specifies the location of the finding.
  */
-export interface Schema$GooglePrivacyDlpV2beta2Location {
+export interface Schema$GooglePrivacyDlpV2Location {
   /**
    * Zero-based byte offsets delimiting the finding. These are relative to the
    * finding&#39;s containing element. Note that when the content is not
    * textual, this references the UTF-8 encoded textual representation of the
    * content. Omitted if content is an image.
    */
-  byteRange: Schema$GooglePrivacyDlpV2beta2Range;
+  byteRange: Schema$GooglePrivacyDlpV2Range;
   /**
    * Unicode character offsets delimiting the finding. These are relative to the
    * finding&#39;s containing element. Provided when the content is text.
    */
-  codepointRange: Schema$GooglePrivacyDlpV2beta2Range;
+  codepointRange: Schema$GooglePrivacyDlpV2Range;
   /**
-   * The pointer to the property or cell that contained the finding. Provided
-   * when the finding&#39;s containing element is a cell in a table or a
-   * property of storage object.
+   * List of nested objects pointing to the precise location of the finding
+   * within the file or record.
    */
-  fieldId: Schema$GooglePrivacyDlpV2beta2FieldId;
-  /**
-   * The area within the image that contained the finding. Provided when the
-   * content is an image.
-   */
-  imageBoxes: Schema$GooglePrivacyDlpV2beta2ImageLocation[];
-  /**
-   * The pointer to the record in storage that contained the field the finding
-   * was found in. Provided when the finding&#39;s containing element is a
-   * property of a storage object.
-   */
-  recordKey: Schema$GooglePrivacyDlpV2beta2RecordKey;
-  /**
-   * The pointer to the row of the table that contained the finding. Provided
-   * when the finding&#39;s containing element is a cell of a table.
-   */
-  tableLocation: Schema$GooglePrivacyDlpV2beta2TableLocation;
+  contentLocations: Schema$GooglePrivacyDlpV2ContentLocation[];
 }
 /**
  * Compute numerical stats over an individual column, including min, max, and
  * quantiles.
  */
-export interface Schema$GooglePrivacyDlpV2beta2NumericalStatsConfig {
+export interface Schema$GooglePrivacyDlpV2NumericalStatsConfig {
   /**
    * Field to compute numerical stats on. Supported types are integer, float,
    * date, datetime, timestamp, time.
    */
-  field: Schema$GooglePrivacyDlpV2beta2FieldId;
+  field: Schema$GooglePrivacyDlpV2FieldId;
 }
 /**
  * Result of the numerical stats computation.
  */
-export interface Schema$GooglePrivacyDlpV2beta2NumericalStatsResult {
+export interface Schema$GooglePrivacyDlpV2NumericalStatsResult {
   /**
    * Maximum value appearing in the column.
    */
-  maxValue: Schema$GooglePrivacyDlpV2beta2Value;
+  maxValue: Schema$GooglePrivacyDlpV2Value;
   /**
    * Minimum value appearing in the column.
    */
-  minValue: Schema$GooglePrivacyDlpV2beta2Value;
+  minValue: Schema$GooglePrivacyDlpV2Value;
   /**
    * List of 99 values that partition the set of field values into 100 equal
    * sized buckets.
    */
-  quantileValues: Schema$GooglePrivacyDlpV2beta2Value[];
+  quantileValues: Schema$GooglePrivacyDlpV2Value[];
 }
 /**
  * Cloud repository for storing output.
  */
-export interface Schema$GooglePrivacyDlpV2beta2OutputStorageConfig {
+export interface Schema$GooglePrivacyDlpV2OutputStorageConfig {
   /**
    * Schema used for writing the findings. Columns are derived from the
    * `Finding` object. If appending to an existing table, any columns from the
@@ -2614,7 +2597,7 @@ export interface Schema$GooglePrivacyDlpV2beta2OutputStorageConfig {
    * dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific timezone will be used for
    * generating the date details.
    */
-  table: Schema$GooglePrivacyDlpV2beta2BigQueryTable;
+  table: Schema$GooglePrivacyDlpV2BigQueryTable;
 }
 /**
  * Datastore partition ID. A partition ID identifies a grouping of entities. The
@@ -2622,7 +2605,7 @@ export interface Schema$GooglePrivacyDlpV2beta2OutputStorageConfig {
  * empty.  A partition ID contains several dimensions: project ID and namespace
  * ID.
  */
-export interface Schema$GooglePrivacyDlpV2beta2PartitionId {
+export interface Schema$GooglePrivacyDlpV2PartitionId {
   /**
    * If not empty, the ID of the namespace to which the entities belong.
    */
@@ -2636,7 +2619,7 @@ export interface Schema$GooglePrivacyDlpV2beta2PartitionId {
  * A (kind, ID/name) pair used to construct a key path.  If either name or ID is
  * set, the element is complete. If neither is set, the element is incomplete.
  */
-export interface Schema$GooglePrivacyDlpV2beta2PathElement {
+export interface Schema$GooglePrivacyDlpV2PathElement {
   /**
    * The auto-allocated ID of the entity. Never equal to zero. Values less than
    * zero are discouraged and may not be supported in the future.
@@ -2658,35 +2641,32 @@ export interface Schema$GooglePrivacyDlpV2beta2PathElement {
 /**
  * A rule for transforming a value.
  */
-export interface Schema$GooglePrivacyDlpV2beta2PrimitiveTransformation {
-  bucketingConfig: Schema$GooglePrivacyDlpV2beta2BucketingConfig;
-  characterMaskConfig: Schema$GooglePrivacyDlpV2beta2CharacterMaskConfig;
-  cryptoHashConfig: Schema$GooglePrivacyDlpV2beta2CryptoHashConfig;
-  cryptoReplaceFfxFpeConfig:
-      Schema$GooglePrivacyDlpV2beta2CryptoReplaceFfxFpeConfig;
-  dateShiftConfig: Schema$GooglePrivacyDlpV2beta2DateShiftConfig;
-  fixedSizeBucketingConfig:
-      Schema$GooglePrivacyDlpV2beta2FixedSizeBucketingConfig;
-  redactConfig: Schema$GooglePrivacyDlpV2beta2RedactConfig;
-  replaceConfig: Schema$GooglePrivacyDlpV2beta2ReplaceValueConfig;
-  replaceWithInfoTypeConfig:
-      Schema$GooglePrivacyDlpV2beta2ReplaceWithInfoTypeConfig;
-  timePartConfig: Schema$GooglePrivacyDlpV2beta2TimePartConfig;
+export interface Schema$GooglePrivacyDlpV2PrimitiveTransformation {
+  bucketingConfig: Schema$GooglePrivacyDlpV2BucketingConfig;
+  characterMaskConfig: Schema$GooglePrivacyDlpV2CharacterMaskConfig;
+  cryptoHashConfig: Schema$GooglePrivacyDlpV2CryptoHashConfig;
+  cryptoReplaceFfxFpeConfig: Schema$GooglePrivacyDlpV2CryptoReplaceFfxFpeConfig;
+  dateShiftConfig: Schema$GooglePrivacyDlpV2DateShiftConfig;
+  fixedSizeBucketingConfig: Schema$GooglePrivacyDlpV2FixedSizeBucketingConfig;
+  redactConfig: Schema$GooglePrivacyDlpV2RedactConfig;
+  replaceConfig: Schema$GooglePrivacyDlpV2ReplaceValueConfig;
+  replaceWithInfoTypeConfig: Schema$GooglePrivacyDlpV2ReplaceWithInfoTypeConfig;
+  timePartConfig: Schema$GooglePrivacyDlpV2TimePartConfig;
 }
 /**
  * Privacy metric to compute for reidentification risk analysis.
  */
-export interface Schema$GooglePrivacyDlpV2beta2PrivacyMetric {
-  categoricalStatsConfig: Schema$GooglePrivacyDlpV2beta2CategoricalStatsConfig;
-  kAnonymityConfig: Schema$GooglePrivacyDlpV2beta2KAnonymityConfig;
-  kMapEstimationConfig: Schema$GooglePrivacyDlpV2beta2KMapEstimationConfig;
-  lDiversityConfig: Schema$GooglePrivacyDlpV2beta2LDiversityConfig;
-  numericalStatsConfig: Schema$GooglePrivacyDlpV2beta2NumericalStatsConfig;
+export interface Schema$GooglePrivacyDlpV2PrivacyMetric {
+  categoricalStatsConfig: Schema$GooglePrivacyDlpV2CategoricalStatsConfig;
+  kAnonymityConfig: Schema$GooglePrivacyDlpV2KAnonymityConfig;
+  kMapEstimationConfig: Schema$GooglePrivacyDlpV2KMapEstimationConfig;
+  lDiversityConfig: Schema$GooglePrivacyDlpV2LDiversityConfig;
+  numericalStatsConfig: Schema$GooglePrivacyDlpV2NumericalStatsConfig;
 }
 /**
  * Message for specifying a window around a finding to apply a detection rule.
  */
-export interface Schema$GooglePrivacyDlpV2beta2Proximity {
+export interface Schema$GooglePrivacyDlpV2Proximity {
   /**
    * Number of characters after the finding to consider.
    */
@@ -2700,7 +2680,7 @@ export interface Schema$GooglePrivacyDlpV2beta2Proximity {
  * Publish the results of a DlpJob to a pub sub channel. Compatible with:
  * Inpect, Risk
  */
-export interface Schema$GooglePrivacyDlpV2beta2PublishToPubSub {
+export interface Schema$GooglePrivacyDlpV2PublishToPubSub {
   /**
    * Cloud Pub/Sub topic to send notifications to. The topic must have given
    * publishing access rights to the DLP API service account executing the long
@@ -2713,20 +2693,20 @@ export interface Schema$GooglePrivacyDlpV2beta2PublishToPubSub {
  * A quasi-identifier column has a custom_tag, used to know which column in the
  * data corresponds to which column in the statistical model.
  */
-export interface Schema$GooglePrivacyDlpV2beta2QuasiIdField {
+export interface Schema$GooglePrivacyDlpV2QuasiIdField {
   customTag: string;
-  field: Schema$GooglePrivacyDlpV2beta2FieldId;
+  field: Schema$GooglePrivacyDlpV2FieldId;
 }
 /**
  * Message for infoType-dependent details parsed from quote.
  */
-export interface Schema$GooglePrivacyDlpV2beta2QuoteInfo {
-  dateTime: Schema$GooglePrivacyDlpV2beta2DateTime;
+export interface Schema$GooglePrivacyDlpV2QuoteInfo {
+  dateTime: Schema$GooglePrivacyDlpV2DateTime;
 }
 /**
  * Generic half-open interval [start, end)
  */
-export interface Schema$GooglePrivacyDlpV2beta2Range {
+export interface Schema$GooglePrivacyDlpV2Range {
   /**
    * Index of the last character of the range (exclusive).
    */
@@ -2740,79 +2720,90 @@ export interface Schema$GooglePrivacyDlpV2beta2Range {
  * A condition for determining whether a transformation should be applied to a
  * field.
  */
-export interface Schema$GooglePrivacyDlpV2beta2RecordCondition {
+export interface Schema$GooglePrivacyDlpV2RecordCondition {
   /**
    * An expression.
    */
-  expressions: Schema$GooglePrivacyDlpV2beta2Expressions;
+  expressions: Schema$GooglePrivacyDlpV2Expressions;
 }
 /**
  * Message for a unique key indicating a record that contains a finding.
  */
-export interface Schema$GooglePrivacyDlpV2beta2RecordKey {
-  bigQueryKey: Schema$GooglePrivacyDlpV2beta2BigQueryKey;
-  cloudStorageKey: Schema$GooglePrivacyDlpV2beta2CloudStorageKey;
-  datastoreKey: Schema$GooglePrivacyDlpV2beta2DatastoreKey;
+export interface Schema$GooglePrivacyDlpV2RecordKey {
+  bigQueryKey: Schema$GooglePrivacyDlpV2BigQueryKey;
+  datastoreKey: Schema$GooglePrivacyDlpV2DatastoreKey;
+}
+/**
+ * Location of a finding within a row or record.
+ */
+export interface Schema$GooglePrivacyDlpV2RecordLocation {
+  /**
+   * Field id of the field containing the finding.
+   */
+  fieldId: Schema$GooglePrivacyDlpV2FieldId;
+  /**
+   * Key of the finding.
+   */
+  recordKey: Schema$GooglePrivacyDlpV2RecordKey;
+  /**
+   * Location within a `ContentItem.Table`.
+   */
+  tableLocation: Schema$GooglePrivacyDlpV2TableLocation;
 }
 /**
  * Configuration to suppress records whose suppression conditions evaluate to
  * true.
  */
-export interface Schema$GooglePrivacyDlpV2beta2RecordSuppression {
+export interface Schema$GooglePrivacyDlpV2RecordSuppression {
   /**
    * A condition that when it evaluates to true will result in the record being
    * evaluated to be suppressed from the transformed content.
    */
-  condition: Schema$GooglePrivacyDlpV2beta2RecordCondition;
+  condition: Schema$GooglePrivacyDlpV2RecordCondition;
 }
 /**
  * A type of transformation that is applied over structured data such as a
  * table.
  */
-export interface Schema$GooglePrivacyDlpV2beta2RecordTransformations {
+export interface Schema$GooglePrivacyDlpV2RecordTransformations {
   /**
    * Transform the record by applying various field transformations.
    */
-  fieldTransformations: Schema$GooglePrivacyDlpV2beta2FieldTransformation[];
+  fieldTransformations: Schema$GooglePrivacyDlpV2FieldTransformation[];
   /**
    * Configuration defining which records get suppressed entirely. Records that
    * match any suppression rule are omitted from the output [optional].
    */
-  recordSuppressions: Schema$GooglePrivacyDlpV2beta2RecordSuppression[];
+  recordSuppressions: Schema$GooglePrivacyDlpV2RecordSuppression[];
 }
 /**
  * Redact a given value. For example, if used with an `InfoTypeTransformation`
  * transforming PHONE_NUMBER, and input &#39;My phone number is
  * 206-555-0123&#39;, the output would be &#39;My phone number is &#39;.
  */
-export interface Schema$GooglePrivacyDlpV2beta2RedactConfig {}
+export interface Schema$GooglePrivacyDlpV2RedactConfig {}
 /**
  * Request to search for potentially sensitive info in a list of items and
  * replace it with a default or provided content.
  */
-export interface Schema$GooglePrivacyDlpV2beta2RedactImageRequest {
+export interface Schema$GooglePrivacyDlpV2RedactImageRequest {
   /**
-   * The bytes of the image to redact.
+   * The content must be PNG, JPEG, SVG or BMP.
    */
-  imageData: string;
+  byteItem: Schema$GooglePrivacyDlpV2ByteContentItem;
   /**
    * The configuration for specifying what content to redact from images.
    */
-  imageRedactionConfigs: Schema$GooglePrivacyDlpV2beta2ImageRedactionConfig[];
-  /**
-   * Type of the content, as defined in Content-Type HTTP header. Supported
-   * types are: PNG, JPEG, SVG, &amp; BMP.
-   */
-  imageType: string;
+  imageRedactionConfigs: Schema$GooglePrivacyDlpV2ImageRedactionConfig[];
   /**
    * Configuration for the inspector.
    */
-  inspectConfig: Schema$GooglePrivacyDlpV2beta2InspectConfig;
+  inspectConfig: Schema$GooglePrivacyDlpV2InspectConfig;
 }
 /**
  * Results of redacting an image.
  */
-export interface Schema$GooglePrivacyDlpV2beta2RedactImageResponse {
+export interface Schema$GooglePrivacyDlpV2RedactImageResponse {
   /**
    * If an image was being inspected and the InspectConfig&#39;s include_quote
    * was set to true, then this field will include all text, if any, that was
@@ -2827,7 +2818,7 @@ export interface Schema$GooglePrivacyDlpV2beta2RedactImageResponse {
 /**
  * Message defining a custom regular expression.
  */
-export interface Schema$GooglePrivacyDlpV2beta2Regex {
+export interface Schema$GooglePrivacyDlpV2Regex {
   /**
    * Pattern defining the regular expression.
    */
@@ -2836,11 +2827,11 @@ export interface Schema$GooglePrivacyDlpV2beta2Regex {
 /**
  * Request to re-identify an item.
  */
-export interface Schema$GooglePrivacyDlpV2beta2ReidentifyContentRequest {
+export interface Schema$GooglePrivacyDlpV2ReidentifyContentRequest {
   /**
    * Configuration for the inspector.
    */
-  inspectConfig: Schema$GooglePrivacyDlpV2beta2InspectConfig;
+  inspectConfig: Schema$GooglePrivacyDlpV2InspectConfig;
   /**
    * Optional template to use. Any configuration directly specified in
    * `inspect_config` will override those set in the template. Singular fields
@@ -2852,7 +2843,7 @@ export interface Schema$GooglePrivacyDlpV2beta2ReidentifyContentRequest {
   /**
    * The item to re-identify. Will be treated as text.
    */
-  item: Schema$GooglePrivacyDlpV2beta2ContentItem;
+  item: Schema$GooglePrivacyDlpV2ContentItem;
   /**
    * Configuration for the re-identification of the content item. This field
    * shares the same proto message type that is used for de-identification,
@@ -2862,7 +2853,7 @@ export interface Schema$GooglePrivacyDlpV2beta2ReidentifyContentRequest {
    * This requires that only reversible transformations be provided here. The
    * reversible transformations are:   - `CryptoReplaceFfxFpeConfig`
    */
-  reidentifyConfig: Schema$GooglePrivacyDlpV2beta2DeidentifyConfig;
+  reidentifyConfig: Schema$GooglePrivacyDlpV2DeidentifyConfig;
   /**
    * Optional template to use. References an instance of `DeidentifyTemplate`.
    * Any configuration directly specified in `reidentify_config` or
@@ -2876,43 +2867,43 @@ export interface Schema$GooglePrivacyDlpV2beta2ReidentifyContentRequest {
 /**
  * Results of re-identifying a item.
  */
-export interface Schema$GooglePrivacyDlpV2beta2ReidentifyContentResponse {
+export interface Schema$GooglePrivacyDlpV2ReidentifyContentResponse {
   /**
    * The re-identified item.
    */
-  item: Schema$GooglePrivacyDlpV2beta2ContentItem;
+  item: Schema$GooglePrivacyDlpV2ContentItem;
   /**
    * An overview of the changes that were made to the `item`.
    */
-  overview: Schema$GooglePrivacyDlpV2beta2TransformationOverview;
+  overview: Schema$GooglePrivacyDlpV2TransformationOverview;
 }
 /**
  * Replace each input value with a given `Value`.
  */
-export interface Schema$GooglePrivacyDlpV2beta2ReplaceValueConfig {
+export interface Schema$GooglePrivacyDlpV2ReplaceValueConfig {
   /**
    * Value to replace it with.
    */
-  newValue: Schema$GooglePrivacyDlpV2beta2Value;
+  newValue: Schema$GooglePrivacyDlpV2Value;
 }
 /**
  * Replace each matching finding with the name of the info_type.
  */
-export interface Schema$GooglePrivacyDlpV2beta2ReplaceWithInfoTypeConfig {}
-export interface Schema$GooglePrivacyDlpV2beta2RequestedOptions {
-  jobConfig: Schema$GooglePrivacyDlpV2beta2InspectJobConfig;
+export interface Schema$GooglePrivacyDlpV2ReplaceWithInfoTypeConfig {}
+export interface Schema$GooglePrivacyDlpV2RequestedOptions {
+  jobConfig: Schema$GooglePrivacyDlpV2InspectJobConfig;
   /**
    * If run with an inspect template, a snapshot of it&#39;s state at the time
    * of this run.
    */
-  snapshotInspectTemplate: Schema$GooglePrivacyDlpV2beta2InspectTemplate;
+  snapshotInspectTemplate: Schema$GooglePrivacyDlpV2InspectTemplate;
 }
-export interface Schema$GooglePrivacyDlpV2beta2Result {
+export interface Schema$GooglePrivacyDlpV2Result {
   /**
    * Statistics of how many instances of each info type were found during
    * inspect job.
    */
-  infoTypeStats: Schema$GooglePrivacyDlpV2beta2InfoTypeStatistics[];
+  infoTypeStats: Schema$GooglePrivacyDlpV2InfoTypeStats[];
   /**
    * Total size in bytes that were processed.
    */
@@ -2925,35 +2916,35 @@ export interface Schema$GooglePrivacyDlpV2beta2Result {
 /**
  * Configuration for a risk analysis job.
  */
-export interface Schema$GooglePrivacyDlpV2beta2RiskAnalysisJobConfig {
+export interface Schema$GooglePrivacyDlpV2RiskAnalysisJobConfig {
   /**
    * Actions to execute at the completion of the job. Are executed in the order
    * provided.
    */
-  actions: Schema$GooglePrivacyDlpV2beta2Action[];
+  actions: Schema$GooglePrivacyDlpV2Action[];
   /**
    * Privacy metric to compute.
    */
-  privacyMetric: Schema$GooglePrivacyDlpV2beta2PrivacyMetric;
+  privacyMetric: Schema$GooglePrivacyDlpV2PrivacyMetric;
   /**
    * Input dataset to compute metrics over.
    */
-  sourceTable: Schema$GooglePrivacyDlpV2beta2BigQueryTable;
+  sourceTable: Schema$GooglePrivacyDlpV2BigQueryTable;
 }
-export interface Schema$GooglePrivacyDlpV2beta2Row {
-  values: Schema$GooglePrivacyDlpV2beta2Value[];
+export interface Schema$GooglePrivacyDlpV2Row {
+  values: Schema$GooglePrivacyDlpV2Value[];
 }
 /**
  * If set, the detailed findings will be persisted to the specified
  * OutputStorageConfig. Compatible with: Inspect
  */
-export interface Schema$GooglePrivacyDlpV2beta2SaveFindings {
-  outputConfig: Schema$GooglePrivacyDlpV2beta2OutputStorageConfig;
+export interface Schema$GooglePrivacyDlpV2SaveFindings {
+  outputConfig: Schema$GooglePrivacyDlpV2OutputStorageConfig;
 }
 /**
  * Schedule for triggeredJobs.
  */
-export interface Schema$GooglePrivacyDlpV2beta2Schedule {
+export interface Schema$GooglePrivacyDlpV2Schedule {
   /**
    * With this option a job is started a regular periodic basis. For example:
    * every 10 minutes.  A scheduled start time will be skipped if the previous
@@ -2961,31 +2952,31 @@ export interface Schema$GooglePrivacyDlpV2beta2Schedule {
    * set to a time duration greater than or equal to 60 minutes and can be no
    * longer than 60 days.
    */
-  reccurrencePeriodDuration: string;
+  recurrencePeriodDuration: string;
 }
 /**
  * Shared message indicating Cloud storage type.
  */
-export interface Schema$GooglePrivacyDlpV2beta2StorageConfig {
+export interface Schema$GooglePrivacyDlpV2StorageConfig {
   /**
    * BigQuery options specification.
    */
-  bigQueryOptions: Schema$GooglePrivacyDlpV2beta2BigQueryOptions;
+  bigQueryOptions: Schema$GooglePrivacyDlpV2BigQueryOptions;
   /**
    * Google Cloud Storage options specification.
    */
-  cloudStorageOptions: Schema$GooglePrivacyDlpV2beta2CloudStorageOptions;
+  cloudStorageOptions: Schema$GooglePrivacyDlpV2CloudStorageOptions;
   /**
    * Google Cloud Datastore options specification.
    */
-  datastoreOptions: Schema$GooglePrivacyDlpV2beta2DatastoreOptions;
-  timespanConfig: Schema$GooglePrivacyDlpV2beta2TimespanConfig;
+  datastoreOptions: Schema$GooglePrivacyDlpV2DatastoreOptions;
+  timespanConfig: Schema$GooglePrivacyDlpV2TimespanConfig;
 }
 /**
  * A collection that informs the user the number of times a particular
  * `TransformationResultCode` and error details occurred.
  */
-export interface Schema$GooglePrivacyDlpV2beta2SummaryResult {
+export interface Schema$GooglePrivacyDlpV2SummaryResult {
   code: string;
   count: string;
   /**
@@ -2996,24 +2987,24 @@ export interface Schema$GooglePrivacyDlpV2beta2SummaryResult {
 }
 /**
  * Message for detecting output from deidentification transformations such as
- * [`CryptoReplaceFfxFpeConfig`](/dlp/docs/reference/rest/v2beta1/content/deidentify#CryptoReplaceFfxFpeConfig).
+ * [`CryptoReplaceFfxFpeConfig`](/dlp/docs/reference/rest/v2/content/deidentify#CryptoReplaceFfxFpeConfig).
  * These types of transformations are those that perform pseudonymization,
  * thereby producing a &quot;surrogate&quot; as output. This should be used in
  * conjunction with a field on the transformation such as `surrogate_info_type`.
  * This custom info type does not support the use of `detection_rules`.
  */
-export interface Schema$GooglePrivacyDlpV2beta2SurrogateType {}
+export interface Schema$GooglePrivacyDlpV2SurrogateType {}
 /**
  * Structured content to inspect. Up to 50,000 `Value`s per request allowed.
  */
-export interface Schema$GooglePrivacyDlpV2beta2Table {
-  headers: Schema$GooglePrivacyDlpV2beta2FieldId[];
-  rows: Schema$GooglePrivacyDlpV2beta2Row[];
+export interface Schema$GooglePrivacyDlpV2Table {
+  headers: Schema$GooglePrivacyDlpV2FieldId[];
+  rows: Schema$GooglePrivacyDlpV2Row[];
 }
 /**
  * Location of a finding within a table.
  */
-export interface Schema$GooglePrivacyDlpV2beta2TableLocation {
+export interface Schema$GooglePrivacyDlpV2TableLocation {
   /**
    * The zero-based index of the row where the finding is located.
    */
@@ -3022,7 +3013,7 @@ export interface Schema$GooglePrivacyDlpV2beta2TableLocation {
 /**
  * A column with a semantic tag attached.
  */
-export interface Schema$GooglePrivacyDlpV2beta2TaggedField {
+export interface Schema$GooglePrivacyDlpV2TaggedField {
   /**
    * A column can be tagged with a custom tag. In this case, the user must
    * indicate an auxiliary table that contains statistical information on the
@@ -3032,7 +3023,7 @@ export interface Schema$GooglePrivacyDlpV2beta2TaggedField {
   /**
    * Identifies the column. [required]
    */
-  field: Schema$GooglePrivacyDlpV2beta2FieldId;
+  field: Schema$GooglePrivacyDlpV2FieldId;
   /**
    * If no semantic tag is indicated, we infer the statistical model from the
    * distribution of values in the input data
@@ -3045,20 +3036,20 @@ export interface Schema$GooglePrivacyDlpV2beta2TaggedField {
    * list of supported InfoTypes, use ListInfoTypes with the
    * supported_by=RISK_ANALYSIS filter.
    */
-  infoType: Schema$GooglePrivacyDlpV2beta2InfoType;
+  infoType: Schema$GooglePrivacyDlpV2InfoType;
 }
 /**
  * For use with `Date`, `Timestamp`, and `TimeOfDay`, extract or preserve a
  * portion of the value.
  */
-export interface Schema$GooglePrivacyDlpV2beta2TimePartConfig {
+export interface Schema$GooglePrivacyDlpV2TimePartConfig {
   partToExtract: string;
 }
 /**
  * Configuration of the timespan of the items to include in scanning. Currently
  * only supported when inspecting Google Cloud Storage and BigQuery.
  */
-export interface Schema$GooglePrivacyDlpV2beta2TimespanConfig {
+export interface Schema$GooglePrivacyDlpV2TimespanConfig {
   /**
    * When the job is started by a JobTrigger we will automatically figure out a
    * valid start_time to avoid scanning files that have not been modified since
@@ -3075,8 +3066,16 @@ export interface Schema$GooglePrivacyDlpV2beta2TimespanConfig {
    * Exclude files older than this value.
    */
   startTime: string;
+  /**
+   * Specification of the field containing the timestamp of scanned items.
+   * Required for data sources like Datastore or BigQuery. The valid data types
+   * of the timestamp field are: for BigQuery - timestamp, date, datetime; for
+   * Datastore - timestamp. Datastore entity will be scanned if the timestamp
+   * property does not exist or its value is empty or invalid.
+   */
+  timestampField: Schema$GooglePrivacyDlpV2FieldId;
 }
-export interface Schema$GooglePrivacyDlpV2beta2TimeZone {
+export interface Schema$GooglePrivacyDlpV2TimeZone {
   /**
    * Set only if the offset can be determined. Positive for time ahead of UTC.
    * E.g. For &quot;UTC-9&quot;, this value is -540.
@@ -3086,12 +3085,11 @@ export interface Schema$GooglePrivacyDlpV2beta2TimeZone {
 /**
  * Overview of the modifications that occurred.
  */
-export interface Schema$GooglePrivacyDlpV2beta2TransformationOverview {
+export interface Schema$GooglePrivacyDlpV2TransformationOverview {
   /**
    * Transformations applied to the dataset.
    */
-  transformationSummaries:
-      Schema$GooglePrivacyDlpV2beta2TransformationSummary[];
+  transformationSummaries: Schema$GooglePrivacyDlpV2TransformationSummary[];
   /**
    * Total size in bytes that were transformed in some way.
    */
@@ -3101,30 +3099,30 @@ export interface Schema$GooglePrivacyDlpV2beta2TransformationOverview {
  * Summary of a single tranformation. Only one of &#39;transformation&#39;,
  * &#39;field_transformation&#39;, or &#39;record_suppress&#39; will be set.
  */
-export interface Schema$GooglePrivacyDlpV2beta2TransformationSummary {
+export interface Schema$GooglePrivacyDlpV2TransformationSummary {
   /**
    * Set if the transformation was limited to a specific FieldId.
    */
-  field: Schema$GooglePrivacyDlpV2beta2FieldId;
+  field: Schema$GooglePrivacyDlpV2FieldId;
   /**
    * The field transformation that was applied. If multiple field
    * transformations are requested for a single field, this list will contain
    * all of them; otherwise, only one is supplied.
    */
-  fieldTransformations: Schema$GooglePrivacyDlpV2beta2FieldTransformation[];
+  fieldTransformations: Schema$GooglePrivacyDlpV2FieldTransformation[];
   /**
    * Set if the transformation was limited to a specific info_type.
    */
-  infoType: Schema$GooglePrivacyDlpV2beta2InfoType;
+  infoType: Schema$GooglePrivacyDlpV2InfoType;
   /**
    * The specific suppression option these stats apply to.
    */
-  recordSuppress: Schema$GooglePrivacyDlpV2beta2RecordSuppression;
-  results: Schema$GooglePrivacyDlpV2beta2SummaryResult[];
+  recordSuppress: Schema$GooglePrivacyDlpV2RecordSuppression;
+  results: Schema$GooglePrivacyDlpV2SummaryResult[];
   /**
    * The specific transformation these stats apply to.
    */
-  transformation: Schema$GooglePrivacyDlpV2beta2PrimitiveTransformation;
+  transformation: Schema$GooglePrivacyDlpV2PrimitiveTransformation;
   /**
    * Total size in bytes that were transformed in some way.
    */
@@ -3134,7 +3132,7 @@ export interface Schema$GooglePrivacyDlpV2beta2TransformationSummary {
  * Use this to have a random data crypto key generated. It will be discarded
  * after the request finishes.
  */
-export interface Schema$GooglePrivacyDlpV2beta2TransientCryptoKey {
+export interface Schema$GooglePrivacyDlpV2TransientCryptoKey {
   /**
    * Name of the key. [required] This is an arbitrary string used to
    * differentiate different keys. A unique key is generated per name: two
@@ -3148,17 +3146,17 @@ export interface Schema$GooglePrivacyDlpV2beta2TransientCryptoKey {
 /**
  * What event needs to occur for a new job to be started.
  */
-export interface Schema$GooglePrivacyDlpV2beta2Trigger {
+export interface Schema$GooglePrivacyDlpV2Trigger {
   /**
    * Create a job on a repeating basis based on the elapse of time.
    */
-  schedule: Schema$GooglePrivacyDlpV2beta2Schedule;
+  schedule: Schema$GooglePrivacyDlpV2Schedule;
 }
 /**
  * Using raw keys is prone to security risks due to accidentally leaking the
  * key. Choose another type of key if possible.
  */
-export interface Schema$GooglePrivacyDlpV2beta2UnwrappedCryptoKey {
+export interface Schema$GooglePrivacyDlpV2UnwrappedCryptoKey {
   /**
    * The AES 128/192/256 bit key. [required]
    */
@@ -3167,11 +3165,11 @@ export interface Schema$GooglePrivacyDlpV2beta2UnwrappedCryptoKey {
 /**
  * Request message for UpdateDeidentifyTemplate.
  */
-export interface Schema$GooglePrivacyDlpV2beta2UpdateDeidentifyTemplateRequest {
+export interface Schema$GooglePrivacyDlpV2UpdateDeidentifyTemplateRequest {
   /**
    * New DeidentifyTemplate value.
    */
-  deidentifyTemplate: Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate;
+  deidentifyTemplate: Schema$GooglePrivacyDlpV2DeidentifyTemplate;
   /**
    * Mask to control which fields get updated.
    */
@@ -3180,11 +3178,11 @@ export interface Schema$GooglePrivacyDlpV2beta2UpdateDeidentifyTemplateRequest {
 /**
  * Request message for UpdateInspectTemplate.
  */
-export interface Schema$GooglePrivacyDlpV2beta2UpdateInspectTemplateRequest {
+export interface Schema$GooglePrivacyDlpV2UpdateInspectTemplateRequest {
   /**
    * New InspectTemplate value.
    */
-  inspectTemplate: Schema$GooglePrivacyDlpV2beta2InspectTemplate;
+  inspectTemplate: Schema$GooglePrivacyDlpV2InspectTemplate;
   /**
    * Mask to control which fields get updated.
    */
@@ -3193,11 +3191,11 @@ export interface Schema$GooglePrivacyDlpV2beta2UpdateInspectTemplateRequest {
 /**
  * Request message for UpdateJobTrigger.
  */
-export interface Schema$GooglePrivacyDlpV2beta2UpdateJobTriggerRequest {
+export interface Schema$GooglePrivacyDlpV2UpdateJobTriggerRequest {
   /**
    * New JobTrigger value.
    */
-  jobTrigger: Schema$GooglePrivacyDlpV2beta2JobTrigger;
+  jobTrigger: Schema$GooglePrivacyDlpV2JobTrigger;
   /**
    * Mask to control which fields get updated.
    */
@@ -3210,7 +3208,7 @@ export interface Schema$GooglePrivacyDlpV2beta2UpdateJobTriggerRequest {
  * example, if &#39;integer_value&#39; is set to 123456789, the number of bytes
  * would be counted as 9, even though an int64 only holds up to 8 bytes of data.
  */
-export interface Schema$GooglePrivacyDlpV2beta2Value {
+export interface Schema$GooglePrivacyDlpV2Value {
   booleanValue: boolean;
   dateValue: Schema$GoogleTypeDate;
   dayOfWeekValue: string;
@@ -3223,7 +3221,7 @@ export interface Schema$GooglePrivacyDlpV2beta2Value {
 /**
  * A value of a field, including its frequency.
  */
-export interface Schema$GooglePrivacyDlpV2beta2ValueFrequency {
+export interface Schema$GooglePrivacyDlpV2ValueFrequency {
   /**
    * How many times the value is contained in the field.
    */
@@ -3231,12 +3229,12 @@ export interface Schema$GooglePrivacyDlpV2beta2ValueFrequency {
   /**
    * A value contained in the field in question.
    */
-  value: Schema$GooglePrivacyDlpV2beta2Value;
+  value: Schema$GooglePrivacyDlpV2Value;
 }
 /**
  * Message defining a list of words or phrases to search for in the data.
  */
-export interface Schema$GooglePrivacyDlpV2beta2WordList {
+export interface Schema$GooglePrivacyDlpV2WordList {
   /**
    * Words or phrases defining the dictionary. The dictionary must contain at
    * least one phrase and every phrase must contain at least 2 characters that
@@ -3377,10 +3375,10 @@ export class Resource$Infotypes {
    */
   list =
       (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta2ListInfoTypesResponse>,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>,
        callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta2ListInfoTypesResponse>) => {
+           Schema$GooglePrivacyDlpV2ListInfoTypesResponse>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -3390,8 +3388,7 @@ export class Resource$Infotypes {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta2/infoTypes')
-                         .replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/infoTypes').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               },
               options),
@@ -3400,7 +3397,7 @@ export class Resource$Infotypes {
           pathParams: [],
           context: this.root
         };
-        createAPIRequest<Schema$GooglePrivacyDlpV2beta2ListInfoTypesResponse>(
+        createAPIRequest<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>(
             parameters, callback!);
       };
 }
@@ -3424,14 +3421,14 @@ export class Resource$Organizations$Deidentifytemplates {
 
   /**
    * dlp.organizations.deidentifyTemplates.create
-   * @desc Creates an Deidentify template for re-using frequently used
+   * @desc Creates a de-identify template for re-using frequently used
    * configuration for Deidentifying content, images, and storage.
    * @alias dlp.organizations.deidentifyTemplates.create
    * @memberOf! ()
    *
    * @param {object} params Parameters for request
    * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
-   * @param {().GooglePrivacyDlpV2beta2CreateDeidentifyTemplateRequest} params.resource Request body data
+   * @param {().GooglePrivacyDlpV2CreateDeidentifyTemplateRequest} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
@@ -3439,9 +3436,9 @@ export class Resource$Organizations$Deidentifytemplates {
   create =
       (params: any,
        options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>,
+       BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
        callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>) => {
+           Schema$GooglePrivacyDlpV2DeidentifyTemplate>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -3451,7 +3448,7 @@ export class Resource$Organizations$Deidentifytemplates {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta2/{parent}/deidentifyTemplates')
+                url: (rootUrl + '/v2/{parent}/deidentifyTemplates')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
@@ -3461,14 +3458,14 @@ export class Resource$Organizations$Deidentifytemplates {
           pathParams: ['parent'],
           context: this.root
         };
-        createAPIRequest<Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>(
+        createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
             parameters, callback!);
       };
 
 
   /**
    * dlp.organizations.deidentifyTemplates.delete
-   * @desc Deletes inspect templates.
+   * @desc Deletes a de-identify template.
    * @alias dlp.organizations.deidentifyTemplates.delete
    * @memberOf! ()
    *
@@ -3491,8 +3488,7 @@ export class Resource$Organizations$Deidentifytemplates {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'DELETE'
               },
               options),
@@ -3507,7 +3503,7 @@ export class Resource$Organizations$Deidentifytemplates {
 
   /**
    * dlp.organizations.deidentifyTemplates.get
-   * @desc Gets an inspect template.
+   * @desc Gets a de-identify template.
    * @alias dlp.organizations.deidentifyTemplates.get
    * @memberOf! ()
    *
@@ -3520,9 +3516,9 @@ export class Resource$Organizations$Deidentifytemplates {
   get =
       (params: any,
        options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>,
+       BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
        callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>) => {
+           Schema$GooglePrivacyDlpV2DeidentifyTemplate>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -3532,8 +3528,7 @@ export class Resource$Organizations$Deidentifytemplates {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               },
               options),
@@ -3542,14 +3537,14 @@ export class Resource$Organizations$Deidentifytemplates {
           pathParams: ['name'],
           context: this.root
         };
-        createAPIRequest<Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>(
+        createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
             parameters, callback!);
       };
 
 
   /**
    * dlp.organizations.deidentifyTemplates.list
-   * @desc Lists inspect templates.
+   * @desc Lists de-identify templates.
    * @alias dlp.organizations.deidentifyTemplates.list
    * @memberOf! ()
    *
@@ -3564,9 +3559,9 @@ export class Resource$Organizations$Deidentifytemplates {
   list =
       (params: any,
        options: MethodOptions|BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta2ListDeidentifyTemplatesResponse>,
+           Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>,
        callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta2ListDeidentifyTemplatesResponse>) => {
+           Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -3576,7 +3571,7 @@ export class Resource$Organizations$Deidentifytemplates {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta2/{parent}/deidentifyTemplates')
+                url: (rootUrl + '/v2/{parent}/deidentifyTemplates')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               },
@@ -3587,20 +3582,20 @@ export class Resource$Organizations$Deidentifytemplates {
           context: this.root
         };
         createAPIRequest<
-            Schema$GooglePrivacyDlpV2beta2ListDeidentifyTemplatesResponse>(
+            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>(
             parameters, callback!);
       };
 
 
   /**
    * dlp.organizations.deidentifyTemplates.patch
-   * @desc Updates the inspect template.
+   * @desc Updates the de-identify template.
    * @alias dlp.organizations.deidentifyTemplates.patch
    * @memberOf! ()
    *
    * @param {object} params Parameters for request
    * @param {string} params.name Resource name of organization and deidentify template to be updated, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
-   * @param {().GooglePrivacyDlpV2beta2UpdateDeidentifyTemplateRequest} params.resource Request body data
+   * @param {().GooglePrivacyDlpV2UpdateDeidentifyTemplateRequest} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
@@ -3608,9 +3603,9 @@ export class Resource$Organizations$Deidentifytemplates {
   patch =
       (params: any,
        options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>,
+       BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
        callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>) => {
+           Schema$GooglePrivacyDlpV2DeidentifyTemplate>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -3620,8 +3615,7 @@ export class Resource$Organizations$Deidentifytemplates {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'PATCH'
               },
               options),
@@ -3630,7 +3624,7 @@ export class Resource$Organizations$Deidentifytemplates {
           pathParams: ['name'],
           context: this.root
         };
-        createAPIRequest<Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>(
+        createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
             parameters, callback!);
       };
 }
@@ -3650,7 +3644,7 @@ export class Resource$Organizations$Inspecttemplates {
    *
    * @param {object} params Parameters for request
    * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
-   * @param {().GooglePrivacyDlpV2beta2CreateInspectTemplateRequest} params.resource Request body data
+   * @param {().GooglePrivacyDlpV2CreateInspectTemplateRequest} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
@@ -3658,9 +3652,9 @@ export class Resource$Organizations$Inspecttemplates {
   create =
       (params: any,
        options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2InspectTemplate>,
-       callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta2InspectTemplate>) => {
+       BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
+       callback?:
+           BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -3670,7 +3664,7 @@ export class Resource$Organizations$Inspecttemplates {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta2/{parent}/inspectTemplates')
+                url: (rootUrl + '/v2/{parent}/inspectTemplates')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
@@ -3680,14 +3674,14 @@ export class Resource$Organizations$Inspecttemplates {
           pathParams: ['parent'],
           context: this.root
         };
-        createAPIRequest<Schema$GooglePrivacyDlpV2beta2InspectTemplate>(
+        createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
             parameters, callback!);
       };
 
 
   /**
    * dlp.organizations.inspectTemplates.delete
-   * @desc Deletes inspect templates.
+   * @desc Deletes an inspect template.
    * @alias dlp.organizations.inspectTemplates.delete
    * @memberOf! ()
    *
@@ -3710,8 +3704,7 @@ export class Resource$Organizations$Inspecttemplates {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'DELETE'
               },
               options),
@@ -3739,9 +3732,9 @@ export class Resource$Organizations$Inspecttemplates {
   get =
       (params: any,
        options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2InspectTemplate>,
-       callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta2InspectTemplate>) => {
+       BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
+       callback?:
+           BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -3751,8 +3744,7 @@ export class Resource$Organizations$Inspecttemplates {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               },
               options),
@@ -3761,7 +3753,7 @@ export class Resource$Organizations$Inspecttemplates {
           pathParams: ['name'],
           context: this.root
         };
-        createAPIRequest<Schema$GooglePrivacyDlpV2beta2InspectTemplate>(
+        createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
             parameters, callback!);
       };
 
@@ -3783,9 +3775,9 @@ export class Resource$Organizations$Inspecttemplates {
   list =
       (params: any,
        options: MethodOptions|BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta2ListInspectTemplatesResponse>,
+           Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>,
        callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta2ListInspectTemplatesResponse>) => {
+           Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -3795,7 +3787,7 @@ export class Resource$Organizations$Inspecttemplates {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta2/{parent}/inspectTemplates')
+                url: (rootUrl + '/v2/{parent}/inspectTemplates')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               },
@@ -3805,8 +3797,7 @@ export class Resource$Organizations$Inspecttemplates {
           pathParams: ['parent'],
           context: this.root
         };
-        createAPIRequest<
-            Schema$GooglePrivacyDlpV2beta2ListInspectTemplatesResponse>(
+        createAPIRequest<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>(
             parameters, callback!);
       };
 
@@ -3819,7 +3810,7 @@ export class Resource$Organizations$Inspecttemplates {
    *
    * @param {object} params Parameters for request
    * @param {string} params.name Resource name of organization and inspectTemplate to be updated, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
-   * @param {().GooglePrivacyDlpV2beta2UpdateInspectTemplateRequest} params.resource Request body data
+   * @param {().GooglePrivacyDlpV2UpdateInspectTemplateRequest} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
@@ -3827,9 +3818,9 @@ export class Resource$Organizations$Inspecttemplates {
   patch =
       (params: any,
        options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2InspectTemplate>,
-       callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta2InspectTemplate>) => {
+       BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
+       callback?:
+           BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -3839,8 +3830,7 @@ export class Resource$Organizations$Inspecttemplates {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'PATCH'
               },
               options),
@@ -3849,7 +3839,7 @@ export class Resource$Organizations$Inspecttemplates {
           pathParams: ['name'],
           context: this.root
         };
-        createAPIRequest<Schema$GooglePrivacyDlpV2beta2InspectTemplate>(
+        createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
             parameters, callback!);
       };
 }
@@ -3858,7 +3848,6 @@ export class Resource$Organizations$Inspecttemplates {
 export class Resource$Projects {
   root: Dlp;
   content: Resource$Projects$Content;
-  dataSource: Resource$Projects$Datasource;
   deidentifyTemplates: Resource$Projects$Deidentifytemplates;
   dlpJobs: Resource$Projects$Dlpjobs;
   image: Resource$Projects$Image;
@@ -3867,7 +3856,6 @@ export class Resource$Projects {
   constructor(root: Dlp) {
     this.root = root;
     this.content = new Resource$Projects$Content(root);
-    this.dataSource = new Resource$Projects$Datasource(root);
     this.deidentifyTemplates = new Resource$Projects$Deidentifytemplates(root);
     this.dlpJobs = new Resource$Projects$Dlpjobs(root);
     this.image = new Resource$Projects$Image(root);
@@ -3891,17 +3879,17 @@ export class Resource$Projects$Content {
    *
    * @param {object} params Parameters for request
    * @param {string} params.parent The parent resource name, for example projects/my-project-id.
-   * @param {().GooglePrivacyDlpV2beta2DeidentifyContentRequest} params.resource Request body data
+   * @param {().GooglePrivacyDlpV2DeidentifyContentRequest} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
   deidentify =
       (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta2DeidentifyContentResponse>,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>,
        callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta2DeidentifyContentResponse>) => {
+           Schema$GooglePrivacyDlpV2DeidentifyContentResponse>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -3911,7 +3899,7 @@ export class Resource$Projects$Content {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta2/{parent}/content:deidentify')
+                url: (rootUrl + '/v2/{parent}/content:deidentify')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
@@ -3921,8 +3909,7 @@ export class Resource$Projects$Content {
           pathParams: ['parent'],
           context: this.root
         };
-        createAPIRequest<
-            Schema$GooglePrivacyDlpV2beta2DeidentifyContentResponse>(
+        createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>(
             parameters, callback!);
       };
 
@@ -3938,17 +3925,17 @@ export class Resource$Projects$Content {
    *
    * @param {object} params Parameters for request
    * @param {string} params.parent The parent resource name, for example projects/my-project-id.
-   * @param {().GooglePrivacyDlpV2beta2InspectContentRequest} params.resource Request body data
+   * @param {().GooglePrivacyDlpV2InspectContentRequest} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
   inspect =
       (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta2InspectContentResponse>,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>,
        callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta2InspectContentResponse>) => {
+           Schema$GooglePrivacyDlpV2InspectContentResponse>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -3958,7 +3945,7 @@ export class Resource$Projects$Content {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta2/{parent}/content:inspect')
+                url: (rootUrl + '/v2/{parent}/content:inspect')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
@@ -3968,30 +3955,30 @@ export class Resource$Projects$Content {
           pathParams: ['parent'],
           context: this.root
         };
-        createAPIRequest<Schema$GooglePrivacyDlpV2beta2InspectContentResponse>(
+        createAPIRequest<Schema$GooglePrivacyDlpV2InspectContentResponse>(
             parameters, callback!);
       };
 
 
   /**
    * dlp.projects.content.reidentify
-   * @desc Re-identify content that has been de-identified.
+   * @desc Re-identifies content that has been de-identified.
    * @alias dlp.projects.content.reidentify
    * @memberOf! ()
    *
    * @param {object} params Parameters for request
    * @param {string} params.parent The parent resource name.
-   * @param {().GooglePrivacyDlpV2beta2ReidentifyContentRequest} params.resource Request body data
+   * @param {().GooglePrivacyDlpV2ReidentifyContentRequest} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
   reidentify =
       (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta2ReidentifyContentResponse>,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>,
        callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta2ReidentifyContentResponse>) => {
+           Schema$GooglePrivacyDlpV2ReidentifyContentResponse>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -4001,7 +3988,7 @@ export class Resource$Projects$Content {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta2/{parent}/content:reidentify')
+                url: (rootUrl + '/v2/{parent}/content:reidentify')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
@@ -4011,103 +3998,7 @@ export class Resource$Projects$Content {
           pathParams: ['parent'],
           context: this.root
         };
-        createAPIRequest<
-            Schema$GooglePrivacyDlpV2beta2ReidentifyContentResponse>(
-            parameters, callback!);
-      };
-}
-
-export class Resource$Projects$Datasource {
-  root: Dlp;
-  constructor(root: Dlp) {
-    this.root = root;
-  }
-
-  /**
-   * dlp.projects.dataSource.analyze
-   * @desc Schedules a job to compute risk analysis metrics over content in a
-   * Google Cloud Platform repository. [How-to
-   * guide](/dlp/docs/compute-risk-analysis)
-   * @alias dlp.projects.dataSource.analyze
-   * @memberOf! ()
-   *
-   * @param {object} params Parameters for request
-   * @param {string} params.parent The parent resource name, for example projects/my-project-id.
-   * @param {().GooglePrivacyDlpV2beta2AnalyzeDataSourceRiskRequest} params.resource Request body data
-   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-   * @param {callback} callback The callback that handles the response.
-   * @return {object} Request object
-   */
-  analyze =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DlpJob>,
-       callback?:
-           BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DlpJob>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2beta2/{parent}/dataSource:analyze')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GooglePrivacyDlpV2beta2DlpJob>(
-            parameters, callback!);
-      };
-
-
-  /**
-   * dlp.projects.dataSource.inspect
-   * @desc Schedules a job scanning content in a Google Cloud Platform data
-   * repository. [How-to guide](/dlp/docs/inspecting-storage)
-   * @alias dlp.projects.dataSource.inspect
-   * @memberOf! ()
-   *
-   * @param {object} params Parameters for request
-   * @param {string} params.parent The parent resource name, for example projects/my-project-id.
-   * @param {().GooglePrivacyDlpV2beta2InspectDataSourceRequest} params.resource Request body data
-   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-   * @param {callback} callback The callback that handles the response.
-   * @return {object} Request object
-   */
-  inspect =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DlpJob>,
-       callback?:
-           BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DlpJob>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2beta2/{parent}/dataSource:inspect')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GooglePrivacyDlpV2beta2DlpJob>(
+        createAPIRequest<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>(
             parameters, callback!);
       };
 }
@@ -4120,14 +4011,14 @@ export class Resource$Projects$Deidentifytemplates {
 
   /**
    * dlp.projects.deidentifyTemplates.create
-   * @desc Creates an Deidentify template for re-using frequently used
+   * @desc Creates a de-identify template for re-using frequently used
    * configuration for Deidentifying content, images, and storage.
    * @alias dlp.projects.deidentifyTemplates.create
    * @memberOf! ()
    *
    * @param {object} params Parameters for request
    * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
-   * @param {().GooglePrivacyDlpV2beta2CreateDeidentifyTemplateRequest} params.resource Request body data
+   * @param {().GooglePrivacyDlpV2CreateDeidentifyTemplateRequest} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
@@ -4135,9 +4026,9 @@ export class Resource$Projects$Deidentifytemplates {
   create =
       (params: any,
        options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>,
+       BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
        callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>) => {
+           Schema$GooglePrivacyDlpV2DeidentifyTemplate>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -4147,7 +4038,7 @@ export class Resource$Projects$Deidentifytemplates {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta2/{parent}/deidentifyTemplates')
+                url: (rootUrl + '/v2/{parent}/deidentifyTemplates')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
@@ -4157,14 +4048,14 @@ export class Resource$Projects$Deidentifytemplates {
           pathParams: ['parent'],
           context: this.root
         };
-        createAPIRequest<Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>(
+        createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
             parameters, callback!);
       };
 
 
   /**
    * dlp.projects.deidentifyTemplates.delete
-   * @desc Deletes inspect templates.
+   * @desc Deletes a de-identify template.
    * @alias dlp.projects.deidentifyTemplates.delete
    * @memberOf! ()
    *
@@ -4187,8 +4078,7 @@ export class Resource$Projects$Deidentifytemplates {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'DELETE'
               },
               options),
@@ -4203,7 +4093,7 @@ export class Resource$Projects$Deidentifytemplates {
 
   /**
    * dlp.projects.deidentifyTemplates.get
-   * @desc Gets an inspect template.
+   * @desc Gets a de-identify template.
    * @alias dlp.projects.deidentifyTemplates.get
    * @memberOf! ()
    *
@@ -4216,9 +4106,9 @@ export class Resource$Projects$Deidentifytemplates {
   get =
       (params: any,
        options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>,
+       BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
        callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>) => {
+           Schema$GooglePrivacyDlpV2DeidentifyTemplate>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -4228,8 +4118,7 @@ export class Resource$Projects$Deidentifytemplates {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               },
               options),
@@ -4238,14 +4127,14 @@ export class Resource$Projects$Deidentifytemplates {
           pathParams: ['name'],
           context: this.root
         };
-        createAPIRequest<Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>(
+        createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
             parameters, callback!);
       };
 
 
   /**
    * dlp.projects.deidentifyTemplates.list
-   * @desc Lists inspect templates.
+   * @desc Lists de-identify templates.
    * @alias dlp.projects.deidentifyTemplates.list
    * @memberOf! ()
    *
@@ -4260,9 +4149,9 @@ export class Resource$Projects$Deidentifytemplates {
   list =
       (params: any,
        options: MethodOptions|BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta2ListDeidentifyTemplatesResponse>,
+           Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>,
        callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta2ListDeidentifyTemplatesResponse>) => {
+           Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -4272,7 +4161,7 @@ export class Resource$Projects$Deidentifytemplates {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta2/{parent}/deidentifyTemplates')
+                url: (rootUrl + '/v2/{parent}/deidentifyTemplates')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               },
@@ -4283,20 +4172,20 @@ export class Resource$Projects$Deidentifytemplates {
           context: this.root
         };
         createAPIRequest<
-            Schema$GooglePrivacyDlpV2beta2ListDeidentifyTemplatesResponse>(
+            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>(
             parameters, callback!);
       };
 
 
   /**
    * dlp.projects.deidentifyTemplates.patch
-   * @desc Updates the inspect template.
+   * @desc Updates the de-identify template.
    * @alias dlp.projects.deidentifyTemplates.patch
    * @memberOf! ()
    *
    * @param {object} params Parameters for request
    * @param {string} params.name Resource name of organization and deidentify template to be updated, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
-   * @param {().GooglePrivacyDlpV2beta2UpdateDeidentifyTemplateRequest} params.resource Request body data
+   * @param {().GooglePrivacyDlpV2UpdateDeidentifyTemplateRequest} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
@@ -4304,9 +4193,9 @@ export class Resource$Projects$Deidentifytemplates {
   patch =
       (params: any,
        options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>,
+       BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
        callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>) => {
+           Schema$GooglePrivacyDlpV2DeidentifyTemplate>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -4316,8 +4205,7 @@ export class Resource$Projects$Deidentifytemplates {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'PATCH'
               },
               options),
@@ -4326,7 +4214,7 @@ export class Resource$Projects$Deidentifytemplates {
           pathParams: ['name'],
           context: this.root
         };
-        createAPIRequest<Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>(
+        createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
             parameters, callback!);
       };
 }
@@ -4339,15 +4227,14 @@ export class Resource$Projects$Dlpjobs {
 
   /**
    * dlp.projects.dlpJobs.cancel
-   * @desc Starts asynchronous cancellation on a long-running DlpJob.  The
-   * server makes a best effort to cancel the DlpJob, but success is not
-   * guaranteed.
+   * @desc Starts asynchronous cancellation on a long-running DlpJob. The server
+   * makes a best effort to cancel the DlpJob, but success is not guaranteed.
    * @alias dlp.projects.dlpJobs.cancel
    * @memberOf! ()
    *
    * @param {object} params Parameters for request
    * @param {string} params.name The name of the DlpJob resource to be cancelled.
-   * @param {().GooglePrivacyDlpV2beta2CancelDlpJobRequest} params.resource Request body data
+   * @param {().GooglePrivacyDlpV2CancelDlpJobRequest} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
@@ -4365,7 +4252,7 @@ export class Resource$Projects$Dlpjobs {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta2/{name}:cancel')
+                url: (rootUrl + '/v2/{name}:cancel')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
@@ -4376,6 +4263,49 @@ export class Resource$Projects$Dlpjobs {
           context: this.root
         };
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback!);
+      };
+
+
+  /**
+   * dlp.projects.dlpJobs.create
+   * @desc Creates a new job to inspect storage or calculate risk metrics
+   * [How-to guide](/dlp/docs/compute-risk-analysis).
+   * @alias dlp.projects.dlpJobs.create
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.parent The parent resource name, for example projects/my-project-id.
+   * @param {().GooglePrivacyDlpV2CreateDlpJobRequest} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  create =
+      (params: any,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
+       callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/v2/{parent}/dlpJobs')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'POST'
+              },
+              options),
+          params,
+          requiredParams: ['parent'],
+          pathParams: ['parent'],
+          context: this.root
+        };
+        createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(
+            parameters, callback!);
       };
 
 
@@ -4406,8 +4336,7 @@ export class Resource$Projects$Dlpjobs {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'DELETE'
               },
               options),
@@ -4435,9 +4364,8 @@ export class Resource$Projects$Dlpjobs {
   get =
       (params: any,
        options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DlpJob>,
-       callback?:
-           BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DlpJob>) => {
+       BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
+       callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -4447,8 +4375,7 @@ export class Resource$Projects$Dlpjobs {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               },
               options),
@@ -4457,7 +4384,7 @@ export class Resource$Projects$Dlpjobs {
           pathParams: ['name'],
           context: this.root
         };
-        createAPIRequest<Schema$GooglePrivacyDlpV2beta2DlpJob>(
+        createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(
             parameters, callback!);
       };
 
@@ -4481,9 +4408,9 @@ export class Resource$Projects$Dlpjobs {
   list =
       (params: any,
        options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2ListDlpJobsResponse>,
+       BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>,
        callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta2ListDlpJobsResponse>) => {
+           Schema$GooglePrivacyDlpV2ListDlpJobsResponse>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -4493,7 +4420,7 @@ export class Resource$Projects$Dlpjobs {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta2/{parent}/dlpJobs')
+                url: (rootUrl + '/v2/{parent}/dlpJobs')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               },
@@ -4503,7 +4430,7 @@ export class Resource$Projects$Dlpjobs {
           pathParams: ['parent'],
           context: this.root
         };
-        createAPIRequest<Schema$GooglePrivacyDlpV2beta2ListDlpJobsResponse>(
+        createAPIRequest<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>(
             parameters, callback!);
       };
 }
@@ -4524,7 +4451,7 @@ export class Resource$Projects$Image {
    *
    * @param {object} params Parameters for request
    * @param {string} params.parent The parent resource name, for example projects/my-project-id.
-   * @param {().GooglePrivacyDlpV2beta2RedactImageRequest} params.resource Request body data
+   * @param {().GooglePrivacyDlpV2RedactImageRequest} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
@@ -4532,9 +4459,9 @@ export class Resource$Projects$Image {
   redact =
       (params: any,
        options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2RedactImageResponse>,
+       BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>,
        callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta2RedactImageResponse>) => {
+           Schema$GooglePrivacyDlpV2RedactImageResponse>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -4544,7 +4471,7 @@ export class Resource$Projects$Image {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta2/{parent}/image:redact')
+                url: (rootUrl + '/v2/{parent}/image:redact')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
@@ -4554,7 +4481,7 @@ export class Resource$Projects$Image {
           pathParams: ['parent'],
           context: this.root
         };
-        createAPIRequest<Schema$GooglePrivacyDlpV2beta2RedactImageResponse>(
+        createAPIRequest<Schema$GooglePrivacyDlpV2RedactImageResponse>(
             parameters, callback!);
       };
 }
@@ -4574,7 +4501,7 @@ export class Resource$Projects$Inspecttemplates {
    *
    * @param {object} params Parameters for request
    * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
-   * @param {().GooglePrivacyDlpV2beta2CreateInspectTemplateRequest} params.resource Request body data
+   * @param {().GooglePrivacyDlpV2CreateInspectTemplateRequest} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
@@ -4582,9 +4509,9 @@ export class Resource$Projects$Inspecttemplates {
   create =
       (params: any,
        options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2InspectTemplate>,
-       callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta2InspectTemplate>) => {
+       BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
+       callback?:
+           BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -4594,7 +4521,7 @@ export class Resource$Projects$Inspecttemplates {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta2/{parent}/inspectTemplates')
+                url: (rootUrl + '/v2/{parent}/inspectTemplates')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
@@ -4604,14 +4531,14 @@ export class Resource$Projects$Inspecttemplates {
           pathParams: ['parent'],
           context: this.root
         };
-        createAPIRequest<Schema$GooglePrivacyDlpV2beta2InspectTemplate>(
+        createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
             parameters, callback!);
       };
 
 
   /**
    * dlp.projects.inspectTemplates.delete
-   * @desc Deletes inspect templates.
+   * @desc Deletes an inspect template.
    * @alias dlp.projects.inspectTemplates.delete
    * @memberOf! ()
    *
@@ -4634,8 +4561,7 @@ export class Resource$Projects$Inspecttemplates {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'DELETE'
               },
               options),
@@ -4663,9 +4589,9 @@ export class Resource$Projects$Inspecttemplates {
   get =
       (params: any,
        options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2InspectTemplate>,
-       callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta2InspectTemplate>) => {
+       BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
+       callback?:
+           BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -4675,8 +4601,7 @@ export class Resource$Projects$Inspecttemplates {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               },
               options),
@@ -4685,7 +4610,7 @@ export class Resource$Projects$Inspecttemplates {
           pathParams: ['name'],
           context: this.root
         };
-        createAPIRequest<Schema$GooglePrivacyDlpV2beta2InspectTemplate>(
+        createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
             parameters, callback!);
       };
 
@@ -4707,9 +4632,9 @@ export class Resource$Projects$Inspecttemplates {
   list =
       (params: any,
        options: MethodOptions|BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta2ListInspectTemplatesResponse>,
+           Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>,
        callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta2ListInspectTemplatesResponse>) => {
+           Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -4719,7 +4644,7 @@ export class Resource$Projects$Inspecttemplates {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta2/{parent}/inspectTemplates')
+                url: (rootUrl + '/v2/{parent}/inspectTemplates')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               },
@@ -4729,8 +4654,7 @@ export class Resource$Projects$Inspecttemplates {
           pathParams: ['parent'],
           context: this.root
         };
-        createAPIRequest<
-            Schema$GooglePrivacyDlpV2beta2ListInspectTemplatesResponse>(
+        createAPIRequest<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>(
             parameters, callback!);
       };
 
@@ -4743,7 +4667,7 @@ export class Resource$Projects$Inspecttemplates {
    *
    * @param {object} params Parameters for request
    * @param {string} params.name Resource name of organization and inspectTemplate to be updated, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
-   * @param {().GooglePrivacyDlpV2beta2UpdateInspectTemplateRequest} params.resource Request body data
+   * @param {().GooglePrivacyDlpV2UpdateInspectTemplateRequest} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
@@ -4751,9 +4675,9 @@ export class Resource$Projects$Inspecttemplates {
   patch =
       (params: any,
        options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2InspectTemplate>,
-       callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta2InspectTemplate>) => {
+       BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
+       callback?:
+           BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -4763,8 +4687,7 @@ export class Resource$Projects$Inspecttemplates {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'PATCH'
               },
               options),
@@ -4773,7 +4696,7 @@ export class Resource$Projects$Inspecttemplates {
           pathParams: ['name'],
           context: this.root
         };
-        createAPIRequest<Schema$GooglePrivacyDlpV2beta2InspectTemplate>(
+        createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
             parameters, callback!);
       };
 }
@@ -4786,14 +4709,14 @@ export class Resource$Projects$Jobtriggers {
 
   /**
    * dlp.projects.jobTriggers.create
-   * @desc Creates a job to run DLP actions such as scanning storage for
+   * @desc Creates a job trigger to run DLP actions such as scanning storage for
    * sensitive information on a set schedule.
    * @alias dlp.projects.jobTriggers.create
    * @memberOf! ()
    *
    * @param {object} params Parameters for request
    * @param {string} params.parent The parent resource name, for example projects/my-project-id.
-   * @param {().GooglePrivacyDlpV2beta2CreateJobTriggerRequest} params.resource Request body data
+   * @param {().GooglePrivacyDlpV2CreateJobTriggerRequest} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
@@ -4801,9 +4724,9 @@ export class Resource$Projects$Jobtriggers {
   create =
       (params: any,
        options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2JobTrigger>,
+       BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>,
        callback?:
-           BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2JobTrigger>) => {
+           BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -4813,7 +4736,7 @@ export class Resource$Projects$Jobtriggers {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta2/{parent}/jobTriggers')
+                url: (rootUrl + '/v2/{parent}/jobTriggers')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
@@ -4823,7 +4746,7 @@ export class Resource$Projects$Jobtriggers {
           pathParams: ['parent'],
           context: this.root
         };
-        createAPIRequest<Schema$GooglePrivacyDlpV2beta2JobTrigger>(
+        createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
             parameters, callback!);
       };
 
@@ -4853,8 +4776,7 @@ export class Resource$Projects$Jobtriggers {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'DELETE'
               },
               options),
@@ -4882,9 +4804,9 @@ export class Resource$Projects$Jobtriggers {
   get =
       (params: any,
        options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2JobTrigger>,
+       BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>,
        callback?:
-           BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2JobTrigger>) => {
+           BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -4894,8 +4816,7 @@ export class Resource$Projects$Jobtriggers {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               },
               options),
@@ -4904,7 +4825,7 @@ export class Resource$Projects$Jobtriggers {
           pathParams: ['name'],
           context: this.root
         };
-        createAPIRequest<Schema$GooglePrivacyDlpV2beta2JobTrigger>(
+        createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
             parameters, callback!);
       };
 
@@ -4926,10 +4847,10 @@ export class Resource$Projects$Jobtriggers {
    */
   list =
       (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta2ListJobTriggersResponse>,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>,
        callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta2ListJobTriggersResponse>) => {
+           Schema$GooglePrivacyDlpV2ListJobTriggersResponse>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -4939,7 +4860,7 @@ export class Resource$Projects$Jobtriggers {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta2/{parent}/jobTriggers')
+                url: (rootUrl + '/v2/{parent}/jobTriggers')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               },
@@ -4949,7 +4870,7 @@ export class Resource$Projects$Jobtriggers {
           pathParams: ['parent'],
           context: this.root
         };
-        createAPIRequest<Schema$GooglePrivacyDlpV2beta2ListJobTriggersResponse>(
+        createAPIRequest<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>(
             parameters, callback!);
       };
 
@@ -4962,7 +4883,7 @@ export class Resource$Projects$Jobtriggers {
    *
    * @param {object} params Parameters for request
    * @param {string} params.name Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
-   * @param {().GooglePrivacyDlpV2beta2UpdateJobTriggerRequest} params.resource Request body data
+   * @param {().GooglePrivacyDlpV2UpdateJobTriggerRequest} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
@@ -4970,9 +4891,9 @@ export class Resource$Projects$Jobtriggers {
   patch =
       (params: any,
        options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2JobTrigger>,
+       BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>,
        callback?:
-           BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2JobTrigger>) => {
+           BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -4982,8 +4903,7 @@ export class Resource$Projects$Jobtriggers {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'PATCH'
               },
               options),
@@ -4992,7 +4912,7 @@ export class Resource$Projects$Jobtriggers {
           pathParams: ['name'],
           context: this.root
         };
-        createAPIRequest<Schema$GooglePrivacyDlpV2beta2JobTrigger>(
+        createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
             parameters, callback!);
       };
 }

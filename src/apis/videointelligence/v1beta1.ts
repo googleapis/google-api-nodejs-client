@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
 
@@ -21,7 +22,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
-
+// tslint:disable: class-name
+// tslint:disable: variable-name
+// tslint:disable: jsdoc-format
 
 /**
  * Cloud Video Intelligence API
@@ -38,476 +41,1149 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta1
  * @param {object=} options Options for Videointelligence
  */
-function Videointelligence(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.videos = {
-    /**
-     * videointelligence.videos.annotate
-     * @desc Performs asynchronous video annotation. Progress and results can be
-     * retrieved through the `google.longrunning.Operations` interface.
-     * `Operation.metadata` contains `AnnotateVideoProgress` (progress).
-     * `Operation.response` contains `AnnotateVideoResponse` (results).
-     * @alias videointelligence.videos.annotate
-     * @memberOf! videointelligence(v1beta1)
-     *
-     * @param {object} params Parameters for request
-     * @param {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta1_AnnotateVideoRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    annotate(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://videointelligence.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/videos:annotate')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }
+export class Videointelligence {
+  _options: GlobalOptions;
+  google: GoogleApis;
+  root = this;
 
-  };
+  videos: Resource$Videos;
+
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    this._options = options || {};
+    this.google = google;
+
+    this.videos = new Resource$Videos(this);
+  }
+}
+
+/**
+ * Video annotation progress. Included in the `metadata` field of the
+ * `Operation` returned by the `GetOperation` call of the
+ * `google::longrunning::Operations` service.
+ */
+export interface Schema$GoogleCloudVideointelligenceV1beta1_AnnotateVideoProgress {
+  /**
+   * Progress metadata for all videos specified in `AnnotateVideoRequest`.
+   */
+  annotationProgress:
+      Schema$GoogleCloudVideointelligenceV1beta1_VideoAnnotationProgress[];
 }
 /**
- * @typedef GoogleCloudVideointelligenceV1beta1_AnnotateVideoProgress
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta1_VideoAnnotationProgress[]} annotationProgress Progress metadata for all videos specified in `AnnotateVideoRequest`.
+ * Video annotation request.
  */
+export interface Schema$GoogleCloudVideointelligenceV1beta1_AnnotateVideoRequest {
+  /**
+   * Requested video annotation features.
+   */
+  features: string[];
+  /**
+   * The video data bytes. Encoding: base64. If unset, the input video(s) should
+   * be specified via `input_uri`. If set, `input_uri` should be unset.
+   */
+  inputContent: string;
+  /**
+   * Input video location. Currently, only [Google Cloud
+   * Storage](https://cloud.google.com/storage/) URIs are supported, which must
+   * be specified in the following format: `gs://bucket-id/object-id` (other URI
+   * formats return google.rpc.Code.INVALID_ARGUMENT). For more information, see
+   * [Request URIs](/storage/docs/reference-uris). A video URI may include
+   * wildcards in `object-id`, and thus identify multiple videos. Supported
+   * wildcards: &#39;*&#39; to match 0 or more characters; &#39;?&#39; to match
+   * 1 character. If unset, the input video should be embedded in the request as
+   * `input_content`. If set, `input_content` should be unset.
+   */
+  inputUri: string;
+  /**
+   * Optional cloud region where annotation should take place. Supported cloud
+   * regions: `us-east1`, `us-west1`, `europe-west1`, `asia-east1`. If no region
+   * is specified, a region will be determined based on video file location.
+   */
+  locationId: string;
+  /**
+   * Optional location where the output (in JSON format) should be stored.
+   * Currently, only [Google Cloud Storage](https://cloud.google.com/storage/)
+   * URIs are supported, which must be specified in the following format:
+   * `gs://bucket-id/object-id` (other URI formats return
+   * google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request
+   * URIs](/storage/docs/reference-uris).
+   */
+  outputUri: string;
+  /**
+   * Additional video context and/or feature-specific parameters.
+   */
+  videoContext: Schema$GoogleCloudVideointelligenceV1beta1_VideoContext;
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1beta1_AnnotateVideoRequest
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {string[]} features Requested video annotation features.
- * @property {string} inputContent The video data bytes. Encoding: base64. If unset, the input video(s) should be specified via `input_uri`. If set, `input_uri` should be unset.
- * @property {string} inputUri Input video location. Currently, only [Google Cloud Storage](https://cloud.google.com/storage/) URIs are supported, which must be specified in the following format: `gs://bucket-id/object-id` (other URI formats return google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request URIs](/storage/docs/reference-uris). A video URI may include wildcards in `object-id`, and thus identify multiple videos. Supported wildcards: &#39;*&#39; to match 0 or more characters; &#39;?&#39; to match 1 character. If unset, the input video should be embedded in the request as `input_content`. If set, `input_content` should be unset.
- * @property {string} locationId Optional cloud region where annotation should take place. Supported cloud regions: `us-east1`, `us-west1`, `europe-west1`, `asia-east1`. If no region is specified, a region will be determined based on video file location.
- * @property {string} outputUri Optional location where the output (in JSON format) should be stored. Currently, only [Google Cloud Storage](https://cloud.google.com/storage/) URIs are supported, which must be specified in the following format: `gs://bucket-id/object-id` (other URI formats return google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request URIs](/storage/docs/reference-uris).
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta1_VideoContext} videoContext Additional video context and/or feature-specific parameters.
+ * Video annotation response. Included in the `response` field of the
+ * `Operation` returned by the `GetOperation` call of the
+ * `google::longrunning::Operations` service.
  */
+export interface Schema$GoogleCloudVideointelligenceV1beta1_AnnotateVideoResponse {
+  /**
+   * Annotation results for all videos specified in `AnnotateVideoRequest`.
+   */
+  annotationResults:
+      Schema$GoogleCloudVideointelligenceV1beta1_VideoAnnotationResults[];
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1beta1_AnnotateVideoResponse
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta1_VideoAnnotationResults[]} annotationResults Annotation results for all videos specified in `AnnotateVideoRequest`.
+ * Label annotation.
  */
+export interface Schema$GoogleCloudVideointelligenceV1beta1_LabelAnnotation {
+  /**
+   * Textual description, e.g. `Fixed-gear bicycle`.
+   */
+  description: string;
+  /**
+   * Language code for `description` in BCP-47 format.
+   */
+  languageCode: string;
+  /**
+   * Where the label was detected and with what confidence.
+   */
+  locations: Schema$GoogleCloudVideointelligenceV1beta1_LabelLocation[];
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1beta1_LabelAnnotation
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {string} description Textual description, e.g. `Fixed-gear bicycle`.
- * @property {string} languageCode Language code for `description` in BCP-47 format.
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta1_LabelLocation[]} locations Where the label was detected and with what confidence.
+ * Label location.
  */
+export interface Schema$GoogleCloudVideointelligenceV1beta1_LabelLocation {
+  /**
+   * Confidence that the label is accurate. Range: [0, 1].
+   */
+  confidence: number;
+  /**
+   * Label level.
+   */
+  level: string;
+  /**
+   * Video segment. Set to [-1, -1] for video-level labels. Set to [timestamp,
+   * timestamp] for frame-level labels. Otherwise, corresponds to one of
+   * `AnnotateSpec.segments` (if specified) or to shot boundaries (if
+   * requested).
+   */
+  segment: Schema$GoogleCloudVideointelligenceV1beta1_VideoSegment;
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1beta1_LabelLocation
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {number} confidence Confidence that the label is accurate. Range: [0, 1].
- * @property {string} level Label level.
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta1_VideoSegment} segment Video segment. Set to [-1, -1] for video-level labels. Set to [timestamp, timestamp] for frame-level labels. Otherwise, corresponds to one of `AnnotateSpec.segments` (if specified) or to shot boundaries (if requested).
+ * Safe search annotation (based on per-frame visual signals only). If no unsafe
+ * content has been detected in a frame, no annotations are present for that
+ * frame. If only some types of unsafe content have been detected in a frame,
+ * the likelihood is set to `UNKNOWN` for all other types of unsafe content.
  */
+export interface Schema$GoogleCloudVideointelligenceV1beta1_SafeSearchAnnotation {
+  /**
+   * Likelihood of adult content.
+   */
+  adult: string;
+  /**
+   * Likelihood of medical content.
+   */
+  medical: string;
+  /**
+   * Likelihood of racy content.
+   */
+  racy: string;
+  /**
+   * Likelihood that an obvious modification was made to the original version to
+   * make it appear funny or offensive.
+   */
+  spoof: string;
+  /**
+   * Video time offset in microseconds.
+   */
+  timeOffset: string;
+  /**
+   * Likelihood of violent content.
+   */
+  violent: string;
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1beta1_SafeSearchAnnotation
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {string} adult Likelihood of adult content.
- * @property {string} medical Likelihood of medical content.
- * @property {string} racy Likelihood of racy content.
- * @property {string} spoof Likelihood that an obvious modification was made to the original version to make it appear funny or offensive.
- * @property {string} timeOffset Video time offset in microseconds.
- * @property {string} violent Likelihood of violent content.
+ * Annotation progress for a single video.
  */
+export interface Schema$GoogleCloudVideointelligenceV1beta1_VideoAnnotationProgress {
+  /**
+   * Video file location in [Google Cloud
+   * Storage](https://cloud.google.com/storage/).
+   */
+  inputUri: string;
+  /**
+   * Approximate percentage processed thus far. Guaranteed to be 100 when fully
+   * processed.
+   */
+  progressPercent: number;
+  /**
+   * Time when the request was received.
+   */
+  startTime: string;
+  /**
+   * Time of the most recent update.
+   */
+  updateTime: string;
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1beta1_VideoAnnotationProgress
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {string} inputUri Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
- * @property {integer} progressPercent Approximate percentage processed thus far. Guaranteed to be 100 when fully processed.
- * @property {string} startTime Time when the request was received.
- * @property {string} updateTime Time of the most recent update.
+ * Annotation results for a single video.
  */
+export interface Schema$GoogleCloudVideointelligenceV1beta1_VideoAnnotationResults {
+  /**
+   * If set, indicates an error. Note that for a single `AnnotateVideoRequest`
+   * some videos may succeed and some may fail.
+   */
+  error: Schema$GoogleRpc_Status;
+  /**
+   * Video file location in [Google Cloud
+   * Storage](https://cloud.google.com/storage/).
+   */
+  inputUri: string;
+  /**
+   * Label annotations. There is exactly one element for each unique label.
+   */
+  labelAnnotations:
+      Schema$GoogleCloudVideointelligenceV1beta1_LabelAnnotation[];
+  /**
+   * Safe search annotations.
+   */
+  safeSearchAnnotations:
+      Schema$GoogleCloudVideointelligenceV1beta1_SafeSearchAnnotation[];
+  /**
+   * Shot annotations. Each shot is represented as a video segment.
+   */
+  shotAnnotations: Schema$GoogleCloudVideointelligenceV1beta1_VideoSegment[];
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1beta1_VideoAnnotationResults
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {videointelligence(v1beta1).GoogleRpc_Status} error If set, indicates an error. Note that for a single `AnnotateVideoRequest` some videos may succeed and some may fail.
- * @property {string} inputUri Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta1_LabelAnnotation[]} labelAnnotations Label annotations. There is exactly one element for each unique label.
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta1_SafeSearchAnnotation[]} safeSearchAnnotations Safe search annotations.
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta1_VideoSegment[]} shotAnnotations Shot annotations. Each shot is represented as a video segment.
+ * Video context and/or feature-specific parameters.
  */
+export interface Schema$GoogleCloudVideointelligenceV1beta1_VideoContext {
+  /**
+   * If label detection has been requested, what labels should be detected in
+   * addition to video-level labels or segment-level labels. If unspecified,
+   * defaults to `SHOT_MODE`.
+   */
+  labelDetectionMode: string;
+  /**
+   * Model to use for label detection. Supported values: &quot;latest&quot; and
+   * &quot;stable&quot; (the default).
+   */
+  labelDetectionModel: string;
+  /**
+   * Model to use for safe search detection. Supported values:
+   * &quot;latest&quot; and &quot;stable&quot; (the default).
+   */
+  safeSearchDetectionModel: string;
+  /**
+   * Video segments to annotate. The segments may overlap and are not required
+   * to be contiguous or span the whole video. If unspecified, each video is
+   * treated as a single segment.
+   */
+  segments: Schema$GoogleCloudVideointelligenceV1beta1_VideoSegment[];
+  /**
+   * Model to use for shot change detection. Supported values:
+   * &quot;latest&quot; and &quot;stable&quot; (the default).
+   */
+  shotChangeDetectionModel: string;
+  /**
+   * Whether the video has been shot from a stationary (i.e. non-moving) camera.
+   * When set to true, might improve detection accuracy for moving objects.
+   */
+  stationaryCamera: boolean;
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1beta1_VideoContext
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {string} labelDetectionMode If label detection has been requested, what labels should be detected in addition to video-level labels or segment-level labels. If unspecified, defaults to `SHOT_MODE`.
- * @property {string} labelDetectionModel Model to use for label detection. Supported values: &quot;latest&quot; and &quot;stable&quot; (the default).
- * @property {string} safeSearchDetectionModel Model to use for safe search detection. Supported values: &quot;latest&quot; and &quot;stable&quot; (the default).
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta1_VideoSegment[]} segments Video segments to annotate. The segments may overlap and are not required to be contiguous or span the whole video. If unspecified, each video is treated as a single segment.
- * @property {string} shotChangeDetectionModel Model to use for shot change detection. Supported values: &quot;latest&quot; and &quot;stable&quot; (the default).
- * @property {boolean} stationaryCamera Whether the video has been shot from a stationary (i.e. non-moving) camera. When set to true, might improve detection accuracy for moving objects.
+ * Video segment.
  */
+export interface Schema$GoogleCloudVideointelligenceV1beta1_VideoSegment {
+  /**
+   * End offset in microseconds (inclusive). Unset means 0.
+   */
+  endTimeOffset: string;
+  /**
+   * Start offset in microseconds (inclusive). Unset means 0.
+   */
+  startTimeOffset: string;
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1beta1_VideoSegment
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {string} endTimeOffset End offset in microseconds (inclusive). Unset means 0.
- * @property {string} startTimeOffset Start offset in microseconds (inclusive). Unset means 0.
+ * Video annotation progress. Included in the `metadata` field of the
+ * `Operation` returned by the `GetOperation` call of the
+ * `google::longrunning::Operations` service.
  */
+export interface Schema$GoogleCloudVideointelligenceV1beta2_AnnotateVideoProgress {
+  /**
+   * Progress metadata for all videos specified in `AnnotateVideoRequest`.
+   */
+  annotationProgress:
+      Schema$GoogleCloudVideointelligenceV1beta2_VideoAnnotationProgress[];
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1beta2_AnnotateVideoProgress
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta2_VideoAnnotationProgress[]} annotationProgress Progress metadata for all videos specified in `AnnotateVideoRequest`.
+ * Video annotation response. Included in the `response` field of the
+ * `Operation` returned by the `GetOperation` call of the
+ * `google::longrunning::Operations` service.
  */
+export interface Schema$GoogleCloudVideointelligenceV1beta2_AnnotateVideoResponse {
+  /**
+   * Annotation results for all videos specified in `AnnotateVideoRequest`.
+   */
+  annotationResults:
+      Schema$GoogleCloudVideointelligenceV1beta2_VideoAnnotationResults[];
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1beta2_AnnotateVideoResponse
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta2_VideoAnnotationResults[]} annotationResults Annotation results for all videos specified in `AnnotateVideoRequest`.
+ * Detected entity from video analysis.
  */
+export interface Schema$GoogleCloudVideointelligenceV1beta2_Entity {
+  /**
+   * Textual description, e.g. `Fixed-gear bicycle`.
+   */
+  description: string;
+  /**
+   * Opaque entity ID. Some IDs may be available in [Google Knowledge Graph
+   * Search API](https://developers.google.com/knowledge-graph/).
+   */
+  entityId: string;
+  /**
+   * Language code for `description` in BCP-47 format.
+   */
+  languageCode: string;
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1beta2_Entity
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {string} description Textual description, e.g. `Fixed-gear bicycle`.
- * @property {string} entityId Opaque entity ID. Some IDs may be available in [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
- * @property {string} languageCode Language code for `description` in BCP-47 format.
+ * Explicit content annotation (based on per-frame visual signals only). If no
+ * explicit content has been detected in a frame, no annotations are present for
+ * that frame.
  */
+export interface Schema$GoogleCloudVideointelligenceV1beta2_ExplicitContentAnnotation {
+  /**
+   * All video frames where explicit content was detected.
+   */
+  frames: Schema$GoogleCloudVideointelligenceV1beta2_ExplicitContentFrame[];
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1beta2_ExplicitContentAnnotation
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta2_ExplicitContentFrame[]} frames All video frames where explicit content was detected.
+ * Video frame level annotation results for explicit content.
  */
+export interface Schema$GoogleCloudVideointelligenceV1beta2_ExplicitContentFrame {
+  /**
+   * Likelihood of the pornography content..
+   */
+  pornographyLikelihood: string;
+  /**
+   * Time-offset, relative to the beginning of the video, corresponding to the
+   * video frame for this location.
+   */
+  timeOffset: string;
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1beta2_ExplicitContentFrame
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {string} pornographyLikelihood Likelihood of the pornography content..
- * @property {string} timeOffset Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
+ * Label annotation.
  */
+export interface Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation {
+  /**
+   * Common categories for the detected entity. E.g. when the label is `Terrier`
+   * the category is likely `dog`. And in some cases there might be more than
+   * one categories e.g. `Terrier` could also be a `pet`.
+   */
+  categoryEntities: Schema$GoogleCloudVideointelligenceV1beta2_Entity[];
+  /**
+   * Detected entity.
+   */
+  entity: Schema$GoogleCloudVideointelligenceV1beta2_Entity;
+  /**
+   * All video frames where a label was detected.
+   */
+  frames: Schema$GoogleCloudVideointelligenceV1beta2_LabelFrame[];
+  /**
+   * All video segments where a label was detected.
+   */
+  segments: Schema$GoogleCloudVideointelligenceV1beta2_LabelSegment[];
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1beta2_LabelAnnotation
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta2_Entity[]} categoryEntities Common categories for the detected entity. E.g. when the label is `Terrier` the category is likely `dog`. And in some cases there might be more than one categories e.g. `Terrier` could also be a `pet`.
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta2_Entity} entity Detected entity.
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta2_LabelFrame[]} frames All video frames where a label was detected.
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta2_LabelSegment[]} segments All video segments where a label was detected.
+ * Video frame level annotation results for label detection.
  */
+export interface Schema$GoogleCloudVideointelligenceV1beta2_LabelFrame {
+  /**
+   * Confidence that the label is accurate. Range: [0, 1].
+   */
+  confidence: number;
+  /**
+   * Time-offset, relative to the beginning of the video, corresponding to the
+   * video frame for this location.
+   */
+  timeOffset: string;
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1beta2_LabelFrame
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {number} confidence Confidence that the label is accurate. Range: [0, 1].
- * @property {string} timeOffset Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
+ * Video segment level annotation results for label detection.
  */
+export interface Schema$GoogleCloudVideointelligenceV1beta2_LabelSegment {
+  /**
+   * Confidence that the label is accurate. Range: [0, 1].
+   */
+  confidence: number;
+  /**
+   * Video segment where a label was detected.
+   */
+  segment: Schema$GoogleCloudVideointelligenceV1beta2_VideoSegment;
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1beta2_LabelSegment
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {number} confidence Confidence that the label is accurate. Range: [0, 1].
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta2_VideoSegment} segment Video segment where a label was detected.
+ * Annotation progress for a single video.
  */
+export interface Schema$GoogleCloudVideointelligenceV1beta2_VideoAnnotationProgress {
+  /**
+   * Video file location in [Google Cloud
+   * Storage](https://cloud.google.com/storage/).
+   */
+  inputUri: string;
+  /**
+   * Approximate percentage processed thus far. Guaranteed to be 100 when fully
+   * processed.
+   */
+  progressPercent: number;
+  /**
+   * Time when the request was received.
+   */
+  startTime: string;
+  /**
+   * Time of the most recent update.
+   */
+  updateTime: string;
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1beta2_VideoAnnotationProgress
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {string} inputUri Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
- * @property {integer} progressPercent Approximate percentage processed thus far. Guaranteed to be 100 when fully processed.
- * @property {string} startTime Time when the request was received.
- * @property {string} updateTime Time of the most recent update.
+ * Annotation results for a single video.
  */
+export interface Schema$GoogleCloudVideointelligenceV1beta2_VideoAnnotationResults {
+  /**
+   * If set, indicates an error. Note that for a single `AnnotateVideoRequest`
+   * some videos may succeed and some may fail.
+   */
+  error: Schema$GoogleRpc_Status;
+  /**
+   * Explicit content annotation.
+   */
+  explicitAnnotation:
+      Schema$GoogleCloudVideointelligenceV1beta2_ExplicitContentAnnotation;
+  /**
+   * Label annotations on frame level. There is exactly one element for each
+   * unique label.
+   */
+  frameLabelAnnotations:
+      Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation[];
+  /**
+   * Video file location in [Google Cloud
+   * Storage](https://cloud.google.com/storage/).
+   */
+  inputUri: string;
+  /**
+   * Label annotations on video level or user specified segment level. There is
+   * exactly one element for each unique label.
+   */
+  segmentLabelAnnotations:
+      Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation[];
+  /**
+   * Shot annotations. Each shot is represented as a video segment.
+   */
+  shotAnnotations: Schema$GoogleCloudVideointelligenceV1beta2_VideoSegment[];
+  /**
+   * Label annotations on shot level. There is exactly one element for each
+   * unique label.
+   */
+  shotLabelAnnotations:
+      Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation[];
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1beta2_VideoAnnotationResults
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {videointelligence(v1beta1).GoogleRpc_Status} error If set, indicates an error. Note that for a single `AnnotateVideoRequest` some videos may succeed and some may fail.
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta2_ExplicitContentAnnotation} explicitAnnotation Explicit content annotation.
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta2_LabelAnnotation[]} frameLabelAnnotations Label annotations on frame level. There is exactly one element for each unique label.
- * @property {string} inputUri Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta2_LabelAnnotation[]} segmentLabelAnnotations Label annotations on video level or user specified segment level. There is exactly one element for each unique label.
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta2_VideoSegment[]} shotAnnotations Shot annotations. Each shot is represented as a video segment.
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta2_LabelAnnotation[]} shotLabelAnnotations Label annotations on shot level. There is exactly one element for each unique label.
+ * Video segment.
  */
+export interface Schema$GoogleCloudVideointelligenceV1beta2_VideoSegment {
+  /**
+   * Time-offset, relative to the beginning of the video, corresponding to the
+   * end of the segment (inclusive).
+   */
+  endTimeOffset: string;
+  /**
+   * Time-offset, relative to the beginning of the video, corresponding to the
+   * start of the segment (inclusive).
+   */
+  startTimeOffset: string;
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1beta2_VideoSegment
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {string} endTimeOffset Time-offset, relative to the beginning of the video, corresponding to the end of the segment (inclusive).
- * @property {string} startTimeOffset Time-offset, relative to the beginning of the video, corresponding to the start of the segment (inclusive).
+ * Video annotation progress. Included in the `metadata` field of the
+ * `Operation` returned by the `GetOperation` call of the
+ * `google::longrunning::Operations` service.
  */
+export interface Schema$GoogleCloudVideointelligenceV1p1beta1_AnnotateVideoProgress {
+  /**
+   * Progress metadata for all videos specified in `AnnotateVideoRequest`.
+   */
+  annotationProgress:
+      Schema$GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationProgress[];
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1p1beta1_AnnotateVideoProgress
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationProgress[]} annotationProgress Progress metadata for all videos specified in `AnnotateVideoRequest`.
+ * Video annotation response. Included in the `response` field of the
+ * `Operation` returned by the `GetOperation` call of the
+ * `google::longrunning::Operations` service.
  */
+export interface Schema$GoogleCloudVideointelligenceV1p1beta1_AnnotateVideoResponse {
+  /**
+   * Annotation results for all videos specified in `AnnotateVideoRequest`.
+   */
+  annotationResults:
+      Schema$GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationResults[];
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1p1beta1_AnnotateVideoResponse
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationResults[]} annotationResults Annotation results for all videos specified in `AnnotateVideoRequest`.
+ * Emotion attribute.
  */
+export interface Schema$GoogleCloudVideointelligenceV1p1beta1_EmotionAttribute {
+  /**
+   * Emotion entry.
+   */
+  emotion: string;
+  /**
+   * Confidence score.
+   */
+  score: number;
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1p1beta1_EmotionAttribute
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {string} emotion Emotion entry.
- * @property {number} score Confidence score.
+ * Detected entity from video analysis.
  */
+export interface Schema$GoogleCloudVideointelligenceV1p1beta1_Entity {
+  /**
+   * Textual description, e.g. `Fixed-gear bicycle`.
+   */
+  description: string;
+  /**
+   * Opaque entity ID. Some IDs may be available in [Google Knowledge Graph
+   * Search API](https://developers.google.com/knowledge-graph/).
+   */
+  entityId: string;
+  /**
+   * Language code for `description` in BCP-47 format.
+   */
+  languageCode: string;
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1p1beta1_Entity
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {string} description Textual description, e.g. `Fixed-gear bicycle`.
- * @property {string} entityId Opaque entity ID. Some IDs may be available in [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
- * @property {string} languageCode Language code for `description` in BCP-47 format.
+ * Explicit content annotation (based on per-frame visual signals only). If no
+ * explicit content has been detected in a frame, no annotations are present for
+ * that frame.
  */
+export interface Schema$GoogleCloudVideointelligenceV1p1beta1_ExplicitContentAnnotation {
+  /**
+   * All video frames where explicit content was detected.
+   */
+  frames: Schema$GoogleCloudVideointelligenceV1p1beta1_ExplicitContentFrame[];
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1p1beta1_ExplicitContentAnnotation
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_ExplicitContentFrame[]} frames All video frames where explicit content was detected.
+ * Video frame level annotation results for explicit content.
  */
+export interface Schema$GoogleCloudVideointelligenceV1p1beta1_ExplicitContentFrame {
+  /**
+   * Likelihood of the pornography content..
+   */
+  pornographyLikelihood: string;
+  /**
+   * Time-offset, relative to the beginning of the video, corresponding to the
+   * video frame for this location.
+   */
+  timeOffset: string;
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1p1beta1_ExplicitContentFrame
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {string} pornographyLikelihood Likelihood of the pornography content..
- * @property {string} timeOffset Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
+ * Face detection annotation.
  */
+export interface Schema$GoogleCloudVideointelligenceV1p1beta1_FaceDetectionAnnotation {
+  /**
+   * All video frames where a face was detected.
+   */
+  frames: Schema$GoogleCloudVideointelligenceV1p1beta1_FaceDetectionFrame[];
+  /**
+   * All video segments where a face was detected.
+   */
+  segments: Schema$GoogleCloudVideointelligenceV1p1beta1_FaceSegment[];
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1p1beta1_FaceDetectionAnnotation
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_FaceDetectionFrame[]} frames All video frames where a face was detected.
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_FaceSegment[]} segments All video segments where a face was detected.
+ * Face detection attribute.
  */
+export interface Schema$GoogleCloudVideointelligenceV1p1beta1_FaceDetectionAttribute {
+  /**
+   * Emotion attributes.
+   */
+  emotions: Schema$GoogleCloudVideointelligenceV1p1beta1_EmotionAttribute[];
+  /**
+   * Normalized Bounding box.
+   */
+  normalizedBoundingBox:
+      Schema$GoogleCloudVideointelligenceV1p1beta1_NormalizedBoundingBox;
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1p1beta1_FaceDetectionAttribute
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_EmotionAttribute[]} emotions Emotion attributes.
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_NormalizedBoundingBox} normalizedBoundingBox Normalized Bounding box.
+ * Video frame level annotation results for face detection.
  */
+export interface Schema$GoogleCloudVideointelligenceV1p1beta1_FaceDetectionFrame {
+  /**
+   * Face attributes in a frame. There can be more than one attributes if the
+   * same face is detected in multiple locations within the current frame.
+   */
+  attributes:
+      Schema$GoogleCloudVideointelligenceV1p1beta1_FaceDetectionAttribute[];
+  /**
+   * Time-offset, relative to the beginning of the video, corresponding to the
+   * video frame for this location.
+   */
+  timeOffset: string;
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1p1beta1_FaceDetectionFrame
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_FaceDetectionAttribute[]} attributes Face attributes in a frame. There can be more than one attributes if the same face is detected in multiple locations within the current frame.
- * @property {string} timeOffset Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
+ * Video segment level annotation results for face detection.
  */
+export interface Schema$GoogleCloudVideointelligenceV1p1beta1_FaceSegment {
+  /**
+   * Video segment where a face was detected.
+   */
+  segment: Schema$GoogleCloudVideointelligenceV1p1beta1_VideoSegment;
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1p1beta1_FaceSegment
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_VideoSegment} segment Video segment where a face was detected.
+ * Label annotation.
  */
+export interface Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation {
+  /**
+   * Common categories for the detected entity. E.g. when the label is `Terrier`
+   * the category is likely `dog`. And in some cases there might be more than
+   * one categories e.g. `Terrier` could also be a `pet`.
+   */
+  categoryEntities: Schema$GoogleCloudVideointelligenceV1p1beta1_Entity[];
+  /**
+   * Detected entity.
+   */
+  entity: Schema$GoogleCloudVideointelligenceV1p1beta1_Entity;
+  /**
+   * All video frames where a label was detected.
+   */
+  frames: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelFrame[];
+  /**
+   * All video segments where a label was detected.
+   */
+  segments: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelSegment[];
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_Entity[]} categoryEntities Common categories for the detected entity. E.g. when the label is `Terrier` the category is likely `dog`. And in some cases there might be more than one categories e.g. `Terrier` could also be a `pet`.
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_Entity} entity Detected entity.
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_LabelFrame[]} frames All video frames where a label was detected.
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_LabelSegment[]} segments All video segments where a label was detected.
+ * Video frame level annotation results for label detection.
  */
+export interface Schema$GoogleCloudVideointelligenceV1p1beta1_LabelFrame {
+  /**
+   * Confidence that the label is accurate. Range: [0, 1].
+   */
+  confidence: number;
+  /**
+   * Time-offset, relative to the beginning of the video, corresponding to the
+   * video frame for this location.
+   */
+  timeOffset: string;
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1p1beta1_LabelFrame
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {number} confidence Confidence that the label is accurate. Range: [0, 1].
- * @property {string} timeOffset Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
+ * Video segment level annotation results for label detection.
  */
+export interface Schema$GoogleCloudVideointelligenceV1p1beta1_LabelSegment {
+  /**
+   * Confidence that the label is accurate. Range: [0, 1].
+   */
+  confidence: number;
+  /**
+   * Video segment where a label was detected.
+   */
+  segment: Schema$GoogleCloudVideointelligenceV1p1beta1_VideoSegment;
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1p1beta1_LabelSegment
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {number} confidence Confidence that the label is accurate. Range: [0, 1].
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_VideoSegment} segment Video segment where a label was detected.
+ * Normalized bounding box. The normalized vertex coordinates are relative to
+ * the original image. Range: [0, 1].
  */
+export interface Schema$GoogleCloudVideointelligenceV1p1beta1_NormalizedBoundingBox {
+  /**
+   * Bottom Y coordinate.
+   */
+  bottom: number;
+  /**
+   * Left X coordinate.
+   */
+  left: number;
+  /**
+   * Right X coordinate.
+   */
+  right: number;
+  /**
+   * Top Y coordinate.
+   */
+  top: number;
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1p1beta1_NormalizedBoundingBox
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {number} bottom Bottom Y coordinate.
- * @property {number} left Left X coordinate.
- * @property {number} right Right X coordinate.
- * @property {number} top Top Y coordinate.
+ * Alternative hypotheses (a.k.a. n-best list).
  */
+export interface Schema$GoogleCloudVideointelligenceV1p1beta1_SpeechRecognitionAlternative {
+  /**
+   * Output only. The confidence estimate between 0.0 and 1.0. A higher number
+   * indicates an estimated greater likelihood that the recognized words are
+   * correct. This field is typically provided only for the top hypothesis, and
+   * only for `is_final=true` results. Clients should not rely on the
+   * `confidence` field as it is not guaranteed to be accurate or consistent.
+   * The default of 0.0 is a sentinel value indicating `confidence` was not set.
+   */
+  confidence: number;
+  /**
+   * Output only. Transcript text representing the words that the user spoke.
+   */
+  transcript: string;
+  /**
+   * Output only. A list of word-specific information for each recognized word.
+   */
+  words: Schema$GoogleCloudVideointelligenceV1p1beta1_WordInfo[];
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1p1beta1_SpeechRecognitionAlternative
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {number} confidence Output only. The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is typically provided only for the top hypothesis, and only for `is_final=true` results. Clients should not rely on the `confidence` field as it is not guaranteed to be accurate or consistent. The default of 0.0 is a sentinel value indicating `confidence` was not set.
- * @property {string} transcript Output only. Transcript text representing the words that the user spoke.
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_WordInfo[]} words Output only. A list of word-specific information for each recognized word.
+ * A speech recognition result corresponding to a portion of the audio.
  */
+export interface Schema$GoogleCloudVideointelligenceV1p1beta1_SpeechTranscription {
+  /**
+   * Output only. May contain one or more recognition hypotheses (up to the
+   * maximum specified in `max_alternatives`). These alternatives are ordered in
+   * terms of accuracy, with the top (first) alternative being the most
+   * probable, as ranked by the recognizer.
+   */
+  // clang-format off
+  alternatives: Schema$GoogleCloudVideointelligenceV1p1beta1_SpeechRecognitionAlternative[];
+  // clang-format on
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1p1beta1_SpeechTranscription
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_SpeechRecognitionAlternative[]} alternatives Output only. May contain one or more recognition hypotheses (up to the maximum specified in `max_alternatives`). These alternatives are ordered in terms of accuracy, with the top (first) alternative being the most probable, as ranked by the recognizer.
+ * Annotation progress for a single video.
  */
+export interface Schema$GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationProgress {
+  /**
+   * Video file location in [Google Cloud
+   * Storage](https://cloud.google.com/storage/).
+   */
+  inputUri: string;
+  /**
+   * Approximate percentage processed thus far. Guaranteed to be 100 when fully
+   * processed.
+   */
+  progressPercent: number;
+  /**
+   * Time when the request was received.
+   */
+  startTime: string;
+  /**
+   * Time of the most recent update.
+   */
+  updateTime: string;
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationProgress
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {string} inputUri Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
- * @property {integer} progressPercent Approximate percentage processed thus far. Guaranteed to be 100 when fully processed.
- * @property {string} startTime Time when the request was received.
- * @property {string} updateTime Time of the most recent update.
+ * Annotation results for a single video.
  */
+export interface Schema$GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationResults {
+  /**
+   * If set, indicates an error. Note that for a single `AnnotateVideoRequest`
+   * some videos may succeed and some may fail.
+   */
+  error: Schema$GoogleRpc_Status;
+  /**
+   * Explicit content annotation.
+   */
+  explicitAnnotation:
+      Schema$GoogleCloudVideointelligenceV1p1beta1_ExplicitContentAnnotation;
+  /**
+   * Face detection annotations.
+   */
+  faceDetectionAnnotations:
+      Schema$GoogleCloudVideointelligenceV1p1beta1_FaceDetectionAnnotation[];
+  /**
+   * Label annotations on frame level. There is exactly one element for each
+   * unique label.
+   */
+  frameLabelAnnotations:
+      Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[];
+  /**
+   * Video file location in [Google Cloud
+   * Storage](https://cloud.google.com/storage/).
+   */
+  inputUri: string;
+  /**
+   * Label annotations on video level or user specified segment level. There is
+   * exactly one element for each unique label.
+   */
+  segmentLabelAnnotations:
+      Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[];
+  /**
+   * Shot annotations. Each shot is represented as a video segment.
+   */
+  shotAnnotations: Schema$GoogleCloudVideointelligenceV1p1beta1_VideoSegment[];
+  /**
+   * Label annotations on shot level. There is exactly one element for each
+   * unique label.
+   */
+  shotLabelAnnotations:
+      Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[];
+  /**
+   * Speech transcription.
+   */
+  speechTranscriptions:
+      Schema$GoogleCloudVideointelligenceV1p1beta1_SpeechTranscription[];
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationResults
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {videointelligence(v1beta1).GoogleRpc_Status} error If set, indicates an error. Note that for a single `AnnotateVideoRequest` some videos may succeed and some may fail.
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_ExplicitContentAnnotation} explicitAnnotation Explicit content annotation.
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_FaceDetectionAnnotation[]} faceDetectionAnnotations Face detection annotations.
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[]} frameLabelAnnotations Label annotations on frame level. There is exactly one element for each unique label.
- * @property {string} inputUri Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[]} segmentLabelAnnotations Label annotations on video level or user specified segment level. There is exactly one element for each unique label.
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_VideoSegment[]} shotAnnotations Shot annotations. Each shot is represented as a video segment.
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[]} shotLabelAnnotations Label annotations on shot level. There is exactly one element for each unique label.
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1p1beta1_SpeechTranscription[]} speechTranscriptions Speech transcription.
+ * Video segment.
  */
+export interface Schema$GoogleCloudVideointelligenceV1p1beta1_VideoSegment {
+  /**
+   * Time-offset, relative to the beginning of the video, corresponding to the
+   * end of the segment (inclusive).
+   */
+  endTimeOffset: string;
+  /**
+   * Time-offset, relative to the beginning of the video, corresponding to the
+   * start of the segment (inclusive).
+   */
+  startTimeOffset: string;
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1p1beta1_VideoSegment
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {string} endTimeOffset Time-offset, relative to the beginning of the video, corresponding to the end of the segment (inclusive).
- * @property {string} startTimeOffset Time-offset, relative to the beginning of the video, corresponding to the start of the segment (inclusive).
+ * Word-specific information for recognized words. Word information is only
+ * included in the response when certain request parameters are set, such as
+ * `enable_word_time_offsets`.
  */
+export interface Schema$GoogleCloudVideointelligenceV1p1beta1_WordInfo {
+  /**
+   * Output only. Time offset relative to the beginning of the audio, and
+   * corresponding to the end of the spoken word. This field is only set if
+   * `enable_word_time_offsets=true` and only in the top hypothesis. This is an
+   * experimental feature and the accuracy of the time offset can vary.
+   */
+  endTime: string;
+  /**
+   * Output only. Time offset relative to the beginning of the audio, and
+   * corresponding to the start of the spoken word. This field is only set if
+   * `enable_word_time_offsets=true` and only in the top hypothesis. This is an
+   * experimental feature and the accuracy of the time offset can vary.
+   */
+  startTime: string;
+  /**
+   * Output only. The word corresponding to this set of information.
+   */
+  word: string;
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1p1beta1_WordInfo
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {string} endTime Output only. Time offset relative to the beginning of the audio, and corresponding to the end of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary.
- * @property {string} startTime Output only. Time offset relative to the beginning of the audio, and corresponding to the start of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary.
- * @property {string} word Output only. The word corresponding to this set of information.
+ * Video annotation progress. Included in the `metadata` field of the
+ * `Operation` returned by the `GetOperation` call of the
+ * `google::longrunning::Operations` service.
  */
+export interface Schema$GoogleCloudVideointelligenceV1_AnnotateVideoProgress {
+  /**
+   * Progress metadata for all videos specified in `AnnotateVideoRequest`.
+   */
+  annotationProgress:
+      Schema$GoogleCloudVideointelligenceV1_VideoAnnotationProgress[];
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1_AnnotateVideoProgress
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1_VideoAnnotationProgress[]} annotationProgress Progress metadata for all videos specified in `AnnotateVideoRequest`.
+ * Video annotation response. Included in the `response` field of the
+ * `Operation` returned by the `GetOperation` call of the
+ * `google::longrunning::Operations` service.
  */
+export interface Schema$GoogleCloudVideointelligenceV1_AnnotateVideoResponse {
+  /**
+   * Annotation results for all videos specified in `AnnotateVideoRequest`.
+   */
+  annotationResults:
+      Schema$GoogleCloudVideointelligenceV1_VideoAnnotationResults[];
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1_AnnotateVideoResponse
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1_VideoAnnotationResults[]} annotationResults Annotation results for all videos specified in `AnnotateVideoRequest`.
+ * Detected entity from video analysis.
  */
+export interface Schema$GoogleCloudVideointelligenceV1_Entity {
+  /**
+   * Textual description, e.g. `Fixed-gear bicycle`.
+   */
+  description: string;
+  /**
+   * Opaque entity ID. Some IDs may be available in [Google Knowledge Graph
+   * Search API](https://developers.google.com/knowledge-graph/).
+   */
+  entityId: string;
+  /**
+   * Language code for `description` in BCP-47 format.
+   */
+  languageCode: string;
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1_Entity
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {string} description Textual description, e.g. `Fixed-gear bicycle`.
- * @property {string} entityId Opaque entity ID. Some IDs may be available in [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
- * @property {string} languageCode Language code for `description` in BCP-47 format.
+ * Explicit content annotation (based on per-frame visual signals only). If no
+ * explicit content has been detected in a frame, no annotations are present for
+ * that frame.
  */
+export interface Schema$GoogleCloudVideointelligenceV1_ExplicitContentAnnotation {
+  /**
+   * All video frames where explicit content was detected.
+   */
+  frames: Schema$GoogleCloudVideointelligenceV1_ExplicitContentFrame[];
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1_ExplicitContentAnnotation
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1_ExplicitContentFrame[]} frames All video frames where explicit content was detected.
+ * Video frame level annotation results for explicit content.
  */
+export interface Schema$GoogleCloudVideointelligenceV1_ExplicitContentFrame {
+  /**
+   * Likelihood of the pornography content..
+   */
+  pornographyLikelihood: string;
+  /**
+   * Time-offset, relative to the beginning of the video, corresponding to the
+   * video frame for this location.
+   */
+  timeOffset: string;
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1_ExplicitContentFrame
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {string} pornographyLikelihood Likelihood of the pornography content..
- * @property {string} timeOffset Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
+ * Label annotation.
  */
+export interface Schema$GoogleCloudVideointelligenceV1_LabelAnnotation {
+  /**
+   * Common categories for the detected entity. E.g. when the label is `Terrier`
+   * the category is likely `dog`. And in some cases there might be more than
+   * one categories e.g. `Terrier` could also be a `pet`.
+   */
+  categoryEntities: Schema$GoogleCloudVideointelligenceV1_Entity[];
+  /**
+   * Detected entity.
+   */
+  entity: Schema$GoogleCloudVideointelligenceV1_Entity;
+  /**
+   * All video frames where a label was detected.
+   */
+  frames: Schema$GoogleCloudVideointelligenceV1_LabelFrame[];
+  /**
+   * All video segments where a label was detected.
+   */
+  segments: Schema$GoogleCloudVideointelligenceV1_LabelSegment[];
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1_LabelAnnotation
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1_Entity[]} categoryEntities Common categories for the detected entity. E.g. when the label is `Terrier` the category is likely `dog`. And in some cases there might be more than one categories e.g. `Terrier` could also be a `pet`.
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1_Entity} entity Detected entity.
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1_LabelFrame[]} frames All video frames where a label was detected.
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1_LabelSegment[]} segments All video segments where a label was detected.
+ * Video frame level annotation results for label detection.
  */
+export interface Schema$GoogleCloudVideointelligenceV1_LabelFrame {
+  /**
+   * Confidence that the label is accurate. Range: [0, 1].
+   */
+  confidence: number;
+  /**
+   * Time-offset, relative to the beginning of the video, corresponding to the
+   * video frame for this location.
+   */
+  timeOffset: string;
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1_LabelFrame
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {number} confidence Confidence that the label is accurate. Range: [0, 1].
- * @property {string} timeOffset Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
+ * Video segment level annotation results for label detection.
  */
+export interface Schema$GoogleCloudVideointelligenceV1_LabelSegment {
+  /**
+   * Confidence that the label is accurate. Range: [0, 1].
+   */
+  confidence: number;
+  /**
+   * Video segment where a label was detected.
+   */
+  segment: Schema$GoogleCloudVideointelligenceV1_VideoSegment;
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1_LabelSegment
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {number} confidence Confidence that the label is accurate. Range: [0, 1].
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1_VideoSegment} segment Video segment where a label was detected.
+ * Annotation progress for a single video.
  */
+export interface Schema$GoogleCloudVideointelligenceV1_VideoAnnotationProgress {
+  /**
+   * Video file location in [Google Cloud
+   * Storage](https://cloud.google.com/storage/).
+   */
+  inputUri: string;
+  /**
+   * Approximate percentage processed thus far. Guaranteed to be 100 when fully
+   * processed.
+   */
+  progressPercent: number;
+  /**
+   * Time when the request was received.
+   */
+  startTime: string;
+  /**
+   * Time of the most recent update.
+   */
+  updateTime: string;
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1_VideoAnnotationProgress
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {string} inputUri Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
- * @property {integer} progressPercent Approximate percentage processed thus far. Guaranteed to be 100 when fully processed.
- * @property {string} startTime Time when the request was received.
- * @property {string} updateTime Time of the most recent update.
+ * Annotation results for a single video.
  */
+export interface Schema$GoogleCloudVideointelligenceV1_VideoAnnotationResults {
+  /**
+   * If set, indicates an error. Note that for a single `AnnotateVideoRequest`
+   * some videos may succeed and some may fail.
+   */
+  error: Schema$GoogleRpc_Status;
+  /**
+   * Explicit content annotation.
+   */
+  explicitAnnotation:
+      Schema$GoogleCloudVideointelligenceV1_ExplicitContentAnnotation;
+  /**
+   * Label annotations on frame level. There is exactly one element for each
+   * unique label.
+   */
+  frameLabelAnnotations:
+      Schema$GoogleCloudVideointelligenceV1_LabelAnnotation[];
+  /**
+   * Video file location in [Google Cloud
+   * Storage](https://cloud.google.com/storage/).
+   */
+  inputUri: string;
+  /**
+   * Label annotations on video level or user specified segment level. There is
+   * exactly one element for each unique label.
+   */
+  segmentLabelAnnotations:
+      Schema$GoogleCloudVideointelligenceV1_LabelAnnotation[];
+  /**
+   * Shot annotations. Each shot is represented as a video segment.
+   */
+  shotAnnotations: Schema$GoogleCloudVideointelligenceV1_VideoSegment[];
+  /**
+   * Label annotations on shot level. There is exactly one element for each
+   * unique label.
+   */
+  shotLabelAnnotations: Schema$GoogleCloudVideointelligenceV1_LabelAnnotation[];
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1_VideoAnnotationResults
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {videointelligence(v1beta1).GoogleRpc_Status} error If set, indicates an error. Note that for a single `AnnotateVideoRequest` some videos may succeed and some may fail.
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1_ExplicitContentAnnotation} explicitAnnotation Explicit content annotation.
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1_LabelAnnotation[]} frameLabelAnnotations Label annotations on frame level. There is exactly one element for each unique label.
- * @property {string} inputUri Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1_LabelAnnotation[]} segmentLabelAnnotations Label annotations on video level or user specified segment level. There is exactly one element for each unique label.
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1_VideoSegment[]} shotAnnotations Shot annotations. Each shot is represented as a video segment.
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1_LabelAnnotation[]} shotLabelAnnotations Label annotations on shot level. There is exactly one element for each unique label.
+ * Video segment.
  */
+export interface Schema$GoogleCloudVideointelligenceV1_VideoSegment {
+  /**
+   * Time-offset, relative to the beginning of the video, corresponding to the
+   * end of the segment (inclusive).
+   */
+  endTimeOffset: string;
+  /**
+   * Time-offset, relative to the beginning of the video, corresponding to the
+   * start of the segment (inclusive).
+   */
+  startTimeOffset: string;
+}
 /**
- * @typedef GoogleCloudVideointelligenceV1_VideoSegment
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {string} endTimeOffset Time-offset, relative to the beginning of the video, corresponding to the end of the segment (inclusive).
- * @property {string} startTimeOffset Time-offset, relative to the beginning of the video, corresponding to the start of the segment (inclusive).
+ * This resource represents a long-running operation that is the result of a
+ * network API call.
  */
+export interface Schema$GoogleLongrunning_Operation {
+  /**
+   * If the value is `false`, it means the operation is still in progress. If
+   * `true`, the operation is completed, and either `error` or `response` is
+   * available.
+   */
+  done: boolean;
+  /**
+   * The error result of the operation in case of failure or cancellation.
+   */
+  error: Schema$GoogleRpc_Status;
+  /**
+   * Service-specific metadata associated with the operation.  It typically
+   * contains progress information and common metadata such as create time. Some
+   * services might not provide such metadata.  Any method that returns a
+   * long-running operation should document the metadata type, if any.
+   */
+  metadata: any;
+  /**
+   * The server-assigned name, which is only unique within the same service that
+   * originally returns it. If you use the default HTTP mapping, the `name`
+   * should have the format of `operations/some/unique/name`.
+   */
+  name: string;
+  /**
+   * The normal response of the operation in case of success.  If the original
+   * method returns no data on success, such as `Delete`, the response is
+   * `google.protobuf.Empty`.  If the original method is standard
+   * `Get`/`Create`/`Update`, the response should be the resource.  For other
+   * methods, the response should have the type `XxxResponse`, where `Xxx` is
+   * the original method name.  For example, if the original method name is
+   * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+   */
+  response: any;
+}
 /**
- * @typedef GoogleLongrunning_Operation
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {boolean} done If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
- * @property {videointelligence(v1beta1).GoogleRpc_Status} error The error result of the operation in case of failure or cancellation.
- * @property {object} metadata Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
- * @property {string} name The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should have the format of `operations/some/unique/name`.
- * @property {object} response The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+ * The `Status` type defines a logical error model that is suitable for
+ * different programming environments, including REST APIs and RPC APIs. It is
+ * used by [gRPC](https://github.com/grpc). The error model is designed to be:
+ * - Simple to use and understand for most users - Flexible enough to meet
+ * unexpected needs  # Overview  The `Status` message contains three pieces of
+ * data: error code, error message, and error details. The error code should be
+ * an enum value of google.rpc.Code, but it may accept additional error codes if
+ * needed.  The error message should be a developer-facing English message that
+ * helps developers *understand* and *resolve* the error. If a localized
+ * user-facing error message is needed, put the localized message in the error
+ * details or localize it in the client. The optional error details may contain
+ * arbitrary information about the error. There is a predefined set of error
+ * detail types in the package `google.rpc` that can be used for common error
+ * conditions.  # Language mapping  The `Status` message is the logical
+ * representation of the error model, but it is not necessarily the actual wire
+ * format. When the `Status` message is exposed in different client libraries
+ * and different wire protocols, it can be mapped differently. For example, it
+ * will likely be mapped to some exceptions in Java, but more likely mapped to
+ * some error codes in C.  # Other uses  The error model and the `Status`
+ * message can be used in a variety of environments, either with or without
+ * APIs, to provide a consistent developer experience across different
+ * environments.  Example uses of this error model include:  - Partial errors.
+ * If a service needs to return partial errors to the client,     it may embed
+ * the `Status` in the normal response to indicate the partial     errors.  -
+ * Workflow errors. A typical workflow has multiple steps. Each step may
+ * have a `Status` message for error reporting.  - Batch operations. If a client
+ * uses batch request and batch response, the     `Status` message should be
+ * used directly inside batch response, one for     each error sub-response.  -
+ * Asynchronous operations. If an API call embeds asynchronous operation
+ * results in its response, the status of those operations should be
+ * represented directly using the `Status` message.  - Logging. If some API
+ * errors are stored in logs, the message `Status` could     be used directly
+ * after any stripping needed for security/privacy reasons.
  */
-/**
- * @typedef GoogleRpc_Status
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {integer} code The status code, which should be an enum value of google.rpc.Code.
- * @property {object[]} details A list of messages that carry the error details.  There is a common set of message types for APIs to use.
- * @property {string} message A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
- */
+export interface Schema$GoogleRpc_Status {
+  /**
+   * The status code, which should be an enum value of google.rpc.Code.
+   */
+  code: number;
+  /**
+   * A list of messages that carry the error details.  There is a common set of
+   * message types for APIs to use.
+   */
+  details: any[];
+  /**
+   * A developer-facing error message, which should be in English. Any
+   * user-facing error message should be localized and sent in the
+   * google.rpc.Status.details field, or localized by the client.
+   */
+  message: string;
+}
 
-export = Videointelligence;
+export class Resource$Videos {
+  root: Videointelligence;
+  constructor(root: Videointelligence) {
+    this.root = root;
+  }
+
+  /**
+   * videointelligence.videos.annotate
+   * @desc Performs asynchronous video annotation. Progress and results can be
+   * retrieved through the `google.longrunning.Operations` interface.
+   * `Operation.metadata` contains `AnnotateVideoProgress` (progress).
+   * `Operation.response` contains `AnnotateVideoResponse` (results).
+   * @alias videointelligence.videos.annotate
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {().GoogleCloudVideointelligenceV1beta1_AnnotateVideoRequest} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  annotate =
+      (params: any,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
+       callback?: BodyResponseCallback<Schema$GoogleLongrunning_Operation>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl =
+            options.rootUrl || 'https://videointelligence.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/v1beta1/videos:annotate')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'POST'
+              },
+              options),
+          params,
+          requiredParams: [],
+          pathParams: [],
+          context: this.root
+        };
+        createAPIRequest<Schema$GoogleLongrunning_Operation>(
+            parameters, callback!);
+      };
+}

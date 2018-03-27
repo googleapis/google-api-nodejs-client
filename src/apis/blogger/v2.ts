@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
 
@@ -21,7 +22,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
-
+// tslint:disable: class-name
+// tslint:disable: variable-name
+// tslint:disable: jsdoc-format
 
 /**
  * Blogger API
@@ -38,335 +41,682 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2
  * @param {object=} options Options for Blogger
  */
-function Blogger(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.blogs = {
-    /**
-     * blogger.blogs.get
-     * @desc Gets one blog by id.
-     * @alias blogger.blogs.get
-     * @memberOf! blogger(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId The ID of the blog to get.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/blogger/v2/blogs/{blogId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['blogId'],
-        pathParams: ['blogId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }
+export class Blogger {
+  _options: GlobalOptions;
+  google: GoogleApis;
+  root = this;
 
-  };
-  self.comments = {
-    /**
-     * blogger.comments.get
-     * @desc Gets one comment by id.
-     * @alias blogger.comments.get
-     * @memberOf! blogger(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId ID of the blog to containing the comment.
-     * @param {string} params.commentId The ID of the comment to get.
-     * @param {string} params.postId ID of the post to fetch posts from.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/blogger/v2/blogs/{blogId}/posts/{postId}/comments/{commentId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['blogId', 'postId', 'commentId'],
-        pathParams: ['blogId', 'commentId', 'postId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * blogger.comments.list
-        * @desc Retrieves the comments for a blog, possibly filtered.
-        * @alias blogger.comments.list
-        * @memberOf! blogger(v2)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.blogId ID of the blog to fetch comments from.
-        * @param {boolean=} params.fetchBodies Whether the body content of the comments is included.
-        * @param {integer=} params.maxResults Maximum number of comments to include in the result.
-        * @param {string=} params.pageToken Continuation token if request is paged.
-        * @param {string} params.postId ID of the post to fetch posts from.
-        * @param {string=} params.startDate Earliest date of comment to fetch, a date-time with RFC 3339 formatting.
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    list(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/blogger/v2/blogs/{blogId}/posts/{postId}/comments')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['blogId', 'postId'],
-        pathParams: ['blogId', 'postId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }
+  blogs: Resource$Blogs;
+  comments: Resource$Comments;
+  pages: Resource$Pages;
+  posts: Resource$Posts;
+  users: Resource$Users;
 
-  };
-  self.pages = {
-    /**
-     * blogger.pages.get
-     * @desc Gets one blog page by id.
-     * @alias blogger.pages.get
-     * @memberOf! blogger(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId ID of the blog containing the page.
-     * @param {string} params.pageId The ID of the page to get.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/blogger/v2/blogs/{blogId}/pages/{pageId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['blogId', 'pageId'],
-        pathParams: ['blogId', 'pageId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * blogger.pages.list
-        * @desc Retrieves pages for a blog, possibly filtered.
-        * @alias blogger.pages.list
-        * @memberOf! blogger(v2)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.blogId ID of the blog to fetch pages from.
-        * @param {boolean=} params.fetchBodies Whether to retrieve the Page bodies.
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    list(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/blogger/v2/blogs/{blogId}/pages')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['blogId'],
-        pathParams: ['blogId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    this._options = options || {};
+    this.google = google;
 
-  };
-  self.posts = {
-    /**
-     * blogger.posts.get
-     * @desc Get a post by id.
-     * @alias blogger.posts.get
-     * @memberOf! blogger(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId ID of the blog to fetch the post from.
-     * @param {string} params.postId The ID of the post
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/blogger/v2/blogs/{blogId}/posts/{postId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['blogId', 'postId'],
-        pathParams: ['blogId', 'postId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * blogger.posts.list
-        * @desc Retrieves a list of posts, possibly filtered.
-        * @alias blogger.posts.list
-        * @memberOf! blogger(v2)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.blogId ID of the blog to fetch posts from.
-        * @param {boolean=} params.fetchBodies Whether the body content of posts is included.
-        * @param {integer=} params.maxResults Maximum number of posts to fetch.
-        * @param {string=} params.pageToken Continuation token if the request is paged.
-        * @param {string=} params.startDate Earliest post date to fetch, a date-time with RFC 3339 formatting.
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    list(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/blogger/v2/blogs/{blogId}/posts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['blogId'],
-        pathParams: ['blogId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }
+    this.blogs = new Resource$Blogs(this);
+    this.comments = new Resource$Comments(this);
+    this.pages = new Resource$Pages(this);
+    this.posts = new Resource$Posts(this);
+    this.users = new Resource$Users(this);
+  }
+}
 
-  };
-  self.users = {
-    /**
-     * blogger.users.get
-     * @desc Gets one user by id.
-     * @alias blogger.users.get
-     * @memberOf! blogger(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId The ID of the user to get.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/blogger/v2/users/{userId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['userId'],
-        pathParams: ['userId'],
-        context: self
+export interface Schema$Blog {
+  /**
+   * The description of this blog. This is displayed underneath the title.
+   */
+  description: string;
+  /**
+   * The identifier for this resource.
+   */
+  id: string;
+  /**
+   * The kind of this entry. Always blogger#blog
+   */
+  kind: string;
+  /**
+   * The locale this Blog is set to.
+   */
+  locale: any;
+  /**
+   * The name of this blog. This is displayed as the title.
+   */
+  name: string;
+  /**
+   * The container of pages in this blog.
+   */
+  pages: any;
+  /**
+   * The container of posts in this blog.
+   */
+  posts: any;
+  /**
+   * RFC 3339 date-time when this blog was published.
+   */
+  published: string;
+  /**
+   * The API REST URL to fetch this resource from.
+   */
+  selfLink: string;
+  /**
+   * RFC 3339 date-time when this blog was last updated.
+   */
+  updated: string;
+  /**
+   * The URL where this blog is published.
+   */
+  url: string;
+}
+export interface Schema$BlogList {
+  /**
+   * The list of Blogs this user has Authorship or Admin rights over.
+   */
+  items: Schema$Blog[];
+  /**
+   * The kind of this entity. Always blogger#blogList
+   */
+  kind: string;
+}
+export interface Schema$Comment {
+  /**
+   * The author of this Comment.
+   */
+  author: any;
+  /**
+   * Data about the blog containing this comment.
+   */
+  blog: any;
+  /**
+   * The actual content of the comment. May include HTML markup.
+   */
+  content: string;
+  /**
+   * The identifier for this resource.
+   */
+  id: string;
+  /**
+   * Data about the comment this is in reply to.
+   */
+  inReplyTo: any;
+  /**
+   * The kind of this entry. Always blogger#comment
+   */
+  kind: string;
+  /**
+   * Data about the post containing this comment.
+   */
+  post: any;
+  /**
+   * RFC 3339 date-time when this comment was published.
+   */
+  published: string;
+  /**
+   * The API REST URL to fetch this resource from.
+   */
+  selfLink: string;
+  /**
+   * RFC 3339 date-time when this comment was last updated.
+   */
+  updated: string;
+}
+export interface Schema$CommentList {
+  /**
+   * The List of Comments for a Post.
+   */
+  items: Schema$Comment[];
+  /**
+   * The kind of this entry. Always blogger#commentList
+   */
+  kind: string;
+  /**
+   * Pagination token to fetch the next page, if one exists.
+   */
+  nextPageToken: string;
+  /**
+   * Pagination token to fetch the previous page, if one exists.
+   */
+  prevPageToken: string;
+}
+export interface Schema$Page {
+  /**
+   * The author of this Page.
+   */
+  author: any;
+  /**
+   * Data about the blog containing this Page.
+   */
+  blog: any;
+  /**
+   * The body content of this Page, in HTML.
+   */
+  content: string;
+  /**
+   * The identifier for this resource.
+   */
+  id: string;
+  /**
+   * The kind of this entity. Always blogger#page
+   */
+  kind: string;
+  /**
+   * RFC 3339 date-time when this Page was published.
+   */
+  published: string;
+  /**
+   * The API REST URL to fetch this resource from.
+   */
+  selfLink: string;
+  /**
+   * The title of this entity. This is the name displayed in the Admin user
+   * interface.
+   */
+  title: string;
+  /**
+   * RFC 3339 date-time when this Page was last updated.
+   */
+  updated: string;
+  /**
+   * The URL that this Page is displayed at.
+   */
+  url: string;
+}
+export interface Schema$PageList {
+  /**
+   * The list of Pages for a Blog.
+   */
+  items: Schema$Page[];
+  /**
+   * The kind of this entity. Always blogger#pageList
+   */
+  kind: string;
+}
+export interface Schema$Post {
+  /**
+   * The author of this Post.
+   */
+  author: any;
+  /**
+   * Data about the blog containing this Post.
+   */
+  blog: any;
+  /**
+   * The content of the Post. May contain HTML markup.
+   */
+  content: string;
+  /**
+   * The identifier of this Post.
+   */
+  id: string;
+  /**
+   * The kind of this entity. Always blogger#post
+   */
+  kind: string;
+  /**
+   * The list of labels this Post was tagged with.
+   */
+  labels: string[];
+  /**
+   * RFC 3339 date-time when this Post was published.
+   */
+  published: string;
+  /**
+   * The container of comments on this Post.
+   */
+  replies: any;
+  /**
+   * The API REST URL to fetch this resource from.
+   */
+  selfLink: string;
+  /**
+   * The title of the Post.
+   */
+  title: string;
+  /**
+   * RFC 3339 date-time when this Post was last updated.
+   */
+  updated: string;
+  /**
+   * The URL where this Post is displayed.
+   */
+  url: string;
+}
+export interface Schema$PostList {
+  /**
+   * The list of Posts for this Blog.
+   */
+  items: Schema$Post[];
+  /**
+   * The kind of this entity. Always blogger#postList
+   */
+  kind: string;
+  /**
+   * Pagination token to fetch the next page, if one exists.
+   */
+  nextPageToken: string;
+  /**
+   * Pagination token to fetch the previous page, if one exists.
+   */
+  prevPageToken: string;
+}
+export interface Schema$User {
+  /**
+   * Profile summary information.
+   */
+  about: string;
+  /**
+   * The container of blogs for this user.
+   */
+  blogs: any;
+  /**
+   * The timestamp of when this profile was created, in seconds since epoch.
+   */
+  created: string;
+  /**
+   * The display name.
+   */
+  displayName: string;
+  /**
+   * The identifier for this User.
+   */
+  id: string;
+  /**
+   * The kind of this entity. Always blogger#user
+   */
+  kind: string;
+  /**
+   * This user&#39;s locale
+   */
+  locale: any;
+  /**
+   * The API REST URL to fetch this resource from.
+   */
+  selfLink: string;
+  /**
+   * The user&#39;s profile page.
+   */
+  url: string;
+}
+
+export class Resource$Blogs {
+  root: Blogger;
+  constructor(root: Blogger) {
+    this.root = root;
+  }
+
+  /**
+   * blogger.blogs.get
+   * @desc Gets one blog by id.
+   * @alias blogger.blogs.get
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.blogId The ID of the blog to get.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  get =
+      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Blog>,
+       callback?: BodyResponseCallback<Schema$Blog>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/blogger/v2/blogs/{blogId}')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: ['blogId'],
+          pathParams: ['blogId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$Blog>(parameters, callback!);
       };
-      return createAPIRequest(parameters, callback!);
-    },
-    blogs: {
-      /**
-       * blogger.users.blogs.list
-       * @desc Retrieves a list of blogs, possibly filtered.
-       * @alias blogger.users.blogs.list
-       * @memberOf! blogger(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.userId ID of the user whose blogs are to be fetched. Either the word 'self' (sans quote marks) or the user's profile identifier.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
+}
+
+export class Resource$Comments {
+  root: Blogger;
+  constructor(root: Blogger) {
+    this.root = root;
+  }
+
+  /**
+   * blogger.comments.get
+   * @desc Gets one comment by id.
+   * @alias blogger.comments.get
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.blogId ID of the blog to containing the comment.
+   * @param {string} params.commentId The ID of the comment to get.
+   * @param {string} params.postId ID of the post to fetch posts from.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  get =
+      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Comment>,
+       callback?: BodyResponseCallback<Schema$Comment>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl +
+                     '/blogger/v2/blogs/{blogId}/posts/{postId}/comments/{commentId}')
+                        .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: ['blogId', 'postId', 'commentId'],
+          pathParams: ['blogId', 'commentId', 'postId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$Comment>(parameters, callback!);
+      };
+
+
+  /**
+   * blogger.comments.list
+   * @desc Retrieves the comments for a blog, possibly filtered.
+   * @alias blogger.comments.list
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.blogId ID of the blog to fetch comments from.
+   * @param {boolean=} params.fetchBodies Whether the body content of the comments is included.
+   * @param {integer=} params.maxResults Maximum number of comments to include in the result.
+   * @param {string=} params.pageToken Continuation token if request is paged.
+   * @param {string} params.postId ID of the post to fetch posts from.
+   * @param {string=} params.startDate Earliest date of comment to fetch, a date-time with RFC 3339 formatting.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  list =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$CommentList>,
+       callback?: BodyResponseCallback<Schema$CommentList>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl +
+                      '/blogger/v2/blogs/{blogId}/posts/{postId}/comments')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: ['blogId', 'postId'],
+          pathParams: ['blogId', 'postId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$CommentList>(parameters, callback!);
+      };
+}
+
+export class Resource$Pages {
+  root: Blogger;
+  constructor(root: Blogger) {
+    this.root = root;
+  }
+
+  /**
+   * blogger.pages.get
+   * @desc Gets one blog page by id.
+   * @alias blogger.pages.get
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.blogId ID of the blog containing the page.
+   * @param {string} params.pageId The ID of the page to get.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  get =
+      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Page>,
+       callback?: BodyResponseCallback<Schema$Page>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/blogger/v2/blogs/{blogId}/pages/{pageId}')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: ['blogId', 'pageId'],
+          pathParams: ['blogId', 'pageId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$Page>(parameters, callback!);
+      };
+
+
+  /**
+   * blogger.pages.list
+   * @desc Retrieves pages for a blog, possibly filtered.
+   * @alias blogger.pages.list
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.blogId ID of the blog to fetch pages from.
+   * @param {boolean=} params.fetchBodies Whether to retrieve the Page bodies.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  list =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$PageList>,
+       callback?: BodyResponseCallback<Schema$PageList>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/blogger/v2/blogs/{blogId}/pages')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: ['blogId'],
+          pathParams: ['blogId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$PageList>(parameters, callback!);
+      };
+}
+
+export class Resource$Posts {
+  root: Blogger;
+  constructor(root: Blogger) {
+    this.root = root;
+  }
+
+  /**
+   * blogger.posts.get
+   * @desc Get a post by id.
+   * @alias blogger.posts.get
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.blogId ID of the blog to fetch the post from.
+   * @param {string} params.postId The ID of the post
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  get =
+      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Post>,
+       callback?: BodyResponseCallback<Schema$Post>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/blogger/v2/blogs/{blogId}/posts/{postId}')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: ['blogId', 'postId'],
+          pathParams: ['blogId', 'postId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$Post>(parameters, callback!);
+      };
+
+
+  /**
+   * blogger.posts.list
+   * @desc Retrieves a list of posts, possibly filtered.
+   * @alias blogger.posts.list
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.blogId ID of the blog to fetch posts from.
+   * @param {boolean=} params.fetchBodies Whether the body content of posts is included.
+   * @param {integer=} params.maxResults Maximum number of posts to fetch.
+   * @param {string=} params.pageToken Continuation token if the request is paged.
+   * @param {string=} params.startDate Earliest post date to fetch, a date-time with RFC 3339 formatting.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  list =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$PostList>,
+       callback?: BodyResponseCallback<Schema$PostList>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/blogger/v2/blogs/{blogId}/posts')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: ['blogId'],
+          pathParams: ['blogId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$PostList>(parameters, callback!);
+      };
+}
+
+export class Resource$Users {
+  root: Blogger;
+  blogs: Resource$Users$Blogs;
+  constructor(root: Blogger) {
+    this.root = root;
+    this.blogs = new Resource$Users$Blogs(root);
+  }
+
+  /**
+   * blogger.users.get
+   * @desc Gets one user by id.
+   * @alias blogger.users.get
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.userId The ID of the user to get.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  get =
+      (params: any, options: MethodOptions|BodyResponseCallback<Schema$User>,
+       callback?: BodyResponseCallback<Schema$User>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/blogger/v2/users/{userId}')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: ['userId'],
+          pathParams: ['userId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$User>(parameters, callback!);
+      };
+}
+export class Resource$Users$Blogs {
+  root: Blogger;
+  constructor(root: Blogger) {
+    this.root = root;
+  }
+
+  /**
+   * blogger.users.blogs.list
+   * @desc Retrieves a list of blogs, possibly filtered.
+   * @alias blogger.users.blogs.list
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.userId ID of the user whose blogs are to be fetched. Either the word 'self' (sans quote marks) or the user's profile identifier.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  list =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$BlogList>,
+       callback?: BodyResponseCallback<Schema$BlogList>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -384,122 +734,8 @@ function Blogger(options: GlobalOptions) {
           params,
           requiredParams: ['userId'],
           pathParams: ['userId'],
-          context: self
+          context: this.root
         };
-        return createAPIRequest(parameters, callback!);
-      }
-
-    }
-  };
+        createAPIRequest<Schema$BlogList>(parameters, callback!);
+      };
 }
-/**
- * @typedef Blog
- * @memberOf! blogger(v2)
- * @type object
- * @property {string} description The description of this blog. This is displayed underneath the title.
- * @property {string} id The identifier for this resource.
- * @property {string} kind The kind of this entry. Always blogger#blog
- * @property {object} locale The locale this Blog is set to.
- * @property {string} name The name of this blog. This is displayed as the title.
- * @property {object} pages The container of pages in this blog.
- * @property {object} posts The container of posts in this blog.
- * @property {string} published RFC 3339 date-time when this blog was published.
- * @property {string} selfLink The API REST URL to fetch this resource from.
- * @property {string} updated RFC 3339 date-time when this blog was last updated.
- * @property {string} url The URL where this blog is published.
- */
-/**
- * @typedef BlogList
- * @memberOf! blogger(v2)
- * @type object
- * @property {blogger(v2).Blog[]} items The list of Blogs this user has Authorship or Admin rights over.
- * @property {string} kind The kind of this entity. Always blogger#blogList
- */
-/**
- * @typedef Comment
- * @memberOf! blogger(v2)
- * @type object
- * @property {object} author The author of this Comment.
- * @property {object} blog Data about the blog containing this comment.
- * @property {string} content The actual content of the comment. May include HTML markup.
- * @property {string} id The identifier for this resource.
- * @property {object} inReplyTo Data about the comment this is in reply to.
- * @property {string} kind The kind of this entry. Always blogger#comment
- * @property {object} post Data about the post containing this comment.
- * @property {string} published RFC 3339 date-time when this comment was published.
- * @property {string} selfLink The API REST URL to fetch this resource from.
- * @property {string} updated RFC 3339 date-time when this comment was last updated.
- */
-/**
- * @typedef CommentList
- * @memberOf! blogger(v2)
- * @type object
- * @property {blogger(v2).Comment[]} items The List of Comments for a Post.
- * @property {string} kind The kind of this entry. Always blogger#commentList
- * @property {string} nextPageToken Pagination token to fetch the next page, if one exists.
- * @property {string} prevPageToken Pagination token to fetch the previous page, if one exists.
- */
-/**
- * @typedef Page
- * @memberOf! blogger(v2)
- * @type object
- * @property {object} author The author of this Page.
- * @property {object} blog Data about the blog containing this Page.
- * @property {string} content The body content of this Page, in HTML.
- * @property {string} id The identifier for this resource.
- * @property {string} kind The kind of this entity. Always blogger#page
- * @property {string} published RFC 3339 date-time when this Page was published.
- * @property {string} selfLink The API REST URL to fetch this resource from.
- * @property {string} title The title of this entity. This is the name displayed in the Admin user interface.
- * @property {string} updated RFC 3339 date-time when this Page was last updated.
- * @property {string} url The URL that this Page is displayed at.
- */
-/**
- * @typedef PageList
- * @memberOf! blogger(v2)
- * @type object
- * @property {blogger(v2).Page[]} items The list of Pages for a Blog.
- * @property {string} kind The kind of this entity. Always blogger#pageList
- */
-/**
- * @typedef Post
- * @memberOf! blogger(v2)
- * @type object
- * @property {object} author The author of this Post.
- * @property {object} blog Data about the blog containing this Post.
- * @property {string} content The content of the Post. May contain HTML markup.
- * @property {string} id The identifier of this Post.
- * @property {string} kind The kind of this entity. Always blogger#post
- * @property {string[]} labels The list of labels this Post was tagged with.
- * @property {string} published RFC 3339 date-time when this Post was published.
- * @property {object} replies The container of comments on this Post.
- * @property {string} selfLink The API REST URL to fetch this resource from.
- * @property {string} title The title of the Post.
- * @property {string} updated RFC 3339 date-time when this Post was last updated.
- * @property {string} url The URL where this Post is displayed.
- */
-/**
- * @typedef PostList
- * @memberOf! blogger(v2)
- * @type object
- * @property {blogger(v2).Post[]} items The list of Posts for this Blog.
- * @property {string} kind The kind of this entity. Always blogger#postList
- * @property {string} nextPageToken Pagination token to fetch the next page, if one exists.
- * @property {string} prevPageToken Pagination token to fetch the previous page, if one exists.
- */
-/**
- * @typedef User
- * @memberOf! blogger(v2)
- * @type object
- * @property {string} about Profile summary information.
- * @property {object} blogs The container of blogs for this user.
- * @property {string} created The timestamp of when this profile was created, in seconds since epoch.
- * @property {string} displayName The display name.
- * @property {string} id The identifier for this User.
- * @property {string} kind The kind of this entity. Always blogger#user
- * @property {object} locale This user&#39;s locale
- * @property {string} selfLink The API REST URL to fetch this resource from.
- * @property {string} url The user&#39;s profile page.
- */
-
-export = Blogger;

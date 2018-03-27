@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
 
@@ -21,7 +22,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
-
+// tslint:disable: class-name
+// tslint:disable: variable-name
+// tslint:disable: jsdoc-format
 
 /**
  * Google Play Game Services Publishing API
@@ -38,625 +41,903 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1configuration
  * @param {object=} options Options for Gamesconfiguration
  */
-function Gamesconfiguration(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.achievementConfigurations = {
-    /**
-     * gamesConfiguration.achievementConfigurations.delete
-     * @desc Delete the achievement configuration with the given ID.
-     * @alias gamesConfiguration.achievementConfigurations.delete
-     * @memberOf! gamesConfiguration(v1configuration)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.achievementId The ID of the achievement used by this method.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete (
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/games/v1configuration/achievements/{achievementId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
-        params,
-        requiredParams: ['achievementId'],
-        pathParams: ['achievementId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * gamesConfiguration.achievementConfigurations.get
-        * @desc Retrieves the metadata of the achievement configuration with the
-        * given ID.
-        * @alias gamesConfiguration.achievementConfigurations.get
-        * @memberOf! gamesConfiguration(v1configuration)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.achievementId The ID of the achievement used by this method.
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/games/v1configuration/achievements/{achievementId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['achievementId'],
-        pathParams: ['achievementId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * gamesConfiguration.achievementConfigurations.insert
-        * @desc Insert a new achievement configuration in this application.
-        * @alias gamesConfiguration.achievementConfigurations.insert
-        * @memberOf! gamesConfiguration(v1configuration)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.applicationId The application ID from the Google Play developer console.
-        * @param {gamesConfiguration(v1configuration).AchievementConfiguration} params.resource Request body data
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    insert(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/games/v1configuration/applications/{applicationId}/achievements')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['applicationId'],
-        pathParams: ['applicationId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * gamesConfiguration.achievementConfigurations.list
-        * @desc Returns a list of the achievement configurations in this
-        * application.
-        * @alias gamesConfiguration.achievementConfigurations.list
-        * @memberOf! gamesConfiguration(v1configuration)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.applicationId The application ID from the Google Play developer console.
-        * @param {integer=} params.maxResults The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified maxResults.
-        * @param {string=} params.pageToken The token returned by the previous request.
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    list(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/games/v1configuration/applications/{applicationId}/achievements')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['applicationId'],
-        pathParams: ['applicationId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * gamesConfiguration.achievementConfigurations.patch
-        * @desc Update the metadata of the achievement configuration with the
-        * given ID. This method supports patch semantics.
-        * @alias gamesConfiguration.achievementConfigurations.patch
-        * @memberOf! gamesConfiguration(v1configuration)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.achievementId The ID of the achievement used by this method.
-        * @param {gamesConfiguration(v1configuration).AchievementConfiguration} params.resource Request body data
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    patch(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/games/v1configuration/achievements/{achievementId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
-        params,
-        requiredParams: ['achievementId'],
-        pathParams: ['achievementId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * gamesConfiguration.achievementConfigurations.update
-        * @desc Update the metadata of the achievement configuration with the
-        * given ID.
-        * @alias gamesConfiguration.achievementConfigurations.update
-        * @memberOf! gamesConfiguration(v1configuration)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.achievementId The ID of the achievement used by this method.
-        * @param {gamesConfiguration(v1configuration).AchievementConfiguration} params.resource Request body data
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    update(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/games/v1configuration/achievements/{achievementId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
-        params,
-        requiredParams: ['achievementId'],
-        pathParams: ['achievementId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }
+export class Gamesconfiguration {
+  _options: GlobalOptions;
+  google: GoogleApis;
+  root = this;
 
-  };
-  self.imageConfigurations = {
-    /**
-     * gamesConfiguration.imageConfigurations.upload
-     * @desc Uploads an image for a resource with the given ID and image type.
-     * @alias gamesConfiguration.imageConfigurations.upload
-     * @memberOf! gamesConfiguration(v1configuration)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.imageType Selects which image in a resource for this method.
-     * @param {string} params.resourceId The ID of the resource used by this method.
-     * @param {object} params.media Media object
-     * @param {string} params.media.mimeType Media mime-type
-     * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    upload(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/games/v1configuration/images/{resourceId}/imageType/{imageType}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        mediaUrl:
-            (rootUrl +
-             '/upload/games/v1configuration/images/{resourceId}/imageType/{imageType}')
-                .replace(/([^:]\/)\/+/g, '$1'),
-        requiredParams: ['resourceId', 'imageType'],
-        pathParams: ['imageType', 'resourceId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }
+  achievementConfigurations: Resource$Achievementconfigurations;
+  imageConfigurations: Resource$Imageconfigurations;
+  leaderboardConfigurations: Resource$Leaderboardconfigurations;
 
-  };
-  self.leaderboardConfigurations = {
-    /**
-     * gamesConfiguration.leaderboardConfigurations.delete
-     * @desc Delete the leaderboard configuration with the given ID.
-     * @alias gamesConfiguration.leaderboardConfigurations.delete
-     * @memberOf! gamesConfiguration(v1configuration)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.leaderboardId The ID of the leaderboard.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete (
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/games/v1configuration/leaderboards/{leaderboardId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
-        params,
-        requiredParams: ['leaderboardId'],
-        pathParams: ['leaderboardId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * gamesConfiguration.leaderboardConfigurations.get
-        * @desc Retrieves the metadata of the leaderboard configuration with the
-        * given ID.
-        * @alias gamesConfiguration.leaderboardConfigurations.get
-        * @memberOf! gamesConfiguration(v1configuration)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.leaderboardId The ID of the leaderboard.
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/games/v1configuration/leaderboards/{leaderboardId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['leaderboardId'],
-        pathParams: ['leaderboardId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * gamesConfiguration.leaderboardConfigurations.insert
-        * @desc Insert a new leaderboard configuration in this application.
-        * @alias gamesConfiguration.leaderboardConfigurations.insert
-        * @memberOf! gamesConfiguration(v1configuration)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.applicationId The application ID from the Google Play developer console.
-        * @param {gamesConfiguration(v1configuration).LeaderboardConfiguration} params.resource Request body data
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    insert(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/games/v1configuration/applications/{applicationId}/leaderboards')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['applicationId'],
-        pathParams: ['applicationId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * gamesConfiguration.leaderboardConfigurations.list
-        * @desc Returns a list of the leaderboard configurations in this
-        * application.
-        * @alias gamesConfiguration.leaderboardConfigurations.list
-        * @memberOf! gamesConfiguration(v1configuration)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.applicationId The application ID from the Google Play developer console.
-        * @param {integer=} params.maxResults The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified maxResults.
-        * @param {string=} params.pageToken The token returned by the previous request.
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    list(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/games/v1configuration/applications/{applicationId}/leaderboards')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['applicationId'],
-        pathParams: ['applicationId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * gamesConfiguration.leaderboardConfigurations.patch
-        * @desc Update the metadata of the leaderboard configuration with the
-        * given ID. This method supports patch semantics.
-        * @alias gamesConfiguration.leaderboardConfigurations.patch
-        * @memberOf! gamesConfiguration(v1configuration)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.leaderboardId The ID of the leaderboard.
-        * @param {gamesConfiguration(v1configuration).LeaderboardConfiguration} params.resource Request body data
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    patch(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/games/v1configuration/leaderboards/{leaderboardId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
-        params,
-        requiredParams: ['leaderboardId'],
-        pathParams: ['leaderboardId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * gamesConfiguration.leaderboardConfigurations.update
-        * @desc Update the metadata of the leaderboard configuration with the
-        * given ID.
-        * @alias gamesConfiguration.leaderboardConfigurations.update
-        * @memberOf! gamesConfiguration(v1configuration)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.leaderboardId The ID of the leaderboard.
-        * @param {gamesConfiguration(v1configuration).LeaderboardConfiguration} params.resource Request body data
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    update(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/games/v1configuration/leaderboards/{leaderboardId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
-        params,
-        requiredParams: ['leaderboardId'],
-        pathParams: ['leaderboardId'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    this._options = options || {};
+    this.google = google;
 
-  };
+    this.achievementConfigurations =
+        new Resource$Achievementconfigurations(this);
+    this.imageConfigurations = new Resource$Imageconfigurations(this);
+    this.leaderboardConfigurations =
+        new Resource$Leaderboardconfigurations(this);
+  }
+}
+
+/**
+ * This is a JSON template for an achievement configuration resource.
+ */
+export interface Schema$AchievementConfiguration {
+  /**
+   * The type of the achievement. Possible values are:   - &quot;STANDARD&quot;
+   * - Achievement is either locked or unlocked.  - &quot;INCREMENTAL&quot; -
+   * Achievement is incremental.
+   */
+  achievementType: string;
+  /**
+   * The draft data of the achievement.
+   */
+  draft: Schema$AchievementConfigurationDetail;
+  /**
+   * The ID of the achievement.
+   */
+  id: string;
+  /**
+   * The initial state of the achievement. Possible values are:   -
+   * &quot;HIDDEN&quot; - Achievement is hidden.  - &quot;REVEALED&quot; -
+   * Achievement is revealed.  - &quot;UNLOCKED&quot; - Achievement is unlocked.
+   */
+  initialState: string;
+  /**
+   * Uniquely identifies the type of this resource. Value is always the fixed
+   * string gamesConfiguration#achievementConfiguration.
+   */
+  kind: string;
+  /**
+   * The read-only published data of the achievement.
+   */
+  published: Schema$AchievementConfigurationDetail;
+  /**
+   * Steps to unlock. Only applicable to incremental achievements.
+   */
+  stepsToUnlock: number;
+  /**
+   * The token for this resource.
+   */
+  token: string;
 }
 /**
- * @typedef AchievementConfiguration
- * @memberOf! gamesConfiguration(v1configuration)
- * @type object
- * @property {string} achievementType The type of the achievement. Possible values are:   - &quot;STANDARD&quot; - Achievement is either locked or unlocked.  - &quot;INCREMENTAL&quot; - Achievement is incremental.
- * @property {gamesConfiguration(v1configuration).AchievementConfigurationDetail} draft The draft data of the achievement.
- * @property {string} id The ID of the achievement.
- * @property {string} initialState The initial state of the achievement. Possible values are:   - &quot;HIDDEN&quot; - Achievement is hidden.  - &quot;REVEALED&quot; - Achievement is revealed.  - &quot;UNLOCKED&quot; - Achievement is unlocked.
- * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#achievementConfiguration.
- * @property {gamesConfiguration(v1configuration).AchievementConfigurationDetail} published The read-only published data of the achievement.
- * @property {integer} stepsToUnlock Steps to unlock. Only applicable to incremental achievements.
- * @property {string} token The token for this resource.
+ * This is a JSON template for an achievement configuration detail.
  */
+export interface Schema$AchievementConfigurationDetail {
+  /**
+   * Localized strings for the achievement description.
+   */
+  description: Schema$LocalizedStringBundle;
+  /**
+   * The icon url of this achievement. Writes to this field are ignored.
+   */
+  iconUrl: string;
+  /**
+   * Uniquely identifies the type of this resource. Value is always the fixed
+   * string gamesConfiguration#achievementConfigurationDetail.
+   */
+  kind: string;
+  /**
+   * Localized strings for the achievement name.
+   */
+  name: Schema$LocalizedStringBundle;
+  /**
+   * Point value for the achievement.
+   */
+  pointValue: number;
+  /**
+   * The sort rank of this achievement. Writes to this field are ignored.
+   */
+  sortRank: number;
+}
 /**
- * @typedef AchievementConfigurationDetail
- * @memberOf! gamesConfiguration(v1configuration)
- * @type object
- * @property {gamesConfiguration(v1configuration).LocalizedStringBundle} description Localized strings for the achievement description.
- * @property {string} iconUrl The icon url of this achievement. Writes to this field are ignored.
- * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#achievementConfigurationDetail.
- * @property {gamesConfiguration(v1configuration).LocalizedStringBundle} name Localized strings for the achievement name.
- * @property {integer} pointValue Point value for the achievement.
- * @property {integer} sortRank The sort rank of this achievement. Writes to this field are ignored.
+ * This is a JSON template for a ListConfigurations response.
  */
+export interface Schema$AchievementConfigurationListResponse {
+  /**
+   * The achievement configurations.
+   */
+  items: Schema$AchievementConfiguration[];
+  /**
+   * Uniquely identifies the type of this resource. Value is always the fixed
+   * string games#achievementConfigurationListResponse.
+   */
+  kind: string;
+  /**
+   * The pagination token for the next page of results.
+   */
+  nextPageToken: string;
+}
 /**
- * @typedef AchievementConfigurationListResponse
- * @memberOf! gamesConfiguration(v1configuration)
- * @type object
- * @property {gamesConfiguration(v1configuration).AchievementConfiguration[]} items The achievement configurations.
- * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#achievementConfigurationListResponse.
- * @property {string} nextPageToken The pagination token for the next page of results.
+ * This is a JSON template for a number affix resource.
  */
+export interface Schema$GamesNumberAffixConfiguration {
+  /**
+   * When the language requires special treatment of &quot;small&quot; numbers
+   * (as with 2, 3, and 4 in Czech; or numbers ending 2, 3, or 4 but not 12, 13,
+   * or 14 in Polish).
+   */
+  few: Schema$LocalizedStringBundle;
+  /**
+   * When the language requires special treatment of &quot;large&quot; numbers
+   * (as with numbers ending 11-99 in Maltese).
+   */
+  many: Schema$LocalizedStringBundle;
+  /**
+   * When the language requires special treatment of numbers like one (as with
+   * the number 1 in English and most other languages; in Russian, any number
+   * ending in 1 but not ending in 11 is in this class).
+   */
+  one: Schema$LocalizedStringBundle;
+  /**
+   * When the language does not require special treatment of the given quantity
+   * (as with all numbers in Chinese, or 42 in English).
+   */
+  other: Schema$LocalizedStringBundle;
+  /**
+   * When the language requires special treatment of numbers like two (as with 2
+   * in Welsh, or 102 in Slovenian).
+   */
+  two: Schema$LocalizedStringBundle;
+  /**
+   * When the language requires special treatment of the number 0 (as in
+   * Arabic).
+   */
+  zero: Schema$LocalizedStringBundle;
+}
 /**
- * @typedef GamesNumberAffixConfiguration
- * @memberOf! gamesConfiguration(v1configuration)
- * @type object
- * @property {gamesConfiguration(v1configuration).LocalizedStringBundle} few When the language requires special treatment of &quot;small&quot; numbers (as with 2, 3, and 4 in Czech; or numbers ending 2, 3, or 4 but not 12, 13, or 14 in Polish).
- * @property {gamesConfiguration(v1configuration).LocalizedStringBundle} many When the language requires special treatment of &quot;large&quot; numbers (as with numbers ending 11-99 in Maltese).
- * @property {gamesConfiguration(v1configuration).LocalizedStringBundle} one When the language requires special treatment of numbers like one (as with the number 1 in English and most other languages; in Russian, any number ending in 1 but not ending in 11 is in this class).
- * @property {gamesConfiguration(v1configuration).LocalizedStringBundle} other When the language does not require special treatment of the given quantity (as with all numbers in Chinese, or 42 in English).
- * @property {gamesConfiguration(v1configuration).LocalizedStringBundle} two When the language requires special treatment of numbers like two (as with 2 in Welsh, or 102 in Slovenian).
- * @property {gamesConfiguration(v1configuration).LocalizedStringBundle} zero When the language requires special treatment of the number 0 (as in Arabic).
+ * This is a JSON template for a number format resource.
  */
+export interface Schema$GamesNumberFormatConfiguration {
+  /**
+   * The curreny code string. Only used for CURRENCY format type.
+   */
+  currencyCode: string;
+  /**
+   * The formatting for the number. Possible values are:   - &quot;NUMERIC&quot;
+   * - Numbers are formatted to have no digits or a fixed number of digits after
+   * the decimal point according to locale. An optional custom unit can be
+   * added. - &quot;TIME_DURATION&quot; - Numbers are formatted to hours,
+   * minutes and seconds. - &quot;CURRENCY&quot; - Numbers are formatted to
+   * currency according to locale.
+   */
+  numberFormatType: string;
+  /**
+   * The number of decimal places for number. Only used for NUMERIC format type.
+   */
+  numDecimalPlaces: number;
+  /**
+   * An optional suffix for the NUMERIC format type. These strings follow the
+   * same  plural rules as all Android string resources.
+   */
+  suffix: Schema$GamesNumberAffixConfiguration;
+}
 /**
- * @typedef GamesNumberFormatConfiguration
- * @memberOf! gamesConfiguration(v1configuration)
- * @type object
- * @property {string} currencyCode The curreny code string. Only used for CURRENCY format type.
- * @property {string} numberFormatType The formatting for the number. Possible values are:   - &quot;NUMERIC&quot; - Numbers are formatted to have no digits or a fixed number of digits after the decimal point according to locale. An optional custom unit can be added. - &quot;TIME_DURATION&quot; - Numbers are formatted to hours, minutes and seconds. - &quot;CURRENCY&quot; - Numbers are formatted to currency according to locale.
- * @property {integer} numDecimalPlaces The number of decimal places for number. Only used for NUMERIC format type.
- * @property {gamesConfiguration(v1configuration).GamesNumberAffixConfiguration} suffix An optional suffix for the NUMERIC format type. These strings follow the same  plural rules as all Android string resources.
+ * This is a JSON template for an image configuration resource.
  */
+export interface Schema$ImageConfiguration {
+  /**
+   * The image type for the image.
+   */
+  imageType: string;
+  /**
+   * Uniquely identifies the type of this resource. Value is always the fixed
+   * string gamesConfiguration#imageConfiguration.
+   */
+  kind: string;
+  /**
+   * The resource ID of resource which the image belongs to.
+   */
+  resourceId: string;
+  /**
+   * The url for this image.
+   */
+  url: string;
+}
 /**
- * @typedef ImageConfiguration
- * @memberOf! gamesConfiguration(v1configuration)
- * @type object
- * @property {string} imageType The image type for the image.
- * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#imageConfiguration.
- * @property {string} resourceId The resource ID of resource which the image belongs to.
- * @property {string} url The url for this image.
+ * This is a JSON template for an leaderboard configuration resource.
  */
+export interface Schema$LeaderboardConfiguration {
+  /**
+   * The draft data of the leaderboard.
+   */
+  draft: Schema$LeaderboardConfigurationDetail;
+  /**
+   * The ID of the leaderboard.
+   */
+  id: string;
+  /**
+   * Uniquely identifies the type of this resource. Value is always the fixed
+   * string gamesConfiguration#leaderboardConfiguration.
+   */
+  kind: string;
+  /**
+   * The read-only published data of the leaderboard.
+   */
+  published: Schema$LeaderboardConfigurationDetail;
+  /**
+   * Maximum score that can be posted to this leaderboard.
+   */
+  scoreMax: string;
+  /**
+   * Minimum score that can be posted to this leaderboard.
+   */
+  scoreMin: string;
+  /**
+   * The type of the leaderboard. Possible values are:   -
+   * &quot;LARGER_IS_BETTER&quot; - Larger scores posted are ranked higher.  -
+   * &quot;SMALLER_IS_BETTER&quot; - Smaller scores posted are ranked higher.
+   */
+  scoreOrder: string;
+  /**
+   * The token for this resource.
+   */
+  token: string;
+}
 /**
- * @typedef LeaderboardConfiguration
- * @memberOf! gamesConfiguration(v1configuration)
- * @type object
- * @property {gamesConfiguration(v1configuration).LeaderboardConfigurationDetail} draft The draft data of the leaderboard.
- * @property {string} id The ID of the leaderboard.
- * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#leaderboardConfiguration.
- * @property {gamesConfiguration(v1configuration).LeaderboardConfigurationDetail} published The read-only published data of the leaderboard.
- * @property {string} scoreMax Maximum score that can be posted to this leaderboard.
- * @property {string} scoreMin Minimum score that can be posted to this leaderboard.
- * @property {string} scoreOrder The type of the leaderboard. Possible values are:   - &quot;LARGER_IS_BETTER&quot; - Larger scores posted are ranked higher.  - &quot;SMALLER_IS_BETTER&quot; - Smaller scores posted are ranked higher.
- * @property {string} token The token for this resource.
+ * This is a JSON template for a leaderboard configuration detail.
  */
+export interface Schema$LeaderboardConfigurationDetail {
+  /**
+   * The icon url of this leaderboard. Writes to this field are ignored.
+   */
+  iconUrl: string;
+  /**
+   * Uniquely identifies the type of this resource. Value is always the fixed
+   * string gamesConfiguration#leaderboardConfigurationDetail.
+   */
+  kind: string;
+  /**
+   * Localized strings for the leaderboard name.
+   */
+  name: Schema$LocalizedStringBundle;
+  /**
+   * The score formatting for the leaderboard.
+   */
+  scoreFormat: Schema$GamesNumberFormatConfiguration;
+  /**
+   * The sort rank of this leaderboard. Writes to this field are ignored.
+   */
+  sortRank: number;
+}
 /**
- * @typedef LeaderboardConfigurationDetail
- * @memberOf! gamesConfiguration(v1configuration)
- * @type object
- * @property {string} iconUrl The icon url of this leaderboard. Writes to this field are ignored.
- * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#leaderboardConfigurationDetail.
- * @property {gamesConfiguration(v1configuration).LocalizedStringBundle} name Localized strings for the leaderboard name.
- * @property {gamesConfiguration(v1configuration).GamesNumberFormatConfiguration} scoreFormat The score formatting for the leaderboard.
- * @property {integer} sortRank The sort rank of this leaderboard. Writes to this field are ignored.
+ * This is a JSON template for a ListConfigurations response.
  */
+export interface Schema$LeaderboardConfigurationListResponse {
+  /**
+   * The leaderboard configurations.
+   */
+  items: Schema$LeaderboardConfiguration[];
+  /**
+   * Uniquely identifies the type of this resource. Value is always the fixed
+   * string games#leaderboardConfigurationListResponse.
+   */
+  kind: string;
+  /**
+   * The pagination token for the next page of results.
+   */
+  nextPageToken: string;
+}
 /**
- * @typedef LeaderboardConfigurationListResponse
- * @memberOf! gamesConfiguration(v1configuration)
- * @type object
- * @property {gamesConfiguration(v1configuration).LeaderboardConfiguration[]} items The leaderboard configurations.
- * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#leaderboardConfigurationListResponse.
- * @property {string} nextPageToken The pagination token for the next page of results.
+ * This is a JSON template for a localized string resource.
  */
+export interface Schema$LocalizedString {
+  /**
+   * Uniquely identifies the type of this resource. Value is always the fixed
+   * string gamesConfiguration#localizedString.
+   */
+  kind: string;
+  /**
+   * The locale string.
+   */
+  locale: string;
+  /**
+   * The string value.
+   */
+  value: string;
+}
 /**
- * @typedef LocalizedString
- * @memberOf! gamesConfiguration(v1configuration)
- * @type object
- * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.
- * @property {string} locale The locale string.
- * @property {string} value The string value.
+ * This is a JSON template for a localized string bundle resource.
  */
-/**
- * @typedef LocalizedStringBundle
- * @memberOf! gamesConfiguration(v1configuration)
- * @type object
- * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.
- * @property {gamesConfiguration(v1configuration).LocalizedString[]} translations The locale strings.
- */
+export interface Schema$LocalizedStringBundle {
+  /**
+   * Uniquely identifies the type of this resource. Value is always the fixed
+   * string gamesConfiguration#localizedStringBundle.
+   */
+  kind: string;
+  /**
+   * The locale strings.
+   */
+  translations: Schema$LocalizedString[];
+}
 
-export = Gamesconfiguration;
+export class Resource$Achievementconfigurations {
+  root: Gamesconfiguration;
+  constructor(root: Gamesconfiguration) {
+    this.root = root;
+  }
+
+  /**
+   * gamesConfiguration.achievementConfigurations.delete
+   * @desc Delete the achievement configuration with the given ID.
+   * @alias gamesConfiguration.achievementConfigurations.delete
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.achievementId The ID of the achievement used by this method.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  delete =
+      (params: any, options: MethodOptions|BodyResponseCallback<void>,
+       callback?: BodyResponseCallback<void>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl +
+                      '/games/v1configuration/achievements/{achievementId}')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'DELETE'
+              },
+              options),
+          params,
+          requiredParams: ['achievementId'],
+          pathParams: ['achievementId'],
+          context: this.root
+        };
+        createAPIRequest<void>(parameters, callback!);
+      };
+
+
+  /**
+   * gamesConfiguration.achievementConfigurations.get
+   * @desc Retrieves the metadata of the achievement configuration with the
+   * given ID.
+   * @alias gamesConfiguration.achievementConfigurations.get
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.achievementId The ID of the achievement used by this method.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  get =
+      (params: any,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$AchievementConfiguration>,
+       callback?: BodyResponseCallback<Schema$AchievementConfiguration>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl +
+                      '/games/v1configuration/achievements/{achievementId}')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: ['achievementId'],
+          pathParams: ['achievementId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$AchievementConfiguration>(
+            parameters, callback!);
+      };
+
+
+  /**
+   * gamesConfiguration.achievementConfigurations.insert
+   * @desc Insert a new achievement configuration in this application.
+   * @alias gamesConfiguration.achievementConfigurations.insert
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.applicationId The application ID from the Google Play developer console.
+   * @param {().AchievementConfiguration} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  insert =
+      (params: any,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$AchievementConfiguration>,
+       callback?: BodyResponseCallback<Schema$AchievementConfiguration>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl +
+                     '/games/v1configuration/applications/{applicationId}/achievements')
+                        .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'POST'
+              },
+              options),
+          params,
+          requiredParams: ['applicationId'],
+          pathParams: ['applicationId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$AchievementConfiguration>(
+            parameters, callback!);
+      };
+
+
+  /**
+   * gamesConfiguration.achievementConfigurations.list
+   * @desc Returns a list of the achievement configurations in this application.
+   * @alias gamesConfiguration.achievementConfigurations.list
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.applicationId The application ID from the Google Play developer console.
+   * @param {integer=} params.maxResults The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified maxResults.
+   * @param {string=} params.pageToken The token returned by the previous request.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  list =
+      (params: any,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$AchievementConfigurationListResponse>,
+       callback?: BodyResponseCallback<
+           Schema$AchievementConfigurationListResponse>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl +
+                     '/games/v1configuration/applications/{applicationId}/achievements')
+                        .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: ['applicationId'],
+          pathParams: ['applicationId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$AchievementConfigurationListResponse>(
+            parameters, callback!);
+      };
+
+
+  /**
+   * gamesConfiguration.achievementConfigurations.patch
+   * @desc Update the metadata of the achievement configuration with the given
+   * ID. This method supports patch semantics.
+   * @alias gamesConfiguration.achievementConfigurations.patch
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.achievementId The ID of the achievement used by this method.
+   * @param {().AchievementConfiguration} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  patch =
+      (params: any,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$AchievementConfiguration>,
+       callback?: BodyResponseCallback<Schema$AchievementConfiguration>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl +
+                      '/games/v1configuration/achievements/{achievementId}')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'PATCH'
+              },
+              options),
+          params,
+          requiredParams: ['achievementId'],
+          pathParams: ['achievementId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$AchievementConfiguration>(
+            parameters, callback!);
+      };
+
+
+  /**
+   * gamesConfiguration.achievementConfigurations.update
+   * @desc Update the metadata of the achievement configuration with the given
+   * ID.
+   * @alias gamesConfiguration.achievementConfigurations.update
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.achievementId The ID of the achievement used by this method.
+   * @param {().AchievementConfiguration} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  update =
+      (params: any,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$AchievementConfiguration>,
+       callback?: BodyResponseCallback<Schema$AchievementConfiguration>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl +
+                      '/games/v1configuration/achievements/{achievementId}')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'PUT'
+              },
+              options),
+          params,
+          requiredParams: ['achievementId'],
+          pathParams: ['achievementId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$AchievementConfiguration>(
+            parameters, callback!);
+      };
+}
+
+export class Resource$Imageconfigurations {
+  root: Gamesconfiguration;
+  constructor(root: Gamesconfiguration) {
+    this.root = root;
+  }
+
+  /**
+   * gamesConfiguration.imageConfigurations.upload
+   * @desc Uploads an image for a resource with the given ID and image type.
+   * @alias gamesConfiguration.imageConfigurations.upload
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.imageType Selects which image in a resource for this method.
+   * @param {string} params.resourceId The ID of the resource used by this method.
+   * @param {object} params.media Media object
+   * @param {string} params.media.mimeType Media mime-type
+   * @param {string|object} params.media.body Media body contents
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  upload =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$ImageConfiguration>,
+       callback?: BodyResponseCallback<Schema$ImageConfiguration>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl +
+                     '/games/v1configuration/images/{resourceId}/imageType/{imageType}')
+                        .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'POST'
+              },
+              options),
+          params,
+          mediaUrl:
+              (rootUrl +
+               '/upload/games/v1configuration/images/{resourceId}/imageType/{imageType}')
+                  .replace(/([^:]\/)\/+/g, '$1'),
+          requiredParams: ['resourceId', 'imageType'],
+          pathParams: ['imageType', 'resourceId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$ImageConfiguration>(parameters, callback!);
+      };
+}
+
+export class Resource$Leaderboardconfigurations {
+  root: Gamesconfiguration;
+  constructor(root: Gamesconfiguration) {
+    this.root = root;
+  }
+
+  /**
+   * gamesConfiguration.leaderboardConfigurations.delete
+   * @desc Delete the leaderboard configuration with the given ID.
+   * @alias gamesConfiguration.leaderboardConfigurations.delete
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.leaderboardId The ID of the leaderboard.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  delete =
+      (params: any, options: MethodOptions|BodyResponseCallback<void>,
+       callback?: BodyResponseCallback<void>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl +
+                      '/games/v1configuration/leaderboards/{leaderboardId}')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'DELETE'
+              },
+              options),
+          params,
+          requiredParams: ['leaderboardId'],
+          pathParams: ['leaderboardId'],
+          context: this.root
+        };
+        createAPIRequest<void>(parameters, callback!);
+      };
+
+
+  /**
+   * gamesConfiguration.leaderboardConfigurations.get
+   * @desc Retrieves the metadata of the leaderboard configuration with the
+   * given ID.
+   * @alias gamesConfiguration.leaderboardConfigurations.get
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.leaderboardId The ID of the leaderboard.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  get =
+      (params: any,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$LeaderboardConfiguration>,
+       callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl +
+                      '/games/v1configuration/leaderboards/{leaderboardId}')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: ['leaderboardId'],
+          pathParams: ['leaderboardId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$LeaderboardConfiguration>(
+            parameters, callback!);
+      };
+
+
+  /**
+   * gamesConfiguration.leaderboardConfigurations.insert
+   * @desc Insert a new leaderboard configuration in this application.
+   * @alias gamesConfiguration.leaderboardConfigurations.insert
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.applicationId The application ID from the Google Play developer console.
+   * @param {().LeaderboardConfiguration} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  insert =
+      (params: any,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$LeaderboardConfiguration>,
+       callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl +
+                     '/games/v1configuration/applications/{applicationId}/leaderboards')
+                        .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'POST'
+              },
+              options),
+          params,
+          requiredParams: ['applicationId'],
+          pathParams: ['applicationId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$LeaderboardConfiguration>(
+            parameters, callback!);
+      };
+
+
+  /**
+   * gamesConfiguration.leaderboardConfigurations.list
+   * @desc Returns a list of the leaderboard configurations in this application.
+   * @alias gamesConfiguration.leaderboardConfigurations.list
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.applicationId The application ID from the Google Play developer console.
+   * @param {integer=} params.maxResults The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified maxResults.
+   * @param {string=} params.pageToken The token returned by the previous request.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  list =
+      (params: any,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$LeaderboardConfigurationListResponse>,
+       callback?: BodyResponseCallback<
+           Schema$LeaderboardConfigurationListResponse>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl +
+                     '/games/v1configuration/applications/{applicationId}/leaderboards')
+                        .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: ['applicationId'],
+          pathParams: ['applicationId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$LeaderboardConfigurationListResponse>(
+            parameters, callback!);
+      };
+
+
+  /**
+   * gamesConfiguration.leaderboardConfigurations.patch
+   * @desc Update the metadata of the leaderboard configuration with the given
+   * ID. This method supports patch semantics.
+   * @alias gamesConfiguration.leaderboardConfigurations.patch
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.leaderboardId The ID of the leaderboard.
+   * @param {().LeaderboardConfiguration} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  patch =
+      (params: any,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$LeaderboardConfiguration>,
+       callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl +
+                      '/games/v1configuration/leaderboards/{leaderboardId}')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'PATCH'
+              },
+              options),
+          params,
+          requiredParams: ['leaderboardId'],
+          pathParams: ['leaderboardId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$LeaderboardConfiguration>(
+            parameters, callback!);
+      };
+
+
+  /**
+   * gamesConfiguration.leaderboardConfigurations.update
+   * @desc Update the metadata of the leaderboard configuration with the given
+   * ID.
+   * @alias gamesConfiguration.leaderboardConfigurations.update
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.leaderboardId The ID of the leaderboard.
+   * @param {().LeaderboardConfiguration} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  update =
+      (params: any,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$LeaderboardConfiguration>,
+       callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl +
+                      '/games/v1configuration/leaderboards/{leaderboardId}')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'PUT'
+              },
+              options),
+          params,
+          requiredParams: ['leaderboardId'],
+          pathParams: ['leaderboardId'],
+          context: this.root
+        };
+        createAPIRequest<Schema$LeaderboardConfiguration>(
+            parameters, callback!);
+      };
+}

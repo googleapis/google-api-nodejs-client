@@ -34,12 +34,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  *
  * @example
  * const google = require('googleapis');
- * const dialogflow = google.dialogflow('v2beta1');
+ * const dialogflow = google.dialogflow('v2');
  *
  * @namespace dialogflow
  * @type {Function}
- * @version v2beta1
- * @variation v2beta1
+ * @version v2
+ * @variation v2
  * @param {object=} options Options for Dialogflow
  */
 export class Dialogflow {
@@ -58,27 +58,9 @@ export class Dialogflow {
 }
 
 /**
- * The response message for EntityTypes.BatchUpdateEntityTypes.
- */
-export interface Schema$GoogleCloudDialogflowV2BatchUpdateEntityTypesResponse {
-  /**
-   * The collection of updated or created entity types.
-   */
-  entityTypes: Schema$GoogleCloudDialogflowV2EntityType[];
-}
-/**
- * The response message for Intents.BatchUpdateIntents.
- */
-export interface Schema$GoogleCloudDialogflowV2BatchUpdateIntentsResponse {
-  /**
-   * The collection of updated or created intents.
-   */
-  intents: Schema$GoogleCloudDialogflowV2Intent[];
-}
-/**
  * Represents a conversational agent.
  */
-export interface Schema$GoogleCloudDialogflowV2beta1Agent {
+export interface Schema$GoogleCloudDialogflowV2Agent {
   /**
    * Optional. The URI of the agent&#39;s avatar. Avatars are used throughout
    * API.AI console and in the self-hosted [Web
@@ -138,11 +120,11 @@ export interface Schema$GoogleCloudDialogflowV2beta1Agent {
 /**
  * The request message for EntityTypes.BatchCreateEntities.
  */
-export interface Schema$GoogleCloudDialogflowV2beta1BatchCreateEntitiesRequest {
+export interface Schema$GoogleCloudDialogflowV2BatchCreateEntitiesRequest {
   /**
    * Required. The collection of entities to create.
    */
-  entities: Schema$GoogleCloudDialogflowV2beta1EntityTypeEntity[];
+  entities: Schema$GoogleCloudDialogflowV2EntityTypeEntity[];
   /**
    * Optional. The language of entity synonyms defined in `entities`. If not
    * specified, the agent&#39;s default language is used. [More than a dozen
@@ -154,7 +136,7 @@ export interface Schema$GoogleCloudDialogflowV2beta1BatchCreateEntitiesRequest {
 /**
  * The request message for EntityTypes.BatchDeleteEntities.
  */
-export interface Schema$GoogleCloudDialogflowV2beta1BatchDeleteEntitiesRequest {
+export interface Schema$GoogleCloudDialogflowV2BatchDeleteEntitiesRequest {
   /**
    * Required. The canonical `values` of the entities to delete. Note that these
    * are not fully-qualified names, i.e. they don&#39;t start with
@@ -172,7 +154,7 @@ export interface Schema$GoogleCloudDialogflowV2beta1BatchDeleteEntitiesRequest {
 /**
  * The request message for EntityTypes.BatchDeleteEntityTypes.
  */
-export interface Schema$GoogleCloudDialogflowV2beta1BatchDeleteEntityTypesRequest {
+export interface Schema$GoogleCloudDialogflowV2BatchDeleteEntityTypesRequest {
   /**
    * Required. The names entity types to delete. All names must point to the
    * same agent as `parent`.
@@ -182,21 +164,21 @@ export interface Schema$GoogleCloudDialogflowV2beta1BatchDeleteEntityTypesReques
 /**
  * The request message for Intents.BatchDeleteIntents.
  */
-export interface Schema$GoogleCloudDialogflowV2beta1BatchDeleteIntentsRequest {
+export interface Schema$GoogleCloudDialogflowV2BatchDeleteIntentsRequest {
   /**
    * Required. The collection of intents to delete. Only intent `name` must be
    * filled in.
    */
-  intents: Schema$GoogleCloudDialogflowV2beta1Intent[];
+  intents: Schema$GoogleCloudDialogflowV2Intent[];
 }
 /**
  * The response message for EntityTypes.BatchCreateEntities.
  */
-export interface Schema$GoogleCloudDialogflowV2beta1BatchUpdateEntitiesRequest {
+export interface Schema$GoogleCloudDialogflowV2BatchUpdateEntitiesRequest {
   /**
    * Required. The collection of new entities to replace the existing entities.
    */
-  entities: Schema$GoogleCloudDialogflowV2beta1EntityTypeEntity[];
+  entities: Schema$GoogleCloudDialogflowV2EntityTypeEntity[];
   /**
    * Optional. The language of entity synonyms defined in `entities`. If not
    * specified, the agent&#39;s default language is used. [More than a dozen
@@ -212,11 +194,11 @@ export interface Schema$GoogleCloudDialogflowV2beta1BatchUpdateEntitiesRequest {
 /**
  * The request message for EntityTypes.BatchUpdateEntityTypes.
  */
-export interface Schema$GoogleCloudDialogflowV2beta1BatchUpdateEntityTypesRequest {
+export interface Schema$GoogleCloudDialogflowV2BatchUpdateEntityTypesRequest {
   /**
    * The collection of entity type to update or create.
    */
-  entityTypeBatchInline: Schema$GoogleCloudDialogflowV2beta1EntityTypeBatch;
+  entityTypeBatchInline: Schema$GoogleCloudDialogflowV2EntityTypeBatch;
   /**
    * The URI to a Google Cloud Storage file containing entity types to update or
    * create. The file format can either be a serialized proto (of EntityBatch
@@ -238,20 +220,20 @@ export interface Schema$GoogleCloudDialogflowV2beta1BatchUpdateEntityTypesReques
 /**
  * The response message for EntityTypes.BatchUpdateEntityTypes.
  */
-export interface Schema$GoogleCloudDialogflowV2beta1BatchUpdateEntityTypesResponse {
+export interface Schema$GoogleCloudDialogflowV2BatchUpdateEntityTypesResponse {
   /**
    * The collection of updated or created entity types.
    */
-  entityTypes: Schema$GoogleCloudDialogflowV2beta1EntityType[];
+  entityTypes: Schema$GoogleCloudDialogflowV2EntityType[];
 }
 /**
  * The request message for Intents.BatchUpdateIntents.
  */
-export interface Schema$GoogleCloudDialogflowV2beta1BatchUpdateIntentsRequest {
+export interface Schema$GoogleCloudDialogflowV2BatchUpdateIntentsRequest {
   /**
    * The collection of intents to update or create.
    */
-  intentBatchInline: Schema$GoogleCloudDialogflowV2beta1IntentBatch;
+  intentBatchInline: Schema$GoogleCloudDialogflowV2IntentBatch;
   /**
    * The URI to a Google Cloud Storage file containing intents to update or
    * create. The file format can either be a serialized proto (of IntentBatch
@@ -274,6 +256,24 @@ export interface Schema$GoogleCloudDialogflowV2beta1BatchUpdateIntentsRequest {
    * Optional. The mask to control which fields get updated.
    */
   updateMask: string;
+}
+/**
+ * The response message for Intents.BatchUpdateIntents.
+ */
+export interface Schema$GoogleCloudDialogflowV2BatchUpdateIntentsResponse {
+  /**
+   * The collection of updated or created intents.
+   */
+  intents: Schema$GoogleCloudDialogflowV2Intent[];
+}
+/**
+ * The response message for EntityTypes.BatchUpdateEntityTypes.
+ */
+export interface Schema$GoogleCloudDialogflowV2beta1BatchUpdateEntityTypesResponse {
+  /**
+   * The collection of updated or created entity types.
+   */
+  entityTypes: Schema$GoogleCloudDialogflowV2beta1EntityType[];
 }
 /**
  * The response message for Intents.BatchUpdateIntents.
@@ -314,47 +314,6 @@ export interface Schema$GoogleCloudDialogflowV2beta1Context {
   parameters: any;
 }
 /**
- * The request to detect user&#39;s intent.
- */
-export interface Schema$GoogleCloudDialogflowV2beta1DetectIntentRequest {
-  /**
-   * Optional. The natural language speech audio to be processed. This field
-   * should be populated iff `query_input` is set to an input audio config. A
-   * single request can contain up to 1 minute of speech audio data.
-   */
-  inputAudio: string;
-  /**
-   * Required. The input specification. It can be set to:  1.  an audio config
-   * which instructs the speech recognizer how to process the speech audio,  2.
-   * a conversational query in the form of text, or  3.  an event that specifies
-   * which intent to trigger.
-   */
-  queryInput: Schema$GoogleCloudDialogflowV2beta1QueryInput;
-  /**
-   * Optional. The parameters of this query.
-   */
-  queryParams: Schema$GoogleCloudDialogflowV2beta1QueryParameters;
-}
-/**
- * The message returned from the DetectIntent method.
- */
-export interface Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse {
-  /**
-   * The results of the conversational query or event processing.
-   */
-  queryResult: Schema$GoogleCloudDialogflowV2beta1QueryResult;
-  /**
-   * The unique identifier of the response. It can be used to locate a response
-   * in the training example set or for reporting issues.
-   */
-  responseId: string;
-  /**
-   * Specifies the status of the webhook request. `webhook_status` is never
-   * populated in webhook requests.
-   */
-  webhookStatus: Schema$GoogleRpcStatus;
-}
-/**
  * Represents an entity type. Entity types serve as a tool for extracting
  * parameter values from natural language queries.
  */
@@ -381,15 +340,6 @@ export interface Schema$GoogleCloudDialogflowV2beta1EntityType {
    * `projects/&lt;Project ID&gt;/agent/entityTypes/&lt;Entity Type ID&gt;`.
    */
   name: string;
-}
-/**
- * This message is a wrapper around a collection of entity types.
- */
-export interface Schema$GoogleCloudDialogflowV2beta1EntityTypeBatch {
-  /**
-   * A collection of entity types.
-   */
-  entityTypes: Schema$GoogleCloudDialogflowV2beta1EntityType[];
 }
 /**
  * Optional. Represents an entity.
@@ -432,17 +382,6 @@ export interface Schema$GoogleCloudDialogflowV2beta1EventInput {
   parameters: any;
 }
 /**
- * The request message for Agents.ExportAgent.
- */
-export interface Schema$GoogleCloudDialogflowV2beta1ExportAgentRequest {
-  /**
-   * Optional. The Google Cloud Storage URI to export the agent to. Note: The
-   * URI must start with &quot;gs://&quot;. If left unspecified, the serialized
-   * agent is returned inline.
-   */
-  agentUri: string;
-}
-/**
  * The response message for Agents.ExportAgent.
  */
 export interface Schema$GoogleCloudDialogflowV2beta1ExportAgentResponse {
@@ -463,55 +402,6 @@ export interface Schema$GoogleCloudDialogflowV2beta1ExportAgentResponse {
    * only if `agent_uri` is specified in `ExportAgentRequest`.
    */
   agentUri: string;
-}
-/**
- * The request message for Agents.ImportAgent.
- */
-export interface Schema$GoogleCloudDialogflowV2beta1ImportAgentRequest {
-  /**
-   * The agent to import.  Example for how to import an agent via the command
-   * line:  curl \
-   * &#39;https://dialogflow.googleapis.com/v2beta1/projects/&lt;project_name&gt;/agent:import\
-   * -X POST \    -H &#39;Authorization: Bearer &#39;$(gcloud auth
-   * print-access-token) \    -H &#39;Accept: application/json&#39; \    -H
-   * &#39;Content-Type: application/json&#39; \    --compressed \
-   * --data-binary &quot;{       &#39;agentContent&#39;: &#39;$(cat &lt;agent
-   * zip file&gt; | base64 -w 0)&#39;    }&quot;
-   */
-  agentContent: string;
-  /**
-   * The URI to a Google Cloud Storage file containing the agent to import.
-   * Note: The URI must start with &quot;gs://&quot;.
-   */
-  agentUri: string;
-}
-/**
- * Instructs the speech recognizer how to process the audio content.
- */
-export interface Schema$GoogleCloudDialogflowV2beta1InputAudioConfig {
-  /**
-   * Required. Audio encoding of the audio content to process.
-   */
-  audioEncoding: string;
-  /**
-   * Required. The language of the supplied audio. Dialogflow does not do
-   * translations. See [Language Support](https://dialogflow.com/docs/languages)
-   * for a list of the currently supported language codes. Note that queries in
-   * the same session do not necessarily need to specify the same language.
-   */
-  languageCode: string;
-  /**
-   * Optional. The collection of phrase hints which are used to boost accuracy
-   * of speech recognition. Refer to [Cloud Speech API
-   * documentation](/speech/docs/basics#phrase-hints) for more details.
-   */
-  phraseHints: string[];
-  /**
-   * Required. Sample rate (in Hertz) of the audio content sent in the query.
-   * Refer to [Cloud Speech API documentation](/speech/docs/basics) for more
-   * details.
-   */
-  sampleRateHertz: number;
 }
 /**
  * Represents an intent. Intents convert a number of user expressions or
@@ -626,15 +516,6 @@ export interface Schema$GoogleCloudDialogflowV2beta1Intent {
    * Required. Indicates whether webhooks are enabled for the intent.
    */
   webhookState: string;
-}
-/**
- * This message is a wrapper around a collection of intents.
- */
-export interface Schema$GoogleCloudDialogflowV2beta1IntentBatch {
-  /**
-   * A collection of intents.
-   */
-  intents: Schema$GoogleCloudDialogflowV2beta1Intent[];
 }
 /**
  * Represents a single followup intent in the chain.
@@ -1067,66 +948,6 @@ export interface Schema$GoogleCloudDialogflowV2beta1IntentTrainingPhrasePart {
   userDefined: boolean;
 }
 /**
- * The response message for Contexts.ListContexts.
- */
-export interface Schema$GoogleCloudDialogflowV2beta1ListContextsResponse {
-  /**
-   * The list of contexts. There will be a maximum number of items returned
-   * based on the page_size field in the request.
-   */
-  contexts: Schema$GoogleCloudDialogflowV2beta1Context[];
-  /**
-   * Token to retrieve the next page of results, or empty if there are no more
-   * results in the list.
-   */
-  nextPageToken: string;
-}
-/**
- * The response message for EntityTypes.ListEntityTypes.
- */
-export interface Schema$GoogleCloudDialogflowV2beta1ListEntityTypesResponse {
-  /**
-   * The list of agent entity types. There will be a maximum number of items
-   * returned based on the page_size field in the request.
-   */
-  entityTypes: Schema$GoogleCloudDialogflowV2beta1EntityType[];
-  /**
-   * Token to retrieve the next page of results, or empty if there are no more
-   * results in the list.
-   */
-  nextPageToken: string;
-}
-/**
- * The response message for Intents.ListIntents.
- */
-export interface Schema$GoogleCloudDialogflowV2beta1ListIntentsResponse {
-  /**
-   * The list of agent intents. There will be a maximum number of items returned
-   * based on the page_size field in the request.
-   */
-  intents: Schema$GoogleCloudDialogflowV2beta1Intent[];
-  /**
-   * Token to retrieve the next page of results, or empty if there are no more
-   * results in the list.
-   */
-  nextPageToken: string;
-}
-/**
- * The response message for SessionEntityTypes.ListSessionEntityTypes.
- */
-export interface Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse {
-  /**
-   * Token to retrieve the next page of results, or empty if there are no more
-   * results in the list.
-   */
-  nextPageToken: string;
-  /**
-   * The list of session entity types. There will be a maximum number of items
-   * returned based on the page_size field in the request.
-   */
-  sessionEntityTypes: Schema$GoogleCloudDialogflowV2beta1SessionEntityType[];
-}
-/**
  * Represents the contents of the original request that was passed to the
  * `[Streaming]DetectIntent` call.
  */
@@ -1142,63 +963,6 @@ export interface Schema$GoogleCloudDialogflowV2beta1OriginalDetectIntentRequest 
    * Intent.Message.Platform.
    */
   source: string;
-}
-/**
- * Represents the query input. It can contain either:  1.  An audio config which
- * instructs the speech recognizer how to process the speech audio.  2.  A
- * conversational query in the form of text,.  3.  An event that specifies which
- * intent to trigger.
- */
-export interface Schema$GoogleCloudDialogflowV2beta1QueryInput {
-  /**
-   * Instructs the speech recognizer how to process the speech audio.
-   */
-  audioConfig: Schema$GoogleCloudDialogflowV2beta1InputAudioConfig;
-  /**
-   * The event to be processed.
-   */
-  event: Schema$GoogleCloudDialogflowV2beta1EventInput;
-  /**
-   * The natural language text to be processed.
-   */
-  text: Schema$GoogleCloudDialogflowV2beta1TextInput;
-}
-/**
- * Represents the parameters of the conversational query.
- */
-export interface Schema$GoogleCloudDialogflowV2beta1QueryParameters {
-  /**
-   * Optional. The collection of contexts to be activated before this query is
-   * executed.
-   */
-  contexts: Schema$GoogleCloudDialogflowV2beta1Context[];
-  /**
-   * Optional. The geo location of this conversational query.
-   */
-  geoLocation: Schema$GoogleTypeLatLng;
-  /**
-   * Optional. This field can be used to pass custom data into the webhook
-   * associated with the agent. Arbitrary JSON objects are supported.
-   */
-  payload: any;
-  /**
-   * Optional. Specifies whether to delete all contexts in the current session
-   * before the new ones are activated.
-   */
-  resetContexts: boolean;
-  /**
-   * Optional. The collection of session entity types to replace or extend
-   * developer entities with for this query only. The entity synonyms apply to
-   * all languages.
-   */
-  sessionEntityTypes: Schema$GoogleCloudDialogflowV2beta1SessionEntityType[];
-  /**
-   * Optional. The time zone of this conversational query from the [time zone
-   * database](https://www.iana.org/time-zones), e.g., America/New_York,
-   * Europe/Paris. If not provided, the time zone specified in agent settings is
-   * used.
-   */
-  timeZone: string;
 }
 /**
  * Represents the result of conversational query or event processing.
@@ -1287,92 +1051,6 @@ export interface Schema$GoogleCloudDialogflowV2beta1QueryResult {
    */
   webhookSource: string;
 }
-/**
- * The request message for Agents.RestoreAgent.
- */
-export interface Schema$GoogleCloudDialogflowV2beta1RestoreAgentRequest {
-  /**
-   * The agent to restore.  Example for how to restore an agent via the command
-   * line:  curl \
-   * &#39;https://dialogflow.googleapis.com/v2beta1/projects/&lt;project_name&gt;/agent:restore\
-   * -X POST \    -H &#39;Authorization: Bearer &#39;$(gcloud auth
-   * print-access-token) \    -H &#39;Accept: application/json&#39; \    -H
-   * &#39;Content-Type: application/json&#39; \    --compressed \
-   * --data-binary &quot;{        &#39;agentContent&#39;: &#39;$(cat &lt;agent
-   * zip file&gt; | base64 -w 0)&#39;    }&quot; \
-   */
-  agentContent: string;
-  /**
-   * The URI to a Google Cloud Storage file containing the agent to restore.
-   * Note: The URI must start with &quot;gs://&quot;.
-   */
-  agentUri: string;
-}
-/**
- * The response message for Agents.SearchAgents.
- */
-export interface Schema$GoogleCloudDialogflowV2beta1SearchAgentsResponse {
-  /**
-   * The list of agents. There will be a maximum number of items returned based
-   * on the page_size field in the request.
-   */
-  agents: Schema$GoogleCloudDialogflowV2beta1Agent[];
-  /**
-   * Token to retrieve the next page of results, or empty if there are no more
-   * results in the list.
-   */
-  nextPageToken: string;
-}
-/**
- * Represents a session entity type.  Extends or replaces a developer entity
- * type at the user session level (we refer to the entity types defined at the
- * agent level as &quot;developer entity types&quot;).  Note: session entity
- * types apply to all queries, regardless of the language.
- */
-export interface Schema$GoogleCloudDialogflowV2beta1SessionEntityType {
-  /**
-   * Required. The collection of entities associated with this session entity
-   * type.
-   */
-  entities: Schema$GoogleCloudDialogflowV2beta1EntityTypeEntity[];
-  /**
-   * Required. Indicates whether the additional data should override or
-   * supplement the developer entity type definition.
-   */
-  entityOverrideMode: string;
-  /**
-   * Required. The unique identifier of this session entity type. Format:
-   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session
-   * ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`, or
-   * `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime
-   * ID&gt;sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type Display
-   * Name&gt;`. Note: Runtimes are under construction and will be available
-   * soon. If &lt;Runtime ID&gt; is not specified, we assume default
-   * &#39;sandbox&#39; runtime.
-   */
-  name: string;
-}
-/**
- * Represents the natural language text to be processed.
- */
-export interface Schema$GoogleCloudDialogflowV2beta1TextInput {
-  /**
-   * Required. The language of this conversational query. See [Language
-   * Support](https://dialogflow.com/docs/languages) for a list of the currently
-   * supported language codes. Note that queries in the same session do not
-   * necessarily need to specify the same language.
-   */
-  languageCode: string;
-  /**
-   * Required. The UTF-8 encoded natural language text to be processed. Text
-   * length must not exceed 256 bytes.
-   */
-  text: string;
-}
-/**
- * The request message for Agents.TrainAgent.
- */
-export interface Schema$GoogleCloudDialogflowV2beta1TrainAgentRequest {}
 /**
  * The request message for a webhook call.
  */
@@ -1463,6 +1141,47 @@ export interface Schema$GoogleCloudDialogflowV2Context {
   parameters: any;
 }
 /**
+ * The request to detect user&#39;s intent.
+ */
+export interface Schema$GoogleCloudDialogflowV2DetectIntentRequest {
+  /**
+   * Optional. The natural language speech audio to be processed. This field
+   * should be populated iff `query_input` is set to an input audio config. A
+   * single request can contain up to 1 minute of speech audio data.
+   */
+  inputAudio: string;
+  /**
+   * Required. The input specification. It can be set to:  1.  an audio config
+   * which instructs the speech recognizer how to process the speech audio,  2.
+   * a conversational query in the form of text, or  3.  an event that specifies
+   * which intent to trigger.
+   */
+  queryInput: Schema$GoogleCloudDialogflowV2QueryInput;
+  /**
+   * Optional. The parameters of this query.
+   */
+  queryParams: Schema$GoogleCloudDialogflowV2QueryParameters;
+}
+/**
+ * The message returned from the DetectIntent method.
+ */
+export interface Schema$GoogleCloudDialogflowV2DetectIntentResponse {
+  /**
+   * The results of the conversational query or event processing.
+   */
+  queryResult: Schema$GoogleCloudDialogflowV2QueryResult;
+  /**
+   * The unique identifier of the response. It can be used to locate a response
+   * in the training example set or for reporting issues.
+   */
+  responseId: string;
+  /**
+   * Specifies the status of the webhook request. `webhook_status` is never
+   * populated in webhook requests.
+   */
+  webhookStatus: Schema$GoogleRpcStatus;
+}
+/**
  * Represents an entity type. Entity types serve as a tool for extracting
  * parameter values from natural language queries.
  */
@@ -1489,6 +1208,15 @@ export interface Schema$GoogleCloudDialogflowV2EntityType {
    * `projects/&lt;Project ID&gt;/agent/entityTypes/&lt;Entity Type ID&gt;`.
    */
   name: string;
+}
+/**
+ * This message is a wrapper around a collection of entity types.
+ */
+export interface Schema$GoogleCloudDialogflowV2EntityTypeBatch {
+  /**
+   * A collection of entity types.
+   */
+  entityTypes: Schema$GoogleCloudDialogflowV2EntityType[];
 }
 /**
  * Optional. Represents an entity.
@@ -1531,6 +1259,17 @@ export interface Schema$GoogleCloudDialogflowV2EventInput {
   parameters: any;
 }
 /**
+ * The request message for Agents.ExportAgent.
+ */
+export interface Schema$GoogleCloudDialogflowV2ExportAgentRequest {
+  /**
+   * Optional. The Google Cloud Storage URI to export the agent to. Note: The
+   * URI must start with &quot;gs://&quot;. If left unspecified, the serialized
+   * agent is returned inline.
+   */
+  agentUri: string;
+}
+/**
  * The response message for Agents.ExportAgent.
  */
 export interface Schema$GoogleCloudDialogflowV2ExportAgentResponse {
@@ -1551,6 +1290,55 @@ export interface Schema$GoogleCloudDialogflowV2ExportAgentResponse {
    * only if `agent_uri` is specified in `ExportAgentRequest`.
    */
   agentUri: string;
+}
+/**
+ * The request message for Agents.ImportAgent.
+ */
+export interface Schema$GoogleCloudDialogflowV2ImportAgentRequest {
+  /**
+   * The agent to import.  Example for how to import an agent via the command
+   * line:  curl \
+   * &#39;https://dialogflow.googleapis.com/v2/projects/&lt;project_name&gt;/agent:import\
+   * -X POST \    -H &#39;Authorization: Bearer &#39;$(gcloud auth
+   * print-access-token) \    -H &#39;Accept: application/json&#39; \    -H
+   * &#39;Content-Type: application/json&#39; \    --compressed \
+   * --data-binary &quot;{       &#39;agentContent&#39;: &#39;$(cat &lt;agent
+   * zip file&gt; | base64 -w 0)&#39;    }&quot;
+   */
+  agentContent: string;
+  /**
+   * The URI to a Google Cloud Storage file containing the agent to import.
+   * Note: The URI must start with &quot;gs://&quot;.
+   */
+  agentUri: string;
+}
+/**
+ * Instructs the speech recognizer how to process the audio content.
+ */
+export interface Schema$GoogleCloudDialogflowV2InputAudioConfig {
+  /**
+   * Required. Audio encoding of the audio content to process.
+   */
+  audioEncoding: string;
+  /**
+   * Required. The language of the supplied audio. Dialogflow does not do
+   * translations. See [Language Support](https://dialogflow.com/docs/languages)
+   * for a list of the currently supported language codes. Note that queries in
+   * the same session do not necessarily need to specify the same language.
+   */
+  languageCode: string;
+  /**
+   * Optional. The collection of phrase hints which are used to boost accuracy
+   * of speech recognition. Refer to [Cloud Speech API
+   * documentation](/speech/docs/basics#phrase-hints) for more details.
+   */
+  phraseHints: string[];
+  /**
+   * Required. Sample rate (in Hertz) of the audio content sent in the query.
+   * Refer to [Cloud Speech API documentation](/speech/docs/basics) for more
+   * details.
+   */
+  sampleRateHertz: number;
 }
 /**
  * Represents an intent. Intents convert a number of user expressions or
@@ -1653,6 +1441,15 @@ export interface Schema$GoogleCloudDialogflowV2Intent {
    * Required. Indicates whether webhooks are enabled for the intent.
    */
   webhookState: string;
+}
+/**
+ * This message is a wrapper around a collection of intents.
+ */
+export interface Schema$GoogleCloudDialogflowV2IntentBatch {
+  /**
+   * A collection of intents.
+   */
+  intents: Schema$GoogleCloudDialogflowV2Intent[];
 }
 /**
  * Represents a single followup intent in the chain.
@@ -2082,6 +1879,66 @@ export interface Schema$GoogleCloudDialogflowV2IntentTrainingPhrasePart {
   userDefined: boolean;
 }
 /**
+ * The response message for Contexts.ListContexts.
+ */
+export interface Schema$GoogleCloudDialogflowV2ListContextsResponse {
+  /**
+   * The list of contexts. There will be a maximum number of items returned
+   * based on the page_size field in the request.
+   */
+  contexts: Schema$GoogleCloudDialogflowV2Context[];
+  /**
+   * Token to retrieve the next page of results, or empty if there are no more
+   * results in the list.
+   */
+  nextPageToken: string;
+}
+/**
+ * The response message for EntityTypes.ListEntityTypes.
+ */
+export interface Schema$GoogleCloudDialogflowV2ListEntityTypesResponse {
+  /**
+   * The list of agent entity types. There will be a maximum number of items
+   * returned based on the page_size field in the request.
+   */
+  entityTypes: Schema$GoogleCloudDialogflowV2EntityType[];
+  /**
+   * Token to retrieve the next page of results, or empty if there are no more
+   * results in the list.
+   */
+  nextPageToken: string;
+}
+/**
+ * The response message for Intents.ListIntents.
+ */
+export interface Schema$GoogleCloudDialogflowV2ListIntentsResponse {
+  /**
+   * The list of agent intents. There will be a maximum number of items returned
+   * based on the page_size field in the request.
+   */
+  intents: Schema$GoogleCloudDialogflowV2Intent[];
+  /**
+   * Token to retrieve the next page of results, or empty if there are no more
+   * results in the list.
+   */
+  nextPageToken: string;
+}
+/**
+ * The response message for SessionEntityTypes.ListSessionEntityTypes.
+ */
+export interface Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse {
+  /**
+   * Token to retrieve the next page of results, or empty if there are no more
+   * results in the list.
+   */
+  nextPageToken: string;
+  /**
+   * The list of session entity types. There will be a maximum number of items
+   * returned based on the page_size field in the request.
+   */
+  sessionEntityTypes: Schema$GoogleCloudDialogflowV2SessionEntityType[];
+}
+/**
  * Represents the contents of the original request that was passed to the
  * `[Streaming]DetectIntent` call.
  */
@@ -2097,6 +1954,63 @@ export interface Schema$GoogleCloudDialogflowV2OriginalDetectIntentRequest {
    * Intent.Message.Platform.
    */
   source: string;
+}
+/**
+ * Represents the query input. It can contain either:  1.  An audio config which
+ * instructs the speech recognizer how to process the speech audio.  2.  A
+ * conversational query in the form of text,.  3.  An event that specifies which
+ * intent to trigger.
+ */
+export interface Schema$GoogleCloudDialogflowV2QueryInput {
+  /**
+   * Instructs the speech recognizer how to process the speech audio.
+   */
+  audioConfig: Schema$GoogleCloudDialogflowV2InputAudioConfig;
+  /**
+   * The event to be processed.
+   */
+  event: Schema$GoogleCloudDialogflowV2EventInput;
+  /**
+   * The natural language text to be processed.
+   */
+  text: Schema$GoogleCloudDialogflowV2TextInput;
+}
+/**
+ * Represents the parameters of the conversational query.
+ */
+export interface Schema$GoogleCloudDialogflowV2QueryParameters {
+  /**
+   * Optional. The collection of contexts to be activated before this query is
+   * executed.
+   */
+  contexts: Schema$GoogleCloudDialogflowV2Context[];
+  /**
+   * Optional. The geo location of this conversational query.
+   */
+  geoLocation: Schema$GoogleTypeLatLng;
+  /**
+   * Optional. This field can be used to pass custom data into the webhook
+   * associated with the agent. Arbitrary JSON objects are supported.
+   */
+  payload: any;
+  /**
+   * Optional. Specifies whether to delete all contexts in the current session
+   * before the new ones are activated.
+   */
+  resetContexts: boolean;
+  /**
+   * Optional. The collection of session entity types to replace or extend
+   * developer entities with for this query only. The entity synonyms apply to
+   * all languages.
+   */
+  sessionEntityTypes: Schema$GoogleCloudDialogflowV2SessionEntityType[];
+  /**
+   * Optional. The time zone of this conversational query from the [time zone
+   * database](https://www.iana.org/time-zones), e.g., America/New_York,
+   * Europe/Paris. If not provided, the time zone specified in agent settings is
+   * used.
+   */
+  timeZone: string;
 }
 /**
  * Represents the result of conversational query or event processing.
@@ -2185,6 +2099,92 @@ export interface Schema$GoogleCloudDialogflowV2QueryResult {
    */
   webhookSource: string;
 }
+/**
+ * The request message for Agents.RestoreAgent.
+ */
+export interface Schema$GoogleCloudDialogflowV2RestoreAgentRequest {
+  /**
+   * The agent to restore.  Example for how to restore an agent via the command
+   * line:  curl \
+   * &#39;https://dialogflow.googleapis.com/v2/projects/&lt;project_name&gt;/agent:restore\
+   * -X POST \    -H &#39;Authorization: Bearer &#39;$(gcloud auth
+   * print-access-token) \    -H &#39;Accept: application/json&#39; \    -H
+   * &#39;Content-Type: application/json&#39; \    --compressed \
+   * --data-binary &quot;{        &#39;agentContent&#39;: &#39;$(cat &lt;agent
+   * zip file&gt; | base64 -w 0)&#39;    }&quot; \
+   */
+  agentContent: string;
+  /**
+   * The URI to a Google Cloud Storage file containing the agent to restore.
+   * Note: The URI must start with &quot;gs://&quot;.
+   */
+  agentUri: string;
+}
+/**
+ * The response message for Agents.SearchAgents.
+ */
+export interface Schema$GoogleCloudDialogflowV2SearchAgentsResponse {
+  /**
+   * The list of agents. There will be a maximum number of items returned based
+   * on the page_size field in the request.
+   */
+  agents: Schema$GoogleCloudDialogflowV2Agent[];
+  /**
+   * Token to retrieve the next page of results, or empty if there are no more
+   * results in the list.
+   */
+  nextPageToken: string;
+}
+/**
+ * Represents a session entity type.  Extends or replaces a developer entity
+ * type at the user session level (we refer to the entity types defined at the
+ * agent level as &quot;developer entity types&quot;).  Note: session entity
+ * types apply to all queries, regardless of the language.
+ */
+export interface Schema$GoogleCloudDialogflowV2SessionEntityType {
+  /**
+   * Required. The collection of entities associated with this session entity
+   * type.
+   */
+  entities: Schema$GoogleCloudDialogflowV2EntityTypeEntity[];
+  /**
+   * Required. Indicates whether the additional data should override or
+   * supplement the developer entity type definition.
+   */
+  entityOverrideMode: string;
+  /**
+   * Required. The unique identifier of this session entity type. Format:
+   * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session
+   * ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`, or
+   * `projects/&lt;Project ID&gt;/agent/runtimes/&lt;Runtime
+   * ID&gt;sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type Display
+   * Name&gt;`. Note: Runtimes are under construction and will be available
+   * soon. If &lt;Runtime ID&gt; is not specified, we assume default
+   * &#39;sandbox&#39; runtime.
+   */
+  name: string;
+}
+/**
+ * Represents the natural language text to be processed.
+ */
+export interface Schema$GoogleCloudDialogflowV2TextInput {
+  /**
+   * Required. The language of this conversational query. See [Language
+   * Support](https://dialogflow.com/docs/languages) for a list of the currently
+   * supported language codes. Note that queries in the same session do not
+   * necessarily need to specify the same language.
+   */
+  languageCode: string;
+  /**
+   * Required. The UTF-8 encoded natural language text to be processed. Text
+   * length must not exceed 256 bytes.
+   */
+  text: string;
+}
+/**
+ * The request message for Agents.TrainAgent.
+ */
+export interface Schema$GoogleCloudDialogflowV2TrainAgentRequest {}
 /**
  * The request message for a webhook call.
  */
@@ -2387,9 +2387,9 @@ export class Resource$Projects {
   getAgent =
       (params: any,
        options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Agent>,
+       BodyResponseCallback<Schema$GoogleCloudDialogflowV2Agent>,
        callback?:
-           BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Agent>) => {
+           BodyResponseCallback<Schema$GoogleCloudDialogflowV2Agent>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -2399,7 +2399,7 @@ export class Resource$Projects {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/{parent}/agent')
+                url: (rootUrl + '/v2/{parent}/agent')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               },
@@ -2409,7 +2409,7 @@ export class Resource$Projects {
           pathParams: ['parent'],
           context: this.root
         };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Agent>(
+        createAPIRequest<Schema$GoogleCloudDialogflowV2Agent>(
             parameters, callback!);
       };
 }
@@ -2436,7 +2436,7 @@ export class Resource$Projects$Agent {
    *
    * @param {object} params Parameters for request
    * @param {string} params.parent Required. The project that the agent to export is associated with. Format: `projects/<Project ID>`.
-   * @param {().GoogleCloudDialogflowV2beta1ExportAgentRequest} params.resource Request body data
+   * @param {().GoogleCloudDialogflowV2ExportAgentRequest} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
@@ -2455,7 +2455,7 @@ export class Resource$Projects$Agent {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/{parent}/agent:export')
+                url: (rootUrl + '/v2/{parent}/agent:export')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
@@ -2482,7 +2482,7 @@ export class Resource$Projects$Agent {
    *
    * @param {object} params Parameters for request
    * @param {string} params.parent Required. The project that the agent to import is associated with. Format: `projects/<Project ID>`.
-   * @param {().GoogleCloudDialogflowV2beta1ImportAgentRequest} params.resource Request body data
+   * @param {().GoogleCloudDialogflowV2ImportAgentRequest} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
@@ -2490,7 +2490,7 @@ export class Resource$Projects$Agent {
 import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>) => {if(typeof options === 'function') {
     callback = options;
     options = {};
-  } options = options || {}; const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v2beta1/{parent}/agent:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['parent'], pathParams: ['parent'], context: this.root}; createAPIRequest<Schema$GoogleLongrunningOperation>(parameters, callback!);};
+  } options = options || {}; const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v2/{parent}/agent:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['parent'], pathParams: ['parent'], context: this.root}; createAPIRequest<Schema$GoogleLongrunningOperation>(parameters, callback!);};
 
 
   /**
@@ -2504,7 +2504,7 @@ import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Google
    *
    * @param {object} params Parameters for request
    * @param {string} params.parent Required. The project that the agent to restore is associated with. Format: `projects/<Project ID>`.
-   * @param {().GoogleCloudDialogflowV2beta1RestoreAgentRequest} params.resource Request body data
+   * @param {().GoogleCloudDialogflowV2RestoreAgentRequest} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
@@ -2523,7 +2523,7 @@ import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Google
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/{parent}/agent:restore')
+                url: (rootUrl + '/v2/{parent}/agent:restore')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
@@ -2558,10 +2558,10 @@ import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Google
    */
   search =
       (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1SearchAgentsResponse>,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$GoogleCloudDialogflowV2SearchAgentsResponse>,
        callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1SearchAgentsResponse>) => {
+           Schema$GoogleCloudDialogflowV2SearchAgentsResponse>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -2571,7 +2571,7 @@ import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Google
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/{parent}/agent:search')
+                url: (rootUrl + '/v2/{parent}/agent:search')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               },
@@ -2581,8 +2581,7 @@ import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Google
           pathParams: ['parent'],
           context: this.root
         };
-        createAPIRequest<
-            Schema$GoogleCloudDialogflowV2beta1SearchAgentsResponse>(
+        createAPIRequest<Schema$GoogleCloudDialogflowV2SearchAgentsResponse>(
             parameters, callback!);
       };
 
@@ -2596,7 +2595,7 @@ import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Google
    *
    * @param {object} params Parameters for request
    * @param {string} params.parent Required. The project that the agent to train is associated with. Format: `projects/<Project ID>`.
-   * @param {().GoogleCloudDialogflowV2beta1TrainAgentRequest} params.resource Request body data
+   * @param {().GoogleCloudDialogflowV2TrainAgentRequest} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
@@ -2615,7 +2614,7 @@ import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Google
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/{parent}/agent:train')
+                url: (rootUrl + '/v2/{parent}/agent:train')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
@@ -2646,7 +2645,7 @@ export class Resource$Projects$Agent$Entitytypes {
    *
    * @param {object} params Parameters for request
    * @param {string} params.parent Required. The name of the agent to delete all entities types for. Format: `projects/<Project ID>/agent`.
-   * @param {().GoogleCloudDialogflowV2beta1BatchDeleteEntityTypesRequest} params.resource Request body data
+   * @param {().GoogleCloudDialogflowV2BatchDeleteEntityTypesRequest} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
@@ -2665,7 +2664,7 @@ export class Resource$Projects$Agent$Entitytypes {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/{parent}/entityTypes:batchDelete')
+                url: (rootUrl + '/v2/{parent}/entityTypes:batchDelete')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
@@ -2690,7 +2689,7 @@ export class Resource$Projects$Agent$Entitytypes {
    *
    * @param {object} params Parameters for request
    * @param {string} params.parent Required. The name of the agent to update or create entity types in. Format: `projects/<Project ID>/agent`.
-   * @param {().GoogleCloudDialogflowV2beta1BatchUpdateEntityTypesRequest} params.resource Request body data
+   * @param {().GoogleCloudDialogflowV2BatchUpdateEntityTypesRequest} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
@@ -2709,7 +2708,7 @@ export class Resource$Projects$Agent$Entitytypes {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/{parent}/entityTypes:batchUpdate')
+                url: (rootUrl + '/v2/{parent}/entityTypes:batchUpdate')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
@@ -2733,7 +2732,7 @@ export class Resource$Projects$Agent$Entitytypes {
    * @param {object} params Parameters for request
    * @param {string=} params.languageCode Optional. The language of entity synonyms defined in `entity_type`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
    * @param {string} params.parent Required. The agent to create a entity type for. Format: `projects/<Project ID>/agent`.
-   * @param {().GoogleCloudDialogflowV2beta1EntityType} params.resource Request body data
+   * @param {().GoogleCloudDialogflowV2EntityType} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
@@ -2741,9 +2740,9 @@ export class Resource$Projects$Agent$Entitytypes {
   create =
       (params: any,
        options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EntityType>,
-       callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1EntityType>) => {
+       BodyResponseCallback<Schema$GoogleCloudDialogflowV2EntityType>,
+       callback?:
+           BodyResponseCallback<Schema$GoogleCloudDialogflowV2EntityType>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -2753,7 +2752,7 @@ export class Resource$Projects$Agent$Entitytypes {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/{parent}/entityTypes')
+                url: (rootUrl + '/v2/{parent}/entityTypes')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
@@ -2763,7 +2762,7 @@ export class Resource$Projects$Agent$Entitytypes {
           pathParams: ['parent'],
           context: this.root
         };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1EntityType>(
+        createAPIRequest<Schema$GoogleCloudDialogflowV2EntityType>(
             parameters, callback!);
       };
 
@@ -2793,8 +2792,7 @@ export class Resource$Projects$Agent$Entitytypes {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'DELETE'
               },
               options),
@@ -2823,9 +2821,9 @@ export class Resource$Projects$Agent$Entitytypes {
   get =
       (params: any,
        options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EntityType>,
-       callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1EntityType>) => {
+       BodyResponseCallback<Schema$GoogleCloudDialogflowV2EntityType>,
+       callback?:
+           BodyResponseCallback<Schema$GoogleCloudDialogflowV2EntityType>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -2835,8 +2833,7 @@ export class Resource$Projects$Agent$Entitytypes {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               },
               options),
@@ -2845,7 +2842,7 @@ export class Resource$Projects$Agent$Entitytypes {
           pathParams: ['name'],
           context: this.root
         };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1EntityType>(
+        createAPIRequest<Schema$GoogleCloudDialogflowV2EntityType>(
             parameters, callback!);
       };
 
@@ -2868,9 +2865,9 @@ export class Resource$Projects$Agent$Entitytypes {
   list =
       (params: any,
        options: MethodOptions|BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1ListEntityTypesResponse>,
+           Schema$GoogleCloudDialogflowV2ListEntityTypesResponse>,
        callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1ListEntityTypesResponse>) => {
+           Schema$GoogleCloudDialogflowV2ListEntityTypesResponse>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -2880,7 +2877,7 @@ export class Resource$Projects$Agent$Entitytypes {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/{parent}/entityTypes')
+                url: (rootUrl + '/v2/{parent}/entityTypes')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               },
@@ -2890,8 +2887,7 @@ export class Resource$Projects$Agent$Entitytypes {
           pathParams: ['parent'],
           context: this.root
         };
-        createAPIRequest<
-            Schema$GoogleCloudDialogflowV2beta1ListEntityTypesResponse>(
+        createAPIRequest<Schema$GoogleCloudDialogflowV2ListEntityTypesResponse>(
             parameters, callback!);
       };
 
@@ -2906,7 +2902,7 @@ export class Resource$Projects$Agent$Entitytypes {
    * @param {string=} params.languageCode Optional. The language of entity synonyms defined in `entity_type`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
    * @param {string} params.name Required for all methods except `create` (`create` populates the name automatically. The unique identifier of the entity type. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
    * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
-   * @param {().GoogleCloudDialogflowV2beta1EntityType} params.resource Request body data
+   * @param {().GoogleCloudDialogflowV2EntityType} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
@@ -2914,9 +2910,9 @@ export class Resource$Projects$Agent$Entitytypes {
   patch =
       (params: any,
        options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EntityType>,
-       callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1EntityType>) => {
+       BodyResponseCallback<Schema$GoogleCloudDialogflowV2EntityType>,
+       callback?:
+           BodyResponseCallback<Schema$GoogleCloudDialogflowV2EntityType>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -2926,8 +2922,7 @@ export class Resource$Projects$Agent$Entitytypes {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'PATCH'
               },
               options),
@@ -2936,7 +2931,7 @@ export class Resource$Projects$Agent$Entitytypes {
           pathParams: ['name'],
           context: this.root
         };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1EntityType>(
+        createAPIRequest<Schema$GoogleCloudDialogflowV2EntityType>(
             parameters, callback!);
       };
 }
@@ -2956,7 +2951,7 @@ export class Resource$Projects$Agent$Entitytypes$Entities {
    *
    * @param {object} params Parameters for request
    * @param {string} params.parent Required. The name of the entity type to create entities in. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
-   * @param {().GoogleCloudDialogflowV2beta1BatchCreateEntitiesRequest} params.resource Request body data
+   * @param {().GoogleCloudDialogflowV2BatchCreateEntitiesRequest} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
@@ -2975,7 +2970,7 @@ export class Resource$Projects$Agent$Entitytypes$Entities {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/{parent}/entities:batchCreate')
+                url: (rootUrl + '/v2/{parent}/entities:batchCreate')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
@@ -2999,7 +2994,7 @@ export class Resource$Projects$Agent$Entitytypes$Entities {
    *
    * @param {object} params Parameters for request
    * @param {string} params.parent Required. The name of the entity type to delete entries for. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
-   * @param {().GoogleCloudDialogflowV2beta1BatchDeleteEntitiesRequest} params.resource Request body data
+   * @param {().GoogleCloudDialogflowV2BatchDeleteEntitiesRequest} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
@@ -3018,7 +3013,7 @@ export class Resource$Projects$Agent$Entitytypes$Entities {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/{parent}/entities:batchDelete')
+                url: (rootUrl + '/v2/{parent}/entities:batchDelete')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
@@ -3043,7 +3038,7 @@ export class Resource$Projects$Agent$Entitytypes$Entities {
    *
    * @param {object} params Parameters for request
    * @param {string} params.parent Required. The name of the entity type to update the entities in. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
-   * @param {().GoogleCloudDialogflowV2beta1BatchUpdateEntitiesRequest} params.resource Request body data
+   * @param {().GoogleCloudDialogflowV2BatchUpdateEntitiesRequest} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
@@ -3062,7 +3057,7 @@ export class Resource$Projects$Agent$Entitytypes$Entities {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/{parent}/entities:batchUpdate')
+                url: (rootUrl + '/v2/{parent}/entities:batchUpdate')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
@@ -3093,7 +3088,7 @@ export class Resource$Projects$Agent$Intents {
    *
    * @param {object} params Parameters for request
    * @param {string} params.parent Required. The name of the agent to delete all entities types for. Format: `projects/<Project ID>/agent`.
-   * @param {().GoogleCloudDialogflowV2beta1BatchDeleteIntentsRequest} params.resource Request body data
+   * @param {().GoogleCloudDialogflowV2BatchDeleteIntentsRequest} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
@@ -3112,7 +3107,7 @@ export class Resource$Projects$Agent$Intents {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/{parent}/intents:batchDelete')
+                url: (rootUrl + '/v2/{parent}/intents:batchDelete')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
@@ -3136,7 +3131,7 @@ export class Resource$Projects$Agent$Intents {
    *
    * @param {object} params Parameters for request
    * @param {string} params.parent Required. The name of the agent to update or create intents in. Format: `projects/<Project ID>/agent`.
-   * @param {().GoogleCloudDialogflowV2beta1BatchUpdateIntentsRequest} params.resource Request body data
+   * @param {().GoogleCloudDialogflowV2BatchUpdateIntentsRequest} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
@@ -3155,7 +3150,7 @@ export class Resource$Projects$Agent$Intents {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/{parent}/intents:batchUpdate')
+                url: (rootUrl + '/v2/{parent}/intents:batchUpdate')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
@@ -3180,7 +3175,7 @@ export class Resource$Projects$Agent$Intents {
    * @param {string=} params.intentView Optional. The resource view to apply to the returned intent.
    * @param {string=} params.languageCode Optional. The language of training phrases, parameters and rich messages defined in `intent`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
    * @param {string} params.parent Required. The agent to create a intent for. Format: `projects/<Project ID>/agent`.
-   * @param {().GoogleCloudDialogflowV2beta1Intent} params.resource Request body data
+   * @param {().GoogleCloudDialogflowV2Intent} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
@@ -3188,9 +3183,9 @@ export class Resource$Projects$Agent$Intents {
   create =
       (params: any,
        options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>,
+       BodyResponseCallback<Schema$GoogleCloudDialogflowV2Intent>,
        callback?:
-           BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>) => {
+           BodyResponseCallback<Schema$GoogleCloudDialogflowV2Intent>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -3200,7 +3195,7 @@ export class Resource$Projects$Agent$Intents {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/{parent}/intents')
+                url: (rootUrl + '/v2/{parent}/intents')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
@@ -3210,7 +3205,7 @@ export class Resource$Projects$Agent$Intents {
           pathParams: ['parent'],
           context: this.root
         };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Intent>(
+        createAPIRequest<Schema$GoogleCloudDialogflowV2Intent>(
             parameters, callback!);
       };
 
@@ -3240,8 +3235,7 @@ export class Resource$Projects$Agent$Intents {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'DELETE'
               },
               options),
@@ -3271,9 +3265,9 @@ export class Resource$Projects$Agent$Intents {
   get =
       (params: any,
        options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>,
+       BodyResponseCallback<Schema$GoogleCloudDialogflowV2Intent>,
        callback?:
-           BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>) => {
+           BodyResponseCallback<Schema$GoogleCloudDialogflowV2Intent>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -3283,8 +3277,7 @@ export class Resource$Projects$Agent$Intents {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               },
               options),
@@ -3293,7 +3286,7 @@ export class Resource$Projects$Agent$Intents {
           pathParams: ['name'],
           context: this.root
         };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Intent>(
+        createAPIRequest<Schema$GoogleCloudDialogflowV2Intent>(
             parameters, callback!);
       };
 
@@ -3316,10 +3309,10 @@ export class Resource$Projects$Agent$Intents {
    */
   list =
       (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1ListIntentsResponse>,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$GoogleCloudDialogflowV2ListIntentsResponse>,
        callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1ListIntentsResponse>) => {
+           Schema$GoogleCloudDialogflowV2ListIntentsResponse>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -3329,7 +3322,7 @@ export class Resource$Projects$Agent$Intents {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/{parent}/intents')
+                url: (rootUrl + '/v2/{parent}/intents')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               },
@@ -3339,8 +3332,7 @@ export class Resource$Projects$Agent$Intents {
           pathParams: ['parent'],
           context: this.root
         };
-        createAPIRequest<
-            Schema$GoogleCloudDialogflowV2beta1ListIntentsResponse>(
+        createAPIRequest<Schema$GoogleCloudDialogflowV2ListIntentsResponse>(
             parameters, callback!);
       };
 
@@ -3356,7 +3348,7 @@ export class Resource$Projects$Agent$Intents {
    * @param {string=} params.languageCode Optional. The language of training phrases, parameters and rich messages defined in `intent`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
    * @param {string} params.name Required for all methods except `create` (`create` populates the name automatically. The unique identifier of this intent. Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
    * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
-   * @param {().GoogleCloudDialogflowV2beta1Intent} params.resource Request body data
+   * @param {().GoogleCloudDialogflowV2Intent} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
@@ -3364,9 +3356,9 @@ export class Resource$Projects$Agent$Intents {
   patch =
       (params: any,
        options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>,
+       BodyResponseCallback<Schema$GoogleCloudDialogflowV2Intent>,
        callback?:
-           BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>) => {
+           BodyResponseCallback<Schema$GoogleCloudDialogflowV2Intent>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -3376,8 +3368,7 @@ export class Resource$Projects$Agent$Intents {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'PATCH'
               },
               options),
@@ -3386,7 +3377,7 @@ export class Resource$Projects$Agent$Intents {
           pathParams: ['name'],
           context: this.root
         };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Intent>(
+        createAPIRequest<Schema$GoogleCloudDialogflowV2Intent>(
             parameters, callback!);
       };
 }
@@ -3436,7 +3427,7 @@ export class Resource$Projects$Agent$Runtimes$Sessions {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/{parent}/contexts')
+                url: (rootUrl + '/v2/{parent}/contexts')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'DELETE'
               },
@@ -3461,17 +3452,17 @@ export class Resource$Projects$Agent$Runtimes$Sessions {
    *
    * @param {object} params Parameters for request
    * @param {string} params.session Required. The name of the session this query is sent to. Format: `projects/<Project ID>/agent/sessions/<Session ID>`, or `projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>`. Note: Runtimes are under construction and will be available soon. If <Runtime ID> is not specified, we assume default 'sandbox' runtime. It's up to the API caller to choose an appropriate session ID. It can be a random number or some type of user identifier (preferably hashed). The length of the session ID must not exceed 36 bytes.
-   * @param {().GoogleCloudDialogflowV2beta1DetectIntentRequest} params.resource Request body data
+   * @param {().GoogleCloudDialogflowV2DetectIntentRequest} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
   detectIntent =
       (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse>,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$GoogleCloudDialogflowV2DetectIntentResponse>,
        callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse>) => {
+           Schema$GoogleCloudDialogflowV2DetectIntentResponse>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -3481,7 +3472,7 @@ export class Resource$Projects$Agent$Runtimes$Sessions {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/{session}:detectIntent')
+                url: (rootUrl + '/v2/{session}:detectIntent')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
@@ -3491,8 +3482,7 @@ export class Resource$Projects$Agent$Runtimes$Sessions {
           pathParams: ['session'],
           context: this.root
         };
-        createAPIRequest<
-            Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse>(
+        createAPIRequest<Schema$GoogleCloudDialogflowV2DetectIntentResponse>(
             parameters, callback!);
       };
 }
@@ -3510,7 +3500,7 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Contexts {
    *
    * @param {object} params Parameters for request
    * @param {string} params.parent Required. The session to create a context for. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>`. Note: Runtimes are under construction and will be available soon. If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
-   * @param {().GoogleCloudDialogflowV2beta1Context} params.resource Request body data
+   * @param {().GoogleCloudDialogflowV2Context} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
@@ -3518,9 +3508,9 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Contexts {
   create =
       (params: any,
        options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>,
-       callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1Context>) => {
+       BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
+       callback?:
+           BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -3530,7 +3520,7 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Contexts {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/{parent}/contexts')
+                url: (rootUrl + '/v2/{parent}/contexts')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
@@ -3540,7 +3530,7 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Contexts {
           pathParams: ['parent'],
           context: this.root
         };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
+        createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
             parameters, callback!);
       };
 
@@ -3570,8 +3560,7 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Contexts {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'DELETE'
               },
               options),
@@ -3599,9 +3588,9 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Contexts {
   get =
       (params: any,
        options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>,
-       callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1Context>) => {
+       BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
+       callback?:
+           BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -3611,8 +3600,7 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Contexts {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               },
               options),
@@ -3621,7 +3609,7 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Contexts {
           pathParams: ['name'],
           context: this.root
         };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
+        createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
             parameters, callback!);
       };
 
@@ -3642,10 +3630,10 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Contexts {
    */
   list =
       (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1ListContextsResponse>,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$GoogleCloudDialogflowV2ListContextsResponse>,
        callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1ListContextsResponse>) => {
+           Schema$GoogleCloudDialogflowV2ListContextsResponse>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -3655,7 +3643,7 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Contexts {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/{parent}/contexts')
+                url: (rootUrl + '/v2/{parent}/contexts')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               },
@@ -3665,8 +3653,7 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Contexts {
           pathParams: ['parent'],
           context: this.root
         };
-        createAPIRequest<
-            Schema$GoogleCloudDialogflowV2beta1ListContextsResponse>(
+        createAPIRequest<Schema$GoogleCloudDialogflowV2ListContextsResponse>(
             parameters, callback!);
       };
 
@@ -3680,7 +3667,7 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Contexts {
    * @param {object} params Parameters for request
    * @param {string} params.name Required. The unique identifier of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`, or `projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>/contexts/<Context ID>`. Note: Runtimes are under construction and will be available soon. The Context ID is always converted to lowercase. If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
    * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
-   * @param {().GoogleCloudDialogflowV2beta1Context} params.resource Request body data
+   * @param {().GoogleCloudDialogflowV2Context} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
@@ -3688,9 +3675,9 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Contexts {
   patch =
       (params: any,
        options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>,
-       callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1Context>) => {
+       BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
+       callback?:
+           BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -3700,8 +3687,7 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Contexts {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'PATCH'
               },
               options),
@@ -3710,7 +3696,7 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Contexts {
           pathParams: ['name'],
           context: this.root
         };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
+        createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
             parameters, callback!);
       };
 }
@@ -3729,17 +3715,17 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Entitytypes {
    *
    * @param {object} params Parameters for request
    * @param {string} params.parent Required. The session to create a session entity type for. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>`. Note: Runtimes are under construction and will be available soon. If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
-   * @param {().GoogleCloudDialogflowV2beta1SessionEntityType} params.resource Request body data
+   * @param {().GoogleCloudDialogflowV2SessionEntityType} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
   create =
       (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1SessionEntityType>,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
        callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1SessionEntityType>) => {
+           Schema$GoogleCloudDialogflowV2SessionEntityType>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -3749,7 +3735,7 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Entitytypes {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/{parent}/entityTypes')
+                url: (rootUrl + '/v2/{parent}/entityTypes')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
@@ -3759,7 +3745,7 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Entitytypes {
           pathParams: ['parent'],
           context: this.root
         };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>(
+        createAPIRequest<Schema$GoogleCloudDialogflowV2SessionEntityType>(
             parameters, callback!);
       };
 
@@ -3789,8 +3775,7 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Entitytypes {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'DELETE'
               },
               options),
@@ -3817,10 +3802,10 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Entitytypes {
    */
   get =
       (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1SessionEntityType>,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
        callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1SessionEntityType>) => {
+           Schema$GoogleCloudDialogflowV2SessionEntityType>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -3830,8 +3815,7 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Entitytypes {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               },
               options),
@@ -3840,7 +3824,7 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Entitytypes {
           pathParams: ['name'],
           context: this.root
         };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>(
+        createAPIRequest<Schema$GoogleCloudDialogflowV2SessionEntityType>(
             parameters, callback!);
       };
 
@@ -3863,9 +3847,9 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Entitytypes {
   list =
       (params: any,
        options: MethodOptions|BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse>,
+           Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse>,
        callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse>) => {
+           Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -3875,7 +3859,7 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Entitytypes {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/{parent}/entityTypes')
+                url: (rootUrl + '/v2/{parent}/entityTypes')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               },
@@ -3886,7 +3870,7 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Entitytypes {
           context: this.root
         };
         createAPIRequest<
-            Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse>(
+            Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse>(
             parameters, callback!);
       };
 
@@ -3900,17 +3884,17 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Entitytypes {
    * @param {object} params Parameters for request
    * @param {string} params.name Required. The unique identifier of this session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`, or `projects/<Project ID>/agent/runtimes/<Runtime ID>sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. Note: Runtimes are under construction and will be available soon. If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
    * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
-   * @param {().GoogleCloudDialogflowV2beta1SessionEntityType} params.resource Request body data
+   * @param {().GoogleCloudDialogflowV2SessionEntityType} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
   patch =
       (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1SessionEntityType>,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
        callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1SessionEntityType>) => {
+           Schema$GoogleCloudDialogflowV2SessionEntityType>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -3920,8 +3904,7 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Entitytypes {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'PATCH'
               },
               options),
@@ -3930,7 +3913,7 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Entitytypes {
           pathParams: ['name'],
           context: this.root
         };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>(
+        createAPIRequest<Schema$GoogleCloudDialogflowV2SessionEntityType>(
             parameters, callback!);
       };
 }
@@ -3972,7 +3955,7 @@ export class Resource$Projects$Agent$Sessions {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/{parent}/contexts')
+                url: (rootUrl + '/v2/{parent}/contexts')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'DELETE'
               },
@@ -3997,17 +3980,17 @@ export class Resource$Projects$Agent$Sessions {
    *
    * @param {object} params Parameters for request
    * @param {string} params.session Required. The name of the session this query is sent to. Format: `projects/<Project ID>/agent/sessions/<Session ID>`, or `projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>`. Note: Runtimes are under construction and will be available soon. If <Runtime ID> is not specified, we assume default 'sandbox' runtime. It's up to the API caller to choose an appropriate session ID. It can be a random number or some type of user identifier (preferably hashed). The length of the session ID must not exceed 36 bytes.
-   * @param {().GoogleCloudDialogflowV2beta1DetectIntentRequest} params.resource Request body data
+   * @param {().GoogleCloudDialogflowV2DetectIntentRequest} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
   detectIntent =
       (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse>,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$GoogleCloudDialogflowV2DetectIntentResponse>,
        callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse>) => {
+           Schema$GoogleCloudDialogflowV2DetectIntentResponse>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -4017,7 +4000,7 @@ export class Resource$Projects$Agent$Sessions {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/{session}:detectIntent')
+                url: (rootUrl + '/v2/{session}:detectIntent')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
@@ -4027,8 +4010,7 @@ export class Resource$Projects$Agent$Sessions {
           pathParams: ['session'],
           context: this.root
         };
-        createAPIRequest<
-            Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse>(
+        createAPIRequest<Schema$GoogleCloudDialogflowV2DetectIntentResponse>(
             parameters, callback!);
       };
 }
@@ -4046,7 +4028,7 @@ export class Resource$Projects$Agent$Sessions$Contexts {
    *
    * @param {object} params Parameters for request
    * @param {string} params.parent Required. The session to create a context for. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>`. Note: Runtimes are under construction and will be available soon. If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
-   * @param {().GoogleCloudDialogflowV2beta1Context} params.resource Request body data
+   * @param {().GoogleCloudDialogflowV2Context} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
@@ -4054,9 +4036,9 @@ export class Resource$Projects$Agent$Sessions$Contexts {
   create =
       (params: any,
        options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>,
-       callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1Context>) => {
+       BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
+       callback?:
+           BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -4066,7 +4048,7 @@ export class Resource$Projects$Agent$Sessions$Contexts {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/{parent}/contexts')
+                url: (rootUrl + '/v2/{parent}/contexts')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
@@ -4076,7 +4058,7 @@ export class Resource$Projects$Agent$Sessions$Contexts {
           pathParams: ['parent'],
           context: this.root
         };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
+        createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
             parameters, callback!);
       };
 
@@ -4106,8 +4088,7 @@ export class Resource$Projects$Agent$Sessions$Contexts {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'DELETE'
               },
               options),
@@ -4135,9 +4116,9 @@ export class Resource$Projects$Agent$Sessions$Contexts {
   get =
       (params: any,
        options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>,
-       callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1Context>) => {
+       BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
+       callback?:
+           BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -4147,8 +4128,7 @@ export class Resource$Projects$Agent$Sessions$Contexts {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               },
               options),
@@ -4157,7 +4137,7 @@ export class Resource$Projects$Agent$Sessions$Contexts {
           pathParams: ['name'],
           context: this.root
         };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
+        createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
             parameters, callback!);
       };
 
@@ -4178,10 +4158,10 @@ export class Resource$Projects$Agent$Sessions$Contexts {
    */
   list =
       (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1ListContextsResponse>,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$GoogleCloudDialogflowV2ListContextsResponse>,
        callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1ListContextsResponse>) => {
+           Schema$GoogleCloudDialogflowV2ListContextsResponse>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -4191,7 +4171,7 @@ export class Resource$Projects$Agent$Sessions$Contexts {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/{parent}/contexts')
+                url: (rootUrl + '/v2/{parent}/contexts')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               },
@@ -4201,8 +4181,7 @@ export class Resource$Projects$Agent$Sessions$Contexts {
           pathParams: ['parent'],
           context: this.root
         };
-        createAPIRequest<
-            Schema$GoogleCloudDialogflowV2beta1ListContextsResponse>(
+        createAPIRequest<Schema$GoogleCloudDialogflowV2ListContextsResponse>(
             parameters, callback!);
       };
 
@@ -4216,7 +4195,7 @@ export class Resource$Projects$Agent$Sessions$Contexts {
    * @param {object} params Parameters for request
    * @param {string} params.name Required. The unique identifier of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`, or `projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>/contexts/<Context ID>`. Note: Runtimes are under construction and will be available soon. The Context ID is always converted to lowercase. If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
    * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
-   * @param {().GoogleCloudDialogflowV2beta1Context} params.resource Request body data
+   * @param {().GoogleCloudDialogflowV2Context} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
@@ -4224,9 +4203,9 @@ export class Resource$Projects$Agent$Sessions$Contexts {
   patch =
       (params: any,
        options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>,
-       callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1Context>) => {
+       BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
+       callback?:
+           BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -4236,8 +4215,7 @@ export class Resource$Projects$Agent$Sessions$Contexts {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'PATCH'
               },
               options),
@@ -4246,7 +4224,7 @@ export class Resource$Projects$Agent$Sessions$Contexts {
           pathParams: ['name'],
           context: this.root
         };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
+        createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
             parameters, callback!);
       };
 }
@@ -4265,17 +4243,17 @@ export class Resource$Projects$Agent$Sessions$Entitytypes {
    *
    * @param {object} params Parameters for request
    * @param {string} params.parent Required. The session to create a session entity type for. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/runtimes/<Runtime ID>/sessions/<Session ID>`. Note: Runtimes are under construction and will be available soon. If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
-   * @param {().GoogleCloudDialogflowV2beta1SessionEntityType} params.resource Request body data
+   * @param {().GoogleCloudDialogflowV2SessionEntityType} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
   create =
       (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1SessionEntityType>,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
        callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1SessionEntityType>) => {
+           Schema$GoogleCloudDialogflowV2SessionEntityType>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -4285,7 +4263,7 @@ export class Resource$Projects$Agent$Sessions$Entitytypes {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/{parent}/entityTypes')
+                url: (rootUrl + '/v2/{parent}/entityTypes')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
@@ -4295,7 +4273,7 @@ export class Resource$Projects$Agent$Sessions$Entitytypes {
           pathParams: ['parent'],
           context: this.root
         };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>(
+        createAPIRequest<Schema$GoogleCloudDialogflowV2SessionEntityType>(
             parameters, callback!);
       };
 
@@ -4325,8 +4303,7 @@ export class Resource$Projects$Agent$Sessions$Entitytypes {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'DELETE'
               },
               options),
@@ -4353,10 +4330,10 @@ export class Resource$Projects$Agent$Sessions$Entitytypes {
    */
   get =
       (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1SessionEntityType>,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
        callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1SessionEntityType>) => {
+           Schema$GoogleCloudDialogflowV2SessionEntityType>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -4366,8 +4343,7 @@ export class Resource$Projects$Agent$Sessions$Entitytypes {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               },
               options),
@@ -4376,7 +4352,7 @@ export class Resource$Projects$Agent$Sessions$Entitytypes {
           pathParams: ['name'],
           context: this.root
         };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>(
+        createAPIRequest<Schema$GoogleCloudDialogflowV2SessionEntityType>(
             parameters, callback!);
       };
 
@@ -4399,9 +4375,9 @@ export class Resource$Projects$Agent$Sessions$Entitytypes {
   list =
       (params: any,
        options: MethodOptions|BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse>,
+           Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse>,
        callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse>) => {
+           Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -4411,7 +4387,7 @@ export class Resource$Projects$Agent$Sessions$Entitytypes {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/{parent}/entityTypes')
+                url: (rootUrl + '/v2/{parent}/entityTypes')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               },
@@ -4422,7 +4398,7 @@ export class Resource$Projects$Agent$Sessions$Entitytypes {
           context: this.root
         };
         createAPIRequest<
-            Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse>(
+            Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse>(
             parameters, callback!);
       };
 
@@ -4436,17 +4412,17 @@ export class Resource$Projects$Agent$Sessions$Entitytypes {
    * @param {object} params Parameters for request
    * @param {string} params.name Required. The unique identifier of this session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`, or `projects/<Project ID>/agent/runtimes/<Runtime ID>sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. Note: Runtimes are under construction and will be available soon. If <Runtime ID> is not specified, we assume default 'sandbox' runtime.
    * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
-   * @param {().GoogleCloudDialogflowV2beta1SessionEntityType} params.resource Request body data
+   * @param {().GoogleCloudDialogflowV2SessionEntityType} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
   patch =
       (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1SessionEntityType>,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
        callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2beta1SessionEntityType>) => {
+           Schema$GoogleCloudDialogflowV2SessionEntityType>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -4456,8 +4432,7 @@ export class Resource$Projects$Agent$Sessions$Entitytypes {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'PATCH'
               },
               options),
@@ -4466,7 +4441,7 @@ export class Resource$Projects$Agent$Sessions$Entitytypes {
           pathParams: ['name'],
           context: this.root
         };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>(
+        createAPIRequest<Schema$GoogleCloudDialogflowV2SessionEntityType>(
             parameters, callback!);
       };
 }
@@ -4507,8 +4482,7 @@ export class Resource$Projects$Operations {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               },
               options),

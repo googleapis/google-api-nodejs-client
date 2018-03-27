@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
 
@@ -21,10 +22,12 @@ import {createAPIRequest} from '../../lib/apirequest';
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
-
+// tslint:disable: class-name
+// tslint:disable: variable-name
+// tslint:disable: jsdoc-format
 
 /**
- * Google Cloud OS Login API
+ * Cloud OS Login API
  *
  * Manages OS login configuration for Google account users.
  *
@@ -38,141 +41,233 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1alpha
  * @param {object=} options Options for Oslogin
  */
-function Oslogin(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.users = {
-    /**
-     * oslogin.users.getLoginProfile
-     * @desc Retrieves the profile information used for logging in to a virtual
-     * machine on Google Compute Engine.
-     * @alias oslogin.users.getLoginProfile
-     * @memberOf! oslogin(v1alpha)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The unique ID for the user in format `users/{user}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getLoginProfile(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha/{name}/loginProfile')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * oslogin.users.importSshPublicKey
-        * @desc Adds an SSH public key and returns the profile information.
-        * Default POSIX account information is set when no username and UID
-        * exist as part of the login profile.
-        * @alias oslogin.users.importSshPublicKey
-        * @memberOf! oslogin(v1alpha)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.parent The unique ID for the user in format `users/{user}`.
-        * @param {string=} params.projectId The project ID of the Google Cloud Platform project.
-        * @param {oslogin(v1alpha).SshPublicKey} params.resource Request body data
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    importSshPublicKey(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha/{parent}:importSshPublicKey')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    },
-    projects: {
-      /**
-       * oslogin.users.projects.delete
-       * @desc Deletes a POSIX account.
-       * @alias oslogin.users.projects.delete
-       * @memberOf! oslogin(v1alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.name A reference to the POSIX account to update. POSIX accounts are identified by the project ID they are associated with. A reference to the POSIX account is in format `users/{user}/projects/{project}`.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete (
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1alpha/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
+export class Oslogin {
+  _options: GlobalOptions;
+  google: GoogleApis;
+  root = this;
 
-    },
-    sshPublicKeys: {
-      /**
-       * oslogin.users.sshPublicKeys.delete
-       * @desc Deletes an SSH public key.
-       * @alias oslogin.users.sshPublicKeys.delete
-       * @memberOf! oslogin(v1alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.name The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete (
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
+  users: Resource$Users;
+
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    this._options = options || {};
+    this.google = google;
+
+    this.users = new Resource$Users(this);
+  }
+}
+
+/**
+ * A generic empty message that you can re-use to avoid defining duplicated
+ * empty messages in your APIs. A typical example is to use it as the request or
+ * the response type of an API method. For instance:      service Foo {
+ * rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The
+ * JSON representation for `Empty` is empty JSON object `{}`.
+ */
+export interface Schema$Empty {}
+/**
+ * A response message for importing an SSH public key.
+ */
+export interface Schema$ImportSshPublicKeyResponse {
+  /**
+   * The login profile information for the user.
+   */
+  loginProfile: Schema$LoginProfile;
+}
+/**
+ * The user profile information used for logging in to a virtual machine on
+ * Google Compute Engine.
+ */
+export interface Schema$LoginProfile {
+  /**
+   * A unique user ID.
+   */
+  name: string;
+  /**
+   * The list of POSIX accounts associated with the user.
+   */
+  posixAccounts: Schema$PosixAccount[];
+  /**
+   * A map from SSH public key fingerprint to the associated key object.
+   */
+  sshPublicKeys: any;
+}
+/**
+ * The POSIX account information associated with a Google account.
+ */
+export interface Schema$PosixAccount {
+  /**
+   * Output only. A POSIX account identifier.
+   */
+  accountId: string;
+  /**
+   * The GECOS (user information) entry for this account.
+   */
+  gecos: string;
+  /**
+   * The default group ID.
+   */
+  gid: string;
+  /**
+   * The path to the home directory for this account.
+   */
+  homeDirectory: string;
+  /**
+   * Only one POSIX account can be marked as primary.
+   */
+  primary: boolean;
+  /**
+   * The path to the logic shell for this account.
+   */
+  shell: string;
+  /**
+   * System identifier for which account the username or uid applies to. By
+   * default, the empty value is used.
+   */
+  systemId: string;
+  /**
+   * The user ID.
+   */
+  uid: string;
+  /**
+   * The username of the POSIX account.
+   */
+  username: string;
+}
+/**
+ * The SSH public key information associated with a Google account.
+ */
+export interface Schema$SshPublicKey {
+  /**
+   * An expiration time in microseconds since epoch.
+   */
+  expirationTimeUsec: string;
+  /**
+   * Output only. The SHA-256 fingerprint of the SSH public key.
+   */
+  fingerprint: string;
+  /**
+   * Public key text in SSH format, defined by &lt;a
+   * href=&quot;https://www.ietf.org/rfc/rfc4253.txt&quot;
+   * target=&quot;_blank&quot;&gt;RFC4253&lt;/a&gt; section 6.6.
+   */
+  key: string;
+}
+
+export class Resource$Users {
+  root: Oslogin;
+  projects: Resource$Users$Projects;
+  sshPublicKeys: Resource$Users$Sshpublickeys;
+  constructor(root: Oslogin) {
+    this.root = root;
+    this.projects = new Resource$Users$Projects(root);
+    this.sshPublicKeys = new Resource$Users$Sshpublickeys(root);
+  }
+
+  /**
+   * oslogin.users.getLoginProfile
+   * @desc Retrieves the profile information used for logging in to a virtual
+   * machine on Google Compute Engine.
+   * @alias oslogin.users.getLoginProfile
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.name The unique ID for the user in format `users/{user}`.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  getLoginProfile =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$LoginProfile>,
+       callback?: BodyResponseCallback<Schema$LoginProfile>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/v1alpha/{name}/loginProfile')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
+          params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: this.root
+        };
+        createAPIRequest<Schema$LoginProfile>(parameters, callback!);
+      };
+
+
+  /**
+   * oslogin.users.importSshPublicKey
+   * @desc Adds an SSH public key and returns the profile information. Default
+   * POSIX account information is set when no username and UID exist as part of
+   * the login profile.
+   * @alias oslogin.users.importSshPublicKey
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.parent The unique ID for the user in format `users/{user}`.
+   * @param {string=} params.projectId The project ID of the Google Cloud Platform project.
+   * @param {().SshPublicKey} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  importSshPublicKey =
+      (params: any,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$ImportSshPublicKeyResponse>,
+       callback?: BodyResponseCallback<Schema$ImportSshPublicKeyResponse>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url: (rootUrl + '/v1alpha/{parent}:importSshPublicKey')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'POST'
+              },
+              options),
+          params,
+          requiredParams: ['parent'],
+          pathParams: ['parent'],
+          context: this.root
+        };
+        createAPIRequest<Schema$ImportSshPublicKeyResponse>(
+            parameters, callback!);
+      };
+}
+export class Resource$Users$Projects {
+  root: Oslogin;
+  constructor(root: Oslogin) {
+    this.root = root;
+  }
+
+  /**
+   * oslogin.users.projects.delete
+   * @desc Deletes a POSIX account.
+   * @alias oslogin.users.projects.delete
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.name A reference to the POSIX account to update. POSIX accounts are identified by the project ID they are associated with. A reference to the POSIX account is in format `users/{user}/projects/{project}`.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  delete =
+      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+       callback?: BodyResponseCallback<Schema$Empty>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -190,23 +285,72 @@ function Oslogin(options: GlobalOptions) {
           params,
           requiredParams: ['name'],
           pathParams: ['name'],
-          context: self
+          context: this.root
         };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * oslogin.users.sshPublicKeys.get
-          * @desc Retrieves an SSH public key.
-          * @alias oslogin.users.sshPublicKeys.get
-          * @memberOf! oslogin(v1alpha)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.name The fingerprint of the public key to retrieve. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
+        createAPIRequest<Schema$Empty>(parameters, callback!);
+      };
+}
+
+export class Resource$Users$Sshpublickeys {
+  root: Oslogin;
+  constructor(root: Oslogin) {
+    this.root = root;
+  }
+
+  /**
+   * oslogin.users.sshPublicKeys.delete
+   * @desc Deletes an SSH public key.
+   * @alias oslogin.users.sshPublicKeys.delete
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.name The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  delete =
+      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+       callback?: BodyResponseCallback<Schema$Empty>) => {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options = options || {};
+        const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
+        const parameters = {
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl + '/v1alpha/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                method: 'DELETE'
+              },
+              options),
+          params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: this.root
+        };
+        createAPIRequest<Schema$Empty>(parameters, callback!);
+      };
+
+
+  /**
+   * oslogin.users.sshPublicKeys.get
+   * @desc Retrieves an SSH public key.
+   * @alias oslogin.users.sshPublicKeys.get
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.name The fingerprint of the public key to retrieve. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  get =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$SshPublicKey>,
+       callback?: BodyResponseCallback<Schema$SshPublicKey>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -224,27 +368,31 @@ function Oslogin(options: GlobalOptions) {
           params,
           requiredParams: ['name'],
           pathParams: ['name'],
-          context: self
+          context: this.root
         };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * oslogin.users.sshPublicKeys.patch
-          * @desc Updates an SSH public key and returns the profile information.
-          * This method supports patch semantics.
-          * @alias oslogin.users.sshPublicKeys.patch
-          * @memberOf! oslogin(v1alpha)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.name The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
-          * @param {string=} params.updateMask Mask to control which fields get updated. Updates all if not present.
-          * @param {oslogin(v1alpha).SshPublicKey} params.resource Request body data
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      patch(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
+        createAPIRequest<Schema$SshPublicKey>(parameters, callback!);
+      };
+
+
+  /**
+   * oslogin.users.sshPublicKeys.patch
+   * @desc Updates an SSH public key and returns the profile information. This
+   * method supports patch semantics.
+   * @alias oslogin.users.sshPublicKeys.patch
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.name The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
+   * @param {string=} params.updateMask Mask to control which fields get updated. Updates all if not present.
+   * @param {().SshPublicKey} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  patch =
+      (params: any,
+       options: MethodOptions|BodyResponseCallback<Schema$SshPublicKey>,
+       callback?: BodyResponseCallback<Schema$SshPublicKey>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -262,54 +410,8 @@ function Oslogin(options: GlobalOptions) {
           params,
           requiredParams: ['name'],
           pathParams: ['name'],
-          context: self
+          context: this.root
         };
-        return createAPIRequest(parameters, callback!);
-      }
-
-    }
-  };
+        createAPIRequest<Schema$SshPublicKey>(parameters, callback!);
+      };
 }
-/**
- * @typedef Empty
- * @memberOf! oslogin(v1alpha)
- * @type object
- */
-/**
- * @typedef ImportSshPublicKeyResponse
- * @memberOf! oslogin(v1alpha)
- * @type object
- * @property {oslogin(v1alpha).LoginProfile} loginProfile The login profile information for the user.
- */
-/**
- * @typedef LoginProfile
- * @memberOf! oslogin(v1alpha)
- * @type object
- * @property {string} name A unique user ID.
- * @property {oslogin(v1alpha).PosixAccount[]} posixAccounts The list of POSIX accounts associated with the user.
- * @property {object} sshPublicKeys A map from SSH public key fingerprint to the associated key object.
- */
-/**
- * @typedef PosixAccount
- * @memberOf! oslogin(v1alpha)
- * @type object
- * @property {string} accountId Output only. A POSIX account identifier.
- * @property {string} gecos The GECOS (user information) entry for this account.
- * @property {string} gid The default group ID.
- * @property {string} homeDirectory The path to the home directory for this account.
- * @property {boolean} primary Only one POSIX account can be marked as primary.
- * @property {string} shell The path to the logic shell for this account.
- * @property {string} systemId System identifier for which account the username or uid applies to. By default, the empty value is used.
- * @property {string} uid The user ID.
- * @property {string} username The username of the POSIX account.
- */
-/**
- * @typedef SshPublicKey
- * @memberOf! oslogin(v1alpha)
- * @type object
- * @property {string} expirationTimeUsec An expiration time in microseconds since epoch.
- * @property {string} fingerprint Output only. The SHA-256 fingerprint of the SSH public key.
- * @property {string} key Public key text in SSH format, defined by &lt;a href=&quot;https://www.ietf.org/rfc/rfc4253.txt&quot; target=&quot;_blank&quot;&gt;RFC4253&lt;/a&gt; section 6.6.
- */
-
-export = Oslogin;

@@ -23,7 +23,7 @@ import * as pify from 'pify';
 import * as url from 'url';
 import * as util from 'util';
 
-import {FragmentResponse, Schema, SchemaParameters, SchemaResource, Schemas} from '../lib/schema';
+import {FragmentResponse, Schema, SchemaItem, SchemaParameters, SchemaResource, Schemas, SchemaType} from '../lib/schema';
 
 import {buildurl} from './generator_utils';
 
@@ -47,6 +47,21 @@ const RESERVED_PARAMS = ['resource', 'media', 'auth'];
 export interface GeneratorOptions {
   debug?: boolean;
   includePrivate?: boolean;
+}
+
+function getType(item: SchemaItem): string {
+  switch (item.type) {
+    case 'integer':
+      return 'number';
+    case 'object':
+      // TODO: This can be improved with an inline type.
+      return 'any';
+    case 'array':
+      const innerType = getType(item.items!);
+      return `${innerType}[]`;
+    default:
+      return item.type!;
+  }
 }
 
 export class Generator {
@@ -93,6 +108,10 @@ export class Generator {
     return param;
   }
 
+  private cleanPropertyName(prop: string) {
+    return prop.replace('@', '').replace('-', '');
+  }
+
   private options: GeneratorOptions;
 
   private state = new Map<string, string[]>();
@@ -107,6 +126,8 @@ export class Generator {
         new nunjucks.FileSystemLoader(TEMPLATES_DIR), {trimBlocks: true});
     this.env.addFilter('buildurl', buildurl);
     this.env.addFilter('oneLine', this.oneLine);
+    this.env.addFilter('getType', getType);
+    this.env.addFilter('cleanPropertyName', this.cleanPropertyName);
     this.env.addFilter('cleanComments', this.cleanComments);
     this.env.addFilter('getPathParams', this.getPathParams);
     this.env.addFilter('getSafeParamName', this.getSafeParamName);

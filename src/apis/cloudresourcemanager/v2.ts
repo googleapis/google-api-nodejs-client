@@ -34,12 +34,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  *
  * @example
  * const google = require('googleapis');
- * const cloudresourcemanager = google.cloudresourcemanager('v2beta1');
+ * const cloudresourcemanager = google.cloudresourcemanager('v2');
  *
  * @namespace cloudresourcemanager
  * @type {Function}
- * @version v2beta1
- * @variation v2beta1
+ * @version v2
+ * @variation v2
  * @param {object=} options Options for Cloudresourcemanager
  */
 export class Cloudresourcemanager {
@@ -363,12 +363,11 @@ export interface Schema$SearchFoldersRequest {
    * lifecycleState and parent, where the operators `=`, `NOT`, `AND` and `OR`
    * can be used along with the suffix wildcard symbol `*`.  Some example
    * queries are:  |Query | Description| |----- | -----------|
-   * |displayName=Test*|Folders whose display name starts with
-   * &quot;Test&quot;.| |lifecycleState=ACTIVE|Folders whose lifecycleState is
-   * ACTIVE.| |parent=folders/123|Folders whose parent is
-   * &quot;folders/123&quot;.| |parent=folders/123 AND
-   * lifecycleState=ACTIVE|Active folders whose parent is
-   * &quot;folders/123&quot;.|
+   * |displayName=Test* | Folders whose display name starts with
+   * &quot;Test&quot;. |lifecycleState=ACTIVE | Folders whose lifecycleState is
+   * ACTIVE. |parent=folders/123 | Folders whose parent is
+   * &quot;folders/123&quot;. |parent=folders/123 AND lifecycleState=ACTIVE |
+   * Active folders whose parent is &quot;folders/123&quot;.|
    */
   query: string;
 }
@@ -533,8 +532,7 @@ export class Resource$Folders {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/folders')
-                         .replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/folders').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
               options),
@@ -577,8 +575,7 @@ export class Resource$Folders {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'DELETE'
               },
               options),
@@ -619,8 +616,7 @@ export class Resource$Folders {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               },
               options),
@@ -662,7 +658,7 @@ export class Resource$Folders {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/{resource}:getIamPolicy')
+                url: (rootUrl + '/v2/{resource}:getIamPolicy')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
@@ -710,8 +706,7 @@ export class Resource$Folders {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/folders')
-                         .replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/folders').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               },
               options),
@@ -763,8 +758,8 @@ export class Resource$Folders {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/{name}:move')
-                         .replace(/([^:]\/)\/+/g, '$1'),
+                url:
+                    (rootUrl + '/v2/{name}:move').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
               options),
@@ -814,8 +809,7 @@ export class Resource$Folders {
         const parameters = {
           options: Object.assign(
               {
-                url:
-                    (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'PATCH'
               },
               options),
@@ -858,7 +852,7 @@ export class Resource$Folders {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/folders:search')
+                url: (rootUrl + '/v2/folders:search')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
@@ -901,7 +895,7 @@ export class Resource$Folders {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/{resource}:setIamPolicy')
+                url: (rootUrl + '/v2/{resource}:setIamPolicy')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
@@ -945,7 +939,7 @@ export class Resource$Folders {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/{resource}:testIamPermissions')
+                url: (rootUrl + '/v2/{resource}:testIamPermissions')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },
@@ -992,7 +986,7 @@ export class Resource$Folders {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v2beta1/{name}:undelete')
+                url: (rootUrl + '/v2/{name}:undelete')
                          .replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               },

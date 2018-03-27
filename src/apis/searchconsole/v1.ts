@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
 
@@ -21,7 +22,9 @@ import {createAPIRequest} from '../../lib/apirequest';
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
-
+// tslint:disable: class-name
+// tslint:disable: variable-name
+// tslint:disable: jsdoc-format
 
 /**
  * Google Search Console URL Testing Tools API
@@ -38,25 +41,148 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Searchconsole
  */
-function Searchconsole(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.urlTestingTools = {
-    mobileFriendlyTest: {
-      /**
-       * searchconsole.urlTestingTools.mobileFriendlyTest.run
-       * @desc Runs Mobile-Friendly Test for a given URL.
-       * @alias searchconsole.urlTestingTools.mobileFriendlyTest.run
-       * @memberOf! searchconsole(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {searchconsole(v1).RunMobileFriendlyTestRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      run(params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
+export class Searchconsole {
+  _options: GlobalOptions;
+  google: GoogleApis;
+  root = this;
+
+  urlTestingTools: Resource$Urltestingtools;
+
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    this._options = options || {};
+    this.google = google;
+
+    this.urlTestingTools = new Resource$Urltestingtools(this);
+  }
+}
+
+/**
+ * Blocked resource.
+ */
+export interface Schema$BlockedResource {
+  /**
+   * URL of the blocked resource.
+   */
+  url: string;
+}
+/**
+ * Describe image data.
+ */
+export interface Schema$Image {
+  /**
+   * Image data in format determined by the mime type. Currently, the format
+   * will always be &quot;image/png&quot;, but this might change in the future.
+   */
+  data: string;
+  /**
+   * The mime-type of the image data.
+   */
+  mimeType: string;
+}
+/**
+ * Mobile-friendly issue.
+ */
+export interface Schema$MobileFriendlyIssue {
+  /**
+   * Rule violated.
+   */
+  rule: string;
+}
+/**
+ * Information about a resource with issue.
+ */
+export interface Schema$ResourceIssue {
+  /**
+   * Describes a blocked resource issue.
+   */
+  blockedResource: Schema$BlockedResource;
+}
+/**
+ * Mobile-friendly test request.
+ */
+export interface Schema$RunMobileFriendlyTestRequest {
+  /**
+   * Whether or not screenshot is requested. Default is false.
+   */
+  requestScreenshot: boolean;
+  /**
+   * URL for inspection.
+   */
+  url: string;
+}
+/**
+ * Mobile-friendly test response, including mobile-friendly issues and resource
+ * issues.
+ */
+export interface Schema$RunMobileFriendlyTestResponse {
+  /**
+   * Test verdict, whether the page is mobile friendly or not.
+   */
+  mobileFriendliness: string;
+  /**
+   * List of mobile-usability issues.
+   */
+  mobileFriendlyIssues: Schema$MobileFriendlyIssue[];
+  /**
+   * Information about embedded resources issues.
+   */
+  resourceIssues: Schema$ResourceIssue[];
+  /**
+   * Screenshot of the requested URL.
+   */
+  screenshot: Schema$Image;
+  /**
+   * Final state of the test, can be either complete or an error.
+   */
+  testStatus: Schema$TestStatus;
+}
+/**
+ * Final state of the test, including error details if necessary.
+ */
+export interface Schema$TestStatus {
+  /**
+   * Error details if applicable.
+   */
+  details: string;
+  /**
+   * Status of the test.
+   */
+  status: string;
+}
+
+export class Resource$Urltestingtools {
+  root: Searchconsole;
+  mobileFriendlyTest: Resource$Urltestingtools$Mobilefriendlytest;
+  constructor(root: Searchconsole) {
+    this.root = root;
+    this.mobileFriendlyTest =
+        new Resource$Urltestingtools$Mobilefriendlytest(root);
+  }
+}
+export class Resource$Urltestingtools$Mobilefriendlytest {
+  root: Searchconsole;
+  constructor(root: Searchconsole) {
+    this.root = root;
+  }
+
+  /**
+   * searchconsole.urlTestingTools.mobileFriendlyTest.run
+   * @desc Runs Mobile-Friendly Test for a given URL.
+   * @alias searchconsole.urlTestingTools.mobileFriendlyTest.run
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {().RunMobileFriendlyTestRequest} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  run =
+      (params: any,
+       options: MethodOptions|
+       BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>,
+       callback?:
+           BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>) => {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -75,62 +201,9 @@ function Searchconsole(options: GlobalOptions) {
           params,
           requiredParams: [],
           pathParams: [],
-          context: self
+          context: this.root
         };
-        return createAPIRequest(parameters, callback!);
-      }
-
-    }
-  };
+        createAPIRequest<Schema$RunMobileFriendlyTestResponse>(
+            parameters, callback!);
+      };
 }
-/**
- * @typedef BlockedResource
- * @memberOf! searchconsole(v1)
- * @type object
- * @property {string} url URL of the blocked resource.
- */
-/**
- * @typedef Image
- * @memberOf! searchconsole(v1)
- * @type object
- * @property {string} data Image data in format determined by the mime type. Currently, the format will always be &quot;image/png&quot;, but this might change in the future.
- * @property {string} mimeType The mime-type of the image data.
- */
-/**
- * @typedef MobileFriendlyIssue
- * @memberOf! searchconsole(v1)
- * @type object
- * @property {string} rule Rule violated.
- */
-/**
- * @typedef ResourceIssue
- * @memberOf! searchconsole(v1)
- * @type object
- * @property {searchconsole(v1).BlockedResource} blockedResource Describes a blocked resource issue.
- */
-/**
- * @typedef RunMobileFriendlyTestRequest
- * @memberOf! searchconsole(v1)
- * @type object
- * @property {boolean} requestScreenshot Whether or not screenshot is requested. Default is false.
- * @property {string} url URL for inspection.
- */
-/**
- * @typedef RunMobileFriendlyTestResponse
- * @memberOf! searchconsole(v1)
- * @type object
- * @property {string} mobileFriendliness Test verdict, whether the page is mobile friendly or not.
- * @property {searchconsole(v1).MobileFriendlyIssue[]} mobileFriendlyIssues List of mobile-usability issues.
- * @property {searchconsole(v1).ResourceIssue[]} resourceIssues Information about embedded resources issues.
- * @property {searchconsole(v1).Image} screenshot Screenshot of the requested URL.
- * @property {searchconsole(v1).TestStatus} testStatus Final state of the test, can be either complete or an error.
- */
-/**
- * @typedef TestStatus
- * @memberOf! searchconsole(v1)
- * @type object
- * @property {string} details Error details if applicable.
- * @property {string} status Status of the test.
- */
-
-export = Searchconsole;
