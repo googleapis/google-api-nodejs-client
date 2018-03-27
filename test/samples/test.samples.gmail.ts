@@ -25,7 +25,8 @@ nock.disableNetConnect();
 const samples: any = {
   list: require('../../../samples/gmail/list'),
   labels: require('../../../samples/gmail/labels'),
-  watch: require('../../../samples/gmail/watch')
+  watch: require('../../../samples/gmail/watch'),
+  send: require('../../../samples/gmail/send'),
 };
 
 for (const p in samples) {
@@ -68,6 +69,17 @@ describe('gmail samples', () => {
     const scope =
         nock(Utils.baseUrl).post(`/gmail/v1/users/me/watch`).reply(200, {});
     samples.watch.runSample((data: {}) => {
+      assert(data);
+      scope.done();
+      done();
+    });
+  });
+
+  it('should send an email', done => {
+    const scope = nock(Utils.baseUrl)
+                      .post('/gmail/v1/users/me/messages/send')
+                      .reply(200, {});
+    samples.send.runSample((data: {}) => {
       assert(data);
       scope.done();
       done();
