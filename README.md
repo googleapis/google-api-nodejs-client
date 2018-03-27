@@ -93,28 +93,28 @@ $ npm install googleapis --save
 **Example** Creates a URL Shortener client and retrieves the long url of the given short url:
 
 ``` js
-var {google} = require('googleapis');
-var urlshortener = google.urlshortener('v1');
+const {google} = require('googleapis');
+const urlshortener = google.urlshortener('v1');
 
-var params = {
+const params = {
   shortUrl: 'http://goo.gl/xKbRu3',
   key: 'YOUR API KEY'
 };
 
 // get the long url of a shortened url
-urlshortener.url.get(params, function (err, response) {
+urlshortener.url.get(params, (err, response) => {
   if (err) {
-    console.log('Encountered error', err);
-  } else {
-    console.log('Long url is', response.data.longUrl);
+    console.error(err);
+    throw err;
   }
+  console.log('Long url is', response.data.longUrl);
 });
 ```
 
 **Example** Updates an email message's labels, using the `resource`
 parameter to specify the request body.
 
-```
+```js
 gmail.users.messages.modify({
   id: Number,
   resource: {
@@ -123,10 +123,9 @@ gmail.users.messages.modify({
   },
   userId: 'me',
 }, (err, response) => {
-  // ...
+  console.log(response.data);
 });
 ```
-
 
 ### Create a service client
 
@@ -135,8 +134,8 @@ To interact with the various Google APIs you need to create a service client for
 Example: Creating a `urlshortener` client with version `v1` of the API.
 
 ``` js
-var {google} = require('googleapis');
-var urlshortener = google.urlshortener('v1');
+const {google} = require('googleapis');
+const urlshortener = google.urlshortener('v1');
 ```
 
 Supported APIs are listed on the [Google APIs Explorer][apiexplorer].
@@ -145,8 +144,7 @@ Supported APIs are listed on the [Google APIs Explorer][apiexplorer].
 
 #### OAuth2 client
 
-This client comes with an [OAuth2][oauth] client that allows you to retrieve an access token and refreshes the token and retry the request seamlessly if you
-also provide an `expiry_date` and the token is expired. The basics of Google's OAuth2 implementation is explained on [Google Authorization and Authentication documentation][authdocs].
+This client comes with an [OAuth2][oauth] client that allows you to retrieve an access token and refreshes the token and retry the request seamlessly if you also provide an `expiry_date` and the token is expired. The basics of Google's OAuth2 implementation is explained on [Google Authorization and Authentication documentation][authdocs].
 
 In the following examples, you may need a `CLIENT_ID`, `CLIENT_SECRET` and `REDIRECT_URL`. You can find these pieces of information by going to the [Developer Console][devconsole], clicking your project --> APIs & auth --> credentials.
 
@@ -159,22 +157,22 @@ A complete sample application that authorizes and authenticates with the OAuth2 
 To ask for permissions from a user to retrieve an access token, you redirect them to a consent page. To create a consent page URL:
 
 ``` js
-var {google} = require('googleapis');
-var OAuth2 = google.auth.OAuth2;
+const {google} = require('googleapis');
+const OAuth2 = google.auth.OAuth2;
 
-var oauth2Client = new OAuth2(
+const oauth2Client = new OAuth2(
   YOUR_CLIENT_ID,
   YOUR_CLIENT_SECRET,
   YOUR_REDIRECT_URL
 );
 
 // generate a url that asks permissions for Google+ and Google Calendar scopes
-var scopes = [
+const scopes = [
   'https://www.googleapis.com/auth/plus.me',
   'https://www.googleapis.com/auth/calendar'
 ];
 
-var url = oauth2Client.generateAuthUrl({
+const url = oauth2Client.generateAuthUrl({
   // 'online' (default) or 'offline' (gets refresh_token)
   access_type: 'offline',
 
@@ -199,7 +197,7 @@ Once a user has given permissions on the consent page, Google will redirect the 
 With the code returned, you can ask for an access token as shown below:
 
 ``` js
-oauth2Client.getToken(code, function (err, tokens) {
+oauth2Client.getToken(code, (err, tokens) => {
   // Now tokens contains an access_token and an optional refresh_token. Save them.
   if (!err) {
     oauth2Client.setCredentials(tokens);
@@ -214,9 +212,9 @@ You can set the `auth` as a global or service-level option so you don't need to 
 Example: Setting a global `auth` option.
 
 ``` js
-var {google} = require('googleapis');
-var OAuth2 = google.auth.OAuth2;
-var oauth2Client = new OAuth2(
+const {google} = require('googleapis');
+const OAuth2 = google.auth.OAuth2;
+const oauth2Client = new OAuth2(
   YOUR_CLIENT_ID,
   YOUR_CLIENT_SECRET,
   YOUR_REDIRECT_URL
@@ -231,15 +229,15 @@ google.options({
 Example: Setting a service-level `auth` option.
 
 ``` js
-var {google} = require('googleapis');
-var OAuth2 = google.auth.OAuth2;
-var oauth2Client = new OAuth2(
+const {google} = require('googleapis');
+const OAuth2 = google.auth.OAuth2;
+const oauth2Client = new OAuth2(
   YOUR_CLIENT_ID,
   YOUR_CLIENT_SECRET,
   YOUR_REDIRECT_URL
 );
 
-var drive = google.drive({
+const drive = google.drive({
   version: 'v2',
   auth: oauth2Client
 });
@@ -254,12 +252,12 @@ You can start using OAuth2 to authorize and authenticate your requests to Google
 The following sample retrieves Google+ profile of the authenticated user.
 
 ``` js
-var {google} = require('googleapis');
-var plus = google.plus('v1');
-var OAuth2 = google.auth.OAuth2;
+const {google} = require('googleapis');
+const plus = google.plus('v1');
+const OAuth2 = google.auth.OAuth2;
 
 // WARNING: Make sure your CLIENT_SECRET is stored in a safe place.  
-var oauth2Client = new OAuth2(
+const oauth2Client = new OAuth2(
   YOUR_CLIENT_ID,
   YOUR_CLIENT_SECRET,
   YOUR_REDIRECT_URL
@@ -277,7 +275,7 @@ plus.people.get({
   userId: 'me',
   auth: oauth2Client
 }, function (err, response) {
-  // handle err and response
+  console.log(response.data);
 });
 ```
 
@@ -286,7 +284,7 @@ plus.people.get({
 If you need to manually refresh the `access_token` associated with your OAuth2 client, make sure you have a `refresh_token` set in your credentials first and then call:
 
 ``` js
-oauth2Client.refreshAccessToken(function(err, tokens) {
+oauth2Client.refreshAccessToken((err, tokens) => {
   // your access_token is now refreshed and stored in oauth2Client
   // store these new tokens in a safe place (e.g. database)
 });
@@ -297,16 +295,20 @@ oauth2Client.refreshAccessToken(function(err, tokens) {
 You may need to send an API key with the request you are going to make. The following uses an API key to make a request to the Google+ API service to retrieve a person's profile given a userId:
 
 ``` js
-var {google} = require('googleapis');
-var plus = google.plus('v1');
+const {google} = require('googleapis');
+const plus = google.plus('v1');
 
-var API_KEY = 'ABC123'; // specify your API key here
+const API_KEY = 'ABC123'; // specify your API key here
 
 plus.people.get({
   auth: API_KEY,
   userId: '+google'
-}, function (err, user) {
-  console.log('Result: ' + (err ? err.message : user.displayName));
+}, (err, response) => {
+  if (err) {
+    console.error(err);
+    throw err;
+  }
+  console.log(response.data.displayName);
 });
 ```
 
@@ -316,8 +318,12 @@ Alternatively, you can specify the `key` parameter and it will get used:
 plus.people.get({
   key: API_KEY,
   userId: '+google'
-}, function (err, user) {
-  console.log('Result: ' + (err ? err.message : user.displayName));
+}, function (err, response) {
+  if (err) {
+    console.error(err);
+    throw err;
+  }
+  console.log(response.data.displayName);
 });
 ```
 
@@ -328,11 +334,11 @@ To learn more about API keys, please see the [documentation][usingkeys].
 The Google Developers Console provides `.json` file that you can use to configure a JWT auth client and authenticate your requests, for example when using a service account.
 
 ``` js
-var {google} = require('googleapis');
-var drive = google.drive('v2');
+const {google} = require('googleapis');
+const drive = google.drive('v2');
 
-var key = require('/path/to/key.json');
-var jwtClient = new google.auth.JWT(
+const key = require('/path/to/key.json');
+const jwtClient = new google.auth.JWT(
   key.client_email,
   null,
   key.private_key,
@@ -340,16 +346,15 @@ var jwtClient = new google.auth.JWT(
   null
 );
 
-jwtClient.authorize(function (err, tokens) {
+jwtClient.authorize((err, tokens) => {
   if (err) {
-    console.log(err);
-    return;
+    console.error(err);
+    throw err;
   }
-
   // Make an authorized request to list Drive files.
   drive.files.list({
     auth: jwtClient
-  }, function (err, resp) {
+  }, (err, response) => {
     // handle err and response
   });
 });
@@ -368,7 +373,7 @@ The code below shows how to retrieve a default credential type, depending upon t
 ```js
 // This method looks for the GCLOUD_PROJECT and GOOGLE_APPLICATION_CREDENTIALS
 // environment variables.
-google.auth.getApplicationDefault(function (err, authClient, projectId) {
+google.auth.getApplicationDefault((err, authClient, projectId) => {
   if (err) {
     throw err;
   }
@@ -386,17 +391,18 @@ google.auth.getApplicationDefault(function (err, authClient, projectId) {
 
   // Fetch the list of GCE zones within a project.
   // NOTE: You must fill in your valid project ID before running this sample!
-  var compute = google.compute({
+  const compute = google.compute({
     version: 'v1',
     auth: authClient
   });
-  var projectId = 'YOUR_PROJECT_ID';
 
   compute.zones.list({
-    project: projectId,
-    auth: authClient
-  }, function (err, result) {
-    console.log(err, result);
+    project: projectId
+  }, function (err, response) {
+    if (err) {
+      throw err;
+    }
+    console.log(response.data);
   });
 });
 ```
@@ -414,7 +420,10 @@ This client supports multipart media uploads. The resource parameters are specif
 This example uploads a plain text file to Google Drive with the title "Test" and contents "Hello World".
 
 ``` js
-var drive = google.drive({ version: 'v3', auth: oauth2Client });
+const drive = google.drive({ 
+  version: 'v3', 
+  auth: oauth2Client 
+});
 
 drive.files.create({
   resource: {
@@ -435,8 +444,11 @@ Note: Your readable stream may be [unstable][stability]. Use at your own risk.
 ##### Example: Upload an image to Google Drive from a readable stream
 
 ```js
-var fs = require('fs');
-var drive = google.drive({ version: 'v3', auth: oauth2Client });
+const fs = require('fs');
+const drive = google.drive({ 
+  version: 'v3', 
+  auth: oauth2Client
+});
 
 drive.files.create({
   resource: {
@@ -450,7 +462,7 @@ drive.files.create({
 }, callback);
 ```
 
-For more examples of creation and modification requests with media attachments, take a look at the `samples/mediaupload.js` sample.
+For more examples of creation and modification requests with media attachments, take a look at the `samples/drive/upload.js` sample.
 
 ### Options
 
@@ -472,7 +484,7 @@ You can choose default options that will be sent with each request.  For a list
 of available options, see the [Axios Request Options][requestopts].
 
 ```js
-var {google} = require('googleapis');
+const {google} = require('googleapis');
 google.options({ timeout: 1000, auth: auth });
 
 // All requests made with this object will use these settings unless overridden.
@@ -481,7 +493,7 @@ google.options({ timeout: 1000, auth: auth });
 ##### Example: Specifying global request parameters
 
 ```js
-var {google} = require('googleapis');
+const {google} = require('googleapis');
 google.options({ params: { quotaUser: 'user123@example.com' } });
 
 // All requests from all services will contain the above query parameter
@@ -495,8 +507,8 @@ You can also specify options when creating a service client.
 ##### Example: Specifying a default `auth` option (API key or OAuth2 client)
 
 ```js
-var auth = 'API KEY'; // or you could use oauth2Client
-var urlshortener = google.urlshortener({ version: 'v1', auth: auth });
+const auth = 'API KEY'; // or you could use oauth2Client
+const urlshortener = google.urlshortener({ version: 'v1', auth: auth });
 
 // All requests made with this object will use the specified auth.
 ```
@@ -508,7 +520,7 @@ By doing this, every API call made with this service client will use `'API KEY'`
 ##### Example: Specifying default service client query parameters
 
 ```js
-var urlshortener = google.urlshortener({
+const urlshortener = google.urlshortener({
   version: 'v1',
   params: { quotaUser: 'user123@example.com' }
 });
@@ -516,7 +528,7 @@ var urlshortener = google.urlshortener({
 // quotaUser query parameter unless overridden in individual API calls.
 
 // Calls with this drive client will NOT contain the quotaUser query parameter.
-var drive = google.drive('v2');
+const drive = google.drive('v2');
 ```
 
 #### Request-level options
@@ -526,22 +538,23 @@ You can specify an `auth` object to be used per request. Each request also inher
 For example:
 
 ```js
-var {google} = require('googleapis');
-var bigquery = google.bigquery('v2');
+const {google} = require('googleapis');
+const bigquery = google.bigquery('v2');
 
 // This method looks for the GCLOUD_PROJECT and GOOGLE_APPLICATION_CREDENTIALS
 // environment variables.
-google.auth.getApplicationDefault(function (err, authClient, projectId) {
+google.auth.getApplicationDefault((err, authClient, projectId) => {
   if (err) {
-    console.log('Authentication failed because of ', err);
-    return;
+    console.error('Authentication failed because of ', err);
+    throw err;
   }
+
   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-    var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    const scopes = ['https://www.googleapis.com/auth/cloud-platform'];
     authClient = authClient.createScoped(scopes);
   }
 
-  var request = {
+  const request = {
     projectId: projectId,
     datasetId: '<YOUR_DATASET_ID>',
 
@@ -549,12 +562,11 @@ google.auth.getApplicationDefault(function (err, authClient, projectId) {
     auth: authClient
   };
 
-  bigquery.datasets.delete(request, function (err, result) {
+  bigquery.datasets.delete(request, (err, response) => {
     if (err) {
-      console.log(err);
-    } else {
-      console.log(result);
-    }
+      throw err;
+    } 
+    console.log(response.data);
   });
 });
 ```
@@ -569,7 +581,7 @@ drive.files.export({
   mimeType: 'application/pdf'
 }, {
   encoding: null // Make sure we get the binary data
-}, function (err, buffer) {
+}, (err, response) => {
   // ...
 });
 ```
