@@ -119,7 +119,11 @@ export function createAPIRequest<T>(
 
   // Parse urls
   if (options.url) {
-    options.url = parseString(options.url, params);
+    const encodedParams = Object.assign(
+        {},
+        ...Object.keys(params).map(
+            x => ({[x]: encodeURIComponent(params[x])})));
+    options.url = parseString(options.url, encodedParams);
   }
   if (parameters.mediaUrl) {
     parameters.mediaUrl = parseString(parameters.mediaUrl, params);
