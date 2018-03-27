@@ -153,8 +153,8 @@ describe('Path params', () => {
         });
   });
 
-  it('should not be urlencoded', (done) => {
-    const p = '/drive/v2/files/p@ram';
+  it('should be urlencoded', done => {
+    const p = `/drive/v2/files/${encodeURIComponent('p@ram')}`;
     nock(Utils.baseUrl).get(p).reply(200);
     localDrive.files.get(
         {fileId: 'p@ram'}, (err: Error, res: AxiosResponse) => {
@@ -162,7 +162,7 @@ describe('Path params', () => {
             return done(err);
           }
           const parm = Utils.getPath(res).split('/').pop();
-          assert.equal(parm, 'p@ram');
+          assert.equal(decodeURIComponent(parm!), 'p@ram');
           nock(Utils.baseUrl).get(p).reply(200);
           remoteDrive.files.get(
               {fileId: 'p@ram'}, (err2: Error, res2: AxiosResponse) => {
@@ -170,7 +170,7 @@ describe('Path params', () => {
                   return done(err2);
                 }
                 const parm = Utils.getPath(res).split('/').pop();
-                assert.equal(parm, 'p@ram');
+                assert.equal(decodeURIComponent(parm!), 'p@ram');
                 done();
               });
         });
