@@ -95,7 +95,7 @@
     "@types/mv": "^2.1.0",
     "@types/ncp": "^2.0.1",
     "@types/nock": "^9.1.2",
-    "@types/node": "9.6.0",
+    "@types/node": "9.6.1",
     "@types/nunjucks": "^3.0.0",
     "@types/p-queue": "^2.3.1",
     "@types/pify": "^3.0.0",
