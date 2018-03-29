@@ -106,7 +106,7 @@ export function createAPIRequest<T>(
   });
 
   // Normalize callback
-  callback = createCallback<T>(callback);
+  // callback = createCallback<T>(callback);
 
   // Check for missing required parameters in the API request
   const missingParams = getMissingParams(params, parameters.requiredParams);
@@ -238,9 +238,9 @@ export function createAPIRequest<T>(
   // now void.  This may be a source of confusion for users upgrading from
   // version 24.0 -> 25.0 or up.
   if (authClient && typeof authClient === 'object') {
-    authClient.request(mergedOptions, callback);
+    return authClient.request(mergedOptions, callback);
   } else {
-    (new DefaultTransporter()).request(mergedOptions, callback);
+    return (new DefaultTransporter()).request(mergedOptions, callback);
   }
 }
 
