@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -51,8 +53,13 @@ export class Vault {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.matters = new Resource$Matters(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -356,8 +363,14 @@ export class Resource$Matters {
   holds: Resource$Matters$Holds;
   constructor(root: Vault) {
     this.root = root;
+    this.getRoot.bind(this);
     this.holds = new Resource$Matters$Holds(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * vault.matters.addPermissions
@@ -372,31 +385,46 @@ export class Resource$Matters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  addPermissions =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$MatterPermission>,
-       callback?: BodyResponseCallback<Schema$MatterPermission>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/matters/{matterId}:addPermissions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['matterId'],
-          pathParams: ['matterId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$MatterPermission>(parameters, callback!);
-      };
+  addPermissions(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$MatterPermission>;
+  addPermissions(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$MatterPermission>,
+      callback?: BodyResponseCallback<Schema$MatterPermission>): void;
+  addPermissions(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$MatterPermission>,
+      callback?: BodyResponseCallback<Schema$MatterPermission>):
+      void|AxiosPromise<Schema$MatterPermission> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/matters/{matterId}:addPermissions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['matterId'],
+      pathParams: ['matterId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$MatterPermission>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$MatterPermission>(parameters);
+    }
+  }
 
 
   /**
@@ -412,31 +440,46 @@ export class Resource$Matters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  close =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CloseMatterResponse>,
-       callback?: BodyResponseCallback<Schema$CloseMatterResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/matters/{matterId}:close')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['matterId'],
-          pathParams: ['matterId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CloseMatterResponse>(parameters, callback!);
-      };
+  close(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CloseMatterResponse>;
+  close(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CloseMatterResponse>,
+      callback?: BodyResponseCallback<Schema$CloseMatterResponse>): void;
+  close(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CloseMatterResponse>,
+      callback?: BodyResponseCallback<Schema$CloseMatterResponse>):
+      void|AxiosPromise<Schema$CloseMatterResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/matters/{matterId}:close')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['matterId'],
+      pathParams: ['matterId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CloseMatterResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CloseMatterResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -453,29 +496,42 @@ export class Resource$Matters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Matter>,
-       callback?: BodyResponseCallback<Schema$Matter>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/matters').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Matter>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Matter>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Matter>,
+      callback?: BodyResponseCallback<Schema$Matter>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Matter>,
+      callback?: BodyResponseCallback<Schema$Matter>):
+      void|AxiosPromise<Schema$Matter> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/matters').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Matter>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Matter>(parameters);
+    }
+  }
 
 
   /**
@@ -490,30 +546,43 @@ export class Resource$Matters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Matter>,
-       callback?: BodyResponseCallback<Schema$Matter>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/matters/{matterId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['matterId'],
-          pathParams: ['matterId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Matter>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Matter>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Matter>,
+      callback?: BodyResponseCallback<Schema$Matter>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Matter>,
+      callback?: BodyResponseCallback<Schema$Matter>):
+      void|AxiosPromise<Schema$Matter> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/matters/{matterId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['matterId'],
+      pathParams: ['matterId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Matter>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Matter>(parameters);
+    }
+  }
 
 
   /**
@@ -529,30 +598,41 @@ export class Resource$Matters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Matter>,
-       callback?: BodyResponseCallback<Schema$Matter>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/matters/{matterId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['matterId'],
-          pathParams: ['matterId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Matter>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Matter>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Matter>,
+      callback?: BodyResponseCallback<Schema$Matter>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Matter>,
+      callback?: BodyResponseCallback<Schema$Matter>):
+      void|AxiosPromise<Schema$Matter> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/matters/{matterId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['matterId'],
+      pathParams: ['matterId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Matter>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Matter>(parameters);
+    }
+  }
 
 
   /**
@@ -570,30 +650,45 @@ export class Resource$Matters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListMattersResponse>,
-       callback?: BodyResponseCallback<Schema$ListMattersResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/matters').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListMattersResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListMattersResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListMattersResponse>,
+      callback?: BodyResponseCallback<Schema$ListMattersResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListMattersResponse>,
+      callback?: BodyResponseCallback<Schema$ListMattersResponse>):
+      void|AxiosPromise<Schema$ListMattersResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/matters').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListMattersResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListMattersResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -609,30 +704,44 @@ export class Resource$Matters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  removePermissions =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/matters/{matterId}:removePermissions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['matterId'],
-          pathParams: ['matterId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  removePermissions(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Empty>;
+  removePermissions(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  removePermissions(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/matters/{matterId}:removePermissions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['matterId'],
+      pathParams: ['matterId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -648,31 +757,46 @@ export class Resource$Matters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  reopen =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ReopenMatterResponse>,
-       callback?: BodyResponseCallback<Schema$ReopenMatterResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/matters/{matterId}:reopen')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['matterId'],
-          pathParams: ['matterId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ReopenMatterResponse>(parameters, callback!);
-      };
+  reopen(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ReopenMatterResponse>;
+  reopen(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ReopenMatterResponse>,
+      callback?: BodyResponseCallback<Schema$ReopenMatterResponse>): void;
+  reopen(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ReopenMatterResponse>,
+      callback?: BodyResponseCallback<Schema$ReopenMatterResponse>):
+      void|AxiosPromise<Schema$ReopenMatterResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/matters/{matterId}:reopen')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['matterId'],
+      pathParams: ['matterId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ReopenMatterResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ReopenMatterResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -688,30 +812,43 @@ export class Resource$Matters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  undelete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Matter>,
-       callback?: BodyResponseCallback<Schema$Matter>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/matters/{matterId}:undelete')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['matterId'],
-          pathParams: ['matterId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Matter>(parameters, callback!);
-      };
+  undelete(params: any, options?: MethodOptions): AxiosPromise<Schema$Matter>;
+  undelete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Matter>,
+      callback?: BodyResponseCallback<Schema$Matter>): void;
+  undelete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Matter>,
+      callback?: BodyResponseCallback<Schema$Matter>):
+      void|AxiosPromise<Schema$Matter> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/matters/{matterId}:undelete')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['matterId'],
+      pathParams: ['matterId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Matter>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Matter>(parameters);
+    }
+  }
 
 
   /**
@@ -729,38 +866,57 @@ export class Resource$Matters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Matter>,
-       callback?: BodyResponseCallback<Schema$Matter>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/matters/{matterId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['matterId'],
-          pathParams: ['matterId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Matter>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Matter>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Matter>,
+      callback?: BodyResponseCallback<Schema$Matter>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Matter>,
+      callback?: BodyResponseCallback<Schema$Matter>):
+      void|AxiosPromise<Schema$Matter> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/matters/{matterId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['matterId'],
+      pathParams: ['matterId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Matter>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Matter>(parameters);
+    }
+  }
 }
 export class Resource$Matters$Holds {
   root: Vault;
   accounts: Resource$Matters$Holds$Accounts;
   constructor(root: Vault) {
     this.root = root;
+    this.getRoot.bind(this);
     this.accounts = new Resource$Matters$Holds$Accounts(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * vault.matters.holds.create
@@ -775,30 +931,43 @@ export class Resource$Matters$Holds {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Hold>,
-       callback?: BodyResponseCallback<Schema$Hold>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/matters/{matterId}/holds')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['matterId'],
-          pathParams: ['matterId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Hold>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Hold>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Hold>,
+      callback?: BodyResponseCallback<Schema$Hold>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Hold>,
+      callback?: BodyResponseCallback<Schema$Hold>):
+      void|AxiosPromise<Schema$Hold> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/matters/{matterId}/holds')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['matterId'],
+      pathParams: ['matterId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Hold>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Hold>(parameters);
+    }
+  }
 
 
   /**
@@ -815,30 +984,43 @@ export class Resource$Matters$Holds {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/matters/{matterId}/holds/{holdId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['matterId', 'holdId'],
-          pathParams: ['holdId', 'matterId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/matters/{matterId}/holds/{holdId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['matterId', 'holdId'],
+      pathParams: ['holdId', 'matterId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -855,30 +1037,41 @@ export class Resource$Matters$Holds {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Hold>,
-       callback?: BodyResponseCallback<Schema$Hold>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/matters/{matterId}/holds/{holdId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['matterId', 'holdId'],
-          pathParams: ['holdId', 'matterId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Hold>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Hold>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Hold>,
+      callback?: BodyResponseCallback<Schema$Hold>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Hold>,
+      callback?: BodyResponseCallback<Schema$Hold>):
+      void|AxiosPromise<Schema$Hold> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/matters/{matterId}/holds/{holdId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['matterId', 'holdId'],
+      pathParams: ['holdId', 'matterId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Hold>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Hold>(parameters);
+    }
+  }
 
 
   /**
@@ -897,31 +1090,46 @@ export class Resource$Matters$Holds {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListHoldsResponse>,
-       callback?: BodyResponseCallback<Schema$ListHoldsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/matters/{matterId}/holds')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['matterId'],
-          pathParams: ['matterId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListHoldsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListHoldsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListHoldsResponse>,
+      callback?: BodyResponseCallback<Schema$ListHoldsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListHoldsResponse>,
+      callback?: BodyResponseCallback<Schema$ListHoldsResponse>):
+      void|AxiosPromise<Schema$ListHoldsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/matters/{matterId}/holds')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['matterId'],
+      pathParams: ['matterId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListHoldsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListHoldsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -940,36 +1148,55 @@ export class Resource$Matters$Holds {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Hold>,
-       callback?: BodyResponseCallback<Schema$Hold>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/matters/{matterId}/holds/{holdId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['matterId', 'holdId'],
-          pathParams: ['holdId', 'matterId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Hold>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Hold>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Hold>,
+      callback?: BodyResponseCallback<Schema$Hold>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Hold>,
+      callback?: BodyResponseCallback<Schema$Hold>):
+      void|AxiosPromise<Schema$Hold> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/matters/{matterId}/holds/{holdId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['matterId', 'holdId'],
+      pathParams: ['holdId', 'matterId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Hold>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Hold>(parameters);
+    }
+  }
 }
 export class Resource$Matters$Holds$Accounts {
   root: Vault;
   constructor(root: Vault) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * vault.matters.holds.accounts.create
@@ -987,32 +1214,46 @@ export class Resource$Matters$Holds$Accounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$HeldAccount>,
-       callback?: BodyResponseCallback<Schema$HeldAccount>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1/matters/{matterId}/holds/{holdId}/accounts')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['matterId', 'holdId'],
-          pathParams: ['holdId', 'matterId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$HeldAccount>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$HeldAccount>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$HeldAccount>,
+      callback?: BodyResponseCallback<Schema$HeldAccount>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$HeldAccount>,
+      callback?: BodyResponseCallback<Schema$HeldAccount>):
+      void|AxiosPromise<Schema$HeldAccount> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/matters/{matterId}/holds/{holdId}/accounts')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['matterId', 'holdId'],
+      pathParams: ['holdId', 'matterId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$HeldAccount>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$HeldAccount>(parameters);
+    }
+  }
 
 
   /**
@@ -1030,32 +1271,44 @@ export class Resource$Matters$Holds$Accounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1/matters/{matterId}/holds/{holdId}/accounts/{accountId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['matterId', 'holdId', 'accountId'],
-          pathParams: ['accountId', 'holdId', 'matterId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/v1/matters/{matterId}/holds/{holdId}/accounts/{accountId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['matterId', 'holdId', 'accountId'],
+      pathParams: ['accountId', 'holdId', 'matterId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -1074,32 +1327,46 @@ export class Resource$Matters$Holds$Accounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListHeldAccountsResponse>,
-       callback?: BodyResponseCallback<Schema$ListHeldAccountsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1/matters/{matterId}/holds/{holdId}/accounts')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['matterId', 'holdId'],
-          pathParams: ['holdId', 'matterId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListHeldAccountsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListHeldAccountsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListHeldAccountsResponse>,
+      callback?: BodyResponseCallback<Schema$ListHeldAccountsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListHeldAccountsResponse>,
+      callback?: BodyResponseCallback<Schema$ListHeldAccountsResponse>):
+      void|AxiosPromise<Schema$ListHeldAccountsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/matters/{matterId}/holds/{holdId}/accounts')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['matterId', 'holdId'],
+      pathParams: ['holdId', 'matterId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListHeldAccountsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListHeldAccountsResponse>(parameters);
+    }
+  }
 }

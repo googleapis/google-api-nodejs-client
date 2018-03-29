@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -51,8 +53,13 @@ export class Licensing {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.licenseAssignments = new Resource$Licenseassignments(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -129,7 +136,13 @@ export class Resource$Licenseassignments {
   root: Licensing;
   constructor(root: Licensing) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * licensing.licenseAssignments.delete
@@ -145,32 +158,44 @@ export class Resource$Licenseassignments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['productId', 'skuId', 'userId'],
-          pathParams: ['productId', 'skuId', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['productId', 'skuId', 'userId'],
+      pathParams: ['productId', 'skuId', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -187,33 +212,46 @@ export class Resource$Licenseassignments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
-       callback?: BodyResponseCallback<Schema$LicenseAssignment>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['productId', 'skuId', 'userId'],
-          pathParams: ['productId', 'skuId', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$LicenseAssignment>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$LicenseAssignment>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
+      callback?: BodyResponseCallback<Schema$LicenseAssignment>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
+      callback?: BodyResponseCallback<Schema$LicenseAssignment>):
+      void|AxiosPromise<Schema$LicenseAssignment> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['productId', 'skuId', 'userId'],
+      pathParams: ['productId', 'skuId', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LicenseAssignment>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LicenseAssignment>(parameters);
+    }
+  }
 
 
   /**
@@ -230,32 +268,47 @@ export class Resource$Licenseassignments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
-       callback?: BodyResponseCallback<Schema$LicenseAssignment>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/apps/licensing/v1/product/{productId}/sku/{skuId}/user')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['productId', 'skuId'],
-          pathParams: ['productId', 'skuId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$LicenseAssignment>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$LicenseAssignment>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
+      callback?: BodyResponseCallback<Schema$LicenseAssignment>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
+      callback?: BodyResponseCallback<Schema$LicenseAssignment>):
+      void|AxiosPromise<Schema$LicenseAssignment> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/apps/licensing/v1/product/{productId}/sku/{skuId}/user')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['productId', 'skuId'],
+      pathParams: ['productId', 'skuId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LicenseAssignment>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LicenseAssignment>(parameters);
+    }
+  }
 
 
   /**
@@ -273,32 +326,47 @@ export class Resource$Licenseassignments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  listForProduct =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$LicenseAssignmentList>,
-       callback?: BodyResponseCallback<Schema$LicenseAssignmentList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/apps/licensing/v1/product/{productId}/users')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['productId', 'customerId'],
-          pathParams: ['productId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$LicenseAssignmentList>(parameters, callback!);
-      };
+  listForProduct(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$LicenseAssignmentList>;
+  listForProduct(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$LicenseAssignmentList>,
+      callback?: BodyResponseCallback<Schema$LicenseAssignmentList>): void;
+  listForProduct(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$LicenseAssignmentList>,
+      callback?: BodyResponseCallback<Schema$LicenseAssignmentList>):
+      void|AxiosPromise<Schema$LicenseAssignmentList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/apps/licensing/v1/product/{productId}/users')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['productId', 'customerId'],
+      pathParams: ['productId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LicenseAssignmentList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LicenseAssignmentList>(parameters);
+    }
+  }
 
 
   /**
@@ -317,34 +385,48 @@ export class Resource$Licenseassignments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  listForProductAndSku =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$LicenseAssignmentList>,
-       callback?: BodyResponseCallback<Schema$LicenseAssignmentList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/apps/licensing/v1/product/{productId}/sku/{skuId}/users')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['productId', 'skuId', 'customerId'],
-          pathParams: ['productId', 'skuId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$LicenseAssignmentList>(parameters, callback!);
-      };
+  listForProductAndSku(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$LicenseAssignmentList>;
+  listForProductAndSku(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$LicenseAssignmentList>,
+      callback?: BodyResponseCallback<Schema$LicenseAssignmentList>): void;
+  listForProductAndSku(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$LicenseAssignmentList>,
+      callback?: BodyResponseCallback<Schema$LicenseAssignmentList>):
+      void|AxiosPromise<Schema$LicenseAssignmentList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/apps/licensing/v1/product/{productId}/sku/{skuId}/users')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['productId', 'skuId', 'customerId'],
+      pathParams: ['productId', 'skuId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LicenseAssignmentList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LicenseAssignmentList>(parameters);
+    }
+  }
 
 
   /**
@@ -362,33 +444,48 @@ export class Resource$Licenseassignments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
-       callback?: BodyResponseCallback<Schema$LicenseAssignment>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['productId', 'skuId', 'userId'],
-          pathParams: ['productId', 'skuId', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$LicenseAssignment>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$LicenseAssignment>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
+      callback?: BodyResponseCallback<Schema$LicenseAssignment>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
+      callback?: BodyResponseCallback<Schema$LicenseAssignment>):
+      void|AxiosPromise<Schema$LicenseAssignment> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['productId', 'skuId', 'userId'],
+      pathParams: ['productId', 'skuId', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LicenseAssignment>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LicenseAssignment>(parameters);
+    }
+  }
 
 
   /**
@@ -406,31 +503,46 @@ export class Resource$Licenseassignments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
-       callback?: BodyResponseCallback<Schema$LicenseAssignment>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['productId', 'skuId', 'userId'],
-          pathParams: ['productId', 'skuId', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$LicenseAssignment>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$LicenseAssignment>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
+      callback?: BodyResponseCallback<Schema$LicenseAssignment>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
+      callback?: BodyResponseCallback<Schema$LicenseAssignment>):
+      void|AxiosPromise<Schema$LicenseAssignment> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['productId', 'skuId', 'userId'],
+      pathParams: ['productId', 'skuId', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LicenseAssignment>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LicenseAssignment>(parameters);
+    }
+  }
 }

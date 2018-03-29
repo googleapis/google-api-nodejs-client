@@ -14,11 +14,8 @@
 import * as assert from 'assert';
 import {AxiosResponse} from 'axios';
 import * as nock from 'nock';
-import * as pify from 'pify';
 import * as url from 'url';
-
 import {GoogleApis} from '../src';
-
 import {Utils} from './utils';
 
 function createNock(path?: string) {
@@ -56,7 +53,7 @@ describe('Options', () => {
     google.options({params: {hello: 'world'}});
     const drive = google.drive({version: 'v2', params: {hello: 'changed'}});
     createNock('/drive/v2/files/123?hello=changed');
-    const res: AxiosResponse = await pify(drive.files.get)({fileId: '123'});
+    const res: AxiosResponse = await drive.files.get({fileId: '123'});
     assert.equal(res.config.params.hello, 'changed');
   });
 
@@ -65,7 +62,7 @@ describe('Options', () => {
     google.options({params: {myParam: '123'}});
     const drive = google.drive('v2');
     nock(Utils.baseUrl).get('/drive/v2/files/123?myParam=123').reply(200);
-    const res = await pify(drive.files.get)({fileId: '123'});
+    const res = await drive.files.get({fileId: '123'});
     // If the default param handling is broken, query might be undefined, thus
     // concealing the assertion message with some generic "cannot call
     // .indexOf of undefined"
@@ -80,7 +77,7 @@ describe('Options', () => {
     nock.disableNetConnect();
     nock(Utils.baseUrl).get('/drive/v2/files/123?myParam=123').reply(200);
     // tslint:disable-next-line no-any
-    const res3 = await pify((d as any).files.get)({fileId: '123'});
+    const res3 = await (d as any).files.get({fileId: '123'});
     // If the default param handling is broken, query might be undefined,
     // thus concealing the assertion message with some generic "cannot
     // call .indexOf of undefined"
@@ -94,7 +91,7 @@ describe('Options', () => {
     google.options({auth: 'apikey1'});
     const drive = google.drive({version: 'v2', auth: 'apikey2'});
     createNock('/drive/v2/files/woot?key=apikey3');
-    const res = await pify(drive.files.get)({auth: 'apikey3', fileId: 'woot'});
+    const res = await drive.files.get({auth: 'apikey3', fileId: 'woot'});
     assert.equal(Utils.getQs(res), 'key=apikey3');
   });
 
@@ -103,7 +100,7 @@ describe('Options', () => {
     google.options({timeout: 12345});
     const drive = google.drive({version: 'v2', auth: 'apikey2'});
     createNock('/drive/v2/files/woot?key=apikey3');
-    const res = await pify(drive.files.get)({auth: 'apikey3', fileId: 'woot'});
+    const res = await drive.files.get({auth: 'apikey3', fileId: 'woot'});
     assert.equal(res.config.timeout, '12345');
   });
 
@@ -113,8 +110,7 @@ describe('Options', () => {
        const drive =
            google.drive({version: 'v2', auth: 'apikey2', timeout: 23456});
        createNock('/drive/v2/files/woot?key=apikey3');
-       const res =
-           await pify(drive.files.get)({auth: 'apikey3', fileId: 'woot'});
+       const res = await drive.files.get({auth: 'apikey3', fileId: 'woot'});
        assert.equal(res.config.timeout, 23456);
        assert.equal(Utils.getQs(res), 'key=apikey3');
      });
@@ -124,7 +120,7 @@ describe('Options', () => {
     const drive = google.drive('v3');
     const host = 'https://myproxy.com';
     nock(host).get('/drive/v3/files/woot').reply(200);
-    const res = await pify(drive.files.get)(
+    const res = await drive.files.get(
         {fileId: 'woot'},
         {url: 'https://myproxy.com/drive/v3/files/{fileId}', encoding: null});
 
@@ -145,8 +141,7 @@ describe('Options', () => {
        const drive =
            google.drive({version: 'v2', auth: 'apikey2', timeout: 12345});
        createNock('/drive/v2/files/woot');
-       const res =
-           await pify(drive.files.get)({auth: authClient, fileId: 'woot'});
+       const res = await drive.files.get({auth: authClient, fileId: 'woot'});
        assert.equal(res.config.timeout, 12345);
        assert.equal(res.config.headers.Authorization, 'Bearer abc');
      });
@@ -157,13 +152,13 @@ describe('Options', () => {
     const fileId = 'woot';
     const rootUrl = 'https://myrooturl.com';
     nock(rootUrl).get('/drive/v3/files/woot').reply(200);
-    const res = await pify(drive.files.get)({fileId}, {rootUrl});
+    const res = await drive.files.get({fileId}, {rootUrl});
     assert.equal(
         res.config.url, 'https://myrooturl.com/drive/v3/files/woot',
         'Request used overridden rootUrl with trailing slash.');
 
     nock(rootUrl).get('/drive/v3/files/woot').reply(200);
-    const res2 = await pify(drive.files.get)({fileId}, {rootUrl});
+    const res2 = await drive.files.get({fileId}, {rootUrl});
     assert.equal(
         res.config.url, 'https://myrooturl.com/drive/v3/files/woot',
         'Request used overridden rootUrl.');
@@ -173,7 +168,7 @@ describe('Options', () => {
     const scope = nock(Utils.baseUrl).get('/drive/v2/files').reply(500);
     const google = new GoogleApis();
     const drive = google.drive('v2');
-    const res = await pify(drive.files.list)({}, {
+    const res = await drive.files.list({}, {
       validateStatus: (status: {}) => {
         return true;
       }

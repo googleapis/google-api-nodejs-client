@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -53,9 +55,14 @@ export class Clouddebugger {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.controller = new Resource$Controller(this);
     this.debugger = new Resource$Debugger(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -684,7 +691,12 @@ export class Resource$Controller {
   debuggees: Resource$Controller$Debuggees;
   constructor(root: Clouddebugger) {
     this.root = root;
+    this.getRoot.bind(this);
     this.debuggees = new Resource$Controller$Debuggees(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Controller$Debuggees {
@@ -692,8 +704,14 @@ export class Resource$Controller$Debuggees {
   breakpoints: Resource$Controller$Debuggees$Breakpoints;
   constructor(root: Clouddebugger) {
     this.root = root;
+    this.getRoot.bind(this);
     this.breakpoints = new Resource$Controller$Debuggees$Breakpoints(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * clouddebugger.controller.debuggees.register
@@ -765,40 +783,60 @@ export class Resource$Controller$Debuggees {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  register =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$RegisterDebuggeeResponse>,
-       callback?: BodyResponseCallback<Schema$RegisterDebuggeeResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://clouddebugger.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/controller/debuggees/register')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$RegisterDebuggeeResponse>(
-            parameters, callback!);
-      };
+  register(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$RegisterDebuggeeResponse>;
+  register(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$RegisterDebuggeeResponse>,
+      callback?: BodyResponseCallback<Schema$RegisterDebuggeeResponse>): void;
+  register(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$RegisterDebuggeeResponse>,
+      callback?: BodyResponseCallback<Schema$RegisterDebuggeeResponse>):
+      void|AxiosPromise<Schema$RegisterDebuggeeResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://clouddebugger.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/controller/debuggees/register')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$RegisterDebuggeeResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$RegisterDebuggeeResponse>(parameters);
+    }
+  }
 }
 export class Resource$Controller$Debuggees$Breakpoints {
   root: Clouddebugger;
   constructor(root: Clouddebugger) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * clouddebugger.controller.debuggees.breakpoints.list
@@ -873,36 +911,50 @@ export class Resource$Controller$Debuggees$Breakpoints {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListActiveBreakpointsResponse>,
-       callback?:
-           BodyResponseCallback<Schema$ListActiveBreakpointsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://clouddebugger.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v2/controller/debuggees/{debuggeeId}/breakpoints')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['debuggeeId'],
-          pathParams: ['debuggeeId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListActiveBreakpointsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListActiveBreakpointsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListActiveBreakpointsResponse>,
+      callback?: BodyResponseCallback<Schema$ListActiveBreakpointsResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListActiveBreakpointsResponse>,
+      callback?: BodyResponseCallback<Schema$ListActiveBreakpointsResponse>):
+      void|AxiosPromise<Schema$ListActiveBreakpointsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://clouddebugger.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/controller/debuggees/{debuggeeId}/breakpoints')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['debuggeeId'],
+      pathParams: ['debuggeeId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListActiveBreakpointsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListActiveBreakpointsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -984,36 +1036,52 @@ export class Resource$Controller$Debuggees$Breakpoints {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>,
-       callback?:
-           BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://clouddebugger.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v2/controller/debuggees/{debuggeeId}/breakpoints/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['debuggeeId', 'id'],
-          pathParams: ['debuggeeId', 'id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$UpdateActiveBreakpointResponse>(
-            parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$UpdateActiveBreakpointResponse>;
+  update(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>,
+      callback?: BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>):
+      void;
+  update(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>,
+      callback?: BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>):
+      void|AxiosPromise<Schema$UpdateActiveBreakpointResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://clouddebugger.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/v2/controller/debuggees/{debuggeeId}/breakpoints/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['debuggeeId', 'id'],
+      pathParams: ['debuggeeId', 'id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UpdateActiveBreakpointResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UpdateActiveBreakpointResponse>(
+          parameters);
+    }
+  }
 }
 
 
@@ -1023,7 +1091,12 @@ export class Resource$Debugger {
   debuggees: Resource$Debugger$Debuggees;
   constructor(root: Clouddebugger) {
     this.root = root;
+    this.getRoot.bind(this);
     this.debuggees = new Resource$Debugger$Debuggees(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Debugger$Debuggees {
@@ -1031,8 +1104,14 @@ export class Resource$Debugger$Debuggees {
   breakpoints: Resource$Debugger$Debuggees$Breakpoints;
   constructor(root: Clouddebugger) {
     this.root = root;
+    this.getRoot.bind(this);
     this.breakpoints = new Resource$Debugger$Debuggees$Breakpoints(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * clouddebugger.debugger.debuggees.list
@@ -1097,39 +1176,59 @@ export class Resource$Debugger$Debuggees {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListDebuggeesResponse>,
-       callback?: BodyResponseCallback<Schema$ListDebuggeesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://clouddebugger.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/debugger/debuggees')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListDebuggeesResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListDebuggeesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListDebuggeesResponse>,
+      callback?: BodyResponseCallback<Schema$ListDebuggeesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListDebuggeesResponse>,
+      callback?: BodyResponseCallback<Schema$ListDebuggeesResponse>):
+      void|AxiosPromise<Schema$ListDebuggeesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://clouddebugger.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/debugger/debuggees')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListDebuggeesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListDebuggeesResponse>(parameters);
+    }
+  }
 }
 export class Resource$Debugger$Debuggees$Breakpoints {
   root: Clouddebugger;
   constructor(root: Clouddebugger) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * clouddebugger.debugger.debuggees.breakpoints.delete
@@ -1195,33 +1294,45 @@ export class Resource$Debugger$Debuggees$Breakpoints {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://clouddebugger.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v2/debugger/debuggees/{debuggeeId}/breakpoints/{breakpointId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['debuggeeId', 'breakpointId'],
-          pathParams: ['breakpointId', 'debuggeeId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://clouddebugger.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v2/debugger/debuggees/{debuggeeId}/breakpoints/{breakpointId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['debuggeeId', 'breakpointId'],
+      pathParams: ['breakpointId', 'debuggeeId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -1291,35 +1402,47 @@ export class Resource$Debugger$Debuggees$Breakpoints {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GetBreakpointResponse>,
-       callback?: BodyResponseCallback<Schema$GetBreakpointResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://clouddebugger.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v2/debugger/debuggees/{debuggeeId}/breakpoints/{breakpointId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['debuggeeId', 'breakpointId'],
-          pathParams: ['breakpointId', 'debuggeeId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GetBreakpointResponse>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$GetBreakpointResponse>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GetBreakpointResponse>,
+      callback?: BodyResponseCallback<Schema$GetBreakpointResponse>): void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GetBreakpointResponse>,
+      callback?: BodyResponseCallback<Schema$GetBreakpointResponse>):
+      void|AxiosPromise<Schema$GetBreakpointResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://clouddebugger.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v2/debugger/debuggees/{debuggeeId}/breakpoints/{breakpointId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['debuggeeId', 'breakpointId'],
+      pathParams: ['breakpointId', 'debuggeeId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GetBreakpointResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GetBreakpointResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1390,34 +1513,48 @@ export class Resource$Debugger$Debuggees$Breakpoints {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListBreakpointsResponse>,
-       callback?: BodyResponseCallback<Schema$ListBreakpointsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://clouddebugger.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v2/debugger/debuggees/{debuggeeId}/breakpoints')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['debuggeeId'],
-          pathParams: ['debuggeeId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListBreakpointsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListBreakpointsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListBreakpointsResponse>,
+      callback?: BodyResponseCallback<Schema$ListBreakpointsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListBreakpointsResponse>,
+      callback?: BodyResponseCallback<Schema$ListBreakpointsResponse>):
+      void|AxiosPromise<Schema$ListBreakpointsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://clouddebugger.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/debugger/debuggees/{debuggeeId}/breakpoints')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['debuggeeId'],
+      pathParams: ['debuggeeId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListBreakpointsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListBreakpointsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1488,32 +1625,44 @@ export class Resource$Debugger$Debuggees$Breakpoints {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  set =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$SetBreakpointResponse>,
-       callback?: BodyResponseCallback<Schema$SetBreakpointResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://clouddebugger.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v2/debugger/debuggees/{debuggeeId}/breakpoints/set')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['debuggeeId'],
-          pathParams: ['debuggeeId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SetBreakpointResponse>(parameters, callback!);
-      };
+  set(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$SetBreakpointResponse>;
+  set(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$SetBreakpointResponse>,
+      callback?: BodyResponseCallback<Schema$SetBreakpointResponse>): void;
+  set(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SetBreakpointResponse>,
+      callback?: BodyResponseCallback<Schema$SetBreakpointResponse>):
+      void|AxiosPromise<Schema$SetBreakpointResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://clouddebugger.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/v2/debugger/debuggees/{debuggeeId}/breakpoints/set')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['debuggeeId'],
+      pathParams: ['debuggeeId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SetBreakpointResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SetBreakpointResponse>(parameters);
+    }
+  }
 }

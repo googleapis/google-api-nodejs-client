@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -52,8 +54,13 @@ export class Pagespeedonline {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.pagespeedapi = new Resource$Pagespeedapi(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -153,7 +160,13 @@ export class Resource$Pagespeedapi {
   root: Pagespeedonline;
   constructor(root: Pagespeedonline) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * pagespeedonline.pagespeedapi.runpagespeed
@@ -174,28 +187,42 @@ export class Resource$Pagespeedapi {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  runpagespeed =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Result>,
-       callback?: BodyResponseCallback<Schema$Result>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/pagespeedonline/v2/runPagespeed')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['url'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Result>(parameters, callback!);
-      };
+  runpagespeed(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Result>;
+  runpagespeed(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Result>,
+      callback?: BodyResponseCallback<Schema$Result>): void;
+  runpagespeed(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Result>,
+      callback?: BodyResponseCallback<Schema$Result>):
+      void|AxiosPromise<Schema$Result> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/pagespeedonline/v2/runPagespeed')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['url'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Result>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Result>(parameters);
+    }
+  }
 }

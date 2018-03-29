@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -52,8 +54,13 @@ export class Acceleratedmobilepageurl {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.ampUrls = new Resource$Ampurls(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -127,7 +134,13 @@ export class Resource$Ampurls {
   root: Acceleratedmobilepageurl;
   constructor(root: Acceleratedmobilepageurl) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * acceleratedmobilepageurl.ampUrls.batchGet
@@ -142,31 +155,47 @@ export class Resource$Ampurls {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchGet =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>,
-       callback?: BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl ||
-            'https://acceleratedmobilepageurl.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/ampUrls:batchGet')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$BatchGetAmpUrlsResponse>(parameters, callback!);
-      };
+  batchGet(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$BatchGetAmpUrlsResponse>;
+  batchGet(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>,
+      callback?: BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>): void;
+  batchGet(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>,
+      callback?: BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>):
+      void|AxiosPromise<Schema$BatchGetAmpUrlsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://acceleratedmobilepageurl.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/ampUrls:batchGet')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BatchGetAmpUrlsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BatchGetAmpUrlsResponse>(parameters);
+    }
+  }
 }

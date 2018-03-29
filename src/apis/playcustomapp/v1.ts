@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -51,8 +53,13 @@ export class Playcustomapp {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.accounts = new Resource$Accounts(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -75,14 +82,25 @@ export class Resource$Accounts {
   customApps: Resource$Accounts$Customapps;
   constructor(root: Playcustomapp) {
     this.root = root;
+    this.getRoot.bind(this);
     this.customApps = new Resource$Accounts$Customapps(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Accounts$Customapps {
   root: Playcustomapp;
   constructor(root: Playcustomapp) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * playcustomapp.accounts.customApps.create
@@ -100,33 +118,46 @@ export class Resource$Accounts$Customapps {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CustomApp>,
-       callback?: BodyResponseCallback<Schema$CustomApp>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/playcustomapp/v1/accounts/{account}/customApps')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          mediaUrl: (rootUrl +
-                     '/upload/playcustomapp/v1/accounts/{account}/customApps')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: ['account'],
-          pathParams: ['account'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CustomApp>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$CustomApp>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CustomApp>,
+      callback?: BodyResponseCallback<Schema$CustomApp>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CustomApp>,
+      callback?: BodyResponseCallback<Schema$CustomApp>):
+      void|AxiosPromise<Schema$CustomApp> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/playcustomapp/v1/accounts/{account}/customApps')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      mediaUrl:
+          (rootUrl + '/upload/playcustomapp/v1/accounts/{account}/customApps')
+              .replace(/([^:]\/)\/+/g, '$1'),
+      requiredParams: ['account'],
+      pathParams: ['account'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CustomApp>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CustomApp>(parameters);
+    }
+  }
 }

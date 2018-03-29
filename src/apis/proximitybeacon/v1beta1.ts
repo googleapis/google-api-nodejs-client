@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -54,11 +56,16 @@ export class Proximitybeacon {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.beaconinfo = new Resource$Beaconinfo(this);
     this.beacons = new Resource$Beacons(this);
     this.namespaces = new Resource$Namespaces(this);
     this.v1beta1 = new Resource$V1beta1(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -555,7 +562,13 @@ export class Resource$Beaconinfo {
   root: Proximitybeacon;
   constructor(root: Proximitybeacon) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * proximitybeacon.beaconinfo.getforobserved
@@ -572,35 +585,53 @@ export class Resource$Beaconinfo {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getforobserved =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GetInfoForObservedBeaconsResponse>,
-       callback?:
-           BodyResponseCallback<Schema$GetInfoForObservedBeaconsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://proximitybeacon.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/beaconinfo:getforobserved')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$GetInfoForObservedBeaconsResponse>(
-            parameters, callback!);
-      };
+  getforobserved(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GetInfoForObservedBeaconsResponse>;
+  getforobserved(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GetInfoForObservedBeaconsResponse>,
+      callback?:
+          BodyResponseCallback<Schema$GetInfoForObservedBeaconsResponse>): void;
+  getforobserved(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GetInfoForObservedBeaconsResponse>,
+      callback?:
+          BodyResponseCallback<Schema$GetInfoForObservedBeaconsResponse>):
+      void|AxiosPromise<Schema$GetInfoForObservedBeaconsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/beaconinfo:getforobserved')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GetInfoForObservedBeaconsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GetInfoForObservedBeaconsResponse>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Beacons {
@@ -609,9 +640,15 @@ export class Resource$Beacons {
   diagnostics: Resource$Beacons$Diagnostics;
   constructor(root: Proximitybeacon) {
     this.root = root;
+    this.getRoot.bind(this);
     this.attachments = new Resource$Beacons$Attachments(root);
     this.diagnostics = new Resource$Beacons$Diagnostics(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * proximitybeacon.beacons.activate
@@ -632,31 +669,44 @@ export class Resource$Beacons {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  activate =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://proximitybeacon.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{beaconName}:activate')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['beaconName'],
-          pathParams: ['beaconName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  activate(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  activate(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  activate(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{beaconName}:activate')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['beaconName'],
+      pathParams: ['beaconName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -679,31 +729,44 @@ export class Resource$Beacons {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  deactivate =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://proximitybeacon.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{beaconName}:deactivate')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['beaconName'],
-          pathParams: ['beaconName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  deactivate(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  deactivate(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  deactivate(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{beaconName}:deactivate')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['beaconName'],
+      pathParams: ['beaconName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -725,31 +788,45 @@ export class Resource$Beacons {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  decommission =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://proximitybeacon.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{beaconName}:decommission')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['beaconName'],
-          pathParams: ['beaconName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  decommission(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Empty>;
+  decommission(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  decommission(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{beaconName}:decommission')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['beaconName'],
+      pathParams: ['beaconName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -771,31 +848,44 @@ export class Resource$Beacons {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://proximitybeacon.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{beaconName}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['beaconName'],
-          pathParams: ['beaconName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{beaconName}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['beaconName'],
+      pathParams: ['beaconName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -820,31 +910,42 @@ export class Resource$Beacons {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Beacon>,
-       callback?: BodyResponseCallback<Schema$Beacon>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://proximitybeacon.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{beaconName}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['beaconName'],
-          pathParams: ['beaconName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Beacon>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Beacon>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Beacon>,
+      callback?: BodyResponseCallback<Schema$Beacon>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Beacon>,
+      callback?: BodyResponseCallback<Schema$Beacon>):
+      void|AxiosPromise<Schema$Beacon> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{beaconName}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['beaconName'],
+      pathParams: ['beaconName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Beacon>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Beacon>(parameters);
+    }
+  }
 
 
   /**
@@ -867,32 +968,46 @@ export class Resource$Beacons {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListBeaconsResponse>,
-       callback?: BodyResponseCallback<Schema$ListBeaconsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://proximitybeacon.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/beacons')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListBeaconsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListBeaconsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListBeaconsResponse>,
+      callback?: BodyResponseCallback<Schema$ListBeaconsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListBeaconsResponse>,
+      callback?: BodyResponseCallback<Schema$ListBeaconsResponse>):
+      void|AxiosPromise<Schema$ListBeaconsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/beacons').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListBeaconsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListBeaconsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -913,31 +1028,44 @@ export class Resource$Beacons {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  register =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Beacon>,
-       callback?: BodyResponseCallback<Schema$Beacon>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://proximitybeacon.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/beacons:register')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Beacon>(parameters, callback!);
-      };
+  register(params: any, options?: MethodOptions): AxiosPromise<Schema$Beacon>;
+  register(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Beacon>,
+      callback?: BodyResponseCallback<Schema$Beacon>): void;
+  register(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Beacon>,
+      callback?: BodyResponseCallback<Schema$Beacon>):
+      void|AxiosPromise<Schema$Beacon> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/beacons:register')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Beacon>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Beacon>(parameters);
+    }
+  }
 
 
   /**
@@ -963,37 +1091,56 @@ export class Resource$Beacons {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Beacon>,
-       callback?: BodyResponseCallback<Schema$Beacon>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://proximitybeacon.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{beaconName}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['beaconName'],
-          pathParams: ['beaconName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Beacon>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Beacon>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Beacon>,
+      callback?: BodyResponseCallback<Schema$Beacon>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Beacon>,
+      callback?: BodyResponseCallback<Schema$Beacon>):
+      void|AxiosPromise<Schema$Beacon> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{beaconName}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['beaconName'],
+      pathParams: ['beaconName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Beacon>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Beacon>(parameters);
+    }
+  }
 }
 export class Resource$Beacons$Attachments {
   root: Proximitybeacon;
   constructor(root: Proximitybeacon) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * proximitybeacon.beacons.attachments.batchDelete
@@ -1017,34 +1164,49 @@ export class Resource$Beacons$Attachments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchDelete =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$DeleteAttachmentsResponse>,
-       callback?: BodyResponseCallback<Schema$DeleteAttachmentsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://proximitybeacon.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{beaconName}/attachments:batchDelete')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['beaconName'],
-          pathParams: ['beaconName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$DeleteAttachmentsResponse>(
-            parameters, callback!);
-      };
+  batchDelete(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$DeleteAttachmentsResponse>;
+  batchDelete(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$DeleteAttachmentsResponse>,
+      callback?: BodyResponseCallback<Schema$DeleteAttachmentsResponse>): void;
+  batchDelete(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$DeleteAttachmentsResponse>,
+      callback?: BodyResponseCallback<Schema$DeleteAttachmentsResponse>):
+      void|AxiosPromise<Schema$DeleteAttachmentsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{beaconName}/attachments:batchDelete')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['beaconName'],
+      pathParams: ['beaconName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DeleteAttachmentsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DeleteAttachmentsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1071,32 +1233,47 @@ export class Resource$Beacons$Attachments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$BeaconAttachment>,
-       callback?: BodyResponseCallback<Schema$BeaconAttachment>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://proximitybeacon.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{beaconName}/attachments')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['beaconName'],
-          pathParams: ['beaconName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$BeaconAttachment>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$BeaconAttachment>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$BeaconAttachment>,
+      callback?: BodyResponseCallback<Schema$BeaconAttachment>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$BeaconAttachment>,
+      callback?: BodyResponseCallback<Schema$BeaconAttachment>):
+      void|AxiosPromise<Schema$BeaconAttachment> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{beaconName}/attachments')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['beaconName'],
+      pathParams: ['beaconName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BeaconAttachment>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BeaconAttachment>(parameters);
+    }
+  }
 
 
   /**
@@ -1119,31 +1296,44 @@ export class Resource$Beacons$Attachments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://proximitybeacon.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{attachmentName}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['attachmentName'],
-          pathParams: ['attachmentName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{attachmentName}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['attachmentName'],
+      pathParams: ['attachmentName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -1168,42 +1358,64 @@ export class Resource$Beacons$Attachments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListBeaconAttachmentsResponse>,
-       callback?:
-           BodyResponseCallback<Schema$ListBeaconAttachmentsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://proximitybeacon.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{beaconName}/attachments')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['beaconName'],
-          pathParams: ['beaconName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListBeaconAttachmentsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListBeaconAttachmentsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListBeaconAttachmentsResponse>,
+      callback?: BodyResponseCallback<Schema$ListBeaconAttachmentsResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListBeaconAttachmentsResponse>,
+      callback?: BodyResponseCallback<Schema$ListBeaconAttachmentsResponse>):
+      void|AxiosPromise<Schema$ListBeaconAttachmentsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{beaconName}/attachments')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['beaconName'],
+      pathParams: ['beaconName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListBeaconAttachmentsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListBeaconAttachmentsResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Beacons$Diagnostics {
   root: Proximitybeacon;
   constructor(root: Proximitybeacon) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * proximitybeacon.beacons.diagnostics.list
@@ -1226,33 +1438,49 @@ export class Resource$Beacons$Diagnostics {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListDiagnosticsResponse>,
-       callback?: BodyResponseCallback<Schema$ListDiagnosticsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://proximitybeacon.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{beaconName}/diagnostics')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['beaconName'],
-          pathParams: ['beaconName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListDiagnosticsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListDiagnosticsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListDiagnosticsResponse>,
+      callback?: BodyResponseCallback<Schema$ListDiagnosticsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListDiagnosticsResponse>,
+      callback?: BodyResponseCallback<Schema$ListDiagnosticsResponse>):
+      void|AxiosPromise<Schema$ListDiagnosticsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{beaconName}/diagnostics')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['beaconName'],
+      pathParams: ['beaconName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListDiagnosticsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListDiagnosticsResponse>(parameters);
+    }
+  }
 }
 
 
@@ -1260,7 +1488,13 @@ export class Resource$Namespaces {
   root: Proximitybeacon;
   constructor(root: Proximitybeacon) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * proximitybeacon.namespaces.list
@@ -1280,33 +1514,49 @@ export class Resource$Namespaces {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListNamespacesResponse>,
-       callback?: BodyResponseCallback<Schema$ListNamespacesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://proximitybeacon.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/namespaces')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListNamespacesResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListNamespacesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListNamespacesResponse>,
+      callback?: BodyResponseCallback<Schema$ListNamespacesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListNamespacesResponse>,
+      callback?: BodyResponseCallback<Schema$ListNamespacesResponse>):
+      void|AxiosPromise<Schema$ListNamespacesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/v1beta1/namespaces').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListNamespacesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListNamespacesResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1324,39 +1574,59 @@ export class Resource$Namespaces {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Namespace>,
-       callback?: BodyResponseCallback<Schema$Namespace>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://proximitybeacon.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{namespaceName}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['namespaceName'],
-          pathParams: ['namespaceName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Namespace>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Namespace>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Namespace>,
+      callback?: BodyResponseCallback<Schema$Namespace>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Namespace>,
+      callback?: BodyResponseCallback<Schema$Namespace>):
+      void|AxiosPromise<Schema$Namespace> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{namespaceName}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['namespaceName'],
+      pathParams: ['namespaceName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Namespace>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Namespace>(parameters);
+    }
+  }
 }
 
 export class Resource$V1beta1 {
   root: Proximitybeacon;
   constructor(root: Proximitybeacon) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * proximitybeacon.getEidparams
@@ -1375,33 +1645,48 @@ export class Resource$V1beta1 {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getEidparams =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$EphemeralIdRegistrationParams>,
-       callback?:
-           BodyResponseCallback<Schema$EphemeralIdRegistrationParams>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://proximitybeacon.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/eidparams')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$EphemeralIdRegistrationParams>(
-            parameters, callback!);
-      };
+  getEidparams(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$EphemeralIdRegistrationParams>;
+  getEidparams(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$EphemeralIdRegistrationParams>,
+      callback?: BodyResponseCallback<Schema$EphemeralIdRegistrationParams>):
+      void;
+  getEidparams(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$EphemeralIdRegistrationParams>,
+      callback?: BodyResponseCallback<Schema$EphemeralIdRegistrationParams>):
+      void|AxiosPromise<Schema$EphemeralIdRegistrationParams> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/eidparams').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$EphemeralIdRegistrationParams>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$EphemeralIdRegistrationParams>(parameters);
+    }
+  }
 }

@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -52,8 +54,13 @@ export class Cloudshell {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.users = new Resource$Users(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -270,7 +277,12 @@ export class Resource$Users {
   environments: Resource$Users$Environments;
   constructor(root: Cloudshell) {
     this.root = root;
+    this.getRoot.bind(this);
     this.environments = new Resource$Users$Environments(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Users$Environments {
@@ -278,8 +290,14 @@ export class Resource$Users$Environments {
   publicKeys: Resource$Users$Environments$Publickeys;
   constructor(root: Cloudshell) {
     this.root = root;
+    this.getRoot.bind(this);
     this.publicKeys = new Resource$Users$Environments$Publickeys(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * cloudshell.users.environments.get
@@ -294,31 +312,42 @@ export class Resource$Users$Environments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Environment>,
-       callback?: BodyResponseCallback<Schema$Environment>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudshell.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1alpha1/{name}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Environment>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Environment>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Environment>,
+      callback?: BodyResponseCallback<Schema$Environment>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Environment>,
+      callback?: BodyResponseCallback<Schema$Environment>):
+      void|AxiosPromise<Schema$Environment> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudshell.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Environment>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Environment>(parameters);
+    }
+  }
 
 
   /**
@@ -335,31 +364,44 @@ export class Resource$Users$Environments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Environment>,
-       callback?: BodyResponseCallback<Schema$Environment>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudshell.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1alpha1/{name}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Environment>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Environment>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Environment>,
+      callback?: BodyResponseCallback<Schema$Environment>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Environment>,
+      callback?: BodyResponseCallback<Schema$Environment>):
+      void|AxiosPromise<Schema$Environment> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudshell.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Environment>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Environment>(parameters);
+    }
+  }
 
 
   /**
@@ -380,37 +422,57 @@ export class Resource$Users$Environments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  start =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudshell.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1alpha1/{name}:start')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  start(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  start(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  start(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudshell.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{name}:start')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 }
 export class Resource$Users$Environments$Publickeys {
   root: Cloudshell;
   constructor(root: Cloudshell) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * cloudshell.users.environments.publicKeys.create
@@ -428,31 +490,45 @@ export class Resource$Users$Environments$Publickeys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PublicKey>,
-       callback?: BodyResponseCallback<Schema$PublicKey>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudshell.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1alpha1/{parent}/publicKeys')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PublicKey>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$PublicKey>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$PublicKey>,
+      callback?: BodyResponseCallback<Schema$PublicKey>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PublicKey>,
+      callback?: BodyResponseCallback<Schema$PublicKey>):
+      void|AxiosPromise<Schema$PublicKey> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudshell.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{parent}/publicKeys')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PublicKey>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PublicKey>(parameters);
+    }
+  }
 
 
   /**
@@ -468,28 +544,40 @@ export class Resource$Users$Environments$Publickeys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudshell.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1alpha1/{name}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudshell.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 }

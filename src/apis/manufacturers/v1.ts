@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -51,8 +53,13 @@ export class Manufacturers {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.accounts = new Resource$Accounts(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -437,14 +444,25 @@ export class Resource$Accounts {
   products: Resource$Accounts$Products;
   constructor(root: Manufacturers) {
     this.root = root;
+    this.getRoot.bind(this);
     this.products = new Resource$Accounts$Products(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Accounts$Products {
   root: Manufacturers;
   constructor(root: Manufacturers) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * manufacturers.accounts.products.delete
@@ -459,31 +477,44 @@ export class Resource$Accounts$Products {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://content-manufacturers.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/products/{name}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['parent', 'name'],
-          pathParams: ['name', 'parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://content-manufacturers.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/products/{name}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['parent', 'name'],
+      pathParams: ['name', 'parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -503,31 +534,42 @@ export class Resource$Accounts$Products {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Product>,
-       callback?: BodyResponseCallback<Schema$Product>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://content-manufacturers.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/products/{name}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent', 'name'],
-          pathParams: ['name', 'parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Product>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Product>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Product>,
+      callback?: BodyResponseCallback<Schema$Product>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Product>,
+      callback?: BodyResponseCallback<Schema$Product>):
+      void|AxiosPromise<Schema$Product> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://content-manufacturers.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/products/{name}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent', 'name'],
+      pathParams: ['name', 'parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Product>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Product>(parameters);
+    }
+  }
 
 
   /**
@@ -544,32 +586,47 @@ export class Resource$Accounts$Products {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListProductsResponse>,
-       callback?: BodyResponseCallback<Schema$ListProductsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://content-manufacturers.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/products')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListProductsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListProductsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListProductsResponse>,
+      callback?: BodyResponseCallback<Schema$ListProductsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListProductsResponse>,
+      callback?: BodyResponseCallback<Schema$ListProductsResponse>):
+      void|AxiosPromise<Schema$ListProductsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://content-manufacturers.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/products')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListProductsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListProductsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -597,29 +654,42 @@ export class Resource$Accounts$Products {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://content-manufacturers.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/products/{name}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['parent', 'name'],
-          pathParams: ['name', 'parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://content-manufacturers.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/products/{name}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['parent', 'name'],
+      pathParams: ['name', 'parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 }

@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -54,10 +56,15 @@ export class Androiddeviceprovisioning {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.customers = new Resource$Customers(this);
     this.operations = new Resource$Operations(this);
     this.partners = new Resource$Partners(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -791,10 +798,16 @@ export class Resource$Customers {
   dpcs: Resource$Customers$Dpcs;
   constructor(root: Androiddeviceprovisioning) {
     this.root = root;
+    this.getRoot.bind(this);
     this.configurations = new Resource$Customers$Configurations(root);
     this.devices = new Resource$Customers$Devices(root);
     this.dpcs = new Resource$Customers$Dpcs(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * androiddeviceprovisioning.customers.list
@@ -809,40 +822,62 @@ export class Resource$Customers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$CustomerListCustomersResponse>,
-       callback?:
-           BodyResponseCallback<Schema$CustomerListCustomersResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl ||
-            'https://androiddeviceprovisioning.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/customers').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$CustomerListCustomersResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CustomerListCustomersResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$CustomerListCustomersResponse>,
+      callback?: BodyResponseCallback<Schema$CustomerListCustomersResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$CustomerListCustomersResponse>,
+      callback?: BodyResponseCallback<Schema$CustomerListCustomersResponse>):
+      void|AxiosPromise<Schema$CustomerListCustomersResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/customers').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CustomerListCustomersResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CustomerListCustomersResponse>(parameters);
+    }
+  }
 }
 export class Resource$Customers$Configurations {
   root: Androiddeviceprovisioning;
   constructor(root: Androiddeviceprovisioning) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * androiddeviceprovisioning.customers.configurations.create
@@ -858,32 +893,47 @@ export class Resource$Customers$Configurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Configuration>,
-       callback?: BodyResponseCallback<Schema$Configuration>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl ||
-            'https://androiddeviceprovisioning.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/configurations')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Configuration>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Configuration>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Configuration>,
+      callback?: BodyResponseCallback<Schema$Configuration>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Configuration>,
+      callback?: BodyResponseCallback<Schema$Configuration>):
+      void|AxiosPromise<Schema$Configuration> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/configurations')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Configuration>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Configuration>(parameters);
+    }
+  }
 
 
   /**
@@ -899,30 +949,43 @@ export class Resource$Customers$Configurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl ||
-            'https://androiddeviceprovisioning.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -937,31 +1000,43 @@ export class Resource$Customers$Configurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Configuration>,
-       callback?: BodyResponseCallback<Schema$Configuration>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl ||
-            'https://androiddeviceprovisioning.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Configuration>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Configuration>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Configuration>,
+      callback?: BodyResponseCallback<Schema$Configuration>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Configuration>,
+      callback?: BodyResponseCallback<Schema$Configuration>):
+      void|AxiosPromise<Schema$Configuration> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Configuration>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Configuration>(parameters);
+    }
+  }
 
 
   /**
@@ -976,35 +1051,54 @@ export class Resource$Customers$Configurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$CustomerListConfigurationsResponse>,
-       callback?:
-           BodyResponseCallback<Schema$CustomerListConfigurationsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl ||
-            'https://androiddeviceprovisioning.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/configurations')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CustomerListConfigurationsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CustomerListConfigurationsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$CustomerListConfigurationsResponse>,
+      callback?:
+          BodyResponseCallback<Schema$CustomerListConfigurationsResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$CustomerListConfigurationsResponse>,
+      callback?:
+          BodyResponseCallback<Schema$CustomerListConfigurationsResponse>):
+      void|AxiosPromise<Schema$CustomerListConfigurationsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/configurations')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CustomerListConfigurationsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CustomerListConfigurationsResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -1021,38 +1115,59 @@ export class Resource$Customers$Configurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Configuration>,
-       callback?: BodyResponseCallback<Schema$Configuration>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl ||
-            'https://androiddeviceprovisioning.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Configuration>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Configuration>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Configuration>,
+      callback?: BodyResponseCallback<Schema$Configuration>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Configuration>,
+      callback?: BodyResponseCallback<Schema$Configuration>):
+      void|AxiosPromise<Schema$Configuration> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Configuration>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Configuration>(parameters);
+    }
+  }
 }
 
 export class Resource$Customers$Devices {
   root: Androiddeviceprovisioning;
   constructor(root: Androiddeviceprovisioning) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * androiddeviceprovisioning.customers.devices.applyConfiguration
@@ -1070,31 +1185,45 @@ export class Resource$Customers$Devices {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  applyConfiguration =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl ||
-            'https://androiddeviceprovisioning.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/devices:applyConfiguration')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  applyConfiguration(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Empty>;
+  applyConfiguration(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  applyConfiguration(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/devices:applyConfiguration')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -1109,30 +1238,41 @@ export class Resource$Customers$Devices {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Device>,
-       callback?: BodyResponseCallback<Schema$Device>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl ||
-            'https://androiddeviceprovisioning.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Device>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Device>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Device>,
+      callback?: BodyResponseCallback<Schema$Device>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Device>,
+      callback?: BodyResponseCallback<Schema$Device>):
+      void|AxiosPromise<Schema$Device> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Device>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Device>(parameters);
+    }
+  }
 
 
   /**
@@ -1149,34 +1289,51 @@ export class Resource$Customers$Devices {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$CustomerListDevicesResponse>,
-       callback?: BodyResponseCallback<Schema$CustomerListDevicesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl ||
-            'https://androiddeviceprovisioning.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/devices')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CustomerListDevicesResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CustomerListDevicesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$CustomerListDevicesResponse>,
+      callback?: BodyResponseCallback<Schema$CustomerListDevicesResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$CustomerListDevicesResponse>,
+      callback?: BodyResponseCallback<Schema$CustomerListDevicesResponse>):
+      void|AxiosPromise<Schema$CustomerListDevicesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/devices')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CustomerListDevicesResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CustomerListDevicesResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1192,31 +1349,45 @@ export class Resource$Customers$Devices {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  removeConfiguration =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl ||
-            'https://androiddeviceprovisioning.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/devices:removeConfiguration')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  removeConfiguration(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Empty>;
+  removeConfiguration(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  removeConfiguration(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/devices:removeConfiguration')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -1234,38 +1405,57 @@ export class Resource$Customers$Devices {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  unclaim =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl ||
-            'https://androiddeviceprovisioning.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/devices:unclaim')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  unclaim(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  unclaim(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  unclaim(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/devices:unclaim')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 }
 
 export class Resource$Customers$Dpcs {
   root: Androiddeviceprovisioning;
   constructor(root: Androiddeviceprovisioning) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * androiddeviceprovisioning.customers.dpcs.list
@@ -1280,34 +1470,48 @@ export class Resource$Customers$Dpcs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$CustomerListDpcsResponse>,
-       callback?: BodyResponseCallback<Schema$CustomerListDpcsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl ||
-            'https://androiddeviceprovisioning.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/dpcs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CustomerListDpcsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CustomerListDpcsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$CustomerListDpcsResponse>,
+      callback?: BodyResponseCallback<Schema$CustomerListDpcsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$CustomerListDpcsResponse>,
+      callback?: BodyResponseCallback<Schema$CustomerListDpcsResponse>):
+      void|AxiosPromise<Schema$CustomerListDpcsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/dpcs').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CustomerListDpcsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CustomerListDpcsResponse>(parameters);
+    }
+  }
 }
 
 
@@ -1315,7 +1519,13 @@ export class Resource$Operations {
   root: Androiddeviceprovisioning;
   constructor(root: Androiddeviceprovisioning) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * androiddeviceprovisioning.operations.get
@@ -1331,31 +1541,43 @@ export class Resource$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl ||
-            'https://androiddeviceprovisioning.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 }
 
 export class Resource$Partners {
@@ -1364,15 +1586,26 @@ export class Resource$Partners {
   devices: Resource$Partners$Devices;
   constructor(root: Androiddeviceprovisioning) {
     this.root = root;
+    this.getRoot.bind(this);
     this.customers = new Resource$Partners$Customers(root);
     this.devices = new Resource$Partners$Devices(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Partners$Customers {
   root: Androiddeviceprovisioning;
   constructor(root: Androiddeviceprovisioning) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * androiddeviceprovisioning.partners.customers.create
@@ -1390,31 +1623,44 @@ export class Resource$Partners$Customers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Company>,
-       callback?: BodyResponseCallback<Schema$Company>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl ||
-            'https://androiddeviceprovisioning.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/customers')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Company>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Company>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Company>,
+      callback?: BodyResponseCallback<Schema$Company>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Company>,
+      callback?: BodyResponseCallback<Schema$Company>):
+      void|AxiosPromise<Schema$Company> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/customers')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Company>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Company>(parameters);
+    }
+  }
 
 
   /**
@@ -1431,40 +1677,61 @@ export class Resource$Partners$Customers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListCustomersResponse>,
-       callback?: BodyResponseCallback<Schema$ListCustomersResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl ||
-            'https://androiddeviceprovisioning.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/partners/{partnerId}/customers')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['partnerId'],
-          pathParams: ['partnerId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListCustomersResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListCustomersResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListCustomersResponse>,
+      callback?: BodyResponseCallback<Schema$ListCustomersResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListCustomersResponse>,
+      callback?: BodyResponseCallback<Schema$ListCustomersResponse>):
+      void|AxiosPromise<Schema$ListCustomersResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/partners/{partnerId}/customers')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['partnerId'],
+      pathParams: ['partnerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListCustomersResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListCustomersResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Partners$Devices {
   root: Androiddeviceprovisioning;
   constructor(root: Androiddeviceprovisioning) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * androiddeviceprovisioning.partners.devices.claim
@@ -1481,32 +1748,47 @@ export class Resource$Partners$Devices {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  claim =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ClaimDeviceResponse>,
-       callback?: BodyResponseCallback<Schema$ClaimDeviceResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl ||
-            'https://androiddeviceprovisioning.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/partners/{partnerId}/devices:claim')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['partnerId'],
-          pathParams: ['partnerId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ClaimDeviceResponse>(parameters, callback!);
-      };
+  claim(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ClaimDeviceResponse>;
+  claim(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ClaimDeviceResponse>,
+      callback?: BodyResponseCallback<Schema$ClaimDeviceResponse>): void;
+  claim(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ClaimDeviceResponse>,
+      callback?: BodyResponseCallback<Schema$ClaimDeviceResponse>):
+      void|AxiosPromise<Schema$ClaimDeviceResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/partners/{partnerId}/devices:claim')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['partnerId'],
+      pathParams: ['partnerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ClaimDeviceResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ClaimDeviceResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1524,32 +1806,47 @@ export class Resource$Partners$Devices {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  claimAsync =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl ||
-            'https://androiddeviceprovisioning.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/partners/{partnerId}/devices:claimAsync')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['partnerId'],
-          pathParams: ['partnerId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  claimAsync(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Operation>;
+  claimAsync(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  claimAsync(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/partners/{partnerId}/devices:claimAsync')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['partnerId'],
+      pathParams: ['partnerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 
 
   /**
@@ -1565,36 +1862,54 @@ export class Resource$Partners$Devices {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  findByIdentifier =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$FindDevicesByDeviceIdentifierResponse>,
-       callback?: BodyResponseCallback<
-           Schema$FindDevicesByDeviceIdentifierResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl ||
-            'https://androiddeviceprovisioning.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v1/partners/{partnerId}/devices:findByIdentifier')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['partnerId'],
-          pathParams: ['partnerId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$FindDevicesByDeviceIdentifierResponse>(
-            parameters, callback!);
-      };
+  findByIdentifier(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$FindDevicesByDeviceIdentifierResponse>;
+  findByIdentifier(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$FindDevicesByDeviceIdentifierResponse>,
+      callback?:
+          BodyResponseCallback<Schema$FindDevicesByDeviceIdentifierResponse>):
+      void;
+  findByIdentifier(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$FindDevicesByDeviceIdentifierResponse>,
+      callback?:
+          BodyResponseCallback<Schema$FindDevicesByDeviceIdentifierResponse>):
+      void|AxiosPromise<Schema$FindDevicesByDeviceIdentifierResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/partners/{partnerId}/devices:findByIdentifier')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['partnerId'],
+      pathParams: ['partnerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$FindDevicesByDeviceIdentifierResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$FindDevicesByDeviceIdentifierResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -1613,34 +1928,49 @@ export class Resource$Partners$Devices {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  findByOwner =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$FindDevicesByOwnerResponse>,
-       callback?: BodyResponseCallback<Schema$FindDevicesByOwnerResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl ||
-            'https://androiddeviceprovisioning.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/partners/{partnerId}/devices:findByOwner')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['partnerId'],
-          pathParams: ['partnerId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$FindDevicesByOwnerResponse>(
-            parameters, callback!);
-      };
+  findByOwner(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$FindDevicesByOwnerResponse>;
+  findByOwner(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$FindDevicesByOwnerResponse>,
+      callback?: BodyResponseCallback<Schema$FindDevicesByOwnerResponse>): void;
+  findByOwner(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$FindDevicesByOwnerResponse>,
+      callback?: BodyResponseCallback<Schema$FindDevicesByOwnerResponse>):
+      void|AxiosPromise<Schema$FindDevicesByOwnerResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/partners/{partnerId}/devices:findByOwner')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['partnerId'],
+      pathParams: ['partnerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$FindDevicesByOwnerResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$FindDevicesByOwnerResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1655,30 +1985,41 @@ export class Resource$Partners$Devices {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Device>,
-       callback?: BodyResponseCallback<Schema$Device>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl ||
-            'https://androiddeviceprovisioning.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Device>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Device>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Device>,
+      callback?: BodyResponseCallback<Schema$Device>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Device>,
+      callback?: BodyResponseCallback<Schema$Device>):
+      void|AxiosPromise<Schema$Device> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Device>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Device>(parameters);
+    }
+  }
 
 
   /**
@@ -1695,34 +2036,48 @@ export class Resource$Partners$Devices {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  metadata =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$DeviceMetadata>,
-       callback?: BodyResponseCallback<Schema$DeviceMetadata>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl ||
-            'https://androiddeviceprovisioning.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1/partners/{metadataOwnerId}/devices/{deviceId}/metadata')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['metadataOwnerId', 'deviceId'],
-          pathParams: ['deviceId', 'metadataOwnerId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$DeviceMetadata>(parameters, callback!);
-      };
+  metadata(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$DeviceMetadata>;
+  metadata(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$DeviceMetadata>,
+      callback?: BodyResponseCallback<Schema$DeviceMetadata>): void;
+  metadata(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$DeviceMetadata>,
+      callback?: BodyResponseCallback<Schema$DeviceMetadata>):
+      void|AxiosPromise<Schema$DeviceMetadata> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/v1/partners/{metadataOwnerId}/devices/{deviceId}/metadata')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['metadataOwnerId', 'deviceId'],
+      pathParams: ['deviceId', 'metadataOwnerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DeviceMetadata>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DeviceMetadata>(parameters);
+    }
+  }
 
 
   /**
@@ -1739,31 +2094,44 @@ export class Resource$Partners$Devices {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  unclaim =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl ||
-            'https://androiddeviceprovisioning.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/partners/{partnerId}/devices:unclaim')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['partnerId'],
-          pathParams: ['partnerId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  unclaim(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  unclaim(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  unclaim(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/partners/{partnerId}/devices:unclaim')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['partnerId'],
+      pathParams: ['partnerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -1781,32 +2149,47 @@ export class Resource$Partners$Devices {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  unclaimAsync =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl ||
-            'https://androiddeviceprovisioning.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/partners/{partnerId}/devices:unclaimAsync')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['partnerId'],
-          pathParams: ['partnerId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  unclaimAsync(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Operation>;
+  unclaimAsync(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  unclaimAsync(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/partners/{partnerId}/devices:unclaimAsync')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['partnerId'],
+      pathParams: ['partnerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 
 
   /**
@@ -1825,31 +2208,46 @@ export class Resource$Partners$Devices {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  updateMetadataAsync =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl ||
-            'https://androiddeviceprovisioning.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v1/partners/{partnerId}/devices:updateMetadataAsync')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['partnerId'],
-          pathParams: ['partnerId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  updateMetadataAsync(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Operation>;
+  updateMetadataAsync(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  updateMetadataAsync(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/v1/partners/{partnerId}/devices:updateMetadataAsync')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['partnerId'],
+      pathParams: ['partnerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 }

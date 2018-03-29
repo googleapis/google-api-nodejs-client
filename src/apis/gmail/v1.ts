@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -51,8 +53,13 @@ export class Gmail {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.users = new Resource$Users(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -896,6 +903,7 @@ export class Resource$Users {
   threads: Resource$Users$Threads;
   constructor(root: Gmail) {
     this.root = root;
+    this.getRoot.bind(this);
     this.drafts = new Resource$Users$Drafts(root);
     this.history = new Resource$Users$History(root);
     this.labels = new Resource$Users$Labels(root);
@@ -903,6 +911,11 @@ export class Resource$Users {
     this.settings = new Resource$Users$Settings(root);
     this.threads = new Resource$Users$Threads(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * gmail.users.getProfile
@@ -916,30 +929,44 @@ export class Resource$Users {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getProfile =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Profile>,
-       callback?: BodyResponseCallback<Schema$Profile>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/profile')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Profile>(parameters, callback!);
-      };
+  getProfile(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Profile>;
+  getProfile(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Profile>,
+      callback?: BodyResponseCallback<Schema$Profile>): void;
+  getProfile(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Profile>,
+      callback?: BodyResponseCallback<Schema$Profile>):
+      void|AxiosPromise<Schema$Profile> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/profile')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Profile>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Profile>(parameters);
+    }
+  }
 
 
   /**
@@ -954,30 +981,42 @@ export class Resource$Users {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  stop =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/stop')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  stop(params: any, options?: MethodOptions): AxiosPromise<void>;
+  stop(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  stop(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/stop')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -993,37 +1032,58 @@ export class Resource$Users {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  watch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$WatchResponse>,
-       callback?: BodyResponseCallback<Schema$WatchResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/watch')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$WatchResponse>(parameters, callback!);
-      };
+  watch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$WatchResponse>;
+  watch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$WatchResponse>,
+      callback?: BodyResponseCallback<Schema$WatchResponse>): void;
+  watch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$WatchResponse>,
+      callback?: BodyResponseCallback<Schema$WatchResponse>):
+      void|AxiosPromise<Schema$WatchResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/watch')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$WatchResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$WatchResponse>(parameters);
+    }
+  }
 }
 export class Resource$Users$Drafts {
   root: Gmail;
   constructor(root: Gmail) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * gmail.users.drafts.create
@@ -1041,32 +1101,45 @@ export class Resource$Users$Drafts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Draft>,
-       callback?: BodyResponseCallback<Schema$Draft>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/drafts')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/drafts')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Draft>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Draft>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Draft>,
+      callback?: BodyResponseCallback<Schema$Draft>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Draft>,
+      callback?: BodyResponseCallback<Schema$Draft>):
+      void|AxiosPromise<Schema$Draft> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/drafts')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/drafts')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Draft>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Draft>(parameters);
+    }
+  }
 
 
   /**
@@ -1083,30 +1156,42 @@ export class Resource$Users$Drafts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/drafts/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'id'],
-          pathParams: ['id', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/drafts/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'id'],
+      pathParams: ['id', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -1123,30 +1208,41 @@ export class Resource$Users$Drafts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Draft>,
-       callback?: BodyResponseCallback<Schema$Draft>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/drafts/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'id'],
-          pathParams: ['id', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Draft>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Draft>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Draft>,
+      callback?: BodyResponseCallback<Schema$Draft>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Draft>,
+      callback?: BodyResponseCallback<Schema$Draft>):
+      void|AxiosPromise<Schema$Draft> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/drafts/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'id'],
+      pathParams: ['id', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Draft>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Draft>(parameters);
+    }
+  }
 
 
   /**
@@ -1165,31 +1261,46 @@ export class Resource$Users$Drafts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListDraftsResponse>,
-       callback?: BodyResponseCallback<Schema$ListDraftsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/drafts')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListDraftsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListDraftsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListDraftsResponse>,
+      callback?: BodyResponseCallback<Schema$ListDraftsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListDraftsResponse>,
+      callback?: BodyResponseCallback<Schema$ListDraftsResponse>):
+      void|AxiosPromise<Schema$ListDraftsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/drafts')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListDraftsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListDraftsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1209,32 +1320,45 @@ export class Resource$Users$Drafts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  send =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
-       callback?: BodyResponseCallback<Schema$Message>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/drafts/send')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/drafts/send')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Message>(parameters, callback!);
-      };
+  send(params: any, options?: MethodOptions): AxiosPromise<Schema$Message>;
+  send(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>): void;
+  send(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>):
+      void|AxiosPromise<Schema$Message> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/drafts/send')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/drafts/send')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Message>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Message>(parameters);
+    }
+  }
 
 
   /**
@@ -1254,39 +1378,58 @@ export class Resource$Users$Drafts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Draft>,
-       callback?: BodyResponseCallback<Schema$Draft>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/drafts/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/drafts/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: ['userId', 'id'],
-          pathParams: ['id', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Draft>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Draft>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Draft>,
+      callback?: BodyResponseCallback<Schema$Draft>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Draft>,
+      callback?: BodyResponseCallback<Schema$Draft>):
+      void|AxiosPromise<Schema$Draft> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/drafts/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/drafts/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+      requiredParams: ['userId', 'id'],
+      pathParams: ['id', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Draft>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Draft>(parameters);
+    }
+  }
 }
 
 export class Resource$Users$History {
   root: Gmail;
   constructor(root: Gmail) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * gmail.users.history.list
@@ -1306,38 +1449,59 @@ export class Resource$Users$History {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListHistoryResponse>,
-       callback?: BodyResponseCallback<Schema$ListHistoryResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/history')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListHistoryResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListHistoryResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListHistoryResponse>,
+      callback?: BodyResponseCallback<Schema$ListHistoryResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListHistoryResponse>,
+      callback?: BodyResponseCallback<Schema$ListHistoryResponse>):
+      void|AxiosPromise<Schema$ListHistoryResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/history')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListHistoryResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListHistoryResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Users$Labels {
   root: Gmail;
   constructor(root: Gmail) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * gmail.users.labels.create
@@ -1352,30 +1516,43 @@ export class Resource$Users$Labels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Label>,
-       callback?: BodyResponseCallback<Schema$Label>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/labels')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Label>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Label>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Label>,
+      callback?: BodyResponseCallback<Schema$Label>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Label>,
+      callback?: BodyResponseCallback<Schema$Label>):
+      void|AxiosPromise<Schema$Label> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/labels')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Label>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Label>(parameters);
+    }
+  }
 
 
   /**
@@ -1392,30 +1569,42 @@ export class Resource$Users$Labels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/labels/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'id'],
-          pathParams: ['id', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/labels/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'id'],
+      pathParams: ['id', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -1431,30 +1620,41 @@ export class Resource$Users$Labels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Label>,
-       callback?: BodyResponseCallback<Schema$Label>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/labels/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'id'],
-          pathParams: ['id', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Label>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Label>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Label>,
+      callback?: BodyResponseCallback<Schema$Label>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Label>,
+      callback?: BodyResponseCallback<Schema$Label>):
+      void|AxiosPromise<Schema$Label> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/labels/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'id'],
+      pathParams: ['id', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Label>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Label>(parameters);
+    }
+  }
 
 
   /**
@@ -1469,31 +1669,46 @@ export class Resource$Users$Labels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListLabelsResponse>,
-       callback?: BodyResponseCallback<Schema$ListLabelsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/labels')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListLabelsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListLabelsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListLabelsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLabelsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListLabelsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLabelsResponse>):
+      void|AxiosPromise<Schema$ListLabelsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/labels')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListLabelsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListLabelsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1510,30 +1725,43 @@ export class Resource$Users$Labels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Label>,
-       callback?: BodyResponseCallback<Schema$Label>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/labels/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'id'],
-          pathParams: ['id', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Label>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Label>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Label>,
+      callback?: BodyResponseCallback<Schema$Label>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Label>,
+      callback?: BodyResponseCallback<Schema$Label>):
+      void|AxiosPromise<Schema$Label> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/labels/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'id'],
+      pathParams: ['id', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Label>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Label>(parameters);
+    }
+  }
 
 
   /**
@@ -1550,30 +1778,43 @@ export class Resource$Users$Labels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Label>,
-       callback?: BodyResponseCallback<Schema$Label>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/labels/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'id'],
-          pathParams: ['id', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Label>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Label>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Label>,
+      callback?: BodyResponseCallback<Schema$Label>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Label>,
+      callback?: BodyResponseCallback<Schema$Label>):
+      void|AxiosPromise<Schema$Label> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/labels/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'id'],
+      pathParams: ['id', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Label>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Label>(parameters);
+    }
+  }
 }
 
 export class Resource$Users$Messages {
@@ -1581,8 +1822,14 @@ export class Resource$Users$Messages {
   attachments: Resource$Users$Messages$Attachments;
   constructor(root: Gmail) {
     this.root = root;
+    this.getRoot.bind(this);
     this.attachments = new Resource$Users$Messages$Attachments(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * gmail.users.messages.batchDelete
@@ -1598,30 +1845,42 @@ export class Resource$Users$Messages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchDelete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/messages/batchDelete')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  batchDelete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  batchDelete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  batchDelete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages/batchDelete')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -1637,30 +1896,42 @@ export class Resource$Users$Messages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchModify =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/messages/batchModify')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  batchModify(params: any, options?: MethodOptions): AxiosPromise<void>;
+  batchModify(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  batchModify(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages/batchModify')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -1677,30 +1948,42 @@ export class Resource$Users$Messages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/messages/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'id'],
-          pathParams: ['id', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'id'],
+      pathParams: ['id', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -1718,30 +2001,41 @@ export class Resource$Users$Messages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
-       callback?: BodyResponseCallback<Schema$Message>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/messages/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'id'],
-          pathParams: ['id', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Message>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Message>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>):
+      void|AxiosPromise<Schema$Message> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'id'],
+      pathParams: ['id', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Message>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Message>(parameters);
+    }
+  }
 
 
   /**
@@ -1766,58 +2060,77 @@ export class Resource$Users$Messages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>, callback?: BodyResponseCallback<Schema$Message>) => {if(typeof options === 'function') {
+import(params: any, options?: MethodOptions): AxiosPromise<Schema$Message>;
+import(params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>, callback?: BodyResponseCallback<Schema$Message>): void;
+import(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Message>, callback?: BodyResponseCallback<Schema$Message>): void|AxiosPromise<Schema$Message> {if(typeof options === 'function') {
     callback = options;
     options = {};
-  } options = options || {}; const rootUrl = options.rootUrl || 'https://www.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/gmail/v1/users/{userId}/messages/import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/messages/import').replace(/([^:]\/)\/+/g, '$1'), requiredParams: ['userId'], pathParams: ['userId'], context: this.root}; createAPIRequest<Schema$Message>(parameters, callback!);};
+  } if(typeof params === 'function') {
+    callback = params;
+    params = {};
+  } options = options || {}; const rootUrl = options.rootUrl || 'https://www.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/gmail/v1/users/{userId}/messages/import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/messages/import').replace(/([^:]\/)\/+/g, '$1'), requiredParams: ['userId'], pathParams: ['userId'], context: this.getRoot()}; if(callback) {
+    createAPIRequest<Schema$Message>(parameters, callback);
+  } else { return createAPIRequest<Schema$Message>(parameters);
+  }}
 
 
   /**
-   * gmail.users.messages.insert
-   * @desc Directly inserts a message into only this user's mailbox similar to
-   * IMAP APPEND, bypassing most scanning and classification. Does not send a
-   * message.
-   * @alias gmail.users.messages.insert
-   * @memberOf! ()
-   *
-   * @param {object} params Parameters for request
-   * @param {boolean=} params.deleted Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for G Suite accounts.
-   * @param {string=} params.internalDateSource Source for Gmail's internal date of the message.
-   * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-   * @param  {object} params.resource Media resource metadata
-   * @param {object} params.media Media object
-   * @param {string} params.media.mimeType Media mime-type
-   * @param {string|object} params.media.body Media body contents
-   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-   * @param {callback} callback The callback that handles the response.
-   * @return {object} Request object
-   */
-  insert =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
-       callback?: BodyResponseCallback<Schema$Message>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/messages')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/messages')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Message>(parameters, callback!);
-      };
+ * gmail.users.messages.insert
+ * @desc Directly inserts a message into only this user's mailbox similar to IMAP APPEND, bypassing most scanning and classification. Does not send a message.
+ * @alias gmail.users.messages.insert
+ * @memberOf! ()
+ *
+ * @param {object} params Parameters for request
+ * @param {boolean=} params.deleted Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for G Suite accounts.
+ * @param {string=} params.internalDateSource Source for Gmail's internal date of the message.
+ * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+ * @param  {object} params.resource Media resource metadata
+ * @param {object} params.media Media object
+ * @param {string} params.media.mimeType Media mime-type
+ * @param {string|object} params.media.body Media body contents
+ * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+ * @param {callback} callback The callback that handles the response.
+ * @return {object} Request object
+ */
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Message>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>): void;
+  insert(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>):
+      void|AxiosPromise<Schema$Message> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/messages')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Message>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Message>(parameters);
+    }
+  }
 
 
   /**
@@ -1837,31 +2150,46 @@ import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Messag
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListMessagesResponse>,
-       callback?: BodyResponseCallback<Schema$ListMessagesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/messages')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListMessagesResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListMessagesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListMessagesResponse>,
+      callback?: BodyResponseCallback<Schema$ListMessagesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListMessagesResponse>,
+      callback?: BodyResponseCallback<Schema$ListMessagesResponse>):
+      void|AxiosPromise<Schema$ListMessagesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListMessagesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListMessagesResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1878,30 +2206,43 @@ import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Messag
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  modify =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
-       callback?: BodyResponseCallback<Schema$Message>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/messages/{id}/modify')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'id'],
-          pathParams: ['id', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Message>(parameters, callback!);
-      };
+  modify(params: any, options?: MethodOptions): AxiosPromise<Schema$Message>;
+  modify(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>): void;
+  modify(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>):
+      void|AxiosPromise<Schema$Message> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages/{id}/modify')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'id'],
+      pathParams: ['id', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Message>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Message>(parameters);
+    }
+  }
 
 
   /**
@@ -1921,32 +2262,45 @@ import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Messag
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  send =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
-       callback?: BodyResponseCallback<Schema$Message>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/messages/send')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/messages/send')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Message>(parameters, callback!);
-      };
+  send(params: any, options?: MethodOptions): AxiosPromise<Schema$Message>;
+  send(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>): void;
+  send(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>):
+      void|AxiosPromise<Schema$Message> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages/send')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/messages/send')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Message>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Message>(parameters);
+    }
+  }
 
 
   /**
@@ -1962,30 +2316,43 @@ import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Messag
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  trash =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
-       callback?: BodyResponseCallback<Schema$Message>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/messages/{id}/trash')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'id'],
-          pathParams: ['id', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Message>(parameters, callback!);
-      };
+  trash(params: any, options?: MethodOptions): AxiosPromise<Schema$Message>;
+  trash(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>): void;
+  trash(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>):
+      void|AxiosPromise<Schema$Message> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages/{id}/trash')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'id'],
+      pathParams: ['id', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Message>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Message>(parameters);
+    }
+  }
 
 
   /**
@@ -2001,37 +2368,55 @@ import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Messag
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  untrash =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
-       callback?: BodyResponseCallback<Schema$Message>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/gmail/v1/users/{userId}/messages/{id}/untrash')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'id'],
-          pathParams: ['id', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Message>(parameters, callback!);
-      };
+  untrash(params: any, options?: MethodOptions): AxiosPromise<Schema$Message>;
+  untrash(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>): void;
+  untrash(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>):
+      void|AxiosPromise<Schema$Message> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages/{id}/untrash')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'id'],
+      pathParams: ['id', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Message>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Message>(parameters);
+    }
+  }
 }
 export class Resource$Users$Messages$Attachments {
   root: Gmail;
   constructor(root: Gmail) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * gmail.users.messages.attachments.get
@@ -2047,33 +2432,46 @@ export class Resource$Users$Messages$Attachments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$MessagePartBody>,
-       callback?: BodyResponseCallback<Schema$MessagePartBody>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/gmail/v1/users/{userId}/messages/{messageId}/attachments/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'messageId', 'id'],
-          pathParams: ['id', 'messageId', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$MessagePartBody>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$MessagePartBody>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$MessagePartBody>,
+      callback?: BodyResponseCallback<Schema$MessagePartBody>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$MessagePartBody>,
+      callback?: BodyResponseCallback<Schema$MessagePartBody>):
+      void|AxiosPromise<Schema$MessagePartBody> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/gmail/v1/users/{userId}/messages/{messageId}/attachments/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'messageId', 'id'],
+      pathParams: ['id', 'messageId', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$MessagePartBody>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$MessagePartBody>(parameters);
+    }
+  }
 }
 
 
@@ -2084,11 +2482,17 @@ export class Resource$Users$Settings {
   sendAs: Resource$Users$Settings$Sendas;
   constructor(root: Gmail) {
     this.root = root;
+    this.getRoot.bind(this);
     this.filters = new Resource$Users$Settings$Filters(root);
     this.forwardingAddresses =
         new Resource$Users$Settings$Forwardingaddresses(root);
     this.sendAs = new Resource$Users$Settings$Sendas(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * gmail.users.settings.getAutoForwarding
@@ -2102,32 +2506,46 @@ export class Resource$Users$Settings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getAutoForwarding =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AutoForwarding>,
-       callback?: BodyResponseCallback<Schema$AutoForwarding>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/gmail/v1/users/{userId}/settings/autoForwarding')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AutoForwarding>(parameters, callback!);
-      };
+  getAutoForwarding(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AutoForwarding>;
+  getAutoForwarding(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AutoForwarding>,
+      callback?: BodyResponseCallback<Schema$AutoForwarding>): void;
+  getAutoForwarding(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AutoForwarding>,
+      callback?: BodyResponseCallback<Schema$AutoForwarding>):
+      void|AxiosPromise<Schema$AutoForwarding> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/autoForwarding')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AutoForwarding>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AutoForwarding>(parameters);
+    }
+  }
 
 
   /**
@@ -2142,31 +2560,46 @@ export class Resource$Users$Settings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getImap =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ImapSettings>,
-       callback?: BodyResponseCallback<Schema$ImapSettings>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/settings/imap')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ImapSettings>(parameters, callback!);
-      };
+  getImap(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ImapSettings>;
+  getImap(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ImapSettings>,
+      callback?: BodyResponseCallback<Schema$ImapSettings>): void;
+  getImap(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ImapSettings>,
+      callback?: BodyResponseCallback<Schema$ImapSettings>):
+      void|AxiosPromise<Schema$ImapSettings> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/imap')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ImapSettings>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ImapSettings>(parameters);
+    }
+  }
 
 
   /**
@@ -2181,31 +2614,46 @@ export class Resource$Users$Settings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getPop =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PopSettings>,
-       callback?: BodyResponseCallback<Schema$PopSettings>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/settings/pop')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PopSettings>(parameters, callback!);
-      };
+  getPop(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PopSettings>;
+  getPop(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$PopSettings>,
+      callback?: BodyResponseCallback<Schema$PopSettings>): void;
+  getPop(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PopSettings>,
+      callback?: BodyResponseCallback<Schema$PopSettings>):
+      void|AxiosPromise<Schema$PopSettings> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/pop')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PopSettings>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PopSettings>(parameters);
+    }
+  }
 
 
   /**
@@ -2220,31 +2668,46 @@ export class Resource$Users$Settings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getVacation =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$VacationSettings>,
-       callback?: BodyResponseCallback<Schema$VacationSettings>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/settings/vacation')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$VacationSettings>(parameters, callback!);
-      };
+  getVacation(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$VacationSettings>;
+  getVacation(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$VacationSettings>,
+      callback?: BodyResponseCallback<Schema$VacationSettings>): void;
+  getVacation(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$VacationSettings>,
+      callback?: BodyResponseCallback<Schema$VacationSettings>):
+      void|AxiosPromise<Schema$VacationSettings> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/vacation')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$VacationSettings>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$VacationSettings>(parameters);
+    }
+  }
 
 
   /**
@@ -2263,32 +2726,46 @@ export class Resource$Users$Settings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  updateAutoForwarding =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AutoForwarding>,
-       callback?: BodyResponseCallback<Schema$AutoForwarding>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/gmail/v1/users/{userId}/settings/autoForwarding')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AutoForwarding>(parameters, callback!);
-      };
+  updateAutoForwarding(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AutoForwarding>;
+  updateAutoForwarding(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AutoForwarding>,
+      callback?: BodyResponseCallback<Schema$AutoForwarding>): void;
+  updateAutoForwarding(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AutoForwarding>,
+      callback?: BodyResponseCallback<Schema$AutoForwarding>):
+      void|AxiosPromise<Schema$AutoForwarding> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/autoForwarding')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AutoForwarding>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AutoForwarding>(parameters);
+    }
+  }
 
 
   /**
@@ -2304,31 +2781,46 @@ export class Resource$Users$Settings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  updateImap =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ImapSettings>,
-       callback?: BodyResponseCallback<Schema$ImapSettings>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/settings/imap')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ImapSettings>(parameters, callback!);
-      };
+  updateImap(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ImapSettings>;
+  updateImap(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ImapSettings>,
+      callback?: BodyResponseCallback<Schema$ImapSettings>): void;
+  updateImap(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ImapSettings>,
+      callback?: BodyResponseCallback<Schema$ImapSettings>):
+      void|AxiosPromise<Schema$ImapSettings> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/imap')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ImapSettings>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ImapSettings>(parameters);
+    }
+  }
 
 
   /**
@@ -2344,31 +2836,46 @@ export class Resource$Users$Settings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  updatePop =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PopSettings>,
-       callback?: BodyResponseCallback<Schema$PopSettings>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/settings/pop')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PopSettings>(parameters, callback!);
-      };
+  updatePop(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PopSettings>;
+  updatePop(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$PopSettings>,
+      callback?: BodyResponseCallback<Schema$PopSettings>): void;
+  updatePop(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PopSettings>,
+      callback?: BodyResponseCallback<Schema$PopSettings>):
+      void|AxiosPromise<Schema$PopSettings> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/pop')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PopSettings>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PopSettings>(parameters);
+    }
+  }
 
 
   /**
@@ -2384,37 +2891,58 @@ export class Resource$Users$Settings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  updateVacation =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$VacationSettings>,
-       callback?: BodyResponseCallback<Schema$VacationSettings>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/settings/vacation')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$VacationSettings>(parameters, callback!);
-      };
+  updateVacation(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$VacationSettings>;
+  updateVacation(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$VacationSettings>,
+      callback?: BodyResponseCallback<Schema$VacationSettings>): void;
+  updateVacation(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$VacationSettings>,
+      callback?: BodyResponseCallback<Schema$VacationSettings>):
+      void|AxiosPromise<Schema$VacationSettings> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/vacation')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$VacationSettings>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$VacationSettings>(parameters);
+    }
+  }
 }
 export class Resource$Users$Settings$Filters {
   root: Gmail;
   constructor(root: Gmail) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * gmail.users.settings.filters.create
@@ -2429,30 +2957,43 @@ export class Resource$Users$Settings$Filters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Filter>,
-       callback?: BodyResponseCallback<Schema$Filter>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/settings/filters')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Filter>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Filter>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Filter>,
+      callback?: BodyResponseCallback<Schema$Filter>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Filter>,
+      callback?: BodyResponseCallback<Schema$Filter>):
+      void|AxiosPromise<Schema$Filter> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/filters')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Filter>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Filter>(parameters);
+    }
+  }
 
 
   /**
@@ -2468,31 +3009,42 @@ export class Resource$Users$Settings$Filters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/gmail/v1/users/{userId}/settings/filters/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'id'],
-          pathParams: ['id', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/filters/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'id'],
+      pathParams: ['id', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -2508,31 +3060,41 @@ export class Resource$Users$Settings$Filters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Filter>,
-       callback?: BodyResponseCallback<Schema$Filter>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/gmail/v1/users/{userId}/settings/filters/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'id'],
-          pathParams: ['id', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Filter>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Filter>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Filter>,
+      callback?: BodyResponseCallback<Schema$Filter>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Filter>,
+      callback?: BodyResponseCallback<Schema$Filter>):
+      void|AxiosPromise<Schema$Filter> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/filters/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'id'],
+      pathParams: ['id', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Filter>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Filter>(parameters);
+    }
+  }
 
 
   /**
@@ -2547,38 +3109,59 @@ export class Resource$Users$Settings$Filters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListFiltersResponse>,
-       callback?: BodyResponseCallback<Schema$ListFiltersResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/settings/filters')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListFiltersResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListFiltersResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListFiltersResponse>,
+      callback?: BodyResponseCallback<Schema$ListFiltersResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListFiltersResponse>,
+      callback?: BodyResponseCallback<Schema$ListFiltersResponse>):
+      void|AxiosPromise<Schema$ListFiltersResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/filters')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListFiltersResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListFiltersResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Users$Settings$Forwardingaddresses {
   root: Gmail;
   constructor(root: Gmail) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * gmail.users.settings.forwardingAddresses.create
@@ -2597,32 +3180,47 @@ export class Resource$Users$Settings$Forwardingaddresses {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ForwardingAddress>,
-       callback?: BodyResponseCallback<Schema$ForwardingAddress>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/gmail/v1/users/{userId}/settings/forwardingAddresses')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ForwardingAddress>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ForwardingAddress>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ForwardingAddress>,
+      callback?: BodyResponseCallback<Schema$ForwardingAddress>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ForwardingAddress>,
+      callback?: BodyResponseCallback<Schema$ForwardingAddress>):
+      void|AxiosPromise<Schema$ForwardingAddress> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/gmail/v1/users/{userId}/settings/forwardingAddresses')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ForwardingAddress>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ForwardingAddress>(parameters);
+    }
+  }
 
 
   /**
@@ -2640,32 +3238,44 @@ export class Resource$Users$Settings$Forwardingaddresses {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/gmail/v1/users/{userId}/settings/forwardingAddresses/{forwardingEmail}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'forwardingEmail'],
-          pathParams: ['forwardingEmail', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/gmail/v1/users/{userId}/settings/forwardingAddresses/{forwardingEmail}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'forwardingEmail'],
+      pathParams: ['forwardingEmail', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -2681,33 +3291,46 @@ export class Resource$Users$Settings$Forwardingaddresses {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ForwardingAddress>,
-       callback?: BodyResponseCallback<Schema$ForwardingAddress>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/gmail/v1/users/{userId}/settings/forwardingAddresses/{forwardingEmail}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'forwardingEmail'],
-          pathParams: ['forwardingEmail', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ForwardingAddress>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$ForwardingAddress>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ForwardingAddress>,
+      callback?: BodyResponseCallback<Schema$ForwardingAddress>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ForwardingAddress>,
+      callback?: BodyResponseCallback<Schema$ForwardingAddress>):
+      void|AxiosPromise<Schema$ForwardingAddress> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/gmail/v1/users/{userId}/settings/forwardingAddresses/{forwardingEmail}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'forwardingEmail'],
+      pathParams: ['forwardingEmail', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ForwardingAddress>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ForwardingAddress>(parameters);
+    }
+  }
 
 
   /**
@@ -2722,35 +3345,52 @@ export class Resource$Users$Settings$Forwardingaddresses {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListForwardingAddressesResponse>,
-       callback?:
-           BodyResponseCallback<Schema$ListForwardingAddressesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/gmail/v1/users/{userId}/settings/forwardingAddresses')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListForwardingAddressesResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListForwardingAddressesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListForwardingAddressesResponse>,
+      callback?: BodyResponseCallback<Schema$ListForwardingAddressesResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListForwardingAddressesResponse>,
+      callback?: BodyResponseCallback<Schema$ListForwardingAddressesResponse>):
+      void|AxiosPromise<Schema$ListForwardingAddressesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/gmail/v1/users/{userId}/settings/forwardingAddresses')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListForwardingAddressesResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListForwardingAddressesResponse>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Users$Settings$Sendas {
@@ -2758,8 +3398,14 @@ export class Resource$Users$Settings$Sendas {
   smimeInfo: Resource$Users$Settings$Sendas$Smimeinfo;
   constructor(root: Gmail) {
     this.root = root;
+    this.getRoot.bind(this);
     this.smimeInfo = new Resource$Users$Settings$Sendas$Smimeinfo(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * gmail.users.settings.sendAs.create
@@ -2782,30 +3428,43 @@ export class Resource$Users$Settings$Sendas {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$SendAs>,
-       callback?: BodyResponseCallback<Schema$SendAs>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/settings/sendAs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SendAs>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$SendAs>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$SendAs>,
+      callback?: BodyResponseCallback<Schema$SendAs>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$SendAs>,
+      callback?: BodyResponseCallback<Schema$SendAs>):
+      void|AxiosPromise<Schema$SendAs> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/sendAs')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SendAs>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SendAs>(parameters);
+    }
+  }
 
 
   /**
@@ -2823,31 +3482,43 @@ export class Resource$Users$Settings$Sendas {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'sendAsEmail'],
-          pathParams: ['sendAsEmail', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'sendAsEmail'],
+      pathParams: ['sendAsEmail', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -2864,31 +3535,42 @@ export class Resource$Users$Settings$Sendas {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$SendAs>,
-       callback?: BodyResponseCallback<Schema$SendAs>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'sendAsEmail'],
-          pathParams: ['sendAsEmail', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SendAs>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$SendAs>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$SendAs>,
+      callback?: BodyResponseCallback<Schema$SendAs>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$SendAs>,
+      callback?: BodyResponseCallback<Schema$SendAs>):
+      void|AxiosPromise<Schema$SendAs> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'sendAsEmail'],
+      pathParams: ['sendAsEmail', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SendAs>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SendAs>(parameters);
+    }
+  }
 
 
   /**
@@ -2905,31 +3587,46 @@ export class Resource$Users$Settings$Sendas {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListSendAsResponse>,
-       callback?: BodyResponseCallback<Schema$ListSendAsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/settings/sendAs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListSendAsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListSendAsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListSendAsResponse>,
+      callback?: BodyResponseCallback<Schema$ListSendAsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListSendAsResponse>,
+      callback?: BodyResponseCallback<Schema$ListSendAsResponse>):
+      void|AxiosPromise<Schema$ListSendAsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/sendAs')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListSendAsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListSendAsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2950,31 +3647,44 @@ export class Resource$Users$Settings$Sendas {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$SendAs>,
-       callback?: BodyResponseCallback<Schema$SendAs>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'sendAsEmail'],
-          pathParams: ['sendAsEmail', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SendAs>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$SendAs>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$SendAs>,
+      callback?: BodyResponseCallback<Schema$SendAs>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$SendAs>,
+      callback?: BodyResponseCallback<Schema$SendAs>):
+      void|AxiosPromise<Schema$SendAs> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'sendAsEmail'],
+      pathParams: ['sendAsEmail', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SendAs>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SendAs>(parameters);
+    }
+  }
 
 
   /**
@@ -2994,31 +3704,44 @@ export class Resource$Users$Settings$Sendas {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$SendAs>,
-       callback?: BodyResponseCallback<Schema$SendAs>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'sendAsEmail'],
-          pathParams: ['sendAsEmail', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SendAs>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$SendAs>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$SendAs>,
+      callback?: BodyResponseCallback<Schema$SendAs>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$SendAs>,
+      callback?: BodyResponseCallback<Schema$SendAs>):
+      void|AxiosPromise<Schema$SendAs> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'sendAsEmail'],
+      pathParams: ['sendAsEmail', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SendAs>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SendAs>(parameters);
+    }
+  }
 
 
   /**
@@ -3036,38 +3759,56 @@ export class Resource$Users$Settings$Sendas {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  verify =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/verify')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'sendAsEmail'],
-          pathParams: ['sendAsEmail', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  verify(params: any, options?: MethodOptions): AxiosPromise<void>;
+  verify(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  verify(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/verify')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'sendAsEmail'],
+      pathParams: ['sendAsEmail', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 }
 export class Resource$Users$Settings$Sendas$Smimeinfo {
   root: Gmail;
   constructor(root: Gmail) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * gmail.users.settings.sendAs.smimeInfo.delete
@@ -3083,32 +3824,44 @@ export class Resource$Users$Settings$Sendas$Smimeinfo {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'sendAsEmail', 'id'],
-          pathParams: ['id', 'sendAsEmail', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'sendAsEmail', 'id'],
+      pathParams: ['id', 'sendAsEmail', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -3125,33 +3878,45 @@ export class Resource$Users$Settings$Sendas$Smimeinfo {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$SmimeInfo>,
-       callback?: BodyResponseCallback<Schema$SmimeInfo>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'sendAsEmail', 'id'],
-          pathParams: ['id', 'sendAsEmail', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SmimeInfo>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$SmimeInfo>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$SmimeInfo>,
+      callback?: BodyResponseCallback<Schema$SmimeInfo>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$SmimeInfo>,
+      callback?: BodyResponseCallback<Schema$SmimeInfo>):
+      void|AxiosPromise<Schema$SmimeInfo> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'sendAsEmail', 'id'],
+      pathParams: ['id', 'sendAsEmail', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SmimeInfo>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SmimeInfo>(parameters);
+    }
+  }
 
 
   /**
@@ -3169,33 +3934,47 @@ export class Resource$Users$Settings$Sendas$Smimeinfo {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$SmimeInfo>,
-       callback?: BodyResponseCallback<Schema$SmimeInfo>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'sendAsEmail'],
-          pathParams: ['sendAsEmail', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SmimeInfo>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$SmimeInfo>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$SmimeInfo>,
+      callback?: BodyResponseCallback<Schema$SmimeInfo>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$SmimeInfo>,
+      callback?: BodyResponseCallback<Schema$SmimeInfo>):
+      void|AxiosPromise<Schema$SmimeInfo> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'sendAsEmail'],
+      pathParams: ['sendAsEmail', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SmimeInfo>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SmimeInfo>(parameters);
+    }
+  }
 
 
   /**
@@ -3211,34 +3990,49 @@ export class Resource$Users$Settings$Sendas$Smimeinfo {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListSmimeInfoResponse>,
-       callback?: BodyResponseCallback<Schema$ListSmimeInfoResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'sendAsEmail'],
-          pathParams: ['sendAsEmail', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListSmimeInfoResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListSmimeInfoResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListSmimeInfoResponse>,
+      callback?: BodyResponseCallback<Schema$ListSmimeInfoResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListSmimeInfoResponse>,
+      callback?: BodyResponseCallback<Schema$ListSmimeInfoResponse>):
+      void|AxiosPromise<Schema$ListSmimeInfoResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'sendAsEmail'],
+      pathParams: ['sendAsEmail', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListSmimeInfoResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListSmimeInfoResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -3255,32 +4049,44 @@ export class Resource$Users$Settings$Sendas$Smimeinfo {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setDefault =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}/setDefault')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'sendAsEmail', 'id'],
-          pathParams: ['id', 'sendAsEmail', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  setDefault(params: any, options?: MethodOptions): AxiosPromise<void>;
+  setDefault(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  setDefault(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}/setDefault')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'sendAsEmail', 'id'],
+      pathParams: ['id', 'sendAsEmail', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 }
 
 
@@ -3289,7 +4095,13 @@ export class Resource$Users$Threads {
   root: Gmail;
   constructor(root: Gmail) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * gmail.users.threads.delete
@@ -3305,30 +4117,42 @@ export class Resource$Users$Threads {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/threads/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'id'],
-          pathParams: ['id', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/threads/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'id'],
+      pathParams: ['id', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -3346,30 +4170,41 @@ export class Resource$Users$Threads {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Thread>,
-       callback?: BodyResponseCallback<Schema$Thread>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/threads/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'id'],
-          pathParams: ['id', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Thread>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Thread>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Thread>,
+      callback?: BodyResponseCallback<Schema$Thread>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Thread>,
+      callback?: BodyResponseCallback<Schema$Thread>):
+      void|AxiosPromise<Schema$Thread> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/threads/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'id'],
+      pathParams: ['id', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Thread>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Thread>(parameters);
+    }
+  }
 
 
   /**
@@ -3389,31 +4224,46 @@ export class Resource$Users$Threads {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListThreadsResponse>,
-       callback?: BodyResponseCallback<Schema$ListThreadsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/threads')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListThreadsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListThreadsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListThreadsResponse>,
+      callback?: BodyResponseCallback<Schema$ListThreadsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListThreadsResponse>,
+      callback?: BodyResponseCallback<Schema$ListThreadsResponse>):
+      void|AxiosPromise<Schema$ListThreadsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/threads')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListThreadsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListThreadsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -3431,30 +4281,43 @@ export class Resource$Users$Threads {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  modify =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Thread>,
-       callback?: BodyResponseCallback<Schema$Thread>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/threads/{id}/modify')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'id'],
-          pathParams: ['id', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Thread>(parameters, callback!);
-      };
+  modify(params: any, options?: MethodOptions): AxiosPromise<Schema$Thread>;
+  modify(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Thread>,
+      callback?: BodyResponseCallback<Schema$Thread>): void;
+  modify(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Thread>,
+      callback?: BodyResponseCallback<Schema$Thread>):
+      void|AxiosPromise<Schema$Thread> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/threads/{id}/modify')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'id'],
+      pathParams: ['id', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Thread>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Thread>(parameters);
+    }
+  }
 
 
   /**
@@ -3470,30 +4333,43 @@ export class Resource$Users$Threads {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  trash =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Thread>,
-       callback?: BodyResponseCallback<Schema$Thread>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/threads/{id}/trash')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'id'],
-          pathParams: ['id', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Thread>(parameters, callback!);
-      };
+  trash(params: any, options?: MethodOptions): AxiosPromise<Schema$Thread>;
+  trash(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Thread>,
+      callback?: BodyResponseCallback<Schema$Thread>): void;
+  trash(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Thread>,
+      callback?: BodyResponseCallback<Schema$Thread>):
+      void|AxiosPromise<Schema$Thread> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/threads/{id}/trash')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'id'],
+      pathParams: ['id', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Thread>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Thread>(parameters);
+    }
+  }
 
 
   /**
@@ -3509,28 +4385,41 @@ export class Resource$Users$Threads {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  untrash =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Thread>,
-       callback?: BodyResponseCallback<Schema$Thread>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/gmail/v1/users/{userId}/threads/{id}/untrash')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'id'],
-          pathParams: ['id', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Thread>(parameters, callback!);
-      };
+  untrash(params: any, options?: MethodOptions): AxiosPromise<Schema$Thread>;
+  untrash(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Thread>,
+      callback?: BodyResponseCallback<Schema$Thread>): void;
+  untrash(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Thread>,
+      callback?: BodyResponseCallback<Schema$Thread>):
+      void|AxiosPromise<Schema$Thread> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/threads/{id}/untrash')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'id'],
+      pathParams: ['id', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Thread>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Thread>(parameters);
+    }
+  }
 }

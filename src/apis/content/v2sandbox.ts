@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -52,8 +54,13 @@ export class Content {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.orders = new Resource$Orders(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -1759,7 +1766,13 @@ export class Resource$Orders {
   root: Content;
   constructor(root: Content) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * content.orders.acknowledge
@@ -1775,35 +1788,50 @@ export class Resource$Orders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  acknowledge =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$OrdersAcknowledgeResponse>,
-       callback?: BodyResponseCallback<Schema$OrdersAcknowledgeResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/content/v2sandbox/{merchantId}/orders/{orderId}/acknowledge')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['merchantId', 'orderId'],
-          pathParams: ['merchantId', 'orderId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OrdersAcknowledgeResponse>(
-            parameters, callback!);
-      };
+  acknowledge(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$OrdersAcknowledgeResponse>;
+  acknowledge(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$OrdersAcknowledgeResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersAcknowledgeResponse>): void;
+  acknowledge(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$OrdersAcknowledgeResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersAcknowledgeResponse>):
+      void|AxiosPromise<Schema$OrdersAcknowledgeResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/content/v2sandbox/{merchantId}/orders/{orderId}/acknowledge')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['merchantId', 'orderId'],
+      pathParams: ['merchantId', 'orderId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OrdersAcknowledgeResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OrdersAcknowledgeResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1820,36 +1848,53 @@ export class Resource$Orders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  advancetestorder =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$OrdersAdvanceTestOrderResponse>,
-       callback?:
-           BodyResponseCallback<Schema$OrdersAdvanceTestOrderResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/content/v2sandbox/{merchantId}/testorders/{orderId}/advance')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['merchantId', 'orderId'],
-          pathParams: ['merchantId', 'orderId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OrdersAdvanceTestOrderResponse>(
-            parameters, callback!);
-      };
+  advancetestorder(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$OrdersAdvanceTestOrderResponse>;
+  advancetestorder(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$OrdersAdvanceTestOrderResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersAdvanceTestOrderResponse>):
+      void;
+  advancetestorder(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$OrdersAdvanceTestOrderResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersAdvanceTestOrderResponse>):
+      void|AxiosPromise<Schema$OrdersAdvanceTestOrderResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/content/v2sandbox/{merchantId}/testorders/{orderId}/advance')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['merchantId', 'orderId'],
+      pathParams: ['merchantId', 'orderId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OrdersAdvanceTestOrderResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OrdersAdvanceTestOrderResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -1866,32 +1911,47 @@ export class Resource$Orders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  cancel =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$OrdersCancelResponse>,
-       callback?: BodyResponseCallback<Schema$OrdersCancelResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/content/v2sandbox/{merchantId}/orders/{orderId}/cancel')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['merchantId', 'orderId'],
-          pathParams: ['merchantId', 'orderId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OrdersCancelResponse>(parameters, callback!);
-      };
+  cancel(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$OrdersCancelResponse>;
+  cancel(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$OrdersCancelResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersCancelResponse>): void;
+  cancel(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$OrdersCancelResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersCancelResponse>):
+      void|AxiosPromise<Schema$OrdersCancelResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/content/v2sandbox/{merchantId}/orders/{orderId}/cancel')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['merchantId', 'orderId'],
+      pathParams: ['merchantId', 'orderId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OrdersCancelResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OrdersCancelResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1908,36 +1968,52 @@ export class Resource$Orders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  cancellineitem =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$OrdersCancelLineItemResponse>,
-       callback?:
-           BodyResponseCallback<Schema$OrdersCancelLineItemResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/content/v2sandbox/{merchantId}/orders/{orderId}/cancelLineItem')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['merchantId', 'orderId'],
-          pathParams: ['merchantId', 'orderId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OrdersCancelLineItemResponse>(
-            parameters, callback!);
-      };
+  cancellineitem(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$OrdersCancelLineItemResponse>;
+  cancellineitem(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$OrdersCancelLineItemResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersCancelLineItemResponse>):
+      void;
+  cancellineitem(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$OrdersCancelLineItemResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersCancelLineItemResponse>):
+      void|AxiosPromise<Schema$OrdersCancelLineItemResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/content/v2sandbox/{merchantId}/orders/{orderId}/cancelLineItem')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['merchantId', 'orderId'],
+      pathParams: ['merchantId', 'orderId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OrdersCancelLineItemResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OrdersCancelLineItemResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1953,34 +2029,50 @@ export class Resource$Orders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  createtestorder =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$OrdersCreateTestOrderResponse>,
-       callback?:
-           BodyResponseCallback<Schema$OrdersCreateTestOrderResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/content/v2sandbox/{merchantId}/testorders')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['merchantId'],
-          pathParams: ['merchantId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OrdersCreateTestOrderResponse>(
-            parameters, callback!);
-      };
+  createtestorder(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$OrdersCreateTestOrderResponse>;
+  createtestorder(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$OrdersCreateTestOrderResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersCreateTestOrderResponse>):
+      void;
+  createtestorder(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$OrdersCreateTestOrderResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersCreateTestOrderResponse>):
+      void|AxiosPromise<Schema$OrdersCreateTestOrderResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/content/v2sandbox/{merchantId}/testorders')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['merchantId'],
+      pathParams: ['merchantId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OrdersCreateTestOrderResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OrdersCreateTestOrderResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1995,33 +2087,48 @@ export class Resource$Orders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  custombatch =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$OrdersCustomBatchResponse>,
-       callback?: BodyResponseCallback<Schema$OrdersCustomBatchResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/content/v2sandbox/orders/batch')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$OrdersCustomBatchResponse>(
-            parameters, callback!);
-      };
+  custombatch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$OrdersCustomBatchResponse>;
+  custombatch(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$OrdersCustomBatchResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersCustomBatchResponse>): void;
+  custombatch(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$OrdersCustomBatchResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersCustomBatchResponse>):
+      void|AxiosPromise<Schema$OrdersCustomBatchResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/content/v2sandbox/orders/batch')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OrdersCustomBatchResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OrdersCustomBatchResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2037,31 +2144,41 @@ export class Resource$Orders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Order>,
-       callback?: BodyResponseCallback<Schema$Order>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/content/v2sandbox/{merchantId}/orders/{orderId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['merchantId', 'orderId'],
-          pathParams: ['merchantId', 'orderId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Order>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Order>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Order>,
+      callback?: BodyResponseCallback<Schema$Order>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Order>,
+      callback?: BodyResponseCallback<Schema$Order>):
+      void|AxiosPromise<Schema$Order> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/content/v2sandbox/{merchantId}/orders/{orderId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['merchantId', 'orderId'],
+      pathParams: ['merchantId', 'orderId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Order>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Order>(parameters);
+    }
+  }
 
 
   /**
@@ -2077,36 +2194,55 @@ export class Resource$Orders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getbymerchantorderid =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$OrdersGetByMerchantOrderIdResponse>,
-       callback?:
-           BodyResponseCallback<Schema$OrdersGetByMerchantOrderIdResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/content/v2sandbox/{merchantId}/ordersbymerchantid/{merchantOrderId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['merchantId', 'merchantOrderId'],
-          pathParams: ['merchantId', 'merchantOrderId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OrdersGetByMerchantOrderIdResponse>(
-            parameters, callback!);
-      };
+  getbymerchantorderid(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$OrdersGetByMerchantOrderIdResponse>;
+  getbymerchantorderid(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$OrdersGetByMerchantOrderIdResponse>,
+      callback?:
+          BodyResponseCallback<Schema$OrdersGetByMerchantOrderIdResponse>):
+      void;
+  getbymerchantorderid(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$OrdersGetByMerchantOrderIdResponse>,
+      callback?:
+          BodyResponseCallback<Schema$OrdersGetByMerchantOrderIdResponse>):
+      void|AxiosPromise<Schema$OrdersGetByMerchantOrderIdResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/content/v2sandbox/{merchantId}/ordersbymerchantid/{merchantOrderId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['merchantId', 'merchantOrderId'],
+      pathParams: ['merchantId', 'merchantOrderId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OrdersGetByMerchantOrderIdResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OrdersGetByMerchantOrderIdResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -2123,36 +2259,55 @@ export class Resource$Orders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  gettestordertemplate =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$OrdersGetTestOrderTemplateResponse>,
-       callback?:
-           BodyResponseCallback<Schema$OrdersGetTestOrderTemplateResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/content/v2sandbox/{merchantId}/testordertemplates/{templateName}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['merchantId', 'templateName'],
-          pathParams: ['merchantId', 'templateName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OrdersGetTestOrderTemplateResponse>(
-            parameters, callback!);
-      };
+  gettestordertemplate(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$OrdersGetTestOrderTemplateResponse>;
+  gettestordertemplate(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$OrdersGetTestOrderTemplateResponse>,
+      callback?:
+          BodyResponseCallback<Schema$OrdersGetTestOrderTemplateResponse>):
+      void;
+  gettestordertemplate(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$OrdersGetTestOrderTemplateResponse>,
+      callback?:
+          BodyResponseCallback<Schema$OrdersGetTestOrderTemplateResponse>):
+      void|AxiosPromise<Schema$OrdersGetTestOrderTemplateResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/content/v2sandbox/{merchantId}/testordertemplates/{templateName}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['merchantId', 'templateName'],
+      pathParams: ['merchantId', 'templateName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OrdersGetTestOrderTemplateResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OrdersGetTestOrderTemplateResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -2169,36 +2324,55 @@ export class Resource$Orders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  instorerefundlineitem =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$OrdersInStoreRefundLineItemResponse>,
-       callback?: BodyResponseCallback<
-           Schema$OrdersInStoreRefundLineItemResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/content/v2sandbox/{merchantId}/orders/{orderId}/inStoreRefundLineItem')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['merchantId', 'orderId'],
-          pathParams: ['merchantId', 'orderId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OrdersInStoreRefundLineItemResponse>(
-            parameters, callback!);
-      };
+  instorerefundlineitem(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$OrdersInStoreRefundLineItemResponse>;
+  instorerefundlineitem(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$OrdersInStoreRefundLineItemResponse>,
+      callback?:
+          BodyResponseCallback<Schema$OrdersInStoreRefundLineItemResponse>):
+      void;
+  instorerefundlineitem(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$OrdersInStoreRefundLineItemResponse>,
+      callback?:
+          BodyResponseCallback<Schema$OrdersInStoreRefundLineItemResponse>):
+      void|AxiosPromise<Schema$OrdersInStoreRefundLineItemResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/content/v2sandbox/{merchantId}/orders/{orderId}/inStoreRefundLineItem')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['merchantId', 'orderId'],
+      pathParams: ['merchantId', 'orderId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OrdersInStoreRefundLineItemResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OrdersInStoreRefundLineItemResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -2220,31 +2394,46 @@ export class Resource$Orders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$OrdersListResponse>,
-       callback?: BodyResponseCallback<Schema$OrdersListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/content/v2sandbox/{merchantId}/orders')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['merchantId'],
-          pathParams: ['merchantId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OrdersListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$OrdersListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$OrdersListResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$OrdersListResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersListResponse>):
+      void|AxiosPromise<Schema$OrdersListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/content/v2sandbox/{merchantId}/orders')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['merchantId'],
+      pathParams: ['merchantId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OrdersListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OrdersListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2261,32 +2450,47 @@ export class Resource$Orders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  refund =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$OrdersRefundResponse>,
-       callback?: BodyResponseCallback<Schema$OrdersRefundResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/content/v2sandbox/{merchantId}/orders/{orderId}/refund')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['merchantId', 'orderId'],
-          pathParams: ['merchantId', 'orderId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OrdersRefundResponse>(parameters, callback!);
-      };
+  refund(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$OrdersRefundResponse>;
+  refund(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$OrdersRefundResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersRefundResponse>): void;
+  refund(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$OrdersRefundResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersRefundResponse>):
+      void|AxiosPromise<Schema$OrdersRefundResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/content/v2sandbox/{merchantId}/orders/{orderId}/refund')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['merchantId', 'orderId'],
+      pathParams: ['merchantId', 'orderId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OrdersRefundResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OrdersRefundResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2303,36 +2507,55 @@ export class Resource$Orders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  rejectreturnlineitem =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$OrdersRejectReturnLineItemResponse>,
-       callback?:
-           BodyResponseCallback<Schema$OrdersRejectReturnLineItemResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/content/v2sandbox/{merchantId}/orders/{orderId}/rejectReturnLineItem')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['merchantId', 'orderId'],
-          pathParams: ['merchantId', 'orderId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OrdersRejectReturnLineItemResponse>(
-            parameters, callback!);
-      };
+  rejectreturnlineitem(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$OrdersRejectReturnLineItemResponse>;
+  rejectreturnlineitem(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$OrdersRejectReturnLineItemResponse>,
+      callback?:
+          BodyResponseCallback<Schema$OrdersRejectReturnLineItemResponse>):
+      void;
+  rejectreturnlineitem(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$OrdersRejectReturnLineItemResponse>,
+      callback?:
+          BodyResponseCallback<Schema$OrdersRejectReturnLineItemResponse>):
+      void|AxiosPromise<Schema$OrdersRejectReturnLineItemResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/content/v2sandbox/{merchantId}/orders/{orderId}/rejectReturnLineItem')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['merchantId', 'orderId'],
+      pathParams: ['merchantId', 'orderId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OrdersRejectReturnLineItemResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OrdersRejectReturnLineItemResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -2349,36 +2572,52 @@ export class Resource$Orders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  returnlineitem =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$OrdersReturnLineItemResponse>,
-       callback?:
-           BodyResponseCallback<Schema$OrdersReturnLineItemResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/content/v2sandbox/{merchantId}/orders/{orderId}/returnLineItem')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['merchantId', 'orderId'],
-          pathParams: ['merchantId', 'orderId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OrdersReturnLineItemResponse>(
-            parameters, callback!);
-      };
+  returnlineitem(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$OrdersReturnLineItemResponse>;
+  returnlineitem(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$OrdersReturnLineItemResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersReturnLineItemResponse>):
+      void;
+  returnlineitem(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$OrdersReturnLineItemResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersReturnLineItemResponse>):
+      void|AxiosPromise<Schema$OrdersReturnLineItemResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/content/v2sandbox/{merchantId}/orders/{orderId}/returnLineItem')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['merchantId', 'orderId'],
+      pathParams: ['merchantId', 'orderId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OrdersReturnLineItemResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OrdersReturnLineItemResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2396,36 +2635,55 @@ export class Resource$Orders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  returnrefundlineitem =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$OrdersReturnRefundLineItemResponse>,
-       callback?:
-           BodyResponseCallback<Schema$OrdersReturnRefundLineItemResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/content/v2sandbox/{merchantId}/orders/{orderId}/returnRefundLineItem')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['merchantId', 'orderId'],
-          pathParams: ['merchantId', 'orderId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OrdersReturnRefundLineItemResponse>(
-            parameters, callback!);
-      };
+  returnrefundlineitem(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$OrdersReturnRefundLineItemResponse>;
+  returnrefundlineitem(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$OrdersReturnRefundLineItemResponse>,
+      callback?:
+          BodyResponseCallback<Schema$OrdersReturnRefundLineItemResponse>):
+      void;
+  returnrefundlineitem(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$OrdersReturnRefundLineItemResponse>,
+      callback?:
+          BodyResponseCallback<Schema$OrdersReturnRefundLineItemResponse>):
+      void|AxiosPromise<Schema$OrdersReturnRefundLineItemResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/content/v2sandbox/{merchantId}/orders/{orderId}/returnRefundLineItem')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['merchantId', 'orderId'],
+      pathParams: ['merchantId', 'orderId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OrdersReturnRefundLineItemResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OrdersReturnRefundLineItemResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -2442,36 +2700,54 @@ export class Resource$Orders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setlineitemmetadata =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$OrdersSetLineItemMetadataResponse>,
-       callback?:
-           BodyResponseCallback<Schema$OrdersSetLineItemMetadataResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/content/v2sandbox/{merchantId}/orders/{orderId}/setLineItemMetadata')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['merchantId', 'orderId'],
-          pathParams: ['merchantId', 'orderId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OrdersSetLineItemMetadataResponse>(
-            parameters, callback!);
-      };
+  setlineitemmetadata(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$OrdersSetLineItemMetadataResponse>;
+  setlineitemmetadata(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$OrdersSetLineItemMetadataResponse>,
+      callback?:
+          BodyResponseCallback<Schema$OrdersSetLineItemMetadataResponse>): void;
+  setlineitemmetadata(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$OrdersSetLineItemMetadataResponse>,
+      callback?:
+          BodyResponseCallback<Schema$OrdersSetLineItemMetadataResponse>):
+      void|AxiosPromise<Schema$OrdersSetLineItemMetadataResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/content/v2sandbox/{merchantId}/orders/{orderId}/setLineItemMetadata')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['merchantId', 'orderId'],
+      pathParams: ['merchantId', 'orderId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OrdersSetLineItemMetadataResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OrdersSetLineItemMetadataResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -2488,35 +2764,52 @@ export class Resource$Orders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  shiplineitems =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$OrdersShipLineItemsResponse>,
-       callback?: BodyResponseCallback<Schema$OrdersShipLineItemsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/content/v2sandbox/{merchantId}/orders/{orderId}/shipLineItems')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['merchantId', 'orderId'],
-          pathParams: ['merchantId', 'orderId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OrdersShipLineItemsResponse>(
-            parameters, callback!);
-      };
+  shiplineitems(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$OrdersShipLineItemsResponse>;
+  shiplineitems(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$OrdersShipLineItemsResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersShipLineItemsResponse>):
+      void;
+  shiplineitems(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$OrdersShipLineItemsResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersShipLineItemsResponse>):
+      void|AxiosPromise<Schema$OrdersShipLineItemsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/content/v2sandbox/{merchantId}/orders/{orderId}/shipLineItems')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['merchantId', 'orderId'],
+      pathParams: ['merchantId', 'orderId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OrdersShipLineItemsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OrdersShipLineItemsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2533,36 +2826,54 @@ export class Resource$Orders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  updatelineitemshippingdetails =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$OrdersUpdateLineItemShippingDetailsResponse>,
-       callback?: BodyResponseCallback<
-           Schema$OrdersUpdateLineItemShippingDetailsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/content/v2sandbox/{merchantId}/orders/{orderId}/updateLineItemShippingDetails')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['merchantId', 'orderId'],
-          pathParams: ['merchantId', 'orderId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OrdersUpdateLineItemShippingDetailsResponse>(
-            parameters, callback!);
-      };
+  updatelineitemshippingdetails(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$OrdersUpdateLineItemShippingDetailsResponse>;
+  updatelineitemshippingdetails(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$OrdersUpdateLineItemShippingDetailsResponse>,
+      callback?: BodyResponseCallback<
+          Schema$OrdersUpdateLineItemShippingDetailsResponse>): void;
+  updatelineitemshippingdetails(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$OrdersUpdateLineItemShippingDetailsResponse>,
+      callback?: BodyResponseCallback<
+          Schema$OrdersUpdateLineItemShippingDetailsResponse>):
+      void|AxiosPromise<Schema$OrdersUpdateLineItemShippingDetailsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/content/v2sandbox/{merchantId}/orders/{orderId}/updateLineItemShippingDetails')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['merchantId', 'orderId'],
+      pathParams: ['merchantId', 'orderId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OrdersUpdateLineItemShippingDetailsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<
+          Schema$OrdersUpdateLineItemShippingDetailsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2579,36 +2890,55 @@ export class Resource$Orders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  updatemerchantorderid =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$OrdersUpdateMerchantOrderIdResponse>,
-       callback?: BodyResponseCallback<
-           Schema$OrdersUpdateMerchantOrderIdResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/content/v2sandbox/{merchantId}/orders/{orderId}/updateMerchantOrderId')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['merchantId', 'orderId'],
-          pathParams: ['merchantId', 'orderId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OrdersUpdateMerchantOrderIdResponse>(
-            parameters, callback!);
-      };
+  updatemerchantorderid(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$OrdersUpdateMerchantOrderIdResponse>;
+  updatemerchantorderid(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$OrdersUpdateMerchantOrderIdResponse>,
+      callback?:
+          BodyResponseCallback<Schema$OrdersUpdateMerchantOrderIdResponse>):
+      void;
+  updatemerchantorderid(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$OrdersUpdateMerchantOrderIdResponse>,
+      callback?:
+          BodyResponseCallback<Schema$OrdersUpdateMerchantOrderIdResponse>):
+      void|AxiosPromise<Schema$OrdersUpdateMerchantOrderIdResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/content/v2sandbox/{merchantId}/orders/{orderId}/updateMerchantOrderId')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['merchantId', 'orderId'],
+      pathParams: ['merchantId', 'orderId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OrdersUpdateMerchantOrderIdResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OrdersUpdateMerchantOrderIdResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -2625,34 +2955,50 @@ export class Resource$Orders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  updateshipment =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$OrdersUpdateShipmentResponse>,
-       callback?:
-           BodyResponseCallback<Schema$OrdersUpdateShipmentResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/content/v2sandbox/{merchantId}/orders/{orderId}/updateShipment')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['merchantId', 'orderId'],
-          pathParams: ['merchantId', 'orderId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OrdersUpdateShipmentResponse>(
-            parameters, callback!);
-      };
+  updateshipment(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$OrdersUpdateShipmentResponse>;
+  updateshipment(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$OrdersUpdateShipmentResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersUpdateShipmentResponse>):
+      void;
+  updateshipment(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$OrdersUpdateShipmentResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersUpdateShipmentResponse>):
+      void|AxiosPromise<Schema$OrdersUpdateShipmentResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/content/v2sandbox/{merchantId}/orders/{orderId}/updateShipment')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['merchantId', 'orderId'],
+      pathParams: ['merchantId', 'orderId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OrdersUpdateShipmentResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OrdersUpdateShipmentResponse>(parameters);
+    }
+  }
 }

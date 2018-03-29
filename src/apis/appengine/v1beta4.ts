@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -52,8 +54,13 @@ export class Appengine {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.apps = new Resource$Apps(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -1435,10 +1442,16 @@ export class Resource$Apps {
   operations: Resource$Apps$Operations;
   constructor(root: Appengine) {
     this.root = root;
+    this.getRoot.bind(this);
     this.locations = new Resource$Apps$Locations(root);
     this.modules = new Resource$Apps$Modules(root);
     this.operations = new Resource$Apps$Operations(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * appengine.apps.create
@@ -1457,30 +1470,44 @@ export class Resource$Apps {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta4/apps').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta4/apps').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 
 
   /**
@@ -1496,31 +1523,43 @@ export class Resource$Apps {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Application>,
-       callback?: BodyResponseCallback<Schema$Application>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta4/apps/{appsId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['appsId'],
-          pathParams: ['appsId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Application>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Application>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Application>,
+      callback?: BodyResponseCallback<Schema$Application>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Application>,
+      callback?: BodyResponseCallback<Schema$Application>):
+      void|AxiosPromise<Schema$Application> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta4/apps/{appsId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['appsId'],
+      pathParams: ['appsId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Application>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Application>(parameters);
+    }
+  }
 
 
   /**
@@ -1541,37 +1580,57 @@ export class Resource$Apps {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta4/apps/{appsId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['appsId'],
-          pathParams: ['appsId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta4/apps/{appsId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['appsId'],
+      pathParams: ['appsId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 }
 export class Resource$Apps$Locations {
   root: Appengine;
   constructor(root: Appengine) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * appengine.apps.locations.get
@@ -1586,32 +1645,42 @@ export class Resource$Apps$Locations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Location>,
-       callback?: BodyResponseCallback<Schema$Location>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1beta4/apps/{appsId}/locations/{locationsId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['appsId', 'locationsId'],
-          pathParams: ['appsId', 'locationsId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Location>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Location>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Location>,
+      callback?: BodyResponseCallback<Schema$Location>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Location>,
+      callback?: BodyResponseCallback<Schema$Location>):
+      void|AxiosPromise<Schema$Location> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta4/apps/{appsId}/locations/{locationsId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['appsId', 'locationsId'],
+      pathParams: ['appsId', 'locationsId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Location>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Location>(parameters);
+    }
+  }
 
 
   /**
@@ -1629,32 +1698,47 @@ export class Resource$Apps$Locations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListLocationsResponse>,
-       callback?: BodyResponseCallback<Schema$ListLocationsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta4/apps/{appsId}/locations')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['appsId'],
-          pathParams: ['appsId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListLocationsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListLocationsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListLocationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListLocationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLocationsResponse>):
+      void|AxiosPromise<Schema$ListLocationsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta4/apps/{appsId}/locations')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['appsId'],
+      pathParams: ['appsId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListLocationsResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Apps$Modules {
@@ -1662,8 +1746,14 @@ export class Resource$Apps$Modules {
   versions: Resource$Apps$Modules$Versions;
   constructor(root: Appengine) {
     this.root = root;
+    this.getRoot.bind(this);
     this.versions = new Resource$Apps$Modules$Versions(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * appengine.apps.modules.delete
@@ -1678,31 +1768,45 @@ export class Resource$Apps$Modules {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta4/apps/{appsId}/modules/{modulesId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['appsId', 'modulesId'],
-          pathParams: ['appsId', 'modulesId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  delete(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  delete(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta4/apps/{appsId}/modules/{modulesId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['appsId', 'modulesId'],
+      pathParams: ['appsId', 'modulesId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 
 
   /**
@@ -1718,30 +1822,41 @@ export class Resource$Apps$Modules {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Module>,
-       callback?: BodyResponseCallback<Schema$Module>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta4/apps/{appsId}/modules/{modulesId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['appsId', 'modulesId'],
-          pathParams: ['appsId', 'modulesId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Module>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Module>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Module>,
+      callback?: BodyResponseCallback<Schema$Module>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Module>,
+      callback?: BodyResponseCallback<Schema$Module>):
+      void|AxiosPromise<Schema$Module> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta4/apps/{appsId}/modules/{modulesId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['appsId', 'modulesId'],
+      pathParams: ['appsId', 'modulesId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Module>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Module>(parameters);
+    }
+  }
 
 
   /**
@@ -1758,31 +1873,46 @@ export class Resource$Apps$Modules {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListModulesResponse>,
-       callback?: BodyResponseCallback<Schema$ListModulesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta4/apps/{appsId}/modules')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['appsId'],
-          pathParams: ['appsId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListModulesResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListModulesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListModulesResponse>,
+      callback?: BodyResponseCallback<Schema$ListModulesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListModulesResponse>,
+      callback?: BodyResponseCallback<Schema$ListModulesResponse>):
+      void|AxiosPromise<Schema$ListModulesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta4/apps/{appsId}/modules')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['appsId'],
+      pathParams: ['appsId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListModulesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListModulesResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1801,39 +1931,59 @@ export class Resource$Apps$Modules {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta4/apps/{appsId}/modules/{modulesId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['appsId', 'modulesId'],
-          pathParams: ['appsId', 'modulesId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta4/apps/{appsId}/modules/{modulesId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['appsId', 'modulesId'],
+      pathParams: ['appsId', 'modulesId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 }
 export class Resource$Apps$Modules$Versions {
   root: Appengine;
   instances: Resource$Apps$Modules$Versions$Instances;
   constructor(root: Appengine) {
     this.root = root;
+    this.getRoot.bind(this);
     this.instances = new Resource$Apps$Modules$Versions$Instances(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * appengine.apps.modules.versions.create
@@ -1849,32 +1999,46 @@ export class Resource$Apps$Modules$Versions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v1beta4/apps/{appsId}/modules/{modulesId}/versions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['appsId', 'modulesId'],
-          pathParams: ['appsId', 'modulesId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/v1beta4/apps/{appsId}/modules/{modulesId}/versions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['appsId', 'modulesId'],
+      pathParams: ['appsId', 'modulesId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 
 
   /**
@@ -1891,33 +2055,47 @@ export class Resource$Apps$Modules$Versions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['appsId', 'modulesId', 'versionsId'],
-          pathParams: ['appsId', 'modulesId', 'versionsId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  delete(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  delete(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['appsId', 'modulesId', 'versionsId'],
+      pathParams: ['appsId', 'modulesId', 'versionsId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 
 
   /**
@@ -1936,32 +2114,43 @@ export class Resource$Apps$Modules$Versions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Version>,
-       callback?: BodyResponseCallback<Schema$Version>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['appsId', 'modulesId', 'versionsId'],
-          pathParams: ['appsId', 'modulesId', 'versionsId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Version>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Version>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Version>,
+      callback?: BodyResponseCallback<Schema$Version>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Version>,
+      callback?: BodyResponseCallback<Schema$Version>):
+      void|AxiosPromise<Schema$Version> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['appsId', 'modulesId', 'versionsId'],
+      pathParams: ['appsId', 'modulesId', 'versionsId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Version>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Version>(parameters);
+    }
+  }
 
 
   /**
@@ -1980,32 +2169,47 @@ export class Resource$Apps$Modules$Versions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListVersionsResponse>,
-       callback?: BodyResponseCallback<Schema$ListVersionsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v1beta4/apps/{appsId}/modules/{modulesId}/versions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['appsId', 'modulesId'],
-          pathParams: ['appsId', 'modulesId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListVersionsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListVersionsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListVersionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListVersionsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListVersionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListVersionsResponse>):
+      void|AxiosPromise<Schema$ListVersionsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/v1beta4/apps/{appsId}/modules/{modulesId}/versions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['appsId', 'modulesId'],
+      pathParams: ['appsId', 'modulesId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListVersionsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListVersionsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2038,39 +2242,59 @@ export class Resource$Apps$Modules$Versions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['appsId', 'modulesId', 'versionsId'],
-          pathParams: ['appsId', 'modulesId', 'versionsId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['appsId', 'modulesId', 'versionsId'],
+      pathParams: ['appsId', 'modulesId', 'versionsId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 }
 export class Resource$Apps$Modules$Versions$Instances {
   root: Appengine;
   constructor(root: Appengine) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * appengine.apps.modules.versions.instances.debug
@@ -2093,33 +2317,47 @@ export class Resource$Apps$Modules$Versions$Instances {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  debug =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}/instances/{instancesId}:debug')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['appsId', 'modulesId', 'versionsId', 'instancesId'],
-          pathParams: ['appsId', 'instancesId', 'modulesId', 'versionsId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  debug(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  debug(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  debug(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}/instances/{instancesId}:debug')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['appsId', 'modulesId', 'versionsId', 'instancesId'],
+      pathParams: ['appsId', 'instancesId', 'modulesId', 'versionsId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 
 
   /**
@@ -2137,33 +2375,47 @@ export class Resource$Apps$Modules$Versions$Instances {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}/instances/{instancesId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['appsId', 'modulesId', 'versionsId', 'instancesId'],
-          pathParams: ['appsId', 'instancesId', 'modulesId', 'versionsId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  delete(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  delete(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}/instances/{instancesId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['appsId', 'modulesId', 'versionsId', 'instancesId'],
+      pathParams: ['appsId', 'instancesId', 'modulesId', 'versionsId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 
 
   /**
@@ -2181,33 +2433,44 @@ export class Resource$Apps$Modules$Versions$Instances {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Instance>,
-       callback?: BodyResponseCallback<Schema$Instance>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}/instances/{instancesId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['appsId', 'modulesId', 'versionsId', 'instancesId'],
-          pathParams: ['appsId', 'instancesId', 'modulesId', 'versionsId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Instance>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Instance>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Instance>,
+      callback?: BodyResponseCallback<Schema$Instance>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Instance>,
+      callback?: BodyResponseCallback<Schema$Instance>):
+      void|AxiosPromise<Schema$Instance> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}/instances/{instancesId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['appsId', 'modulesId', 'versionsId', 'instancesId'],
+      pathParams: ['appsId', 'instancesId', 'modulesId', 'versionsId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Instance>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Instance>(parameters);
+    }
+  }
 
 
   /**
@@ -2228,34 +2491,49 @@ export class Resource$Apps$Modules$Versions$Instances {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListInstancesResponse>,
-       callback?: BodyResponseCallback<Schema$ListInstancesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}/instances')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['appsId', 'modulesId', 'versionsId'],
-          pathParams: ['appsId', 'modulesId', 'versionsId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListInstancesResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListInstancesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListInstancesResponse>,
+      callback?: BodyResponseCallback<Schema$ListInstancesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListInstancesResponse>,
+      callback?: BodyResponseCallback<Schema$ListInstancesResponse>):
+      void|AxiosPromise<Schema$ListInstancesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}/instances')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['appsId', 'modulesId', 'versionsId'],
+      pathParams: ['appsId', 'modulesId', 'versionsId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListInstancesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListInstancesResponse>(parameters);
+    }
+  }
 }
 
 
@@ -2264,7 +2542,13 @@ export class Resource$Apps$Operations {
   root: Appengine;
   constructor(root: Appengine) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * appengine.apps.operations.get
@@ -2281,32 +2565,43 @@ export class Resource$Apps$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v1beta4/apps/{appsId}/operations/{operationsId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['appsId', 'operationsId'],
-          pathParams: ['appsId', 'operationsId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta4/apps/{appsId}/operations/{operationsId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['appsId', 'operationsId'],
+      pathParams: ['appsId', 'operationsId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 
 
   /**
@@ -2332,30 +2627,46 @@ export class Resource$Apps$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListOperationsResponse>,
-       callback?: BodyResponseCallback<Schema$ListOperationsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta4/apps/{appsId}/operations')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['appsId'],
-          pathParams: ['appsId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListOperationsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListOperationsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
+      void|AxiosPromise<Schema$ListOperationsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta4/apps/{appsId}/operations')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['appsId'],
+      pathParams: ['appsId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListOperationsResponse>(parameters);
+    }
+  }
 }

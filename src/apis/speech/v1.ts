@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -52,9 +54,14 @@ export class Speech {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.operations = new Resource$Operations(this);
     this.speech = new Resource$Speech(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -210,7 +217,7 @@ export interface Schema$RecognizeRequest {
  */
 export interface Schema$RecognizeResponse {
   /**
-   * *Output-only* Sequential list of transcription results corresponding to
+   * Output only. Sequential list of transcription results corresponding to
    * sequential portions of audio.
    */
   results: Schema$SpeechRecognitionResult[];
@@ -235,7 +242,7 @@ export interface Schema$SpeechContext {
  */
 export interface Schema$SpeechRecognitionAlternative {
   /**
-   * *Output-only* The confidence estimate between 0.0 and 1.0. A higher number
+   * Output only. The confidence estimate between 0.0 and 1.0. A higher number
    * indicates an estimated greater likelihood that the recognized words are
    * correct. This field is set only for the top alternative of a non-streaming
    * result or, of a streaming result where `is_final=true`. This field is not
@@ -245,11 +252,11 @@ export interface Schema$SpeechRecognitionAlternative {
    */
   confidence: number;
   /**
-   * *Output-only* Transcript text representing the words that the user spoke.
+   * Output only. Transcript text representing the words that the user spoke.
    */
   transcript: string;
   /**
-   * *Output-only* A list of word-specific information for each recognized word.
+   * Output only. A list of word-specific information for each recognized word.
    */
   words: Schema$WordInfo[];
 }
@@ -258,7 +265,7 @@ export interface Schema$SpeechRecognitionAlternative {
  */
 export interface Schema$SpeechRecognitionResult {
   /**
-   * *Output-only* May contain one or more recognition hypotheses (up to the
+   * Output only. May contain one or more recognition hypotheses (up to the
    * maximum specified in `max_alternatives`). These alternatives are ordered in
    * terms of accuracy, with the top (first) alternative being the most
    * probable, as ranked by the recognizer.
@@ -322,21 +329,21 @@ export interface Schema$Status {
  */
 export interface Schema$WordInfo {
   /**
-   * *Output-only* Time offset relative to the beginning of the audio, and
+   * Output only. Time offset relative to the beginning of the audio, and
    * corresponding to the end of the spoken word. This field is only set if
    * `enable_word_time_offsets=true` and only in the top hypothesis. This is an
    * experimental feature and the accuracy of the time offset can vary.
    */
   endTime: string;
   /**
-   * *Output-only* Time offset relative to the beginning of the audio, and
+   * Output only. Time offset relative to the beginning of the audio, and
    * corresponding to the start of the spoken word. This field is only set if
    * `enable_word_time_offsets=true` and only in the top hypothesis. This is an
    * experimental feature and the accuracy of the time offset can vary.
    */
   startTime: string;
   /**
-   * *Output-only* The word corresponding to this set of information.
+   * Output only. The word corresponding to this set of information.
    */
   word: string;
 }
@@ -345,7 +352,13 @@ export class Resource$Operations {
   root: Speech;
   constructor(root: Speech) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * speech.operations.get
@@ -361,38 +374,56 @@ export class Resource$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/operations/{name}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/operations/{name}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 }
 
 export class Resource$Speech {
   root: Speech;
   constructor(root: Speech) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * speech.speech.longrunningrecognize
@@ -409,31 +440,46 @@ export class Resource$Speech {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  longrunningrecognize =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/speech:longrunningrecognize')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  longrunningrecognize(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Operation>;
+  longrunningrecognize(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  longrunningrecognize(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/speech:longrunningrecognize')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 
 
   /**
@@ -449,29 +495,44 @@ export class Resource$Speech {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  recognize =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$RecognizeResponse>,
-       callback?: BodyResponseCallback<Schema$RecognizeResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/speech:recognize')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$RecognizeResponse>(parameters, callback!);
-      };
+  recognize(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$RecognizeResponse>;
+  recognize(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$RecognizeResponse>,
+      callback?: BodyResponseCallback<Schema$RecognizeResponse>): void;
+  recognize(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$RecognizeResponse>,
+      callback?: BodyResponseCallback<Schema$RecognizeResponse>):
+      void|AxiosPromise<Schema$RecognizeResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/speech:recognize')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$RecognizeResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$RecognizeResponse>(parameters);
+    }
+  }
 }

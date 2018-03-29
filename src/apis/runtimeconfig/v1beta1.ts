@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -54,8 +56,13 @@ export class Runtimeconfig {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.projects = new Resource$Projects(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -494,7 +501,12 @@ export class Resource$Projects {
   configs: Resource$Projects$Configs;
   constructor(root: Runtimeconfig) {
     this.root = root;
+    this.getRoot.bind(this);
     this.configs = new Resource$Projects$Configs(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Projects$Configs {
@@ -504,10 +516,16 @@ export class Resource$Projects$Configs {
   waiters: Resource$Projects$Configs$Waiters;
   constructor(root: Runtimeconfig) {
     this.root = root;
+    this.getRoot.bind(this);
     this.operations = new Resource$Projects$Configs$Operations(root);
     this.variables = new Resource$Projects$Configs$Variables(root);
     this.waiters = new Resource$Projects$Configs$Waiters(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * runtimeconfig.projects.configs.create
@@ -524,32 +542,46 @@ export class Resource$Projects$Configs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$RuntimeConfig>,
-       callback?: BodyResponseCallback<Schema$RuntimeConfig>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://runtimeconfig.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{parent}/configs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$RuntimeConfig>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$RuntimeConfig>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$RuntimeConfig>,
+      callback?: BodyResponseCallback<Schema$RuntimeConfig>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$RuntimeConfig>,
+      callback?: BodyResponseCallback<Schema$RuntimeConfig>):
+      void|AxiosPromise<Schema$RuntimeConfig> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://runtimeconfig.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{parent}/configs')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$RuntimeConfig>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$RuntimeConfig>(parameters);
+    }
+  }
 
 
   /**
@@ -564,31 +596,42 @@ export class Resource$Projects$Configs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://runtimeconfig.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://runtimeconfig.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -603,32 +646,42 @@ export class Resource$Projects$Configs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$RuntimeConfig>,
-       callback?: BodyResponseCallback<Schema$RuntimeConfig>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://runtimeconfig.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$RuntimeConfig>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$RuntimeConfig>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$RuntimeConfig>,
+      callback?: BodyResponseCallback<Schema$RuntimeConfig>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$RuntimeConfig>,
+      callback?: BodyResponseCallback<Schema$RuntimeConfig>):
+      void|AxiosPromise<Schema$RuntimeConfig> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://runtimeconfig.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$RuntimeConfig>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$RuntimeConfig>(parameters);
+    }
+  }
 
 
   /**
@@ -644,31 +697,44 @@ export class Resource$Projects$Configs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getIamPolicy =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-       callback?: BodyResponseCallback<Schema$Policy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://runtimeconfig.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{resource}:getIamPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Policy>(parameters, callback!);
-      };
+  getIamPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Policy>;
+  getIamPolicy(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>): void;
+  getIamPolicy(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>):
+      void|AxiosPromise<Schema$Policy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://runtimeconfig.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{resource}:getIamPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Policy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Policy>(parameters);
+    }
+  }
 
 
   /**
@@ -685,32 +751,46 @@ export class Resource$Projects$Configs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListConfigsResponse>,
-       callback?: BodyResponseCallback<Schema$ListConfigsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://runtimeconfig.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{parent}/configs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListConfigsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListConfigsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListConfigsResponse>,
+      callback?: BodyResponseCallback<Schema$ListConfigsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListConfigsResponse>,
+      callback?: BodyResponseCallback<Schema$ListConfigsResponse>):
+      void|AxiosPromise<Schema$ListConfigsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://runtimeconfig.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{parent}/configs')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListConfigsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListConfigsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -727,31 +807,44 @@ export class Resource$Projects$Configs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setIamPolicy =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-       callback?: BodyResponseCallback<Schema$Policy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://runtimeconfig.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{resource}:setIamPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Policy>(parameters, callback!);
-      };
+  setIamPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Policy>;
+  setIamPolicy(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>): void;
+  setIamPolicy(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>):
+      void|AxiosPromise<Schema$Policy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://runtimeconfig.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{resource}:setIamPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Policy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Policy>(parameters);
+    }
+  }
 
 
   /**
@@ -771,34 +864,48 @@ export class Resource$Projects$Configs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  testIamPermissions =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-       callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://runtimeconfig.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{resource}:testIamPermissions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback!);
-      };
+  testIamPermissions(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TestIamPermissionsResponse>;
+  testIamPermissions(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>): void;
+  testIamPermissions(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+      void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://runtimeconfig.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{resource}:testIamPermissions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TestIamPermissionsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -815,38 +922,57 @@ export class Resource$Projects$Configs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$RuntimeConfig>,
-       callback?: BodyResponseCallback<Schema$RuntimeConfig>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://runtimeconfig.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$RuntimeConfig>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$RuntimeConfig>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$RuntimeConfig>,
+      callback?: BodyResponseCallback<Schema$RuntimeConfig>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$RuntimeConfig>,
+      callback?: BodyResponseCallback<Schema$RuntimeConfig>):
+      void|AxiosPromise<Schema$RuntimeConfig> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://runtimeconfig.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$RuntimeConfig>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$RuntimeConfig>(parameters);
+    }
+  }
 }
 export class Resource$Projects$Configs$Operations {
   root: Runtimeconfig;
   constructor(root: Runtimeconfig) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * runtimeconfig.projects.configs.operations.get
@@ -862,32 +988,42 @@ export class Resource$Projects$Configs$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://runtimeconfig.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://runtimeconfig.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 
 
   /**
@@ -907,41 +1043,61 @@ export class Resource$Projects$Configs$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  testIamPermissions =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-       callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://runtimeconfig.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{resource}:testIamPermissions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback!);
-      };
+  testIamPermissions(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TestIamPermissionsResponse>;
+  testIamPermissions(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>): void;
+  testIamPermissions(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+      void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://runtimeconfig.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{resource}:testIamPermissions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TestIamPermissionsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Configs$Variables {
   root: Runtimeconfig;
   constructor(root: Runtimeconfig) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * runtimeconfig.projects.configs.variables.create
@@ -962,32 +1118,44 @@ export class Resource$Projects$Configs$Variables {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Variable>,
-       callback?: BodyResponseCallback<Schema$Variable>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://runtimeconfig.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{parent}/variables')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Variable>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Variable>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Variable>,
+      callback?: BodyResponseCallback<Schema$Variable>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Variable>,
+      callback?: BodyResponseCallback<Schema$Variable>):
+      void|AxiosPromise<Schema$Variable> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://runtimeconfig.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{parent}/variables')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Variable>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Variable>(parameters);
+    }
+  }
 
 
   /**
@@ -1006,31 +1174,42 @@ export class Resource$Projects$Configs$Variables {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://runtimeconfig.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://runtimeconfig.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -1045,32 +1224,41 @@ export class Resource$Projects$Configs$Variables {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Variable>,
-       callback?: BodyResponseCallback<Schema$Variable>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://runtimeconfig.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Variable>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Variable>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Variable>,
+      callback?: BodyResponseCallback<Schema$Variable>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Variable>,
+      callback?: BodyResponseCallback<Schema$Variable>):
+      void|AxiosPromise<Schema$Variable> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://runtimeconfig.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Variable>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Variable>(parameters);
+    }
+  }
 
 
   /**
@@ -1092,33 +1280,47 @@ export class Resource$Projects$Configs$Variables {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListVariablesResponse>,
-       callback?: BodyResponseCallback<Schema$ListVariablesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://runtimeconfig.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{parent}/variables')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListVariablesResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListVariablesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListVariablesResponse>,
+      callback?: BodyResponseCallback<Schema$ListVariablesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListVariablesResponse>,
+      callback?: BodyResponseCallback<Schema$ListVariablesResponse>):
+      void|AxiosPromise<Schema$ListVariablesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://runtimeconfig.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{parent}/variables')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListVariablesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListVariablesResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1138,34 +1340,48 @@ export class Resource$Projects$Configs$Variables {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  testIamPermissions =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-       callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://runtimeconfig.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{resource}:testIamPermissions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback!);
-      };
+  testIamPermissions(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TestIamPermissionsResponse>;
+  testIamPermissions(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>): void;
+  testIamPermissions(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+      void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://runtimeconfig.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{resource}:testIamPermissions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TestIamPermissionsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1181,32 +1397,43 @@ export class Resource$Projects$Configs$Variables {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Variable>,
-       callback?: BodyResponseCallback<Schema$Variable>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://runtimeconfig.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Variable>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Variable>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Variable>,
+      callback?: BodyResponseCallback<Schema$Variable>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Variable>,
+      callback?: BodyResponseCallback<Schema$Variable>):
+      void|AxiosPromise<Schema$Variable> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://runtimeconfig.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Variable>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Variable>(parameters);
+    }
+  }
 
 
   /**
@@ -1231,39 +1458,57 @@ export class Resource$Projects$Configs$Variables {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  watch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Variable>,
-       callback?: BodyResponseCallback<Schema$Variable>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://runtimeconfig.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{name}:watch')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Variable>(parameters, callback!);
-      };
+  watch(params: any, options?: MethodOptions): AxiosPromise<Schema$Variable>;
+  watch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Variable>,
+      callback?: BodyResponseCallback<Schema$Variable>): void;
+  watch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Variable>,
+      callback?: BodyResponseCallback<Schema$Variable>):
+      void|AxiosPromise<Schema$Variable> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://runtimeconfig.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{name}:watch')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Variable>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Variable>(parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Configs$Waiters {
   root: Runtimeconfig;
   constructor(root: Runtimeconfig) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * runtimeconfig.projects.configs.waiters.create
@@ -1283,32 +1528,45 @@ export class Resource$Projects$Configs$Waiters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://runtimeconfig.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{parent}/waiters')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://runtimeconfig.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{parent}/waiters')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 
 
   /**
@@ -1323,31 +1581,42 @@ export class Resource$Projects$Configs$Waiters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://runtimeconfig.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://runtimeconfig.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -1362,31 +1631,40 @@ export class Resource$Projects$Configs$Waiters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Waiter>,
-       callback?: BodyResponseCallback<Schema$Waiter>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://runtimeconfig.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Waiter>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Waiter>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Waiter>,
+      callback?: BodyResponseCallback<Schema$Waiter>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Waiter>,
+      callback?: BodyResponseCallback<Schema$Waiter>):
+      void|AxiosPromise<Schema$Waiter> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://runtimeconfig.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Waiter>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Waiter>(parameters);
+    }
+  }
 
 
   /**
@@ -1403,32 +1681,46 @@ export class Resource$Projects$Configs$Waiters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListWaitersResponse>,
-       callback?: BodyResponseCallback<Schema$ListWaitersResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://runtimeconfig.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{parent}/waiters')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListWaitersResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListWaitersResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListWaitersResponse>,
+      callback?: BodyResponseCallback<Schema$ListWaitersResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListWaitersResponse>,
+      callback?: BodyResponseCallback<Schema$ListWaitersResponse>):
+      void|AxiosPromise<Schema$ListWaitersResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://runtimeconfig.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{parent}/waiters')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListWaitersResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListWaitersResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1448,32 +1740,46 @@ export class Resource$Projects$Configs$Waiters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  testIamPermissions =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-       callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://runtimeconfig.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{resource}:testIamPermissions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback!);
-      };
+  testIamPermissions(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TestIamPermissionsResponse>;
+  testIamPermissions(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>): void;
+  testIamPermissions(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+      void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://runtimeconfig.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{resource}:testIamPermissions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TestIamPermissionsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+    }
+  }
 }

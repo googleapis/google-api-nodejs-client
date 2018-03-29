@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -52,8 +54,13 @@ export class Servicecontrol {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.services = new Resource$Services(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -1110,7 +1117,13 @@ export class Resource$Services {
   root: Servicecontrol;
   constructor(root: Servicecontrol) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * servicecontrol.services.allocateQuota
@@ -1132,33 +1145,47 @@ export class Resource$Services {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  allocateQuota =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$AllocateQuotaResponse>,
-       callback?: BodyResponseCallback<Schema$AllocateQuotaResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://servicecontrol.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/services/{serviceName}:allocateQuota')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['serviceName'],
-          pathParams: ['serviceName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AllocateQuotaResponse>(parameters, callback!);
-      };
+  allocateQuota(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AllocateQuotaResponse>;
+  allocateQuota(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AllocateQuotaResponse>,
+      callback?: BodyResponseCallback<Schema$AllocateQuotaResponse>): void;
+  allocateQuota(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$AllocateQuotaResponse>,
+      callback?: BodyResponseCallback<Schema$AllocateQuotaResponse>):
+      void|AxiosPromise<Schema$AllocateQuotaResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://servicecontrol.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/services/{serviceName}:allocateQuota')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['serviceName'],
+      pathParams: ['serviceName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AllocateQuotaResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AllocateQuotaResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1184,32 +1211,46 @@ export class Resource$Services {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  check =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CheckResponse>,
-       callback?: BodyResponseCallback<Schema$CheckResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://servicecontrol.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/services/{serviceName}:check')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['serviceName'],
-          pathParams: ['serviceName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CheckResponse>(parameters, callback!);
-      };
+  check(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CheckResponse>;
+  check(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CheckResponse>,
+      callback?: BodyResponseCallback<Schema$CheckResponse>): void;
+  check(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CheckResponse>,
+      callback?: BodyResponseCallback<Schema$CheckResponse>):
+      void|AxiosPromise<Schema$CheckResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://servicecontrol.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/services/{serviceName}:check')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['serviceName'],
+      pathParams: ['serviceName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CheckResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CheckResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1228,34 +1269,48 @@ export class Resource$Services {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  endReconciliation =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$EndReconciliationResponse>,
-       callback?: BodyResponseCallback<Schema$EndReconciliationResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://servicecontrol.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/services/{serviceName}:endReconciliation')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['serviceName'],
-          pathParams: ['serviceName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$EndReconciliationResponse>(
-            parameters, callback!);
-      };
+  endReconciliation(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$EndReconciliationResponse>;
+  endReconciliation(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$EndReconciliationResponse>,
+      callback?: BodyResponseCallback<Schema$EndReconciliationResponse>): void;
+  endReconciliation(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$EndReconciliationResponse>,
+      callback?: BodyResponseCallback<Schema$EndReconciliationResponse>):
+      void|AxiosPromise<Schema$EndReconciliationResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://servicecontrol.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/services/{serviceName}:endReconciliation')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['serviceName'],
+      pathParams: ['serviceName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$EndReconciliationResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$EndReconciliationResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1277,32 +1332,46 @@ export class Resource$Services {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  releaseQuota =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ReleaseQuotaResponse>,
-       callback?: BodyResponseCallback<Schema$ReleaseQuotaResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://servicecontrol.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/services/{serviceName}:releaseQuota')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['serviceName'],
-          pathParams: ['serviceName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ReleaseQuotaResponse>(parameters, callback!);
-      };
+  releaseQuota(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ReleaseQuotaResponse>;
+  releaseQuota(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ReleaseQuotaResponse>,
+      callback?: BodyResponseCallback<Schema$ReleaseQuotaResponse>): void;
+  releaseQuota(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ReleaseQuotaResponse>,
+      callback?: BodyResponseCallback<Schema$ReleaseQuotaResponse>):
+      void|AxiosPromise<Schema$ReleaseQuotaResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://servicecontrol.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/services/{serviceName}:releaseQuota')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['serviceName'],
+      pathParams: ['serviceName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ReleaseQuotaResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ReleaseQuotaResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1327,32 +1396,46 @@ export class Resource$Services {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  report =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ReportResponse>,
-       callback?: BodyResponseCallback<Schema$ReportResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://servicecontrol.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/services/{serviceName}:report')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['serviceName'],
-          pathParams: ['serviceName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ReportResponse>(parameters, callback!);
-      };
+  report(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ReportResponse>;
+  report(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ReportResponse>,
+      callback?: BodyResponseCallback<Schema$ReportResponse>): void;
+  report(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ReportResponse>,
+      callback?: BodyResponseCallback<Schema$ReportResponse>):
+      void|AxiosPromise<Schema$ReportResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://servicecontrol.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/services/{serviceName}:report')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['serviceName'],
+      pathParams: ['serviceName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ReportResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ReportResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1387,33 +1470,48 @@ export class Resource$Services {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  startReconciliation =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$StartReconciliationResponse>,
-       callback?: BodyResponseCallback<Schema$StartReconciliationResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://servicecontrol.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1/services/{serviceName}:startReconciliation')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['serviceName'],
-          pathParams: ['serviceName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$StartReconciliationResponse>(
-            parameters, callback!);
-      };
+  startReconciliation(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$StartReconciliationResponse>;
+  startReconciliation(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$StartReconciliationResponse>,
+      callback?: BodyResponseCallback<Schema$StartReconciliationResponse>):
+      void;
+  startReconciliation(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$StartReconciliationResponse>,
+      callback?: BodyResponseCallback<Schema$StartReconciliationResponse>):
+      void|AxiosPromise<Schema$StartReconciliationResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://servicecontrol.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/services/{serviceName}:startReconciliation')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['serviceName'],
+      pathParams: ['serviceName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$StartReconciliationResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$StartReconciliationResponse>(parameters);
+    }
+  }
 }

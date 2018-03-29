@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -55,12 +57,17 @@ export class Bigquery {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.datasets = new Resource$Datasets(this);
     this.jobs = new Resource$Jobs(this);
     this.projects = new Resource$Projects(this);
     this.tabledata = new Resource$Tabledata(this);
     this.tables = new Resource$Tables(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -1944,7 +1951,13 @@ export class Resource$Datasets {
   root: Bigquery;
   constructor(root: Bigquery) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * bigquery.datasets.delete
@@ -2015,31 +2028,43 @@ export class Resource$Datasets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/bigquery/v2/projects/{projectId}/datasets/{datasetId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'datasetId'],
-          pathParams: ['datasetId', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/bigquery/v2/projects/{projectId}/datasets/{datasetId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'datasetId'],
+      pathParams: ['datasetId', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -2110,31 +2135,42 @@ export class Resource$Datasets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-       callback?: BodyResponseCallback<Schema$Dataset>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/bigquery/v2/projects/{projectId}/datasets/{datasetId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'datasetId'],
-          pathParams: ['datasetId', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Dataset>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Dataset>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+      callback?: BodyResponseCallback<Schema$Dataset>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+      callback?: BodyResponseCallback<Schema$Dataset>):
+      void|AxiosPromise<Schema$Dataset> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/bigquery/v2/projects/{projectId}/datasets/{datasetId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'datasetId'],
+      pathParams: ['datasetId', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Dataset>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Dataset>(parameters);
+    }
+  }
 
 
   /**
@@ -2206,30 +2242,43 @@ export class Resource$Datasets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-       callback?: BodyResponseCallback<Schema$Dataset>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Dataset>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Dataset>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+      callback?: BodyResponseCallback<Schema$Dataset>): void;
+  insert(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+      callback?: BodyResponseCallback<Schema$Dataset>):
+      void|AxiosPromise<Schema$Dataset> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Dataset>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Dataset>(parameters);
+    }
+  }
 
 
   /**
@@ -2314,31 +2363,45 @@ export class Resource$Datasets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$DatasetList>,
-       callback?: BodyResponseCallback<Schema$DatasetList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$DatasetList>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$DatasetList>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$DatasetList>,
+      callback?: BodyResponseCallback<Schema$DatasetList>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$DatasetList>,
+      callback?: BodyResponseCallback<Schema$DatasetList>):
+      void|AxiosPromise<Schema$DatasetList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DatasetList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DatasetList>(parameters);
+    }
+  }
 
 
   /**
@@ -2419,31 +2482,44 @@ export class Resource$Datasets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-       callback?: BodyResponseCallback<Schema$Dataset>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/bigquery/v2/projects/{projectId}/datasets/{datasetId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'datasetId'],
-          pathParams: ['datasetId', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Dataset>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Dataset>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+      callback?: BodyResponseCallback<Schema$Dataset>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+      callback?: BodyResponseCallback<Schema$Dataset>):
+      void|AxiosPromise<Schema$Dataset> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/bigquery/v2/projects/{projectId}/datasets/{datasetId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'datasetId'],
+      pathParams: ['datasetId', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Dataset>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Dataset>(parameters);
+    }
+  }
 
 
   /**
@@ -2523,38 +2599,57 @@ export class Resource$Datasets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-       callback?: BodyResponseCallback<Schema$Dataset>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/bigquery/v2/projects/{projectId}/datasets/{datasetId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'datasetId'],
-          pathParams: ['datasetId', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Dataset>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Dataset>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+      callback?: BodyResponseCallback<Schema$Dataset>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+      callback?: BodyResponseCallback<Schema$Dataset>):
+      void|AxiosPromise<Schema$Dataset> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/bigquery/v2/projects/{projectId}/datasets/{datasetId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'datasetId'],
+      pathParams: ['datasetId', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Dataset>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Dataset>(parameters);
+    }
+  }
 }
 
 export class Resource$Jobs {
   root: Bigquery;
   constructor(root: Bigquery) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * bigquery.jobs.cancel
@@ -2627,32 +2722,47 @@ export class Resource$Jobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  cancel =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$JobCancelResponse>,
-       callback?: BodyResponseCallback<Schema$JobCancelResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/bigquery/v2/projects/{projectId}/jobs/{jobId}/cancel')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'jobId'],
-          pathParams: ['jobId', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$JobCancelResponse>(parameters, callback!);
-      };
+  cancel(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$JobCancelResponse>;
+  cancel(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$JobCancelResponse>,
+      callback?: BodyResponseCallback<Schema$JobCancelResponse>): void;
+  cancel(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$JobCancelResponse>,
+      callback?: BodyResponseCallback<Schema$JobCancelResponse>):
+      void|AxiosPromise<Schema$JobCancelResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/bigquery/v2/projects/{projectId}/jobs/{jobId}/cancel')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'jobId'],
+      pathParams: ['jobId', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$JobCancelResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$JobCancelResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2726,31 +2836,41 @@ export class Resource$Jobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Job>,
-       callback?: BodyResponseCallback<Schema$Job>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/bigquery/v2/projects/{projectId}/jobs/{jobId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'jobId'],
-          pathParams: ['jobId', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Job>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Job>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>):
+      void|AxiosPromise<Schema$Job> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/bigquery/v2/projects/{projectId}/jobs/{jobId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'jobId'],
+      pathParams: ['jobId', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Job>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Job>(parameters);
+    }
+  }
 
 
   /**
@@ -2839,33 +2959,48 @@ export class Resource$Jobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getQueryResults =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GetQueryResultsResponse>,
-       callback?: BodyResponseCallback<Schema$GetQueryResultsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/bigquery/v2/projects/{projectId}/queries/{jobId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'jobId'],
-          pathParams: ['jobId', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GetQueryResultsResponse>(parameters, callback!);
-      };
+  getQueryResults(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GetQueryResultsResponse>;
+  getQueryResults(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GetQueryResultsResponse>,
+      callback?: BodyResponseCallback<Schema$GetQueryResultsResponse>): void;
+  getQueryResults(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GetQueryResultsResponse>,
+      callback?: BodyResponseCallback<Schema$GetQueryResultsResponse>):
+      void|AxiosPromise<Schema$GetQueryResultsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/bigquery/v2/projects/{projectId}/queries/{jobId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'jobId'],
+      pathParams: ['jobId', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GetQueryResultsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GetQueryResultsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2947,32 +3082,45 @@ export class Resource$Jobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Job>,
-       callback?: BodyResponseCallback<Schema$Job>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/bigquery/v2/projects/{projectId}/jobs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          mediaUrl: (rootUrl + '/upload/bigquery/v2/projects/{projectId}/jobs')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Job>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Job>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>): void;
+  insert(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>):
+      void|AxiosPromise<Schema$Job> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/bigquery/v2/projects/{projectId}/jobs')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      mediaUrl: (rootUrl + '/upload/bigquery/v2/projects/{projectId}/jobs')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Job>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Job>(parameters);
+    }
+  }
 
 
   /**
@@ -3063,30 +3211,43 @@ export class Resource$Jobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$JobList>,
-       callback?: BodyResponseCallback<Schema$JobList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/bigquery/v2/projects/{projectId}/jobs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$JobList>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$JobList>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$JobList>,
+      callback?: BodyResponseCallback<Schema$JobList>): void;
+  list(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$JobList>,
+      callback?: BodyResponseCallback<Schema$JobList>):
+      void|AxiosPromise<Schema$JobList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/bigquery/v2/projects/{projectId}/jobs')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$JobList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$JobList>(parameters);
+    }
+  }
 
 
   /**
@@ -3159,38 +3320,59 @@ export class Resource$Jobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  query =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$QueryResponse>,
-       callback?: BodyResponseCallback<Schema$QueryResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/bigquery/v2/projects/{projectId}/queries')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$QueryResponse>(parameters, callback!);
-      };
+  query(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$QueryResponse>;
+  query(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$QueryResponse>,
+      callback?: BodyResponseCallback<Schema$QueryResponse>): void;
+  query(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$QueryResponse>,
+      callback?: BodyResponseCallback<Schema$QueryResponse>):
+      void|AxiosPromise<Schema$QueryResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/bigquery/v2/projects/{projectId}/queries')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$QueryResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$QueryResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Projects {
   root: Bigquery;
   constructor(root: Bigquery) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * bigquery.projects.getServiceAccount
@@ -3257,34 +3439,48 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getServiceAccount =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GetServiceAccountResponse>,
-       callback?: BodyResponseCallback<Schema$GetServiceAccountResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/bigquery/v2/projects/{projectId}/serviceAccount')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GetServiceAccountResponse>(
-            parameters, callback!);
-      };
+  getServiceAccount(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GetServiceAccountResponse>;
+  getServiceAccount(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GetServiceAccountResponse>,
+      callback?: BodyResponseCallback<Schema$GetServiceAccountResponse>): void;
+  getServiceAccount(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GetServiceAccountResponse>,
+      callback?: BodyResponseCallback<Schema$GetServiceAccountResponse>):
+      void|AxiosPromise<Schema$GetServiceAccountResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/bigquery/v2/projects/{projectId}/serviceAccount')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GetServiceAccountResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GetServiceAccountResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -3362,38 +3558,58 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ProjectList>,
-       callback?: BodyResponseCallback<Schema$ProjectList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/bigquery/v2/projects')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ProjectList>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$ProjectList>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ProjectList>,
+      callback?: BodyResponseCallback<Schema$ProjectList>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ProjectList>,
+      callback?: BodyResponseCallback<Schema$ProjectList>):
+      void|AxiosPromise<Schema$ProjectList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/bigquery/v2/projects')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ProjectList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ProjectList>(parameters);
+    }
+  }
 }
 
 export class Resource$Tabledata {
   root: Bigquery;
   constructor(root: Bigquery) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * bigquery.tabledata.insertAll
@@ -3473,35 +3689,50 @@ export class Resource$Tabledata {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insertAll =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$TableDataInsertAllResponse>,
-       callback?: BodyResponseCallback<Schema$TableDataInsertAllResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}/insertAll')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'datasetId', 'tableId'],
-          pathParams: ['datasetId', 'projectId', 'tableId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TableDataInsertAllResponse>(
-            parameters, callback!);
-      };
+  insertAll(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TableDataInsertAllResponse>;
+  insertAll(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$TableDataInsertAllResponse>,
+      callback?: BodyResponseCallback<Schema$TableDataInsertAllResponse>): void;
+  insertAll(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$TableDataInsertAllResponse>,
+      callback?: BodyResponseCallback<Schema$TableDataInsertAllResponse>):
+      void|AxiosPromise<Schema$TableDataInsertAllResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}/insertAll')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'datasetId', 'tableId'],
+      pathParams: ['datasetId', 'projectId', 'tableId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TableDataInsertAllResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TableDataInsertAllResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -3594,40 +3825,61 @@ export class Resource$Tabledata {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TableDataList>,
-       callback?: BodyResponseCallback<Schema$TableDataList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}/data')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'datasetId', 'tableId'],
-          pathParams: ['datasetId', 'projectId', 'tableId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TableDataList>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TableDataList>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$TableDataList>,
+      callback?: BodyResponseCallback<Schema$TableDataList>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TableDataList>,
+      callback?: BodyResponseCallback<Schema$TableDataList>):
+      void|AxiosPromise<Schema$TableDataList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}/data')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'datasetId', 'tableId'],
+      pathParams: ['datasetId', 'projectId', 'tableId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TableDataList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TableDataList>(parameters);
+    }
+  }
 }
 
 export class Resource$Tables {
   root: Bigquery;
   constructor(root: Bigquery) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * bigquery.tables.delete
@@ -3699,32 +3951,44 @@ export class Resource$Tables {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'datasetId', 'tableId'],
-          pathParams: ['datasetId', 'projectId', 'tableId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'datasetId', 'tableId'],
+      pathParams: ['datasetId', 'projectId', 'tableId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -3802,32 +4066,43 @@ export class Resource$Tables {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Table>,
-       callback?: BodyResponseCallback<Schema$Table>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'datasetId', 'tableId'],
-          pathParams: ['datasetId', 'projectId', 'tableId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Table>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Table>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Table>,
+      callback?: BodyResponseCallback<Schema$Table>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Table>,
+      callback?: BodyResponseCallback<Schema$Table>):
+      void|AxiosPromise<Schema$Table> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'datasetId', 'tableId'],
+      pathParams: ['datasetId', 'projectId', 'tableId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Table>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Table>(parameters);
+    }
+  }
 
 
   /**
@@ -3903,32 +4178,45 @@ export class Resource$Tables {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Table>,
-       callback?: BodyResponseCallback<Schema$Table>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'datasetId'],
-          pathParams: ['datasetId', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Table>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Table>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Table>,
+      callback?: BodyResponseCallback<Schema$Table>): void;
+  insert(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Table>,
+      callback?: BodyResponseCallback<Schema$Table>):
+      void|AxiosPromise<Schema$Table> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'datasetId'],
+      pathParams: ['datasetId', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Table>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Table>(parameters);
+    }
+  }
 
 
   /**
@@ -4015,33 +4303,47 @@ export class Resource$Tables {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TableList>,
-       callback?: BodyResponseCallback<Schema$TableList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'datasetId'],
-          pathParams: ['datasetId', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TableList>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$TableList>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$TableList>,
+      callback?: BodyResponseCallback<Schema$TableList>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TableList>,
+      callback?: BodyResponseCallback<Schema$TableList>):
+      void|AxiosPromise<Schema$TableList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'datasetId'],
+      pathParams: ['datasetId', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TableList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TableList>(parameters);
+    }
+  }
 
 
   /**
@@ -4126,32 +4428,45 @@ export class Resource$Tables {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Table>,
-       callback?: BodyResponseCallback<Schema$Table>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'datasetId', 'tableId'],
-          pathParams: ['datasetId', 'projectId', 'tableId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Table>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Table>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Table>,
+      callback?: BodyResponseCallback<Schema$Table>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Table>,
+      callback?: BodyResponseCallback<Schema$Table>):
+      void|AxiosPromise<Schema$Table> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'datasetId', 'tableId'],
+      pathParams: ['datasetId', 'projectId', 'tableId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Table>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Table>(parameters);
+    }
+  }
 
 
   /**
@@ -4235,30 +4550,43 @@ export class Resource$Tables {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Table>,
-       callback?: BodyResponseCallback<Schema$Table>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'datasetId', 'tableId'],
-          pathParams: ['datasetId', 'projectId', 'tableId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Table>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Table>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Table>,
+      callback?: BodyResponseCallback<Schema$Table>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Table>,
+      callback?: BodyResponseCallback<Schema$Table>):
+      void|AxiosPromise<Schema$Table> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'datasetId', 'tableId'],
+      pathParams: ['datasetId', 'projectId', 'tableId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Table>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Table>(parameters);
+    }
+  }
 }

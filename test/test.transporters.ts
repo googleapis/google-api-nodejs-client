@@ -13,8 +13,6 @@
 
 import * as assert from 'assert';
 import * as nock from 'nock';
-import * as pify from 'pify';
-
 import {GoogleApis} from '../src';
 import {APIEndpoint} from '../src/lib/api';
 
@@ -22,15 +20,15 @@ import {Utils} from './utils';
 
 async function testHeaders(drive: APIEndpoint) {
   nock(Utils.baseUrl).post('/drive/v2/files/a/comments').reply(200);
-  const res = await pify(drive.comments.insert)(
+  const res = await drive.comments.insert(
       {fileId: 'a', headers: {'If-None-Match': '12345'}});
   assert.equal(res.config.headers['If-None-Match'], '12345');
 }
 
 async function testContentType(drive: APIEndpoint) {
   nock(Utils.baseUrl).post('/drive/v2/files/a/comments').reply(200);
-  const res = await pify(drive.comments.insert)(
-      {fileId: 'a', resource: {content: 'hello '}});
+  const res =
+      await drive.comments.insert({fileId: 'a', resource: {content: 'hello '}});
   assert(res.request.headers['content-type'].indexOf('application/json') === 0);
 }
 
@@ -40,7 +38,7 @@ async function testGzip(drive: APIEndpoint) {
           '/drive/v2/files', undefined,
           {reqheaders: {'Accept-Encoding': 'gzip'}})
       .reply(200, {});
-  const res = await pify(drive.files.list)();
+  const res = await drive.files.list();
   assert.deepEqual(res.data, {});
   // note: axios strips the `content-encoding` header from the response,
   // so that cannot be checked here.
@@ -48,14 +46,14 @@ async function testGzip(drive: APIEndpoint) {
 
 async function testBody(drive: APIEndpoint) {
   nock(Utils.baseUrl).get('/drive/v2/files').reply(200);
-  const res = await pify(drive.files.list)();
+  const res = await drive.files.list();
   assert.equal(res.config.headers['content-type'], null);
   assert.equal(res.request.body, null);
 }
 
 async function testBodyDelete(drive: APIEndpoint) {
   nock(Utils.baseUrl).delete('/drive/v2/files/test').reply(200);
-  const res = await pify(drive.files.delete)({fileId: 'test'});
+  const res = await drive.files.delete({fileId: 'test'});
   assert.equal(res.config.headers['content-type'], null);
   assert.equal(res.request.body, null);
 }
@@ -197,7 +195,7 @@ describe('Transporters', () => {
 
   it('should return 304 responses as success', async () => {
     const scope = nock(Utils.baseUrl).get('/drive/v2/files').reply(304);
-    const res = await pify(localDrive.files.list)();
+    const res = await localDrive.files.list();
     assert.equal(res.status, 304);
   });
 

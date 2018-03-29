@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -53,9 +55,14 @@ export class Abusiveexperiencereport {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.sites = new Resource$Sites(this);
     this.violatingSites = new Resource$Violatingsites(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -106,7 +113,13 @@ export class Resource$Sites {
   root: Abusiveexperiencereport;
   constructor(root: Abusiveexperiencereport) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * abusiveexperiencereport.sites.get
@@ -120,38 +133,57 @@ export class Resource$Sites {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$SiteSummaryResponse>,
-       callback?: BodyResponseCallback<Schema$SiteSummaryResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl ||
-            'https://abusiveexperiencereport.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SiteSummaryResponse>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$SiteSummaryResponse>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$SiteSummaryResponse>,
+      callback?: BodyResponseCallback<Schema$SiteSummaryResponse>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$SiteSummaryResponse>,
+      callback?: BodyResponseCallback<Schema$SiteSummaryResponse>):
+      void|AxiosPromise<Schema$SiteSummaryResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://abusiveexperiencereport.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SiteSummaryResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SiteSummaryResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Violatingsites {
   root: Abusiveexperiencereport;
   constructor(root: Abusiveexperiencereport) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * abusiveexperiencereport.violatingSites.list
@@ -164,31 +196,46 @@ export class Resource$Violatingsites {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ViolatingSitesResponse>,
-       callback?: BodyResponseCallback<Schema$ViolatingSitesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl ||
-            'https://abusiveexperiencereport.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/violatingSites')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ViolatingSitesResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ViolatingSitesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ViolatingSitesResponse>,
+      callback?: BodyResponseCallback<Schema$ViolatingSitesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ViolatingSitesResponse>,
+      callback?: BodyResponseCallback<Schema$ViolatingSitesResponse>):
+      void|AxiosPromise<Schema$ViolatingSitesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://abusiveexperiencereport.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/violatingSites').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ViolatingSitesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ViolatingSitesResponse>(parameters);
+    }
+  }
 }

@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -55,6 +57,7 @@ export class Logging {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.billingAccounts = new Resource$Billingaccounts(this);
     this.entries = new Resource$Entries(this);
@@ -62,6 +65,10 @@ export class Logging {
         new Resource$Monitoredresourcedescriptors(this);
     this.organizations = new Resource$Organizations(this);
     this.projects = new Resource$Projects(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -1155,14 +1162,25 @@ export class Resource$Billingaccounts {
   logs: Resource$Billingaccounts$Logs;
   constructor(root: Logging) {
     this.root = root;
+    this.getRoot.bind(this);
     this.logs = new Resource$Billingaccounts$Logs(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Billingaccounts$Logs {
   root: Logging;
   constructor(root: Logging) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * logging.billingAccounts.logs.delete
@@ -1238,30 +1256,42 @@ export class Resource$Billingaccounts$Logs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2beta1/{logName}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['logName'],
-          pathParams: ['logName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{logName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['logName'],
+      pathParams: ['logName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -1349,31 +1379,46 @@ export class Resource$Billingaccounts$Logs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
-       callback?: BodyResponseCallback<Schema$ListLogsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2beta1/{parent}/logs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListLogsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListLogsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLogsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLogsResponse>):
+      void|AxiosPromise<Schema$ListLogsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{parent}/logs')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListLogsResponse>(parameters);
+    }
+  }
 }
 
 
@@ -1381,7 +1426,13 @@ export class Resource$Entries {
   root: Logging;
   constructor(root: Logging) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * logging.entries.list
@@ -1462,32 +1513,48 @@ export class Resource$Entries {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListLogEntriesResponse>,
-       callback?: BodyResponseCallback<Schema$ListLogEntriesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2beta1/entries:list')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListLogEntriesResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListLogEntriesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListLogEntriesResponse>,
+      callback?: BodyResponseCallback<Schema$ListLogEntriesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListLogEntriesResponse>,
+      callback?: BodyResponseCallback<Schema$ListLogEntriesResponse>):
+      void|AxiosPromise<Schema$ListLogEntriesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/entries:list')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListLogEntriesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListLogEntriesResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1558,39 +1625,61 @@ export class Resource$Entries {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  write =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$WriteLogEntriesResponse>,
-       callback?: BodyResponseCallback<Schema$WriteLogEntriesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2beta1/entries:write')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$WriteLogEntriesResponse>(parameters, callback!);
-      };
+  write(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$WriteLogEntriesResponse>;
+  write(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$WriteLogEntriesResponse>,
+      callback?: BodyResponseCallback<Schema$WriteLogEntriesResponse>): void;
+  write(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$WriteLogEntriesResponse>,
+      callback?: BodyResponseCallback<Schema$WriteLogEntriesResponse>):
+      void|AxiosPromise<Schema$WriteLogEntriesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/entries:write')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$WriteLogEntriesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$WriteLogEntriesResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Monitoredresourcedescriptors {
   root: Logging;
   constructor(root: Logging) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * logging.monitoredResourceDescriptors.list
@@ -1669,34 +1758,52 @@ export class Resource$Monitoredresourcedescriptors {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
-       callback?: BodyResponseCallback<
-           Schema$ListMonitoredResourceDescriptorsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2beta1/monitoredResourceDescriptors')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListMonitoredResourceDescriptorsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListMonitoredResourceDescriptorsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
+      callback?: BodyResponseCallback<
+          Schema$ListMonitoredResourceDescriptorsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
+      callback?: BodyResponseCallback<
+          Schema$ListMonitoredResourceDescriptorsResponse>):
+      void|AxiosPromise<Schema$ListMonitoredResourceDescriptorsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/monitoredResourceDescriptors')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListMonitoredResourceDescriptorsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListMonitoredResourceDescriptorsResponse>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Organizations {
@@ -1704,14 +1811,25 @@ export class Resource$Organizations {
   logs: Resource$Organizations$Logs;
   constructor(root: Logging) {
     this.root = root;
+    this.getRoot.bind(this);
     this.logs = new Resource$Organizations$Logs(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Organizations$Logs {
   root: Logging;
   constructor(root: Logging) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * logging.organizations.logs.delete
@@ -1787,30 +1905,42 @@ export class Resource$Organizations$Logs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2beta1/{logName}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['logName'],
-          pathParams: ['logName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{logName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['logName'],
+      pathParams: ['logName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -1898,31 +2028,46 @@ export class Resource$Organizations$Logs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
-       callback?: BodyResponseCallback<Schema$ListLogsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2beta1/{parent}/logs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListLogsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListLogsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLogsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLogsResponse>):
+      void|AxiosPromise<Schema$ListLogsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{parent}/logs')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListLogsResponse>(parameters);
+    }
+  }
 }
 
 
@@ -1933,16 +2078,27 @@ export class Resource$Projects {
   sinks: Resource$Projects$Sinks;
   constructor(root: Logging) {
     this.root = root;
+    this.getRoot.bind(this);
     this.logs = new Resource$Projects$Logs(root);
     this.metrics = new Resource$Projects$Metrics(root);
     this.sinks = new Resource$Projects$Sinks(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Projects$Logs {
   root: Logging;
   constructor(root: Logging) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * logging.projects.logs.delete
@@ -2018,30 +2174,42 @@ export class Resource$Projects$Logs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2beta1/{logName}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['logName'],
-          pathParams: ['logName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{logName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['logName'],
+      pathParams: ['logName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -2128,38 +2296,59 @@ export class Resource$Projects$Logs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
-       callback?: BodyResponseCallback<Schema$ListLogsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2beta1/{parent}/logs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListLogsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListLogsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLogsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLogsResponse>):
+      void|AxiosPromise<Schema$ListLogsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{parent}/logs')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListLogsResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Metrics {
   root: Logging;
   constructor(root: Logging) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * logging.projects.metrics.create
@@ -2232,31 +2421,45 @@ export class Resource$Projects$Metrics {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$LogMetric>,
-       callback?: BodyResponseCallback<Schema$LogMetric>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2beta1/{parent}/metrics')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$LogMetric>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$LogMetric>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$LogMetric>,
+      callback?: BodyResponseCallback<Schema$LogMetric>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$LogMetric>,
+      callback?: BodyResponseCallback<Schema$LogMetric>):
+      void|AxiosPromise<Schema$LogMetric> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{parent}/metrics')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LogMetric>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LogMetric>(parameters);
+    }
+  }
 
 
   /**
@@ -2322,30 +2525,43 @@ export class Resource$Projects$Metrics {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2beta1/{metricName}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['metricName'],
-          pathParams: ['metricName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{metricName}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['metricName'],
+      pathParams: ['metricName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -2414,31 +2630,43 @@ export class Resource$Projects$Metrics {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$LogMetric>,
-       callback?: BodyResponseCallback<Schema$LogMetric>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2beta1/{metricName}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['metricName'],
-          pathParams: ['metricName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$LogMetric>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$LogMetric>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$LogMetric>,
+      callback?: BodyResponseCallback<Schema$LogMetric>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$LogMetric>,
+      callback?: BodyResponseCallback<Schema$LogMetric>):
+      void|AxiosPromise<Schema$LogMetric> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{metricName}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['metricName'],
+      pathParams: ['metricName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LogMetric>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LogMetric>(parameters);
+    }
+  }
 
 
   /**
@@ -2521,32 +2749,48 @@ export class Resource$Projects$Metrics {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListLogMetricsResponse>,
-       callback?: BodyResponseCallback<Schema$ListLogMetricsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2beta1/{parent}/metrics')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListLogMetricsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListLogMetricsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListLogMetricsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLogMetricsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListLogMetricsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLogMetricsResponse>):
+      void|AxiosPromise<Schema$ListLogMetricsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{parent}/metrics')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListLogMetricsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListLogMetricsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2625,38 +2869,58 @@ export class Resource$Projects$Metrics {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$LogMetric>,
-       callback?: BodyResponseCallback<Schema$LogMetric>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2beta1/{metricName}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['metricName'],
-          pathParams: ['metricName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$LogMetric>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$LogMetric>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$LogMetric>,
+      callback?: BodyResponseCallback<Schema$LogMetric>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$LogMetric>,
+      callback?: BodyResponseCallback<Schema$LogMetric>):
+      void|AxiosPromise<Schema$LogMetric> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{metricName}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['metricName'],
+      pathParams: ['metricName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LogMetric>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LogMetric>(parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Sinks {
   root: Logging;
   constructor(root: Logging) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * logging.projects.sinks.create
@@ -2736,30 +3000,43 @@ export class Resource$Projects$Sinks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-       callback?: BodyResponseCallback<Schema$LogSink>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2beta1/{parent}/sinks')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$LogSink>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$LogSink>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+      callback?: BodyResponseCallback<Schema$LogSink>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+      callback?: BodyResponseCallback<Schema$LogSink>):
+      void|AxiosPromise<Schema$LogSink> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{parent}/sinks')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LogSink>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LogSink>(parameters);
+    }
+  }
 
 
   /**
@@ -2832,30 +3109,43 @@ export class Resource$Projects$Sinks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2beta1/{sinkName}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['sinkName'],
-          pathParams: ['sinkName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/v2beta1/{sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['sinkName'],
+      pathParams: ['sinkName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -2928,30 +3218,41 @@ export class Resource$Projects$Sinks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-       callback?: BodyResponseCallback<Schema$LogSink>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2beta1/{sinkName}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['sinkName'],
-          pathParams: ['sinkName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$LogSink>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$LogSink>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+      callback?: BodyResponseCallback<Schema$LogSink>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+      callback?: BodyResponseCallback<Schema$LogSink>):
+      void|AxiosPromise<Schema$LogSink> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/v2beta1/{sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['sinkName'],
+      pathParams: ['sinkName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LogSink>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LogSink>(parameters);
+    }
+  }
 
 
   /**
@@ -3037,31 +3338,46 @@ export class Resource$Projects$Sinks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListSinksResponse>,
-       callback?: BodyResponseCallback<Schema$ListSinksResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2beta1/{parent}/sinks')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListSinksResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListSinksResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListSinksResponse>,
+      callback?: BodyResponseCallback<Schema$ListSinksResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListSinksResponse>,
+      callback?: BodyResponseCallback<Schema$ListSinksResponse>):
+      void|AxiosPromise<Schema$ListSinksResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{parent}/sinks')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListSinksResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListSinksResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -3148,28 +3464,41 @@ export class Resource$Projects$Sinks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-       callback?: BodyResponseCallback<Schema$LogSink>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2beta1/{sinkName}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['sinkName'],
-          pathParams: ['sinkName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$LogSink>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$LogSink>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+      callback?: BodyResponseCallback<Schema$LogSink>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
+      callback?: BodyResponseCallback<Schema$LogSink>):
+      void|AxiosPromise<Schema$LogSink> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/v2beta1/{sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['sinkName'],
+      pathParams: ['sinkName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LogSink>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LogSink>(parameters);
+    }
+  }
 }

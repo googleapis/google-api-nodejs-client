@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -51,8 +53,13 @@ export class Videointelligence {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.videos = new Resource$Videos(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -1141,7 +1148,13 @@ export class Resource$Videos {
   root: Videointelligence;
   constructor(root: Videointelligence) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * videointelligence.videos.annotate
@@ -1158,32 +1171,49 @@ export class Resource$Videos {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  annotate =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
-       callback?: BodyResponseCallback<Schema$GoogleLongrunning_Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://videointelligence.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/videos:annotate')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleLongrunning_Operation>(
-            parameters, callback!);
-      };
+  annotate(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleLongrunning_Operation>;
+  annotate(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunning_Operation>):
+      void;
+  annotate(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunning_Operation>):
+      void|AxiosPromise<Schema$GoogleLongrunning_Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://videointelligence.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/videos:annotate')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleLongrunning_Operation>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleLongrunning_Operation>(parameters);
+    }
+  }
 }

@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -53,9 +55,14 @@ export class Replicapool {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.pools = new Resource$Pools(this);
     this.replicas = new Resource$Replicas(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -569,7 +576,13 @@ export class Resource$Pools {
   root: Replicapool;
   constructor(root: Replicapool) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * replicapool.pools.delete
@@ -586,32 +599,44 @@ export class Resource$Pools {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectName', 'zone', 'poolName'],
-          pathParams: ['poolName', 'projectName', 'zone'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectName', 'zone', 'poolName'],
+      pathParams: ['poolName', 'projectName', 'zone'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -628,32 +653,43 @@ export class Resource$Pools {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Pool>,
-       callback?: BodyResponseCallback<Schema$Pool>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectName', 'zone', 'poolName'],
-          pathParams: ['poolName', 'projectName', 'zone'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Pool>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Pool>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Pool>,
+      callback?: BodyResponseCallback<Schema$Pool>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Pool>,
+      callback?: BodyResponseCallback<Schema$Pool>):
+      void|AxiosPromise<Schema$Pool> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectName', 'zone', 'poolName'],
+      pathParams: ['poolName', 'projectName', 'zone'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Pool>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Pool>(parameters);
+    }
+  }
 
 
   /**
@@ -670,32 +706,45 @@ export class Resource$Pools {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Pool>,
-       callback?: BodyResponseCallback<Schema$Pool>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectName', 'zone'],
-          pathParams: ['projectName', 'zone'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Pool>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Pool>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Pool>,
+      callback?: BodyResponseCallback<Schema$Pool>): void;
+  insert(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Pool>,
+      callback?: BodyResponseCallback<Schema$Pool>):
+      void|AxiosPromise<Schema$Pool> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectName', 'zone'],
+      pathParams: ['projectName', 'zone'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Pool>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Pool>(parameters);
+    }
+  }
 
 
   /**
@@ -713,33 +762,48 @@ export class Resource$Pools {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PoolsListResponse>,
-       callback?: BodyResponseCallback<Schema$PoolsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectName', 'zone'],
-          pathParams: ['projectName', 'zone'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PoolsListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PoolsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$PoolsListResponse>,
+      callback?: BodyResponseCallback<Schema$PoolsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PoolsListResponse>,
+      callback?: BodyResponseCallback<Schema$PoolsListResponse>):
+      void|AxiosPromise<Schema$PoolsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectName', 'zone'],
+      pathParams: ['projectName', 'zone'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PoolsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PoolsListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -759,32 +823,45 @@ export class Resource$Pools {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  resize =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Pool>,
-       callback?: BodyResponseCallback<Schema$Pool>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/resize')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectName', 'zone', 'poolName'],
-          pathParams: ['poolName', 'projectName', 'zone'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Pool>(parameters, callback!);
-      };
+  resize(params: any, options?: MethodOptions): AxiosPromise<Schema$Pool>;
+  resize(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Pool>,
+      callback?: BodyResponseCallback<Schema$Pool>): void;
+  resize(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Pool>,
+      callback?: BodyResponseCallback<Schema$Pool>):
+      void|AxiosPromise<Schema$Pool> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/resize')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectName', 'zone', 'poolName'],
+      pathParams: ['poolName', 'projectName', 'zone'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Pool>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Pool>(parameters);
+    }
+  }
 
 
   /**
@@ -802,39 +879,57 @@ export class Resource$Pools {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  updatetemplate =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/updateTemplate')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectName', 'zone', 'poolName'],
-          pathParams: ['poolName', 'projectName', 'zone'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  updatetemplate(params: any, options?: MethodOptions): AxiosPromise<void>;
+  updatetemplate(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  updatetemplate(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/updateTemplate')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectName', 'zone', 'poolName'],
+      pathParams: ['poolName', 'projectName', 'zone'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 }
 
 export class Resource$Replicas {
   root: Replicapool;
   constructor(root: Replicapool) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * replicapool.replicas.delete
@@ -852,32 +947,45 @@ export class Resource$Replicas {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Replica>,
-       callback?: BodyResponseCallback<Schema$Replica>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas/{replicaName}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectName', 'zone', 'poolName', 'replicaName'],
-          pathParams: ['poolName', 'projectName', 'replicaName', 'zone'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Replica>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Replica>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Replica>,
+      callback?: BodyResponseCallback<Schema$Replica>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Replica>,
+      callback?: BodyResponseCallback<Schema$Replica>):
+      void|AxiosPromise<Schema$Replica> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas/{replicaName}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectName', 'zone', 'poolName', 'replicaName'],
+      pathParams: ['poolName', 'projectName', 'replicaName', 'zone'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Replica>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Replica>(parameters);
+    }
+  }
 
 
   /**
@@ -895,32 +1003,43 @@ export class Resource$Replicas {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Replica>,
-       callback?: BodyResponseCallback<Schema$Replica>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas/{replicaName}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectName', 'zone', 'poolName', 'replicaName'],
-          pathParams: ['poolName', 'projectName', 'replicaName', 'zone'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Replica>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Replica>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Replica>,
+      callback?: BodyResponseCallback<Schema$Replica>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Replica>,
+      callback?: BodyResponseCallback<Schema$Replica>):
+      void|AxiosPromise<Schema$Replica> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas/{replicaName}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectName', 'zone', 'poolName', 'replicaName'],
+      pathParams: ['poolName', 'projectName', 'replicaName', 'zone'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Replica>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Replica>(parameters);
+    }
+  }
 
 
   /**
@@ -939,33 +1058,48 @@ export class Resource$Replicas {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ReplicasListResponse>,
-       callback?: BodyResponseCallback<Schema$ReplicasListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectName', 'zone', 'poolName'],
-          pathParams: ['poolName', 'projectName', 'zone'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ReplicasListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ReplicasListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ReplicasListResponse>,
+      callback?: BodyResponseCallback<Schema$ReplicasListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ReplicasListResponse>,
+      callback?: BodyResponseCallback<Schema$ReplicasListResponse>):
+      void|AxiosPromise<Schema$ReplicasListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectName', 'zone', 'poolName'],
+      pathParams: ['poolName', 'projectName', 'zone'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ReplicasListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ReplicasListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -983,30 +1117,43 @@ export class Resource$Replicas {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  restart =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Replica>,
-       callback?: BodyResponseCallback<Schema$Replica>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas/{replicaName}/restart')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectName', 'zone', 'poolName', 'replicaName'],
-          pathParams: ['poolName', 'projectName', 'replicaName', 'zone'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Replica>(parameters, callback!);
-      };
+  restart(params: any, options?: MethodOptions): AxiosPromise<Schema$Replica>;
+  restart(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Replica>,
+      callback?: BodyResponseCallback<Schema$Replica>): void;
+  restart(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Replica>,
+      callback?: BodyResponseCallback<Schema$Replica>):
+      void|AxiosPromise<Schema$Replica> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas/{replicaName}/restart')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectName', 'zone', 'poolName', 'replicaName'],
+      pathParams: ['poolName', 'projectName', 'replicaName', 'zone'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Replica>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Replica>(parameters);
+    }
+  }
 }

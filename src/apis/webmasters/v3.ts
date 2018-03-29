@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -55,12 +57,17 @@ export class Webmasters {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.searchanalytics = new Resource$Searchanalytics(this);
     this.sitemaps = new Resource$Sitemaps(this);
     this.sites = new Resource$Sites(this);
     this.urlcrawlerrorscounts = new Resource$Urlcrawlerrorscounts(this);
     this.urlcrawlerrorssamples = new Resource$Urlcrawlerrorssamples(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -342,7 +349,13 @@ export class Resource$Searchanalytics {
   root: Webmasters;
   constructor(root: Webmasters) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * webmasters.searchanalytics.query
@@ -362,42 +375,64 @@ export class Resource$Searchanalytics {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  query =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>,
-       callback?:
-           BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/webmasters/v3/sites/{siteUrl}/searchAnalytics/query')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['siteUrl'],
-          pathParams: ['siteUrl'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SearchAnalyticsQueryResponse>(
-            parameters, callback!);
-      };
+  query(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SearchAnalyticsQueryResponse>;
+  query(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>,
+      callback?: BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>):
+      void;
+  query(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>,
+      callback?: BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>):
+      void|AxiosPromise<Schema$SearchAnalyticsQueryResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/webmasters/v3/sites/{siteUrl}/searchAnalytics/query')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['siteUrl'],
+      pathParams: ['siteUrl'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SearchAnalyticsQueryResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SearchAnalyticsQueryResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Sitemaps {
   root: Webmasters;
   constructor(root: Webmasters) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * webmasters.sitemaps.delete
@@ -412,31 +447,43 @@ export class Resource$Sitemaps {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['siteUrl', 'feedpath'],
-          pathParams: ['feedpath', 'siteUrl'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['siteUrl', 'feedpath'],
+      pathParams: ['feedpath', 'siteUrl'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -452,32 +499,44 @@ export class Resource$Sitemaps {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$WmxSitemap>,
-       callback?: BodyResponseCallback<Schema$WmxSitemap>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['siteUrl', 'feedpath'],
-          pathParams: ['feedpath', 'siteUrl'],
-          context: this.root
-        };
-        createAPIRequest<Schema$WmxSitemap>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$WmxSitemap>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$WmxSitemap>,
+      callback?: BodyResponseCallback<Schema$WmxSitemap>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$WmxSitemap>,
+      callback?: BodyResponseCallback<Schema$WmxSitemap>):
+      void|AxiosPromise<Schema$WmxSitemap> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['siteUrl', 'feedpath'],
+      pathParams: ['feedpath', 'siteUrl'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$WmxSitemap>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$WmxSitemap>(parameters);
+    }
+  }
 
 
   /**
@@ -494,31 +553,46 @@ export class Resource$Sitemaps {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$SitemapsListResponse>,
-       callback?: BodyResponseCallback<Schema$SitemapsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/webmasters/v3/sites/{siteUrl}/sitemaps')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['siteUrl'],
-          pathParams: ['siteUrl'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SitemapsListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SitemapsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$SitemapsListResponse>,
+      callback?: BodyResponseCallback<Schema$SitemapsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$SitemapsListResponse>,
+      callback?: BodyResponseCallback<Schema$SitemapsListResponse>):
+      void|AxiosPromise<Schema$SitemapsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/webmasters/v3/sites/{siteUrl}/sitemaps')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['siteUrl'],
+      pathParams: ['siteUrl'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SitemapsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SitemapsListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -534,38 +608,56 @@ export class Resource$Sitemaps {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  submit =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['siteUrl', 'feedpath'],
-          pathParams: ['feedpath', 'siteUrl'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  submit(params: any, options?: MethodOptions): AxiosPromise<void>;
+  submit(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  submit(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['siteUrl', 'feedpath'],
+      pathParams: ['feedpath', 'siteUrl'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 }
 
 export class Resource$Sites {
   root: Webmasters;
   constructor(root: Webmasters) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * webmasters.sites.add
@@ -579,30 +671,40 @@ export class Resource$Sites {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  add =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/webmasters/v3/sites/{siteUrl}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['siteUrl'],
-          pathParams: ['siteUrl'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  add(params: any, options?: MethodOptions): AxiosPromise<void>;
+  add(params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  add(params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/webmasters/v3/sites/{siteUrl}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['siteUrl'],
+      pathParams: ['siteUrl'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -617,30 +719,42 @@ export class Resource$Sites {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/webmasters/v3/sites/{siteUrl}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['siteUrl'],
-          pathParams: ['siteUrl'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/webmasters/v3/sites/{siteUrl}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['siteUrl'],
+      pathParams: ['siteUrl'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -655,30 +769,41 @@ export class Resource$Sites {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$WmxSite>,
-       callback?: BodyResponseCallback<Schema$WmxSite>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/webmasters/v3/sites/{siteUrl}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['siteUrl'],
-          pathParams: ['siteUrl'],
-          context: this.root
-        };
-        createAPIRequest<Schema$WmxSite>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$WmxSite>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$WmxSite>,
+      callback?: BodyResponseCallback<Schema$WmxSite>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$WmxSite>,
+      callback?: BodyResponseCallback<Schema$WmxSite>):
+      void|AxiosPromise<Schema$WmxSite> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/webmasters/v3/sites/{siteUrl}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['siteUrl'],
+      pathParams: ['siteUrl'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$WmxSite>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$WmxSite>(parameters);
+    }
+  }
 
 
   /**
@@ -692,38 +817,59 @@ export class Resource$Sites {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$SitesListResponse>,
-       callback?: BodyResponseCallback<Schema$SitesListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/webmasters/v3/sites')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$SitesListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SitesListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$SitesListResponse>,
+      callback?: BodyResponseCallback<Schema$SitesListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$SitesListResponse>,
+      callback?: BodyResponseCallback<Schema$SitesListResponse>):
+      void|AxiosPromise<Schema$SitesListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/webmasters/v3/sites')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SitesListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SitesListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Urlcrawlerrorscounts {
   root: Webmasters;
   constructor(root: Webmasters) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * webmasters.urlcrawlerrorscounts.query
@@ -741,43 +887,66 @@ export class Resource$Urlcrawlerrorscounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  query =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>,
-       callback?:
-           BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsCounts/query')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['siteUrl'],
-          pathParams: ['siteUrl'],
-          context: this.root
-        };
-        createAPIRequest<Schema$UrlCrawlErrorsCountsQueryResponse>(
-            parameters, callback!);
-      };
+  query(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$UrlCrawlErrorsCountsQueryResponse>;
+  query(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>,
+      callback?:
+          BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>): void;
+  query(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>,
+      callback?:
+          BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>):
+      void|AxiosPromise<Schema$UrlCrawlErrorsCountsQueryResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsCounts/query')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['siteUrl'],
+      pathParams: ['siteUrl'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UrlCrawlErrorsCountsQueryResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UrlCrawlErrorsCountsQueryResponse>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Urlcrawlerrorssamples {
   root: Webmasters;
   constructor(root: Webmasters) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * webmasters.urlcrawlerrorssamples.get
@@ -794,33 +963,45 @@ export class Resource$Urlcrawlerrorssamples {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$UrlCrawlErrorsSample>,
-       callback?: BodyResponseCallback<Schema$UrlCrawlErrorsSample>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples/{url}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['siteUrl', 'url', 'category', 'platform'],
-          pathParams: ['siteUrl', 'url'],
-          context: this.root
-        };
-        createAPIRequest<Schema$UrlCrawlErrorsSample>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$UrlCrawlErrorsSample>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$UrlCrawlErrorsSample>,
+      callback?: BodyResponseCallback<Schema$UrlCrawlErrorsSample>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$UrlCrawlErrorsSample>,
+      callback?: BodyResponseCallback<Schema$UrlCrawlErrorsSample>):
+      void|AxiosPromise<Schema$UrlCrawlErrorsSample> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples/{url}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['siteUrl', 'url', 'category', 'platform'],
+      pathParams: ['siteUrl', 'url'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UrlCrawlErrorsSample>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UrlCrawlErrorsSample>(parameters);
+    }
+  }
 
 
   /**
@@ -838,35 +1019,53 @@ export class Resource$Urlcrawlerrorssamples {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>,
-       callback?:
-           BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['siteUrl', 'category', 'platform'],
-          pathParams: ['siteUrl'],
-          context: this.root
-        };
-        createAPIRequest<Schema$UrlCrawlErrorsSamplesListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$UrlCrawlErrorsSamplesListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>,
+      callback?:
+          BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>,
+      callback?:
+          BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>):
+      void|AxiosPromise<Schema$UrlCrawlErrorsSamplesListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['siteUrl', 'category', 'platform'],
+      pathParams: ['siteUrl'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UrlCrawlErrorsSamplesListResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UrlCrawlErrorsSamplesListResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -885,30 +1084,41 @@ export class Resource$Urlcrawlerrorssamples {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  markAsFixed =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples/{url}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['siteUrl', 'url', 'category', 'platform'],
-          pathParams: ['siteUrl', 'url'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  markAsFixed(params: any, options?: MethodOptions): AxiosPromise<void>;
+  markAsFixed(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  markAsFixed(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples/{url}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['siteUrl', 'url', 'category', 'platform'],
+      pathParams: ['siteUrl', 'url'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 }

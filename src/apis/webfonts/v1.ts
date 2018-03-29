@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -53,8 +55,13 @@ export class Webfonts {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.webfonts = new Resource$Webfonts(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -109,7 +116,13 @@ export class Resource$Webfonts {
   root: Webfonts;
   constructor(root: Webfonts) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * webfonts.webfonts.list
@@ -124,29 +137,43 @@ export class Resource$Webfonts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$WebfontList>,
-       callback?: BodyResponseCallback<Schema$WebfontList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/webfonts/v1/webfonts')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$WebfontList>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$WebfontList>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$WebfontList>,
+      callback?: BodyResponseCallback<Schema$WebfontList>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$WebfontList>,
+      callback?: BodyResponseCallback<Schema$WebfontList>):
+      void|AxiosPromise<Schema$WebfontList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/webfonts/v1/webfonts')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$WebfontList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$WebfontList>(parameters);
+    }
+  }
 }

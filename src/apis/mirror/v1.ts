@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -56,6 +58,7 @@ export class Mirror {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.accounts = new Resource$Accounts(this);
     this.contacts = new Resource$Contacts(this);
@@ -63,6 +66,10 @@ export class Mirror {
     this.settings = new Resource$Settings(this);
     this.subscriptions = new Resource$Subscriptions(this);
     this.timeline = new Resource$Timeline(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -705,7 +712,13 @@ export class Resource$Accounts {
   root: Mirror;
   constructor(root: Mirror) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * mirror.accounts.insert
@@ -722,39 +735,57 @@ export class Resource$Accounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Account>,
-       callback?: BodyResponseCallback<Schema$Account>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/mirror/v1/accounts/{userToken}/{accountType}/{accountName}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['userToken', 'accountType', 'accountName'],
-          pathParams: ['accountName', 'accountType', 'userToken'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Account>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Account>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Account>,
+      callback?: BodyResponseCallback<Schema$Account>): void;
+  insert(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Account>,
+      callback?: BodyResponseCallback<Schema$Account>):
+      void|AxiosPromise<Schema$Account> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/mirror/v1/accounts/{userToken}/{accountType}/{accountName}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['userToken', 'accountType', 'accountName'],
+      pathParams: ['accountName', 'accountType', 'userToken'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Account>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Account>(parameters);
+    }
+  }
 }
 
 export class Resource$Contacts {
   root: Mirror;
   constructor(root: Mirror) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * mirror.contacts.delete
@@ -768,30 +799,42 @@ export class Resource$Contacts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/mirror/v1/contacts/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: ['id'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/mirror/v1/contacts/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: ['id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -806,30 +849,41 @@ export class Resource$Contacts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Contact>,
-       callback?: BodyResponseCallback<Schema$Contact>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/mirror/v1/contacts/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: ['id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Contact>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Contact>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Contact>,
+      callback?: BodyResponseCallback<Schema$Contact>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Contact>,
+      callback?: BodyResponseCallback<Schema$Contact>):
+      void|AxiosPromise<Schema$Contact> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/mirror/v1/contacts/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: ['id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Contact>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Contact>(parameters);
+    }
+  }
 
 
   /**
@@ -844,30 +898,43 @@ export class Resource$Contacts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Contact>,
-       callback?: BodyResponseCallback<Schema$Contact>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/mirror/v1/contacts')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Contact>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Contact>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Contact>,
+      callback?: BodyResponseCallback<Schema$Contact>): void;
+  insert(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Contact>,
+      callback?: BodyResponseCallback<Schema$Contact>):
+      void|AxiosPromise<Schema$Contact> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/mirror/v1/contacts').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Contact>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Contact>(parameters);
+    }
+  }
 
 
   /**
@@ -881,31 +948,46 @@ export class Resource$Contacts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ContactsListResponse>,
-       callback?: BodyResponseCallback<Schema$ContactsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/mirror/v1/contacts')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ContactsListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ContactsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ContactsListResponse>,
+      callback?: BodyResponseCallback<Schema$ContactsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ContactsListResponse>,
+      callback?: BodyResponseCallback<Schema$ContactsListResponse>):
+      void|AxiosPromise<Schema$ContactsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/mirror/v1/contacts').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ContactsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ContactsListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -921,30 +1003,43 @@ export class Resource$Contacts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Contact>,
-       callback?: BodyResponseCallback<Schema$Contact>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/mirror/v1/contacts/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: ['id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Contact>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Contact>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Contact>,
+      callback?: BodyResponseCallback<Schema$Contact>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Contact>,
+      callback?: BodyResponseCallback<Schema$Contact>):
+      void|AxiosPromise<Schema$Contact> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/mirror/v1/contacts/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: ['id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Contact>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Contact>(parameters);
+    }
+  }
 
 
   /**
@@ -960,37 +1055,56 @@ export class Resource$Contacts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Contact>,
-       callback?: BodyResponseCallback<Schema$Contact>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/mirror/v1/contacts/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: ['id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Contact>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Contact>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Contact>,
+      callback?: BodyResponseCallback<Schema$Contact>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Contact>,
+      callback?: BodyResponseCallback<Schema$Contact>):
+      void|AxiosPromise<Schema$Contact> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/mirror/v1/contacts/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: ['id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Contact>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Contact>(parameters);
+    }
+  }
 }
 
 export class Resource$Locations {
   root: Mirror;
   constructor(root: Mirror) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * mirror.locations.get
@@ -1004,31 +1118,42 @@ export class Resource$Locations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Location>,
-       callback?: BodyResponseCallback<Schema$Location>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/mirror/v1/locations/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: ['id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Location>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Location>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Location>,
+      callback?: BodyResponseCallback<Schema$Location>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Location>,
+      callback?: BodyResponseCallback<Schema$Location>):
+      void|AxiosPromise<Schema$Location> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/mirror/v1/locations/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: ['id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Location>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Location>(parameters);
+    }
+  }
 
 
   /**
@@ -1042,39 +1167,60 @@ export class Resource$Locations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$LocationsListResponse>,
-       callback?: BodyResponseCallback<Schema$LocationsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/mirror/v1/locations')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$LocationsListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$LocationsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$LocationsListResponse>,
+      callback?: BodyResponseCallback<Schema$LocationsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$LocationsListResponse>,
+      callback?: BodyResponseCallback<Schema$LocationsListResponse>):
+      void|AxiosPromise<Schema$LocationsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/mirror/v1/locations')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LocationsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LocationsListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Settings {
   root: Mirror;
   constructor(root: Mirror) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * mirror.settings.get
@@ -1088,37 +1234,54 @@ export class Resource$Settings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Setting>,
-       callback?: BodyResponseCallback<Schema$Setting>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/mirror/v1/settings/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: ['id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Setting>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Setting>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Setting>,
+      callback?: BodyResponseCallback<Schema$Setting>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Setting>,
+      callback?: BodyResponseCallback<Schema$Setting>):
+      void|AxiosPromise<Schema$Setting> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/mirror/v1/settings/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: ['id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Setting>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Setting>(parameters);
+    }
+  }
 }
 
 export class Resource$Subscriptions {
   root: Mirror;
   constructor(root: Mirror) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * mirror.subscriptions.delete
@@ -1132,30 +1295,42 @@ export class Resource$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/mirror/v1/subscriptions/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: ['id'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/mirror/v1/subscriptions/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: ['id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -1170,31 +1345,46 @@ export class Resource$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
-       callback?: BodyResponseCallback<Schema$Subscription>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/mirror/v1/subscriptions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Subscription>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Subscription>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>):
+      void|AxiosPromise<Schema$Subscription> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/mirror/v1/subscriptions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Subscription>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Subscription>(parameters);
+    }
+  }
 
 
   /**
@@ -1209,33 +1399,48 @@ export class Resource$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$SubscriptionsListResponse>,
-       callback?: BodyResponseCallback<Schema$SubscriptionsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/mirror/v1/subscriptions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$SubscriptionsListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SubscriptionsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$SubscriptionsListResponse>,
+      callback?: BodyResponseCallback<Schema$SubscriptionsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SubscriptionsListResponse>,
+      callback?: BodyResponseCallback<Schema$SubscriptionsListResponse>):
+      void|AxiosPromise<Schema$SubscriptionsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/mirror/v1/subscriptions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SubscriptionsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SubscriptionsListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1251,31 +1456,46 @@ export class Resource$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
-       callback?: BodyResponseCallback<Schema$Subscription>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/mirror/v1/subscriptions/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: ['id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Subscription>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Subscription>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>):
+      void|AxiosPromise<Schema$Subscription> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/mirror/v1/subscriptions/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: ['id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Subscription>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Subscription>(parameters);
+    }
+  }
 }
 
 export class Resource$Timeline {
@@ -1283,8 +1503,14 @@ export class Resource$Timeline {
   attachments: Resource$Timeline$Attachments;
   constructor(root: Mirror) {
     this.root = root;
+    this.getRoot.bind(this);
     this.attachments = new Resource$Timeline$Attachments(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * mirror.timeline.delete
@@ -1298,30 +1524,42 @@ export class Resource$Timeline {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/mirror/v1/timeline/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: ['id'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/mirror/v1/timeline/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: ['id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -1336,31 +1574,43 @@ export class Resource$Timeline {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TimelineItem>,
-       callback?: BodyResponseCallback<Schema$TimelineItem>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/mirror/v1/timeline/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: ['id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TimelineItem>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$TimelineItem>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$TimelineItem>,
+      callback?: BodyResponseCallback<Schema$TimelineItem>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TimelineItem>,
+      callback?: BodyResponseCallback<Schema$TimelineItem>):
+      void|AxiosPromise<Schema$TimelineItem> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/mirror/v1/timeline/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: ['id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TimelineItem>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TimelineItem>(parameters);
+    }
+  }
 
 
   /**
@@ -1378,33 +1628,48 @@ export class Resource$Timeline {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TimelineItem>,
-       callback?: BodyResponseCallback<Schema$TimelineItem>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/mirror/v1/timeline')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          mediaUrl: (rootUrl + '/upload/mirror/v1/timeline')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$TimelineItem>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TimelineItem>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$TimelineItem>,
+      callback?: BodyResponseCallback<Schema$TimelineItem>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TimelineItem>,
+      callback?: BodyResponseCallback<Schema$TimelineItem>):
+      void|AxiosPromise<Schema$TimelineItem> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/mirror/v1/timeline').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      mediaUrl: (rootUrl + '/upload/mirror/v1/timeline')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TimelineItem>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TimelineItem>(parameters);
+    }
+  }
 
 
   /**
@@ -1425,31 +1690,46 @@ export class Resource$Timeline {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TimelineListResponse>,
-       callback?: BodyResponseCallback<Schema$TimelineListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/mirror/v1/timeline')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$TimelineListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TimelineListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$TimelineListResponse>,
+      callback?: BodyResponseCallback<Schema$TimelineListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TimelineListResponse>,
+      callback?: BodyResponseCallback<Schema$TimelineListResponse>):
+      void|AxiosPromise<Schema$TimelineListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/mirror/v1/timeline').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TimelineListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TimelineListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1466,31 +1746,46 @@ export class Resource$Timeline {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TimelineItem>,
-       callback?: BodyResponseCallback<Schema$TimelineItem>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/mirror/v1/timeline/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: ['id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TimelineItem>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TimelineItem>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$TimelineItem>,
+      callback?: BodyResponseCallback<Schema$TimelineItem>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TimelineItem>,
+      callback?: BodyResponseCallback<Schema$TimelineItem>):
+      void|AxiosPromise<Schema$TimelineItem> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/mirror/v1/timeline/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: ['id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TimelineItem>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TimelineItem>(parameters);
+    }
+  }
 
 
   /**
@@ -1509,39 +1804,60 @@ export class Resource$Timeline {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TimelineItem>,
-       callback?: BodyResponseCallback<Schema$TimelineItem>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/mirror/v1/timeline/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          mediaUrl: (rootUrl + '/upload/mirror/v1/timeline/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: ['id'],
-          pathParams: ['id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TimelineItem>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TimelineItem>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$TimelineItem>,
+      callback?: BodyResponseCallback<Schema$TimelineItem>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TimelineItem>,
+      callback?: BodyResponseCallback<Schema$TimelineItem>):
+      void|AxiosPromise<Schema$TimelineItem> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/mirror/v1/timeline/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      mediaUrl: (rootUrl + '/upload/mirror/v1/timeline/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+      requiredParams: ['id'],
+      pathParams: ['id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TimelineItem>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TimelineItem>(parameters);
+    }
+  }
 }
 export class Resource$Timeline$Attachments {
   root: Mirror;
   constructor(root: Mirror) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * mirror.timeline.attachments.delete
@@ -1556,31 +1872,43 @@ export class Resource$Timeline$Attachments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/mirror/v1/timeline/{itemId}/attachments/{attachmentId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['itemId', 'attachmentId'],
-          pathParams: ['attachmentId', 'itemId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/mirror/v1/timeline/{itemId}/attachments/{attachmentId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['itemId', 'attachmentId'],
+      pathParams: ['attachmentId', 'itemId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -1597,32 +1925,44 @@ export class Resource$Timeline$Attachments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Attachment>,
-       callback?: BodyResponseCallback<Schema$Attachment>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/mirror/v1/timeline/{itemId}/attachments/{attachmentId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['itemId', 'attachmentId'],
-          pathParams: ['attachmentId', 'itemId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Attachment>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Attachment>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Attachment>,
+      callback?: BodyResponseCallback<Schema$Attachment>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Attachment>,
+      callback?: BodyResponseCallback<Schema$Attachment>):
+      void|AxiosPromise<Schema$Attachment> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/mirror/v1/timeline/{itemId}/attachments/{attachmentId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['itemId', 'attachmentId'],
+      pathParams: ['attachmentId', 'itemId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Attachment>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Attachment>(parameters);
+    }
+  }
 
 
   /**
@@ -1640,34 +1980,47 @@ export class Resource$Timeline$Attachments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Attachment>,
-       callback?: BodyResponseCallback<Schema$Attachment>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/mirror/v1/timeline/{itemId}/attachments')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          mediaUrl:
-              (rootUrl + '/upload/mirror/v1/timeline/{itemId}/attachments')
-                  .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: ['itemId'],
-          pathParams: ['itemId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Attachment>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Attachment>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Attachment>,
+      callback?: BodyResponseCallback<Schema$Attachment>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Attachment>,
+      callback?: BodyResponseCallback<Schema$Attachment>):
+      void|AxiosPromise<Schema$Attachment> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/mirror/v1/timeline/{itemId}/attachments')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      mediaUrl: (rootUrl + '/upload/mirror/v1/timeline/{itemId}/attachments')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+      requiredParams: ['itemId'],
+      pathParams: ['itemId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Attachment>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Attachment>(parameters);
+    }
+  }
 
 
   /**
@@ -1682,30 +2035,46 @@ export class Resource$Timeline$Attachments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$AttachmentsListResponse>,
-       callback?: BodyResponseCallback<Schema$AttachmentsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/mirror/v1/timeline/{itemId}/attachments')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['itemId'],
-          pathParams: ['itemId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AttachmentsListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AttachmentsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$AttachmentsListResponse>,
+      callback?: BodyResponseCallback<Schema$AttachmentsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$AttachmentsListResponse>,
+      callback?: BodyResponseCallback<Schema$AttachmentsListResponse>):
+      void|AxiosPromise<Schema$AttachmentsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/mirror/v1/timeline/{itemId}/attachments')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['itemId'],
+      pathParams: ['itemId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AttachmentsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AttachmentsListResponse>(parameters);
+    }
+  }
 }

@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -54,11 +56,16 @@ export class Classroom {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.courses = new Resource$Courses(this);
     this.invitations = new Resource$Invitations(this);
     this.registrations = new Resource$Registrations(this);
     this.userProfiles = new Resource$Userprofiles(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -1320,6 +1327,7 @@ export class Resource$Courses {
   topics: Resource$Courses$Topics;
   constructor(root: Classroom) {
     this.root = root;
+    this.getRoot.bind(this);
     this.aliases = new Resource$Courses$Aliases(root);
     this.announcements = new Resource$Courses$Announcements(root);
     this.courseWork = new Resource$Courses$Coursework(root);
@@ -1327,6 +1335,11 @@ export class Resource$Courses {
     this.teachers = new Resource$Courses$Teachers(root);
     this.topics = new Resource$Courses$Topics(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * classroom.courses.create
@@ -1347,29 +1360,42 @@ export class Resource$Courses {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Course>,
-       callback?: BodyResponseCallback<Schema$Course>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/courses').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Course>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Course>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Course>,
+      callback?: BodyResponseCallback<Schema$Course>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Course>,
+      callback?: BodyResponseCallback<Schema$Course>):
+      void|AxiosPromise<Schema$Course> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/courses').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Course>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Course>(parameters);
+    }
+  }
 
 
   /**
@@ -1387,30 +1413,42 @@ export class Resource$Courses {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/courses/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: ['id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/courses/{id}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: ['id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -1428,30 +1466,40 @@ export class Resource$Courses {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Course>,
-       callback?: BodyResponseCallback<Schema$Course>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/courses/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: ['id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Course>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Course>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Course>,
+      callback?: BodyResponseCallback<Schema$Course>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Course>,
+      callback?: BodyResponseCallback<Schema$Course>):
+      void|AxiosPromise<Schema$Course> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/courses/{id}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: ['id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Course>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Course>(parameters);
+    }
+  }
 
 
   /**
@@ -1475,30 +1523,45 @@ export class Resource$Courses {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListCoursesResponse>,
-       callback?: BodyResponseCallback<Schema$ListCoursesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/courses').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListCoursesResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListCoursesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListCoursesResponse>,
+      callback?: BodyResponseCallback<Schema$ListCoursesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListCoursesResponse>,
+      callback?: BodyResponseCallback<Schema$ListCoursesResponse>):
+      void|AxiosPromise<Schema$ListCoursesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/courses').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListCoursesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListCoursesResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1521,30 +1584,42 @@ export class Resource$Courses {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Course>,
-       callback?: BodyResponseCallback<Schema$Course>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/courses/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: ['id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Course>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Course>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Course>,
+      callback?: BodyResponseCallback<Schema$Course>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Course>,
+      callback?: BodyResponseCallback<Schema$Course>):
+      void|AxiosPromise<Schema$Course> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/courses/{id}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: ['id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Course>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Course>(parameters);
+    }
+  }
 
 
   /**
@@ -1564,36 +1639,54 @@ export class Resource$Courses {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Course>,
-       callback?: BodyResponseCallback<Schema$Course>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/courses/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: ['id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Course>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Course>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Course>,
+      callback?: BodyResponseCallback<Schema$Course>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Course>,
+      callback?: BodyResponseCallback<Schema$Course>):
+      void|AxiosPromise<Schema$Course> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/courses/{id}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: ['id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Course>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Course>(parameters);
+    }
+  }
 }
 export class Resource$Courses$Aliases {
   root: Classroom;
   constructor(root: Classroom) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * classroom.courses.aliases.create
@@ -1614,31 +1707,46 @@ export class Resource$Courses$Aliases {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CourseAlias>,
-       callback?: BodyResponseCallback<Schema$CourseAlias>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/courses/{courseId}/aliases')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['courseId'],
-          pathParams: ['courseId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CourseAlias>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CourseAlias>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CourseAlias>,
+      callback?: BodyResponseCallback<Schema$CourseAlias>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CourseAlias>,
+      callback?: BodyResponseCallback<Schema$CourseAlias>):
+      void|AxiosPromise<Schema$CourseAlias> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/aliases')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['courseId'],
+      pathParams: ['courseId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CourseAlias>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CourseAlias>(parameters);
+    }
+  }
 
 
   /**
@@ -1659,30 +1767,43 @@ export class Resource$Courses$Aliases {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/courses/{courseId}/aliases/{alias}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['courseId', 'alias'],
-          pathParams: ['alias', 'courseId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/aliases/{alias}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['courseId', 'alias'],
+      pathParams: ['alias', 'courseId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -1702,40 +1823,61 @@ export class Resource$Courses$Aliases {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListCourseAliasesResponse>,
-       callback?: BodyResponseCallback<Schema$ListCourseAliasesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/courses/{courseId}/aliases')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['courseId'],
-          pathParams: ['courseId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListCourseAliasesResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListCourseAliasesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListCourseAliasesResponse>,
+      callback?: BodyResponseCallback<Schema$ListCourseAliasesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListCourseAliasesResponse>,
+      callback?: BodyResponseCallback<Schema$ListCourseAliasesResponse>):
+      void|AxiosPromise<Schema$ListCourseAliasesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/aliases')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['courseId'],
+      pathParams: ['courseId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListCourseAliasesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListCourseAliasesResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Courses$Announcements {
   root: Classroom;
   constructor(root: Classroom) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * classroom.courses.announcements.create
@@ -1756,31 +1898,46 @@ export class Resource$Courses$Announcements {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Announcement>,
-       callback?: BodyResponseCallback<Schema$Announcement>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/courses/{courseId}/announcements')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['courseId'],
-          pathParams: ['courseId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Announcement>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Announcement>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Announcement>,
+      callback?: BodyResponseCallback<Schema$Announcement>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Announcement>,
+      callback?: BodyResponseCallback<Schema$Announcement>):
+      void|AxiosPromise<Schema$Announcement> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/announcements')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['courseId'],
+      pathParams: ['courseId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Announcement>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Announcement>(parameters);
+    }
+  }
 
 
   /**
@@ -1804,30 +1961,43 @@ export class Resource$Courses$Announcements {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/courses/{courseId}/announcements/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['courseId', 'id'],
-          pathParams: ['courseId', 'id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/announcements/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['courseId', 'id'],
+      pathParams: ['courseId', 'id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -1847,31 +2017,43 @@ export class Resource$Courses$Announcements {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Announcement>,
-       callback?: BodyResponseCallback<Schema$Announcement>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/courses/{courseId}/announcements/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['courseId', 'id'],
-          pathParams: ['courseId', 'id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Announcement>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Announcement>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Announcement>,
+      callback?: BodyResponseCallback<Schema$Announcement>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Announcement>,
+      callback?: BodyResponseCallback<Schema$Announcement>):
+      void|AxiosPromise<Schema$Announcement> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/announcements/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['courseId', 'id'],
+      pathParams: ['courseId', 'id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Announcement>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Announcement>(parameters);
+    }
+  }
 
 
   /**
@@ -1896,33 +2078,48 @@ export class Resource$Courses$Announcements {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListAnnouncementsResponse>,
-       callback?: BodyResponseCallback<Schema$ListAnnouncementsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/courses/{courseId}/announcements')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['courseId'],
-          pathParams: ['courseId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListAnnouncementsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListAnnouncementsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListAnnouncementsResponse>,
+      callback?: BodyResponseCallback<Schema$ListAnnouncementsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListAnnouncementsResponse>,
+      callback?: BodyResponseCallback<Schema$ListAnnouncementsResponse>):
+      void|AxiosPromise<Schema$ListAnnouncementsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/announcements')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['courseId'],
+      pathParams: ['courseId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListAnnouncementsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListAnnouncementsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1945,33 +2142,47 @@ export class Resource$Courses$Announcements {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  modifyAssignees =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Announcement>,
-       callback?: BodyResponseCallback<Schema$Announcement>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1/courses/{courseId}/announcements/{id}:modifyAssignees')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['courseId', 'id'],
-          pathParams: ['courseId', 'id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Announcement>(parameters, callback!);
-      };
+  modifyAssignees(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Announcement>;
+  modifyAssignees(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Announcement>,
+      callback?: BodyResponseCallback<Schema$Announcement>): void;
+  modifyAssignees(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Announcement>,
+      callback?: BodyResponseCallback<Schema$Announcement>):
+      void|AxiosPromise<Schema$Announcement> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/v1/courses/{courseId}/announcements/{id}:modifyAssignees')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['courseId', 'id'],
+      pathParams: ['courseId', 'id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Announcement>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Announcement>(parameters);
+    }
+  }
 
 
   /**
@@ -1995,31 +2206,46 @@ export class Resource$Courses$Announcements {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Announcement>,
-       callback?: BodyResponseCallback<Schema$Announcement>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/courses/{courseId}/announcements/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['courseId', 'id'],
-          pathParams: ['courseId', 'id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Announcement>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Announcement>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Announcement>,
+      callback?: BodyResponseCallback<Schema$Announcement>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Announcement>,
+      callback?: BodyResponseCallback<Schema$Announcement>):
+      void|AxiosPromise<Schema$Announcement> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/announcements/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['courseId', 'id'],
+      pathParams: ['courseId', 'id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Announcement>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Announcement>(parameters);
+    }
+  }
 }
 
 export class Resource$Courses$Coursework {
@@ -2027,9 +2253,15 @@ export class Resource$Courses$Coursework {
   studentSubmissions: Resource$Courses$Coursework$Studentsubmissions;
   constructor(root: Classroom) {
     this.root = root;
+    this.getRoot.bind(this);
     this.studentSubmissions =
         new Resource$Courses$Coursework$Studentsubmissions(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * classroom.courses.courseWork.create
@@ -2055,31 +2287,45 @@ export class Resource$Courses$Coursework {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CourseWork>,
-       callback?: BodyResponseCallback<Schema$CourseWork>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/courses/{courseId}/courseWork')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['courseId'],
-          pathParams: ['courseId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CourseWork>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$CourseWork>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CourseWork>,
+      callback?: BodyResponseCallback<Schema$CourseWork>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CourseWork>,
+      callback?: BodyResponseCallback<Schema$CourseWork>):
+      void|AxiosPromise<Schema$CourseWork> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/courseWork')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['courseId'],
+      pathParams: ['courseId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CourseWork>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CourseWork>(parameters);
+    }
+  }
 
 
   /**
@@ -2103,30 +2349,43 @@ export class Resource$Courses$Coursework {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/courses/{courseId}/courseWork/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['courseId', 'id'],
-          pathParams: ['courseId', 'id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/courseWork/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['courseId', 'id'],
+      pathParams: ['courseId', 'id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -2146,31 +2405,43 @@ export class Resource$Courses$Coursework {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CourseWork>,
-       callback?: BodyResponseCallback<Schema$CourseWork>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/courses/{courseId}/courseWork/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['courseId', 'id'],
-          pathParams: ['courseId', 'id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CourseWork>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$CourseWork>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CourseWork>,
+      callback?: BodyResponseCallback<Schema$CourseWork>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CourseWork>,
+      callback?: BodyResponseCallback<Schema$CourseWork>):
+      void|AxiosPromise<Schema$CourseWork> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/courseWork/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['courseId', 'id'],
+      pathParams: ['courseId', 'id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CourseWork>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CourseWork>(parameters);
+    }
+  }
 
 
   /**
@@ -2195,32 +2466,48 @@ export class Resource$Courses$Coursework {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListCourseWorkResponse>,
-       callback?: BodyResponseCallback<Schema$ListCourseWorkResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/courses/{courseId}/courseWork')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['courseId'],
-          pathParams: ['courseId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListCourseWorkResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListCourseWorkResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListCourseWorkResponse>,
+      callback?: BodyResponseCallback<Schema$ListCourseWorkResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListCourseWorkResponse>,
+      callback?: BodyResponseCallback<Schema$ListCourseWorkResponse>):
+      void|AxiosPromise<Schema$ListCourseWorkResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/courseWork')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['courseId'],
+      pathParams: ['courseId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListCourseWorkResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListCourseWorkResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2243,32 +2530,47 @@ export class Resource$Courses$Coursework {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  modifyAssignees =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CourseWork>,
-       callback?: BodyResponseCallback<Schema$CourseWork>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v1/courses/{courseId}/courseWork/{id}:modifyAssignees')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['courseId', 'id'],
-          pathParams: ['courseId', 'id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CourseWork>(parameters, callback!);
-      };
+  modifyAssignees(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CourseWork>;
+  modifyAssignees(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CourseWork>,
+      callback?: BodyResponseCallback<Schema$CourseWork>): void;
+  modifyAssignees(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CourseWork>,
+      callback?: BodyResponseCallback<Schema$CourseWork>):
+      void|AxiosPromise<Schema$CourseWork> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/v1/courses/{courseId}/courseWork/{id}:modifyAssignees')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['courseId', 'id'],
+      pathParams: ['courseId', 'id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CourseWork>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CourseWork>(parameters);
+    }
+  }
 
 
   /**
@@ -2297,37 +2599,57 @@ export class Resource$Courses$Coursework {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CourseWork>,
-       callback?: BodyResponseCallback<Schema$CourseWork>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/courses/{courseId}/courseWork/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['courseId', 'id'],
-          pathParams: ['courseId', 'id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CourseWork>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$CourseWork>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CourseWork>,
+      callback?: BodyResponseCallback<Schema$CourseWork>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CourseWork>,
+      callback?: BodyResponseCallback<Schema$CourseWork>):
+      void|AxiosPromise<Schema$CourseWork> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/courseWork/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['courseId', 'id'],
+      pathParams: ['courseId', 'id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CourseWork>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CourseWork>(parameters);
+    }
+  }
 }
 export class Resource$Courses$Coursework$Studentsubmissions {
   root: Classroom;
   constructor(root: Classroom) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * classroom.courses.courseWork.studentSubmissions.get
@@ -2347,33 +2669,46 @@ export class Resource$Courses$Coursework$Studentsubmissions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$StudentSubmission>,
-       callback?: BodyResponseCallback<Schema$StudentSubmission>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['courseId', 'courseWorkId', 'id'],
-          pathParams: ['courseId', 'courseWorkId', 'id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$StudentSubmission>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$StudentSubmission>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$StudentSubmission>,
+      callback?: BodyResponseCallback<Schema$StudentSubmission>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$StudentSubmission>,
+      callback?: BodyResponseCallback<Schema$StudentSubmission>):
+      void|AxiosPromise<Schema$StudentSubmission> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['courseId', 'courseWorkId', 'id'],
+      pathParams: ['courseId', 'courseWorkId', 'id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$StudentSubmission>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$StudentSubmission>(parameters);
+    }
+  }
 
 
   /**
@@ -2402,36 +2737,53 @@ export class Resource$Courses$Coursework$Studentsubmissions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListStudentSubmissionsResponse>,
-       callback?:
-           BodyResponseCallback<Schema$ListStudentSubmissionsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['courseId', 'courseWorkId'],
-          pathParams: ['courseId', 'courseWorkId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListStudentSubmissionsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListStudentSubmissionsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListStudentSubmissionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListStudentSubmissionsResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListStudentSubmissionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListStudentSubmissionsResponse>):
+      void|AxiosPromise<Schema$ListStudentSubmissionsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['courseId', 'courseWorkId'],
+      pathParams: ['courseId', 'courseWorkId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListStudentSubmissionsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListStudentSubmissionsResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -2459,33 +2811,48 @@ export class Resource$Courses$Coursework$Studentsubmissions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  modifyAttachments =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$StudentSubmission>,
-       callback?: BodyResponseCallback<Schema$StudentSubmission>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:modifyAttachments')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['courseId', 'courseWorkId', 'id'],
-          pathParams: ['courseId', 'courseWorkId', 'id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$StudentSubmission>(parameters, callback!);
-      };
+  modifyAttachments(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$StudentSubmission>;
+  modifyAttachments(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$StudentSubmission>,
+      callback?: BodyResponseCallback<Schema$StudentSubmission>): void;
+  modifyAttachments(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$StudentSubmission>,
+      callback?: BodyResponseCallback<Schema$StudentSubmission>):
+      void|AxiosPromise<Schema$StudentSubmission> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:modifyAttachments')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['courseId', 'courseWorkId', 'id'],
+      pathParams: ['courseId', 'courseWorkId', 'id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$StudentSubmission>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$StudentSubmission>(parameters);
+    }
+  }
 
 
   /**
@@ -2514,33 +2881,48 @@ export class Resource$Courses$Coursework$Studentsubmissions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$StudentSubmission>,
-       callback?: BodyResponseCallback<Schema$StudentSubmission>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['courseId', 'courseWorkId', 'id'],
-          pathParams: ['courseId', 'courseWorkId', 'id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$StudentSubmission>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$StudentSubmission>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$StudentSubmission>,
+      callback?: BodyResponseCallback<Schema$StudentSubmission>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$StudentSubmission>,
+      callback?: BodyResponseCallback<Schema$StudentSubmission>):
+      void|AxiosPromise<Schema$StudentSubmission> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['courseId', 'courseWorkId', 'id'],
+      pathParams: ['courseId', 'courseWorkId', 'id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$StudentSubmission>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$StudentSubmission>(parameters);
+    }
+  }
 
 
   /**
@@ -2571,32 +2953,45 @@ export class Resource$Courses$Coursework$Studentsubmissions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  reclaim =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:reclaim')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['courseId', 'courseWorkId', 'id'],
-          pathParams: ['courseId', 'courseWorkId', 'id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  reclaim(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  reclaim(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  reclaim(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:reclaim')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['courseId', 'courseWorkId', 'id'],
+      pathParams: ['courseId', 'courseWorkId', 'id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -2627,12 +3022,21 @@ export class Resource$Courses$Coursework$Studentsubmissions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  return = (params: any,
-            options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-            callback?: BodyResponseCallback<Schema$Empty>) => {
+  return(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  return(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  return(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void|
+      AxiosPromise<Schema$Empty> {
     if (typeof options === 'function') {
       callback = options;
       options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
     }
     options = options || {};
     const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
@@ -2649,10 +3053,14 @@ export class Resource$Courses$Coursework$Studentsubmissions {
       params,
       requiredParams: ['courseId', 'courseWorkId', 'id'],
       pathParams: ['courseId', 'courseWorkId', 'id'],
-      context: this.root
+      context: this.getRoot()
     };
-    createAPIRequest<Schema$Empty>(parameters, callback!);
-  };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -2681,32 +3089,45 @@ export class Resource$Courses$Coursework$Studentsubmissions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  turnIn =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:turnIn')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['courseId', 'courseWorkId', 'id'],
-          pathParams: ['courseId', 'courseWorkId', 'id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  turnIn(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  turnIn(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  turnIn(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:turnIn')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['courseId', 'courseWorkId', 'id'],
+      pathParams: ['courseId', 'courseWorkId', 'id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 }
 
 
@@ -2714,7 +3135,13 @@ export class Resource$Courses$Students {
   root: Classroom;
   constructor(root: Classroom) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * classroom.courses.students.create
@@ -2737,30 +3164,43 @@ export class Resource$Courses$Students {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Student>,
-       callback?: BodyResponseCallback<Schema$Student>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/courses/{courseId}/students')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['courseId'],
-          pathParams: ['courseId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Student>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Student>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Student>,
+      callback?: BodyResponseCallback<Schema$Student>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Student>,
+      callback?: BodyResponseCallback<Schema$Student>):
+      void|AxiosPromise<Schema$Student> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/students')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['courseId'],
+      pathParams: ['courseId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Student>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Student>(parameters);
+    }
+  }
 
 
   /**
@@ -2780,30 +3220,43 @@ export class Resource$Courses$Students {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/courses/{courseId}/students/{userId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['courseId', 'userId'],
-          pathParams: ['courseId', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/students/{userId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['courseId', 'userId'],
+      pathParams: ['courseId', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -2823,30 +3276,41 @@ export class Resource$Courses$Students {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Student>,
-       callback?: BodyResponseCallback<Schema$Student>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/courses/{courseId}/students/{userId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['courseId', 'userId'],
-          pathParams: ['courseId', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Student>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Student>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Student>,
+      callback?: BodyResponseCallback<Schema$Student>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Student>,
+      callback?: BodyResponseCallback<Schema$Student>):
+      void|AxiosPromise<Schema$Student> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/students/{userId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['courseId', 'userId'],
+      pathParams: ['courseId', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Student>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Student>(parameters);
+    }
+  }
 
 
   /**
@@ -2866,38 +3330,59 @@ export class Resource$Courses$Students {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListStudentsResponse>,
-       callback?: BodyResponseCallback<Schema$ListStudentsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/courses/{courseId}/students')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['courseId'],
-          pathParams: ['courseId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListStudentsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListStudentsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListStudentsResponse>,
+      callback?: BodyResponseCallback<Schema$ListStudentsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListStudentsResponse>,
+      callback?: BodyResponseCallback<Schema$ListStudentsResponse>):
+      void|AxiosPromise<Schema$ListStudentsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/students')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['courseId'],
+      pathParams: ['courseId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListStudentsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListStudentsResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Courses$Teachers {
   root: Classroom;
   constructor(root: Classroom) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * classroom.courses.teachers.create
@@ -2920,30 +3405,43 @@ export class Resource$Courses$Teachers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Teacher>,
-       callback?: BodyResponseCallback<Schema$Teacher>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/courses/{courseId}/teachers')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['courseId'],
-          pathParams: ['courseId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Teacher>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Teacher>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Teacher>,
+      callback?: BodyResponseCallback<Schema$Teacher>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Teacher>,
+      callback?: BodyResponseCallback<Schema$Teacher>):
+      void|AxiosPromise<Schema$Teacher> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/teachers')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['courseId'],
+      pathParams: ['courseId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Teacher>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Teacher>(parameters);
+    }
+  }
 
 
   /**
@@ -2964,30 +3462,43 @@ export class Resource$Courses$Teachers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/courses/{courseId}/teachers/{userId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['courseId', 'userId'],
-          pathParams: ['courseId', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/teachers/{userId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['courseId', 'userId'],
+      pathParams: ['courseId', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -3007,30 +3518,41 @@ export class Resource$Courses$Teachers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Teacher>,
-       callback?: BodyResponseCallback<Schema$Teacher>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/courses/{courseId}/teachers/{userId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['courseId', 'userId'],
-          pathParams: ['courseId', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Teacher>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Teacher>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Teacher>,
+      callback?: BodyResponseCallback<Schema$Teacher>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Teacher>,
+      callback?: BodyResponseCallback<Schema$Teacher>):
+      void|AxiosPromise<Schema$Teacher> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/teachers/{userId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['courseId', 'userId'],
+      pathParams: ['courseId', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Teacher>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Teacher>(parameters);
+    }
+  }
 
 
   /**
@@ -3050,38 +3572,59 @@ export class Resource$Courses$Teachers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListTeachersResponse>,
-       callback?: BodyResponseCallback<Schema$ListTeachersResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/courses/{courseId}/teachers')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['courseId'],
-          pathParams: ['courseId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListTeachersResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListTeachersResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListTeachersResponse>,
+      callback?: BodyResponseCallback<Schema$ListTeachersResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListTeachersResponse>,
+      callback?: BodyResponseCallback<Schema$ListTeachersResponse>):
+      void|AxiosPromise<Schema$ListTeachersResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/teachers')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['courseId'],
+      pathParams: ['courseId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListTeachersResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListTeachersResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Courses$Topics {
   root: Classroom;
   constructor(root: Classroom) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * classroom.courses.topics.get
@@ -3100,30 +3643,41 @@ export class Resource$Courses$Topics {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Topic>,
-       callback?: BodyResponseCallback<Schema$Topic>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/courses/{courseId}/topics/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['courseId', 'id'],
-          pathParams: ['courseId', 'id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Topic>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Topic>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Topic>,
+      callback?: BodyResponseCallback<Schema$Topic>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Topic>,
+      callback?: BodyResponseCallback<Schema$Topic>):
+      void|AxiosPromise<Schema$Topic> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/topics/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['courseId', 'id'],
+      pathParams: ['courseId', 'id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Topic>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Topic>(parameters);
+    }
+  }
 
 
   /**
@@ -3144,31 +3698,46 @@ export class Resource$Courses$Topics {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListTopicResponse>,
-       callback?: BodyResponseCallback<Schema$ListTopicResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/courses/{courseId}/topics')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['courseId'],
-          pathParams: ['courseId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListTopicResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListTopicResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListTopicResponse>,
+      callback?: BodyResponseCallback<Schema$ListTopicResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListTopicResponse>,
+      callback?: BodyResponseCallback<Schema$ListTopicResponse>):
+      void|AxiosPromise<Schema$ListTopicResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/topics')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['courseId'],
+      pathParams: ['courseId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListTopicResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListTopicResponse>(parameters);
+    }
+  }
 }
 
 
@@ -3176,7 +3745,13 @@ export class Resource$Invitations {
   root: Classroom;
   constructor(root: Classroom) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * classroom.invitations.accept
@@ -3198,30 +3773,43 @@ export class Resource$Invitations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  accept =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/invitations/{id}:accept')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: ['id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  accept(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  accept(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  accept(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/invitations/{id}:accept')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: ['id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -3244,31 +3832,44 @@ export class Resource$Invitations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Invitation>,
-       callback?: BodyResponseCallback<Schema$Invitation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1/invitations').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Invitation>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Invitation>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Invitation>,
+      callback?: BodyResponseCallback<Schema$Invitation>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Invitation>,
+      callback?: BodyResponseCallback<Schema$Invitation>):
+      void|AxiosPromise<Schema$Invitation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/invitations').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Invitation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Invitation>(parameters);
+    }
+  }
 
 
   /**
@@ -3286,30 +3887,43 @@ export class Resource$Invitations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/invitations/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: ['id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/invitations/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: ['id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -3327,31 +3941,43 @@ export class Resource$Invitations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Invitation>,
-       callback?: BodyResponseCallback<Schema$Invitation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/invitations/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: ['id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Invitation>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Invitation>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Invitation>,
+      callback?: BodyResponseCallback<Schema$Invitation>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Invitation>,
+      callback?: BodyResponseCallback<Schema$Invitation>):
+      void|AxiosPromise<Schema$Invitation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/invitations/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: ['id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Invitation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Invitation>(parameters);
+    }
+  }
 
 
   /**
@@ -3373,39 +3999,60 @@ export class Resource$Invitations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListInvitationsResponse>,
-       callback?: BodyResponseCallback<Schema$ListInvitationsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1/invitations').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListInvitationsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListInvitationsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListInvitationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListInvitationsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListInvitationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListInvitationsResponse>):
+      void|AxiosPromise<Schema$ListInvitationsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/invitations').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListInvitationsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListInvitationsResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Registrations {
   root: Classroom;
   constructor(root: Classroom) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * classroom.registrations.create
@@ -3437,31 +4084,45 @@ export class Resource$Registrations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Registration>,
-       callback?: BodyResponseCallback<Schema$Registration>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/registrations')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Registration>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Registration>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Registration>,
+      callback?: BodyResponseCallback<Schema$Registration>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Registration>,
+      callback?: BodyResponseCallback<Schema$Registration>):
+      void|AxiosPromise<Schema$Registration> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/registrations').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Registration>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Registration>(parameters);
+    }
+  }
 
 
   /**
@@ -3477,30 +4138,43 @@ export class Resource$Registrations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/registrations/{registrationId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['registrationId'],
-          pathParams: ['registrationId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/registrations/{registrationId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['registrationId'],
+      pathParams: ['registrationId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 }
 
 export class Resource$Userprofiles {
@@ -3509,10 +4183,16 @@ export class Resource$Userprofiles {
   guardians: Resource$Userprofiles$Guardians;
   constructor(root: Classroom) {
     this.root = root;
+    this.getRoot.bind(this);
     this.guardianInvitations =
         new Resource$Userprofiles$Guardianinvitations(root);
     this.guardians = new Resource$Userprofiles$Guardians(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * classroom.userProfiles.get
@@ -3529,37 +4209,55 @@ export class Resource$Userprofiles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$UserProfile>,
-       callback?: BodyResponseCallback<Schema$UserProfile>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/userProfiles/{userId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$UserProfile>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$UserProfile>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$UserProfile>,
+      callback?: BodyResponseCallback<Schema$UserProfile>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$UserProfile>,
+      callback?: BodyResponseCallback<Schema$UserProfile>):
+      void|AxiosPromise<Schema$UserProfile> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/userProfiles/{userId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UserProfile>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UserProfile>(parameters);
+    }
+  }
 }
 export class Resource$Userprofiles$Guardianinvitations {
   root: Classroom;
   constructor(root: Classroom) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * classroom.userProfiles.guardianInvitations.create
@@ -3597,32 +4295,46 @@ export class Resource$Userprofiles$Guardianinvitations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GuardianInvitation>,
-       callback?: BodyResponseCallback<Schema$GuardianInvitation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v1/userProfiles/{studentId}/guardianInvitations')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['studentId'],
-          pathParams: ['studentId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GuardianInvitation>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GuardianInvitation>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GuardianInvitation>,
+      callback?: BodyResponseCallback<Schema$GuardianInvitation>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GuardianInvitation>,
+      callback?: BodyResponseCallback<Schema$GuardianInvitation>):
+      void|AxiosPromise<Schema$GuardianInvitation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/userProfiles/{studentId}/guardianInvitations')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['studentId'],
+      pathParams: ['studentId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GuardianInvitation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GuardianInvitation>(parameters);
+    }
+  }
 
 
   /**
@@ -3647,33 +4359,46 @@ export class Resource$Userprofiles$Guardianinvitations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GuardianInvitation>,
-       callback?: BodyResponseCallback<Schema$GuardianInvitation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1/userProfiles/{studentId}/guardianInvitations/{invitationId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['studentId', 'invitationId'],
-          pathParams: ['invitationId', 'studentId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GuardianInvitation>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$GuardianInvitation>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GuardianInvitation>,
+      callback?: BodyResponseCallback<Schema$GuardianInvitation>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GuardianInvitation>,
+      callback?: BodyResponseCallback<Schema$GuardianInvitation>):
+      void|AxiosPromise<Schema$GuardianInvitation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v1/userProfiles/{studentId}/guardianInvitations/{invitationId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['studentId', 'invitationId'],
+      pathParams: ['invitationId', 'studentId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GuardianInvitation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GuardianInvitation>(parameters);
+    }
+  }
 
 
   /**
@@ -3704,35 +4429,51 @@ export class Resource$Userprofiles$Guardianinvitations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListGuardianInvitationsResponse>,
-       callback?:
-           BodyResponseCallback<Schema$ListGuardianInvitationsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v1/userProfiles/{studentId}/guardianInvitations')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['studentId'],
-          pathParams: ['studentId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListGuardianInvitationsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListGuardianInvitationsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListGuardianInvitationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListGuardianInvitationsResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListGuardianInvitationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListGuardianInvitationsResponse>):
+      void|AxiosPromise<Schema$ListGuardianInvitationsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/userProfiles/{studentId}/guardianInvitations')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['studentId'],
+      pathParams: ['studentId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListGuardianInvitationsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListGuardianInvitationsResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -3763,40 +4504,61 @@ export class Resource$Userprofiles$Guardianinvitations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GuardianInvitation>,
-       callback?: BodyResponseCallback<Schema$GuardianInvitation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1/userProfiles/{studentId}/guardianInvitations/{invitationId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['studentId', 'invitationId'],
-          pathParams: ['invitationId', 'studentId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GuardianInvitation>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GuardianInvitation>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GuardianInvitation>,
+      callback?: BodyResponseCallback<Schema$GuardianInvitation>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GuardianInvitation>,
+      callback?: BodyResponseCallback<Schema$GuardianInvitation>):
+      void|AxiosPromise<Schema$GuardianInvitation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v1/userProfiles/{studentId}/guardianInvitations/{invitationId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['studentId', 'invitationId'],
+      pathParams: ['invitationId', 'studentId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GuardianInvitation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GuardianInvitation>(parameters);
+    }
+  }
 }
 
 export class Resource$Userprofiles$Guardians {
   root: Classroom;
   constructor(root: Classroom) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * classroom.userProfiles.guardians.delete
@@ -3822,31 +4584,44 @@ export class Resource$Userprofiles$Guardians {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v1/userProfiles/{studentId}/guardians/{guardianId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['studentId', 'guardianId'],
-          pathParams: ['guardianId', 'studentId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/v1/userProfiles/{studentId}/guardians/{guardianId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['studentId', 'guardianId'],
+      pathParams: ['guardianId', 'studentId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -3872,32 +4647,43 @@ export class Resource$Userprofiles$Guardians {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Guardian>,
-       callback?: BodyResponseCallback<Schema$Guardian>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v1/userProfiles/{studentId}/guardians/{guardianId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['studentId', 'guardianId'],
-          pathParams: ['guardianId', 'studentId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Guardian>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Guardian>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Guardian>,
+      callback?: BodyResponseCallback<Schema$Guardian>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Guardian>,
+      callback?: BodyResponseCallback<Schema$Guardian>):
+      void|AxiosPromise<Schema$Guardian> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/v1/userProfiles/{studentId}/guardians/{guardianId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['studentId', 'guardianId'],
+      pathParams: ['guardianId', 'studentId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Guardian>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Guardian>(parameters);
+    }
+  }
 
 
   /**
@@ -3930,30 +4716,45 @@ export class Resource$Userprofiles$Guardians {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListGuardiansResponse>,
-       callback?: BodyResponseCallback<Schema$ListGuardiansResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/userProfiles/{studentId}/guardians')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['studentId'],
-          pathParams: ['studentId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListGuardiansResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListGuardiansResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListGuardiansResponse>,
+      callback?: BodyResponseCallback<Schema$ListGuardiansResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListGuardiansResponse>,
+      callback?: BodyResponseCallback<Schema$ListGuardiansResponse>):
+      void|AxiosPromise<Schema$ListGuardiansResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/userProfiles/{studentId}/guardians')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['studentId'],
+      pathParams: ['studentId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListGuardiansResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListGuardiansResponse>(parameters);
+    }
+  }
 }

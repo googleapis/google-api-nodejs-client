@@ -11,6 +11,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import {AxiosPromise} from 'axios';
 import {DefaultTransporter} from 'google-auth-library';
 import {BodyResponseCallback} from 'google-auth-library/build/src/transporters';
 import * as qs from 'qs';
@@ -29,14 +30,6 @@ const USER_AGENT = `google-api-nodejs-client/${pkg.version} (gzip)`;
 
 function isReadableStream(obj: stream.Readable|string) {
   return obj instanceof stream.Readable && typeof obj._read === 'function';
-}
-
-function createCallback<T>(callback: BodyResponseCallback<T>) {
-  return typeof callback === 'function' ? callback : (err: Error|null) => {
-    if (err) {
-      console.error(err);
-    }
-  };
 }
 
 function getMissingParams(params: SchemaParameters, required: string[]) {
@@ -58,15 +51,29 @@ function getMissingParams(params: SchemaParameters, required: string[]) {
  * @param parameters Parameters used to form request
  * @param callback   Callback when request finished or error found
  */
+export function createAPIRequest<T>(parameters: APIRequestParams):
+    AxiosPromise<T>;
 export function createAPIRequest<T>(
-    parameters: APIRequestParams, callback: BodyResponseCallback<T>): void {
+    parameters: APIRequestParams, callback: BodyResponseCallback<T>): void;
+export function createAPIRequest<T>(
+    parameters: APIRequestParams, callback?: BodyResponseCallback<T>): void|
+    AxiosPromise<T> {
+  if (callback) {
+    createAPIRequestAsync<T>(parameters)
+        .then(r => callback(null, r))
+        .catch(e => callback(e));
+  } else {
+    return createAPIRequestAsync(parameters);
+  }
+}
+
+async function createAPIRequestAsync<T>(parameters: APIRequestParams) {
   let params = parameters.params;
   const options = Object.assign({}, parameters.options);
 
   // If the params are not present, and callback was passed instead,
   // use params as the callback and create empty params.
   if (typeof params === 'function') {
-    callback = params;
     params = {};
   }
 
@@ -105,16 +112,12 @@ export function createAPIRequest<T>(
     }
   });
 
-  // Normalize callback
-  callback = createCallback<T>(callback);
-
   // Check for missing required parameters in the API request
   const missingParams = getMissingParams(params, parameters.requiredParams);
   if (missingParams) {
     // Some params are missing - stop further operations and inform the
     // developer which required params are not included in the request
-    return callback(
-        new Error('Missing required parameters: ' + missingParams.join(', ')));
+    throw new Error('Missing required parameters: ' + missingParams.join(', '));
   }
 
   // Parse urls
@@ -238,9 +241,9 @@ export function createAPIRequest<T>(
   // now void.  This may be a source of confusion for users upgrading from
   // version 24.0 -> 25.0 or up.
   if (authClient && typeof authClient === 'object') {
-    authClient.request(mergedOptions, callback);
+    return authClient.request<T>(mergedOptions);
   } else {
-    (new DefaultTransporter()).request(mergedOptions, callback);
+    return (new DefaultTransporter()).request<T>(mergedOptions);
   }
 }
 

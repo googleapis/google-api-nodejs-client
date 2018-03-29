@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -51,8 +53,13 @@ export class Groupsmigration {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.archive = new Resource$Archive(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -74,7 +81,13 @@ export class Resource$Archive {
   root: Groupsmigration;
   constructor(root: Groupsmigration) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * groupsmigration.archive.insert
@@ -91,30 +104,43 @@ export class Resource$Archive {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Groups>,
-       callback?: BodyResponseCallback<Schema$Groups>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/groups/v1/groups/{groupId}/archive')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          mediaUrl: (rootUrl + '/upload/groups/v1/groups/{groupId}/archive')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: ['groupId'],
-          pathParams: ['groupId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Groups>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Groups>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Groups>,
+      callback?: BodyResponseCallback<Schema$Groups>): void;
+  insert(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Groups>,
+      callback?: BodyResponseCallback<Schema$Groups>):
+      void|AxiosPromise<Schema$Groups> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/groups/v1/groups/{groupId}/archive')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      mediaUrl: (rootUrl + '/upload/groups/v1/groups/{groupId}/archive')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+      requiredParams: ['groupId'],
+      pathParams: ['groupId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Groups>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Groups>(parameters);
+    }
+  }
 }

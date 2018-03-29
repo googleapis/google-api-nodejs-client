@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -54,10 +56,15 @@ export class Testing {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.applicationDetailService = new Resource$Applicationdetailservice(this);
     this.projects = new Resource$Projects(this);
     this.testEnvironmentCatalog = new Resource$Testenvironmentcatalog(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -1091,7 +1098,13 @@ export class Resource$Applicationdetailservice {
   root: Testing;
   constructor(root: Testing) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * testing.applicationDetailService.getApkDetails
@@ -1105,32 +1118,47 @@ export class Resource$Applicationdetailservice {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getApkDetails =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GetApkDetailsResponse>,
-       callback?: BodyResponseCallback<Schema$GetApkDetailsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://testing.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/applicationDetailService/getApkDetails')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$GetApkDetailsResponse>(parameters, callback!);
-      };
+  getApkDetails(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GetApkDetailsResponse>;
+  getApkDetails(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GetApkDetailsResponse>,
+      callback?: BodyResponseCallback<Schema$GetApkDetailsResponse>): void;
+  getApkDetails(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GetApkDetailsResponse>,
+      callback?: BodyResponseCallback<Schema$GetApkDetailsResponse>):
+      void|AxiosPromise<Schema$GetApkDetailsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://testing.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/applicationDetailService/getApkDetails')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GetApkDetailsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GetApkDetailsResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Projects {
@@ -1138,14 +1166,25 @@ export class Resource$Projects {
   testMatrices: Resource$Projects$Testmatrices;
   constructor(root: Testing) {
     this.root = root;
+    this.getRoot.bind(this);
     this.testMatrices = new Resource$Projects$Testmatrices(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Projects$Testmatrices {
   root: Testing;
   constructor(root: Testing) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * testing.projects.testMatrices.cancel
@@ -1165,35 +1204,49 @@ export class Resource$Projects$Testmatrices {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  cancel =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$CancelTestMatrixResponse>,
-       callback?: BodyResponseCallback<Schema$CancelTestMatrixResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://testing.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1/projects/{projectId}/testMatrices/{testMatrixId}:cancel')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'testMatrixId'],
-          pathParams: ['projectId', 'testMatrixId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CancelTestMatrixResponse>(
-            parameters, callback!);
-      };
+  cancel(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CancelTestMatrixResponse>;
+  cancel(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$CancelTestMatrixResponse>,
+      callback?: BodyResponseCallback<Schema$CancelTestMatrixResponse>): void;
+  cancel(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$CancelTestMatrixResponse>,
+      callback?: BodyResponseCallback<Schema$CancelTestMatrixResponse>):
+      void|AxiosPromise<Schema$CancelTestMatrixResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://testing.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/v1/projects/{projectId}/testMatrices/{testMatrixId}:cancel')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'testMatrixId'],
+      pathParams: ['projectId', 'testMatrixId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CancelTestMatrixResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CancelTestMatrixResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1216,31 +1269,45 @@ export class Resource$Projects$Testmatrices {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TestMatrix>,
-       callback?: BodyResponseCallback<Schema$TestMatrix>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://testing.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/projects/{projectId}/testMatrices')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TestMatrix>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$TestMatrix>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$TestMatrix>,
+      callback?: BodyResponseCallback<Schema$TestMatrix>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TestMatrix>,
+      callback?: BodyResponseCallback<Schema$TestMatrix>):
+      void|AxiosPromise<Schema$TestMatrix> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://testing.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/projects/{projectId}/testMatrices')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TestMatrix>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TestMatrix>(parameters);
+    }
+  }
 
 
   /**
@@ -1259,32 +1326,44 @@ export class Resource$Projects$Testmatrices {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TestMatrix>,
-       callback?: BodyResponseCallback<Schema$TestMatrix>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://testing.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v1/projects/{projectId}/testMatrices/{testMatrixId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'testMatrixId'],
-          pathParams: ['projectId', 'testMatrixId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TestMatrix>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$TestMatrix>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$TestMatrix>,
+      callback?: BodyResponseCallback<Schema$TestMatrix>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TestMatrix>,
+      callback?: BodyResponseCallback<Schema$TestMatrix>):
+      void|AxiosPromise<Schema$TestMatrix> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://testing.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/v1/projects/{projectId}/testMatrices/{testMatrixId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'testMatrixId'],
+      pathParams: ['projectId', 'testMatrixId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TestMatrix>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TestMatrix>(parameters);
+    }
+  }
 }
 
 
@@ -1292,7 +1371,13 @@ export class Resource$Testenvironmentcatalog {
   root: Testing;
   constructor(root: Testing) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * testing.testEnvironmentCatalog.get
@@ -1310,30 +1395,44 @@ export class Resource$Testenvironmentcatalog {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$TestEnvironmentCatalog>,
-       callback?: BodyResponseCallback<Schema$TestEnvironmentCatalog>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://testing.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/testEnvironmentCatalog/{environmentType}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['environmentType'],
-          pathParams: ['environmentType'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TestEnvironmentCatalog>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$TestEnvironmentCatalog>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$TestEnvironmentCatalog>,
+      callback?: BodyResponseCallback<Schema$TestEnvironmentCatalog>): void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$TestEnvironmentCatalog>,
+      callback?: BodyResponseCallback<Schema$TestEnvironmentCatalog>):
+      void|AxiosPromise<Schema$TestEnvironmentCatalog> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://testing.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/testEnvironmentCatalog/{environmentType}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['environmentType'],
+      pathParams: ['environmentType'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TestEnvironmentCatalog>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TestEnvironmentCatalog>(parameters);
+    }
+  }
 }

@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -52,8 +54,13 @@ export class Firebaserules {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.projects = new Resource$Projects(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -436,9 +443,15 @@ export class Resource$Projects {
   rulesets: Resource$Projects$Rulesets;
   constructor(root: Firebaserules) {
     this.root = root;
+    this.getRoot.bind(this);
     this.releases = new Resource$Projects$Releases(root);
     this.rulesets = new Resource$Projects$Rulesets(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * firebaserules.projects.test
@@ -465,38 +478,57 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  test =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TestRulesetResponse>,
-       callback?: BodyResponseCallback<Schema$TestRulesetResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://firebaserules.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1/{name}:test').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TestRulesetResponse>(parameters, callback!);
-      };
+  test(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TestRulesetResponse>;
+  test(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$TestRulesetResponse>,
+      callback?: BodyResponseCallback<Schema$TestRulesetResponse>): void;
+  test(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TestRulesetResponse>,
+      callback?: BodyResponseCallback<Schema$TestRulesetResponse>):
+      void|AxiosPromise<Schema$TestRulesetResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://firebaserules.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}:test').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TestRulesetResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TestRulesetResponse>(parameters);
+    }
+  }
 }
 export class Resource$Projects$Releases {
   root: Firebaserules;
   constructor(root: Firebaserules) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * firebaserules.projects.releases.create
@@ -525,31 +557,43 @@ export class Resource$Projects$Releases {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Release>,
-       callback?: BodyResponseCallback<Schema$Release>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://firebaserules.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}/releases')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Release>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Release>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Release>,
+      callback?: BodyResponseCallback<Schema$Release>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Release>,
+      callback?: BodyResponseCallback<Schema$Release>):
+      void|AxiosPromise<Schema$Release> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://firebaserules.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/v1/{name}/releases').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Release>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Release>(parameters);
+    }
+  }
 
 
   /**
@@ -564,30 +608,42 @@ export class Resource$Projects$Releases {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://firebaserules.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://firebaserules.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -602,30 +658,40 @@ export class Resource$Projects$Releases {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Release>,
-       callback?: BodyResponseCallback<Schema$Release>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://firebaserules.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Release>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Release>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Release>,
+      callback?: BodyResponseCallback<Schema$Release>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Release>,
+      callback?: BodyResponseCallback<Schema$Release>):
+      void|AxiosPromise<Schema$Release> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://firebaserules.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Release>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Release>(parameters);
+    }
+  }
 
 
   /**
@@ -641,35 +707,50 @@ export class Resource$Projects$Releases {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getExecutable =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GetReleaseExecutableResponse>,
-       callback?:
-           BodyResponseCallback<Schema$GetReleaseExecutableResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://firebaserules.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}:getExecutable')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GetReleaseExecutableResponse>(
-            parameters, callback!);
-      };
+  getExecutable(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GetReleaseExecutableResponse>;
+  getExecutable(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GetReleaseExecutableResponse>,
+      callback?: BodyResponseCallback<Schema$GetReleaseExecutableResponse>):
+      void;
+  getExecutable(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GetReleaseExecutableResponse>,
+      callback?: BodyResponseCallback<Schema$GetReleaseExecutableResponse>):
+      void|AxiosPromise<Schema$GetReleaseExecutableResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://firebaserules.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}:getExecutable')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GetReleaseExecutableResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GetReleaseExecutableResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -689,32 +770,46 @@ export class Resource$Projects$Releases {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListReleasesResponse>,
-       callback?: BodyResponseCallback<Schema$ListReleasesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://firebaserules.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}/releases')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListReleasesResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListReleasesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListReleasesResponse>,
+      callback?: BodyResponseCallback<Schema$ListReleasesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListReleasesResponse>,
+      callback?: BodyResponseCallback<Schema$ListReleasesResponse>):
+      void|AxiosPromise<Schema$ListReleasesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://firebaserules.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/v1/{name}/releases').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListReleasesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListReleasesResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -732,37 +827,55 @@ export class Resource$Projects$Releases {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Release>,
-       callback?: BodyResponseCallback<Schema$Release>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://firebaserules.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Release>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Release>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Release>,
+      callback?: BodyResponseCallback<Schema$Release>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Release>,
+      callback?: BodyResponseCallback<Schema$Release>):
+      void|AxiosPromise<Schema$Release> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://firebaserules.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Release>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Release>(parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Rulesets {
   root: Firebaserules;
   constructor(root: Firebaserules) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * firebaserules.projects.rulesets.create
@@ -781,31 +894,43 @@ export class Resource$Projects$Rulesets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Ruleset>,
-       callback?: BodyResponseCallback<Schema$Ruleset>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://firebaserules.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}/rulesets')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Ruleset>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Ruleset>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Ruleset>,
+      callback?: BodyResponseCallback<Schema$Ruleset>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Ruleset>,
+      callback?: BodyResponseCallback<Schema$Ruleset>):
+      void|AxiosPromise<Schema$Ruleset> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://firebaserules.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/v1/{name}/rulesets').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Ruleset>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Ruleset>(parameters);
+    }
+  }
 
 
   /**
@@ -821,30 +946,42 @@ export class Resource$Projects$Rulesets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://firebaserules.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://firebaserules.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -859,30 +996,40 @@ export class Resource$Projects$Rulesets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Ruleset>,
-       callback?: BodyResponseCallback<Schema$Ruleset>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://firebaserules.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Ruleset>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Ruleset>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Ruleset>,
+      callback?: BodyResponseCallback<Schema$Ruleset>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Ruleset>,
+      callback?: BodyResponseCallback<Schema$Ruleset>):
+      void|AxiosPromise<Schema$Ruleset> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://firebaserules.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Ruleset>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Ruleset>(parameters);
+    }
+  }
 
 
   /**
@@ -902,30 +1049,44 @@ export class Resource$Projects$Rulesets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListRulesetsResponse>,
-       callback?: BodyResponseCallback<Schema$ListRulesetsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://firebaserules.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}/rulesets')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListRulesetsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListRulesetsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListRulesetsResponse>,
+      callback?: BodyResponseCallback<Schema$ListRulesetsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListRulesetsResponse>,
+      callback?: BodyResponseCallback<Schema$ListRulesetsResponse>):
+      void|AxiosPromise<Schema$ListRulesetsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://firebaserules.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/v1/{name}/rulesets').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListRulesetsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListRulesetsResponse>(parameters);
+    }
+  }
 }

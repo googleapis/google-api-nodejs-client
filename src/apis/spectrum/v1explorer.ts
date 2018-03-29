@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -51,8 +53,13 @@ export class Spectrum {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.paws = new Resource$Paws(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -1112,7 +1119,13 @@ export class Resource$Paws {
   root: Spectrum;
   constructor(root: Spectrum) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * spectrum.paws.getSpectrum
@@ -1128,32 +1141,48 @@ export class Resource$Paws {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getSpectrum =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$PawsGetSpectrumResponse>,
-       callback?: BodyResponseCallback<Schema$PawsGetSpectrumResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/spectrum/v1explorer/paws/getSpectrum')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$PawsGetSpectrumResponse>(parameters, callback!);
-      };
+  getSpectrum(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PawsGetSpectrumResponse>;
+  getSpectrum(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$PawsGetSpectrumResponse>,
+      callback?: BodyResponseCallback<Schema$PawsGetSpectrumResponse>): void;
+  getSpectrum(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$PawsGetSpectrumResponse>,
+      callback?: BodyResponseCallback<Schema$PawsGetSpectrumResponse>):
+      void|AxiosPromise<Schema$PawsGetSpectrumResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/spectrum/v1explorer/paws/getSpectrum')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PawsGetSpectrumResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PawsGetSpectrumResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1169,34 +1198,50 @@ export class Resource$Paws {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getSpectrumBatch =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$PawsGetSpectrumBatchResponse>,
-       callback?:
-           BodyResponseCallback<Schema$PawsGetSpectrumBatchResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/spectrum/v1explorer/paws/getSpectrumBatch')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$PawsGetSpectrumBatchResponse>(
-            parameters, callback!);
-      };
+  getSpectrumBatch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PawsGetSpectrumBatchResponse>;
+  getSpectrumBatch(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$PawsGetSpectrumBatchResponse>,
+      callback?: BodyResponseCallback<Schema$PawsGetSpectrumBatchResponse>):
+      void;
+  getSpectrumBatch(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$PawsGetSpectrumBatchResponse>,
+      callback?: BodyResponseCallback<Schema$PawsGetSpectrumBatchResponse>):
+      void|AxiosPromise<Schema$PawsGetSpectrumBatchResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/spectrum/v1explorer/paws/getSpectrumBatch')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PawsGetSpectrumBatchResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PawsGetSpectrumBatchResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1212,31 +1257,46 @@ export class Resource$Paws {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  init =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PawsInitResponse>,
-       callback?: BodyResponseCallback<Schema$PawsInitResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/spectrum/v1explorer/paws/init')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$PawsInitResponse>(parameters, callback!);
-      };
+  init(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PawsInitResponse>;
+  init(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$PawsInitResponse>,
+      callback?: BodyResponseCallback<Schema$PawsInitResponse>): void;
+  init(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PawsInitResponse>,
+      callback?: BodyResponseCallback<Schema$PawsInitResponse>):
+      void|AxiosPromise<Schema$PawsInitResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/spectrum/v1explorer/paws/init')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PawsInitResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PawsInitResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1254,34 +1314,50 @@ export class Resource$Paws {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  notifySpectrumUse =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$PawsNotifySpectrumUseResponse>,
-       callback?:
-           BodyResponseCallback<Schema$PawsNotifySpectrumUseResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/spectrum/v1explorer/paws/notifySpectrumUse')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$PawsNotifySpectrumUseResponse>(
-            parameters, callback!);
-      };
+  notifySpectrumUse(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PawsNotifySpectrumUseResponse>;
+  notifySpectrumUse(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$PawsNotifySpectrumUseResponse>,
+      callback?: BodyResponseCallback<Schema$PawsNotifySpectrumUseResponse>):
+      void;
+  notifySpectrumUse(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$PawsNotifySpectrumUseResponse>,
+      callback?: BodyResponseCallback<Schema$PawsNotifySpectrumUseResponse>):
+      void|AxiosPromise<Schema$PawsNotifySpectrumUseResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/spectrum/v1explorer/paws/notifySpectrumUse')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PawsNotifySpectrumUseResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PawsNotifySpectrumUseResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1297,31 +1373,46 @@ export class Resource$Paws {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  register =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PawsRegisterResponse>,
-       callback?: BodyResponseCallback<Schema$PawsRegisterResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/spectrum/v1explorer/paws/register')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$PawsRegisterResponse>(parameters, callback!);
-      };
+  register(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PawsRegisterResponse>;
+  register(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$PawsRegisterResponse>,
+      callback?: BodyResponseCallback<Schema$PawsRegisterResponse>): void;
+  register(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PawsRegisterResponse>,
+      callback?: BodyResponseCallback<Schema$PawsRegisterResponse>):
+      void|AxiosPromise<Schema$PawsRegisterResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/spectrum/v1explorer/paws/register')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PawsRegisterResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PawsRegisterResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1338,31 +1429,46 @@ export class Resource$Paws {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  verifyDevice =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$PawsVerifyDeviceResponse>,
-       callback?: BodyResponseCallback<Schema$PawsVerifyDeviceResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/spectrum/v1explorer/paws/verifyDevice')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$PawsVerifyDeviceResponse>(
-            parameters, callback!);
-      };
+  verifyDevice(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PawsVerifyDeviceResponse>;
+  verifyDevice(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$PawsVerifyDeviceResponse>,
+      callback?: BodyResponseCallback<Schema$PawsVerifyDeviceResponse>): void;
+  verifyDevice(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$PawsVerifyDeviceResponse>,
+      callback?: BodyResponseCallback<Schema$PawsVerifyDeviceResponse>):
+      void|AxiosPromise<Schema$PawsVerifyDeviceResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/spectrum/v1explorer/paws/verifyDevice')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PawsVerifyDeviceResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PawsVerifyDeviceResponse>(parameters);
+    }
+  }
 }

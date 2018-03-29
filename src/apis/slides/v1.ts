@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -51,8 +53,13 @@ export class Slides {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.presentations = new Resource$Presentations(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -3098,8 +3105,14 @@ export class Resource$Presentations {
   pages: Resource$Presentations$Pages;
   constructor(root: Slides) {
     this.root = root;
+    this.getRoot.bind(this);
     this.pages = new Resource$Presentations$Pages(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * slides.presentations.batchUpdate
@@ -3127,35 +3140,51 @@ export class Resource$Presentations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchUpdate =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$BatchUpdatePresentationResponse>,
-       callback?:
-           BodyResponseCallback<Schema$BatchUpdatePresentationResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://slides.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1/presentations/{presentationId}:batchUpdate')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['presentationId'],
-          pathParams: ['presentationId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$BatchUpdatePresentationResponse>(
-            parameters, callback!);
-      };
+  batchUpdate(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$BatchUpdatePresentationResponse>;
+  batchUpdate(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$BatchUpdatePresentationResponse>,
+      callback?: BodyResponseCallback<Schema$BatchUpdatePresentationResponse>):
+      void;
+  batchUpdate(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$BatchUpdatePresentationResponse>,
+      callback?: BodyResponseCallback<Schema$BatchUpdatePresentationResponse>):
+      void|AxiosPromise<Schema$BatchUpdatePresentationResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://slides.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/presentations/{presentationId}:batchUpdate')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['presentationId'],
+      pathParams: ['presentationId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BatchUpdatePresentationResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BatchUpdatePresentationResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -3173,31 +3202,45 @@ export class Resource$Presentations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Presentation>,
-       callback?: BodyResponseCallback<Schema$Presentation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://slides.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/presentations')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Presentation>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Presentation>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Presentation>,
+      callback?: BodyResponseCallback<Schema$Presentation>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Presentation>,
+      callback?: BodyResponseCallback<Schema$Presentation>):
+      void|AxiosPromise<Schema$Presentation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://slides.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/presentations').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Presentation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Presentation>(parameters);
+    }
+  }
 
 
   /**
@@ -3212,37 +3255,55 @@ export class Resource$Presentations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Presentation>,
-       callback?: BodyResponseCallback<Schema$Presentation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://slides.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/presentations/{presentationId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['presentationId'],
-          pathParams: ['presentationId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Presentation>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Presentation>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Presentation>,
+      callback?: BodyResponseCallback<Schema$Presentation>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Presentation>,
+      callback?: BodyResponseCallback<Schema$Presentation>):
+      void|AxiosPromise<Schema$Presentation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://slides.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/presentations/{presentationId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['presentationId'],
+      pathParams: ['presentationId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Presentation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Presentation>(parameters);
+    }
+  }
 }
 export class Resource$Presentations$Pages {
   root: Slides;
   constructor(root: Slides) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * slides.presentations.pages.get
@@ -3257,31 +3318,42 @@ export class Resource$Presentations$Pages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Page>,
-       callback?: BodyResponseCallback<Schema$Page>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://slides.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v1/presentations/{presentationId}/pages/{pageObjectId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['presentationId', 'pageObjectId'],
-          pathParams: ['pageObjectId', 'presentationId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Page>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Page>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Page>,
+      callback?: BodyResponseCallback<Schema$Page>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Page>,
+      callback?: BodyResponseCallback<Schema$Page>):
+      void|AxiosPromise<Schema$Page> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://slides.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/v1/presentations/{presentationId}/pages/{pageObjectId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['presentationId', 'pageObjectId'],
+      pathParams: ['pageObjectId', 'presentationId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Page>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Page>(parameters);
+    }
+  }
 
 
   /**
@@ -3301,31 +3373,46 @@ export class Resource$Presentations$Pages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getThumbnail =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Thumbnail>,
-       callback?: BodyResponseCallback<Schema$Thumbnail>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://slides.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1/presentations/{presentationId}/pages/{pageObjectId}/thumbnail')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['presentationId', 'pageObjectId'],
-          pathParams: ['pageObjectId', 'presentationId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Thumbnail>(parameters, callback!);
-      };
+  getThumbnail(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Thumbnail>;
+  getThumbnail(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Thumbnail>,
+      callback?: BodyResponseCallback<Schema$Thumbnail>): void;
+  getThumbnail(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Thumbnail>,
+      callback?: BodyResponseCallback<Schema$Thumbnail>):
+      void|AxiosPromise<Schema$Thumbnail> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://slides.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v1/presentations/{presentationId}/pages/{pageObjectId}/thumbnail')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['presentationId', 'pageObjectId'],
+      pathParams: ['pageObjectId', 'presentationId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Thumbnail>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Thumbnail>(parameters);
+    }
+  }
 }

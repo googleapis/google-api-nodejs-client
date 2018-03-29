@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -51,8 +53,13 @@ export class Analyticsreporting {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.reports = new Resource$Reports(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -943,7 +950,13 @@ export class Resource$Reports {
   root: Analyticsreporting;
   constructor(root: Analyticsreporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * analyticsreporting.reports.batchGet
@@ -957,30 +970,45 @@ export class Resource$Reports {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchGet =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GetReportsResponse>,
-       callback?: BodyResponseCallback<Schema$GetReportsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://analyticsreporting.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v4/reports:batchGet')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$GetReportsResponse>(parameters, callback!);
-      };
+  batchGet(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GetReportsResponse>;
+  batchGet(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GetReportsResponse>,
+      callback?: BodyResponseCallback<Schema$GetReportsResponse>): void;
+  batchGet(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GetReportsResponse>,
+      callback?: BodyResponseCallback<Schema$GetReportsResponse>):
+      void|AxiosPromise<Schema$GetReportsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://analyticsreporting.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v4/reports:batchGet')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GetReportsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GetReportsResponse>(parameters);
+    }
+  }
 }

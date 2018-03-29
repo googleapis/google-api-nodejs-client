@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -51,8 +53,13 @@ export class Pubsub {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.projects = new Resource$Projects(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -432,15 +439,26 @@ export class Resource$Projects {
   topics: Resource$Projects$Topics;
   constructor(root: Pubsub) {
     this.root = root;
+    this.getRoot.bind(this);
     this.subscriptions = new Resource$Projects$Subscriptions(root);
     this.topics = new Resource$Projects$Topics(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Projects$Subscriptions {
   root: Pubsub;
   constructor(root: Pubsub) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * pubsub.projects.subscriptions.acknowledge
@@ -459,30 +477,43 @@ export class Resource$Projects$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  acknowledge =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta2/{subscription}:acknowledge')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['subscription'],
-          pathParams: ['subscription'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  acknowledge(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  acknowledge(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  acknowledge(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{subscription}:acknowledge')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['subscription'],
+      pathParams: ['subscription'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -502,31 +533,45 @@ export class Resource$Projects$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
-       callback?: BodyResponseCallback<Schema$Subscription>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Subscription>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Subscription>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>):
+      void|AxiosPromise<Schema$Subscription> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Subscription>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Subscription>(parameters);
+    }
+  }
 
 
   /**
@@ -545,30 +590,43 @@ export class Resource$Projects$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta2/{subscription}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['subscription'],
-          pathParams: ['subscription'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{subscription}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['subscription'],
+      pathParams: ['subscription'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -583,31 +641,43 @@ export class Resource$Projects$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
-       callback?: BodyResponseCallback<Schema$Subscription>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta2/{subscription}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['subscription'],
-          pathParams: ['subscription'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Subscription>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Subscription>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>):
+      void|AxiosPromise<Schema$Subscription> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{subscription}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['subscription'],
+      pathParams: ['subscription'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Subscription>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Subscription>(parameters);
+    }
+  }
 
 
   /**
@@ -623,30 +693,44 @@ export class Resource$Projects$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getIamPolicy =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-       callback?: BodyResponseCallback<Schema$Policy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta2/{resource}:getIamPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Policy>(parameters, callback!);
-      };
+  getIamPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Policy>;
+  getIamPolicy(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>): void;
+  getIamPolicy(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>):
+      void|AxiosPromise<Schema$Policy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{resource}:getIamPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Policy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Policy>(parameters);
+    }
+  }
 
 
   /**
@@ -663,33 +747,48 @@ export class Resource$Projects$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListSubscriptionsResponse>,
-       callback?: BodyResponseCallback<Schema$ListSubscriptionsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta2/{project}/subscriptions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['project'],
-          pathParams: ['project'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListSubscriptionsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListSubscriptionsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListSubscriptionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListSubscriptionsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListSubscriptionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListSubscriptionsResponse>):
+      void|AxiosPromise<Schema$ListSubscriptionsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{project}/subscriptions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['project'],
+      pathParams: ['project'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListSubscriptionsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListSubscriptionsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -709,30 +808,44 @@ export class Resource$Projects$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  modifyAckDeadline =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta2/{subscription}:modifyAckDeadline')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['subscription'],
-          pathParams: ['subscription'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  modifyAckDeadline(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Empty>;
+  modifyAckDeadline(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  modifyAckDeadline(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{subscription}:modifyAckDeadline')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['subscription'],
+      pathParams: ['subscription'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -752,30 +865,44 @@ export class Resource$Projects$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  modifyPushConfig =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta2/{subscription}:modifyPushConfig')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['subscription'],
-          pathParams: ['subscription'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  modifyPushConfig(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Empty>;
+  modifyPushConfig(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  modifyPushConfig(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{subscription}:modifyPushConfig')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['subscription'],
+      pathParams: ['subscription'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -794,31 +921,45 @@ export class Resource$Projects$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  pull =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PullResponse>,
-       callback?: BodyResponseCallback<Schema$PullResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta2/{subscription}:pull')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['subscription'],
-          pathParams: ['subscription'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PullResponse>(parameters, callback!);
-      };
+  pull(params: any, options?: MethodOptions): AxiosPromise<Schema$PullResponse>;
+  pull(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$PullResponse>,
+      callback?: BodyResponseCallback<Schema$PullResponse>): void;
+  pull(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PullResponse>,
+      callback?: BodyResponseCallback<Schema$PullResponse>):
+      void|AxiosPromise<Schema$PullResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{subscription}:pull')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['subscription'],
+      pathParams: ['subscription'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PullResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PullResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -835,30 +976,44 @@ export class Resource$Projects$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setIamPolicy =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-       callback?: BodyResponseCallback<Schema$Policy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta2/{resource}:setIamPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Policy>(parameters, callback!);
-      };
+  setIamPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Policy>;
+  setIamPolicy(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>): void;
+  setIamPolicy(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>):
+      void|AxiosPromise<Schema$Policy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{resource}:setIamPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Policy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Policy>(parameters);
+    }
+  }
 
 
   /**
@@ -878,33 +1033,48 @@ export class Resource$Projects$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  testIamPermissions =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-       callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta2/{resource}:testIamPermissions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback!);
-      };
+  testIamPermissions(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TestIamPermissionsResponse>;
+  testIamPermissions(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>): void;
+  testIamPermissions(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+      void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{resource}:testIamPermissions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TestIamPermissionsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Topics {
@@ -912,8 +1082,14 @@ export class Resource$Projects$Topics {
   subscriptions: Resource$Projects$Topics$Subscriptions;
   constructor(root: Pubsub) {
     this.root = root;
+    this.getRoot.bind(this);
     this.subscriptions = new Resource$Projects$Topics$Subscriptions(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * pubsub.projects.topics.create
@@ -928,30 +1104,42 @@ export class Resource$Projects$Topics {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Topic>,
-       callback?: BodyResponseCallback<Schema$Topic>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Topic>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Topic>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Topic>,
+      callback?: BodyResponseCallback<Schema$Topic>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Topic>,
+      callback?: BodyResponseCallback<Schema$Topic>):
+      void|AxiosPromise<Schema$Topic> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Topic>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Topic>(parameters);
+    }
+  }
 
 
   /**
@@ -970,30 +1158,42 @@ export class Resource$Projects$Topics {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta2/{topic}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['topic'],
-          pathParams: ['topic'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{topic}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['topic'],
+      pathParams: ['topic'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -1008,30 +1208,40 @@ export class Resource$Projects$Topics {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Topic>,
-       callback?: BodyResponseCallback<Schema$Topic>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta2/{topic}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['topic'],
-          pathParams: ['topic'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Topic>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Topic>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Topic>,
+      callback?: BodyResponseCallback<Schema$Topic>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Topic>,
+      callback?: BodyResponseCallback<Schema$Topic>):
+      void|AxiosPromise<Schema$Topic> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{topic}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['topic'],
+      pathParams: ['topic'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Topic>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Topic>(parameters);
+    }
+  }
 
 
   /**
@@ -1047,30 +1257,44 @@ export class Resource$Projects$Topics {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getIamPolicy =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-       callback?: BodyResponseCallback<Schema$Policy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta2/{resource}:getIamPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Policy>(parameters, callback!);
-      };
+  getIamPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Policy>;
+  getIamPolicy(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>): void;
+  getIamPolicy(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>):
+      void|AxiosPromise<Schema$Policy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{resource}:getIamPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Policy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Policy>(parameters);
+    }
+  }
 
 
   /**
@@ -1087,31 +1311,46 @@ export class Resource$Projects$Topics {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListTopicsResponse>,
-       callback?: BodyResponseCallback<Schema$ListTopicsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta2/{project}/topics')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['project'],
-          pathParams: ['project'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListTopicsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListTopicsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListTopicsResponse>,
+      callback?: BodyResponseCallback<Schema$ListTopicsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListTopicsResponse>,
+      callback?: BodyResponseCallback<Schema$ListTopicsResponse>):
+      void|AxiosPromise<Schema$ListTopicsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{project}/topics')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['project'],
+      pathParams: ['project'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListTopicsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListTopicsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1129,31 +1368,46 @@ export class Resource$Projects$Topics {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  publish =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PublishResponse>,
-       callback?: BodyResponseCallback<Schema$PublishResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta2/{topic}:publish')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['topic'],
-          pathParams: ['topic'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PublishResponse>(parameters, callback!);
-      };
+  publish(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PublishResponse>;
+  publish(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$PublishResponse>,
+      callback?: BodyResponseCallback<Schema$PublishResponse>): void;
+  publish(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PublishResponse>,
+      callback?: BodyResponseCallback<Schema$PublishResponse>):
+      void|AxiosPromise<Schema$PublishResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{topic}:publish')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['topic'],
+      pathParams: ['topic'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PublishResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PublishResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1170,30 +1424,44 @@ export class Resource$Projects$Topics {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setIamPolicy =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-       callback?: BodyResponseCallback<Schema$Policy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta2/{resource}:setIamPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Policy>(parameters, callback!);
-      };
+  setIamPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Policy>;
+  setIamPolicy(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>): void;
+  setIamPolicy(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>):
+      void|AxiosPromise<Schema$Policy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{resource}:setIamPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Policy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Policy>(parameters);
+    }
+  }
 
 
   /**
@@ -1213,39 +1481,60 @@ export class Resource$Projects$Topics {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  testIamPermissions =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-       callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta2/{resource}:testIamPermissions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback!);
-      };
+  testIamPermissions(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TestIamPermissionsResponse>;
+  testIamPermissions(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>): void;
+  testIamPermissions(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+      void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{resource}:testIamPermissions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TestIamPermissionsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+    }
+  }
 }
 export class Resource$Projects$Topics$Subscriptions {
   root: Pubsub;
   constructor(root: Pubsub) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * pubsub.projects.topics.subscriptions.list
@@ -1261,32 +1550,49 @@ export class Resource$Projects$Topics$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListTopicSubscriptionsResponse>,
-       callback?:
-           BodyResponseCallback<Schema$ListTopicSubscriptionsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta2/{topic}/subscriptions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['topic'],
-          pathParams: ['topic'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListTopicSubscriptionsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListTopicSubscriptionsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListTopicSubscriptionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListTopicSubscriptionsResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListTopicSubscriptionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListTopicSubscriptionsResponse>):
+      void|AxiosPromise<Schema$ListTopicSubscriptionsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{topic}/subscriptions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['topic'],
+      pathParams: ['topic'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListTopicSubscriptionsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListTopicSubscriptionsResponse>(
+          parameters);
+    }
+  }
 }

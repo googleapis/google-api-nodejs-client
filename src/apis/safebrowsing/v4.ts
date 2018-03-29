@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -58,6 +60,7 @@ export class Safebrowsing {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.encodedFullHashes = new Resource$Encodedfullhashes(this);
     this.encodedUpdates = new Resource$Encodedupdates(this);
@@ -66,6 +69,10 @@ export class Safebrowsing {
     this.threatLists = new Resource$Threatlists(this);
     this.threatListUpdates = new Resource$Threatlistupdates(this);
     this.threatMatches = new Resource$Threatmatches(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -565,7 +572,13 @@ export class Resource$Encodedfullhashes {
   root: Safebrowsing;
   constructor(root: Safebrowsing) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * safebrowsing.encodedFullHashes.get
@@ -580,40 +593,59 @@ export class Resource$Encodedfullhashes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$FindFullHashesResponse>,
-       callback?: BodyResponseCallback<Schema$FindFullHashesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://safebrowsing.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v4/encodedFullHashes/{encodedRequest}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['encodedRequest'],
-          pathParams: ['encodedRequest'],
-          context: this.root
-        };
-        createAPIRequest<Schema$FindFullHashesResponse>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$FindFullHashesResponse>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$FindFullHashesResponse>,
+      callback?: BodyResponseCallback<Schema$FindFullHashesResponse>): void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$FindFullHashesResponse>,
+      callback?: BodyResponseCallback<Schema$FindFullHashesResponse>):
+      void|AxiosPromise<Schema$FindFullHashesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://safebrowsing.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v4/encodedFullHashes/{encodedRequest}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['encodedRequest'],
+      pathParams: ['encodedRequest'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$FindFullHashesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$FindFullHashesResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Encodedupdates {
   root: Safebrowsing;
   constructor(root: Safebrowsing) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * safebrowsing.encodedUpdates.get
@@ -628,42 +660,62 @@ export class Resource$Encodedupdates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>,
-       callback?:
-           BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://safebrowsing.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v4/encodedUpdates/{encodedRequest}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['encodedRequest'],
-          pathParams: ['encodedRequest'],
-          context: this.root
-        };
-        createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
-            parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$FetchThreatListUpdatesResponse>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>,
+      callback?: BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>):
+      void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>,
+      callback?: BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>):
+      void|AxiosPromise<Schema$FetchThreatListUpdatesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://safebrowsing.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v4/encodedUpdates/{encodedRequest}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['encodedRequest'],
+      pathParams: ['encodedRequest'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Fullhashes {
   root: Safebrowsing;
   constructor(root: Safebrowsing) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * safebrowsing.fullHashes.find
@@ -677,40 +729,61 @@ export class Resource$Fullhashes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  find =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$FindFullHashesResponse>,
-       callback?: BodyResponseCallback<Schema$FindFullHashesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://safebrowsing.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v4/fullHashes:find')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$FindFullHashesResponse>(parameters, callback!);
-      };
+  find(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$FindFullHashesResponse>;
+  find(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$FindFullHashesResponse>,
+      callback?: BodyResponseCallback<Schema$FindFullHashesResponse>): void;
+  find(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$FindFullHashesResponse>,
+      callback?: BodyResponseCallback<Schema$FindFullHashesResponse>):
+      void|AxiosPromise<Schema$FindFullHashesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://safebrowsing.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/v4/fullHashes:find').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$FindFullHashesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$FindFullHashesResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Threathits {
   root: Safebrowsing;
   constructor(root: Safebrowsing) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * safebrowsing.threatHits.create
@@ -725,37 +798,55 @@ export class Resource$Threathits {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://safebrowsing.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v4/threatHits').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://safebrowsing.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v4/threatHits').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 }
 
 export class Resource$Threatlists {
   root: Safebrowsing;
   constructor(root: Safebrowsing) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * safebrowsing.threatLists.list
@@ -768,40 +859,60 @@ export class Resource$Threatlists {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListThreatListsResponse>,
-       callback?: BodyResponseCallback<Schema$ListThreatListsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://safebrowsing.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v4/threatLists').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListThreatListsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListThreatListsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListThreatListsResponse>,
+      callback?: BodyResponseCallback<Schema$ListThreatListsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListThreatListsResponse>,
+      callback?: BodyResponseCallback<Schema$ListThreatListsResponse>):
+      void|AxiosPromise<Schema$ListThreatListsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://safebrowsing.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v4/threatLists').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListThreatListsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListThreatListsResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Threatlistupdates {
   root: Safebrowsing;
   constructor(root: Safebrowsing) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * safebrowsing.threatListUpdates.fetch
@@ -816,42 +927,64 @@ export class Resource$Threatlistupdates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  fetch =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>,
-       callback?:
-           BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://safebrowsing.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v4/threatListUpdates:fetch')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
-            parameters, callback!);
-      };
+  fetch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$FetchThreatListUpdatesResponse>;
+  fetch(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>,
+      callback?: BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>):
+      void;
+  fetch(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>,
+      callback?: BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>):
+      void|AxiosPromise<Schema$FetchThreatListUpdatesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://safebrowsing.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v4/threatListUpdates:fetch')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Threatmatches {
   root: Safebrowsing;
   constructor(root: Safebrowsing) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * safebrowsing.threatMatches.find
@@ -865,32 +998,46 @@ export class Resource$Threatmatches {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  find =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$FindThreatMatchesResponse>,
-       callback?: BodyResponseCallback<Schema$FindThreatMatchesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://safebrowsing.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v4/threatMatches:find')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$FindThreatMatchesResponse>(
-            parameters, callback!);
-      };
+  find(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$FindThreatMatchesResponse>;
+  find(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$FindThreatMatchesResponse>,
+      callback?: BodyResponseCallback<Schema$FindThreatMatchesResponse>): void;
+  find(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$FindThreatMatchesResponse>,
+      callback?: BodyResponseCallback<Schema$FindThreatMatchesResponse>):
+      void|AxiosPromise<Schema$FindThreatMatchesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://safebrowsing.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v4/threatMatches:find')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$FindThreatMatchesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$FindThreatMatchesResponse>(parameters);
+    }
+  }
 }

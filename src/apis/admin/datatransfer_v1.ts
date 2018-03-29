@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -52,9 +54,14 @@ export class Admin {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.applications = new Resource$Applications(this);
     this.transfers = new Resource$Transfers(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -205,7 +212,13 @@ export class Resource$Applications {
   root: Admin;
   constructor(root: Admin) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * datatransfer.applications.get
@@ -220,32 +233,44 @@ export class Resource$Applications {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Application>,
-       callback?: BodyResponseCallback<Schema$Application>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/admin/datatransfer/v1/applications/{applicationId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['applicationId'],
-          pathParams: ['applicationId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Application>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Application>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Application>,
+      callback?: BodyResponseCallback<Schema$Application>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Application>,
+      callback?: BodyResponseCallback<Schema$Application>):
+      void|AxiosPromise<Schema$Application> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/admin/datatransfer/v1/applications/{applicationId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['applicationId'],
+      pathParams: ['applicationId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Application>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Application>(parameters);
+    }
+  }
 
 
   /**
@@ -262,40 +287,61 @@ export class Resource$Applications {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ApplicationsListResponse>,
-       callback?: BodyResponseCallback<Schema$ApplicationsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/admin/datatransfer/v1/applications')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ApplicationsListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ApplicationsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ApplicationsListResponse>,
+      callback?: BodyResponseCallback<Schema$ApplicationsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ApplicationsListResponse>,
+      callback?: BodyResponseCallback<Schema$ApplicationsListResponse>):
+      void|AxiosPromise<Schema$ApplicationsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/admin/datatransfer/v1/applications')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ApplicationsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ApplicationsListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Transfers {
   root: Admin;
   constructor(root: Admin) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * datatransfer.transfers.get
@@ -309,32 +355,43 @@ export class Resource$Transfers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$DataTransfer>,
-       callback?: BodyResponseCallback<Schema$DataTransfer>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/admin/datatransfer/v1/transfers/{dataTransferId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['dataTransferId'],
-          pathParams: ['dataTransferId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$DataTransfer>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$DataTransfer>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$DataTransfer>,
+      callback?: BodyResponseCallback<Schema$DataTransfer>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$DataTransfer>,
+      callback?: BodyResponseCallback<Schema$DataTransfer>):
+      void|AxiosPromise<Schema$DataTransfer> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/admin/datatransfer/v1/transfers/{dataTransferId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['dataTransferId'],
+      pathParams: ['dataTransferId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DataTransfer>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DataTransfer>(parameters);
+    }
+  }
 
 
   /**
@@ -349,31 +406,46 @@ export class Resource$Transfers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$DataTransfer>,
-       callback?: BodyResponseCallback<Schema$DataTransfer>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/admin/datatransfer/v1/transfers')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$DataTransfer>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$DataTransfer>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$DataTransfer>,
+      callback?: BodyResponseCallback<Schema$DataTransfer>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$DataTransfer>,
+      callback?: BodyResponseCallback<Schema$DataTransfer>):
+      void|AxiosPromise<Schema$DataTransfer> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/admin/datatransfer/v1/transfers')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DataTransfer>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DataTransfer>(parameters);
+    }
+  }
 
 
   /**
@@ -394,31 +466,46 @@ export class Resource$Transfers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$DataTransfersListResponse>,
-       callback?: BodyResponseCallback<Schema$DataTransfersListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/admin/datatransfer/v1/transfers')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$DataTransfersListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$DataTransfersListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$DataTransfersListResponse>,
+      callback?: BodyResponseCallback<Schema$DataTransfersListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$DataTransfersListResponse>,
+      callback?: BodyResponseCallback<Schema$DataTransfersListResponse>):
+      void|AxiosPromise<Schema$DataTransfersListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/admin/datatransfer/v1/transfers')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DataTransfersListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DataTransfersListResponse>(parameters);
+    }
+  }
 }

@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -52,8 +54,13 @@ export class Spanner {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.projects = new Resource$Projects(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -1614,15 +1621,26 @@ export class Resource$Projects {
   instances: Resource$Projects$Instances;
   constructor(root: Spanner) {
     this.root = root;
+    this.getRoot.bind(this);
     this.instanceConfigs = new Resource$Projects$Instanceconfigs(root);
     this.instances = new Resource$Projects$Instances(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Projects$Instanceconfigs {
   root: Spanner;
   constructor(root: Spanner) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * spanner.projects.instanceConfigs.get
@@ -1636,30 +1654,43 @@ export class Resource$Projects$Instanceconfigs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$InstanceConfig>,
-       callback?: BodyResponseCallback<Schema$InstanceConfig>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$InstanceConfig>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$InstanceConfig>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$InstanceConfig>,
+      callback?: BodyResponseCallback<Schema$InstanceConfig>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$InstanceConfig>,
+      callback?: BodyResponseCallback<Schema$InstanceConfig>):
+      void|AxiosPromise<Schema$InstanceConfig> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$InstanceConfig>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$InstanceConfig>(parameters);
+    }
+  }
 
 
   /**
@@ -1676,33 +1707,50 @@ export class Resource$Projects$Instanceconfigs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListInstanceConfigsResponse>,
-       callback?: BodyResponseCallback<Schema$ListInstanceConfigsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/instanceConfigs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListInstanceConfigsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListInstanceConfigsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListInstanceConfigsResponse>,
+      callback?: BodyResponseCallback<Schema$ListInstanceConfigsResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListInstanceConfigsResponse>,
+      callback?: BodyResponseCallback<Schema$ListInstanceConfigsResponse>):
+      void|AxiosPromise<Schema$ListInstanceConfigsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/instanceConfigs')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListInstanceConfigsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListInstanceConfigsResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Instances {
@@ -1711,9 +1759,15 @@ export class Resource$Projects$Instances {
   operations: Resource$Projects$Instances$Operations;
   constructor(root: Spanner) {
     this.root = root;
+    this.getRoot.bind(this);
     this.databases = new Resource$Projects$Instances$Databases(root);
     this.operations = new Resource$Projects$Instances$Operations(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * spanner.projects.instances.create
@@ -1745,31 +1799,45 @@ export class Resource$Projects$Instances {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/instances')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/instances')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 
 
   /**
@@ -1788,29 +1856,42 @@ export class Resource$Projects$Instances {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -1825,30 +1906,41 @@ export class Resource$Projects$Instances {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Instance>,
-       callback?: BodyResponseCallback<Schema$Instance>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Instance>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Instance>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Instance>,
+      callback?: BodyResponseCallback<Schema$Instance>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Instance>,
+      callback?: BodyResponseCallback<Schema$Instance>):
+      void|AxiosPromise<Schema$Instance> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Instance>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Instance>(parameters);
+    }
+  }
 
 
   /**
@@ -1866,30 +1958,44 @@ export class Resource$Projects$Instances {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getIamPolicy =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-       callback?: BodyResponseCallback<Schema$Policy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:getIamPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Policy>(parameters, callback!);
-      };
+  getIamPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Policy>;
+  getIamPolicy(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>): void;
+  getIamPolicy(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>):
+      void|AxiosPromise<Schema$Policy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:getIamPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Policy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Policy>(parameters);
+    }
+  }
 
 
   /**
@@ -1907,32 +2013,47 @@ export class Resource$Projects$Instances {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListInstancesResponse>,
-       callback?: BodyResponseCallback<Schema$ListInstancesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/instances')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListInstancesResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListInstancesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListInstancesResponse>,
+      callback?: BodyResponseCallback<Schema$ListInstancesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListInstancesResponse>,
+      callback?: BodyResponseCallback<Schema$ListInstancesResponse>):
+      void|AxiosPromise<Schema$ListInstancesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/instances')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListInstancesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListInstancesResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1969,30 +2090,44 @@ export class Resource$Projects$Instances {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 
 
   /**
@@ -2010,30 +2145,44 @@ export class Resource$Projects$Instances {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setIamPolicy =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-       callback?: BodyResponseCallback<Schema$Policy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:setIamPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Policy>(parameters, callback!);
-      };
+  setIamPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Policy>;
+  setIamPolicy(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>): void;
+  setIamPolicy(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>):
+      void|AxiosPromise<Schema$Policy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:setIamPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Policy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Policy>(parameters);
+    }
+  }
 
 
   /**
@@ -2053,33 +2202,48 @@ export class Resource$Projects$Instances {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  testIamPermissions =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-       callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:testIamPermissions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback!);
-      };
+  testIamPermissions(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TestIamPermissionsResponse>;
+  testIamPermissions(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>): void;
+  testIamPermissions(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+      void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:testIamPermissions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TestIamPermissionsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+    }
+  }
 }
 export class Resource$Projects$Instances$Databases {
   root: Spanner;
@@ -2087,10 +2251,16 @@ export class Resource$Projects$Instances$Databases {
   sessions: Resource$Projects$Instances$Databases$Sessions;
   constructor(root: Spanner) {
     this.root = root;
+    this.getRoot.bind(this);
     this.operations =
         new Resource$Projects$Instances$Databases$Operations(root);
     this.sessions = new Resource$Projects$Instances$Databases$Sessions(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * spanner.projects.instances.databases.create
@@ -2109,31 +2279,45 @@ export class Resource$Projects$Instances$Databases {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/databases')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/databases')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 
 
   /**
@@ -2148,29 +2332,43 @@ export class Resource$Projects$Instances$Databases {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  dropDatabase =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{database}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['database'],
-          pathParams: ['database'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  dropDatabase(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Empty>;
+  dropDatabase(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  dropDatabase(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{database}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['database'],
+      pathParams: ['database'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -2185,30 +2383,41 @@ export class Resource$Projects$Instances$Databases {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Database>,
-       callback?: BodyResponseCallback<Schema$Database>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Database>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Database>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Database>,
+      callback?: BodyResponseCallback<Schema$Database>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Database>,
+      callback?: BodyResponseCallback<Schema$Database>):
+      void|AxiosPromise<Schema$Database> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Database>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Database>(parameters);
+    }
+  }
 
 
   /**
@@ -2225,32 +2434,47 @@ export class Resource$Projects$Instances$Databases {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getDdl =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GetDatabaseDdlResponse>,
-       callback?: BodyResponseCallback<Schema$GetDatabaseDdlResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{database}/ddl')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['database'],
-          pathParams: ['database'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GetDatabaseDdlResponse>(parameters, callback!);
-      };
+  getDdl(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GetDatabaseDdlResponse>;
+  getDdl(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GetDatabaseDdlResponse>,
+      callback?: BodyResponseCallback<Schema$GetDatabaseDdlResponse>): void;
+  getDdl(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GetDatabaseDdlResponse>,
+      callback?: BodyResponseCallback<Schema$GetDatabaseDdlResponse>):
+      void|AxiosPromise<Schema$GetDatabaseDdlResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{database}/ddl').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['database'],
+      pathParams: ['database'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GetDatabaseDdlResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GetDatabaseDdlResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2269,30 +2493,44 @@ export class Resource$Projects$Instances$Databases {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getIamPolicy =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-       callback?: BodyResponseCallback<Schema$Policy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:getIamPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Policy>(parameters, callback!);
-      };
+  getIamPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Policy>;
+  getIamPolicy(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>): void;
+  getIamPolicy(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>):
+      void|AxiosPromise<Schema$Policy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:getIamPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Policy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Policy>(parameters);
+    }
+  }
 
 
   /**
@@ -2309,32 +2547,47 @@ export class Resource$Projects$Instances$Databases {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListDatabasesResponse>,
-       callback?: BodyResponseCallback<Schema$ListDatabasesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/databases')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListDatabasesResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListDatabasesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListDatabasesResponse>,
+      callback?: BodyResponseCallback<Schema$ListDatabasesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListDatabasesResponse>,
+      callback?: BodyResponseCallback<Schema$ListDatabasesResponse>):
+      void|AxiosPromise<Schema$ListDatabasesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/databases')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListDatabasesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListDatabasesResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2352,30 +2605,44 @@ export class Resource$Projects$Instances$Databases {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setIamPolicy =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-       callback?: BodyResponseCallback<Schema$Policy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:setIamPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Policy>(parameters, callback!);
-      };
+  setIamPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Policy>;
+  setIamPolicy(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>): void;
+  setIamPolicy(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>):
+      void|AxiosPromise<Schema$Policy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:setIamPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Policy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Policy>(parameters);
+    }
+  }
 
 
   /**
@@ -2395,33 +2662,48 @@ export class Resource$Projects$Instances$Databases {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  testIamPermissions =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-       callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:testIamPermissions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback!);
-      };
+  testIamPermissions(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TestIamPermissionsResponse>;
+  testIamPermissions(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>): void;
+  testIamPermissions(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+      void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:testIamPermissions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TestIamPermissionsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2442,37 +2724,57 @@ export class Resource$Projects$Instances$Databases {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  updateDdl =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{database}/ddl')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['database'],
-          pathParams: ['database'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  updateDdl(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Operation>;
+  updateDdl(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  updateDdl(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{database}/ddl').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['database'],
+      pathParams: ['database'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 }
 export class Resource$Projects$Instances$Databases$Operations {
   root: Spanner;
   constructor(root: Spanner) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * spanner.projects.instances.databases.operations.cancel
@@ -2494,30 +2796,42 @@ export class Resource$Projects$Instances$Databases$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  cancel =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}:cancel')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  cancel(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  cancel(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  cancel(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -2535,29 +2849,42 @@ export class Resource$Projects$Instances$Databases$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -2574,30 +2901,42 @@ export class Resource$Projects$Instances$Databases$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 
 
   /**
@@ -2623,38 +2962,60 @@ export class Resource$Projects$Instances$Databases$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListOperationsResponse>,
-       callback?: BodyResponseCallback<Schema$ListOperationsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListOperationsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListOperationsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
+      void|AxiosPromise<Schema$ListOperationsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListOperationsResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Instances$Databases$Sessions {
   root: Spanner;
   constructor(root: Spanner) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * spanner.projects.instances.databases.sessions.beginTransaction
@@ -2670,31 +3031,46 @@ export class Resource$Projects$Instances$Databases$Sessions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  beginTransaction =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Transaction>,
-       callback?: BodyResponseCallback<Schema$Transaction>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{session}:beginTransaction')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['session'],
-          pathParams: ['session'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Transaction>(parameters, callback!);
-      };
+  beginTransaction(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Transaction>;
+  beginTransaction(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Transaction>,
+      callback?: BodyResponseCallback<Schema$Transaction>): void;
+  beginTransaction(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Transaction>,
+      callback?: BodyResponseCallback<Schema$Transaction>):
+      void|AxiosPromise<Schema$Transaction> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{session}:beginTransaction')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['session'],
+      pathParams: ['session'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Transaction>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Transaction>(parameters);
+    }
+  }
 
 
   /**
@@ -2715,31 +3091,46 @@ export class Resource$Projects$Instances$Databases$Sessions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  commit =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CommitResponse>,
-       callback?: BodyResponseCallback<Schema$CommitResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{session}:commit')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['session'],
-          pathParams: ['session'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CommitResponse>(parameters, callback!);
-      };
+  commit(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CommitResponse>;
+  commit(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CommitResponse>,
+      callback?: BodyResponseCallback<Schema$CommitResponse>): void;
+  commit(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CommitResponse>,
+      callback?: BodyResponseCallback<Schema$CommitResponse>):
+      void|AxiosPromise<Schema$CommitResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{session}:commit')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['session'],
+      pathParams: ['session'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CommitResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CommitResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2767,30 +3158,43 @@ export class Resource$Projects$Instances$Databases$Sessions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Session>,
-       callback?: BodyResponseCallback<Schema$Session>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{database}/sessions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['database'],
-          pathParams: ['database'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Session>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Session>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Session>,
+      callback?: BodyResponseCallback<Schema$Session>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Session>,
+      callback?: BodyResponseCallback<Schema$Session>):
+      void|AxiosPromise<Schema$Session> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{database}/sessions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['database'],
+      pathParams: ['database'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Session>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Session>(parameters);
+    }
+  }
 
 
   /**
@@ -2805,29 +3209,42 @@ export class Resource$Projects$Instances$Databases$Sessions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -2850,31 +3267,46 @@ export class Resource$Projects$Instances$Databases$Sessions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  executeSql =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ResultSet>,
-       callback?: BodyResponseCallback<Schema$ResultSet>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{session}:executeSql')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['session'],
-          pathParams: ['session'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ResultSet>(parameters, callback!);
-      };
+  executeSql(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ResultSet>;
+  executeSql(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ResultSet>,
+      callback?: BodyResponseCallback<Schema$ResultSet>): void;
+  executeSql(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ResultSet>,
+      callback?: BodyResponseCallback<Schema$ResultSet>):
+      void|AxiosPromise<Schema$ResultSet> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{session}:executeSql')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['session'],
+      pathParams: ['session'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ResultSet>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ResultSet>(parameters);
+    }
+  }
 
 
   /**
@@ -2893,31 +3325,46 @@ export class Resource$Projects$Instances$Databases$Sessions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  executeStreamingSql =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PartialResultSet>,
-       callback?: BodyResponseCallback<Schema$PartialResultSet>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{session}:executeStreamingSql')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['session'],
-          pathParams: ['session'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PartialResultSet>(parameters, callback!);
-      };
+  executeStreamingSql(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PartialResultSet>;
+  executeStreamingSql(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$PartialResultSet>,
+      callback?: BodyResponseCallback<Schema$PartialResultSet>): void;
+  executeStreamingSql(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PartialResultSet>,
+      callback?: BodyResponseCallback<Schema$PartialResultSet>):
+      void|AxiosPromise<Schema$PartialResultSet> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{session}:executeStreamingSql')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['session'],
+      pathParams: ['session'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PartialResultSet>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PartialResultSet>(parameters);
+    }
+  }
 
 
   /**
@@ -2933,29 +3380,40 @@ export class Resource$Projects$Instances$Databases$Sessions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Session>,
-       callback?: BodyResponseCallback<Schema$Session>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Session>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Session>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Session>,
+      callback?: BodyResponseCallback<Schema$Session>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Session>,
+      callback?: BodyResponseCallback<Schema$Session>):
+      void|AxiosPromise<Schema$Session> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Session>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Session>(parameters);
+    }
+  }
 
 
   /**
@@ -2973,31 +3431,46 @@ export class Resource$Projects$Instances$Databases$Sessions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListSessionsResponse>,
-       callback?: BodyResponseCallback<Schema$ListSessionsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{database}/sessions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['database'],
-          pathParams: ['database'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListSessionsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListSessionsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListSessionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListSessionsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListSessionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListSessionsResponse>):
+      void|AxiosPromise<Schema$ListSessionsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{database}/sessions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['database'],
+      pathParams: ['database'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListSessionsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListSessionsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -3020,31 +3493,46 @@ export class Resource$Projects$Instances$Databases$Sessions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  partitionQuery =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PartitionResponse>,
-       callback?: BodyResponseCallback<Schema$PartitionResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{session}:partitionQuery')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['session'],
-          pathParams: ['session'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PartitionResponse>(parameters, callback!);
-      };
+  partitionQuery(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PartitionResponse>;
+  partitionQuery(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$PartitionResponse>,
+      callback?: BodyResponseCallback<Schema$PartitionResponse>): void;
+  partitionQuery(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PartitionResponse>,
+      callback?: BodyResponseCallback<Schema$PartitionResponse>):
+      void|AxiosPromise<Schema$PartitionResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{session}:partitionQuery')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['session'],
+      pathParams: ['session'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PartitionResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PartitionResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -3066,31 +3554,46 @@ export class Resource$Projects$Instances$Databases$Sessions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  partitionRead =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PartitionResponse>,
-       callback?: BodyResponseCallback<Schema$PartitionResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{session}:partitionRead')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['session'],
-          pathParams: ['session'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PartitionResponse>(parameters, callback!);
-      };
+  partitionRead(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PartitionResponse>;
+  partitionRead(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$PartitionResponse>,
+      callback?: BodyResponseCallback<Schema$PartitionResponse>): void;
+  partitionRead(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PartitionResponse>,
+      callback?: BodyResponseCallback<Schema$PartitionResponse>):
+      void|AxiosPromise<Schema$PartitionResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{session}:partitionRead')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['session'],
+      pathParams: ['session'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PartitionResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PartitionResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -3113,31 +3616,44 @@ export class Resource$Projects$Instances$Databases$Sessions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  read =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ResultSet>,
-       callback?: BodyResponseCallback<Schema$ResultSet>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{session}:read')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['session'],
-          pathParams: ['session'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ResultSet>(parameters, callback!);
-      };
+  read(params: any, options?: MethodOptions): AxiosPromise<Schema$ResultSet>;
+  read(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ResultSet>,
+      callback?: BodyResponseCallback<Schema$ResultSet>): void;
+  read(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ResultSet>,
+      callback?: BodyResponseCallback<Schema$ResultSet>):
+      void|AxiosPromise<Schema$ResultSet> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{session}:read').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['session'],
+      pathParams: ['session'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ResultSet>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ResultSet>(parameters);
+    }
+  }
 
 
   /**
@@ -3158,30 +3674,43 @@ export class Resource$Projects$Instances$Databases$Sessions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  rollback =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{session}:rollback')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['session'],
-          pathParams: ['session'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  rollback(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  rollback(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  rollback(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{session}:rollback')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['session'],
+      pathParams: ['session'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -3200,31 +3729,46 @@ export class Resource$Projects$Instances$Databases$Sessions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  streamingRead =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PartialResultSet>,
-       callback?: BodyResponseCallback<Schema$PartialResultSet>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{session}:streamingRead')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['session'],
-          pathParams: ['session'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PartialResultSet>(parameters, callback!);
-      };
+  streamingRead(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PartialResultSet>;
+  streamingRead(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$PartialResultSet>,
+      callback?: BodyResponseCallback<Schema$PartialResultSet>): void;
+  streamingRead(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PartialResultSet>,
+      callback?: BodyResponseCallback<Schema$PartialResultSet>):
+      void|AxiosPromise<Schema$PartialResultSet> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{session}:streamingRead')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['session'],
+      pathParams: ['session'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PartialResultSet>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PartialResultSet>(parameters);
+    }
+  }
 }
 
 
@@ -3232,7 +3776,13 @@ export class Resource$Projects$Instances$Operations {
   root: Spanner;
   constructor(root: Spanner) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * spanner.projects.instances.operations.cancel
@@ -3254,30 +3804,42 @@ export class Resource$Projects$Instances$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  cancel =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}:cancel')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  cancel(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  cancel(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  cancel(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -3295,29 +3857,42 @@ export class Resource$Projects$Instances$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -3334,30 +3909,42 @@ export class Resource$Projects$Instances$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 
 
   /**
@@ -3383,29 +3970,45 @@ export class Resource$Projects$Instances$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListOperationsResponse>,
-       callback?: BodyResponseCallback<Schema$ListOperationsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListOperationsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListOperationsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
+      void|AxiosPromise<Schema$ListOperationsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListOperationsResponse>(parameters);
+    }
+  }
 }

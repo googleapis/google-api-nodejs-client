@@ -39,10 +39,16 @@
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
-{{ mname }} = (params: any, options: MethodOptions|BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>, callback?: BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>) => {
+{{ mname }}(params: any, options?: MethodOptions): AxiosPromise<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>;
+{{ mname }}(params: any, options: MethodOptions|BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>, callback?: BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>): void;
+{{ mname }}(params: any, options?: MethodOptions|BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>, callback?: BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>): void|AxiosPromise<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}> {
   if (typeof options === 'function') {
     callback = options;
     options = {};
+  }
+  if (typeof params === 'function') {
+    callback = params;
+    params = {};
   }
   options = options || {};
   const rootUrl = options.rootUrl || {{ rootApi.rootUrl|buildurl|safe }};
@@ -55,9 +61,13 @@
     {% if m.mediaUpload.protocols.simple.path %}mediaUrl: (rootUrl + {{ ('/' + m.mediaUpload.protocols.simple.path)|buildurl|safe }}).replace(/([^:]\/)\/+/g, '$1'),{% endif %}
     requiredParams: [{% if m.parameterOrder.length %}'{{ m.parameterOrder|join("', '")|safe }}'{% endif %}],
     pathParams: [{% if pathParams.length %}'{{ pathParams|join("', '")|safe }}'{% endif %}],
-    context: this.root
+    context: this.getRoot()
   };
   {% set responseType = "Schema$" + m.response.$ref|default() %}
-  createAPIRequest<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>(parameters, callback!);
-};
+  if (callback) {
+    createAPIRequest<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>(parameters, callback);
+  } else {
+    return createAPIRequest<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>(parameters);
+  }
+}
 {% endmacro %}

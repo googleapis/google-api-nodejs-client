@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -51,8 +53,13 @@ export class Identitytoolkit {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.relyingparty = new Resource$Relyingparty(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -1503,7 +1510,13 @@ export class Resource$Relyingparty {
   root: Identitytoolkit;
   constructor(root: Identitytoolkit) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * identitytoolkit.relyingparty.createAuthUri
@@ -1517,33 +1530,47 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  createAuthUri =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$CreateAuthUriResponse>,
-       callback?: BodyResponseCallback<Schema$CreateAuthUriResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/identitytoolkit/v3/relyingparty/createAuthUri')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$CreateAuthUriResponse>(parameters, callback!);
-      };
+  createAuthUri(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CreateAuthUriResponse>;
+  createAuthUri(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CreateAuthUriResponse>,
+      callback?: BodyResponseCallback<Schema$CreateAuthUriResponse>): void;
+  createAuthUri(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$CreateAuthUriResponse>,
+      callback?: BodyResponseCallback<Schema$CreateAuthUriResponse>):
+      void|AxiosPromise<Schema$CreateAuthUriResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/identitytoolkit/v3/relyingparty/createAuthUri')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CreateAuthUriResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CreateAuthUriResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1558,33 +1585,47 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  deleteAccount =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$DeleteAccountResponse>,
-       callback?: BodyResponseCallback<Schema$DeleteAccountResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/identitytoolkit/v3/relyingparty/deleteAccount')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$DeleteAccountResponse>(parameters, callback!);
-      };
+  deleteAccount(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$DeleteAccountResponse>;
+  deleteAccount(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$DeleteAccountResponse>,
+      callback?: BodyResponseCallback<Schema$DeleteAccountResponse>): void;
+  deleteAccount(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$DeleteAccountResponse>,
+      callback?: BodyResponseCallback<Schema$DeleteAccountResponse>):
+      void|AxiosPromise<Schema$DeleteAccountResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/identitytoolkit/v3/relyingparty/deleteAccount')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DeleteAccountResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DeleteAccountResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1599,33 +1640,48 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  downloadAccount =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$DownloadAccountResponse>,
-       callback?: BodyResponseCallback<Schema$DownloadAccountResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/identitytoolkit/v3/relyingparty/downloadAccount')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$DownloadAccountResponse>(parameters, callback!);
-      };
+  downloadAccount(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$DownloadAccountResponse>;
+  downloadAccount(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$DownloadAccountResponse>,
+      callback?: BodyResponseCallback<Schema$DownloadAccountResponse>): void;
+  downloadAccount(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$DownloadAccountResponse>,
+      callback?: BodyResponseCallback<Schema$DownloadAccountResponse>):
+      void|AxiosPromise<Schema$DownloadAccountResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/identitytoolkit/v3/relyingparty/downloadAccount')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DownloadAccountResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DownloadAccountResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1640,33 +1696,48 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  emailLinkSignin =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$EmailLinkSigninResponse>,
-       callback?: BodyResponseCallback<Schema$EmailLinkSigninResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/identitytoolkit/v3/relyingparty/emailLinkSignin')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$EmailLinkSigninResponse>(parameters, callback!);
-      };
+  emailLinkSignin(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$EmailLinkSigninResponse>;
+  emailLinkSignin(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$EmailLinkSigninResponse>,
+      callback?: BodyResponseCallback<Schema$EmailLinkSigninResponse>): void;
+  emailLinkSignin(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$EmailLinkSigninResponse>,
+      callback?: BodyResponseCallback<Schema$EmailLinkSigninResponse>):
+      void|AxiosPromise<Schema$EmailLinkSigninResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/identitytoolkit/v3/relyingparty/emailLinkSignin')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$EmailLinkSigninResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$EmailLinkSigninResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1681,33 +1752,48 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getAccountInfo =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GetAccountInfoResponse>,
-       callback?: BodyResponseCallback<Schema$GetAccountInfoResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/identitytoolkit/v3/relyingparty/getAccountInfo')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$GetAccountInfoResponse>(parameters, callback!);
-      };
+  getAccountInfo(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GetAccountInfoResponse>;
+  getAccountInfo(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GetAccountInfoResponse>,
+      callback?: BodyResponseCallback<Schema$GetAccountInfoResponse>): void;
+  getAccountInfo(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GetAccountInfoResponse>,
+      callback?: BodyResponseCallback<Schema$GetAccountInfoResponse>):
+      void|AxiosPromise<Schema$GetAccountInfoResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/identitytoolkit/v3/relyingparty/getAccountInfo')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GetAccountInfoResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GetAccountInfoResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1722,35 +1808,52 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getOobConfirmationCode =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>,
-       callback?:
-           BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/identitytoolkit/v3/relyingparty/getOobConfirmationCode')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$GetOobConfirmationCodeResponse>(
-            parameters, callback!);
-      };
+  getOobConfirmationCode(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GetOobConfirmationCodeResponse>;
+  getOobConfirmationCode(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>,
+      callback?: BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>):
+      void;
+  getOobConfirmationCode(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>,
+      callback?: BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>):
+      void|AxiosPromise<Schema$GetOobConfirmationCodeResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/identitytoolkit/v3/relyingparty/getOobConfirmationCode')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GetOobConfirmationCodeResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GetOobConfirmationCodeResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -1766,36 +1869,54 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getProjectConfig =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>,
-       callback?: BodyResponseCallback<
-           Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/identitytoolkit/v3/relyingparty/getProjectConfig')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<
-            Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>(
-            parameters, callback!);
-      };
+  getProjectConfig(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>;
+  getProjectConfig(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<
+          Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>,
+      callback?: BodyResponseCallback<
+          Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>): void;
+  getProjectConfig(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<
+          Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>,
+      callback?: BodyResponseCallback<
+          Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>): void|
+      AxiosPromise<Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/identitytoolkit/v3/relyingparty/getProjectConfig')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<
+          Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<
+          Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -1809,35 +1930,52 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getPublicKeys =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>,
-       callback?: BodyResponseCallback<
-           Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/identitytoolkit/v3/relyingparty/publicKeys')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<
-            Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>(
-            parameters, callback!);
-      };
+  getPublicKeys(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>;
+  getPublicKeys(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<
+          Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>,
+      callback?: BodyResponseCallback<
+          Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>): void;
+  getPublicKeys(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<
+          Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>,
+      callback?: BodyResponseCallback<
+          Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>): void|
+      AxiosPromise<Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/identitytoolkit/v3/relyingparty/publicKeys')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<
+          Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1851,34 +1989,49 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getRecaptchaParam =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GetRecaptchaParamResponse>,
-       callback?: BodyResponseCallback<Schema$GetRecaptchaParamResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/identitytoolkit/v3/relyingparty/getRecaptchaParam')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$GetRecaptchaParamResponse>(
-            parameters, callback!);
-      };
+  getRecaptchaParam(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GetRecaptchaParamResponse>;
+  getRecaptchaParam(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GetRecaptchaParamResponse>,
+      callback?: BodyResponseCallback<Schema$GetRecaptchaParamResponse>): void;
+  getRecaptchaParam(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GetRecaptchaParamResponse>,
+      callback?: BodyResponseCallback<Schema$GetRecaptchaParamResponse>):
+      void|AxiosPromise<Schema$GetRecaptchaParamResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/identitytoolkit/v3/relyingparty/getRecaptchaParam')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GetRecaptchaParamResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GetRecaptchaParamResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1893,33 +2046,47 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  resetPassword =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ResetPasswordResponse>,
-       callback?: BodyResponseCallback<Schema$ResetPasswordResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/identitytoolkit/v3/relyingparty/resetPassword')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ResetPasswordResponse>(parameters, callback!);
-      };
+  resetPassword(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ResetPasswordResponse>;
+  resetPassword(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ResetPasswordResponse>,
+      callback?: BodyResponseCallback<Schema$ResetPasswordResponse>): void;
+  resetPassword(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ResetPasswordResponse>,
+      callback?: BodyResponseCallback<Schema$ResetPasswordResponse>):
+      void|AxiosPromise<Schema$ResetPasswordResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/identitytoolkit/v3/relyingparty/resetPassword')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ResetPasswordResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ResetPasswordResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1934,36 +2101,57 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  sendVerificationCode =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>,
-       callback?: BodyResponseCallback<
-           Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/identitytoolkit/v3/relyingparty/sendVerificationCode')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<
-            Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>(
-            parameters, callback!);
-      };
+  sendVerificationCode(params: any, options?: MethodOptions): AxiosPromise<
+      Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>;
+  sendVerificationCode(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<
+          Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>,
+      callback?: BodyResponseCallback<
+          Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>):
+      void;
+  sendVerificationCode(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<
+          Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>,
+      callback?: BodyResponseCallback<
+          Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>):
+      void|AxiosPromise<
+          Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/identitytoolkit/v3/relyingparty/sendVerificationCode')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<
+          Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<
+          Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -1978,33 +2166,48 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setAccountInfo =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$SetAccountInfoResponse>,
-       callback?: BodyResponseCallback<Schema$SetAccountInfoResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/identitytoolkit/v3/relyingparty/setAccountInfo')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$SetAccountInfoResponse>(parameters, callback!);
-      };
+  setAccountInfo(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SetAccountInfoResponse>;
+  setAccountInfo(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$SetAccountInfoResponse>,
+      callback?: BodyResponseCallback<Schema$SetAccountInfoResponse>): void;
+  setAccountInfo(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SetAccountInfoResponse>,
+      callback?: BodyResponseCallback<Schema$SetAccountInfoResponse>):
+      void|AxiosPromise<Schema$SetAccountInfoResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/identitytoolkit/v3/relyingparty/setAccountInfo')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SetAccountInfoResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SetAccountInfoResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2019,36 +2222,54 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setProjectConfig =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>,
-       callback?: BodyResponseCallback<
-           Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/identitytoolkit/v3/relyingparty/setProjectConfig')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<
-            Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>(
-            parameters, callback!);
-      };
+  setProjectConfig(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>;
+  setProjectConfig(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<
+          Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>,
+      callback?: BodyResponseCallback<
+          Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>): void;
+  setProjectConfig(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<
+          Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>,
+      callback?: BodyResponseCallback<
+          Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>): void|
+      AxiosPromise<Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/identitytoolkit/v3/relyingparty/setProjectConfig')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<
+          Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<
+          Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -2063,34 +2284,52 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  signOutUser =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$IdentitytoolkitRelyingpartySignOutUserResponse>,
-       callback?: BodyResponseCallback<
-           Schema$IdentitytoolkitRelyingpartySignOutUserResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/identitytoolkit/v3/relyingparty/signOutUser')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$IdentitytoolkitRelyingpartySignOutUserResponse>(
-            parameters, callback!);
-      };
+  signOutUser(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$IdentitytoolkitRelyingpartySignOutUserResponse>;
+  signOutUser(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<
+          Schema$IdentitytoolkitRelyingpartySignOutUserResponse>,
+      callback?: BodyResponseCallback<
+          Schema$IdentitytoolkitRelyingpartySignOutUserResponse>): void;
+  signOutUser(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<
+          Schema$IdentitytoolkitRelyingpartySignOutUserResponse>,
+      callback?: BodyResponseCallback<
+          Schema$IdentitytoolkitRelyingpartySignOutUserResponse>):
+      void|AxiosPromise<Schema$IdentitytoolkitRelyingpartySignOutUserResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/identitytoolkit/v3/relyingparty/signOutUser')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$IdentitytoolkitRelyingpartySignOutUserResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<
+          Schema$IdentitytoolkitRelyingpartySignOutUserResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2105,33 +2344,47 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  signupNewUser =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$SignupNewUserResponse>,
-       callback?: BodyResponseCallback<Schema$SignupNewUserResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/identitytoolkit/v3/relyingparty/signupNewUser')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$SignupNewUserResponse>(parameters, callback!);
-      };
+  signupNewUser(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SignupNewUserResponse>;
+  signupNewUser(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$SignupNewUserResponse>,
+      callback?: BodyResponseCallback<Schema$SignupNewUserResponse>): void;
+  signupNewUser(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SignupNewUserResponse>,
+      callback?: BodyResponseCallback<Schema$SignupNewUserResponse>):
+      void|AxiosPromise<Schema$SignupNewUserResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/identitytoolkit/v3/relyingparty/signupNewUser')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SignupNewUserResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SignupNewUserResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2146,33 +2399,47 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  uploadAccount =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$UploadAccountResponse>,
-       callback?: BodyResponseCallback<Schema$UploadAccountResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/identitytoolkit/v3/relyingparty/uploadAccount')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$UploadAccountResponse>(parameters, callback!);
-      };
+  uploadAccount(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$UploadAccountResponse>;
+  uploadAccount(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$UploadAccountResponse>,
+      callback?: BodyResponseCallback<Schema$UploadAccountResponse>): void;
+  uploadAccount(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$UploadAccountResponse>,
+      callback?: BodyResponseCallback<Schema$UploadAccountResponse>):
+      void|AxiosPromise<Schema$UploadAccountResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/identitytoolkit/v3/relyingparty/uploadAccount')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UploadAccountResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UploadAccountResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2187,33 +2454,48 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  verifyAssertion =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$VerifyAssertionResponse>,
-       callback?: BodyResponseCallback<Schema$VerifyAssertionResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/identitytoolkit/v3/relyingparty/verifyAssertion')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$VerifyAssertionResponse>(parameters, callback!);
-      };
+  verifyAssertion(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$VerifyAssertionResponse>;
+  verifyAssertion(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$VerifyAssertionResponse>,
+      callback?: BodyResponseCallback<Schema$VerifyAssertionResponse>): void;
+  verifyAssertion(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$VerifyAssertionResponse>,
+      callback?: BodyResponseCallback<Schema$VerifyAssertionResponse>):
+      void|AxiosPromise<Schema$VerifyAssertionResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/identitytoolkit/v3/relyingparty/verifyAssertion')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$VerifyAssertionResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$VerifyAssertionResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2228,34 +2510,49 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  verifyCustomToken =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$VerifyCustomTokenResponse>,
-       callback?: BodyResponseCallback<Schema$VerifyCustomTokenResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/identitytoolkit/v3/relyingparty/verifyCustomToken')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$VerifyCustomTokenResponse>(
-            parameters, callback!);
-      };
+  verifyCustomToken(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$VerifyCustomTokenResponse>;
+  verifyCustomToken(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$VerifyCustomTokenResponse>,
+      callback?: BodyResponseCallback<Schema$VerifyCustomTokenResponse>): void;
+  verifyCustomToken(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$VerifyCustomTokenResponse>,
+      callback?: BodyResponseCallback<Schema$VerifyCustomTokenResponse>):
+      void|AxiosPromise<Schema$VerifyCustomTokenResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/identitytoolkit/v3/relyingparty/verifyCustomToken')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$VerifyCustomTokenResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$VerifyCustomTokenResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2270,33 +2567,48 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  verifyPassword =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$VerifyPasswordResponse>,
-       callback?: BodyResponseCallback<Schema$VerifyPasswordResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/identitytoolkit/v3/relyingparty/verifyPassword')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$VerifyPasswordResponse>(parameters, callback!);
-      };
+  verifyPassword(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$VerifyPasswordResponse>;
+  verifyPassword(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$VerifyPasswordResponse>,
+      callback?: BodyResponseCallback<Schema$VerifyPasswordResponse>): void;
+  verifyPassword(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$VerifyPasswordResponse>,
+      callback?: BodyResponseCallback<Schema$VerifyPasswordResponse>):
+      void|AxiosPromise<Schema$VerifyPasswordResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/identitytoolkit/v3/relyingparty/verifyPassword')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$VerifyPasswordResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$VerifyPasswordResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2312,34 +2624,54 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  verifyPhoneNumber =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>,
-       callback?: BodyResponseCallback<
-           Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/identitytoolkit/v3/relyingparty/verifyPhoneNumber')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<
-            Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>(
-            parameters, callback!);
-      };
+  verifyPhoneNumber(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>;
+  verifyPhoneNumber(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<
+          Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>,
+      callback?: BodyResponseCallback<
+          Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>): void;
+  verifyPhoneNumber(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<
+          Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>,
+      callback?: BodyResponseCallback<
+          Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>):
+      void|AxiosPromise<
+          Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/identitytoolkit/v3/relyingparty/verifyPhoneNumber')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<
+          Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<
+          Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>(
+          parameters);
+    }
+  }
 }

@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -51,8 +53,13 @@ export class Ml {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.projects = new Resource$Projects(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -772,8 +779,11 @@ export interface Schema$GoogleCloudMlV1__Version {
    */
   errorMessage: string;
   /**
-   * The ML framework used to train this version of the model. If not specified,
-   * defaults to `TENSORFLOW`
+   * Optional. The machine learning framework Cloud ML Engine uses to train this
+   * version of the model. Valid values are `TENSORFLOW`, `SCIKIT_LEARN`, and
+   * `XGBOOST`. If you do not specify a framework, Cloud ML Engine uses
+   * TensorFlow. If you choose `SCIKIT_LEARN` or `XGBOOST`, you must also set
+   * the runtime version of the model to 1.4 or greater.
    */
   framework: string;
   /**
@@ -1108,11 +1118,17 @@ export class Resource$Projects {
   operations: Resource$Projects$Operations;
   constructor(root: Ml) {
     this.root = root;
+    this.getRoot.bind(this);
     this.jobs = new Resource$Projects$Jobs(root);
     this.locations = new Resource$Projects$Locations(root);
     this.models = new Resource$Projects$Models(root);
     this.operations = new Resource$Projects$Operations(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * ml.projects.getConfig
@@ -1129,34 +1145,53 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getConfig =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudMlV1__GetConfigResponse>,
-       callback?:
-           BodyResponseCallback<Schema$GoogleCloudMlV1__GetConfigResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}:getConfig')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudMlV1__GetConfigResponse>(
-            parameters, callback!);
-      };
+  getConfig(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudMlV1__GetConfigResponse>;
+  getConfig(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudMlV1__GetConfigResponse>,
+      callback?:
+          BodyResponseCallback<Schema$GoogleCloudMlV1__GetConfigResponse>):
+      void;
+  getConfig(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudMlV1__GetConfigResponse>,
+      callback?:
+          BodyResponseCallback<Schema$GoogleCloudMlV1__GetConfigResponse>):
+      void|AxiosPromise<Schema$GoogleCloudMlV1__GetConfigResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}:getConfig')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudMlV1__GetConfigResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleCloudMlV1__GetConfigResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -1175,37 +1210,57 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  predict =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GoogleApi__HttpBody>,
-       callback?: BodyResponseCallback<Schema$GoogleApi__HttpBody>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}:predict')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleApi__HttpBody>(parameters, callback!);
-      };
+  predict(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleApi__HttpBody>;
+  predict(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GoogleApi__HttpBody>,
+      callback?: BodyResponseCallback<Schema$GoogleApi__HttpBody>): void;
+  predict(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleApi__HttpBody>,
+      callback?: BodyResponseCallback<Schema$GoogleApi__HttpBody>):
+      void|AxiosPromise<Schema$GoogleApi__HttpBody> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}:predict').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleApi__HttpBody>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleApi__HttpBody>(parameters);
+    }
+  }
 }
 export class Resource$Projects$Jobs {
   root: Ml;
   constructor(root: Ml) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * ml.projects.jobs.cancel
@@ -1220,32 +1275,46 @@ export class Resource$Projects$Jobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  cancel =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
-       callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}:cancel')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters, callback!);
-      };
+  cancel(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleProtobuf__Empty>;
+  cancel(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>): void;
+  cancel(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>):
+      void|AxiosPromise<Schema$GoogleProtobuf__Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -1261,31 +1330,45 @@ export class Resource$Projects$Jobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
-       callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/jobs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudMlV1__Job>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudMlV1__Job>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>):
+      void|AxiosPromise<Schema$GoogleCloudMlV1__Job> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/jobs').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudMlV1__Job>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleCloudMlV1__Job>(parameters);
+    }
+  }
 
 
   /**
@@ -1300,30 +1383,43 @@ export class Resource$Projects$Jobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
-       callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudMlV1__Job>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$GoogleCloudMlV1__Job>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>):
+      void|AxiosPromise<Schema$GoogleCloudMlV1__Job> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudMlV1__Job>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleCloudMlV1__Job>(parameters);
+    }
+  }
 
 
   /**
@@ -1339,31 +1435,46 @@ export class Resource$Projects$Jobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getIamPolicy =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
-       callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:getIamPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback!);
-      };
+  getIamPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleIamV1__Policy>;
+  getIamPolicy(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
+      callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>): void;
+  getIamPolicy(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
+      callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>):
+      void|AxiosPromise<Schema$GoogleIamV1__Policy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:getIamPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleIamV1__Policy>(parameters);
+    }
+  }
 
 
   /**
@@ -1382,34 +1493,51 @@ export class Resource$Projects$Jobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudMlV1__ListJobsResponse>,
-       callback?:
-           BodyResponseCallback<Schema$GoogleCloudMlV1__ListJobsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/jobs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudMlV1__ListJobsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudMlV1__ListJobsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudMlV1__ListJobsResponse>,
+      callback?:
+          BodyResponseCallback<Schema$GoogleCloudMlV1__ListJobsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudMlV1__ListJobsResponse>,
+      callback?:
+          BodyResponseCallback<Schema$GoogleCloudMlV1__ListJobsResponse>):
+      void|AxiosPromise<Schema$GoogleCloudMlV1__ListJobsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/jobs').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudMlV1__ListJobsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleCloudMlV1__ListJobsResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -1426,31 +1554,46 @@ export class Resource$Projects$Jobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setIamPolicy =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
-       callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:setIamPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback!);
-      };
+  setIamPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleIamV1__Policy>;
+  setIamPolicy(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
+      callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>): void;
+  setIamPolicy(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
+      callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>):
+      void|AxiosPromise<Schema$GoogleIamV1__Policy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:setIamPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleIamV1__Policy>(parameters);
+    }
+  }
 
 
   /**
@@ -1470,41 +1613,66 @@ export class Resource$Projects$Jobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  testIamPermissions =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GoogleIamV1__TestIamPermissionsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:testIamPermissions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleIamV1__TestIamPermissionsResponse>(
-            parameters, callback!);
-      };
+  testIamPermissions(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse>;
+  testIamPermissions(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
+      callback?:
+          BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>):
+      void;
+  testIamPermissions(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
+      callback?:
+          BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>):
+      void|AxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:testIamPermissions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleIamV1__TestIamPermissionsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleIamV1__TestIamPermissionsResponse>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Locations {
   root: Ml;
   constructor(root: Ml) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * ml.projects.locations.get
@@ -1519,32 +1687,45 @@ export class Resource$Projects$Locations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudMlV1__Location>,
-       callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Location>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudMlV1__Location>(
-            parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$GoogleCloudMlV1__Location>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudMlV1__Location>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Location>): void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudMlV1__Location>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Location>):
+      void|AxiosPromise<Schema$GoogleCloudMlV1__Location> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudMlV1__Location>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleCloudMlV1__Location>(parameters);
+    }
+  }
 
 
   /**
@@ -1562,34 +1743,53 @@ export class Resource$Projects$Locations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudMlV1__ListLocationsResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GoogleCloudMlV1__ListLocationsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/locations')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudMlV1__ListLocationsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudMlV1__ListLocationsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudMlV1__ListLocationsResponse>,
+      callback?:
+          BodyResponseCallback<Schema$GoogleCloudMlV1__ListLocationsResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudMlV1__ListLocationsResponse>,
+      callback?:
+          BodyResponseCallback<Schema$GoogleCloudMlV1__ListLocationsResponse>):
+      void|AxiosPromise<Schema$GoogleCloudMlV1__ListLocationsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/locations')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudMlV1__ListLocationsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleCloudMlV1__ListLocationsResponse>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Models {
@@ -1597,8 +1797,14 @@ export class Resource$Projects$Models {
   versions: Resource$Projects$Models$Versions;
   constructor(root: Ml) {
     this.root = root;
+    this.getRoot.bind(this);
     this.versions = new Resource$Projects$Models$Versions(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * ml.projects.models.create
@@ -1616,32 +1822,48 @@ export class Resource$Projects$Models {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudMlV1__Model>,
-       callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Model>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/models')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudMlV1__Model>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudMlV1__Model>;
+  create(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudMlV1__Model>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Model>): void;
+  create(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudMlV1__Model>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Model>):
+      void|AxiosPromise<Schema$GoogleCloudMlV1__Model> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/v1/{parent}/models').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudMlV1__Model>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleCloudMlV1__Model>(parameters);
+    }
+  }
 
 
   /**
@@ -1658,33 +1880,49 @@ export class Resource$Projects$Models {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
-       callback?:
-           BodyResponseCallback<Schema$GoogleLongrunning__Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleLongrunning__Operation>(
-            parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleLongrunning__Operation>;
+  delete(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
+      void;
+  delete(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
+      void|AxiosPromise<Schema$GoogleLongrunning__Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleLongrunning__Operation>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleLongrunning__Operation>(parameters);
+    }
+  }
 
 
   /**
@@ -1701,31 +1939,45 @@ export class Resource$Projects$Models {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudMlV1__Model>,
-       callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Model>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudMlV1__Model>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$GoogleCloudMlV1__Model>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudMlV1__Model>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Model>): void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudMlV1__Model>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Model>):
+      void|AxiosPromise<Schema$GoogleCloudMlV1__Model> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudMlV1__Model>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleCloudMlV1__Model>(parameters);
+    }
+  }
 
 
   /**
@@ -1741,31 +1993,46 @@ export class Resource$Projects$Models {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getIamPolicy =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
-       callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:getIamPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback!);
-      };
+  getIamPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleIamV1__Policy>;
+  getIamPolicy(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
+      callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>): void;
+  getIamPolicy(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
+      callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>):
+      void|AxiosPromise<Schema$GoogleIamV1__Policy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:getIamPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleIamV1__Policy>(parameters);
+    }
+  }
 
 
   /**
@@ -1786,34 +2053,53 @@ export class Resource$Projects$Models {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudMlV1__ListModelsResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GoogleCloudMlV1__ListModelsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/models')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudMlV1__ListModelsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudMlV1__ListModelsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudMlV1__ListModelsResponse>,
+      callback?:
+          BodyResponseCallback<Schema$GoogleCloudMlV1__ListModelsResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudMlV1__ListModelsResponse>,
+      callback?:
+          BodyResponseCallback<Schema$GoogleCloudMlV1__ListModelsResponse>):
+      void|AxiosPromise<Schema$GoogleCloudMlV1__ListModelsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/v1/{parent}/models').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudMlV1__ListModelsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleCloudMlV1__ListModelsResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -1831,33 +2117,49 @@ export class Resource$Projects$Models {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
-       callback?:
-           BodyResponseCallback<Schema$GoogleLongrunning__Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleLongrunning__Operation>(
-            parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleLongrunning__Operation>;
+  patch(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
+      void;
+  patch(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
+      void|AxiosPromise<Schema$GoogleLongrunning__Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleLongrunning__Operation>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleLongrunning__Operation>(parameters);
+    }
+  }
 
 
   /**
@@ -1874,31 +2176,46 @@ export class Resource$Projects$Models {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setIamPolicy =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
-       callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:setIamPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback!);
-      };
+  setIamPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleIamV1__Policy>;
+  setIamPolicy(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
+      callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>): void;
+  setIamPolicy(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
+      callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>):
+      void|AxiosPromise<Schema$GoogleIamV1__Policy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:setIamPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleIamV1__Policy>(parameters);
+    }
+  }
 
 
   /**
@@ -1918,40 +2235,65 @@ export class Resource$Projects$Models {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  testIamPermissions =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GoogleIamV1__TestIamPermissionsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:testIamPermissions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleIamV1__TestIamPermissionsResponse>(
-            parameters, callback!);
-      };
+  testIamPermissions(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse>;
+  testIamPermissions(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
+      callback?:
+          BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>):
+      void;
+  testIamPermissions(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
+      callback?:
+          BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>):
+      void|AxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:testIamPermissions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleIamV1__TestIamPermissionsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleIamV1__TestIamPermissionsResponse>(
+          parameters);
+    }
+  }
 }
 export class Resource$Projects$Models$Versions {
   root: Ml;
   constructor(root: Ml) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * ml.projects.models.versions.create
@@ -1972,34 +2314,50 @@ export class Resource$Projects$Models$Versions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
-       callback?:
-           BodyResponseCallback<Schema$GoogleLongrunning__Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/versions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleLongrunning__Operation>(
-            parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleLongrunning__Operation>;
+  create(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
+      void;
+  create(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
+      void|AxiosPromise<Schema$GoogleLongrunning__Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/versions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleLongrunning__Operation>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleLongrunning__Operation>(parameters);
+    }
+  }
 
 
   /**
@@ -2017,33 +2375,49 @@ export class Resource$Projects$Models$Versions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
-       callback?:
-           BodyResponseCallback<Schema$GoogleLongrunning__Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleLongrunning__Operation>(
-            parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleLongrunning__Operation>;
+  delete(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
+      void;
+  delete(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
+      void|AxiosPromise<Schema$GoogleLongrunning__Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleLongrunning__Operation>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleLongrunning__Operation>(parameters);
+    }
+  }
 
 
   /**
@@ -2062,32 +2436,45 @@ export class Resource$Projects$Models$Versions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudMlV1__Version>,
-       callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Version>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudMlV1__Version>(
-            parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$GoogleCloudMlV1__Version>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudMlV1__Version>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Version>): void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudMlV1__Version>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Version>):
+      void|AxiosPromise<Schema$GoogleCloudMlV1__Version> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudMlV1__Version>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleCloudMlV1__Version>(parameters);
+    }
+  }
 
 
   /**
@@ -2110,34 +2497,53 @@ export class Resource$Projects$Models$Versions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudMlV1__ListVersionsResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GoogleCloudMlV1__ListVersionsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/versions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudMlV1__ListVersionsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudMlV1__ListVersionsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudMlV1__ListVersionsResponse>,
+      callback?:
+          BodyResponseCallback<Schema$GoogleCloudMlV1__ListVersionsResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudMlV1__ListVersionsResponse>,
+      callback?:
+          BodyResponseCallback<Schema$GoogleCloudMlV1__ListVersionsResponse>):
+      void|AxiosPromise<Schema$GoogleCloudMlV1__ListVersionsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/versions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudMlV1__ListVersionsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleCloudMlV1__ListVersionsResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -2155,33 +2561,49 @@ export class Resource$Projects$Models$Versions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
-       callback?:
-           BodyResponseCallback<Schema$GoogleLongrunning__Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleLongrunning__Operation>(
-            parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleLongrunning__Operation>;
+  patch(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
+      void;
+  patch(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
+      void|AxiosPromise<Schema$GoogleLongrunning__Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleLongrunning__Operation>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleLongrunning__Operation>(parameters);
+    }
+  }
 
 
   /**
@@ -2201,33 +2623,48 @@ export class Resource$Projects$Models$Versions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setDefault =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudMlV1__Version>,
-       callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Version>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}:setDefault')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudMlV1__Version>(
-            parameters, callback!);
-      };
+  setDefault(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudMlV1__Version>;
+  setDefault(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudMlV1__Version>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Version>): void;
+  setDefault(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudMlV1__Version>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Version>):
+      void|AxiosPromise<Schema$GoogleCloudMlV1__Version> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}:setDefault')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudMlV1__Version>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleCloudMlV1__Version>(parameters);
+    }
+  }
 }
 
 
@@ -2235,7 +2672,13 @@ export class Resource$Projects$Operations {
   root: Ml;
   constructor(root: Ml) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * ml.projects.operations.cancel
@@ -2257,32 +2700,46 @@ export class Resource$Projects$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  cancel =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
-       callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}:cancel')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters, callback!);
-      };
+  cancel(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleProtobuf__Empty>;
+  cancel(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>): void;
+  cancel(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>):
+      void|AxiosPromise<Schema$GoogleProtobuf__Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -2300,31 +2757,46 @@ export class Resource$Projects$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
-       callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleProtobuf__Empty>;
+  delete(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>): void;
+  delete(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>):
+      void|AxiosPromise<Schema$GoogleProtobuf__Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -2341,33 +2813,47 @@ export class Resource$Projects$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
-       callback?:
-           BodyResponseCallback<Schema$GoogleLongrunning__Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleLongrunning__Operation>(
-            parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleLongrunning__Operation>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
+      void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
+      void|AxiosPromise<Schema$GoogleLongrunning__Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleLongrunning__Operation>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleLongrunning__Operation>(parameters);
+    }
+  }
 
 
   /**
@@ -2393,32 +2879,50 @@ export class Resource$Projects$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleLongrunning__ListOperationsResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GoogleLongrunning__ListOperationsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}/operations')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleLongrunning__ListOperationsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleLongrunning__ListOperationsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunning__ListOperationsResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleLongrunning__ListOperationsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunning__ListOperationsResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleLongrunning__ListOperationsResponse>):
+      void|AxiosPromise<Schema$GoogleLongrunning__ListOperationsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}/operations')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleLongrunning__ListOperationsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleLongrunning__ListOperationsResponse>(
+          parameters);
+    }
+  }
 }

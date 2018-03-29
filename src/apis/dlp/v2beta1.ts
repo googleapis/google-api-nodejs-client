@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -57,12 +59,17 @@ export class Dlp {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.content = new Resource$Content(this);
     this.dataSource = new Resource$Datasource(this);
     this.inspect = new Resource$Inspect(this);
     this.riskAnalysis = new Resource$Riskanalysis(this);
     this.rootCategories = new Resource$Rootcategories(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -2006,7 +2013,13 @@ export class Resource$Content {
   root: Dlp;
   constructor(root: Dlp) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dlp.content.deidentify
@@ -2021,35 +2034,52 @@ export class Resource$Content {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  deidentify =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta1DeidentifyContentResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta1DeidentifyContentResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2beta1/content:deidentify')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<
-            Schema$GooglePrivacyDlpV2beta1DeidentifyContentResponse>(
-            parameters, callback!);
-      };
+  deidentify(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GooglePrivacyDlpV2beta1DeidentifyContentResponse>;
+  deidentify(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2beta1DeidentifyContentResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2beta1DeidentifyContentResponse>): void;
+  deidentify(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2beta1DeidentifyContentResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2beta1DeidentifyContentResponse>): void|
+      AxiosPromise<Schema$GooglePrivacyDlpV2beta1DeidentifyContentResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/content:deidentify')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GooglePrivacyDlpV2beta1DeidentifyContentResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<
+          Schema$GooglePrivacyDlpV2beta1DeidentifyContentResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2065,34 +2095,52 @@ export class Resource$Content {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  inspect =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta1InspectContentResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta1InspectContentResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2beta1/content:inspect')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$GooglePrivacyDlpV2beta1InspectContentResponse>(
-            parameters, callback!);
-      };
+  inspect(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GooglePrivacyDlpV2beta1InspectContentResponse>;
+  inspect(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2beta1InspectContentResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2beta1InspectContentResponse>): void;
+  inspect(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2beta1InspectContentResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2beta1InspectContentResponse>):
+      void|AxiosPromise<Schema$GooglePrivacyDlpV2beta1InspectContentResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/content:inspect')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GooglePrivacyDlpV2beta1InspectContentResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<
+          Schema$GooglePrivacyDlpV2beta1InspectContentResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2108,41 +2156,65 @@ export class Resource$Content {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  redact =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta1RedactContentResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta1RedactContentResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2beta1/content:redact')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$GooglePrivacyDlpV2beta1RedactContentResponse>(
-            parameters, callback!);
-      };
+  redact(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GooglePrivacyDlpV2beta1RedactContentResponse>;
+  redact(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2beta1RedactContentResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2beta1RedactContentResponse>): void;
+  redact(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2beta1RedactContentResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2beta1RedactContentResponse>):
+      void|AxiosPromise<Schema$GooglePrivacyDlpV2beta1RedactContentResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/content:redact')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GooglePrivacyDlpV2beta1RedactContentResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<
+          Schema$GooglePrivacyDlpV2beta1RedactContentResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Datasource {
   root: Dlp;
   constructor(root: Dlp) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dlp.dataSource.analyze
@@ -2157,33 +2229,48 @@ export class Resource$Datasource {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  analyze =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-       callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2beta1/dataSource:analyze')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-            parameters, callback!);
-      };
+  analyze(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleLongrunningOperation>;
+  analyze(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
+  analyze(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+      void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/dataSource:analyze')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleLongrunningOperation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+    }
+  }
 }
 
 export class Resource$Inspect {
@@ -2192,15 +2279,26 @@ export class Resource$Inspect {
   results: Resource$Inspect$Results;
   constructor(root: Dlp) {
     this.root = root;
+    this.getRoot.bind(this);
     this.operations = new Resource$Inspect$Operations(root);
     this.results = new Resource$Inspect$Results(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Inspect$Operations {
   root: Dlp;
   constructor(root: Dlp) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dlp.inspect.operations.cancel
@@ -2217,31 +2315,46 @@ export class Resource$Inspect$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  cancel =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2beta1/{name}:cancel')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback!);
-      };
+  cancel(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleProtobufEmpty>;
+  cancel(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+  cancel(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
+      void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{name}:cancel')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+    }
+  }
 
 
   /**
@@ -2257,33 +2370,48 @@ export class Resource$Inspect$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-       callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2beta1/inspect/operations')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-            parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleLongrunningOperation>;
+  create(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
+  create(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+      void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/inspect/operations')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleLongrunningOperation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+    }
+  }
 
 
   /**
@@ -2298,31 +2426,45 @@ export class Resource$Inspect$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleProtobufEmpty>;
+  delete(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+  delete(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
+      void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+    }
+  }
 
 
   /**
@@ -2339,33 +2481,45 @@ export class Resource$Inspect$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-       callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-            parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$GoogleLongrunningOperation>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+      void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleLongrunningOperation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+    }
+  }
 
 
   /**
@@ -2383,34 +2537,52 @@ export class Resource$Inspect$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GoogleLongrunningListOperationsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
+      callback?:
+          BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
+      callback?:
+          BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>):
+      void|AxiosPromise<Schema$GoogleLongrunningListOperationsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Inspect$Results {
@@ -2418,14 +2590,25 @@ export class Resource$Inspect$Results {
   findings: Resource$Inspect$Results$Findings;
   constructor(root: Dlp) {
     this.root = root;
+    this.getRoot.bind(this);
     this.findings = new Resource$Inspect$Results$Findings(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Inspect$Results$Findings {
   root: Dlp;
   constructor(root: Dlp) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dlp.inspect.results.findings.list
@@ -2442,35 +2625,54 @@ export class Resource$Inspect$Results$Findings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta1ListInspectFindingsResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta1ListInspectFindingsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2beta1/{name}/findings')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<
-            Schema$GooglePrivacyDlpV2beta1ListInspectFindingsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GooglePrivacyDlpV2beta1ListInspectFindingsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2beta1ListInspectFindingsResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2beta1ListInspectFindingsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2beta1ListInspectFindingsResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2beta1ListInspectFindingsResponse>): void|
+      AxiosPromise<Schema$GooglePrivacyDlpV2beta1ListInspectFindingsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{name}/findings')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<
+          Schema$GooglePrivacyDlpV2beta1ListInspectFindingsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<
+          Schema$GooglePrivacyDlpV2beta1ListInspectFindingsResponse>(
+          parameters);
+    }
+  }
 }
 
 
@@ -2480,14 +2682,25 @@ export class Resource$Riskanalysis {
   operations: Resource$Riskanalysis$Operations;
   constructor(root: Dlp) {
     this.root = root;
+    this.getRoot.bind(this);
     this.operations = new Resource$Riskanalysis$Operations(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Riskanalysis$Operations {
   root: Dlp;
   constructor(root: Dlp) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dlp.riskAnalysis.operations.cancel
@@ -2504,31 +2717,46 @@ export class Resource$Riskanalysis$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  cancel =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2beta1/{name}:cancel')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback!);
-      };
+  cancel(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleProtobufEmpty>;
+  cancel(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+  cancel(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
+      void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{name}:cancel')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+    }
+  }
 
 
   /**
@@ -2543,31 +2771,45 @@ export class Resource$Riskanalysis$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleProtobufEmpty>;
+  delete(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+  delete(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
+      void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+    }
+  }
 
 
   /**
@@ -2584,33 +2826,45 @@ export class Resource$Riskanalysis$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-       callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-            parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$GoogleLongrunningOperation>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+      void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleLongrunningOperation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+    }
+  }
 
 
   /**
@@ -2628,34 +2882,52 @@ export class Resource$Riskanalysis$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GoogleLongrunningListOperationsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
+      callback?:
+          BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
+      callback?:
+          BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>):
+      void|AxiosPromise<Schema$GoogleLongrunningListOperationsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
+          parameters);
+    }
+  }
 }
 
 
@@ -2664,8 +2936,14 @@ export class Resource$Rootcategories {
   infoTypes: Resource$Rootcategories$Infotypes;
   constructor(root: Dlp) {
     this.root = root;
+    this.getRoot.bind(this);
     this.infoTypes = new Resource$Rootcategories$Infotypes(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dlp.rootCategories.list
@@ -2679,41 +2957,65 @@ export class Resource$Rootcategories {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta1ListRootCategoriesResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta1ListRootCategoriesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2beta1/rootCategories')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<
-            Schema$GooglePrivacyDlpV2beta1ListRootCategoriesResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GooglePrivacyDlpV2beta1ListRootCategoriesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2beta1ListRootCategoriesResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2beta1ListRootCategoriesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2beta1ListRootCategoriesResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2beta1ListRootCategoriesResponse>): void|
+      AxiosPromise<Schema$GooglePrivacyDlpV2beta1ListRootCategoriesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/rootCategories')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<
+          Schema$GooglePrivacyDlpV2beta1ListRootCategoriesResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<
+          Schema$GooglePrivacyDlpV2beta1ListRootCategoriesResponse>(parameters);
+    }
+  }
 }
 export class Resource$Rootcategories$Infotypes {
   root: Dlp;
   constructor(root: Dlp) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dlp.rootCategories.infoTypes.list
@@ -2728,32 +3030,50 @@ export class Resource$Rootcategories$Infotypes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta1ListInfoTypesResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2beta1ListInfoTypesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2beta1/rootCategories/{category}/infoTypes')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['category'],
-          pathParams: ['category'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GooglePrivacyDlpV2beta1ListInfoTypesResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GooglePrivacyDlpV2beta1ListInfoTypesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2beta1ListInfoTypesResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2beta1ListInfoTypesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2beta1ListInfoTypesResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2beta1ListInfoTypesResponse>):
+      void|AxiosPromise<Schema$GooglePrivacyDlpV2beta1ListInfoTypesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/rootCategories/{category}/infoTypes')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['category'],
+      pathParams: ['category'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GooglePrivacyDlpV2beta1ListInfoTypesResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<
+          Schema$GooglePrivacyDlpV2beta1ListInfoTypesResponse>(parameters);
+    }
+  }
 }

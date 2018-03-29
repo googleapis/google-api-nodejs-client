@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -53,8 +55,13 @@ export class Cloudtrace {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.projects = new Resource$Projects(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -472,7 +479,12 @@ export class Resource$Projects {
   traces: Resource$Projects$Traces;
   constructor(root: Cloudtrace) {
     this.root = root;
+    this.getRoot.bind(this);
     this.traces = new Resource$Projects$Traces(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Projects$Traces {
@@ -480,8 +492,14 @@ export class Resource$Projects$Traces {
   spans: Resource$Projects$Traces$Spans;
   constructor(root: Cloudtrace) {
     this.root = root;
+    this.getRoot.bind(this);
     this.spans = new Resource$Projects$Traces$Spans(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * cloudtrace.projects.traces.batchWrite
@@ -497,36 +515,55 @@ export class Resource$Projects$Traces {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchWrite =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudtrace.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}/traces:batchWrite')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  batchWrite(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  batchWrite(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  batchWrite(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudtrace.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}/traces:batchWrite')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 }
 export class Resource$Projects$Traces$Spans {
   root: Cloudtrace;
   constructor(root: Cloudtrace) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * cloudtrace.projects.traces.spans.createSpan
@@ -541,27 +578,40 @@ export class Resource$Projects$Traces$Spans {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  createSpan =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Span>,
-       callback?: BodyResponseCallback<Schema$Span>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudtrace.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Span>(parameters, callback!);
-      };
+  createSpan(params: any, options?: MethodOptions): AxiosPromise<Schema$Span>;
+  createSpan(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Span>,
+      callback?: BodyResponseCallback<Schema$Span>): void;
+  createSpan(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Span>,
+      callback?: BodyResponseCallback<Schema$Span>):
+      void|AxiosPromise<Schema$Span> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudtrace.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Span>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Span>(parameters);
+    }
+  }
 }

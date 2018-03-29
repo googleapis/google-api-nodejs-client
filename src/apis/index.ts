@@ -197,6 +197,7 @@ import * as taskqueue_v1beta1 from './taskqueue/v1beta1';
 import * as taskqueue_v1beta2 from './taskqueue/v1beta2';
 import * as tasks_v1 from './tasks/v1';
 import * as testing_v1 from './testing/v1';
+import * as texttospeech_v1beta1 from './texttospeech/v1beta1';
 import * as toolresults_v1beta3 from './toolresults/v1beta3';
 import * as tpu_v1alpha1 from './tpu/v1alpha1';
 import * as translate_v2 from './translate/v2';
@@ -632,6 +633,9 @@ const APIS: APIList = {
   testing: {
     'v1': testing_v1.Testing,
   },
+  texttospeech: {
+    'v1beta1': texttospeech_v1beta1.Texttospeech,
+  },
   toolresults: {
     'v1beta3': toolresults_v1beta3.Toolresults,
   },
@@ -1045,6 +1049,9 @@ export class GeneratedAPIs {
   }
   testing(options: ServiceOptions|string) {
     return this.getAPI('testing', options);
+  }
+  texttospeech(options: ServiceOptions|string) {
+    return this.getAPI('texttospeech', options);
   }
   toolresults(options: ServiceOptions|string) {
     return this.getAPI('toolresults', options);

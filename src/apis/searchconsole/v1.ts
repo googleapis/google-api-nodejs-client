@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -51,8 +53,13 @@ export class Searchconsole {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.urlTestingTools = new Resource$Urltestingtools(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -155,15 +162,26 @@ export class Resource$Urltestingtools {
   mobileFriendlyTest: Resource$Urltestingtools$Mobilefriendlytest;
   constructor(root: Searchconsole) {
     this.root = root;
+    this.getRoot.bind(this);
     this.mobileFriendlyTest =
         new Resource$Urltestingtools$Mobilefriendlytest(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Urltestingtools$Mobilefriendlytest {
   root: Searchconsole;
   constructor(root: Searchconsole) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * searchconsole.urlTestingTools.mobileFriendlyTest.run
@@ -177,33 +195,46 @@ export class Resource$Urltestingtools$Mobilefriendlytest {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  run =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>,
-       callback?:
-           BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://searchconsole.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/urlTestingTools/mobileFriendlyTest:run')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$RunMobileFriendlyTestResponse>(
-            parameters, callback!);
-      };
+  run(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$RunMobileFriendlyTestResponse>;
+  run(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>,
+      callback?: BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>):
+      void;
+  run(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>,
+      callback?: BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>):
+      void|AxiosPromise<Schema$RunMobileFriendlyTestResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://searchconsole.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/urlTestingTools/mobileFriendlyTest:run')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$RunMobileFriendlyTestResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$RunMobileFriendlyTestResponse>(parameters);
+    }
+  }
 }

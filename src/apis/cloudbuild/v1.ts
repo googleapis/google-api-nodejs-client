@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -52,12 +54,58 @@ export class Cloudbuild {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.operations = new Resource$Operations(this);
     this.projects = new Resource$Projects(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
 }
 
+/**
+ * Files in the workspace to upload to Cloud Storage upon successful completion
+ * of all build steps.
+ */
+export interface Schema$ArtifactObjects {
+  /**
+   * Cloud Storage bucket and optional object path, in the form
+   * &quot;gs://bucket/path/to/somewhere/&quot;. (see [Bucket Name
+   * Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
+   * Files in the workspace matching any path pattern will be uploaded to Cloud
+   * Storage with this location as a prefix.
+   */
+  location: string;
+  /**
+   * Path globs used to match files in the build&#39;s workspace.
+   */
+  paths: string[];
+}
+/**
+ * Artifacts produced by a build that should be uploaded upon successful
+ * completion of all build steps.
+ */
+export interface Schema$Artifacts {
+  /**
+   * A list of images to be pushed upon the successful completion of all build
+   * steps.  The images will be pushed using the builder service account&#39;s
+   * credentials.  The digests of the pushed images will be stored in the Build
+   * resource&#39;s results field.  If any of the images fail to be pushed, the
+   * build is marked FAILURE.
+   */
+  images: string[];
+  /**
+   * A list of objects to be uploaded to Cloud Storage upon successful
+   * completion of all build steps.  Files in the workspace matching specified
+   * paths globs will be uploaded to the specified Cloud Storage location using
+   * the builder service account&#39;s credentials.  The location and generation
+   * of the uploaded objects will be stored in the Build resource&#39;s results
+   * field.  If any objects fail to be pushed, the build is marked FAILURE.
+   */
+  objects: Schema$ArtifactObjects;
+}
 /**
  * A build resource in the Container Builder API.  At a high level, a `Build`
  * describes where to find source code, how to build it (for example, the
@@ -72,6 +120,11 @@ export class Cloudbuild {
  * $COMMIT_SHA.
  */
 export interface Schema$Build {
+  /**
+   * Artifacts produced by the build that should be uploaded upon successful
+   * completion of all build steps.
+   */
+  artifacts: Schema$Artifacts;
   /**
    * The ID of the `BuildTrigger` that triggered this build, if it was triggered
    * automatically. @OutputOnly
@@ -519,6 +572,10 @@ export interface Schema$RepoSource {
  */
 export interface Schema$Results {
   /**
+   * Path to the artifact manifest. Only populated when artifacts are uploaded.
+   */
+  artifactManifest: string;
+  /**
    * List of build step digests, in the order corresponding to build step
    * indices.
    */
@@ -527,6 +584,10 @@ export interface Schema$Results {
    * Container images that were built as a part of the build.
    */
   images: Schema$BuiltImage[];
+  /**
+   * Number of artifacts uploaded. Only populated when artifacts are uploaded.
+   */
+  numArtifacts: string;
 }
 /**
  * Specifies a build to retry.
@@ -698,7 +759,13 @@ export class Resource$Operations {
   root: Cloudbuild;
   constructor(root: Cloudbuild) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * cloudbuild.operations.cancel
@@ -721,30 +788,42 @@ export class Resource$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  cancel =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}:cancel')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  cancel(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  cancel(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  cancel(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -761,30 +840,42 @@ export class Resource$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 
 
   /**
@@ -810,31 +901,47 @@ export class Resource$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListOperationsResponse>,
-       callback?: BodyResponseCallback<Schema$ListOperationsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListOperationsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListOperationsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
+      void|AxiosPromise<Schema$ListOperationsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListOperationsResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Projects {
@@ -843,15 +950,26 @@ export class Resource$Projects {
   triggers: Resource$Projects$Triggers;
   constructor(root: Cloudbuild) {
     this.root = root;
+    this.getRoot.bind(this);
     this.builds = new Resource$Projects$Builds(root);
     this.triggers = new Resource$Projects$Triggers(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Projects$Builds {
   root: Cloudbuild;
   constructor(root: Cloudbuild) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * cloudbuild.projects.builds.cancel
@@ -867,30 +985,43 @@ export class Resource$Projects$Builds {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  cancel =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Build>,
-       callback?: BodyResponseCallback<Schema$Build>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/projects/{projectId}/builds/{id}:cancel')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'id'],
-          pathParams: ['id', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Build>(parameters, callback!);
-      };
+  cancel(params: any, options?: MethodOptions): AxiosPromise<Schema$Build>;
+  cancel(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Build>,
+      callback?: BodyResponseCallback<Schema$Build>): void;
+  cancel(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Build>,
+      callback?: BodyResponseCallback<Schema$Build>):
+      void|AxiosPromise<Schema$Build> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/projects/{projectId}/builds/{id}:cancel')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'id'],
+      pathParams: ['id', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Build>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Build>(parameters);
+    }
+  }
 
 
   /**
@@ -909,31 +1040,45 @@ export class Resource$Projects$Builds {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/projects/{projectId}/builds')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/projects/{projectId}/builds')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 
 
   /**
@@ -951,30 +1096,41 @@ export class Resource$Projects$Builds {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Build>,
-       callback?: BodyResponseCallback<Schema$Build>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/projects/{projectId}/builds/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'id'],
-          pathParams: ['id', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Build>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Build>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Build>,
+      callback?: BodyResponseCallback<Schema$Build>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Build>,
+      callback?: BodyResponseCallback<Schema$Build>):
+      void|AxiosPromise<Schema$Build> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/projects/{projectId}/builds/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'id'],
+      pathParams: ['id', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Build>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Build>(parameters);
+    }
+  }
 
 
   /**
@@ -993,31 +1149,46 @@ export class Resource$Projects$Builds {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListBuildsResponse>,
-       callback?: BodyResponseCallback<Schema$ListBuildsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/projects/{projectId}/builds')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListBuildsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListBuildsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListBuildsResponse>,
+      callback?: BodyResponseCallback<Schema$ListBuildsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListBuildsResponse>,
+      callback?: BodyResponseCallback<Schema$ListBuildsResponse>):
+      void|AxiosPromise<Schema$ListBuildsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/projects/{projectId}/builds')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListBuildsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListBuildsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1049,38 +1220,58 @@ export class Resource$Projects$Builds {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  retry =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/projects/{projectId}/builds/{id}:retry')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'id'],
-          pathParams: ['id', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  retry(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  retry(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  retry(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/projects/{projectId}/builds/{id}:retry')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'id'],
+      pathParams: ['id', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Triggers {
   root: Cloudbuild;
   constructor(root: Cloudbuild) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * cloudbuild.projects.triggers.create
@@ -1095,31 +1286,46 @@ export class Resource$Projects$Triggers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$BuildTrigger>,
-       callback?: BodyResponseCallback<Schema$BuildTrigger>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/projects/{projectId}/triggers')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$BuildTrigger>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$BuildTrigger>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$BuildTrigger>,
+      callback?: BodyResponseCallback<Schema$BuildTrigger>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$BuildTrigger>,
+      callback?: BodyResponseCallback<Schema$BuildTrigger>):
+      void|AxiosPromise<Schema$BuildTrigger> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/projects/{projectId}/triggers')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BuildTrigger>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BuildTrigger>(parameters);
+    }
+  }
 
 
   /**
@@ -1136,30 +1342,43 @@ export class Resource$Projects$Triggers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/projects/{projectId}/triggers/{triggerId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'triggerId'],
-          pathParams: ['projectId', 'triggerId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/projects/{projectId}/triggers/{triggerId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'triggerId'],
+      pathParams: ['projectId', 'triggerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -1176,31 +1395,43 @@ export class Resource$Projects$Triggers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$BuildTrigger>,
-       callback?: BodyResponseCallback<Schema$BuildTrigger>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/projects/{projectId}/triggers/{triggerId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'triggerId'],
-          pathParams: ['projectId', 'triggerId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$BuildTrigger>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$BuildTrigger>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$BuildTrigger>,
+      callback?: BodyResponseCallback<Schema$BuildTrigger>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$BuildTrigger>,
+      callback?: BodyResponseCallback<Schema$BuildTrigger>):
+      void|AxiosPromise<Schema$BuildTrigger> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/projects/{projectId}/triggers/{triggerId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'triggerId'],
+      pathParams: ['projectId', 'triggerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BuildTrigger>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BuildTrigger>(parameters);
+    }
+  }
 
 
   /**
@@ -1215,33 +1446,48 @@ export class Resource$Projects$Triggers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListBuildTriggersResponse>,
-       callback?: BodyResponseCallback<Schema$ListBuildTriggersResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/projects/{projectId}/triggers')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListBuildTriggersResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListBuildTriggersResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListBuildTriggersResponse>,
+      callback?: BodyResponseCallback<Schema$ListBuildTriggersResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListBuildTriggersResponse>,
+      callback?: BodyResponseCallback<Schema$ListBuildTriggersResponse>):
+      void|AxiosPromise<Schema$ListBuildTriggersResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/projects/{projectId}/triggers')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListBuildTriggersResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListBuildTriggersResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1259,31 +1505,46 @@ export class Resource$Projects$Triggers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$BuildTrigger>,
-       callback?: BodyResponseCallback<Schema$BuildTrigger>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/projects/{projectId}/triggers/{triggerId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'triggerId'],
-          pathParams: ['projectId', 'triggerId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$BuildTrigger>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$BuildTrigger>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$BuildTrigger>,
+      callback?: BodyResponseCallback<Schema$BuildTrigger>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$BuildTrigger>,
+      callback?: BodyResponseCallback<Schema$BuildTrigger>):
+      void|AxiosPromise<Schema$BuildTrigger> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/projects/{projectId}/triggers/{triggerId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'triggerId'],
+      pathParams: ['projectId', 'triggerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BuildTrigger>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BuildTrigger>(parameters);
+    }
+  }
 
 
   /**
@@ -1300,30 +1561,41 @@ export class Resource$Projects$Triggers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  run =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v1/projects/{projectId}/triggers/{triggerId}:run')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'triggerId'],
-          pathParams: ['projectId', 'triggerId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  run(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  run(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  run(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/projects/{projectId}/triggers/{triggerId}:run')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'triggerId'],
+      pathParams: ['projectId', 'triggerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 }

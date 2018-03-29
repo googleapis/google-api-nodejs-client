@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -51,8 +53,13 @@ export class Fitness {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.users = new Resource$Users(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -607,16 +614,27 @@ export class Resource$Users {
   sessions: Resource$Users$Sessions;
   constructor(root: Fitness) {
     this.root = root;
+    this.getRoot.bind(this);
     this.dataset = new Resource$Users$Dataset(root);
     this.dataSources = new Resource$Users$Datasources(root);
     this.sessions = new Resource$Users$Sessions(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Users$Dataset {
   root: Fitness;
   constructor(root: Fitness) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * fitness.users.dataset.aggregate
@@ -633,31 +651,46 @@ export class Resource$Users$Dataset {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  aggregate =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AggregateResponse>,
-       callback?: BodyResponseCallback<Schema$AggregateResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/fitness/v1/users/{userId}/dataset:aggregate')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AggregateResponse>(parameters, callback!);
-      };
+  aggregate(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AggregateResponse>;
+  aggregate(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AggregateResponse>,
+      callback?: BodyResponseCallback<Schema$AggregateResponse>): void;
+  aggregate(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AggregateResponse>,
+      callback?: BodyResponseCallback<Schema$AggregateResponse>):
+      void|AxiosPromise<Schema$AggregateResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/fitness/v1/users/{userId}/dataset:aggregate')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AggregateResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AggregateResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Users$Datasources {
@@ -666,10 +699,16 @@ export class Resource$Users$Datasources {
   datasets: Resource$Users$Datasources$Datasets;
   constructor(root: Fitness) {
     this.root = root;
+    this.getRoot.bind(this);
     this.dataPointChanges =
         new Resource$Users$Datasources$Datapointchanges(root);
     this.datasets = new Resource$Users$Datasources$Datasets(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * fitness.users.dataSources.create
@@ -691,31 +730,45 @@ export class Resource$Users$Datasources {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$DataSource>,
-       callback?: BodyResponseCallback<Schema$DataSource>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/fitness/v1/users/{userId}/dataSources')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$DataSource>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$DataSource>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$DataSource>,
+      callback?: BodyResponseCallback<Schema$DataSource>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$DataSource>,
+      callback?: BodyResponseCallback<Schema$DataSource>):
+      void|AxiosPromise<Schema$DataSource> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/fitness/v1/users/{userId}/dataSources')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DataSource>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DataSource>(parameters);
+    }
+  }
 
 
   /**
@@ -732,32 +785,46 @@ export class Resource$Users$Datasources {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$DataSource>,
-       callback?: BodyResponseCallback<Schema$DataSource>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/fitness/v1/users/{userId}/dataSources/{dataSourceId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'dataSourceId'],
-          pathParams: ['dataSourceId', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$DataSource>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$DataSource>;
+  delete(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$DataSource>,
+      callback?: BodyResponseCallback<Schema$DataSource>): void;
+  delete(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$DataSource>,
+      callback?: BodyResponseCallback<Schema$DataSource>):
+      void|AxiosPromise<Schema$DataSource> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/fitness/v1/users/{userId}/dataSources/{dataSourceId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'dataSourceId'],
+      pathParams: ['dataSourceId', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DataSource>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DataSource>(parameters);
+    }
+  }
 
 
   /**
@@ -773,32 +840,44 @@ export class Resource$Users$Datasources {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$DataSource>,
-       callback?: BodyResponseCallback<Schema$DataSource>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/fitness/v1/users/{userId}/dataSources/{dataSourceId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'dataSourceId'],
-          pathParams: ['dataSourceId', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$DataSource>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$DataSource>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$DataSource>,
+      callback?: BodyResponseCallback<Schema$DataSource>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$DataSource>,
+      callback?: BodyResponseCallback<Schema$DataSource>):
+      void|AxiosPromise<Schema$DataSource> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/fitness/v1/users/{userId}/dataSources/{dataSourceId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'dataSourceId'],
+      pathParams: ['dataSourceId', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DataSource>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DataSource>(parameters);
+    }
+  }
 
 
   /**
@@ -817,32 +896,48 @@ export class Resource$Users$Datasources {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListDataSourcesResponse>,
-       callback?: BodyResponseCallback<Schema$ListDataSourcesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/fitness/v1/users/{userId}/dataSources')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListDataSourcesResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListDataSourcesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListDataSourcesResponse>,
+      callback?: BodyResponseCallback<Schema$ListDataSourcesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListDataSourcesResponse>,
+      callback?: BodyResponseCallback<Schema$ListDataSourcesResponse>):
+      void|AxiosPromise<Schema$ListDataSourcesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/fitness/v1/users/{userId}/dataSources')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListDataSourcesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListDataSourcesResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -862,32 +957,46 @@ export class Resource$Users$Datasources {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$DataSource>,
-       callback?: BodyResponseCallback<Schema$DataSource>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/fitness/v1/users/{userId}/dataSources/{dataSourceId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'dataSourceId'],
-          pathParams: ['dataSourceId', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$DataSource>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$DataSource>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$DataSource>,
+      callback?: BodyResponseCallback<Schema$DataSource>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$DataSource>,
+      callback?: BodyResponseCallback<Schema$DataSource>):
+      void|AxiosPromise<Schema$DataSource> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/fitness/v1/users/{userId}/dataSources/{dataSourceId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'dataSourceId'],
+      pathParams: ['dataSourceId', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DataSource>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DataSource>(parameters);
+    }
+  }
 
 
   /**
@@ -906,38 +1015,58 @@ export class Resource$Users$Datasources {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$DataSource>,
-       callback?: BodyResponseCallback<Schema$DataSource>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/fitness/v1/users/{userId}/dataSources/{dataSourceId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'dataSourceId'],
-          pathParams: ['dataSourceId', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$DataSource>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$DataSource>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$DataSource>,
+      callback?: BodyResponseCallback<Schema$DataSource>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$DataSource>,
+      callback?: BodyResponseCallback<Schema$DataSource>):
+      void|AxiosPromise<Schema$DataSource> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/fitness/v1/users/{userId}/dataSources/{dataSourceId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'dataSourceId'],
+      pathParams: ['dataSourceId', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DataSource>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DataSource>(parameters);
+    }
+  }
 }
 export class Resource$Users$Datasources$Datapointchanges {
   root: Fitness;
   constructor(root: Fitness) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * fitness.users.dataSources.dataPointChanges.list
@@ -954,43 +1083,65 @@ export class Resource$Users$Datasources$Datapointchanges {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListDataPointChangesResponse>,
-       callback?:
-           BodyResponseCallback<Schema$ListDataPointChangesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/fitness/v1/users/{userId}/dataSources/{dataSourceId}/dataPointChanges')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'dataSourceId'],
-          pathParams: ['dataSourceId', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListDataPointChangesResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListDataPointChangesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListDataPointChangesResponse>,
+      callback?: BodyResponseCallback<Schema$ListDataPointChangesResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListDataPointChangesResponse>,
+      callback?: BodyResponseCallback<Schema$ListDataPointChangesResponse>):
+      void|AxiosPromise<Schema$ListDataPointChangesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/fitness/v1/users/{userId}/dataSources/{dataSourceId}/dataPointChanges')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'dataSourceId'],
+      pathParams: ['dataSourceId', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListDataPointChangesResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListDataPointChangesResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Users$Datasources$Datasets {
   root: Fitness;
   constructor(root: Fitness) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * fitness.users.dataSources.datasets.delete
@@ -1014,32 +1165,44 @@ export class Resource$Users$Datasources$Datasets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/fitness/v1/users/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'dataSourceId', 'datasetId'],
-          pathParams: ['datasetId', 'dataSourceId', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/fitness/v1/users/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'dataSourceId', 'datasetId'],
+      pathParams: ['datasetId', 'dataSourceId', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -1062,32 +1225,43 @@ export class Resource$Users$Datasources$Datasets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-       callback?: BodyResponseCallback<Schema$Dataset>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/fitness/v1/users/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'dataSourceId', 'datasetId'],
-          pathParams: ['datasetId', 'dataSourceId', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Dataset>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Dataset>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+      callback?: BodyResponseCallback<Schema$Dataset>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+      callback?: BodyResponseCallback<Schema$Dataset>):
+      void|AxiosPromise<Schema$Dataset> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/fitness/v1/users/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'dataSourceId', 'datasetId'],
+      pathParams: ['datasetId', 'dataSourceId', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Dataset>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Dataset>(parameters);
+    }
+  }
 
 
   /**
@@ -1109,32 +1283,45 @@ export class Resource$Users$Datasources$Datasets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-       callback?: BodyResponseCallback<Schema$Dataset>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/fitness/v1/users/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'dataSourceId', 'datasetId'],
-          pathParams: ['datasetId', 'dataSourceId', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Dataset>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Dataset>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+      callback?: BodyResponseCallback<Schema$Dataset>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+      callback?: BodyResponseCallback<Schema$Dataset>):
+      void|AxiosPromise<Schema$Dataset> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/fitness/v1/users/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'dataSourceId', 'datasetId'],
+      pathParams: ['datasetId', 'dataSourceId', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Dataset>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Dataset>(parameters);
+    }
+  }
 }
 
 
@@ -1142,7 +1329,13 @@ export class Resource$Users$Sessions {
   root: Fitness;
   constructor(root: Fitness) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * fitness.users.sessions.delete
@@ -1158,31 +1351,42 @@ export class Resource$Users$Sessions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/fitness/v1/users/{userId}/sessions/{sessionId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'sessionId'],
-          pathParams: ['sessionId', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/fitness/v1/users/{userId}/sessions/{sessionId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'sessionId'],
+      pathParams: ['sessionId', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -1201,31 +1405,46 @@ export class Resource$Users$Sessions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListSessionsResponse>,
-       callback?: BodyResponseCallback<Schema$ListSessionsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/fitness/v1/users/{userId}/sessions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListSessionsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListSessionsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListSessionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListSessionsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListSessionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListSessionsResponse>):
+      void|AxiosPromise<Schema$ListSessionsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/fitness/v1/users/{userId}/sessions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListSessionsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListSessionsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1243,29 +1462,41 @@ export class Resource$Users$Sessions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Session>,
-       callback?: BodyResponseCallback<Schema$Session>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/fitness/v1/users/{userId}/sessions/{sessionId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'sessionId'],
-          pathParams: ['sessionId', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Session>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Session>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Session>,
+      callback?: BodyResponseCallback<Schema$Session>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Session>,
+      callback?: BodyResponseCallback<Schema$Session>):
+      void|AxiosPromise<Schema$Session> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/fitness/v1/users/{userId}/sessions/{sessionId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'sessionId'],
+      pathParams: ['sessionId', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Session>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Session>(parameters);
+    }
+  }
 }

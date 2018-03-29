@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -53,9 +55,14 @@ export class Digitalassetlinks {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.assetlinks = new Resource$Assetlinks(this);
     this.statements = new Resource$Statements(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -240,7 +247,13 @@ export class Resource$Assetlinks {
   root: Digitalassetlinks;
   constructor(root: Digitalassetlinks) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * digitalassetlinks.assetlinks.check
@@ -277,39 +290,60 @@ export class Resource$Assetlinks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  check =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CheckResponse>,
-       callback?: BodyResponseCallback<Schema$CheckResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://digitalassetlinks.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/assetlinks:check')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$CheckResponse>(parameters, callback!);
-      };
+  check(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CheckResponse>;
+  check(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CheckResponse>,
+      callback?: BodyResponseCallback<Schema$CheckResponse>): void;
+  check(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CheckResponse>,
+      callback?: BodyResponseCallback<Schema$CheckResponse>):
+      void|AxiosPromise<Schema$CheckResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://digitalassetlinks.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/assetlinks:check')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CheckResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CheckResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Statements {
   root: Digitalassetlinks;
   constructor(root: Digitalassetlinks) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * digitalassetlinks.statements.list
@@ -339,30 +373,44 @@ export class Resource$Statements {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListResponse>,
-       callback?: BodyResponseCallback<Schema$ListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://digitalassetlinks.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/statements:list')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$ListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListResponse>,
+      callback?: BodyResponseCallback<Schema$ListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListResponse>,
+      callback?: BodyResponseCallback<Schema$ListResponse>):
+      void|AxiosPromise<Schema$ListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://digitalassetlinks.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/v1/statements:list').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListResponse>(parameters);
+    }
+  }
 }

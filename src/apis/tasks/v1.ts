@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -52,9 +54,14 @@ export class Tasks {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.tasklists = new Resource$Tasklists(this);
     this.tasks = new Resource$Tasks(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -199,7 +206,13 @@ export class Resource$Tasklists {
   root: Tasks;
   constructor(root: Tasks) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * tasks.tasklists.delete
@@ -213,30 +226,42 @@ export class Resource$Tasklists {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/tasks/v1/users/@me/lists/{tasklist}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['tasklist'],
-          pathParams: ['tasklist'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/tasks/v1/users/@me/lists/{tasklist}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['tasklist'],
+      pathParams: ['tasklist'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -251,31 +276,42 @@ export class Resource$Tasklists {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TaskList>,
-       callback?: BodyResponseCallback<Schema$TaskList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/tasks/v1/users/@me/lists/{tasklist}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['tasklist'],
-          pathParams: ['tasklist'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TaskList>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$TaskList>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$TaskList>,
+      callback?: BodyResponseCallback<Schema$TaskList>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TaskList>,
+      callback?: BodyResponseCallback<Schema$TaskList>):
+      void|AxiosPromise<Schema$TaskList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/tasks/v1/users/@me/lists/{tasklist}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['tasklist'],
+      pathParams: ['tasklist'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TaskList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TaskList>(parameters);
+    }
+  }
 
 
   /**
@@ -291,31 +327,44 @@ export class Resource$Tasklists {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TaskList>,
-       callback?: BodyResponseCallback<Schema$TaskList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/tasks/v1/users/@me/lists')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$TaskList>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$TaskList>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$TaskList>,
+      callback?: BodyResponseCallback<Schema$TaskList>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TaskList>,
+      callback?: BodyResponseCallback<Schema$TaskList>):
+      void|AxiosPromise<Schema$TaskList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/tasks/v1/users/@me/lists')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TaskList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TaskList>(parameters);
+    }
+  }
 
 
   /**
@@ -331,31 +380,45 @@ export class Resource$Tasklists {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TaskLists>,
-       callback?: BodyResponseCallback<Schema$TaskLists>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/tasks/v1/users/@me/lists')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$TaskLists>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$TaskLists>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$TaskLists>,
+      callback?: BodyResponseCallback<Schema$TaskLists>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TaskLists>,
+      callback?: BodyResponseCallback<Schema$TaskLists>):
+      void|AxiosPromise<Schema$TaskLists> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/tasks/v1/users/@me/lists')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TaskLists>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TaskLists>(parameters);
+    }
+  }
 
 
   /**
@@ -372,31 +435,44 @@ export class Resource$Tasklists {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TaskList>,
-       callback?: BodyResponseCallback<Schema$TaskList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/tasks/v1/users/@me/lists/{tasklist}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['tasklist'],
-          pathParams: ['tasklist'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TaskList>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$TaskList>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$TaskList>,
+      callback?: BodyResponseCallback<Schema$TaskList>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TaskList>,
+      callback?: BodyResponseCallback<Schema$TaskList>):
+      void|AxiosPromise<Schema$TaskList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/tasks/v1/users/@me/lists/{tasklist}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['tasklist'],
+      pathParams: ['tasklist'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TaskList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TaskList>(parameters);
+    }
+  }
 
 
   /**
@@ -412,38 +488,57 @@ export class Resource$Tasklists {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TaskList>,
-       callback?: BodyResponseCallback<Schema$TaskList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/tasks/v1/users/@me/lists/{tasklist}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['tasklist'],
-          pathParams: ['tasklist'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TaskList>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$TaskList>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$TaskList>,
+      callback?: BodyResponseCallback<Schema$TaskList>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TaskList>,
+      callback?: BodyResponseCallback<Schema$TaskList>):
+      void|AxiosPromise<Schema$TaskList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/tasks/v1/users/@me/lists/{tasklist}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['tasklist'],
+      pathParams: ['tasklist'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TaskList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TaskList>(parameters);
+    }
+  }
 }
 
 export class Resource$Tasks {
   root: Tasks;
   constructor(root: Tasks) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * tasks.tasks.clear
@@ -459,30 +554,42 @@ export class Resource$Tasks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  clear =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/tasks/v1/lists/{tasklist}/clear')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['tasklist'],
-          pathParams: ['tasklist'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  clear(params: any, options?: MethodOptions): AxiosPromise<void>;
+  clear(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  clear(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/tasks/v1/lists/{tasklist}/clear')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['tasklist'],
+      pathParams: ['tasklist'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -498,30 +605,42 @@ export class Resource$Tasks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks/{task}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['tasklist', 'task'],
-          pathParams: ['task', 'tasklist'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks/{task}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['tasklist', 'task'],
+      pathParams: ['task', 'tasklist'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -537,30 +656,41 @@ export class Resource$Tasks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Task>,
-       callback?: BodyResponseCallback<Schema$Task>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks/{task}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['tasklist', 'task'],
-          pathParams: ['task', 'tasklist'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Task>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Task>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Task>,
+      callback?: BodyResponseCallback<Schema$Task>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Task>,
+      callback?: BodyResponseCallback<Schema$Task>):
+      void|AxiosPromise<Schema$Task> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks/{task}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['tasklist', 'task'],
+      pathParams: ['task', 'tasklist'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Task>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Task>(parameters);
+    }
+  }
 
 
   /**
@@ -578,30 +708,43 @@ export class Resource$Tasks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Task>,
-       callback?: BodyResponseCallback<Schema$Task>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['tasklist'],
-          pathParams: ['tasklist'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Task>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Task>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Task>,
+      callback?: BodyResponseCallback<Schema$Task>): void;
+  insert(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Task>,
+      callback?: BodyResponseCallback<Schema$Task>):
+      void|AxiosPromise<Schema$Task> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['tasklist'],
+      pathParams: ['tasklist'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Task>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Task>(parameters);
+    }
+  }
 
 
   /**
@@ -626,30 +769,43 @@ export class Resource$Tasks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Tasks>,
-       callback?: BodyResponseCallback<Schema$Tasks>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['tasklist'],
-          pathParams: ['tasklist'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Tasks>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$Tasks>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Tasks>,
+      callback?: BodyResponseCallback<Schema$Tasks>): void;
+  list(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Tasks>,
+      callback?: BodyResponseCallback<Schema$Tasks>):
+      void|AxiosPromise<Schema$Tasks> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['tasklist'],
+      pathParams: ['tasklist'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Tasks>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Tasks>(parameters);
+    }
+  }
 
 
   /**
@@ -669,30 +825,43 @@ export class Resource$Tasks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  move =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Task>,
-       callback?: BodyResponseCallback<Schema$Task>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks/{task}/move')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['tasklist', 'task'],
-          pathParams: ['task', 'tasklist'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Task>(parameters, callback!);
-      };
+  move(params: any, options?: MethodOptions): AxiosPromise<Schema$Task>;
+  move(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Task>,
+      callback?: BodyResponseCallback<Schema$Task>): void;
+  move(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Task>,
+      callback?: BodyResponseCallback<Schema$Task>):
+      void|AxiosPromise<Schema$Task> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks/{task}/move')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['tasklist', 'task'],
+      pathParams: ['task', 'tasklist'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Task>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Task>(parameters);
+    }
+  }
 
 
   /**
@@ -709,30 +878,43 @@ export class Resource$Tasks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Task>,
-       callback?: BodyResponseCallback<Schema$Task>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks/{task}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['tasklist', 'task'],
-          pathParams: ['task', 'tasklist'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Task>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Task>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Task>,
+      callback?: BodyResponseCallback<Schema$Task>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Task>,
+      callback?: BodyResponseCallback<Schema$Task>):
+      void|AxiosPromise<Schema$Task> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks/{task}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['tasklist', 'task'],
+      pathParams: ['task', 'tasklist'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Task>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Task>(parameters);
+    }
+  }
 
 
   /**
@@ -749,28 +931,41 @@ export class Resource$Tasks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Task>,
-       callback?: BodyResponseCallback<Schema$Task>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks/{task}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['tasklist', 'task'],
-          pathParams: ['task', 'tasklist'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Task>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Task>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Task>,
+      callback?: BodyResponseCallback<Schema$Task>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Task>,
+      callback?: BodyResponseCallback<Schema$Task>):
+      void|AxiosPromise<Schema$Task> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks/{task}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['tasklist', 'task'],
+      pathParams: ['task', 'tasklist'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Task>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Task>(parameters);
+    }
+  }
 }

@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -52,8 +54,13 @@ export class Cloudkms {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.projects = new Resource$Projects(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -492,7 +499,12 @@ export class Resource$Projects {
   locations: Resource$Projects$Locations;
   constructor(root: Cloudkms) {
     this.root = root;
+    this.getRoot.bind(this);
     this.locations = new Resource$Projects$Locations(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Projects$Locations {
@@ -500,8 +512,14 @@ export class Resource$Projects$Locations {
   keyRings: Resource$Projects$Locations$Keyrings;
   constructor(root: Cloudkms) {
     this.root = root;
+    this.getRoot.bind(this);
     this.keyRings = new Resource$Projects$Locations$Keyrings(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * cloudkms.projects.locations.get
@@ -515,30 +533,41 @@ export class Resource$Projects$Locations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Location>,
-       callback?: BodyResponseCallback<Schema$Location>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Location>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Location>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Location>,
+      callback?: BodyResponseCallback<Schema$Location>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Location>,
+      callback?: BodyResponseCallback<Schema$Location>):
+      void|AxiosPromise<Schema$Location> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Location>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Location>(parameters);
+    }
+  }
 
 
   /**
@@ -556,40 +585,61 @@ export class Resource$Projects$Locations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListLocationsResponse>,
-       callback?: BodyResponseCallback<Schema$ListLocationsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}/locations')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListLocationsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListLocationsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListLocationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListLocationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLocationsResponse>):
+      void|AxiosPromise<Schema$ListLocationsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}/locations')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListLocationsResponse>(parameters);
+    }
+  }
 }
 export class Resource$Projects$Locations$Keyrings {
   root: Cloudkms;
   cryptoKeys: Resource$Projects$Locations$Keyrings$Cryptokeys;
   constructor(root: Cloudkms) {
     this.root = root;
+    this.getRoot.bind(this);
     this.cryptoKeys = new Resource$Projects$Locations$Keyrings$Cryptokeys(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * cloudkms.projects.locations.keyRings.create
@@ -605,30 +655,43 @@ export class Resource$Projects$Locations$Keyrings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$KeyRing>,
-       callback?: BodyResponseCallback<Schema$KeyRing>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/keyRings')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$KeyRing>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$KeyRing>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$KeyRing>,
+      callback?: BodyResponseCallback<Schema$KeyRing>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$KeyRing>,
+      callback?: BodyResponseCallback<Schema$KeyRing>):
+      void|AxiosPromise<Schema$KeyRing> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/keyRings')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$KeyRing>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$KeyRing>(parameters);
+    }
+  }
 
 
   /**
@@ -643,29 +706,40 @@ export class Resource$Projects$Locations$Keyrings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$KeyRing>,
-       callback?: BodyResponseCallback<Schema$KeyRing>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$KeyRing>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$KeyRing>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$KeyRing>,
+      callback?: BodyResponseCallback<Schema$KeyRing>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$KeyRing>,
+      callback?: BodyResponseCallback<Schema$KeyRing>):
+      void|AxiosPromise<Schema$KeyRing> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$KeyRing>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$KeyRing>(parameters);
+    }
+  }
 
 
   /**
@@ -681,30 +755,44 @@ export class Resource$Projects$Locations$Keyrings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getIamPolicy =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-       callback?: BodyResponseCallback<Schema$Policy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:getIamPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Policy>(parameters, callback!);
-      };
+  getIamPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Policy>;
+  getIamPolicy(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>): void;
+  getIamPolicy(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>):
+      void|AxiosPromise<Schema$Policy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:getIamPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Policy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Policy>(parameters);
+    }
+  }
 
 
   /**
@@ -721,31 +809,46 @@ export class Resource$Projects$Locations$Keyrings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListKeyRingsResponse>,
-       callback?: BodyResponseCallback<Schema$ListKeyRingsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/keyRings')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListKeyRingsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListKeyRingsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListKeyRingsResponse>,
+      callback?: BodyResponseCallback<Schema$ListKeyRingsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListKeyRingsResponse>,
+      callback?: BodyResponseCallback<Schema$ListKeyRingsResponse>):
+      void|AxiosPromise<Schema$ListKeyRingsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/keyRings')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListKeyRingsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListKeyRingsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -762,30 +865,44 @@ export class Resource$Projects$Locations$Keyrings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setIamPolicy =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-       callback?: BodyResponseCallback<Schema$Policy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:setIamPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Policy>(parameters, callback!);
-      };
+  setIamPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Policy>;
+  setIamPolicy(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>): void;
+  setIamPolicy(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>):
+      void|AxiosPromise<Schema$Policy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:setIamPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Policy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Policy>(parameters);
+    }
+  }
 
 
   /**
@@ -805,33 +922,48 @@ export class Resource$Projects$Locations$Keyrings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  testIamPermissions =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-       callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:testIamPermissions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback!);
-      };
+  testIamPermissions(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TestIamPermissionsResponse>;
+  testIamPermissions(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>): void;
+  testIamPermissions(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+      void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:testIamPermissions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TestIamPermissionsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+    }
+  }
 }
 export class Resource$Projects$Locations$Keyrings$Cryptokeys {
   root: Cloudkms;
@@ -839,10 +971,16 @@ export class Resource$Projects$Locations$Keyrings$Cryptokeys {
       Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions;
   constructor(root: Cloudkms) {
     this.root = root;
+    this.getRoot.bind(this);
     this.cryptoKeyVersions =
         new Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions(
             root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * cloudkms.projects.locations.keyRings.cryptoKeys.create
@@ -859,31 +997,45 @@ export class Resource$Projects$Locations$Keyrings$Cryptokeys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
-       callback?: BodyResponseCallback<Schema$CryptoKey>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/cryptoKeys')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CryptoKey>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$CryptoKey>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
+      callback?: BodyResponseCallback<Schema$CryptoKey>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
+      callback?: BodyResponseCallback<Schema$CryptoKey>):
+      void|AxiosPromise<Schema$CryptoKey> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/cryptoKeys')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CryptoKey>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CryptoKey>(parameters);
+    }
+  }
 
 
   /**
@@ -899,31 +1051,45 @@ export class Resource$Projects$Locations$Keyrings$Cryptokeys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  decrypt =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$DecryptResponse>,
-       callback?: BodyResponseCallback<Schema$DecryptResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}:decrypt')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$DecryptResponse>(parameters, callback!);
-      };
+  decrypt(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$DecryptResponse>;
+  decrypt(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$DecryptResponse>,
+      callback?: BodyResponseCallback<Schema$DecryptResponse>): void;
+  decrypt(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$DecryptResponse>,
+      callback?: BodyResponseCallback<Schema$DecryptResponse>):
+      void|AxiosPromise<Schema$DecryptResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}:decrypt').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DecryptResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DecryptResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -939,31 +1105,45 @@ export class Resource$Projects$Locations$Keyrings$Cryptokeys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  encrypt =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$EncryptResponse>,
-       callback?: BodyResponseCallback<Schema$EncryptResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}:encrypt')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$EncryptResponse>(parameters, callback!);
-      };
+  encrypt(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$EncryptResponse>;
+  encrypt(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$EncryptResponse>,
+      callback?: BodyResponseCallback<Schema$EncryptResponse>): void;
+  encrypt(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$EncryptResponse>,
+      callback?: BodyResponseCallback<Schema$EncryptResponse>):
+      void|AxiosPromise<Schema$EncryptResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}:encrypt').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$EncryptResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$EncryptResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -979,30 +1159,42 @@ export class Resource$Projects$Locations$Keyrings$Cryptokeys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
-       callback?: BodyResponseCallback<Schema$CryptoKey>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CryptoKey>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$CryptoKey>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
+      callback?: BodyResponseCallback<Schema$CryptoKey>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
+      callback?: BodyResponseCallback<Schema$CryptoKey>):
+      void|AxiosPromise<Schema$CryptoKey> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CryptoKey>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CryptoKey>(parameters);
+    }
+  }
 
 
   /**
@@ -1018,30 +1210,44 @@ export class Resource$Projects$Locations$Keyrings$Cryptokeys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getIamPolicy =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-       callback?: BodyResponseCallback<Schema$Policy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:getIamPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Policy>(parameters, callback!);
-      };
+  getIamPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Policy>;
+  getIamPolicy(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>): void;
+  getIamPolicy(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>):
+      void|AxiosPromise<Schema$Policy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:getIamPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Policy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Policy>(parameters);
+    }
+  }
 
 
   /**
@@ -1058,32 +1264,48 @@ export class Resource$Projects$Locations$Keyrings$Cryptokeys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListCryptoKeysResponse>,
-       callback?: BodyResponseCallback<Schema$ListCryptoKeysResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/cryptoKeys')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListCryptoKeysResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListCryptoKeysResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListCryptoKeysResponse>,
+      callback?: BodyResponseCallback<Schema$ListCryptoKeysResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListCryptoKeysResponse>,
+      callback?: BodyResponseCallback<Schema$ListCryptoKeysResponse>):
+      void|AxiosPromise<Schema$ListCryptoKeysResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/cryptoKeys')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListCryptoKeysResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListCryptoKeysResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1100,30 +1322,44 @@ export class Resource$Projects$Locations$Keyrings$Cryptokeys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
-       callback?: BodyResponseCallback<Schema$CryptoKey>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CryptoKey>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$CryptoKey>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
+      callback?: BodyResponseCallback<Schema$CryptoKey>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
+      callback?: BodyResponseCallback<Schema$CryptoKey>):
+      void|AxiosPromise<Schema$CryptoKey> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CryptoKey>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CryptoKey>(parameters);
+    }
+  }
 
 
   /**
@@ -1140,30 +1376,44 @@ export class Resource$Projects$Locations$Keyrings$Cryptokeys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setIamPolicy =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-       callback?: BodyResponseCallback<Schema$Policy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:setIamPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Policy>(parameters, callback!);
-      };
+  setIamPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Policy>;
+  setIamPolicy(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>): void;
+  setIamPolicy(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>):
+      void|AxiosPromise<Schema$Policy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:setIamPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Policy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Policy>(parameters);
+    }
+  }
 
 
   /**
@@ -1183,33 +1433,48 @@ export class Resource$Projects$Locations$Keyrings$Cryptokeys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  testIamPermissions =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-       callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:testIamPermissions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback!);
-      };
+  testIamPermissions(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TestIamPermissionsResponse>;
+  testIamPermissions(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>): void;
+  testIamPermissions(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+      void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:testIamPermissions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TestIamPermissionsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1225,37 +1490,58 @@ export class Resource$Projects$Locations$Keyrings$Cryptokeys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  updatePrimaryVersion =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
-       callback?: BodyResponseCallback<Schema$CryptoKey>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}:updatePrimaryVersion')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CryptoKey>(parameters, callback!);
-      };
+  updatePrimaryVersion(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CryptoKey>;
+  updatePrimaryVersion(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
+      callback?: BodyResponseCallback<Schema$CryptoKey>): void;
+  updatePrimaryVersion(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
+      callback?: BodyResponseCallback<Schema$CryptoKey>):
+      void|AxiosPromise<Schema$CryptoKey> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}:updatePrimaryVersion')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CryptoKey>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CryptoKey>(parameters);
+    }
+  }
 }
 export class Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions {
   root: Cloudkms;
   constructor(root: Cloudkms) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.create
@@ -1272,31 +1558,46 @@ export class Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
-       callback?: BodyResponseCallback<Schema$CryptoKeyVersion>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/cryptoKeyVersions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CryptoKeyVersion>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CryptoKeyVersion>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
+      callback?: BodyResponseCallback<Schema$CryptoKeyVersion>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
+      callback?: BodyResponseCallback<Schema$CryptoKeyVersion>):
+      void|AxiosPromise<Schema$CryptoKeyVersion> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/cryptoKeyVersions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CryptoKeyVersion>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CryptoKeyVersion>(parameters);
+    }
+  }
 
 
   /**
@@ -1318,31 +1619,45 @@ export class Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  destroy =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
-       callback?: BodyResponseCallback<Schema$CryptoKeyVersion>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}:destroy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CryptoKeyVersion>(parameters, callback!);
-      };
+  destroy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CryptoKeyVersion>;
+  destroy(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
+      callback?: BodyResponseCallback<Schema$CryptoKeyVersion>): void;
+  destroy(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
+      callback?: BodyResponseCallback<Schema$CryptoKeyVersion>):
+      void|AxiosPromise<Schema$CryptoKeyVersion> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}:destroy').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CryptoKeyVersion>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CryptoKeyVersion>(parameters);
+    }
+  }
 
 
   /**
@@ -1358,30 +1673,43 @@ export class Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
-       callback?: BodyResponseCallback<Schema$CryptoKeyVersion>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CryptoKeyVersion>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$CryptoKeyVersion>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
+      callback?: BodyResponseCallback<Schema$CryptoKeyVersion>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
+      callback?: BodyResponseCallback<Schema$CryptoKeyVersion>):
+      void|AxiosPromise<Schema$CryptoKeyVersion> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CryptoKeyVersion>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CryptoKeyVersion>(parameters);
+    }
+  }
 
 
   /**
@@ -1399,34 +1727,50 @@ export class Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListCryptoKeyVersionsResponse>,
-       callback?:
-           BodyResponseCallback<Schema$ListCryptoKeyVersionsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/cryptoKeyVersions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListCryptoKeyVersionsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListCryptoKeyVersionsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListCryptoKeyVersionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListCryptoKeyVersionsResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListCryptoKeyVersionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListCryptoKeyVersionsResponse>):
+      void|AxiosPromise<Schema$ListCryptoKeyVersionsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/cryptoKeyVersions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListCryptoKeyVersionsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListCryptoKeyVersionsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1446,30 +1790,45 @@ export class Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
-       callback?: BodyResponseCallback<Schema$CryptoKeyVersion>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CryptoKeyVersion>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CryptoKeyVersion>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
+      callback?: BodyResponseCallback<Schema$CryptoKeyVersion>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
+      callback?: BodyResponseCallback<Schema$CryptoKeyVersion>):
+      void|AxiosPromise<Schema$CryptoKeyVersion> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CryptoKeyVersion>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CryptoKeyVersion>(parameters);
+    }
+  }
 
 
   /**
@@ -1488,29 +1847,43 @@ export class Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  restore =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
-       callback?: BodyResponseCallback<Schema$CryptoKeyVersion>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}:restore')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CryptoKeyVersion>(parameters, callback!);
-      };
+  restore(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CryptoKeyVersion>;
+  restore(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
+      callback?: BodyResponseCallback<Schema$CryptoKeyVersion>): void;
+  restore(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
+      callback?: BodyResponseCallback<Schema$CryptoKeyVersion>):
+      void|AxiosPromise<Schema$CryptoKeyVersion> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}:restore').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CryptoKeyVersion>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CryptoKeyVersion>(parameters);
+    }
+  }
 }

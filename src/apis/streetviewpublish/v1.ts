@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -54,9 +56,14 @@ export class Streetviewpublish {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.photo = new Resource$Photo(this);
     this.photos = new Resource$Photos(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -432,7 +439,13 @@ export class Resource$Photo {
   root: Streetviewpublish;
   constructor(root: Streetviewpublish) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * streetviewpublish.photo.create
@@ -457,30 +470,43 @@ export class Resource$Photo {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Photo>,
-       callback?: BodyResponseCallback<Schema$Photo>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://streetviewpublish.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/photo').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Photo>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Photo>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Photo>,
+      callback?: BodyResponseCallback<Schema$Photo>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Photo>,
+      callback?: BodyResponseCallback<Schema$Photo>):
+      void|AxiosPromise<Schema$Photo> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://streetviewpublish.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/photo').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Photo>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Photo>(parameters);
+    }
+  }
 
 
   /**
@@ -498,31 +524,44 @@ export class Resource$Photo {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://streetviewpublish.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/photo/{photoId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['photoId'],
-          pathParams: ['photoId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://streetviewpublish.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/v1/photo/{photoId}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['photoId'],
+      pathParams: ['photoId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -542,31 +581,42 @@ export class Resource$Photo {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Photo>,
-       callback?: BodyResponseCallback<Schema$Photo>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://streetviewpublish.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/photo/{photoId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['photoId'],
-          pathParams: ['photoId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Photo>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Photo>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Photo>,
+      callback?: BodyResponseCallback<Schema$Photo>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Photo>,
+      callback?: BodyResponseCallback<Schema$Photo>):
+      void|AxiosPromise<Schema$Photo> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://streetviewpublish.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/v1/photo/{photoId}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['photoId'],
+      pathParams: ['photoId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Photo>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Photo>(parameters);
+    }
+  }
 
 
   /**
@@ -592,32 +642,47 @@ export class Resource$Photo {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  startUpload =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$UploadRef>,
-       callback?: BodyResponseCallback<Schema$UploadRef>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://streetviewpublish.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/photo:startUpload')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$UploadRef>(parameters, callback!);
-      };
+  startUpload(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$UploadRef>;
+  startUpload(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$UploadRef>,
+      callback?: BodyResponseCallback<Schema$UploadRef>): void;
+  startUpload(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$UploadRef>,
+      callback?: BodyResponseCallback<Schema$UploadRef>):
+      void|AxiosPromise<Schema$UploadRef> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://streetviewpublish.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/photo:startUpload')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UploadRef>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UploadRef>(parameters);
+    }
+  }
 
 
   /**
@@ -644,37 +709,56 @@ export class Resource$Photo {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Photo>,
-       callback?: BodyResponseCallback<Schema$Photo>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://streetviewpublish.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/photo/{id}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: ['id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Photo>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Photo>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Photo>,
+      callback?: BodyResponseCallback<Schema$Photo>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Photo>,
+      callback?: BodyResponseCallback<Schema$Photo>):
+      void|AxiosPromise<Schema$Photo> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://streetviewpublish.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/photo/{id}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: ['id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Photo>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Photo>(parameters);
+    }
+  }
 }
 
 export class Resource$Photos {
   root: Streetviewpublish;
   constructor(root: Streetviewpublish) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * streetviewpublish.photos.batchDelete
@@ -694,34 +778,49 @@ export class Resource$Photos {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchDelete =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$BatchDeletePhotosResponse>,
-       callback?: BodyResponseCallback<Schema$BatchDeletePhotosResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://streetviewpublish.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/photos:batchDelete')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$BatchDeletePhotosResponse>(
-            parameters, callback!);
-      };
+  batchDelete(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$BatchDeletePhotosResponse>;
+  batchDelete(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$BatchDeletePhotosResponse>,
+      callback?: BodyResponseCallback<Schema$BatchDeletePhotosResponse>): void;
+  batchDelete(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$BatchDeletePhotosResponse>,
+      callback?: BodyResponseCallback<Schema$BatchDeletePhotosResponse>):
+      void|AxiosPromise<Schema$BatchDeletePhotosResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://streetviewpublish.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/photos:batchDelete')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BatchDeletePhotosResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BatchDeletePhotosResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -742,33 +841,49 @@ export class Resource$Photos {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchGet =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$BatchGetPhotosResponse>,
-       callback?: BodyResponseCallback<Schema$BatchGetPhotosResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://streetviewpublish.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/photos:batchGet')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$BatchGetPhotosResponse>(parameters, callback!);
-      };
+  batchGet(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$BatchGetPhotosResponse>;
+  batchGet(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$BatchGetPhotosResponse>,
+      callback?: BodyResponseCallback<Schema$BatchGetPhotosResponse>): void;
+  batchGet(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$BatchGetPhotosResponse>,
+      callback?: BodyResponseCallback<Schema$BatchGetPhotosResponse>):
+      void|AxiosPromise<Schema$BatchGetPhotosResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://streetviewpublish.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/v1/photos:batchGet').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BatchGetPhotosResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BatchGetPhotosResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -793,34 +908,49 @@ export class Resource$Photos {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchUpdate =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$BatchUpdatePhotosResponse>,
-       callback?: BodyResponseCallback<Schema$BatchUpdatePhotosResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://streetviewpublish.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/photos:batchUpdate')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$BatchUpdatePhotosResponse>(
-            parameters, callback!);
-      };
+  batchUpdate(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$BatchUpdatePhotosResponse>;
+  batchUpdate(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$BatchUpdatePhotosResponse>,
+      callback?: BodyResponseCallback<Schema$BatchUpdatePhotosResponse>): void;
+  batchUpdate(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$BatchUpdatePhotosResponse>,
+      callback?: BodyResponseCallback<Schema$BatchUpdatePhotosResponse>):
+      void|AxiosPromise<Schema$BatchUpdatePhotosResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://streetviewpublish.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/photos:batchUpdate')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BatchUpdatePhotosResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BatchUpdatePhotosResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -840,29 +970,44 @@ export class Resource$Photos {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListPhotosResponse>,
-       callback?: BodyResponseCallback<Schema$ListPhotosResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://streetviewpublish.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/photos').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListPhotosResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListPhotosResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListPhotosResponse>,
+      callback?: BodyResponseCallback<Schema$ListPhotosResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListPhotosResponse>,
+      callback?: BodyResponseCallback<Schema$ListPhotosResponse>):
+      void|AxiosPromise<Schema$ListPhotosResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://streetviewpublish.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/photos').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListPhotosResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListPhotosResponse>(parameters);
+    }
+  }
 }

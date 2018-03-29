@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -57,6 +59,7 @@ export class Sqladmin {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.backupRuns = new Resource$Backupruns(this);
     this.flags = new Resource$Flags(this);
@@ -64,6 +67,10 @@ export class Sqladmin {
     this.operations = new Resource$Operations(this);
     this.sslCerts = new Resource$Sslcerts(this);
     this.tiers = new Resource$Tiers(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -1023,7 +1030,13 @@ export class Resource$Backupruns {
   root: Sqladmin;
   constructor(root: Sqladmin) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * sql.backupRuns.get
@@ -1041,34 +1054,45 @@ export class Resource$Backupruns {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$BackupRun>,
-       callback?: BodyResponseCallback<Schema$BackupRun>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/sql/v1beta3/projects/{project}/instances/{instance}/backupRuns/{backupConfiguration}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams:
-              ['project', 'instance', 'backupConfiguration', 'dueTime'],
-          pathParams: ['backupConfiguration', 'instance', 'project'],
-          context: this.root
-        };
-        createAPIRequest<Schema$BackupRun>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$BackupRun>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$BackupRun>,
+      callback?: BodyResponseCallback<Schema$BackupRun>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$BackupRun>,
+      callback?: BodyResponseCallback<Schema$BackupRun>):
+      void|AxiosPromise<Schema$BackupRun> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/sql/v1beta3/projects/{project}/instances/{instance}/backupRuns/{backupConfiguration}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['project', 'instance', 'backupConfiguration', 'dueTime'],
+      pathParams: ['backupConfiguration', 'instance', 'project'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BackupRun>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BackupRun>(parameters);
+    }
+  }
 
 
   /**
@@ -1087,41 +1111,63 @@ export class Resource$Backupruns {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$BackupRunsListResponse>,
-       callback?: BodyResponseCallback<Schema$BackupRunsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/sql/v1beta3/projects/{project}/instances/{instance}/backupRuns')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['project', 'instance', 'backupConfiguration'],
-          pathParams: ['instance', 'project'],
-          context: this.root
-        };
-        createAPIRequest<Schema$BackupRunsListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$BackupRunsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$BackupRunsListResponse>,
+      callback?: BodyResponseCallback<Schema$BackupRunsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$BackupRunsListResponse>,
+      callback?: BodyResponseCallback<Schema$BackupRunsListResponse>):
+      void|AxiosPromise<Schema$BackupRunsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/sql/v1beta3/projects/{project}/instances/{instance}/backupRuns')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['project', 'instance', 'backupConfiguration'],
+      pathParams: ['instance', 'project'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BackupRunsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BackupRunsListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Flags {
   root: Sqladmin;
   constructor(root: Sqladmin) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * sql.flags.list
@@ -1135,38 +1181,58 @@ export class Resource$Flags {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$FlagsListResponse>,
-       callback?: BodyResponseCallback<Schema$FlagsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/sql/v1beta3/flags')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$FlagsListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$FlagsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$FlagsListResponse>,
+      callback?: BodyResponseCallback<Schema$FlagsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$FlagsListResponse>,
+      callback?: BodyResponseCallback<Schema$FlagsListResponse>):
+      void|AxiosPromise<Schema$FlagsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/sql/v1beta3/flags').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$FlagsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$FlagsListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Instances {
   root: Sqladmin;
   constructor(root: Sqladmin) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * sql.instances.clone
@@ -1181,33 +1247,48 @@ export class Resource$Instances {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  clone =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$InstancesCloneResponse>,
-       callback?: BodyResponseCallback<Schema$InstancesCloneResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/sql/v1beta3/projects/{project}/instances/clone')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['project'],
-          pathParams: ['project'],
-          context: this.root
-        };
-        createAPIRequest<Schema$InstancesCloneResponse>(parameters, callback!);
-      };
+  clone(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$InstancesCloneResponse>;
+  clone(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$InstancesCloneResponse>,
+      callback?: BodyResponseCallback<Schema$InstancesCloneResponse>): void;
+  clone(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$InstancesCloneResponse>,
+      callback?: BodyResponseCallback<Schema$InstancesCloneResponse>):
+      void|AxiosPromise<Schema$InstancesCloneResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/sql/v1beta3/projects/{project}/instances/clone')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['project'],
+      pathParams: ['project'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$InstancesCloneResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$InstancesCloneResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1223,33 +1304,49 @@ export class Resource$Instances {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$InstancesDeleteResponse>,
-       callback?: BodyResponseCallback<Schema$InstancesDeleteResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/sql/v1beta3/projects/{project}/instances/{instance}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['project', 'instance'],
-          pathParams: ['instance', 'project'],
-          context: this.root
-        };
-        createAPIRequest<Schema$InstancesDeleteResponse>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$InstancesDeleteResponse>;
+  delete(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$InstancesDeleteResponse>,
+      callback?: BodyResponseCallback<Schema$InstancesDeleteResponse>): void;
+  delete(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$InstancesDeleteResponse>,
+      callback?: BodyResponseCallback<Schema$InstancesDeleteResponse>):
+      void|AxiosPromise<Schema$InstancesDeleteResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/sql/v1beta3/projects/{project}/instances/{instance}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['project', 'instance'],
+      pathParams: ['instance', 'project'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$InstancesDeleteResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$InstancesDeleteResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1267,34 +1364,49 @@ export class Resource$Instances {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  export =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$InstancesExportResponse>,
-       callback?: BodyResponseCallback<Schema$InstancesExportResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/sql/v1beta3/projects/{project}/instances/{instance}/export')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['project', 'instance'],
-          pathParams: ['instance', 'project'],
-          context: this.root
-        };
-        createAPIRequest<Schema$InstancesExportResponse>(parameters, callback!);
-      };
+  export(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$InstancesExportResponse>;
+  export(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$InstancesExportResponse>,
+      callback?: BodyResponseCallback<Schema$InstancesExportResponse>): void;
+  export(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$InstancesExportResponse>,
+      callback?: BodyResponseCallback<Schema$InstancesExportResponse>):
+      void|AxiosPromise<Schema$InstancesExportResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/sql/v1beta3/projects/{project}/instances/{instance}/export')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['project', 'instance'],
+      pathParams: ['instance', 'project'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$InstancesExportResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$InstancesExportResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1310,32 +1422,45 @@ export class Resource$Instances {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$DatabaseInstance>,
-       callback?: BodyResponseCallback<Schema$DatabaseInstance>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/sql/v1beta3/projects/{project}/instances/{instance}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['project', 'instance'],
-          pathParams: ['instance', 'project'],
-          context: this.root
-        };
-        createAPIRequest<Schema$DatabaseInstance>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$DatabaseInstance>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$DatabaseInstance>,
+      callback?: BodyResponseCallback<Schema$DatabaseInstance>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$DatabaseInstance>,
+      callback?: BodyResponseCallback<Schema$DatabaseInstance>):
+      void|AxiosPromise<Schema$DatabaseInstance> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/sql/v1beta3/projects/{project}/instances/{instance}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['project', 'instance'],
+      pathParams: ['instance', 'project'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DatabaseInstance>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DatabaseInstance>(parameters);
+    }
+  }
 
 
   /**
@@ -1353,51 +1478,74 @@ export class Resource$Instances {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$InstancesImportResponse>, callback?: BodyResponseCallback<Schema$InstancesImportResponse>) => {if(typeof options === 'function') {
+import(params: any, options?: MethodOptions): AxiosPromise<Schema$InstancesImportResponse>;
+import(params: any, options: MethodOptions|BodyResponseCallback<Schema$InstancesImportResponse>, callback?: BodyResponseCallback<Schema$InstancesImportResponse>): void;
+import(params: any, options?: MethodOptions|BodyResponseCallback<Schema$InstancesImportResponse>, callback?: BodyResponseCallback<Schema$InstancesImportResponse>): void|AxiosPromise<Schema$InstancesImportResponse> {if(typeof options === 'function') {
     callback = options;
     options = {};
-  } options = options || {}; const rootUrl = options.rootUrl || 'https://www.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/sql/v1beta3/projects/{project}/instances/{instance}/import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['project', 'instance'], pathParams: ['instance', 'project'], context: this.root}; createAPIRequest<Schema$InstancesImportResponse>(parameters, callback!);};
+  } if(typeof params === 'function') {
+    callback = params;
+    params = {};
+  } options = options || {}; const rootUrl = options.rootUrl || 'https://www.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/sql/v1beta3/projects/{project}/instances/{instance}/import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['project', 'instance'], pathParams: ['instance', 'project'], context: this.getRoot()}; if(callback) {
+    createAPIRequest<Schema$InstancesImportResponse>(parameters, callback);
+  } else { return createAPIRequest<Schema$InstancesImportResponse>(parameters);
+  }}
 
 
   /**
-   * sql.instances.insert
-   * @desc Creates a new Cloud SQL instance.
-   * @alias sql.instances.insert
-   * @memberOf! ()
-   *
-   * @param {object} params Parameters for request
-   * @param {string} params.project Project ID of the project to which the newly created Cloud SQL instances should belong.
-   * @param {().DatabaseInstance} params.resource Request body data
-   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-   * @param {callback} callback The callback that handles the response.
-   * @return {object} Request object
-   */
-  insert =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$InstancesInsertResponse>,
-       callback?: BodyResponseCallback<Schema$InstancesInsertResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/sql/v1beta3/projects/{project}/instances')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['project'],
-          pathParams: ['project'],
-          context: this.root
-        };
-        createAPIRequest<Schema$InstancesInsertResponse>(parameters, callback!);
-      };
+ * sql.instances.insert
+ * @desc Creates a new Cloud SQL instance.
+ * @alias sql.instances.insert
+ * @memberOf! ()
+ *
+ * @param {object} params Parameters for request
+ * @param {string} params.project Project ID of the project to which the newly created Cloud SQL instances should belong.
+ * @param {().DatabaseInstance} params.resource Request body data
+ * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+ * @param {callback} callback The callback that handles the response.
+ * @return {object} Request object
+ */
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$InstancesInsertResponse>;
+  insert(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$InstancesInsertResponse>,
+      callback?: BodyResponseCallback<Schema$InstancesInsertResponse>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$InstancesInsertResponse>,
+      callback?: BodyResponseCallback<Schema$InstancesInsertResponse>):
+      void|AxiosPromise<Schema$InstancesInsertResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/sql/v1beta3/projects/{project}/instances')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['project'],
+      pathParams: ['project'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$InstancesInsertResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$InstancesInsertResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1415,32 +1563,47 @@ import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Instan
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$InstancesListResponse>,
-       callback?: BodyResponseCallback<Schema$InstancesListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/sql/v1beta3/projects/{project}/instances')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['project'],
-          pathParams: ['project'],
-          context: this.root
-        };
-        createAPIRequest<Schema$InstancesListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$InstancesListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$InstancesListResponse>,
+      callback?: BodyResponseCallback<Schema$InstancesListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$InstancesListResponse>,
+      callback?: BodyResponseCallback<Schema$InstancesListResponse>):
+      void|AxiosPromise<Schema$InstancesListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/sql/v1beta3/projects/{project}/instances')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['project'],
+      pathParams: ['project'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$InstancesListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$InstancesListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1458,33 +1621,49 @@ import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Instan
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$InstancesUpdateResponse>,
-       callback?: BodyResponseCallback<Schema$InstancesUpdateResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/sql/v1beta3/projects/{project}/instances/{instance}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['project', 'instance'],
-          pathParams: ['instance', 'project'],
-          context: this.root
-        };
-        createAPIRequest<Schema$InstancesUpdateResponse>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$InstancesUpdateResponse>;
+  patch(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$InstancesUpdateResponse>,
+      callback?: BodyResponseCallback<Schema$InstancesUpdateResponse>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$InstancesUpdateResponse>,
+      callback?: BodyResponseCallback<Schema$InstancesUpdateResponse>):
+      void|AxiosPromise<Schema$InstancesUpdateResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/sql/v1beta3/projects/{project}/instances/{instance}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['project', 'instance'],
+      pathParams: ['instance', 'project'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$InstancesUpdateResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$InstancesUpdateResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1501,36 +1680,53 @@ import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Instan
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  promoteReplica =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$InstancesPromoteReplicaResponse>,
-       callback?:
-           BodyResponseCallback<Schema$InstancesPromoteReplicaResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/sql/v1beta3/projects/{project}/instances/{instance}/promoteReplica')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['project', 'instance'],
-          pathParams: ['instance', 'project'],
-          context: this.root
-        };
-        createAPIRequest<Schema$InstancesPromoteReplicaResponse>(
-            parameters, callback!);
-      };
+  promoteReplica(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$InstancesPromoteReplicaResponse>;
+  promoteReplica(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$InstancesPromoteReplicaResponse>,
+      callback?: BodyResponseCallback<Schema$InstancesPromoteReplicaResponse>):
+      void;
+  promoteReplica(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$InstancesPromoteReplicaResponse>,
+      callback?: BodyResponseCallback<Schema$InstancesPromoteReplicaResponse>):
+      void|AxiosPromise<Schema$InstancesPromoteReplicaResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/sql/v1beta3/projects/{project}/instances/{instance}/promoteReplica')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['project', 'instance'],
+      pathParams: ['instance', 'project'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$InstancesPromoteReplicaResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$InstancesPromoteReplicaResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -1547,36 +1743,53 @@ import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Instan
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  resetSslConfig =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$InstancesResetSslConfigResponse>,
-       callback?:
-           BodyResponseCallback<Schema$InstancesResetSslConfigResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/sql/v1beta3/projects/{project}/instances/{instance}/resetSslConfig')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['project', 'instance'],
-          pathParams: ['instance', 'project'],
-          context: this.root
-        };
-        createAPIRequest<Schema$InstancesResetSslConfigResponse>(
-            parameters, callback!);
-      };
+  resetSslConfig(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$InstancesResetSslConfigResponse>;
+  resetSslConfig(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$InstancesResetSslConfigResponse>,
+      callback?: BodyResponseCallback<Schema$InstancesResetSslConfigResponse>):
+      void;
+  resetSslConfig(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$InstancesResetSslConfigResponse>,
+      callback?: BodyResponseCallback<Schema$InstancesResetSslConfigResponse>):
+      void|AxiosPromise<Schema$InstancesResetSslConfigResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/sql/v1beta3/projects/{project}/instances/{instance}/resetSslConfig')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['project', 'instance'],
+      pathParams: ['instance', 'project'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$InstancesResetSslConfigResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$InstancesResetSslConfigResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -1592,35 +1805,50 @@ import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Instan
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  restart =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$InstancesRestartResponse>,
-       callback?: BodyResponseCallback<Schema$InstancesRestartResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/sql/v1beta3/projects/{project}/instances/{instance}/restart')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['project', 'instance'],
-          pathParams: ['instance', 'project'],
-          context: this.root
-        };
-        createAPIRequest<Schema$InstancesRestartResponse>(
-            parameters, callback!);
-      };
+  restart(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$InstancesRestartResponse>;
+  restart(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$InstancesRestartResponse>,
+      callback?: BodyResponseCallback<Schema$InstancesRestartResponse>): void;
+  restart(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$InstancesRestartResponse>,
+      callback?: BodyResponseCallback<Schema$InstancesRestartResponse>):
+      void|AxiosPromise<Schema$InstancesRestartResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/sql/v1beta3/projects/{project}/instances/{instance}/restart')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['project', 'instance'],
+      pathParams: ['instance', 'project'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$InstancesRestartResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$InstancesRestartResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1638,37 +1866,53 @@ import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Instan
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  restoreBackup =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$InstancesRestoreBackupResponse>,
-       callback?:
-           BodyResponseCallback<Schema$InstancesRestoreBackupResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/sql/v1beta3/projects/{project}/instances/{instance}/restoreBackup')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams:
-              ['project', 'instance', 'backupConfiguration', 'dueTime'],
-          pathParams: ['instance', 'project'],
-          context: this.root
-        };
-        createAPIRequest<Schema$InstancesRestoreBackupResponse>(
-            parameters, callback!);
-      };
+  restoreBackup(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$InstancesRestoreBackupResponse>;
+  restoreBackup(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$InstancesRestoreBackupResponse>,
+      callback?: BodyResponseCallback<Schema$InstancesRestoreBackupResponse>):
+      void;
+  restoreBackup(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$InstancesRestoreBackupResponse>,
+      callback?: BodyResponseCallback<Schema$InstancesRestoreBackupResponse>):
+      void|AxiosPromise<Schema$InstancesRestoreBackupResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/sql/v1beta3/projects/{project}/instances/{instance}/restoreBackup')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['project', 'instance', 'backupConfiguration', 'dueTime'],
+      pathParams: ['instance', 'project'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$InstancesRestoreBackupResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$InstancesRestoreBackupResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -1686,36 +1930,53 @@ import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Instan
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setRootPassword =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$InstancesSetRootPasswordResponse>,
-       callback?:
-           BodyResponseCallback<Schema$InstancesSetRootPasswordResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/sql/v1beta3/projects/{project}/instances/{instance}/setRootPassword')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['project', 'instance'],
-          pathParams: ['instance', 'project'],
-          context: this.root
-        };
-        createAPIRequest<Schema$InstancesSetRootPasswordResponse>(
-            parameters, callback!);
-      };
+  setRootPassword(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$InstancesSetRootPasswordResponse>;
+  setRootPassword(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$InstancesSetRootPasswordResponse>,
+      callback?: BodyResponseCallback<Schema$InstancesSetRootPasswordResponse>):
+      void;
+  setRootPassword(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$InstancesSetRootPasswordResponse>,
+      callback?: BodyResponseCallback<Schema$InstancesSetRootPasswordResponse>):
+      void|AxiosPromise<Schema$InstancesSetRootPasswordResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/sql/v1beta3/projects/{project}/instances/{instance}/setRootPassword')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['project', 'instance'],
+      pathParams: ['instance', 'project'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$InstancesSetRootPasswordResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$InstancesSetRootPasswordResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -1732,40 +1993,62 @@ import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Instan
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$InstancesUpdateResponse>,
-       callback?: BodyResponseCallback<Schema$InstancesUpdateResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/sql/v1beta3/projects/{project}/instances/{instance}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['project', 'instance'],
-          pathParams: ['instance', 'project'],
-          context: this.root
-        };
-        createAPIRequest<Schema$InstancesUpdateResponse>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$InstancesUpdateResponse>;
+  update(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$InstancesUpdateResponse>,
+      callback?: BodyResponseCallback<Schema$InstancesUpdateResponse>): void;
+  update(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$InstancesUpdateResponse>,
+      callback?: BodyResponseCallback<Schema$InstancesUpdateResponse>):
+      void|AxiosPromise<Schema$InstancesUpdateResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/sql/v1beta3/projects/{project}/instances/{instance}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['project', 'instance'],
+      pathParams: ['instance', 'project'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$InstancesUpdateResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$InstancesUpdateResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Operations {
   root: Sqladmin;
   constructor(root: Sqladmin) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * sql.operations.get
@@ -1782,33 +2065,46 @@ export class Resource$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$InstanceOperation>,
-       callback?: BodyResponseCallback<Schema$InstanceOperation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/sql/v1beta3/projects/{project}/instances/{instance}/operations/{operation}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['project', 'instance', 'operation'],
-          pathParams: ['instance', 'operation', 'project'],
-          context: this.root
-        };
-        createAPIRequest<Schema$InstanceOperation>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$InstanceOperation>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$InstanceOperation>,
+      callback?: BodyResponseCallback<Schema$InstanceOperation>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$InstanceOperation>,
+      callback?: BodyResponseCallback<Schema$InstanceOperation>):
+      void|AxiosPromise<Schema$InstanceOperation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/sql/v1beta3/projects/{project}/instances/{instance}/operations/{operation}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['project', 'instance', 'operation'],
+      pathParams: ['instance', 'operation', 'project'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$InstanceOperation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$InstanceOperation>(parameters);
+    }
+  }
 
 
   /**
@@ -1827,41 +2123,63 @@ export class Resource$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$OperationsListResponse>,
-       callback?: BodyResponseCallback<Schema$OperationsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/sql/v1beta3/projects/{project}/instances/{instance}/operations')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['project', 'instance'],
-          pathParams: ['instance', 'project'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OperationsListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$OperationsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$OperationsListResponse>,
+      callback?: BodyResponseCallback<Schema$OperationsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$OperationsListResponse>,
+      callback?: BodyResponseCallback<Schema$OperationsListResponse>):
+      void|AxiosPromise<Schema$OperationsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/sql/v1beta3/projects/{project}/instances/{instance}/operations')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['project', 'instance'],
+      pathParams: ['instance', 'project'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OperationsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OperationsListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Sslcerts {
   root: Sqladmin;
   constructor(root: Sqladmin) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * sql.sslCerts.delete
@@ -1877,34 +2195,50 @@ export class Resource$Sslcerts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$SslCertsDeleteResponse>,
-       callback?: BodyResponseCallback<Schema$SslCertsDeleteResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/sql/v1beta3/projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['project', 'instance', 'sha1Fingerprint'],
-          pathParams: ['instance', 'project', 'sha1Fingerprint'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SslCertsDeleteResponse>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SslCertsDeleteResponse>;
+  delete(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$SslCertsDeleteResponse>,
+      callback?: BodyResponseCallback<Schema$SslCertsDeleteResponse>): void;
+  delete(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SslCertsDeleteResponse>,
+      callback?: BodyResponseCallback<Schema$SslCertsDeleteResponse>):
+      void|AxiosPromise<Schema$SslCertsDeleteResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/sql/v1beta3/projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['project', 'instance', 'sha1Fingerprint'],
+      pathParams: ['instance', 'project', 'sha1Fingerprint'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SslCertsDeleteResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SslCertsDeleteResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1921,32 +2255,43 @@ export class Resource$Sslcerts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$SslCert>,
-       callback?: BodyResponseCallback<Schema$SslCert>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/sql/v1beta3/projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['project', 'instance', 'sha1Fingerprint'],
-          pathParams: ['instance', 'project', 'sha1Fingerprint'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SslCert>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$SslCert>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$SslCert>,
+      callback?: BodyResponseCallback<Schema$SslCert>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$SslCert>,
+      callback?: BodyResponseCallback<Schema$SslCert>):
+      void|AxiosPromise<Schema$SslCert> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/sql/v1beta3/projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['project', 'instance', 'sha1Fingerprint'],
+      pathParams: ['instance', 'project', 'sha1Fingerprint'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SslCert>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SslCert>(parameters);
+    }
+  }
 
 
   /**
@@ -1964,34 +2309,50 @@ export class Resource$Sslcerts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$SslCertsInsertResponse>,
-       callback?: BodyResponseCallback<Schema$SslCertsInsertResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/sql/v1beta3/projects/{project}/instances/{instance}/sslCerts')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['project', 'instance'],
-          pathParams: ['instance', 'project'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SslCertsInsertResponse>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SslCertsInsertResponse>;
+  insert(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$SslCertsInsertResponse>,
+      callback?: BodyResponseCallback<Schema$SslCertsInsertResponse>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SslCertsInsertResponse>,
+      callback?: BodyResponseCallback<Schema$SslCertsInsertResponse>):
+      void|AxiosPromise<Schema$SslCertsInsertResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/sql/v1beta3/projects/{project}/instances/{instance}/sslCerts')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['project', 'instance'],
+      pathParams: ['instance', 'project'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SslCertsInsertResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SslCertsInsertResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2008,40 +2369,61 @@ export class Resource$Sslcerts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$SslCertsListResponse>,
-       callback?: BodyResponseCallback<Schema$SslCertsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/sql/v1beta3/projects/{project}/instances/{instance}/sslCerts')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['project', 'instance'],
-          pathParams: ['instance', 'project'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SslCertsListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SslCertsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$SslCertsListResponse>,
+      callback?: BodyResponseCallback<Schema$SslCertsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$SslCertsListResponse>,
+      callback?: BodyResponseCallback<Schema$SslCertsListResponse>):
+      void|AxiosPromise<Schema$SslCertsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/sql/v1beta3/projects/{project}/instances/{instance}/sslCerts')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['project', 'instance'],
+      pathParams: ['instance', 'project'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SslCertsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SslCertsListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Tiers {
   root: Sqladmin;
   constructor(root: Sqladmin) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * sql.tiers.list
@@ -2056,29 +2438,44 @@ export class Resource$Tiers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TiersListResponse>,
-       callback?: BodyResponseCallback<Schema$TiersListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/sql/v1beta3/projects/{project}/tiers')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['project'],
-          pathParams: ['project'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TiersListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TiersListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$TiersListResponse>,
+      callback?: BodyResponseCallback<Schema$TiersListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TiersListResponse>,
+      callback?: BodyResponseCallback<Schema$TiersListResponse>):
+      void|AxiosPromise<Schema$TiersListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/sql/v1beta3/projects/{project}/tiers')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['project'],
+      pathParams: ['project'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TiersListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TiersListResponse>(parameters);
+    }
+  }
 }

@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -53,10 +55,15 @@ export class Reseller {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.customers = new Resource$Customers(this);
     this.resellernotify = new Resource$Resellernotify(this);
     this.subscriptions = new Resource$Subscriptions(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -428,7 +435,13 @@ export class Resource$Customers {
   root: Reseller;
   constructor(root: Reseller) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * reseller.customers.get
@@ -442,31 +455,42 @@ export class Resource$Customers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Customer>,
-       callback?: BodyResponseCallback<Schema$Customer>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/apps/reseller/v1/customers/{customerId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['customerId'],
-          pathParams: ['customerId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Customer>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Customer>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Customer>,
+      callback?: BodyResponseCallback<Schema$Customer>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Customer>,
+      callback?: BodyResponseCallback<Schema$Customer>):
+      void|AxiosPromise<Schema$Customer> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/apps/reseller/v1/customers/{customerId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['customerId'],
+      pathParams: ['customerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Customer>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Customer>(parameters);
+    }
+  }
 
 
   /**
@@ -482,31 +506,44 @@ export class Resource$Customers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Customer>,
-       callback?: BodyResponseCallback<Schema$Customer>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/apps/reseller/v1/customers')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Customer>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Customer>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Customer>,
+      callback?: BodyResponseCallback<Schema$Customer>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Customer>,
+      callback?: BodyResponseCallback<Schema$Customer>):
+      void|AxiosPromise<Schema$Customer> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/apps/reseller/v1/customers')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Customer>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Customer>(parameters);
+    }
+  }
 
 
   /**
@@ -523,31 +560,44 @@ export class Resource$Customers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Customer>,
-       callback?: BodyResponseCallback<Schema$Customer>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/apps/reseller/v1/customers/{customerId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['customerId'],
-          pathParams: ['customerId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Customer>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Customer>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Customer>,
+      callback?: BodyResponseCallback<Schema$Customer>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Customer>,
+      callback?: BodyResponseCallback<Schema$Customer>):
+      void|AxiosPromise<Schema$Customer> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/apps/reseller/v1/customers/{customerId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['customerId'],
+      pathParams: ['customerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Customer>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Customer>(parameters);
+    }
+  }
 
 
   /**
@@ -563,38 +613,57 @@ export class Resource$Customers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Customer>,
-       callback?: BodyResponseCallback<Schema$Customer>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/apps/reseller/v1/customers/{customerId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['customerId'],
-          pathParams: ['customerId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Customer>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Customer>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Customer>,
+      callback?: BodyResponseCallback<Schema$Customer>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Customer>,
+      callback?: BodyResponseCallback<Schema$Customer>):
+      void|AxiosPromise<Schema$Customer> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/apps/reseller/v1/customers/{customerId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['customerId'],
+      pathParams: ['customerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Customer>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Customer>(parameters);
+    }
+  }
 }
 
 export class Resource$Resellernotify {
   root: Reseller;
   constructor(root: Reseller) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * reseller.resellernotify.getwatchdetails
@@ -607,35 +676,53 @@ export class Resource$Resellernotify {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getwatchdetails =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ResellernotifyGetwatchdetailsResponse>,
-       callback?: BodyResponseCallback<
-           Schema$ResellernotifyGetwatchdetailsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/apps/reseller/v1/resellernotify/getwatchdetails')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ResellernotifyGetwatchdetailsResponse>(
-            parameters, callback!);
-      };
+  getwatchdetails(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ResellernotifyGetwatchdetailsResponse>;
+  getwatchdetails(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ResellernotifyGetwatchdetailsResponse>,
+      callback?:
+          BodyResponseCallback<Schema$ResellernotifyGetwatchdetailsResponse>):
+      void;
+  getwatchdetails(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ResellernotifyGetwatchdetailsResponse>,
+      callback?:
+          BodyResponseCallback<Schema$ResellernotifyGetwatchdetailsResponse>):
+      void|AxiosPromise<Schema$ResellernotifyGetwatchdetailsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/apps/reseller/v1/resellernotify/getwatchdetails')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ResellernotifyGetwatchdetailsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ResellernotifyGetwatchdetailsResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -650,32 +737,48 @@ export class Resource$Resellernotify {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  register =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ResellernotifyResource>,
-       callback?: BodyResponseCallback<Schema$ResellernotifyResource>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/apps/reseller/v1/resellernotify/register')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ResellernotifyResource>(parameters, callback!);
-      };
+  register(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ResellernotifyResource>;
+  register(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ResellernotifyResource>,
+      callback?: BodyResponseCallback<Schema$ResellernotifyResource>): void;
+  register(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ResellernotifyResource>,
+      callback?: BodyResponseCallback<Schema$ResellernotifyResource>):
+      void|AxiosPromise<Schema$ResellernotifyResource> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/apps/reseller/v1/resellernotify/register')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ResellernotifyResource>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ResellernotifyResource>(parameters);
+    }
+  }
 
 
   /**
@@ -690,39 +793,61 @@ export class Resource$Resellernotify {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  unregister =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ResellernotifyResource>,
-       callback?: BodyResponseCallback<Schema$ResellernotifyResource>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/apps/reseller/v1/resellernotify/unregister')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ResellernotifyResource>(parameters, callback!);
-      };
+  unregister(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ResellernotifyResource>;
+  unregister(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ResellernotifyResource>,
+      callback?: BodyResponseCallback<Schema$ResellernotifyResource>): void;
+  unregister(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ResellernotifyResource>,
+      callback?: BodyResponseCallback<Schema$ResellernotifyResource>):
+      void|AxiosPromise<Schema$ResellernotifyResource> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/apps/reseller/v1/resellernotify/unregister')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ResellernotifyResource>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ResellernotifyResource>(parameters);
+    }
+  }
 }
 
 export class Resource$Subscriptions {
   root: Reseller;
   constructor(root: Reseller) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * reseller.subscriptions.activate
@@ -737,33 +862,48 @@ export class Resource$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  activate =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
-       callback?: BodyResponseCallback<Schema$Subscription>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/activate')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['customerId', 'subscriptionId'],
-          pathParams: ['customerId', 'subscriptionId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Subscription>(parameters, callback!);
-      };
+  activate(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Subscription>;
+  activate(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>): void;
+  activate(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>):
+      void|AxiosPromise<Schema$Subscription> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/activate')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['customerId', 'subscriptionId'],
+      pathParams: ['customerId', 'subscriptionId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Subscription>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Subscription>(parameters);
+    }
+  }
 
 
   /**
@@ -782,33 +922,48 @@ export class Resource$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  changePlan =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
-       callback?: BodyResponseCallback<Schema$Subscription>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changePlan')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['customerId', 'subscriptionId'],
-          pathParams: ['customerId', 'subscriptionId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Subscription>(parameters, callback!);
-      };
+  changePlan(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Subscription>;
+  changePlan(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>): void;
+  changePlan(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>):
+      void|AxiosPromise<Schema$Subscription> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changePlan')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['customerId', 'subscriptionId'],
+      pathParams: ['customerId', 'subscriptionId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Subscription>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Subscription>(parameters);
+    }
+  }
 
 
   /**
@@ -826,33 +981,48 @@ export class Resource$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  changeRenewalSettings =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
-       callback?: BodyResponseCallback<Schema$Subscription>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changeRenewalSettings')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['customerId', 'subscriptionId'],
-          pathParams: ['customerId', 'subscriptionId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Subscription>(parameters, callback!);
-      };
+  changeRenewalSettings(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Subscription>;
+  changeRenewalSettings(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>): void;
+  changeRenewalSettings(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>):
+      void|AxiosPromise<Schema$Subscription> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changeRenewalSettings')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['customerId', 'subscriptionId'],
+      pathParams: ['customerId', 'subscriptionId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Subscription>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Subscription>(parameters);
+    }
+  }
 
 
   /**
@@ -869,33 +1039,48 @@ export class Resource$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  changeSeats =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
-       callback?: BodyResponseCallback<Schema$Subscription>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changeSeats')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['customerId', 'subscriptionId'],
-          pathParams: ['customerId', 'subscriptionId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Subscription>(parameters, callback!);
-      };
+  changeSeats(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Subscription>;
+  changeSeats(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>): void;
+  changeSeats(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>):
+      void|AxiosPromise<Schema$Subscription> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changeSeats')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['customerId', 'subscriptionId'],
+      pathParams: ['customerId', 'subscriptionId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Subscription>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Subscription>(parameters);
+    }
+  }
 
 
   /**
@@ -912,32 +1097,44 @@ export class Resource$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['customerId', 'subscriptionId', 'deletionType'],
-          pathParams: ['customerId', 'subscriptionId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['customerId', 'subscriptionId', 'deletionType'],
+      pathParams: ['customerId', 'subscriptionId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -953,33 +1150,45 @@ export class Resource$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
-       callback?: BodyResponseCallback<Schema$Subscription>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['customerId', 'subscriptionId'],
-          pathParams: ['customerId', 'subscriptionId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Subscription>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Subscription>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>):
+      void|AxiosPromise<Schema$Subscription> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['customerId', 'subscriptionId'],
+      pathParams: ['customerId', 'subscriptionId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Subscription>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Subscription>(parameters);
+    }
+  }
 
 
   /**
@@ -996,32 +1205,47 @@ export class Resource$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
-       callback?: BodyResponseCallback<Schema$Subscription>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/apps/reseller/v1/customers/{customerId}/subscriptions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['customerId'],
-          pathParams: ['customerId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Subscription>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Subscription>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>):
+      void|AxiosPromise<Schema$Subscription> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/apps/reseller/v1/customers/{customerId}/subscriptions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['customerId'],
+      pathParams: ['customerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Subscription>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Subscription>(parameters);
+    }
+  }
 
 
   /**
@@ -1042,31 +1266,46 @@ export class Resource$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Subscriptions>,
-       callback?: BodyResponseCallback<Schema$Subscriptions>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/apps/reseller/v1/subscriptions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Subscriptions>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Subscriptions>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Subscriptions>,
+      callback?: BodyResponseCallback<Schema$Subscriptions>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Subscriptions>,
+      callback?: BodyResponseCallback<Schema$Subscriptions>):
+      void|AxiosPromise<Schema$Subscriptions> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/apps/reseller/v1/subscriptions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Subscriptions>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Subscriptions>(parameters);
+    }
+  }
 
 
   /**
@@ -1083,33 +1322,48 @@ export class Resource$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  startPaidService =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
-       callback?: BodyResponseCallback<Schema$Subscription>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/startPaidService')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['customerId', 'subscriptionId'],
-          pathParams: ['customerId', 'subscriptionId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Subscription>(parameters, callback!);
-      };
+  startPaidService(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Subscription>;
+  startPaidService(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>): void;
+  startPaidService(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>):
+      void|AxiosPromise<Schema$Subscription> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/startPaidService')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['customerId', 'subscriptionId'],
+      pathParams: ['customerId', 'subscriptionId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Subscription>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Subscription>(parameters);
+    }
+  }
 
 
   /**
@@ -1125,31 +1379,46 @@ export class Resource$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  suspend =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
-       callback?: BodyResponseCallback<Schema$Subscription>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/suspend')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['customerId', 'subscriptionId'],
-          pathParams: ['customerId', 'subscriptionId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Subscription>(parameters, callback!);
-      };
+  suspend(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Subscription>;
+  suspend(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>): void;
+  suspend(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>):
+      void|AxiosPromise<Schema$Subscription> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/suspend')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['customerId', 'subscriptionId'],
+      pathParams: ['customerId', 'subscriptionId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Subscription>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Subscription>(parameters);
+    }
+  }
 }

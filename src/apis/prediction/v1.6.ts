@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -53,9 +55,14 @@ export class Prediction {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.hostedmodels = new Resource$Hostedmodels(this);
     this.trainedmodels = new Resource$Trainedmodels(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -233,7 +240,13 @@ export class Resource$Hostedmodels {
   root: Prediction;
   constructor(root: Prediction) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * prediction.hostedmodels.predict
@@ -309,39 +322,58 @@ export class Resource$Hostedmodels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  predict =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Output>,
-       callback?: BodyResponseCallback<Schema$Output>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/prediction/v1.6/projects/{project}/hostedmodels/{hostedModelName}/predict')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['project', 'hostedModelName'],
-          pathParams: ['hostedModelName', 'project'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Output>(parameters, callback!);
-      };
+  predict(params: any, options?: MethodOptions): AxiosPromise<Schema$Output>;
+  predict(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Output>,
+      callback?: BodyResponseCallback<Schema$Output>): void;
+  predict(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Output>,
+      callback?: BodyResponseCallback<Schema$Output>):
+      void|AxiosPromise<Schema$Output> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/prediction/v1.6/projects/{project}/hostedmodels/{hostedModelName}/predict')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['project', 'hostedModelName'],
+      pathParams: ['hostedModelName', 'project'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Output>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Output>(parameters);
+    }
+  }
 }
 
 export class Resource$Trainedmodels {
   root: Prediction;
   constructor(root: Prediction) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * prediction.trainedmodels.analyze
@@ -411,32 +443,45 @@ export class Resource$Trainedmodels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  analyze =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Analyze>,
-       callback?: BodyResponseCallback<Schema$Analyze>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/prediction/v1.6/projects/{project}/trainedmodels/{id}/analyze')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['project', 'id'],
-          pathParams: ['id', 'project'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Analyze>(parameters, callback!);
-      };
+  analyze(params: any, options?: MethodOptions): AxiosPromise<Schema$Analyze>;
+  analyze(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Analyze>,
+      callback?: BodyResponseCallback<Schema$Analyze>): void;
+  analyze(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Analyze>,
+      callback?: BodyResponseCallback<Schema$Analyze>):
+      void|AxiosPromise<Schema$Analyze> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/prediction/v1.6/projects/{project}/trainedmodels/{id}/analyze')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['project', 'id'],
+      pathParams: ['id', 'project'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Analyze>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Analyze>(parameters);
+    }
+  }
 
 
   /**
@@ -504,31 +549,43 @@ export class Resource$Trainedmodels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/prediction/v1.6/projects/{project}/trainedmodels/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['project', 'id'],
-          pathParams: ['id', 'project'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/prediction/v1.6/projects/{project}/trainedmodels/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['project', 'id'],
+      pathParams: ['id', 'project'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -599,31 +656,42 @@ export class Resource$Trainedmodels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Insert2>,
-       callback?: BodyResponseCallback<Schema$Insert2>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/prediction/v1.6/projects/{project}/trainedmodels/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['project', 'id'],
-          pathParams: ['id', 'project'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Insert2>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Insert2>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Insert2>,
+      callback?: BodyResponseCallback<Schema$Insert2>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Insert2>,
+      callback?: BodyResponseCallback<Schema$Insert2>):
+      void|AxiosPromise<Schema$Insert2> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/prediction/v1.6/projects/{project}/trainedmodels/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['project', 'id'],
+      pathParams: ['id', 'project'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Insert2>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Insert2>(parameters);
+    }
+  }
 
 
   /**
@@ -695,31 +763,43 @@ export class Resource$Trainedmodels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Insert2>,
-       callback?: BodyResponseCallback<Schema$Insert2>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/prediction/v1.6/projects/{project}/trainedmodels')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['project'],
-          pathParams: ['project'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Insert2>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Insert2>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Insert2>,
+      callback?: BodyResponseCallback<Schema$Insert2>): void;
+  insert(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Insert2>,
+      callback?: BodyResponseCallback<Schema$Insert2>):
+      void|AxiosPromise<Schema$Insert2> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/prediction/v1.6/projects/{project}/trainedmodels')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['project'],
+      pathParams: ['project'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Insert2>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Insert2>(parameters);
+    }
+  }
 
 
   /**
@@ -801,31 +881,44 @@ export class Resource$Trainedmodels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$List>,
-       callback?: BodyResponseCallback<Schema$List>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/prediction/v1.6/projects/{project}/trainedmodels/list')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['project'],
-          pathParams: ['project'],
-          context: this.root
-        };
-        createAPIRequest<Schema$List>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$List>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$List>,
+      callback?: BodyResponseCallback<Schema$List>): void;
+  list(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$List>,
+      callback?: BodyResponseCallback<Schema$List>):
+      void|AxiosPromise<Schema$List> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/prediction/v1.6/projects/{project}/trainedmodels/list')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['project'],
+      pathParams: ['project'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$List>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$List>(parameters);
+    }
+  }
 
 
   /**
@@ -901,32 +994,45 @@ export class Resource$Trainedmodels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  predict =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Output>,
-       callback?: BodyResponseCallback<Schema$Output>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/prediction/v1.6/projects/{project}/trainedmodels/{id}/predict')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['project', 'id'],
-          pathParams: ['id', 'project'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Output>(parameters, callback!);
-      };
+  predict(params: any, options?: MethodOptions): AxiosPromise<Schema$Output>;
+  predict(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Output>,
+      callback?: BodyResponseCallback<Schema$Output>): void;
+  predict(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Output>,
+      callback?: BodyResponseCallback<Schema$Output>):
+      void|AxiosPromise<Schema$Output> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/prediction/v1.6/projects/{project}/trainedmodels/{id}/predict')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['project', 'id'],
+      pathParams: ['id', 'project'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Output>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Output>(parameters);
+    }
+  }
 
 
   /**
@@ -1004,29 +1110,42 @@ export class Resource$Trainedmodels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Insert2>,
-       callback?: BodyResponseCallback<Schema$Insert2>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/prediction/v1.6/projects/{project}/trainedmodels/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['project', 'id'],
-          pathParams: ['id', 'project'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Insert2>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Insert2>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Insert2>,
+      callback?: BodyResponseCallback<Schema$Insert2>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Insert2>,
+      callback?: BodyResponseCallback<Schema$Insert2>):
+      void|AxiosPromise<Schema$Insert2> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/prediction/v1.6/projects/{project}/trainedmodels/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['project', 'id'],
+      pathParams: ['id', 'project'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Insert2>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Insert2>(parameters);
+    }
+  }
 }

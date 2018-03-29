@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -53,9 +55,14 @@ export class Poly {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.assets = new Resource$Assets(this);
     this.users = new Resource$Users(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -406,7 +413,13 @@ export class Resource$Assets {
   root: Poly;
   constructor(root: Poly) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * poly.assets.get
@@ -422,29 +435,40 @@ export class Resource$Assets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Asset>,
-       callback?: BodyResponseCallback<Schema$Asset>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://poly.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Asset>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Asset>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Asset>,
+      callback?: BodyResponseCallback<Schema$Asset>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Asset>,
+      callback?: BodyResponseCallback<Schema$Asset>):
+      void|AxiosPromise<Schema$Asset> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://poly.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Asset>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Asset>(parameters);
+    }
+  }
 
 
   /**
@@ -467,30 +491,45 @@ export class Resource$Assets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListAssetsResponse>,
-       callback?: BodyResponseCallback<Schema$ListAssetsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://poly.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/assets').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListAssetsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListAssetsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListAssetsResponse>,
+      callback?: BodyResponseCallback<Schema$ListAssetsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListAssetsResponse>,
+      callback?: BodyResponseCallback<Schema$ListAssetsResponse>):
+      void|AxiosPromise<Schema$ListAssetsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://poly.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/assets').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListAssetsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListAssetsResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Users {
@@ -499,15 +538,26 @@ export class Resource$Users {
   likedassets: Resource$Users$Likedassets;
   constructor(root: Poly) {
     this.root = root;
+    this.getRoot.bind(this);
     this.assets = new Resource$Users$Assets(root);
     this.likedassets = new Resource$Users$Likedassets(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Users$Assets {
   root: Poly;
   constructor(root: Poly) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * poly.users.assets.list
@@ -529,39 +579,60 @@ export class Resource$Users$Assets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListUserAssetsResponse>,
-       callback?: BodyResponseCallback<Schema$ListUserAssetsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://poly.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}/assets')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListUserAssetsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListUserAssetsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListUserAssetsResponse>,
+      callback?: BodyResponseCallback<Schema$ListUserAssetsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListUserAssetsResponse>,
+      callback?: BodyResponseCallback<Schema$ListUserAssetsResponse>):
+      void|AxiosPromise<Schema$ListUserAssetsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://poly.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}/assets').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListUserAssetsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListUserAssetsResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Users$Likedassets {
   root: Poly;
   constructor(root: Poly) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * poly.users.likedassets.list
@@ -581,30 +652,46 @@ export class Resource$Users$Likedassets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListLikedAssetsResponse>,
-       callback?: BodyResponseCallback<Schema$ListLikedAssetsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://poly.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}/likedassets')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListLikedAssetsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListLikedAssetsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListLikedAssetsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLikedAssetsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListLikedAssetsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLikedAssetsResponse>):
+      void|AxiosPromise<Schema$ListLikedAssetsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://poly.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}/likedassets')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListLikedAssetsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListLikedAssetsResponse>(parameters);
+    }
+  }
 }

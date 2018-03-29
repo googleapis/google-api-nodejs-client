@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -57,12 +59,17 @@ export class Iam {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.iamPolicies = new Resource$Iampolicies(this);
     this.organizations = new Resource$Organizations(this);
     this.permissions = new Resource$Permissions(this);
     this.projects = new Resource$Projects(this);
     this.roles = new Resource$Roles(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -699,7 +706,13 @@ export class Resource$Iampolicies {
   root: Iam;
   constructor(root: Iam) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * iam.iamPolicies.queryAuditableServices
@@ -714,34 +727,51 @@ export class Resource$Iampolicies {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  queryAuditableServices =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$QueryAuditableServicesResponse>,
-       callback?:
-           BodyResponseCallback<Schema$QueryAuditableServicesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/iamPolicies:queryAuditableServices')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$QueryAuditableServicesResponse>(
-            parameters, callback!);
-      };
+  queryAuditableServices(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$QueryAuditableServicesResponse>;
+  queryAuditableServices(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$QueryAuditableServicesResponse>,
+      callback?: BodyResponseCallback<Schema$QueryAuditableServicesResponse>):
+      void;
+  queryAuditableServices(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$QueryAuditableServicesResponse>,
+      callback?: BodyResponseCallback<Schema$QueryAuditableServicesResponse>):
+      void|AxiosPromise<Schema$QueryAuditableServicesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/iamPolicies:queryAuditableServices')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$QueryAuditableServicesResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$QueryAuditableServicesResponse>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Organizations {
@@ -749,14 +779,25 @@ export class Resource$Organizations {
   roles: Resource$Organizations$Roles;
   constructor(root: Iam) {
     this.root = root;
+    this.getRoot.bind(this);
     this.roles = new Resource$Organizations$Roles(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Organizations$Roles {
   root: Iam;
   constructor(root: Iam) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * iam.organizations.roles.create
@@ -771,30 +812,42 @@ export class Resource$Organizations$Roles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Role>,
-       callback?: BodyResponseCallback<Schema$Role>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/roles')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Role>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Role>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Role>,
+      callback?: BodyResponseCallback<Schema$Role>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
+      callback?: BodyResponseCallback<Schema$Role>):
+      void|AxiosPromise<Schema$Role> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/roles').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Role>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Role>(parameters);
+    }
+  }
 
 
   /**
@@ -815,29 +868,42 @@ export class Resource$Organizations$Roles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Role>,
-       callback?: BodyResponseCallback<Schema$Role>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Role>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Role>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Role>,
+      callback?: BodyResponseCallback<Schema$Role>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
+      callback?: BodyResponseCallback<Schema$Role>):
+      void|AxiosPromise<Schema$Role> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Role>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Role>(parameters);
+    }
+  }
 
 
   /**
@@ -852,29 +918,40 @@ export class Resource$Organizations$Roles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Role>,
-       callback?: BodyResponseCallback<Schema$Role>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Role>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Role>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Role>,
+      callback?: BodyResponseCallback<Schema$Role>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
+      callback?: BodyResponseCallback<Schema$Role>):
+      void|AxiosPromise<Schema$Role> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Role>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Role>(parameters);
+    }
+  }
 
 
   /**
@@ -893,31 +970,45 @@ export class Resource$Organizations$Roles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListRolesResponse>,
-       callback?: BodyResponseCallback<Schema$ListRolesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/roles')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListRolesResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListRolesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListRolesResponse>,
+      callback?: BodyResponseCallback<Schema$ListRolesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListRolesResponse>,
+      callback?: BodyResponseCallback<Schema$ListRolesResponse>):
+      void|AxiosPromise<Schema$ListRolesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/roles').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListRolesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListRolesResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -934,29 +1025,42 @@ export class Resource$Organizations$Roles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Role>,
-       callback?: BodyResponseCallback<Schema$Role>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Role>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Role>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Role>,
+      callback?: BodyResponseCallback<Schema$Role>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
+      callback?: BodyResponseCallback<Schema$Role>):
+      void|AxiosPromise<Schema$Role> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Role>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Role>(parameters);
+    }
+  }
 
 
   /**
@@ -972,30 +1076,43 @@ export class Resource$Organizations$Roles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  undelete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Role>,
-       callback?: BodyResponseCallback<Schema$Role>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}:undelete')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Role>(parameters, callback!);
-      };
+  undelete(params: any, options?: MethodOptions): AxiosPromise<Schema$Role>;
+  undelete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Role>,
+      callback?: BodyResponseCallback<Schema$Role>): void;
+  undelete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
+      callback?: BodyResponseCallback<Schema$Role>):
+      void|AxiosPromise<Schema$Role> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/v1/{name}:undelete').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Role>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Role>(parameters);
+    }
+  }
 }
 
 
@@ -1003,7 +1120,13 @@ export class Resource$Permissions {
   root: Iam;
   constructor(root: Iam) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * iam.permissions.queryTestablePermissions
@@ -1018,34 +1141,51 @@ export class Resource$Permissions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  queryTestablePermissions =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$QueryTestablePermissionsResponse>,
-       callback?:
-           BodyResponseCallback<Schema$QueryTestablePermissionsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/permissions:queryTestablePermissions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$QueryTestablePermissionsResponse>(
-            parameters, callback!);
-      };
+  queryTestablePermissions(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$QueryTestablePermissionsResponse>;
+  queryTestablePermissions(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$QueryTestablePermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$QueryTestablePermissionsResponse>):
+      void;
+  queryTestablePermissions(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$QueryTestablePermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$QueryTestablePermissionsResponse>):
+      void|AxiosPromise<Schema$QueryTestablePermissionsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/permissions:queryTestablePermissions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$QueryTestablePermissionsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$QueryTestablePermissionsResponse>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Projects {
@@ -1054,15 +1194,26 @@ export class Resource$Projects {
   serviceAccounts: Resource$Projects$Serviceaccounts;
   constructor(root: Iam) {
     this.root = root;
+    this.getRoot.bind(this);
     this.roles = new Resource$Projects$Roles(root);
     this.serviceAccounts = new Resource$Projects$Serviceaccounts(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Projects$Roles {
   root: Iam;
   constructor(root: Iam) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * iam.projects.roles.create
@@ -1077,30 +1228,42 @@ export class Resource$Projects$Roles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Role>,
-       callback?: BodyResponseCallback<Schema$Role>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/roles')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Role>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Role>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Role>,
+      callback?: BodyResponseCallback<Schema$Role>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
+      callback?: BodyResponseCallback<Schema$Role>):
+      void|AxiosPromise<Schema$Role> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/roles').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Role>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Role>(parameters);
+    }
+  }
 
 
   /**
@@ -1121,29 +1284,42 @@ export class Resource$Projects$Roles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Role>,
-       callback?: BodyResponseCallback<Schema$Role>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Role>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Role>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Role>,
+      callback?: BodyResponseCallback<Schema$Role>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
+      callback?: BodyResponseCallback<Schema$Role>):
+      void|AxiosPromise<Schema$Role> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Role>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Role>(parameters);
+    }
+  }
 
 
   /**
@@ -1158,29 +1334,40 @@ export class Resource$Projects$Roles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Role>,
-       callback?: BodyResponseCallback<Schema$Role>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Role>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Role>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Role>,
+      callback?: BodyResponseCallback<Schema$Role>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
+      callback?: BodyResponseCallback<Schema$Role>):
+      void|AxiosPromise<Schema$Role> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Role>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Role>(parameters);
+    }
+  }
 
 
   /**
@@ -1199,31 +1386,45 @@ export class Resource$Projects$Roles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListRolesResponse>,
-       callback?: BodyResponseCallback<Schema$ListRolesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/roles')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListRolesResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListRolesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListRolesResponse>,
+      callback?: BodyResponseCallback<Schema$ListRolesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListRolesResponse>,
+      callback?: BodyResponseCallback<Schema$ListRolesResponse>):
+      void|AxiosPromise<Schema$ListRolesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/roles').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListRolesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListRolesResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1240,29 +1441,42 @@ export class Resource$Projects$Roles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Role>,
-       callback?: BodyResponseCallback<Schema$Role>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Role>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Role>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Role>,
+      callback?: BodyResponseCallback<Schema$Role>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
+      callback?: BodyResponseCallback<Schema$Role>):
+      void|AxiosPromise<Schema$Role> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Role>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Role>(parameters);
+    }
+  }
 
 
   /**
@@ -1278,30 +1492,43 @@ export class Resource$Projects$Roles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  undelete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Role>,
-       callback?: BodyResponseCallback<Schema$Role>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}:undelete')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Role>(parameters, callback!);
-      };
+  undelete(params: any, options?: MethodOptions): AxiosPromise<Schema$Role>;
+  undelete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Role>,
+      callback?: BodyResponseCallback<Schema$Role>): void;
+  undelete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
+      callback?: BodyResponseCallback<Schema$Role>):
+      void|AxiosPromise<Schema$Role> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/v1/{name}:undelete').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Role>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Role>(parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Serviceaccounts {
@@ -1309,8 +1536,14 @@ export class Resource$Projects$Serviceaccounts {
   keys: Resource$Projects$Serviceaccounts$Keys;
   constructor(root: Iam) {
     this.root = root;
+    this.getRoot.bind(this);
     this.keys = new Resource$Projects$Serviceaccounts$Keys(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * iam.projects.serviceAccounts.create
@@ -1325,31 +1558,46 @@ export class Resource$Projects$Serviceaccounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ServiceAccount>,
-       callback?: BodyResponseCallback<Schema$ServiceAccount>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}/serviceAccounts')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ServiceAccount>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ServiceAccount>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ServiceAccount>,
+      callback?: BodyResponseCallback<Schema$ServiceAccount>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ServiceAccount>,
+      callback?: BodyResponseCallback<Schema$ServiceAccount>):
+      void|AxiosPromise<Schema$ServiceAccount> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}/serviceAccounts')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ServiceAccount>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ServiceAccount>(parameters);
+    }
+  }
 
 
   /**
@@ -1364,29 +1612,42 @@ export class Resource$Projects$Serviceaccounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -1401,30 +1662,43 @@ export class Resource$Projects$Serviceaccounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ServiceAccount>,
-       callback?: BodyResponseCallback<Schema$ServiceAccount>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ServiceAccount>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$ServiceAccount>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ServiceAccount>,
+      callback?: BodyResponseCallback<Schema$ServiceAccount>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ServiceAccount>,
+      callback?: BodyResponseCallback<Schema$ServiceAccount>):
+      void|AxiosPromise<Schema$ServiceAccount> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ServiceAccount>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ServiceAccount>(parameters);
+    }
+  }
 
 
   /**
@@ -1439,30 +1713,44 @@ export class Resource$Projects$Serviceaccounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getIamPolicy =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-       callback?: BodyResponseCallback<Schema$Policy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:getIamPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Policy>(parameters, callback!);
-      };
+  getIamPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Policy>;
+  getIamPolicy(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>): void;
+  getIamPolicy(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>):
+      void|AxiosPromise<Schema$Policy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:getIamPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Policy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Policy>(parameters);
+    }
+  }
 
 
   /**
@@ -1479,33 +1767,50 @@ export class Resource$Projects$Serviceaccounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListServiceAccountsResponse>,
-       callback?: BodyResponseCallback<Schema$ListServiceAccountsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}/serviceAccounts')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListServiceAccountsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListServiceAccountsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListServiceAccountsResponse>,
+      callback?: BodyResponseCallback<Schema$ListServiceAccountsResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListServiceAccountsResponse>,
+      callback?: BodyResponseCallback<Schema$ListServiceAccountsResponse>):
+      void|AxiosPromise<Schema$ListServiceAccountsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}/serviceAccounts')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListServiceAccountsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListServiceAccountsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1521,30 +1826,44 @@ export class Resource$Projects$Serviceaccounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setIamPolicy =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-       callback?: BodyResponseCallback<Schema$Policy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:setIamPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Policy>(parameters, callback!);
-      };
+  setIamPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Policy>;
+  setIamPolicy(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>): void;
+  setIamPolicy(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>):
+      void|AxiosPromise<Schema$Policy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:setIamPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Policy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Policy>(parameters);
+    }
+  }
 
 
   /**
@@ -1560,31 +1879,46 @@ export class Resource$Projects$Serviceaccounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  signBlob =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$SignBlobResponse>,
-       callback?: BodyResponseCallback<Schema$SignBlobResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}:signBlob')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SignBlobResponse>(parameters, callback!);
-      };
+  signBlob(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SignBlobResponse>;
+  signBlob(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$SignBlobResponse>,
+      callback?: BodyResponseCallback<Schema$SignBlobResponse>): void;
+  signBlob(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$SignBlobResponse>,
+      callback?: BodyResponseCallback<Schema$SignBlobResponse>):
+      void|AxiosPromise<Schema$SignBlobResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/v1/{name}:signBlob').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SignBlobResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SignBlobResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1603,31 +1937,45 @@ export class Resource$Projects$Serviceaccounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  signJwt =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$SignJwtResponse>,
-       callback?: BodyResponseCallback<Schema$SignJwtResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}:signJwt')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SignJwtResponse>(parameters, callback!);
-      };
+  signJwt(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SignJwtResponse>;
+  signJwt(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$SignJwtResponse>,
+      callback?: BodyResponseCallback<Schema$SignJwtResponse>): void;
+  signJwt(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$SignJwtResponse>,
+      callback?: BodyResponseCallback<Schema$SignJwtResponse>):
+      void|AxiosPromise<Schema$SignJwtResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}:signJwt').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SignJwtResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SignJwtResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1644,33 +1992,48 @@ export class Resource$Projects$Serviceaccounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  testIamPermissions =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-       callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:testIamPermissions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback!);
-      };
+  testIamPermissions(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TestIamPermissionsResponse>;
+  testIamPermissions(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>): void;
+  testIamPermissions(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+      void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:testIamPermissions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TestIamPermissionsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1687,36 +2050,57 @@ export class Resource$Projects$Serviceaccounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ServiceAccount>,
-       callback?: BodyResponseCallback<Schema$ServiceAccount>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ServiceAccount>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ServiceAccount>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ServiceAccount>,
+      callback?: BodyResponseCallback<Schema$ServiceAccount>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ServiceAccount>,
+      callback?: BodyResponseCallback<Schema$ServiceAccount>):
+      void|AxiosPromise<Schema$ServiceAccount> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ServiceAccount>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ServiceAccount>(parameters);
+    }
+  }
 }
 export class Resource$Projects$Serviceaccounts$Keys {
   root: Iam;
   constructor(root: Iam) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * iam.projects.serviceAccounts.keys.create
@@ -1731,31 +2115,45 @@ export class Resource$Projects$Serviceaccounts$Keys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ServiceAccountKey>,
-       callback?: BodyResponseCallback<Schema$ServiceAccountKey>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1/{name}/keys').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ServiceAccountKey>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ServiceAccountKey>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ServiceAccountKey>,
+      callback?: BodyResponseCallback<Schema$ServiceAccountKey>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ServiceAccountKey>,
+      callback?: BodyResponseCallback<Schema$ServiceAccountKey>):
+      void|AxiosPromise<Schema$ServiceAccountKey> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}/keys').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ServiceAccountKey>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ServiceAccountKey>(parameters);
+    }
+  }
 
 
   /**
@@ -1770,29 +2168,42 @@ export class Resource$Projects$Serviceaccounts$Keys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -1808,30 +2219,43 @@ export class Resource$Projects$Serviceaccounts$Keys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ServiceAccountKey>,
-       callback?: BodyResponseCallback<Schema$ServiceAccountKey>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ServiceAccountKey>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$ServiceAccountKey>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ServiceAccountKey>,
+      callback?: BodyResponseCallback<Schema$ServiceAccountKey>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ServiceAccountKey>,
+      callback?: BodyResponseCallback<Schema$ServiceAccountKey>):
+      void|AxiosPromise<Schema$ServiceAccountKey> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ServiceAccountKey>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ServiceAccountKey>(parameters);
+    }
+  }
 
 
   /**
@@ -1847,34 +2271,50 @@ export class Resource$Projects$Serviceaccounts$Keys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListServiceAccountKeysResponse>,
-       callback?:
-           BodyResponseCallback<Schema$ListServiceAccountKeysResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1/{name}/keys').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListServiceAccountKeysResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListServiceAccountKeysResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListServiceAccountKeysResponse>,
+      callback?: BodyResponseCallback<Schema$ListServiceAccountKeysResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListServiceAccountKeysResponse>,
+      callback?: BodyResponseCallback<Schema$ListServiceAccountKeysResponse>):
+      void|AxiosPromise<Schema$ListServiceAccountKeysResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}/keys').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListServiceAccountKeysResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListServiceAccountKeysResponse>(
+          parameters);
+    }
+  }
 }
 
 
@@ -1883,7 +2323,13 @@ export class Resource$Roles {
   root: Iam;
   constructor(root: Iam) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * iam.roles.get
@@ -1897,29 +2343,40 @@ export class Resource$Roles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Role>,
-       callback?: BodyResponseCallback<Schema$Role>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Role>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Role>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Role>,
+      callback?: BodyResponseCallback<Schema$Role>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
+      callback?: BodyResponseCallback<Schema$Role>):
+      void|AxiosPromise<Schema$Role> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Role>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Role>(parameters);
+    }
+  }
 
 
   /**
@@ -1938,30 +2395,45 @@ export class Resource$Roles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListRolesResponse>,
-       callback?: BodyResponseCallback<Schema$ListRolesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/roles').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListRolesResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListRolesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListRolesResponse>,
+      callback?: BodyResponseCallback<Schema$ListRolesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListRolesResponse>,
+      callback?: BodyResponseCallback<Schema$ListRolesResponse>):
+      void|AxiosPromise<Schema$ListRolesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/roles').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListRolesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListRolesResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1978,31 +2450,48 @@ export class Resource$Roles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  queryGrantableRoles =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$QueryGrantableRolesResponse>,
-       callback?: BodyResponseCallback<Schema$QueryGrantableRolesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/roles:queryGrantableRoles')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$QueryGrantableRolesResponse>(
-            parameters, callback!);
-      };
+  queryGrantableRoles(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$QueryGrantableRolesResponse>;
+  queryGrantableRoles(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$QueryGrantableRolesResponse>,
+      callback?: BodyResponseCallback<Schema$QueryGrantableRolesResponse>):
+      void;
+  queryGrantableRoles(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$QueryGrantableRolesResponse>,
+      callback?: BodyResponseCallback<Schema$QueryGrantableRolesResponse>):
+      void|AxiosPromise<Schema$QueryGrantableRolesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/roles:queryGrantableRoles')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$QueryGrantableRolesResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$QueryGrantableRolesResponse>(parameters);
+    }
+  }
 }

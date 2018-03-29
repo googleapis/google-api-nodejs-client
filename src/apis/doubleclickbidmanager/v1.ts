@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -54,11 +56,16 @@ export class Doubleclickbidmanager {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.lineitems = new Resource$Lineitems(this);
     this.queries = new Resource$Queries(this);
     this.reports = new Resource$Reports(this);
     this.sdf = new Resource$Sdf(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -515,7 +522,13 @@ export class Resource$Lineitems {
   root: Doubleclickbidmanager;
   constructor(root: Doubleclickbidmanager) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * doubleclickbidmanager.lineitems.downloadlineitems
@@ -530,34 +543,49 @@ export class Resource$Lineitems {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  downloadlineitems =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$DownloadLineItemsResponse>,
-       callback?: BodyResponseCallback<Schema$DownloadLineItemsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/doubleclickbidmanager/v1/lineitems/downloadlineitems')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$DownloadLineItemsResponse>(
-            parameters, callback!);
-      };
+  downloadlineitems(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$DownloadLineItemsResponse>;
+  downloadlineitems(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$DownloadLineItemsResponse>,
+      callback?: BodyResponseCallback<Schema$DownloadLineItemsResponse>): void;
+  downloadlineitems(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$DownloadLineItemsResponse>,
+      callback?: BodyResponseCallback<Schema$DownloadLineItemsResponse>):
+      void|AxiosPromise<Schema$DownloadLineItemsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/doubleclickbidmanager/v1/lineitems/downloadlineitems')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DownloadLineItemsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DownloadLineItemsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -573,40 +601,62 @@ export class Resource$Lineitems {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  uploadlineitems =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$UploadLineItemsResponse>,
-       callback?: BodyResponseCallback<Schema$UploadLineItemsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/doubleclickbidmanager/v1/lineitems/uploadlineitems')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$UploadLineItemsResponse>(parameters, callback!);
-      };
+  uploadlineitems(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$UploadLineItemsResponse>;
+  uploadlineitems(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$UploadLineItemsResponse>,
+      callback?: BodyResponseCallback<Schema$UploadLineItemsResponse>): void;
+  uploadlineitems(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$UploadLineItemsResponse>,
+      callback?: BodyResponseCallback<Schema$UploadLineItemsResponse>):
+      void|AxiosPromise<Schema$UploadLineItemsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/doubleclickbidmanager/v1/lineitems/uploadlineitems')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UploadLineItemsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UploadLineItemsResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Queries {
   root: Doubleclickbidmanager;
   constructor(root: Doubleclickbidmanager) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * doubleclickbidmanager.queries.createquery
@@ -620,30 +670,43 @@ export class Resource$Queries {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  createquery =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Query>,
-       callback?: BodyResponseCallback<Schema$Query>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/doubleclickbidmanager/v1/query')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Query>(parameters, callback!);
-      };
+  createquery(params: any, options?: MethodOptions): AxiosPromise<Schema$Query>;
+  createquery(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Query>,
+      callback?: BodyResponseCallback<Schema$Query>): void;
+  createquery(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Query>,
+      callback?: BodyResponseCallback<Schema$Query>):
+      void|AxiosPromise<Schema$Query> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/doubleclickbidmanager/v1/query')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Query>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Query>(parameters);
+    }
+  }
 
 
   /**
@@ -658,30 +721,42 @@ export class Resource$Queries {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  deletequery =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/doubleclickbidmanager/v1/query/{queryId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['queryId'],
-          pathParams: ['queryId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  deletequery(params: any, options?: MethodOptions): AxiosPromise<void>;
+  deletequery(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  deletequery(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/doubleclickbidmanager/v1/query/{queryId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['queryId'],
+      pathParams: ['queryId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -696,30 +771,43 @@ export class Resource$Queries {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getquery =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Query>,
-       callback?: BodyResponseCallback<Schema$Query>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/doubleclickbidmanager/v1/query/{queryId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['queryId'],
-          pathParams: ['queryId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Query>(parameters, callback!);
-      };
+  getquery(params: any, options?: MethodOptions): AxiosPromise<Schema$Query>;
+  getquery(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Query>,
+      callback?: BodyResponseCallback<Schema$Query>): void;
+  getquery(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Query>,
+      callback?: BodyResponseCallback<Schema$Query>):
+      void|AxiosPromise<Schema$Query> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/doubleclickbidmanager/v1/query/{queryId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['queryId'],
+      pathParams: ['queryId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Query>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Query>(parameters);
+    }
+  }
 
 
   /**
@@ -733,31 +821,46 @@ export class Resource$Queries {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  listqueries =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListQueriesResponse>,
-       callback?: BodyResponseCallback<Schema$ListQueriesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/doubleclickbidmanager/v1/queries')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListQueriesResponse>(parameters, callback!);
-      };
+  listqueries(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListQueriesResponse>;
+  listqueries(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListQueriesResponse>,
+      callback?: BodyResponseCallback<Schema$ListQueriesResponse>): void;
+  listqueries(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListQueriesResponse>,
+      callback?: BodyResponseCallback<Schema$ListQueriesResponse>):
+      void|AxiosPromise<Schema$ListQueriesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/doubleclickbidmanager/v1/queries')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListQueriesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListQueriesResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -773,37 +876,55 @@ export class Resource$Queries {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  runquery =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/doubleclickbidmanager/v1/query/{queryId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['queryId'],
-          pathParams: ['queryId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  runquery(params: any, options?: MethodOptions): AxiosPromise<void>;
+  runquery(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  runquery(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/doubleclickbidmanager/v1/query/{queryId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['queryId'],
+      pathParams: ['queryId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 }
 
 export class Resource$Reports {
   root: Doubleclickbidmanager;
   constructor(root: Doubleclickbidmanager) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * doubleclickbidmanager.reports.listreports
@@ -817,39 +938,60 @@ export class Resource$Reports {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  listreports =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListReportsResponse>,
-       callback?: BodyResponseCallback<Schema$ListReportsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/doubleclickbidmanager/v1/queries/{queryId}/reports')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['queryId'],
-          pathParams: ['queryId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListReportsResponse>(parameters, callback!);
-      };
+  listreports(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListReportsResponse>;
+  listreports(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListReportsResponse>,
+      callback?: BodyResponseCallback<Schema$ListReportsResponse>): void;
+  listreports(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListReportsResponse>,
+      callback?: BodyResponseCallback<Schema$ListReportsResponse>):
+      void|AxiosPromise<Schema$ListReportsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/doubleclickbidmanager/v1/queries/{queryId}/reports')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['queryId'],
+      pathParams: ['queryId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListReportsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListReportsResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Sdf {
   root: Doubleclickbidmanager;
   constructor(root: Doubleclickbidmanager) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * doubleclickbidmanager.sdf.download
@@ -863,29 +1005,44 @@ export class Resource$Sdf {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  download =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$DownloadResponse>,
-       callback?: BodyResponseCallback<Schema$DownloadResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/doubleclickbidmanager/v1/sdf/download')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$DownloadResponse>(parameters, callback!);
-      };
+  download(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$DownloadResponse>;
+  download(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$DownloadResponse>,
+      callback?: BodyResponseCallback<Schema$DownloadResponse>): void;
+  download(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$DownloadResponse>,
+      callback?: BodyResponseCallback<Schema$DownloadResponse>):
+      void|AxiosPromise<Schema$DownloadResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/doubleclickbidmanager/v1/sdf/download')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DownloadResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DownloadResponse>(parameters);
+    }
+  }
 }
